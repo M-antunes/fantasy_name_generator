@@ -8,17 +8,21 @@ class SplashPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Timer(const Duration(milliseconds: 2500), () {
+    Timer(const Duration(milliseconds: 3000), () {
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => const HomePage()));
     });
-    return const Scaffold(
+    return Scaffold(
       body: Center(
-        child: Text(
-          'Fantasy\nName\nGenerator',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 30,
+        child: SizedBox(
+          width: MediaQuery.of(context).size.width * 0.5,
+          child: const FittedBox(
+            fit: BoxFit.fitWidth,
+            child: Text(
+              'Fantasy\nName\nGenerator',
+              textAlign: TextAlign.center,
+              style: TextStyle(color: Colors.white),
+            ),
           ),
         ),
       ),

@@ -16,7 +16,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Fantasy Name Generator',
-      themeMode: ThemeMode.dark,
+      theme: ThemeData.dark(),
       debugShowCheckedModeBanner: false,
       onGenerateRoute: RouteGenerator.onGenerateRoute,
       navigatorKey: _navigatorKey,
