@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-import 'package:fantasy_name_generator/controllers/controller.dart';
+import 'package:fantasy_name_generator/controllers/app_controller.dart';
 import 'package:fantasy_name_generator/models/race_model.dart';
 import 'package:fantasy_name_generator/shared/themes/app_text_styles.dart';
 
 class BottomSheetRace extends StatefulWidget {
   final Size size;
-  final Controller controller;
+  final AppController controller;
   const BottomSheetRace({
     Key? key,
     required this.size,
@@ -33,7 +33,7 @@ class _BottomSheetRaceState extends State<BottomSheetRace> {
           padding: EdgeInsets.symmetric(
             vertical: widget.size.height * 0.01,
           ),
-          child: Text(
+          child: const Text(
             "Select Race",
             style: AppTextStyle.changeRace,
           ),
@@ -88,7 +88,7 @@ class _BottomSheetRaceState extends State<BottomSheetRace> {
               horizontal: widget.size.width * 0.3,
               vertical: 10,
             ),
-            child: Center(
+            child: const Center(
               child: Text(
                 'Select',
                 style: AppTextStyle.selectButtonReady,
@@ -97,6 +97,7 @@ class _BottomSheetRaceState extends State<BottomSheetRace> {
           ),
           onTap: () {
             widget.controller.updateChosenRace(temporaryChosenRace);
+            widget.controller.newName = ' - ? - ';
             Navigator.of(context).pop();
           },
         )

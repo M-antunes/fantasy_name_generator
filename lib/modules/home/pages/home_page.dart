@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/src/provider.dart';
 
-import 'package:fantasy_name_generator/controllers/controller.dart';
+import 'package:fantasy_name_generator/controllers/app_controller.dart';
 import 'package:fantasy_name_generator/modules/drawer/app_drawer.dart';
 import 'package:fantasy_name_generator/shared/themes/app_text_styles.dart';
 
@@ -22,12 +22,13 @@ class _HomePageState extends State<HomePage> {
   GlobalKey<FlipCardState> cardKey = GlobalKey<FlipCardState>();
   bool isMaleSet = true;
   bool isFemaleSet = false;
-  late final Controller appController;
+
+  late final AppController appController;
   late final RaceModel initialRace;
 
   @override
   void initState() {
-    appController = context.read<Controller>();
+    appController = context.read<AppController>();
     initialRace = appController.listOfRaces.races[0];
     super.initState();
   }
@@ -55,7 +56,8 @@ class _HomePageState extends State<HomePage> {
               height: size.height * 0.04,
               child: FittedBox(
                 fit: BoxFit.fitWidth,
-                child: Consumer<Controller>(builder: (context, state, child) {
+                child:
+                    Consumer<AppController>(builder: (context, state, child) {
                   return appController.readyToSwitchRace
                       ? Text("${state.chosenRace.name} Names")
                       : Text("${initialRace.name} Names");
@@ -64,7 +66,11 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           SizedBox(height: size.height * 0.01),
-          NameGeneratorSet(size: size, initialRace: initialRace),
+          NameGeneratorSet(
+            size: size,
+            initialRace: initialRace,
+            controller: appController,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -88,9 +94,15 @@ class _HomePageState extends State<HomePage> {
               InkWell(
                   highlightColor: Colors.transparent,
                   splashColor: Colors.transparent,
-                  child: const Text(
-                    'Change Race',
-                    style: AppTextStyle.changeRace,
+                  child: SizedBox(
+                    height: size.height * 0.037,
+                    child: FittedBox(
+                      fit: BoxFit.fitHeight,
+                      child: Text(
+                        'Change Race',
+                        style: AppTextStyle.changeRace,
+                      ),
+                    ),
                   ),
                   onTap: () {
                     appController.readyToSwitchRace = true;
@@ -107,7 +119,7 @@ class _HomePageState extends State<HomePage> {
                     );
                   }),
               TextButton(
-                child: const Text(
+                child: Text(
                   'Save\nName',
                   textAlign: TextAlign.center,
                   style: AppTextStyle.generatedName,

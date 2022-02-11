@@ -16,7 +16,7 @@ class AppTextStyle {
     fontSize: 15,
   );
   static const changeRace = TextStyle(
-    fontWeight: FontWeight.bold,
+    fontWeight: FontWeight.w400,
     color: Colors.white,
     fontSize: 22,
   );

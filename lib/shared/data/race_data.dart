@@ -1,7 +1,6 @@
 import 'package:fantasy_name_generator/models/race_model.dart';
-import 'package:flutter/foundation.dart';
 
-class RaceController extends ChangeNotifier {
+class RaceData {
   List<RaceModel> races = [
     RaceModel(
       id: 0,

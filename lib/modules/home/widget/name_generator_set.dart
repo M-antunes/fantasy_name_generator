@@ -1,18 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:fantasy_name_generator/controllers/controller.dart';
+import 'package:fantasy_name_generator/controllers/app_controller.dart';
 import 'package:fantasy_name_generator/models/race_model.dart';
 import 'package:fantasy_name_generator/shared/themes/app_text_styles.dart';
 
-class NameGeneratorSet extends StatelessWidget {
+class NameGeneratorSet extends StatefulWidget {
   final Size size;
   final RaceModel initialRace;
+  final AppController controller;
   const NameGeneratorSet({
     Key? key,
     required this.size,
     required this.initialRace,
+    required this.controller,
   }) : super(key: key);
+
+  @override
+  State<NameGeneratorSet> createState() => _NameGeneratorSetState();
+}
+
+class _NameGeneratorSetState extends State<NameGeneratorSet> {
+  bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -20,23 +29,23 @@ class NameGeneratorSet extends StatelessWidget {
       children: [
         Padding(
           padding: EdgeInsets.symmetric(
-            horizontal: size.width * 0.15,
+            horizontal: widget.size.width * 0.15,
           ),
           child: Stack(
             alignment: Alignment.bottomCenter,
             children: [
               SizedBox(
-                width: size.width * 0.66,
-                height: size.height * 0.35,
+                width: widget.size.width * 0.66,
+                height: widget.size.height * 0.35,
                 child: FittedBox(
                   fit: BoxFit.fill,
                   child: ClipRRect(
                       borderRadius: BorderRadius.circular(100),
-                      child: Consumer<Controller>(
+                      child: Consumer<AppController>(
                           builder: (context, state, child) {
                         return state.readyToSwitchRace
                             ? Image.asset(state.chosenRace.picture)
-                            : Image.asset(initialRace.picture);
+                            : Image.asset(widget.initialRace.picture);
                       })),
                 ),
               ),
@@ -46,8 +55,8 @@ class NameGeneratorSet extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(
                       vertical: 5,
                     ),
-                    child:
-                        Consumer<Controller>(builder: (context, state, child) {
+                    child: Consumer<AppController>(
+                        builder: (context, state, child) {
                       return Container(
                         decoration: BoxDecoration(
                           color: Colors.white38,
@@ -58,11 +67,11 @@ class NameGeneratorSet extends StatelessWidget {
                           vertical: 3,
                         ),
                         child: SizedBox(
-                          height: size.height * 0.04,
+                          height: widget.size.height * 0.04,
                           child: FittedBox(
                             fit: BoxFit.fitHeight,
                             child: Text(
-                              'big name ',
+                              state.newName,
                               style: AppTextStyle.generatedName,
                             ),
                           ),
@@ -71,7 +80,7 @@ class NameGeneratorSet extends StatelessWidget {
                     }),
                   ),
                   SizedBox(
-                    height: size.height * 0.01,
+                    height: widget.size.height * 0.01,
                   )
                 ],
               ),
@@ -81,21 +90,21 @@ class NameGeneratorSet extends StatelessWidget {
         InkWell(
           child: Padding(
             padding: EdgeInsets.symmetric(
-              vertical: size.height * 0.02,
+              vertical: widget.size.height * 0.02,
             ),
             child: Container(
-              height: size.height * 0.06,
-              width: size.width * 0.5,
+              height: widget.size.height * 0.06,
+              width: widget.size.width * 0.5,
               decoration: BoxDecoration(
                 color: Colors.black87,
                 borderRadius: BorderRadius.circular(30),
               ),
               child: Center(
                 child: SizedBox(
-                  width: size.width * 0.2,
-                  child: const FittedBox(
+                  width: widget.size.width * 0.2,
+                  child: FittedBox(
                     fit: BoxFit.fitWidth,
-                    child: Text('Generate'),
+                    child: const Text('Generate'),
                   ),
                 ),
               ),
@@ -106,9 +115,13 @@ class NameGeneratorSet extends StatelessWidget {
           ),
           radius: 0,
           highlightColor: Colors.transparent,
-          onTap: () {},
+          onTap: () {
+            // setState(() => isLoading = true);
+            widget.controller.newNameGenerator();
+            // setState(() => isLoading = false);
+          },
         ),
-        SizedBox(height: size.height * 0.02),
+        SizedBox(height: widget.size.height * 0.02),
       ],
     );
   }
