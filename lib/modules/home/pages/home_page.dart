@@ -1,5 +1,14 @@
+import 'package:fantasy_name_generator/models/race_model.dart';
+import 'package:fantasy_name_generator/modules/home/widget/bottom_sheet_race.dart';
+import 'package:fantasy_name_generator/modules/home/widget/card_to_flip.dart';
+import 'package:fantasy_name_generator/modules/home/widget/name_generator_set.dart';
+import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:provider/src/provider.dart';
 
+import 'package:fantasy_name_generator/controllers/controller.dart';
+import 'package:fantasy_name_generator/modules/drawer/app_drawer.dart';
 import 'package:fantasy_name_generator/shared/themes/app_text_styles.dart';
 
 class HomePage extends StatefulWidget {
@@ -10,49 +19,24 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  GlobalKey<FlipCardState> cardKey = GlobalKey<FlipCardState>();
+  bool isMaleSet = true;
+  bool isFemaleSet = false;
+  late final Controller appController;
+  late final RaceModel initialRace;
+
+  @override
+  void initState() {
+    appController = context.read<Controller>();
+    initialRace = appController.races[0];
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      drawer: Drawer(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 12,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: size.height * 0.1),
-              SizedBox(
-                height: size.height * 0.045,
-                child: FittedBox(
-                  fit: BoxFit.fitHeight,
-                  child: Text('Nome da conta'),
-                ),
-              ),
-              SizedBox(height: size.height * 0.05),
-              ListTile(
-                leading: Icon(
-                  Icons.change_circle_sharp,
-                  size: 40,
-                  color: Colors.grey,
-                ),
-                title: Text("Select Another Race"),
-                onTap: () {},
-              ),
-              ListTile(
-                leading: Icon(
-                  Icons.save_outlined,
-                  size: 40,
-                  color: Colors.grey,
-                ),
-                title: Text("Saved Names"),
-                onTap: () {},
-              )
-            ],
-          ),
-        ),
-      ),
+      drawer: AppDrawer(size: size),
       appBar: AppBar(
         title: SizedBox(
           width: size.width * 0.6,
@@ -68,98 +52,71 @@ class _HomePageState extends State<HomePage> {
         children: [
           Center(
             child: SizedBox(
-              width: size.width * 0.3,
-              child: const FittedBox(
+              height: size.height * 0.04,
+              child: FittedBox(
                 fit: BoxFit.fitWidth,
-                child: Text('Race Name'),
+                child: Consumer<Controller>(builder: (context, state, child) {
+                  return appController.readyToSwitchRace
+                      ? Text("${state.chosenRace.name} Names")
+                      : Text("${initialRace.name} Names");
+                }),
               ),
             ),
           ),
-          Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: size.width * 0.15,
-            ),
-            child: Stack(
-              alignment: Alignment.bottomCenter,
-              children: [
-                SizedBox(
-                  width: size.width * 0.7,
-                  height: size.height * 0.35,
-                  child: FittedBox(
-                    fit: BoxFit.fill,
-                    child: ClipRRect(
-                        borderRadius: BorderRadius.circular(100),
-                        child: Image.asset('assets/images/human.jpg')),
-                  ),
-                ),
-                Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 5,
-                      ),
-                      child: SizedBox(
-                        height: size.height * 0.04,
-                        child: FittedBox(
-                          fit: BoxFit.fitHeight,
-                          child: Text(
-                            'big name',
-                            style: AppTextStyle.generatedName,
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: size.height * 0.01,
-                    )
-                  ],
-                ),
-              ],
-            ),
-          ),
-          InkWell(
-            child: Padding(
-              padding: EdgeInsets.symmetric(
-                vertical: size.height * 0.02,
-              ),
-              child: Container(
-                height: size.height * 0.06,
-                width: size.width * 0.5,
-                decoration: BoxDecoration(
-                  color: Colors.black87,
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                child: Center(
-                  child: SizedBox(
-                    width: size.width * 0.2,
-                    child: const FittedBox(
-                      fit: BoxFit.fitWidth,
-                      child: Text('Generate'),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            customBorder: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(30),
-            ),
-            radius: 0,
-            highlightColor: Colors.transparent,
-            onTap: () {},
-          ),
+          SizedBox(height: size.height * 0.01),
+          NameGeneratorSet(size: size, initialRace: initialRace),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              TextButton(
-                child: Text('Change gender'),
-                onPressed: () {},
+              FlipCard(
+                key: cardKey,
+                fill: Fill.fillBack,
+                direction: FlipDirection.HORIZONTAL,
+                front: CardToFlip(
+                  size: size,
+                  cardKey: cardKey,
+                  text: 'Male',
+                  isSet: isMaleSet,
+                ),
+                back: CardToFlip(
+                  size: size,
+                  cardKey: cardKey,
+                  text: 'Female',
+                  isSet: isFemaleSet,
+                ),
               ),
+              InkWell(
+                  highlightColor: Colors.transparent,
+                  splashColor: Colors.transparent,
+                  child: const Text(
+                    'Change Race',
+                    style: AppTextStyle.changeRace,
+                  ),
+                  onTap: () {
+                    appController.readyToSwitchRace = true;
+                    showModalBottomSheet(
+                      context: context,
+                      builder: (_) {
+                        return StatefulBuilder(builder: (context, setState) {
+                          return BottomSheetRace(
+                            size: size,
+                            race: appController.races,
+                            controller: appController,
+                          );
+                        });
+                      },
+                    );
+                  }),
               TextButton(
-                child: Text('Save this name'),
+                child: const Text(
+                  'Save\nName',
+                  textAlign: TextAlign.center,
+                  style: AppTextStyle.generatedName,
+                ),
                 onPressed: () {},
               ),
             ],
-          )
+          ),
         ],
       ),
     );
