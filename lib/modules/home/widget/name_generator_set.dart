@@ -48,13 +48,23 @@ class NameGeneratorSet extends StatelessWidget {
                     ),
                     child:
                         Consumer<Controller>(builder: (context, state, child) {
-                      return SizedBox(
-                        height: size.height * 0.04,
-                        child: FittedBox(
-                          fit: BoxFit.fitHeight,
-                          child: Text(
-                            'big name',
-                            style: AppTextStyle.generatedName,
+                      return Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white38,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 3,
+                        ),
+                        child: SizedBox(
+                          height: size.height * 0.04,
+                          child: FittedBox(
+                            fit: BoxFit.fitHeight,
+                            child: Text(
+                              'big name ',
+                              style: AppTextStyle.generatedName,
+                            ),
                           ),
                         ),
                       );

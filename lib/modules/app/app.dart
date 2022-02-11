@@ -1,5 +1,6 @@
 // This widget is the root of your application.
 import 'package:fantasy_name_generator/controllers/controller.dart';
+import 'package:fantasy_name_generator/controllers/race_controller.dart';
 import 'package:fantasy_name_generator/modules/splash/splash_page.dart';
 import 'package:fantasy_name_generator/shared/core/route_generator.dart';
 import 'package:flutter/material.dart';
@@ -18,9 +19,8 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(
-          create: (_) => Controller(),
-        ),
+        ChangeNotifierProvider(create: (_) => Controller()),
+        ChangeNotifierProvider(create: (_) => RaceController()),
       ],
       child: MaterialApp(
         title: 'Fantasy Name Generator',

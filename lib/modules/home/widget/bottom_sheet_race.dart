@@ -6,12 +6,10 @@ import 'package:fantasy_name_generator/shared/themes/app_text_styles.dart';
 
 class BottomSheetRace extends StatefulWidget {
   final Size size;
-  final List<RaceModel> race;
   final Controller controller;
   const BottomSheetRace({
     Key? key,
     required this.size,
-    required this.race,
     required this.controller,
   }) : super(key: key);
 
@@ -42,9 +40,9 @@ class _BottomSheetRaceState extends State<BottomSheetRace> {
         ),
         Expanded(
           child: ListView.builder(
-              itemCount: widget.race.length,
+              itemCount: widget.controller.listOfRaces.races.length,
               itemBuilder: (context, index) {
-                var race = widget.race[index];
+                var race = widget.controller.listOfRaces.races[index];
                 return InkWell(
                   child: Card(
                     color: race.isSelected ? Colors.red[900] : Colors.grey[700],
@@ -67,7 +65,7 @@ class _BottomSheetRaceState extends State<BottomSheetRace> {
                   onTap: () {
                     setState(() {
                       race.isSelected = !race.isSelected;
-                      for (var select in widget.race) {
+                      for (var select in widget.controller.listOfRaces.races) {
                         select.isSelected = false;
                       }
                       race.isSelected = !race.isSelected;

@@ -28,7 +28,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     appController = context.read<Controller>();
-    initialRace = appController.races[0];
+    initialRace = appController.listOfRaces.races[0];
     super.initState();
   }
 
@@ -100,7 +100,6 @@ class _HomePageState extends State<HomePage> {
                         return StatefulBuilder(builder: (context, setState) {
                           return BottomSheetRace(
                             size: size,
-                            race: appController.races,
                             controller: appController,
                           );
                         });
