@@ -3,7 +3,8 @@ import 'package:provider/provider.dart';
 
 import 'package:fantasy_name_generator/controllers/app_controller.dart';
 import 'package:fantasy_name_generator/models/race_model.dart';
-import 'package:fantasy_name_generator/shared/themes/app_text_styles.dart';
+
+import 'picture_board.dart';
 
 class NameGeneratorSet extends StatefulWidget {
   final Size size;
@@ -27,65 +28,10 @@ class _NameGeneratorSetState extends State<NameGeneratorSet> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: widget.size.width * 0.15,
-          ),
-          child: Stack(
-            alignment: Alignment.bottomCenter,
-            children: [
-              SizedBox(
-                width: widget.size.width * 0.66,
-                height: widget.size.height * 0.35,
-                child: FittedBox(
-                  fit: BoxFit.fill,
-                  child: ClipRRect(
-                      borderRadius: BorderRadius.circular(100),
-                      child: Consumer<AppController>(
-                          builder: (context, state, child) {
-                        return state.readyToSwitchRace
-                            ? Image.asset(state.chosenRace.picture)
-                            : Image.asset(widget.initialRace.picture);
-                      })),
-                ),
-              ),
-              Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 5,
-                    ),
-                    child: Consumer<AppController>(
-                        builder: (context, state, child) {
-                      return Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white38,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 8,
-                          vertical: 3,
-                        ),
-                        child: SizedBox(
-                          height: widget.size.height * 0.04,
-                          child: FittedBox(
-                            fit: BoxFit.fitHeight,
-                            child: Text(
-                              state.newName,
-                              style: AppTextStyle.generatedName,
-                            ),
-                          ),
-                        ),
-                      );
-                    }),
-                  ),
-                  SizedBox(
-                    height: widget.size.height * 0.01,
-                  )
-                ],
-              ),
-            ],
-          ),
+        PictureBoard(
+          controller: widget.controller,
+          initialRace: widget.initialRace,
+          size: widget.size,
         ),
         InkWell(
           child: Padding(

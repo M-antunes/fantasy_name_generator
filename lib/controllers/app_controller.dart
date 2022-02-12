@@ -11,16 +11,43 @@ class AppController extends ChangeNotifier {
   var listOfRaces = RaceData();
   var letters = LettersData();
   Random randomIndex = Random();
-  int randomTry = 0;
+  int nameLength = 0;
+  List<int> randomChance = [3, 4, 5, 6, 7, 8];
   String newName = ' - ? - ';
+  bool isMale = true;
+  bool isFemale = false;
 
   updateChosenRace(RaceModel race) {
     chosenRace = race;
+    if (race.name == 'Orc') {
+      randomChance = [0, 1, 2, 3, 4, 4, 4, 5, 5];
+      notifyListeners();
+    }
+    if (race.name == 'Hobbit' || race.name == 'Gnome') {
+      randomChance = [7, 8, 9, 10, 10, 10, 11, 11, 12, 12, 12, 13, 13, 14, 14];
+      notifyListeners();
+    }
+    if (race.name == 'Dwarf') {
+      randomChance = [5, 6, 6, 7, 7, 7, 8, 8, 9, 9, 10, 10, 11];
+      notifyListeners();
+    }
+    if (race.name == 'Elf') {
+      randomChance = [8, 8, 9, 9, 10, 10, 11, 11, 12, 12, 13, 13, 14, 14];
+      notifyListeners();
+    }
+  }
+
+  switchToMale() {
+    isMale = true;
+    isFemale = false;
+    newName = ' - ? - ';
     notifyListeners();
   }
 
-  updateNewName(String randomName) {
-    newName = randomName;
+  switchToFemale() {
+    isFemale = true;
+    isMale = false;
+    newName = ' - ? - ';
     notifyListeners();
   }
 
@@ -69,20 +96,20 @@ class AppController extends ChangeNotifier {
   }
 
   newNameGenerator() {
-    randomTry = randomIndex.nextInt(13);
+    nameLength = randomIndex.nextInt(randomChance.length);
 
-    if (randomTry == 0 || randomTry == 1) {
+    if (nameLength == 0) {
       newName = randomVowel().toUpperCase() + randomConsonant() + randomVowel();
       notifyListeners();
       return;
     }
-    if (randomTry == 2) {
+    if (nameLength == 1) {
       newName =
           randomConsonant().toUpperCase() + randomVowel() + randomSemiVowel();
       notifyListeners();
       return;
     }
-    if (randomTry == 3) {
+    if (nameLength == 2) {
       newName = randomVowel().toUpperCase() +
           randomConsonant() +
           randomVowel() +
@@ -90,7 +117,7 @@ class AppController extends ChangeNotifier {
       notifyListeners();
       return;
     }
-    if (randomTry == 4 || randomTry == 5) {
+    if (nameLength == 3) {
       newName = randomConsonant().toUpperCase() +
           randomConsonantCluster() +
           randomVowel() +
@@ -98,7 +125,7 @@ class AppController extends ChangeNotifier {
       notifyListeners();
       return;
     }
-    if (randomTry == 6) {
+    if (nameLength == 4) {
       newName = randomConsonant().toUpperCase() +
           randomConsonantCluster() +
           randomVowel() +
@@ -106,7 +133,7 @@ class AppController extends ChangeNotifier {
       notifyListeners();
       return;
     }
-    if (randomTry == 7) {
+    if (nameLength == 5) {
       newName = randomConsonant().toUpperCase() +
           randomConsonantCluster() +
           randomVowel() +
@@ -115,18 +142,37 @@ class AppController extends ChangeNotifier {
       notifyListeners();
       return;
     }
-    if (randomTry == 8) {
+    if (nameLength == 6) {
       newName = randomConsonant().toUpperCase() +
           randomVowel() +
+          randomSemiVowel() +
+          randomConsonant() +
+          randomVowel();
+      notifyListeners();
+      return;
+    }
+    if (nameLength == 7) {
+      newName = randomConsonant().toUpperCase() +
+          randomVowel() +
+          randomSemiVowel() +
+          randomConsonant() +
+          randomVowel() +
+          randomConsonant();
+      notifyListeners();
+      return;
+    }
+    if (nameLength == 8) {
+      newName = randomConsonant().toUpperCase() +
+          randomConsonantCluster() +
           randomVowel() +
           randomConsonant() +
           randomVowel();
       notifyListeners();
       return;
     }
-    if (randomTry == 9) {
+    if (nameLength == 9) {
       newName = randomConsonant().toUpperCase() +
-          randomVowel() +
+          randomConsonantCluster() +
           randomVowel() +
           randomConsonant() +
           randomVowel() +
@@ -134,39 +180,52 @@ class AppController extends ChangeNotifier {
       notifyListeners();
       return;
     }
-    if (randomTry == 10) {
-      newName = randomConsonant().toUpperCase() +
+    if (nameLength == 10) {
+      newName = randomVowel().toUpperCase() +
+          randomConsonant() +
           randomConsonantCluster() +
           randomVowel() +
-          randomConsonant() +
-          randomVowel();
+          randomSemiVowel();
       notifyListeners();
       return;
     }
-    if (randomTry == 11) {
-      newName = randomConsonant().toUpperCase() +
+    if (nameLength == 11) {
+      newName = randomVowel().toUpperCase() +
+          randomConsonant() +
           randomConsonantCluster() +
           randomVowel() +
-          randomConsonant() +
           randomVowel() +
           randomConsonant();
       notifyListeners();
       return;
     }
-    if (randomTry == 12) {
+    if (nameLength == 12) {
       newName = randomVowel().toUpperCase() +
           randomConsonant() +
           randomConsonantCluster() +
           randomVowel() +
+          randomSemiVowel() +
+          randomConsonant() +
           randomVowel();
       notifyListeners();
       return;
     }
-    if (randomTry == 13) {
-      newName = randomVowel().toUpperCase() +
+    if (nameLength == 13) {
+      newName = randomConsonant().toUpperCase() +
+          randomVowel() +
+          randomSemiVowel() +
           randomConsonant() +
           randomConsonantCluster() +
+          randomVowel();
+      notifyListeners();
+      return;
+    }
+    if (nameLength == 14) {
+      newName = randomConsonant().toUpperCase() +
           randomVowel() +
+          randomSemiVowel() +
+          randomConsonant() +
+          randomConsonantCluster() +
           randomVowel() +
           randomConsonant();
       notifyListeners();
