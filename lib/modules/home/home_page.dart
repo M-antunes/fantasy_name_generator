@@ -5,8 +5,8 @@ import 'package:provider/src/provider.dart';
 import 'package:fantasy_name_generator/controllers/app_controller.dart';
 import 'package:fantasy_name_generator/models/race_model.dart';
 import 'package:fantasy_name_generator/modules/drawer/app_drawer.dart';
-import 'package:fantasy_name_generator/modules/home/widget/bottom_sheet_race.dart';
-import 'package:fantasy_name_generator/modules/home/widget/name_generator_set.dart';
+import 'package:fantasy_name_generator/modules/home/widgets/bottom_sheet_race.dart';
+import 'package:fantasy_name_generator/modules/home/widgets/name_generator_set.dart';
 import 'package:fantasy_name_generator/shared/themes/app_text_styles.dart';
 
 class HomePage extends StatefulWidget {

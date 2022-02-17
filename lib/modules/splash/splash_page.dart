@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:fantasy_name_generator/modules/home/pages/home_page.dart';
+import 'package:fantasy_name_generator/modules/home/home_page.dart';
 import 'package:flutter/material.dart';
 
 class SplashPage extends StatelessWidget {

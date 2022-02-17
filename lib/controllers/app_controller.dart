@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:fantasy_name_generator/shared/data/human_names_data.dart';
 import 'package:fantasy_name_generator/shared/data/letters_data.dart';
 import 'package:fantasy_name_generator/shared/data/race_data.dart';
 import 'package:fantasy_name_generator/models/race_model.dart';
@@ -10,6 +11,7 @@ class AppController extends ChangeNotifier {
   bool readyToSwitchRace = false;
   var listOfRaces = RaceData();
   var letters = LettersData();
+  var humanNames = HumanNamesData();
   Random randomIndex = Random();
   int nameLength = 0;
   List<int> randomChance = [3, 4, 5, 6, 7, 8];
@@ -19,6 +21,7 @@ class AppController extends ChangeNotifier {
 
   updateChosenRace(RaceModel race) {
     chosenRace = race;
+    if (race.name == "Human") {}
     if (race.name == 'Orc') {
       randomChance = [0, 1, 2, 3, 4, 4, 4, 5, 5];
       notifyListeners();
@@ -94,6 +97,8 @@ class AppController extends ChangeNotifier {
     }
     return randomConsonantCluster.value;
   }
+
+  humanNameGenerator() {}
 
   newNameGenerator() {
     nameLength = randomIndex.nextInt(randomChance.length);
