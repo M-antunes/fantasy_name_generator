@@ -1,4 +1,4 @@
-import 'package:fantasy_name_generator/controllers/app_controller.dart';
+import 'package:fantasy_name_generator/controllers/names_controller.dart';
 import 'package:fantasy_name_generator/models/race_model.dart';
 import 'package:fantasy_name_generator/shared/themes/app_text_styles.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 class PictureBoard extends StatelessWidget {
   final Size size;
   final RaceModel initialRace;
-  final AppController controller;
+  final NamesController controller;
 
   const PictureBoard({
     Key? key,
@@ -18,6 +18,10 @@ class PictureBoard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    capitalize(String s) {
+      return s[0].toUpperCase() + s.substring(1).toLowerCase();
+    }
+
     return Padding(
       padding: EdgeInsets.symmetric(
         horizontal: size.width * 0.15,
@@ -32,7 +36,7 @@ class PictureBoard extends StatelessWidget {
               fit: BoxFit.fill,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(100),
-                child: Consumer<AppController>(
+                child: Consumer<NamesController>(
                   builder: (context, state, child) {
                     return state.readyToSwitchRace
                         ? Image.asset(
@@ -57,7 +61,7 @@ class PictureBoard extends StatelessWidget {
                   vertical: 5,
                 ),
                 child:
-                    Consumer<AppController>(builder: (context, state, child) {
+                    Consumer<NamesController>(builder: (context, state, child) {
                   return Container(
                     decoration: BoxDecoration(
                       color: Colors.white38,
@@ -72,7 +76,7 @@ class PictureBoard extends StatelessWidget {
                       child: FittedBox(
                         fit: BoxFit.fitHeight,
                         child: Text(
-                          state.newName,
+                          capitalize(state.newName),
                           style: AppTextStyle.generatedName,
                         ),
                       ),

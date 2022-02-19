@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/src/provider.dart';
 
-import 'package:fantasy_name_generator/controllers/app_controller.dart';
+import 'package:fantasy_name_generator/controllers/names_controller.dart';
 import 'package:fantasy_name_generator/models/race_model.dart';
 import 'package:fantasy_name_generator/modules/drawer/app_drawer.dart';
 import 'package:fantasy_name_generator/modules/home/widgets/bottom_sheet_race.dart';
@@ -20,13 +20,12 @@ class _HomePageState extends State<HomePage> {
   bool genderSelect = true;
   bool isFemaleSet = false;
 
-  late final AppController appController;
-  late final RaceModel initialRace;
+  late final NamesController namesController;
 
   @override
   void initState() {
-    appController = context.read<AppController>();
-    initialRace = appController.listOfRaces.races[0];
+    namesController = context.read<NamesController>();
+    namesController.getInitialRace();
     super.initState();
   }
 
@@ -49,7 +48,7 @@ class _HomePageState extends State<HomePage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Center(
-            child: Consumer<AppController>(builder: (context, state, child) {
+            child: Consumer<NamesController>(builder: (context, state, child) {
               return Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -63,9 +62,9 @@ class _HomePageState extends State<HomePage> {
                     height: size.height * 0.04,
                     child: FittedBox(
                       fit: BoxFit.fitWidth,
-                      child: appController.readyToSwitchRace
+                      child: namesController.readyToSwitchRace
                           ? Text("${state.chosenRace.name} Names")
-                          : Text("${initialRace.name} Names"),
+                          : Text("${namesController.initialRace.name} Names"),
                     ),
                   ),
                   GenderButton(
@@ -81,8 +80,8 @@ class _HomePageState extends State<HomePage> {
           SizedBox(height: size.height * 0.01),
           NameGeneratorSet(
             size: size,
-            initialRace: initialRace,
-            controller: appController,
+            initialRace: namesController.initialRace,
+            controller: namesController,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -101,14 +100,14 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   onTap: () {
-                    appController.readyToSwitchRace = true;
+                    namesController.readyToSwitchRace = true;
                     showModalBottomSheet(
                       context: context,
                       builder: (_) {
                         return StatefulBuilder(builder: (context, setState) {
                           return BottomSheetRace(
                             size: size,
-                            controller: appController,
+                            controller: namesController,
                           );
                         });
                       },
@@ -132,7 +131,7 @@ class _HomePageState extends State<HomePage> {
 
 class GenderButton extends StatelessWidget {
   final bool genderSelect;
-  final AppController state;
+  final NamesController state;
   final String gender;
   final VoidCallback onTap;
   const GenderButton({

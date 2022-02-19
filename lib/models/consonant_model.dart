@@ -1,8 +1,16 @@
-class ConsonantModel {
-  final int id;
+enum LetterOrSyllabus {
+  vowel,
+  consonant,
+  twoLetterSyllabus,
+  threeLetterSyllabus,
+  fourLetterSyllabus,
+}
+
+class LetterModel {
+  final LetterOrSyllabus type;
   final String value;
-  ConsonantModel({
-    required this.id,
+  LetterModel({
+    required this.type,
     required this.value,
   });
 }

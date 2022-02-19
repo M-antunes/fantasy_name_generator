@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:fantasy_name_generator/controllers/app_controller.dart';
+import 'package:fantasy_name_generator/controllers/names_controller.dart';
 import 'package:fantasy_name_generator/models/race_model.dart';
 
 import 'picture_board.dart';
@@ -9,7 +9,7 @@ import 'picture_board.dart';
 class NameGeneratorSet extends StatefulWidget {
   final Size size;
   final RaceModel initialRace;
-  final AppController controller;
+  final NamesController controller;
   const NameGeneratorSet({
     Key? key,
     required this.size,
@@ -62,9 +62,7 @@ class _NameGeneratorSetState extends State<NameGeneratorSet> {
           radius: 0,
           highlightColor: Colors.transparent,
           onTap: () {
-            // setState(() => isLoading = true);
             widget.controller.newNameGenerator();
-            // setState(() => isLoading = false);
           },
         ),
         SizedBox(height: widget.size.height * 0.02),

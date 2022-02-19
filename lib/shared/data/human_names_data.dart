@@ -176,10 +176,17 @@ class HumanNamesData {
     "Bojana",
     "Carlie",
     "Shaldreessa",
+    "Silvia",
+    "Livia",
+    "Edua",
+    "Samanta",
+    "Aghata",
+    "Pahdua",
   ];
 
   List<String> lastNames = [
     "Leverett",
+    "Mafrolgi",
     "Zudeka",
     "Sinclair",
     "Jona",
@@ -395,14 +402,20 @@ class HumanNamesData {
     "Zergonu",
     "Mozdam",
     "Walsh",
+    "Shelling",
+    "Mettler",
+    "Reacher",
     "Rised",
     "Webb ",
     "Thium",
+    "Violetstar",
     "Jernasu",
   ];
 
   List<String> maleNames = [
     "Hirdilm",
+    "Simon",
+    "Tunner",
     "Payton",
     "Dinzosk",
     "Sergej",
