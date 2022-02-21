@@ -182,6 +182,7 @@ class HumanNamesData {
     "Samanta",
     "Aghata",
     "Pahdua",
+    "Ashley"
   ];
 
   List<String> lastNames = [
@@ -413,7 +414,10 @@ class HumanNamesData {
   ];
 
   List<String> maleNames = [
+    "Ash",
+    "Blake",
     "Hirdilm",
+    "Bertrand",
     "Simon",
     "Tunner",
     "Payton",

@@ -39,7 +39,7 @@ class RaceData {
     ),
     RaceModel(
       id: 5,
-      name: 'Hobbit',
+      name: 'Hafling',
       isSelected: false,
       malePicture: 'assets/images/hobbit.jpg',
       femalePicture: 'assets/images/hobbit2.jpg',

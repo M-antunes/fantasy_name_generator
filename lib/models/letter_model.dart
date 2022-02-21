@@ -1,5 +1,6 @@
 enum LetterOrSyllabus {
   vowel,
+  semiVowel,
   consonant,
   twoLetterSyllabus,
   threeLetterSyllabus,

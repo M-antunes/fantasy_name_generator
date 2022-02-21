@@ -7,21 +7,15 @@ import 'package:provider/provider.dart';
 class PictureBoard extends StatelessWidget {
   final Size size;
   final RaceModel initialRace;
-  final NamesController controller;
 
   const PictureBoard({
     Key? key,
     required this.size,
     required this.initialRace,
-    required this.controller,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    capitalize(String s) {
-      return s[0].toUpperCase() + s.substring(1).toLowerCase();
-    }
-
     return Padding(
       padding: EdgeInsets.symmetric(
         horizontal: size.width * 0.15,
@@ -54,6 +48,21 @@ class PictureBoard extends StatelessWidget {
               ),
             ),
           ),
+          Consumer<NamesController>(
+            builder: (context, state, child) {
+              return state.readyToInvertNames && state.lastNameShown
+                  ? Positioned(
+                      left: 8,
+                      top: 0,
+                      child: TextButton(
+                        child: Text(
+                            state.revert ? 'Revert Names' : 'Invert Names'),
+                        onPressed: () => state.switchNameAndLastName(),
+                      ),
+                    )
+                  : const SizedBox();
+            },
+          ),
           Column(
             children: [
               Padding(
@@ -76,7 +85,9 @@ class PictureBoard extends StatelessWidget {
                       child: FittedBox(
                         fit: BoxFit.fitHeight,
                         child: Text(
-                          capitalize(state.newName),
+                          state.lastNameShown
+                              ? "${state.newName} ${state.newLastName}"
+                              : state.newName,
                           style: AppTextStyle.generatedName,
                         ),
                       ),
@@ -94,3 +105,14 @@ class PictureBoard extends StatelessWidget {
     );
   }
 }
+                        //     ? SizedBox(
+                        //         height: size.height * 0.04,
+                        //         child: FittedBox(
+                        //           fit: BoxFit.fitHeight,
+                        //           child: Text(
+                        //             capitalize(state.newLastName),
+                        //             style: AppTextStyle.generatedName,
+                        //           ),
+                        //         ),
+                        //       )
+                        //     : SizedBox(),

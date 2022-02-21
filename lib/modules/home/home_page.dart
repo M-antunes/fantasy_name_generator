@@ -1,9 +1,9 @@
+import 'package:fantasy_name_generator/shared/widgets/snackbar_message.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/src/provider.dart';
 
 import 'package:fantasy_name_generator/controllers/names_controller.dart';
-import 'package:fantasy_name_generator/models/race_model.dart';
 import 'package:fantasy_name_generator/modules/drawer/app_drawer.dart';
 import 'package:fantasy_name_generator/modules/home/widgets/bottom_sheet_race.dart';
 import 'package:fantasy_name_generator/modules/home/widgets/name_generator_set.dart';
@@ -53,26 +53,43 @@ class _HomePageState extends State<HomePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   GenderButton(
-                    genderSelect: state.isMale,
-                    gender: 'Male',
-                    state: state,
-                    onTap: () => state.switchToMale(),
-                  ),
-                  SizedBox(
-                    height: size.height * 0.04,
-                    child: FittedBox(
-                      fit: BoxFit.fitWidth,
-                      child: namesController.readyToSwitchRace
-                          ? Text("${state.chosenRace.name} Names")
-                          : Text("${namesController.initialRace.name} Names"),
-                    ),
+                      genderSelect: state.isMale,
+                      gender: 'Male',
+                      state: state,
+                      onTap: () {
+                        state.switchToMale();
+                        state.showInvertNameButton();
+                      }),
+                  Column(
+                    children: [
+                      TextButton(
+                        onPressed: () {
+                          state.displayLastName();
+                          state.showInvertNameButton();
+                        },
+                        child: Text(state.lastNameShown
+                            ? 'Hide Last Name'
+                            : 'Show Last Name'),
+                      ),
+                      SizedBox(
+                        height: size.height * 0.04,
+                        child: FittedBox(
+                          fit: BoxFit.fitWidth,
+                          child: state.readyToSwitchRace
+                              ? Text("${state.chosenRace.name} Names")
+                              : Text("${state.initialRace.name} Names"),
+                        ),
+                      ),
+                    ],
                   ),
                   GenderButton(
-                    genderSelect: state.isFemale,
-                    gender: 'Female',
-                    state: state,
-                    onTap: () => state.switchToFemale(),
-                  ),
+                      genderSelect: state.isFemale,
+                      gender: 'Female',
+                      state: state,
+                      onTap: () {
+                        state.switchToFemale();
+                        state.showInvertNameButton();
+                      }),
                 ],
               );
             }),
@@ -91,9 +108,9 @@ class _HomePageState extends State<HomePage> {
                   splashColor: Colors.transparent,
                   child: SizedBox(
                     height: size.height * 0.037,
-                    child: FittedBox(
+                    child: const FittedBox(
                       fit: BoxFit.fitHeight,
-                      child: Text(
+                      child: const Text(
                         'Change Race',
                         style: AppTextStyle.changeRace,
                       ),
@@ -114,12 +131,27 @@ class _HomePageState extends State<HomePage> {
                     );
                   }),
               TextButton(
-                child: Text(
+                child: const Text(
                   'Save\nName',
                   textAlign: TextAlign.center,
                   style: AppTextStyle.generatedName,
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  namesController.saveName(
+                    context,
+                    const SnackbarMessage(
+                        icon: Icons.cancel_presentation_rounded,
+                        text: 'No name to be saved'),
+                    const SnackbarMessage(
+                        icon: Icons.checklist_sharp,
+                        text: 'This name was already saved'),
+                    const SnackbarMessage(
+                        icon: Icons.check_circle_outline, text: 'Name saved'),
+                    Colors.green[900]!,
+                    Colors.red[900]!,
+                    Colors.red[900]!,
+                  );
+                },
               ),
             ],
           ),
@@ -150,28 +182,30 @@ class GenderButton extends StatelessWidget {
       radius: 0,
       onTap: onTap,
       child: Card(
-          shape: RoundedRectangleBorder(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+        ),
+        elevation: state.isMale ? 0 : 20,
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.grey[700],
             borderRadius: BorderRadius.circular(20),
+            border: genderSelect
+                ? Border.all(color: Colors.red[900]!, width: 2)
+                : Border.all(color: Colors.transparent),
           ),
-          elevation: state.isMale ? 0 : 20,
-          child: Container(
-              decoration: BoxDecoration(
-                color: Colors.grey[700],
-                borderRadius: BorderRadius.circular(20),
-                border: genderSelect
-                    ? Border.all(color: Colors.red[900]!, width: 2)
-                    : Border.all(color: Colors.transparent),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 10,
-                  vertical: 5,
-                ),
-                child: Text(
-                  gender,
-                  style: AppTextStyle.flipCardFemale,
-                ),
-              ))),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 10,
+              vertical: 5,
+            ),
+            child: Text(
+              gender,
+              style: AppTextStyle.flipCardFemale,
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

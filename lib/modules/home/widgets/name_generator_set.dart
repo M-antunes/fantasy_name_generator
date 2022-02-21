@@ -29,7 +29,6 @@ class _NameGeneratorSetState extends State<NameGeneratorSet> {
     return Column(
       children: [
         PictureBoard(
-          controller: widget.controller,
           initialRace: widget.initialRace,
           size: widget.size,
         ),

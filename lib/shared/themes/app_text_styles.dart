@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class AppTextStyle {
   static const generatedName = TextStyle(
     fontWeight: FontWeight.w400,
-    color: Colors.black,
+    color: Colors.white,
   );
   static const flipCardMale = TextStyle(
     fontWeight: FontWeight.bold,
