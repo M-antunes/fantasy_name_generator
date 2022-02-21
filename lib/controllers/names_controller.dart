@@ -66,6 +66,8 @@ class NamesController extends ChangeNotifier {
 
   updateChosenRace(RaceModel race) {
     chosenRace = race;
+    newName = ' - ? - ';
+    newLastName = ' - ? - ';
     notifyListeners();
   }
 
@@ -175,7 +177,6 @@ class NamesController extends ChangeNotifier {
               chosenRace.name == "Gnome"
           ? temporaryName = temporaryName + getSyllabus()
           : temporaryName = temporaryName;
-      ;
     }
     if (temporaryName.length == 2) {
       chosenRace.name == "Elf" || chosenRace.name == "Hafling"
@@ -341,14 +342,34 @@ class NamesController extends ChangeNotifier {
 // Human designated part ====================================================================
 
   humanNameGenerator() {
-    var previousName = newName;
-    var nameChance = randomIndex.nextInt(humanNames.maleNames.length);
-    newName = humanNames.maleNames[nameChance];
-    while (newName == previousName) {
+    if (isMale) {
+      var previousName = newName;
       var nameChance = randomIndex.nextInt(humanNames.maleNames.length);
       newName = humanNames.maleNames[nameChance];
+      while (newName == previousName) {
+        nameChance = randomIndex.nextInt(humanNames.maleNames.length);
+        newName = humanNames.maleNames[nameChance];
+      }
+      notifyListeners();
     }
-    notifyListeners();
+    if (isFemale) {
+      var previousName = newName;
+      var nameChance = randomIndex.nextInt(humanNames.femaleNames.length);
+      newName = humanNames.femaleNames[nameChance];
+      while (newName == previousName) {
+        nameChance = randomIndex.nextInt(humanNames.femaleNames.length);
+        newName = humanNames.femaleNames[nameChance];
+      }
+      notifyListeners();
+    }
+    var previousLastName = newLastName;
+    var lastNameChance = randomIndex.nextInt(humanNames.lastNames.length);
+    newLastName = humanNames.lastNames[lastNameChance];
+    while (newLastName == previousLastName) {
+      lastNameChance = randomIndex.nextInt(humanNames.lastNames.length);
+      newLastName = humanNames.lastNames[lastNameChance];
+      notifyListeners();
+    }
   }
 
 // Orc designated part ====================================================================
@@ -409,8 +430,13 @@ class NamesController extends ChangeNotifier {
       dwarfNameGenerator();
       return;
     }
+    if (chosenRace.name == "Gnome") {
+      gnomeNameGenerator();
+      return;
+    }
   }
 
+  /// inverts the name and last name position
   switchNameAndLastName() {
     String switchToName = newName;
     String switchToLastName = newLastName;
@@ -441,7 +467,11 @@ class NamesController extends ChangeNotifier {
       }
     }
     SavedNameModel nameToSave = SavedNameModel(
-        firstName: newName, lastName: newLastName, isSelected: false);
+        race: chosenRace.name,
+        gender: isMale ? 1 : 0,
+        firstName: newName,
+        lastName: newLastName,
+        isSelected: false);
     savedNames.add(nameToSave);
     callMessageSnackbar(context, savedMessage, sucessColor);
   }

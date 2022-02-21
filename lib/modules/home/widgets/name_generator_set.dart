@@ -47,9 +47,9 @@ class _NameGeneratorSetState extends State<NameGeneratorSet> {
               child: Center(
                 child: SizedBox(
                   width: widget.size.width * 0.2,
-                  child: FittedBox(
+                  child: const FittedBox(
                     fit: BoxFit.fitWidth,
-                    child: const Text('Generate'),
+                    child: Text('Generate'),
                   ),
                 ),
               ),

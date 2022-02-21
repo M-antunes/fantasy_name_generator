@@ -52,7 +52,7 @@ class PictureBoard extends StatelessWidget {
             builder: (context, state, child) {
               return state.readyToInvertNames && state.lastNameShown
                   ? Positioned(
-                      left: 8,
+                      left: 20,
                       top: 0,
                       child: TextButton(
                         child: Text(
@@ -81,7 +81,7 @@ class PictureBoard extends StatelessWidget {
                       vertical: 3,
                     ),
                     child: SizedBox(
-                      height: size.height * 0.04,
+                      height: size.height * 0.035,
                       child: FittedBox(
                         fit: BoxFit.fitHeight,
                         child: Text(
@@ -105,14 +105,3 @@ class PictureBoard extends StatelessWidget {
     );
   }
 }
-                        //     ? SizedBox(
-                        //         height: size.height * 0.04,
-                        //         child: FittedBox(
-                        //           fit: BoxFit.fitHeight,
-                        //           child: Text(
-                        //             capitalize(state.newLastName),
-                        //             style: AppTextStyle.generatedName,
-                        //           ),
-                        //         ),
-                        //       )
-                        //     : SizedBox(),

@@ -97,7 +97,6 @@ class _BottomSheetRaceState extends State<BottomSheetRace> {
           ),
           onTap: () {
             widget.controller.updateChosenRace(temporaryChosenRace);
-            widget.controller.newName = ' - ? - ';
             Navigator.of(context).pop();
           },
         )

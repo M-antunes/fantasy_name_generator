@@ -33,7 +33,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      drawer: AppDrawer(size: size),
+      drawer: AppDrawer(),
       appBar: AppBar(
         title: SizedBox(
           width: size.width * 0.6,
