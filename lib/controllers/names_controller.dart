@@ -26,7 +26,7 @@ class NamesController extends ChangeNotifier {
   List<String> fullName = [];
   bool isMale = true;
   bool isFemale = false;
-  bool lastNameShown = false;
+  bool lastNameShown = true;
   bool readyToInvertNames = false;
   bool revert = false;
 
@@ -42,15 +42,6 @@ class NamesController extends ChangeNotifier {
 
   updateReadyToInvert() {
     readyToInvertNames = true;
-    notifyListeners();
-  }
-
-  showInvertNameButton() {
-    if (newName != " - ? - ") {
-      readyToInvertNames = true;
-    } else {
-      readyToInvertNames = false;
-    }
     notifyListeners();
   }
 
@@ -406,7 +397,6 @@ class NamesController extends ChangeNotifier {
 
   /// calls the respective race name generator
   newNameGenerator() {
-    updateReadyToInvert();
     if (chosenRace.name == "Human") {
       humanNameGenerator();
       return;
@@ -442,7 +432,6 @@ class NamesController extends ChangeNotifier {
     String switchToLastName = newLastName;
     newName = switchToLastName;
     newLastName = switchToName;
-    revert = !revert;
     notifyListeners();
   }
 
@@ -467,6 +456,7 @@ class NamesController extends ChangeNotifier {
       }
     }
     SavedNameModel nameToSave = SavedNameModel(
+        picture: isMale ? chosenRace.malePicture : chosenRace.femalePicture,
         race: chosenRace.name,
         gender: isMale ? 1 : 0,
         firstName: newName,
@@ -474,5 +464,11 @@ class NamesController extends ChangeNotifier {
         isSelected: false);
     savedNames.add(nameToSave);
     callMessageSnackbar(context, savedMessage, sucessColor);
+  }
+
+  ///Erase name from the list
+  deleteName(SavedNameModel name) {
+    savedNames.remove(name);
+    notifyListeners();
   }
 }

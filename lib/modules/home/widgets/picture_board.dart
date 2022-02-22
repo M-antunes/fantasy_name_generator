@@ -1,6 +1,8 @@
 import 'package:fantasy_name_generator/controllers/names_controller.dart';
 import 'package:fantasy_name_generator/models/race_model.dart';
 import 'package:fantasy_name_generator/shared/themes/app_text_styles.dart';
+import 'package:fantasy_name_generator/shared/widgets/call_message_snackbar.dart';
+import 'package:fantasy_name_generator/shared/widgets/snackbar_message.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -48,21 +50,6 @@ class PictureBoard extends StatelessWidget {
               ),
             ),
           ),
-          Consumer<NamesController>(
-            builder: (context, state, child) {
-              return state.readyToInvertNames && state.lastNameShown
-                  ? Positioned(
-                      left: 20,
-                      top: 0,
-                      child: TextButton(
-                        child: Text(
-                            state.revert ? 'Revert Names' : 'Invert Names'),
-                        onPressed: () => state.switchNameAndLastName(),
-                      ),
-                    )
-                  : const SizedBox();
-            },
-          ),
           Column(
             children: [
               Padding(
@@ -71,27 +58,36 @@ class PictureBoard extends StatelessWidget {
                 ),
                 child:
                     Consumer<NamesController>(builder: (context, state, child) {
-                  return Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white38,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 8,
-                      vertical: 3,
-                    ),
-                    child: SizedBox(
-                      height: size.height * 0.035,
-                      child: FittedBox(
-                        fit: BoxFit.fitHeight,
-                        child: Text(
-                          state.lastNameShown
-                              ? "${state.newName} ${state.newLastName}"
-                              : state.newName,
-                          style: AppTextStyle.generatedName,
+                  return InkWell(
+                    onDoubleTap: () => state.switchNameAndLastName(),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white38,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 8,
+                        vertical: 3,
+                      ),
+                      child: SizedBox(
+                        height: size.height * 0.035,
+                        child: FittedBox(
+                          fit: BoxFit.fitHeight,
+                          child: Text(
+                            state.lastNameShown
+                                ? "${state.newName} ${state.newLastName}"
+                                : state.newName,
+                            style: AppTextStyle.generatedName,
+                          ),
                         ),
                       ),
                     ),
+                    onTap: () => callMessageSnackbar(
+                        context,
+                        SnackbarMessage(
+                            text: "Double tap to switch name and last name",
+                            icon: Icons.change_circle_outlined),
+                        Colors.grey[700]),
                   );
                 }),
               ),

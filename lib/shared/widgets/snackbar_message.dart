@@ -14,11 +14,12 @@ class SnackbarMessage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.03,
+      height: MediaQuery.of(context).size.height * 0.033,
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const SizedBox(width: 10),
-          Icon(icon),
+          Icon(icon, size: 28),
           const SizedBox(width: 20),
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.025,

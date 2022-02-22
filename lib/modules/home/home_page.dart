@@ -58,14 +58,12 @@ class _HomePageState extends State<HomePage> {
                       state: state,
                       onTap: () {
                         state.switchToMale();
-                        state.showInvertNameButton();
                       }),
                   Column(
                     children: [
                       TextButton(
                         onPressed: () {
                           state.displayLastName();
-                          state.showInvertNameButton();
                         },
                         child: Text(state.lastNameShown
                             ? 'Hide Last Name'
@@ -88,7 +86,6 @@ class _HomePageState extends State<HomePage> {
                       state: state,
                       onTap: () {
                         state.switchToFemale();
-                        state.showInvertNameButton();
                       }),
                 ],
               );
@@ -110,7 +107,7 @@ class _HomePageState extends State<HomePage> {
                     height: size.height * 0.037,
                     child: const FittedBox(
                       fit: BoxFit.fitHeight,
-                      child: const Text(
+                      child: Text(
                         'Change Race',
                         style: AppTextStyle.changeRace,
                       ),
