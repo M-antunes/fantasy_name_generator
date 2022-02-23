@@ -7,8 +7,10 @@ import 'package:fantasy_name_generator/shared/data/human_names_data.dart';
 import 'package:fantasy_name_generator/shared/data/letters_data.dart';
 import 'package:fantasy_name_generator/shared/data/race_data.dart';
 import 'package:fantasy_name_generator/models/race_model.dart';
+import 'package:fantasy_name_generator/shared/widgets/call_undo_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class NamesController extends ChangeNotifier {
   late RaceModel chosenRace;
@@ -189,9 +191,15 @@ class NamesController extends ChangeNotifier {
     }
     if (temporaryName.length > maxLength) {
       temporaryName = temporaryName.substring(1, (randomChance + 2));
+      if (temporaryLastName.length < 3) {
+        temporaryLastName = temporaryLastName + getSyllabus();
+      }
     }
     if (temporaryLastName.length > maxLength) {
       temporaryLastName = temporaryLastName.substring(1, (randomChance + 2));
+      if (temporaryLastName.length < 3) {
+        temporaryLastName = temporaryLastName + getSyllabus();
+      }
     }
 
     return [temporaryName, temporaryLastName];
@@ -438,9 +446,9 @@ class NamesController extends ChangeNotifier {
   /// saves the displayed name for the saved names page
   saveName(
     BuildContext context,
-    Widget noNameMessage,
-    Widget alreadySavedmessage,
-    Widget savedMessage,
+    String noNameMessage,
+    String alreadySavedmessage,
+    String savedMessage,
     Color sucessColor,
     Color noNameColor,
     Color alreadySavedColor,
@@ -461,14 +469,24 @@ class NamesController extends ChangeNotifier {
         gender: isMale ? 1 : 0,
         firstName: newName,
         lastName: newLastName,
-        isSelected: false);
-    savedNames.add(nameToSave);
+        fullName: "$newName $newLastName");
+    savedNames.insert(0, nameToSave);
     callMessageSnackbar(context, savedMessage, sucessColor);
   }
 
-  ///Erase name from the list
-  deleteName(SavedNameModel name) {
-    savedNames.remove(name);
+  /// Erase name from the list
+  deleteName(
+    SavedNameModel name,
+    int index,
+    BuildContext context,
+  ) {
+    var deletedName = name;
+    savedNames.remove(deletedName);
     notifyListeners();
+    callUndoButton(context, index, () {
+      savedNames.insert(index, deletedName);
+      notifyListeners();
+      Navigator.pop(context);
+    });
   }
 }

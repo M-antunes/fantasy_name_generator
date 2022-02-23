@@ -1,4 +1,3 @@
-import 'package:fantasy_name_generator/shared/widgets/snackbar_message.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/src/provider.dart';
@@ -136,14 +135,9 @@ class _HomePageState extends State<HomePage> {
                 onPressed: () {
                   namesController.saveName(
                     context,
-                    const SnackbarMessage(
-                        icon: Icons.cancel_presentation_rounded,
-                        text: 'No name to be saved'),
-                    const SnackbarMessage(
-                        icon: Icons.checklist_sharp,
-                        text: 'This name was already saved'),
-                    const SnackbarMessage(
-                        icon: Icons.check_circle_outline, text: 'Name saved'),
+                    'You must generate a name before saving it',
+                    'This name was already saved',
+                    'Name saved',
                     Colors.green[900]!,
                     Colors.red[900]!,
                     Colors.red[900]!,

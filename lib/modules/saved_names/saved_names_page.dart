@@ -1,13 +1,26 @@
 import 'package:fantasy_name_generator/controllers/names_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:provider/src/provider.dart';
 
-class SavedNamesPage extends StatelessWidget {
+class SavedNamesPage extends StatefulWidget {
   const SavedNamesPage({Key? key}) : super(key: key);
 
   @override
+  State<SavedNamesPage> createState() => _SavedNamesPageState();
+}
+
+class _SavedNamesPageState extends State<SavedNamesPage> {
+  late NamesController controller;
+
+  @override
+  void initState() {
+    controller = context.read<NamesController>();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final controller = context.read<NamesController>();
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
@@ -39,52 +52,56 @@ class SavedNamesPage extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
             )
-          : ListView.builder(
-              itemCount: controller.savedNames.length,
-              itemBuilder: (context, index) {
-                var name = controller.savedNames[index];
-                return Dismissible(
-                  key: ValueKey(controller.savedNames.elementAt(index)),
-                  background: Container(
-                    color: Colors.red[900],
-                    child: Align(
-                      alignment: Alignment.centerRight,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
-                        child: Icon(
-                          Icons.delete,
-                          size: 40,
-                          color: Colors.red[200],
+          : Consumer<NamesController>(builder: (context, state, child) {
+              return ListView.builder(
+                  itemCount: state.savedNames.length,
+                  itemBuilder: (context, index) {
+                    var character = state.savedNames[index];
+                    return Dismissible(
+                      key: ValueKey(state.savedNames.elementAt(index)),
+                      background: Container(
+                        color: Colors.red[900],
+                        child: Align(
+                          alignment: Alignment.centerRight,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: Icon(
+                              Icons.delete,
+                              size: 40,
+                              color: Colors.red[200],
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-                  ),
-                  onDismissed: (direction) => controller.deleteName(name),
-                  child: Card(
-                    elevation: 12,
-                    margin: EdgeInsets.symmetric(
-                      horizontal: size.width * 0.03,
-                      vertical: 10,
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 3),
-                      child: ListTile(
-                        leading: ClipRRect(
-                          borderRadius: BorderRadius.circular(100),
-                          child: Image.asset(name.picture),
+                      onDismissed: (direction) => state.deleteName(
+                        character,
+                        index,
+                        context,
+                      ),
+                      child: Card(
+                        elevation: 12,
+                        margin: EdgeInsets.only(
+                          right: size.width * 0.04,
+                          left: size.width * 0.04,
+                          top: 6,
                         ),
-                        title: Text("${name.firstName} ${name.lastName}"),
-                        subtitle: Row(
-                          children: [
-                            Text(name.race),
-                            Text(name.gender == 0 ? " Female" : " Male"),
-                          ],
+                        child: ListTile(
+                          leading: ClipRRect(
+                            borderRadius: BorderRadius.circular(100),
+                            child: Image.asset(character.picture),
+                          ),
+                          title: Text(character.fullName),
+                          subtitle: Row(
+                            children: [
+                              Text(character.race),
+                              Text(character.gender == 0 ? " Female" : " Male"),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  ),
-                );
-              }),
+                    );
+                  });
+            }),
     );
   }
 }

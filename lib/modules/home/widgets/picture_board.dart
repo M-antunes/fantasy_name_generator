@@ -2,7 +2,6 @@ import 'package:fantasy_name_generator/controllers/names_controller.dart';
 import 'package:fantasy_name_generator/models/race_model.dart';
 import 'package:fantasy_name_generator/shared/themes/app_text_styles.dart';
 import 'package:fantasy_name_generator/shared/widgets/call_message_snackbar.dart';
-import 'package:fantasy_name_generator/shared/widgets/snackbar_message.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -83,11 +82,10 @@ class PictureBoard extends StatelessWidget {
                       ),
                     ),
                     onTap: () => callMessageSnackbar(
-                        context,
-                        SnackbarMessage(
-                            text: "Double tap to switch name and last name",
-                            icon: Icons.change_circle_outlined),
-                        Colors.grey[700]),
+                      context,
+                      "Double tap to switch name and last name",
+                      Colors.grey[700],
+                    ),
                   );
                 }),
               ),

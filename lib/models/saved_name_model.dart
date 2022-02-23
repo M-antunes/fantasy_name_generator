@@ -1,4 +1,5 @@
 class SavedNameModel {
+  final String fullName;
   final String firstName;
   final String lastName;
   final String race;
@@ -6,13 +7,12 @@ class SavedNameModel {
 
   /// 0 = female ;;; 1 = male
   final int gender;
-  bool isSelected;
   SavedNameModel({
+    required this.fullName,
     required this.firstName,
     required this.lastName,
     required this.race,
     required this.picture,
     required this.gender,
-    required this.isSelected,
   });
 }
