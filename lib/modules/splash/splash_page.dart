@@ -19,7 +19,7 @@ class SplashPage extends StatelessWidget {
           child: const FittedBox(
             fit: BoxFit.fitWidth,
             child: Text(
-              'Fantasy\nName\nGenerator',
+              'Fantasy\nCharacter\nGenerator',
               textAlign: TextAlign.center,
               style: TextStyle(color: Colors.white),
             ),

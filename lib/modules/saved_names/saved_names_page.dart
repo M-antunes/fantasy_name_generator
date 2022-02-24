@@ -88,12 +88,14 @@ class _SavedNamesPageState extends State<SavedNamesPage> {
                         child: ListTile(
                           leading: ClipRRect(
                             borderRadius: BorderRadius.circular(100),
-                            child: Image.asset(character.picture),
+                            child: Image.asset(character.gender == 0
+                                ? character.race.femalePicture
+                                : character.race.malePicture),
                           ),
                           title: Text(character.fullName),
                           subtitle: Row(
                             children: [
-                              Text(character.race),
+                              Text(character.race.name),
                               Text(character.gender == 0 ? " Female" : " Male"),
                             ],
                           ),

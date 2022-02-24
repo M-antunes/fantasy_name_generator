@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:math';
 
 import 'package:fantasy_name_generator/models/letter_model.dart';
@@ -409,17 +410,14 @@ class NamesController extends ChangeNotifier {
       humanNameGenerator();
       return;
     }
-
     if (chosenRace.name == "Orc") {
       orcNameGenerator();
       return;
     }
-
     if (chosenRace.name == "Elf") {
       elfNameGenerator();
       return;
     }
-
     if (chosenRace.name == "Hafling") {
       haflingNameGenerator();
       return;
@@ -464,13 +462,13 @@ class NamesController extends ChangeNotifier {
       }
     }
     SavedNameModel nameToSave = SavedNameModel(
-        picture: isMale ? chosenRace.malePicture : chosenRace.femalePicture,
-        race: chosenRace.name,
+        race: chosenRace,
         gender: isMale ? 1 : 0,
         firstName: newName,
         lastName: newLastName,
         fullName: "$newName $newLastName");
     savedNames.insert(0, nameToSave);
+    storeName(savedNames);
     callMessageSnackbar(context, savedMessage, sucessColor);
   }
 
@@ -483,10 +481,45 @@ class NamesController extends ChangeNotifier {
     var deletedName = name;
     savedNames.remove(deletedName);
     notifyListeners();
-    callUndoButton(context, index, () {
+    deletedNameFromStorage().then((_) {
+      updateStorageNameList();
+    });
+    callUndoButton(context, index, () async {
       savedNames.insert(index, deletedName);
       notifyListeners();
+      updateStorageNameList();
       Navigator.pop(context);
     });
+  }
+
+  /// Deletes the entire list of names in the storage
+  Future<void> deletedNameFromStorage() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.remove('names');
+  }
+
+  /// Updates and brings back the list of names in the storage, with or without the deleted name
+  updateStorageNameList() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String json = jsonEncode(savedNames);
+    prefs.setString("names", json);
+  }
+
+  /// Stores the name in SharedPreferences
+  storeName(dynamic name) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String json = jsonEncode(name);
+    prefs.setString("names", json);
+  }
+
+  /// Loads the list of stored names when the application starts
+  loadStoredNames() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String json = prefs.getString('names') ?? '';
+    Iterable<dynamic> response = jsonDecode(json);
+    List<SavedNameModel> chosenNames =
+        response.map((e) => SavedNameModel.fromJson(e)).toList();
+    savedNames = chosenNames;
+    notifyListeners();
   }
 }

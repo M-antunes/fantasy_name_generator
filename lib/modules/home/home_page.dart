@@ -25,6 +25,8 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     namesController = context.read<NamesController>();
     namesController.getInitialRace();
+    namesController.loadStoredNames();
+
     super.initState();
   }
 
@@ -38,7 +40,7 @@ class _HomePageState extends State<HomePage> {
           width: size.width * 0.6,
           child: const FittedBox(
             fit: BoxFit.fitWidth,
-            child: Text('Fantasy Name Generator'),
+            child: Text('Fantasy Character Generator'),
           ),
         ),
         centerTitle: true,
