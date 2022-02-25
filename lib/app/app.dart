@@ -21,7 +21,7 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(create: (_) => NamesController()),
       ],
       child: MaterialApp(
-        title: 'Fantasy Name Generator',
+        title: 'Fantasy Character Generator',
         theme: ThemeData.dark(),
         debugShowCheckedModeBanner: false,
         onGenerateRoute: RouteGenerator.onGenerateRoute,

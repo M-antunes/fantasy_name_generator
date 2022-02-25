@@ -3,38 +3,37 @@ import 'package:provider/provider.dart';
 import 'package:provider/src/provider.dart';
 
 import 'package:fantasy_name_generator/controllers/names_controller.dart';
-import 'package:fantasy_name_generator/modules/drawer/app_drawer.dart';
-import 'package:fantasy_name_generator/modules/home/widgets/bottom_sheet_race.dart';
-import 'package:fantasy_name_generator/modules/home/widgets/name_generator_set.dart';
 import 'package:fantasy_name_generator/shared/themes/app_text_styles.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+import 'widgets/bottom_sheet_race.dart';
+import 'widgets/name_generator_set.dart';
+
+class GenerateNamePage extends StatefulWidget {
+  const GenerateNamePage({Key? key}) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<GenerateNamePage> createState() => _GenerateNamePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _GenerateNamePageState extends State<GenerateNamePage> {
   bool genderSelect = true;
   bool isFemaleSet = false;
 
-  late final NamesController namesController;
+  // late final NamesController namesController;
 
-  @override
-  void initState() {
-    namesController = context.read<NamesController>();
-    namesController.getInitialRace();
-    namesController.loadStoredNames();
+  // @override
+  // void initState() {
+  //   namesController.getInitialRace();
+  //   namesController.loadStoredNames();
 
-    super.initState();
-  }
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
+    final namesController = context.read<NamesController>();
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      drawer: AppDrawer(),
       appBar: AppBar(
         title: SizedBox(
           width: size.width * 0.6,
