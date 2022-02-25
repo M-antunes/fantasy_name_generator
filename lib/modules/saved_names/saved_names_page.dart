@@ -1,4 +1,4 @@
-import 'package:fantasy_name_generator/controllers/names_controller.dart';
+import 'package:fantasy_name_generator/controllers/char_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/src/provider.dart';
@@ -11,11 +11,11 @@ class SavedNamesPage extends StatefulWidget {
 }
 
 class _SavedNamesPageState extends State<SavedNamesPage> {
-  late NamesController controller;
+  late CharController controller;
 
   @override
   void initState() {
-    controller = context.read<NamesController>();
+    controller = context.read<CharController>();
     super.initState();
   }
 
@@ -52,7 +52,7 @@ class _SavedNamesPageState extends State<SavedNamesPage> {
                 textAlign: TextAlign.center,
               ),
             )
-          : Consumer<NamesController>(builder: (context, state, child) {
+          : Consumer<CharController>(builder: (context, state, child) {
               return ListView.builder(
                   itemCount: state.savedNames.length,
                   itemBuilder: (context, index) {

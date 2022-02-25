@@ -14,7 +14,7 @@ class SelectionLabel extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(height: size.height * 0.03),
+        SizedBox(height: size.height * 0.01),
         Container(
           width: size.width * 0.5,
           height: size.height * 0.003,

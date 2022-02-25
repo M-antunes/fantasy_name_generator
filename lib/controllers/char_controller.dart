@@ -13,14 +13,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class NamesController extends ChangeNotifier {
+class CharController extends ChangeNotifier {
   late RaceModel chosenRace;
-  bool readyToSwitchRace = false;
-  var listOfRaces = RaceData();
-  var letters = LettersData();
-  var humanNames = HumanNamesData();
   late RaceModel initialRace;
+  late RaceModel tempRaceForSwitching;
+  var letters = LettersData();
+  var listOfRaces = RaceData();
+  var humanNames = HumanNamesData();
   Random randomIndex = Random();
+  int creationStage = 1;
   int nameLength = 0;
   int randomChance = 0;
   String newName = ' - ? - ';
@@ -30,21 +31,31 @@ class NamesController extends ChangeNotifier {
   bool isMale = true;
   bool isFemale = false;
   bool lastNameShown = true;
-  bool readyToInvertNames = false;
   bool revert = false;
 
   getInitialRace() {
     initialRace = listOfRaces.races[0];
     chosenRace = initialRace;
+    tempRaceForSwitching = initialRace;
+  }
+
+  updateChosenRace() {
+    chosenRace = tempRaceForSwitching;
+    notifyListeners();
+  }
+
+  switchRace(RaceModel race) {
+    race.isSelected = !race.isSelected;
+    for (var select in listOfRaces.races) {
+      select.isSelected = false;
+    }
+    race.isSelected = !race.isSelected;
+    chosenRace = race;
+    notifyListeners();
   }
 
   displayLastName() {
     lastNameShown = !lastNameShown;
-    notifyListeners();
-  }
-
-  updateReadyToInvert() {
-    readyToInvertNames = true;
     notifyListeners();
   }
 
@@ -58,26 +69,25 @@ class NamesController extends ChangeNotifier {
     notifyListeners();
   }
 
-  updateChosenRace(RaceModel race) {
-    chosenRace = race;
-    newName = ' - ? - ';
-    newLastName = ' - ? - ';
-    notifyListeners();
-  }
-
   switchToMale() {
     isMale = true;
     isFemale = false;
-    newName = ' - ? - ';
-    newLastName = ' - ? - ';
     notifyListeners();
   }
 
   switchToFemale() {
     isFemale = true;
     isMale = false;
-    newName = ' - ? - ';
-    newLastName = ' - ? - ';
+    notifyListeners();
+  }
+
+  advanceCreationStage() {
+    creationStage++;
+    notifyListeners();
+  }
+
+  retreatCreationStage() {
+    creationStage--;
     notifyListeners();
   }
 
