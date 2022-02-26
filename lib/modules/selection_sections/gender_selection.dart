@@ -33,13 +33,8 @@ class GenderSelection extends StatelessWidget {
                     child: FittedBox(
                       fit: BoxFit.fitWidth,
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 40),
-                        child: Text("Male",
-                            style: TextStyle(
-                                fontSize: state.isMale ? 60 : 20,
-                                color: state.isMale
-                                    ? Colors.yellow
-                                    : Colors.white)),
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: Icon(Icons.male_rounded),
                       ),
                     ),
                   ),
@@ -60,12 +55,7 @@ class GenderSelection extends StatelessWidget {
                       fit: BoxFit.fitWidth,
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Text("Female",
-                            style: TextStyle(
-                                fontSize: state.isFemale ? 60 : 20,
-                                color: state.isFemale
-                                    ? Colors.yellow
-                                    : Colors.white)),
+                        child: Icon(Icons.female_rounded),
                       ),
                     ),
                   ),

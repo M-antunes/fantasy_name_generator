@@ -36,6 +36,7 @@ dependencies:
   provider: ^6.0.2
   shared_preferences: ^2.0.13
   step_progress_indicator: ^1.0.2
+  animated_button: ^0.2.0
 
 dev_dependencies:
   flutter_test:
@@ -62,6 +63,10 @@ flutter:
   assets:
     - assets/images/
   #   - images/a_dot_ham.jpeg
+  fonts:
+    - family: Grantmouth
+      fonts:
+        - asset: assets/fonts/Grantmouth.ttf
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

@@ -1,14 +1,13 @@
-import 'package:fantasy_name_generator/controllers/char_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:provider/src/provider.dart';
 
-import 'package:fantasy_name_generator/modules/selection_sections/widgets/advance_button.dart';
-import 'package:fantasy_name_generator/shared/themes/app_text_styles.dart';
+import 'package:fantasy_name_generator/controllers/char_controller.dart';
 
-class RaceSelection extends StatelessWidget {
+import 'widgets/advance_button.dart';
+
+class AlignmentSelection extends StatelessWidget {
   final VoidCallback onTap;
-  const RaceSelection({
+  const AlignmentSelection({
     Key? key,
     required this.onTap,
   }) : super(key: key);
@@ -18,37 +17,37 @@ class RaceSelection extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return SizedBox(
-      // height: size.height * 0.7,
       width: double.maxFinite,
       child: Consumer<CharController>(builder: (context, state, child) {
         return Column(
           children: [
-            ListView.builder(
+            GridView.builder(
                 shrinkWrap: true,
-                itemCount: state.listOfRaces.races.length,
+                gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                    maxCrossAxisExtent: size.width * 0.4,
+                    childAspectRatio: 5 / 2,
+                    crossAxisSpacing: 1,
+                    mainAxisSpacing: 1),
+                itemCount: state.listOfAlignments.allAlignments.length,
                 itemBuilder: (context, index) {
-                  var race = state.listOfRaces.races[index];
+                  var alignment = state.listOfAlignments.allAlignments[index];
                   return InkWell(
                       child: Card(
-                        color: race.isSelected
+                        color: alignment.isSelected
                             ? Colors.red[900]
                             : Colors.grey[700],
                         elevation: 12,
-                        margin: EdgeInsets.symmetric(
-                            horizontal: size.width * 0.1,
-                            vertical: size.height * 0.005),
                         child: Center(
                           child: Padding(
-                            padding: const EdgeInsets.all(8),
+                            padding: const EdgeInsets.all(10),
                             child: Text(
-                              race.name,
-                              style: AppTextStyle.selectRace,
+                              alignment.name,
                             ),
                           ),
                         ),
                       ),
                       onTap: () {
-                        state.switchRace(race);
+                        state.switchAlignment(alignment);
                       });
                 }),
             AdvanceButton(size: size, onTap: onTap)

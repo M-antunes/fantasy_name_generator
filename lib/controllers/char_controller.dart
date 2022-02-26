@@ -1,8 +1,12 @@
 import 'dart:convert';
 import 'dart:math';
 
+import 'package:fantasy_name_generator/models/alignment_model.dart';
+import 'package:fantasy_name_generator/models/class_model.dart';
 import 'package:fantasy_name_generator/models/letter_model.dart';
 import 'package:fantasy_name_generator/models/saved_name_model.dart';
+import 'package:fantasy_name_generator/shared/data/alignment_data.dart';
+import 'package:fantasy_name_generator/shared/data/class_data.dart';
 import 'package:fantasy_name_generator/shared/widgets/call_message_snackbar.dart';
 import 'package:fantasy_name_generator/shared/data/human_names_data.dart';
 import 'package:fantasy_name_generator/shared/data/letters_data.dart';
@@ -16,9 +20,17 @@ import 'package:shared_preferences/shared_preferences.dart';
 class CharController extends ChangeNotifier {
   late RaceModel chosenRace;
   late RaceModel initialRace;
+  late ClassModel chosenClass;
+  late ClassModel initialClass;
+  late AlignmentModel chosenAlignment;
+  late AlignmentModel initialAlignment;
   late RaceModel tempRaceForSwitching;
+  late ClassModel tempoClassForSwitching;
+  late AlignmentModel tempAlignmentForSwitching;
   var letters = LettersData();
   var listOfRaces = RaceData();
+  var listOfClasses = ClassData();
+  var listOfAlignments = AlignmentData();
   var humanNames = HumanNamesData();
   Random randomIndex = Random();
   int creationStage = 1;
@@ -31,7 +43,6 @@ class CharController extends ChangeNotifier {
   bool isMale = true;
   bool isFemale = false;
   bool lastNameShown = true;
-  bool revert = false;
 
   getInitialRace() {
     initialRace = listOfRaces.races[0];
@@ -39,8 +50,30 @@ class CharController extends ChangeNotifier {
     tempRaceForSwitching = initialRace;
   }
 
+  getInitialClass() {
+    initialClass = listOfClasses.allClasses[0];
+    chosenClass = initialClass;
+    tempoClassForSwitching = initialClass;
+  }
+
+  getInitialAlignment() {
+    initialAlignment = listOfAlignments.allAlignments[0];
+    chosenAlignment = initialAlignment;
+    tempAlignmentForSwitching = initialAlignment;
+  }
+
   updateChosenRace() {
     chosenRace = tempRaceForSwitching;
+    notifyListeners();
+  }
+
+  updateChosenClass() {
+    chosenClass = tempoClassForSwitching;
+    notifyListeners();
+  }
+
+  updateChosenAlignment() {
+    chosenClass = tempoClassForSwitching;
     notifyListeners();
   }
 
@@ -50,7 +83,27 @@ class CharController extends ChangeNotifier {
       select.isSelected = false;
     }
     race.isSelected = !race.isSelected;
-    chosenRace = race;
+    tempRaceForSwitching = race;
+    notifyListeners();
+  }
+
+  switchClass(ClassModel charClass) {
+    charClass.isSelected = !charClass.isSelected;
+    for (var select in listOfClasses.allClasses) {
+      select.isSelected = false;
+    }
+    charClass.isSelected = !charClass.isSelected;
+    tempoClassForSwitching = charClass;
+    notifyListeners();
+  }
+
+  switchAlignment(AlignmentModel alignment) {
+    alignment.isSelected = !alignment.isSelected;
+    for (var select in listOfAlignments.allAlignments) {
+      select.isSelected = false;
+    }
+    alignment.isSelected = !alignment.isSelected;
+    tempAlignmentForSwitching = alignment;
     notifyListeners();
   }
 

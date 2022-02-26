@@ -14,7 +14,7 @@ class AdvanceButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(height: size.height * 0.05),
+        SizedBox(height: size.height * 0.03),
         InkWell(
           child: Container(
             decoration: BoxDecoration(
@@ -33,13 +33,14 @@ class AdvanceButton extends StatelessWidget {
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
+                // ignore: prefer_const_literals_to_create_immutables
                 children: [
-                  Text(
+                  const Text(
                     'NEXT',
-                    style: AppTextStyle.generatedName,
+                    style: AppTextStyle.selectButtonNotReady,
                   ),
-                  SizedBox(width: 10),
-                  Icon(
+                  const SizedBox(width: 10),
+                  const Icon(
                     Icons.arrow_forward_ios_rounded,
                     size: 20,
                     color: Colors.white,

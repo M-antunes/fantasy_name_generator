@@ -1,14 +1,13 @@
-import 'package:fantasy_name_generator/controllers/char_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:provider/src/provider.dart';
 
+import 'package:fantasy_name_generator/controllers/char_controller.dart';
 import 'package:fantasy_name_generator/modules/selection_sections/widgets/advance_button.dart';
 import 'package:fantasy_name_generator/shared/themes/app_text_styles.dart';
 
-class RaceSelection extends StatelessWidget {
+class ClassSelection extends StatelessWidget {
   final VoidCallback onTap;
-  const RaceSelection({
+  const ClassSelection({
     Key? key,
     required this.onTap,
   }) : super(key: key);
@@ -23,32 +22,33 @@ class RaceSelection extends StatelessWidget {
       child: Consumer<CharController>(builder: (context, state, child) {
         return Column(
           children: [
-            ListView.builder(
+            GridView.builder(
                 shrinkWrap: true,
-                itemCount: state.listOfRaces.races.length,
+                gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                    maxCrossAxisExtent: size.width * 0.4,
+                    childAspectRatio: 5 / 2,
+                    crossAxisSpacing: 1,
+                    mainAxisSpacing: 1),
+                itemCount: state.listOfClasses.allClasses.length,
                 itemBuilder: (context, index) {
-                  var race = state.listOfRaces.races[index];
+                  var charClass = state.listOfClasses.allClasses[index];
                   return InkWell(
                       child: Card(
-                        color: race.isSelected
+                        color: charClass.isSelected
                             ? Colors.red[900]
                             : Colors.grey[700],
                         elevation: 12,
-                        margin: EdgeInsets.symmetric(
-                            horizontal: size.width * 0.1,
-                            vertical: size.height * 0.005),
                         child: Center(
                           child: Padding(
-                            padding: const EdgeInsets.all(8),
+                            padding: const EdgeInsets.all(10),
                             child: Text(
-                              race.name,
-                              style: AppTextStyle.selectRace,
+                              charClass.name,
                             ),
                           ),
                         ),
                       ),
                       onTap: () {
-                        state.switchRace(race);
+                        state.switchClass(charClass);
                       });
                 }),
             AdvanceButton(size: size, onTap: onTap)

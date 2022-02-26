@@ -1,13 +1,17 @@
-import 'package:fantasy_name_generator/controllers/char_controller.dart';
-import 'package:fantasy_name_generator/modules/selection_sections/name_selection.dart';
-import 'package:fantasy_name_generator/shared/themes/app_colors.dart';
+import 'package:fantasy_name_generator/modules/selection_sections/alignment_selection.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/src/provider.dart';
+import 'package:step_progress_indicator/step_progress_indicator.dart';
+
+import 'package:fantasy_name_generator/controllers/char_controller.dart';
+import 'package:fantasy_name_generator/modules/selection_sections/class_selection.dart';
+import 'package:fantasy_name_generator/modules/selection_sections/gender_selection.dart';
+import 'package:fantasy_name_generator/modules/selection_sections/name_selection.dart';
 import 'package:fantasy_name_generator/modules/selection_sections/race_selection.dart';
 import 'package:fantasy_name_generator/modules/selection_sections/widgets/selection_label.dart';
-import 'package:fantasy_name_generator/modules/selection_sections/gender_selection.dart';
-import 'package:step_progress_indicator/step_progress_indicator.dart';
+import 'package:fantasy_name_generator/shared/themes/app_colors.dart';
+import 'package:fantasy_name_generator/shared/themes/app_text_styles.dart';
 
 class MainScreenPage extends StatefulWidget {
   const MainScreenPage({Key? key}) : super(key: key);
@@ -24,7 +28,9 @@ class _MainScreenPageState extends State<MainScreenPage>
   void initState() {
     namesController = context.read<CharController>();
     namesController.getInitialRace();
+    namesController.getInitialClass();
     namesController.loadStoredNames();
+    namesController.getInitialAlignment();
     super.initState();
   }
 
@@ -59,36 +65,26 @@ class _MainScreenPageState extends State<MainScreenPage>
       body: Consumer<CharController>(builder: (context, state, child) {
         return Column(
           children: [
-            Container(
-              margin: EdgeInsets.all(5),
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.grey, width: 2),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: StepProgressIndicator(
-                  roundedEdges: Radius.circular(10),
-                  totalSteps: 6,
-                  currentStep: state.creationStage,
-                  selectedColor: AppColors.primary,
-                  selectedSize: 8,
-                ),
-              ),
+            CharProgression(
+              controller: state,
             ),
             SelectionLabel(
                 size: size,
                 label: state.creationStage == 1
-                    ? "Select Race"
+                    ? "Race"
                     : state.creationStage == 2
-                        ? "Select Gender"
+                        ? "Gender"
                         : state.creationStage == 3
-                            ? "Create Name"
-                            : ''),
+                            ? "Name"
+                            : state.creationStage == 4
+                                ? "Class"
+                                : state.creationStage == 5
+                                    ? "Alignment"
+                                    : ''),
             if (state.creationStage == 1)
               Expanded(child: RaceSelection(
                 onTap: () {
-                  namesController.updateChosenRace();
+                  state.updateChosenRace();
                   state.advanceCreationStage();
                 },
               )),
@@ -100,13 +96,100 @@ class _MainScreenPageState extends State<MainScreenPage>
               )),
             if (state.creationStage == 3)
               Expanded(
-                  child: NameSection(
+                  child: NameSelection(
                 onGenerate: () => namesController.newNameGenerator(),
                 onSelect: () => state.advanceCreationStage(),
               )),
+            if (state.creationStage == 4)
+              Expanded(child: ClassSelection(onTap: () {
+                state.updateChosenClass();
+                state.advanceCreationStage();
+              })),
+            if (state.creationStage == 5)
+              Expanded(child: AlignmentSelection(
+                onTap: () {
+                  state.updateChosenAlignment();
+                  state.advanceCreationStage();
+                },
+              ))
           ],
         );
       }),
+    );
+  }
+}
+
+class CharProgression extends StatelessWidget {
+  final CharController controller;
+  const CharProgression({
+    Key? key,
+    required this.controller,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.all(5),
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.grey, width: 2),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(6),
+                child: CircleAvatar(
+                    child: Text(
+                      controller.creationStage > 1
+                          ? controller.tempRaceForSwitching.name
+                          : '',
+                      style: AppTextStyle.chosenRace,
+                    ),
+                    backgroundColor: Colors.black,
+                    radius: 45),
+              ),
+              SizedBox(width: 12),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  if (controller.creationStage > 2)
+                    Text(controller.isMale ? "Male" : "Female"),
+                  if (controller.creationStage > 3)
+                    Text(
+                      "${controller.newName} ${controller.newLastName}",
+                      style: AppTextStyle.changeRace,
+                    ),
+                  SizedBox(height: 5),
+                  Row(
+                    children: [
+                      if (controller.creationStage > 4)
+                        Text("${controller.chosenClass.name}",
+                            style: AppTextStyle.selectRace),
+                      SizedBox(width: 20),
+                      if (controller.creationStage > 5)
+                        Text("${controller.chosenAlignment.name}",
+                            style: AppTextStyle.selectRace),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: StepProgressIndicator(
+              roundedEdges: Radius.circular(10),
+              totalSteps: 11,
+              currentStep: controller.creationStage,
+              selectedColor: AppColors.primary,
+              selectedSize: 8,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

@@ -1,9 +1,16 @@
+import 'package:fantasy_name_generator/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class AppTextStyle {
   static const generatedName = TextStyle(
     fontWeight: FontWeight.w400,
-    color: Colors.white,
+    color: AppColors.primary,
+  );
+  static const chosenRace = TextStyle(
+    fontFamily: "Grantmouth",
+    fontWeight: FontWeight.w400,
+    color: AppColors.primary,
+    fontSize: 30,
   );
   static const flipCardMale = TextStyle(
     fontWeight: FontWeight.bold,
@@ -23,10 +30,10 @@ class AppTextStyle {
   static const selectRace = TextStyle(
     fontWeight: FontWeight.w400,
     color: Colors.white,
-    fontSize: 19,
+    fontSize: 17,
   );
   static const selectButtonNotReady = TextStyle(
-    fontWeight: FontWeight.w300,
+    fontWeight: FontWeight.w500,
     color: Colors.white,
     fontSize: 15,
   );
