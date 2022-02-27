@@ -18,12 +18,12 @@ class RaceSelection extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return SizedBox(
-      // height: size.height * 0.7,
       width: double.maxFinite,
       child: Consumer<CharController>(builder: (context, state, child) {
         return Column(
           children: [
             ListView.builder(
+                physics: NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 itemCount: state.listOfRaces.races.length,
                 itemBuilder: (context, index) {
@@ -39,7 +39,7 @@ class RaceSelection extends StatelessWidget {
                             vertical: size.height * 0.005),
                         child: Center(
                           child: Padding(
-                            padding: const EdgeInsets.all(8),
+                            padding: const EdgeInsets.all(5),
                             child: Text(
                               race.name,
                               style: AppTextStyle.selectRace,
@@ -51,7 +51,7 @@ class RaceSelection extends StatelessWidget {
                         state.switchRace(race);
                       });
                 }),
-            AdvanceButton(size: size, onTap: onTap)
+            AdvanceButton(size: size, onTap: onTap),
           ],
         );
       }),

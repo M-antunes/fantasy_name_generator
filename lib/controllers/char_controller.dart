@@ -43,6 +43,32 @@ class CharController extends ChangeNotifier {
   bool isMale = true;
   bool isFemale = false;
   bool lastNameShown = true;
+  int levelSelected = -1;
+  bool isRegularLevelSelected = true;
+  bool isEpicLevelSelected = false;
+
+  switchToEpicLevel() {
+    isRegularLevelSelected = false;
+    isEpicLevelSelected = true;
+    levelSelected = -1;
+    notifyListeners();
+  }
+
+  switchToRegularLevel() {
+    isRegularLevelSelected = true;
+    isEpicLevelSelected = false;
+    levelSelected = -1;
+    notifyListeners();
+  }
+
+  updateLevelSelected(int? newValue) {
+    if (newValue == null) {
+      levelSelected = -1;
+    } else {
+      levelSelected = newValue;
+    }
+    notifyListeners();
+  }
 
   getInitialRace() {
     initialRace = listOfRaces.races[0];
@@ -73,7 +99,7 @@ class CharController extends ChangeNotifier {
   }
 
   updateChosenAlignment() {
-    chosenClass = tempoClassForSwitching;
+    chosenAlignment = tempAlignmentForSwitching;
     notifyListeners();
   }
 

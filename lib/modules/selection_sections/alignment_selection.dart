@@ -23,9 +23,10 @@ class AlignmentSelection extends StatelessWidget {
           children: [
             GridView.builder(
                 shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
                 gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                     maxCrossAxisExtent: size.width * 0.4,
-                    childAspectRatio: 5 / 2,
+                    childAspectRatio: 5 / 2.5,
                     crossAxisSpacing: 1,
                     mainAxisSpacing: 1),
                 itemCount: state.listOfAlignments.allAlignments.length,
@@ -39,9 +40,10 @@ class AlignmentSelection extends StatelessWidget {
                         elevation: 12,
                         child: Center(
                           child: Padding(
-                            padding: const EdgeInsets.all(10),
+                            padding: const EdgeInsets.all(3),
                             child: Text(
                               alignment.name,
+                              textAlign: TextAlign.center,
                             ),
                           ),
                         ),

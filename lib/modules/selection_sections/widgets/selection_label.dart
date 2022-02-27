@@ -14,12 +14,6 @@ class SelectionLabel extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(height: size.height * 0.01),
-        Container(
-          width: size.width * 0.5,
-          height: size.height * 0.003,
-          color: Colors.grey,
-        ),
         Padding(
           padding: EdgeInsets.symmetric(
             vertical: size.height * 0.01,
@@ -30,7 +24,7 @@ class SelectionLabel extends StatelessWidget {
           ),
         ),
         Container(
-          width: size.width * 0.5,
+          width: size.width * 0.92,
           height: size.height * 0.003,
           color: Colors.grey,
         ),

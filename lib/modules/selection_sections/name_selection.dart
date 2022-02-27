@@ -68,7 +68,7 @@ class NameSelection extends StatelessWidget {
         ),
         AnimatedButton(
           color: Colors.grey[700]!,
-          duration: 60,
+          duration: 30,
           height: 50,
           onPressed: onGenerate,
           child: Center(

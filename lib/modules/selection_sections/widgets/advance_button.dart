@@ -28,7 +28,7 @@ class AdvanceButton extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(
                 horizontal: 20,
-                vertical: 10,
+                vertical: 5,
               ),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
@@ -39,10 +39,10 @@ class AdvanceButton extends StatelessWidget {
                     'NEXT',
                     style: AppTextStyle.selectButtonNotReady,
                   ),
-                  const SizedBox(width: 10),
+                  const SizedBox(width: 5),
                   const Icon(
                     Icons.arrow_forward_ios_rounded,
-                    size: 20,
+                    size: 15,
                     color: Colors.white,
                   ),
                 ],
@@ -51,6 +51,7 @@ class AdvanceButton extends StatelessWidget {
           ),
           onTap: onTap,
         ),
+        SizedBox(height: size.height * 0.06),
       ],
     );
   }

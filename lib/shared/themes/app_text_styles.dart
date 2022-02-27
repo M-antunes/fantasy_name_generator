@@ -9,7 +9,7 @@ class AppTextStyle {
   static const chosenRace = TextStyle(
     fontFamily: "Grantmouth",
     fontWeight: FontWeight.w400,
-    color: AppColors.primary,
+    color: Colors.white,
     fontSize: 30,
   );
   static const flipCardMale = TextStyle(

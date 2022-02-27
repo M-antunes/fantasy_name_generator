@@ -39,11 +39,8 @@ class ClassSelection extends StatelessWidget {
                             : Colors.grey[700],
                         elevation: 12,
                         child: Center(
-                          child: Padding(
-                            padding: const EdgeInsets.all(10),
-                            child: Text(
-                              charClass.name,
-                            ),
+                          child: Text(
+                            charClass.name,
                           ),
                         ),
                       ),
