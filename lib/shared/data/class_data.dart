@@ -5,6 +5,7 @@ class ClassData {
     ClassModel(isSelected: true, name: "Alchemist"),
     ClassModel(isSelected: false, name: "Aristocrat"),
     ClassModel(isSelected: false, name: "Barbarian"),
+    ClassModel(isSelected: false, name: "Bandit"),
     ClassModel(isSelected: false, name: "Bard"),
     ClassModel(isSelected: false, name: "Cleric"),
     ClassModel(isSelected: false, name: "Commoner"),

@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:fantasy_name_generator/models/alignment_model.dart';
+import 'package:fantasy_name_generator/models/char_model.dart';
 import 'package:fantasy_name_generator/models/class_model.dart';
 import 'package:fantasy_name_generator/models/letter_model.dart';
 import 'package:fantasy_name_generator/models/saved_name_model.dart';
@@ -27,6 +28,7 @@ class CharController extends ChangeNotifier {
   late RaceModel tempRaceForSwitching;
   late ClassModel tempoClassForSwitching;
   late AlignmentModel tempAlignmentForSwitching;
+  late CharModel generatedChar;
   var letters = LettersData();
   var listOfRaces = RaceData();
   var listOfClasses = ClassData();
@@ -39,6 +41,7 @@ class CharController extends ChangeNotifier {
   String newName = ' - ? - ';
   String newLastName = ' - ? - ';
   List<SavedNameModel> savedNames = [];
+  List<AlignmentModel> filteredAlignments = [];
   List<String> fullName = [];
   bool isMale = true;
   bool isFemale = false;
@@ -46,6 +49,8 @@ class CharController extends ChangeNotifier {
   int levelSelected = -1;
   bool isRegularLevelSelected = true;
   bool isEpicLevelSelected = false;
+
+// Functions related to the level Section
 
   switchToEpicLevel() {
     isRegularLevelSelected = false;
@@ -61,6 +66,20 @@ class CharController extends ChangeNotifier {
     notifyListeners();
   }
 
+  updateLevelSelectedIfEpic() {
+    if (isEpicLevelSelected) {
+      levelSelected = levelSelected + 20;
+    }
+    notifyListeners();
+  }
+
+  showErrorSnackBarIfLevelIsZero(
+      BuildContext context, String text, Color color) {
+    if (levelSelected == -1) {
+      callMessageSnackbar(context, text, color);
+    }
+  }
+
   updateLevelSelected(int? newValue) {
     if (newValue == null) {
       levelSelected = -1;
@@ -70,36 +89,18 @@ class CharController extends ChangeNotifier {
     notifyListeners();
   }
 
+// ====================================================================================
+
+// Functions related to the Character Race
+
   getInitialRace() {
     initialRace = listOfRaces.races[0];
     chosenRace = initialRace;
     tempRaceForSwitching = initialRace;
   }
 
-  getInitialClass() {
-    initialClass = listOfClasses.allClasses[0];
-    chosenClass = initialClass;
-    tempoClassForSwitching = initialClass;
-  }
-
-  getInitialAlignment() {
-    initialAlignment = listOfAlignments.allAlignments[0];
-    chosenAlignment = initialAlignment;
-    tempAlignmentForSwitching = initialAlignment;
-  }
-
   updateChosenRace() {
     chosenRace = tempRaceForSwitching;
-    notifyListeners();
-  }
-
-  updateChosenClass() {
-    chosenClass = tempoClassForSwitching;
-    notifyListeners();
-  }
-
-  updateChosenAlignment() {
-    chosenAlignment = tempAlignmentForSwitching;
     notifyListeners();
   }
 
@@ -113,6 +114,21 @@ class CharController extends ChangeNotifier {
     notifyListeners();
   }
 
+// ====================================================================================
+
+// Functions related to the Character Class
+
+  getInitialClass() {
+    initialClass = listOfClasses.allClasses[0];
+    chosenClass = initialClass;
+    tempoClassForSwitching = initialClass;
+  }
+
+  updateChosenClass() {
+    chosenClass = tempoClassForSwitching;
+    notifyListeners();
+  }
+
   switchClass(ClassModel charClass) {
     charClass.isSelected = !charClass.isSelected;
     for (var select in listOfClasses.allClasses) {
@@ -122,10 +138,24 @@ class CharController extends ChangeNotifier {
     tempoClassForSwitching = charClass;
     notifyListeners();
   }
+// ====================================================================================
+
+// Functions related to the Character Alignment
+
+  getInitialAlignment() {
+    filteredAlignments = listOfAlignments.allAlignments;
+    initialAlignment = listOfAlignments.allAlignments[0];
+    chosenAlignment = initialAlignment;
+  }
+
+  updateChosenAlignment() {
+    chosenAlignment = tempAlignmentForSwitching;
+    notifyListeners();
+  }
 
   switchAlignment(AlignmentModel alignment) {
     alignment.isSelected = !alignment.isSelected;
-    for (var select in listOfAlignments.allAlignments) {
+    for (var select in filteredAlignments) {
       select.isSelected = false;
     }
     alignment.isSelected = !alignment.isSelected;
@@ -133,20 +163,68 @@ class CharController extends ChangeNotifier {
     notifyListeners();
   }
 
-  displayLastName() {
-    lastNameShown = !lastNameShown;
+  filterAlignments(String permited1, String permited2, String permited3,
+      String permited4, String permited5, String permited6) {
+    return listOfAlignments.allAlignments
+        .where((type) =>
+            type.name == permited1 ||
+            type.name == permited2 ||
+            type.name == permited3 ||
+            type.name == permited4 ||
+            type.name == permited5 ||
+            type.name == permited6)
+        .toList();
+  }
+
+  filterAlignmentsToClass() {
+    switch (chosenClass.name) {
+      case "Barbarian":
+        filteredAlignments = filterAlignments("Neutral Good", "Neutral",
+            "Neutral Evil", "Chaotic Good", "Chaotic Neutral", "Chaotic Evil");
+        notifyListeners();
+        break;
+      case "Bandit":
+        filteredAlignments = filterAlignments("", "Neutral", "Neutral Evil", "",
+            "Chaotic Neutral", "Chaotic Evil");
+        notifyListeners();
+        break;
+      case "Cleric":
+        filteredAlignments = filterAlignments("Lawful Good", "Lawful Evil",
+            "Chaotic Good", "Chaotic Evil", "", "");
+        notifyListeners();
+        break;
+      case "Druid":
+        filteredAlignments = filterAlignments(
+            "Neutral Good", "Neutral", "Neutral Evil", "", "", "");
+        notifyListeners();
+        break;
+      case "Monk":
+        filteredAlignments = filterAlignments(
+            "Lawful Good", "Lawful Neutral", "Lawful Evil", "", "", "");
+        notifyListeners();
+        break;
+      case "Paladin":
+        filteredAlignments = filterAlignments(
+            "Lawful Good", "Lawful Neutral", "Lawful Evil", "", "", "");
+        notifyListeners();
+        break;
+      case "Rogue":
+        filteredAlignments = filterAlignments("Neutral Good", "Neutral",
+            "Neutral Evil", "Chaotic Good", "Chaotic Neutral", "Chaotic Evil");
+        notifyListeners();
+        break;
+      default:
+        filteredAlignments = listOfAlignments.allAlignments;
+        notifyListeners();
+    }
+    filteredAlignments.first.isSelected = true;
+    tempAlignmentForSwitching = filteredAlignments.first;
     notifyListeners();
   }
 
-  /// makes the first letter of a name a capital letter
-  capitalize(String name, String lastName) {
-    String tempName = name[0].toUpperCase() + name.substring(1).toLowerCase();
-    String tempLastName =
-        lastName[0].toUpperCase() + lastName.substring(1).toLowerCase();
-    newName = tempName;
-    newLastName = tempLastName;
-    notifyListeners();
-  }
+// ====================================================================================
+
+// Functions related to the Character Gender
 
   switchToMale() {
     isMale = true;
@@ -159,6 +237,9 @@ class CharController extends ChangeNotifier {
     isMale = false;
     notifyListeners();
   }
+// ====================================================================================
+
+// Creation Advance and retreat Functions
 
   advanceCreationStage() {
     creationStage++;
@@ -169,6 +250,10 @@ class CharController extends ChangeNotifier {
     creationStage--;
     notifyListeners();
   }
+
+//=======================================================================================
+
+// Section to get random letters and syllabus
 
   getVowel() {
     List<LetterModel> vowelList = [];
@@ -225,7 +310,26 @@ class CharController extends ChangeNotifier {
     return fourSyllabusList[chance].value;
   }
 
-  /// generates name size according to race
+  //=======================================================================================
+
+// Section to generate names
+
+  /// makes the first letter of a name a capital letter
+  capitalize(String name, String lastName) {
+    String tempName = name[0].toUpperCase() + name.substring(1).toLowerCase();
+    String tempLastName =
+        lastName[0].toUpperCase() + lastName.substring(1).toLowerCase();
+    newName = tempName;
+    newLastName = tempLastName;
+    notifyListeners();
+  }
+
+  displayLastName() {
+    lastNameShown = !lastNameShown;
+    notifyListeners();
+  }
+
+  /// generates name size
   List<String> generateNameSize(int desiredLength, int maxLength) {
     randomChance = randomIndex.nextInt(desiredLength) + 1;
     String temporaryName = '';
@@ -297,7 +401,7 @@ class CharController extends ChangeNotifier {
 
 // Dwarf designated part =================================================================
 
-  /// alters some of the characters of names for dwarfs
+  /// alters some of the letters of names for dwarfs
   List<String> alterDwarfNameCharacters(
       String temporaryName, String temporaryLastName) {
     if (randomChance > 0 && randomChance < 3) {
@@ -323,7 +427,7 @@ class CharController extends ChangeNotifier {
 
 // Elf designated part ======================================================================
 
-  /// alters some of the characters of names for elves
+  /// alters some of the letters of names for elves
   List<String> alterElfNameCharacters(
       String temporaryName, String temporaryLastName) {
     if (temporaryName.length > 8) {
@@ -378,7 +482,7 @@ class CharController extends ChangeNotifier {
 
   // Gnome designated part =================================================================
 
-  ///  /// alters some of the characters of names for gnomes
+  ///  /// alters some of the letters of names for gnomes
   List<String> alterGnomeNameCharacters(
       String temporaryName, String temporaryLastName) {
     if (randomChance > 0 && randomChance < 3) {
@@ -404,7 +508,7 @@ class CharController extends ChangeNotifier {
 
 // Hafling designated part =================================================================
 
-  ///  /// alters some of the characters of names for haflings
+  ///  /// alters some of the letters of names for haflings
   List<String> alterHaflingNameCharacters(
       String temporaryName, String temporaryLastName) {
     if (randomChance > 0 && randomChance < 3) {
@@ -490,8 +594,6 @@ class CharController extends ChangeNotifier {
     fullName = alterOrcNameCharacters(fullName[0], fullName[1]);
     capitalize(fullName[0], fullName[1]);
   }
-
-// ====================================================================================
 
   /// calls the respective race name generator
   newNameGenerator() {
@@ -611,4 +713,8 @@ class CharController extends ChangeNotifier {
     savedNames = chosenNames;
     notifyListeners();
   }
+
+  // ====================================================================================
+
+  // Section for Equipment of the character
 }

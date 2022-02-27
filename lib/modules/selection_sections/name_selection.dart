@@ -28,6 +28,7 @@ class NameSelection extends StatelessWidget {
           ),
           child: Consumer<CharController>(builder: (context, state, child) {
             return InkWell(
+              borderRadius: BorderRadius.circular(10),
               onDoubleTap: () => state.switchNameAndLastName(),
               child: Container(
                 height: size.height * 0.1,
@@ -41,7 +42,11 @@ class NameSelection extends StatelessWidget {
                   vertical: 3,
                 ),
                 child: Center(
-                  child: SizedBox(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                     height: size.height * 0.035,
                     child: FittedBox(
                       fit: BoxFit.fitHeight,

@@ -39,7 +39,7 @@ class RaceSelection extends StatelessWidget {
                             vertical: size.height * 0.005),
                         child: Center(
                           child: Padding(
-                            padding: const EdgeInsets.all(5),
+                            padding: const EdgeInsets.all(7),
                             child: Text(
                               race.name,
                               style: AppTextStyle.selectRace,

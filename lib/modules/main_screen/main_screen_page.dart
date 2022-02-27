@@ -1,5 +1,6 @@
 import 'package:fantasy_name_generator/modules/selection_sections/alignment_selection.dart';
 import 'package:fantasy_name_generator/modules/selection_sections/level%20selection.dart';
+import 'package:fantasy_name_generator/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -102,6 +103,7 @@ class _MainScreenPageState extends State<MainScreenPage>
             if (state.creationStage == 4)
               ClassSelection(onTap: () {
                 state.updateChosenClass();
+                state.filterAlignmentsToClass();
                 state.advanceCreationStage();
               }),
             if (state.creationStage == 5)
@@ -112,9 +114,18 @@ class _MainScreenPageState extends State<MainScreenPage>
                 },
               ),
             if (state.creationStage == 6)
-              LevelSelection(
-                onTap: () => state.advanceCreationStage(),
-              ),
+              LevelSelection(onTap: () {
+                if (state.levelSelected == -1) {
+                  state.showErrorSnackBarIfLevelIsZero(
+                    context,
+                    "You need to select a level befor advancing",
+                    AppColors.warningColor,
+                  );
+                  return;
+                }
+                state.updateLevelSelectedIfEpic();
+                state.advanceCreationStage();
+              }),
           ],
         );
       }),

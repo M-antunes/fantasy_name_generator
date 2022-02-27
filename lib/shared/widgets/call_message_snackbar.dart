@@ -22,7 +22,7 @@ ScaffoldFeatureController<SnackBar, SnackBarClosedReason> callMessageSnackbar(
               height: MediaQuery.of(context).size.height * 0.025,
               child: FittedBox(
                 fit: BoxFit.fitHeight,
-                child: Text(text, style: AppTextStyle.generatedName),
+                child: Text(text, style: AppTextStyle.flipCardMale),
               ),
             ),
           ],

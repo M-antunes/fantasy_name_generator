@@ -65,6 +65,9 @@ class CharProgression extends StatelessWidget {
                       if (controller.creationStage > 4)
                         Text(controller.chosenClass.name,
                             style: AppTextStyle.selectRace),
+                      if (controller.creationStage > 6)
+                        Text("    lv: ${controller.levelSelected + 1}",
+                            style: AppTextStyle.chosenRace),
                     ],
                   ),
                   if (controller.creationStage > 5)

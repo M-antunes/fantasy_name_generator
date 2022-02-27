@@ -1,9 +1,9 @@
 import 'package:fantasy_name_generator/models/alignment_model.dart';
 
 class AlignmentData {
-  final List<AlignmentModel> allAlignments = [
+  List<AlignmentModel> allAlignments = [
     AlignmentModel(isSelected: true, name: "Lawful Good"),
-    AlignmentModel(isSelected: false, name: "Lawful Neutal"),
+    AlignmentModel(isSelected: false, name: "Lawful Neutral"),
     AlignmentModel(isSelected: false, name: "Lawful Evil"),
     AlignmentModel(isSelected: false, name: "Neutral Good"),
     AlignmentModel(isSelected: false, name: "Neutral"),
