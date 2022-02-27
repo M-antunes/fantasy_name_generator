@@ -3,22 +3,26 @@ import 'dart:convert';
 import 'enchant_model.dart';
 
 class ArmourModel {
-  final String type;
+  final String name;
+  final String? material;
   final EnchantModel? enchantment;
-  final int power;
+  final int? power;
   ArmourModel({
-    required this.type,
+    required this.name,
+    this.material,
     this.enchantment,
-    required this.power,
+    this.power,
   });
 
   ArmourModel copyWith({
-    String? type,
+    String? name,
+    String? material,
     EnchantModel? enchantment,
     int? power,
   }) {
     return ArmourModel(
-      type: type ?? this.type,
+      name: name ?? this.name,
+      material: material ?? this.material,
       enchantment: enchantment ?? this.enchantment,
       power: power ?? this.power,
     );
@@ -26,7 +30,8 @@ class ArmourModel {
 
   Map<String, dynamic> toMap() {
     return {
-      'type': type,
+      'name': name,
+      'material': material,
       'enchantment': enchantment?.toMap(),
       'power': power,
     };
@@ -34,11 +39,12 @@ class ArmourModel {
 
   factory ArmourModel.fromMap(Map<String, dynamic> map) {
     return ArmourModel(
-      type: map['type'] ?? '',
+      name: map['name'] ?? '',
+      material: map['material'],
       enchantment: map['enchantment'] != null
           ? EnchantModel.fromMap(map['enchantment'])
           : null,
-      power: map['power']?.toInt() ?? 0,
+      power: map['power']?.toInt(),
     );
   }
 
@@ -48,19 +54,26 @@ class ArmourModel {
       ArmourModel.fromMap(json.decode(source));
 
   @override
-  String toString() =>
-      'ArmourModel(type: $type, enchantment: $enchantment, power: $power)';
+  String toString() {
+    return 'ArmourModel(name: $name, material: $material, enchantment: $enchantment, power: $power)';
+  }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
     return other is ArmourModel &&
-        other.type == type &&
+        other.name == name &&
+        other.material == material &&
         other.enchantment == enchantment &&
         other.power == power;
   }
 
   @override
-  int get hashCode => type.hashCode ^ enchantment.hashCode ^ power.hashCode;
+  int get hashCode {
+    return name.hashCode ^
+        material.hashCode ^
+        enchantment.hashCode ^
+        power.hashCode;
+  }
 }

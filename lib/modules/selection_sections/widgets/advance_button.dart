@@ -1,13 +1,16 @@
-import 'package:fantasy_name_generator/shared/themes/app_text_styles.dart';
 import 'package:flutter/material.dart';
+
+import 'package:fantasy_name_generator/shared/themes/app_text_styles.dart';
 
 class AdvanceButton extends StatelessWidget {
   final Size size;
   final VoidCallback onTap;
+  final String? label;
   const AdvanceButton({
     Key? key,
     required this.size,
     required this.onTap,
+    this.label,
   }) : super(key: key);
 
   @override
@@ -35,9 +38,9 @@ class AdvanceButton extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 // ignore: prefer_const_literals_to_create_immutables
                 children: [
-                  const Text(
-                    'NEXT',
-                    style: AppTextStyle.selectButtonNotReady,
+                  Text(
+                    label ?? 'ADVANCE',
+                    style: AppTextStyle.selectRace,
                   ),
                   const SizedBox(width: 5),
                   const Icon(

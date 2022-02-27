@@ -3,22 +3,26 @@ import 'dart:convert';
 import 'enchant_model.dart';
 
 class ShieldModel {
-  final String type;
+  final String name;
+  final String? material;
   final EnchantModel? enchantment;
   final int? power;
   ShieldModel({
-    required this.type,
+    required this.name,
+    this.material,
     this.enchantment,
     this.power,
   });
 
   ShieldModel copyWith({
-    String? type,
+    String? name,
+    String? material,
     EnchantModel? enchantment,
     int? power,
   }) {
     return ShieldModel(
-      type: type ?? this.type,
+      name: name ?? this.name,
+      material: material ?? this.material,
       enchantment: enchantment ?? this.enchantment,
       power: power ?? this.power,
     );
@@ -26,7 +30,8 @@ class ShieldModel {
 
   Map<String, dynamic> toMap() {
     return {
-      'type': type,
+      'name': name,
+      'material': material,
       'enchantment': enchantment?.toMap(),
       'power': power,
     };
@@ -34,7 +39,8 @@ class ShieldModel {
 
   factory ShieldModel.fromMap(Map<String, dynamic> map) {
     return ShieldModel(
-      type: map['type'] ?? '',
+      name: map['name'] ?? '',
+      material: map['material'],
       enchantment: map['enchantment'] != null
           ? EnchantModel.fromMap(map['enchantment'])
           : null,
@@ -48,19 +54,26 @@ class ShieldModel {
       ShieldModel.fromMap(json.decode(source));
 
   @override
-  String toString() =>
-      'ShieldModel(type: $type, enchantment: $enchantment, power: $power)';
+  String toString() {
+    return 'ShieldModel(name: $name, material: $material, enchantment: $enchantment, power: $power)';
+  }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
     return other is ShieldModel &&
-        other.type == type &&
+        other.name == name &&
+        other.material == material &&
         other.enchantment == enchantment &&
         other.power == power;
   }
 
   @override
-  int get hashCode => type.hashCode ^ enchantment.hashCode ^ power.hashCode;
+  int get hashCode {
+    return name.hashCode ^
+        material.hashCode ^
+        enchantment.hashCode ^
+        power.hashCode;
+  }
 }

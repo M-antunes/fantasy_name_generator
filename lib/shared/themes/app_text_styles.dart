@@ -6,11 +6,10 @@ class AppTextStyle {
     fontWeight: FontWeight.w400,
     color: AppColors.primary,
   );
-  static const chosenRace = TextStyle(
+  static const chosenName = TextStyle(
     fontFamily: "Grantmouth",
-    fontWeight: FontWeight.w400,
     color: Colors.white,
-    fontSize: 30,
+    fontSize: 32,
   );
   static const flipCardMale = TextStyle(
     fontWeight: FontWeight.bold,
@@ -22,10 +21,20 @@ class AppTextStyle {
     color: Colors.black,
     fontSize: 15,
   );
+  static const nameExhibition = TextStyle(
+    fontWeight: FontWeight.w400,
+    color: Colors.white,
+    fontSize: 24,
+  );
   static const changeRace = TextStyle(
     fontWeight: FontWeight.w400,
     color: Colors.white,
     fontSize: 22,
+  );
+  static const mainPageLabel = TextStyle(
+    fontWeight: FontWeight.w400,
+    color: Colors.white,
+    fontSize: 18,
   );
   static const selectRace = TextStyle(
     fontWeight: FontWeight.w400,
@@ -34,12 +43,12 @@ class AppTextStyle {
   );
   static const selectButtonNotReady = TextStyle(
     fontWeight: FontWeight.w500,
-    color: Colors.white,
+    color: Colors.grey,
     fontSize: 15,
   );
   static const selectButtonReady = TextStyle(
-    fontWeight: FontWeight.w600,
+    fontWeight: FontWeight.w400,
     color: Colors.white,
-    fontSize: 21,
+    fontSize: 19,
   );
 }

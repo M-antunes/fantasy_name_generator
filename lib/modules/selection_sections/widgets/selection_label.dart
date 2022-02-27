@@ -20,7 +20,7 @@ class SelectionLabel extends StatelessWidget {
           ),
           child: Text(
             label,
-            style: AppTextStyle.changeRace,
+            style: AppTextStyle.mainPageLabel,
           ),
         ),
         Container(
