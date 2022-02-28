@@ -47,7 +47,14 @@ class LevelSelection extends StatelessWidget {
             ],
           ),
           GridView.builder(
-            itemCount: state.isEpicLevelSelected ? 10 : 20,
+            itemCount: state.isEpicLevelSelected ||
+                    state.chosenClass.name == "Aristocrat"
+                ? 10
+                : state.chosenClass.name == "Noble"
+                    ? 15
+                    : state.chosenClass.name == "Commoner"
+                        ? 5
+                        : 20,
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {

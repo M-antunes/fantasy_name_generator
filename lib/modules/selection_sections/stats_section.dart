@@ -82,9 +82,9 @@ class CharProgression extends StatelessWidget {
                           child: StatsDescriptionColumn(
                             labeltop: "Strength:",
                             labelBottom: "Dexterity:",
-                            textValueLeft:
+                            textValueTop:
                                 state.generatedChar.baseAtributes.strength!,
-                            textValueRight:
+                            textValueBottom:
                                 state.generatedChar.baseAtributes.dexterity!,
                             modTop: state.generatedChar.modAtributes.strength!,
                             modBottom:
@@ -94,7 +94,7 @@ class CharProgression extends StatelessWidget {
                         SizedBox(
                           width: size.width * 0.44,
                           child: StatsDescriptionText(
-                            label: "Constitution",
+                            label: "Constitution:",
                             textValue:
                                 state.generatedChar.baseAtributes.constitution!,
                             modValue:
@@ -112,9 +112,9 @@ class CharProgression extends StatelessWidget {
                           child: StatsDescriptionColumn(
                             labeltop: "Intelligence:",
                             labelBottom: "Wisdom:",
-                            textValueLeft:
+                            textValueTop:
                                 state.generatedChar.baseAtributes.intelligence!,
-                            textValueRight:
+                            textValueBottom:
                                 state.generatedChar.baseAtributes.wisdom!,
                             modTop:
                                 state.generatedChar.modAtributes.intelligence!,
@@ -126,9 +126,9 @@ class CharProgression extends StatelessWidget {
                           child: StatsDescriptionText(
                             label: "Charisma:",
                             textValue:
-                                state.generatedChar.modAtributes.charisma!,
-                            modValue:
                                 state.generatedChar.baseAtributes.charisma!,
+                            modValue:
+                                state.generatedChar.modAtributes.charisma!,
                           ),
                         ),
                         SizedBox(height: size.height * 0.006),

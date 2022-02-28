@@ -29,7 +29,6 @@ class _MainScreenPageState extends State<MainScreenPage>
     namesController = context.read<CharController>();
     namesController.getInitialRace();
     namesController.getInitialClass();
-    namesController.loadStoredNames();
     namesController.getInitialAlignment();
     super.initState();
   }
@@ -51,6 +50,8 @@ class _MainScreenPageState extends State<MainScreenPage>
             onPressed: () {
               if (state.creationStage == 1) {
                 Navigator.of(context).pop();
+              } else if (state.creationStage == 7) {
+                state.retreatCreationStage();
               } else {
                 state.retreatCreationStage();
               }
@@ -137,11 +138,11 @@ class _MainScreenPageState extends State<MainScreenPage>
                 state.advanceCreationStage();
               }),
             if (state.creationStage == 7)
-              CharProgression(onGenerate: () {
-                state.generateAllAtributs();
-              }, onTap: () {
-                state.advanceCreationStage();
-              }),
+              CharProgression(
+                  onGenerate: () => state.generateAllAtributs(),
+                  onTap: () {
+                    state.advanceCreationStage();
+                  }),
           ],
         );
       }),

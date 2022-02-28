@@ -229,7 +229,9 @@ class CharController extends ChangeNotifier {
         filteredAlignments = listOfAlignments.allAlignments;
         notifyListeners();
     }
-
+    for (var i in filteredAlignments) {
+      i.isSelected = false;
+    }
     tempAlignmentForSwitching = filteredAlignments.first;
     tempAlignmentForSwitching.isSelected = true;
     notifyListeners();
@@ -755,13 +757,13 @@ class CharController extends ChangeNotifier {
 
 // Section for generation Status
 
-  sortAtributesToClass(int v1, int v2, int v3, int v4, int v5, int v6) {
-    generatedChar.baseAtributes.strength = v1;
-    generatedChar.baseAtributes.dexterity = v2;
-    generatedChar.baseAtributes.constitution = v3;
-    generatedChar.baseAtributes.intelligence = v4;
-    generatedChar.baseAtributes.wisdom = v5;
-    generatedChar.baseAtributes.charisma = v6;
+  sortAtributesToClass(int v0, int v1, int v2, int v3, int v4, int v5) {
+    generatedChar.baseAtributes.strength = v0;
+    generatedChar.baseAtributes.dexterity = v1;
+    generatedChar.baseAtributes.constitution = v2;
+    generatedChar.baseAtributes.intelligence = v3;
+    generatedChar.baseAtributes.wisdom = v4;
+    generatedChar.baseAtributes.charisma = v5;
     notifyListeners();
   }
 
@@ -776,60 +778,58 @@ class CharController extends ChangeNotifier {
     }
     atrbValues.sort((b, a) => a.compareTo(b));
 
-    if (generatedChar.charClass.name == "Barbarian" ||
-        generatedChar.charClass.name == "Warrior") {
-      sortAtributesToClass(atrbValues[0], atrbValues[2], atrbValues[1],
-          atrbValues[3], atrbValues[4], atrbValues[5]);
-    }
-    if (generatedChar.charClass.name == "Alchemist" ||
-        generatedChar.charClass.name == "Wizard" ||
-        generatedChar.charClass.name == "Aristocrat") {
-      sortAtributesToClass(atrbValues[5], atrbValues[3], atrbValues[2],
-          atrbValues[0], atrbValues[1], atrbValues[4]);
-    }
-    if (generatedChar.charClass.name == "Cleric") {
-      sortAtributesToClass(atrbValues[2], atrbValues[3], atrbValues[1],
-          atrbValues[4], atrbValues[0], atrbValues[5]);
-    }
-    if (generatedChar.charClass.name == "Druid") {
-      sortAtributesToClass(atrbValues[2], atrbValues[3], atrbValues[1],
-          atrbValues[5], atrbValues[0], atrbValues[4]);
-    }
-    if (generatedChar.charClass.name == "Rogue") {
-      sortAtributesToClass(atrbValues[2], atrbValues[0], atrbValues[4],
-          atrbValues[3], atrbValues[5], atrbValues[1]);
-    }
-    if (generatedChar.charClass.name == "Ranger") {
-      sortAtributesToClass(atrbValues[1], atrbValues[0], atrbValues[3],
-          atrbValues[5], atrbValues[2], atrbValues[4]);
-    }
-    if (generatedChar.charClass.name == "Paladin") {
-      sortAtributesToClass(atrbValues[0], atrbValues[4], atrbValues[2],
-          atrbValues[5], atrbValues[3], atrbValues[1]);
-    }
-    if (generatedChar.charClass.name == "Bard") {
-      sortAtributesToClass(atrbValues[5], atrbValues[3], atrbValues[4],
-          atrbValues[2], atrbValues[1], atrbValues[0]);
-    }
-    if (generatedChar.charClass.name == "Bandit") {
-      sortAtributesToClass(atrbValues[0], atrbValues[1], atrbValues[2],
-          atrbValues[5], atrbValues[3], atrbValues[4]);
-    }
-    if (generatedChar.charClass.name == "Commoner") {
-      sortAtributesToClass(atrbValues[3], atrbValues[3], atrbValues[3],
-          atrbValues[4], atrbValues[4], atrbValues[4]);
-    }
-    if (generatedChar.charClass.name == "Sorcerer") {
-      sortAtributesToClass(atrbValues[5], atrbValues[4], atrbValues[2],
-          atrbValues[3], atrbValues[1], atrbValues[0]);
-    }
-    if (generatedChar.charClass.name == "Monk") {
-      sortAtributesToClass(atrbValues[2], atrbValues[0], atrbValues[3],
-          atrbValues[4], atrbValues[1], atrbValues[5]);
-    }
-    if (generatedChar.charClass.name == "Noble") {
-      sortAtributesToClass(atrbValues[4], atrbValues[4], atrbValues[4],
-          atrbValues[1], atrbValues[1], atrbValues[1]);
+    switch (generatedChar.charClass.name) {
+      case "Barbarian":
+        sortAtributesToClass(atrbValues[0], atrbValues[2], atrbValues[1],
+            atrbValues[4], atrbValues[3], atrbValues[5]);
+        break;
+      case "Warrior":
+        sortAtributesToClass(atrbValues[0], atrbValues[2], atrbValues[1],
+            atrbValues[4], atrbValues[3], atrbValues[5]);
+        break;
+      case "Alchemist":
+        sortAtributesToClass(atrbValues[5], atrbValues[3], atrbValues[2],
+            atrbValues[0], atrbValues[1], atrbValues[4]);
+        break;
+      case "Wizard":
+        sortAtributesToClass(atrbValues[5], atrbValues[3], atrbValues[2],
+            atrbValues[0], atrbValues[1], atrbValues[4]);
+        break;
+      case "Cleric":
+        sortAtributesToClass(atrbValues[2], atrbValues[3], atrbValues[1],
+            atrbValues[4], atrbValues[0], atrbValues[5]);
+        break;
+      case "Druid":
+        sortAtributesToClass(atrbValues[2], atrbValues[3], atrbValues[1],
+            atrbValues[5], atrbValues[0], atrbValues[4]);
+        break;
+      case "Rogue":
+        sortAtributesToClass(atrbValues[2], atrbValues[0], atrbValues[4],
+            atrbValues[3], atrbValues[5], atrbValues[1]);
+        break;
+      case "Ranger":
+        sortAtributesToClass(atrbValues[1], atrbValues[0], atrbValues[3],
+            atrbValues[5], atrbValues[2], atrbValues[4]);
+        break;
+      case "Paladin":
+        sortAtributesToClass(atrbValues[0], atrbValues[4], atrbValues[2],
+            atrbValues[5], atrbValues[3], atrbValues[1]);
+        break;
+      case "Bard":
+        sortAtributesToClass(atrbValues[5], atrbValues[3], atrbValues[4],
+            atrbValues[2], atrbValues[1], atrbValues[0]);
+        break;
+      case "Sorcerer":
+        sortAtributesToClass(atrbValues[5], atrbValues[4], atrbValues[2],
+            atrbValues[3], atrbValues[1], atrbValues[0]);
+        break;
+      case "Monk":
+        sortAtributesToClass(atrbValues[2], atrbValues[0], atrbValues[3],
+            atrbValues[4], atrbValues[1], atrbValues[5]);
+        break;
+      default:
+        sortAtributesToClass(atrbValues[3], atrbValues[3], atrbValues[3],
+            atrbValues[3], atrbValues[3], atrbValues[3]);
     }
     ajustStatsToLevel();
     calculateAllModifiers();
@@ -843,6 +843,7 @@ class CharController extends ChangeNotifier {
     ClassModel? physicalClassGotten;
     ClassModel? mentalClassGotten;
     double secondaryAtributeIncrement = 0.0;
+    var atrbValues = generatedChar.baseAtributes;
     for (var i in physicalChars) {
       if (generatedChar.charClass.name == i.name) {
         physicalClassGotten = i;
@@ -855,20 +856,17 @@ class CharController extends ChangeNotifier {
           secondaryAtributeIncrement = secondaryAtributeIncrement + 0.5;
         }
         generatedChar.baseAtributes.strength =
-            generatedChar.baseAtributes.strength! + mainAtributeIncrement;
+            atrbValues.strength! + mainAtributeIncrement;
         generatedChar.baseAtributes.dexterity =
-            generatedChar.baseAtributes.dexterity! + mainAtributeIncrement;
+            atrbValues.dexterity! + mainAtributeIncrement;
         generatedChar.baseAtributes.constitution =
-            generatedChar.baseAtributes.constitution! + mainAtributeIncrement;
+            atrbValues.constitution! + mainAtributeIncrement;
         generatedChar.baseAtributes.intelligence =
-            generatedChar.baseAtributes.intelligence! +
-                secondaryAtributeIncrement.floor();
+            atrbValues.intelligence! + secondaryAtributeIncrement.floor();
         generatedChar.baseAtributes.wisdom =
-            generatedChar.baseAtributes.wisdom! +
-                secondaryAtributeIncrement.floor();
-        generatedChar.baseAtributes.constitution =
-            generatedChar.baseAtributes.charisma! +
-                secondaryAtributeIncrement.floor();
+            atrbValues.wisdom! + secondaryAtributeIncrement.floor();
+        generatedChar.baseAtributes.charisma =
+            atrbValues.charisma! + secondaryAtributeIncrement.floor();
       }
     }
     for (var i in mentalChars) {
@@ -883,38 +881,35 @@ class CharController extends ChangeNotifier {
           secondaryAtributeIncrement = secondaryAtributeIncrement + 0.5;
         }
         generatedChar.baseAtributes.strength =
-            generatedChar.baseAtributes.strength! +
-                secondaryAtributeIncrement.floor();
+            atrbValues.strength! + secondaryAtributeIncrement.floor();
         generatedChar.baseAtributes.dexterity =
-            generatedChar.baseAtributes.dexterity! +
-                secondaryAtributeIncrement.floor();
+            atrbValues.dexterity! + secondaryAtributeIncrement.floor();
         generatedChar.baseAtributes.constitution =
-            generatedChar.baseAtributes.constitution! +
-                secondaryAtributeIncrement.floor();
+            atrbValues.constitution! + secondaryAtributeIncrement.floor();
         generatedChar.baseAtributes.intelligence =
-            generatedChar.baseAtributes.intelligence! + mainAtributeIncrement;
+            atrbValues.intelligence! + mainAtributeIncrement;
         generatedChar.baseAtributes.wisdom =
-            generatedChar.baseAtributes.wisdom! + mainAtributeIncrement;
+            atrbValues.wisdom! + mainAtributeIncrement;
         generatedChar.baseAtributes.constitution =
-            generatedChar.baseAtributes.charisma! + mainAtributeIncrement;
+            atrbValues.charisma! + mainAtributeIncrement;
       }
     }
     notifyListeners();
   }
 
   calculateAllModifiers() {
+    var atributes = generatedChar.baseAtributes;
     generatedChar.modAtributes.strength =
-        claculateModifier(generatedChar.baseAtributes.strength!);
+        claculateModifier(atributes.strength!);
     generatedChar.modAtributes.dexterity =
-        claculateModifier(generatedChar.baseAtributes.dexterity!);
+        claculateModifier(atributes.dexterity!);
     generatedChar.modAtributes.constitution =
-        claculateModifier(generatedChar.baseAtributes.constitution!);
+        claculateModifier(atributes.constitution!);
     generatedChar.modAtributes.intelligence =
-        claculateModifier(generatedChar.baseAtributes.intelligence!);
-    generatedChar.modAtributes.wisdom =
-        claculateModifier(generatedChar.baseAtributes.wisdom!);
+        claculateModifier(atributes.intelligence!);
+    generatedChar.modAtributes.wisdom = claculateModifier(atributes.wisdom!);
     generatedChar.modAtributes.charisma =
-        claculateModifier(generatedChar.baseAtributes.charisma!);
+        claculateModifier(atributes.charisma!);
     notifyListeners();
   }
 
@@ -926,6 +921,15 @@ class CharController extends ChangeNotifier {
     }
     return doubleValue.toInt();
   }
+
+  // clearAtributes() {
+  //   var atributesToZero = AtributeModel();
+  //   generatedChar.baseAtributes = atributesToZero;
+  //   generatedChar.modAtributes = atributesToZero;
+  //   // baseAtributes = atributesToZero;
+  //   // modAtributes = atributesToZero;
+  //   notifyListeners();
+  // }
 
   //=======================================================================================
 

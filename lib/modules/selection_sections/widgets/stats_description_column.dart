@@ -5,16 +5,16 @@ import 'package:fantasy_name_generator/shared/themes/app_text_styles.dart';
 class StatsDescriptionColumn extends StatelessWidget {
   final String labeltop;
   final String labelBottom;
-  final int textValueLeft;
-  final int textValueRight;
+  final int textValueTop;
+  final int textValueBottom;
   final int modTop;
   final int modBottom;
   const StatsDescriptionColumn({
     Key? key,
     required this.labeltop,
     required this.labelBottom,
-    required this.textValueLeft,
-    required this.textValueRight,
+    required this.textValueTop,
+    required this.textValueBottom,
     required this.modTop,
     required this.modBottom,
   }) : super(key: key);
@@ -28,13 +28,13 @@ class StatsDescriptionColumn extends StatelessWidget {
       children: [
         StatsDescriptionText(
           label: labeltop,
-          textValue: textValueLeft,
+          textValue: textValueTop,
           modValue: modTop,
         ),
         SizedBox(height: size.height * 0.006),
         StatsDescriptionText(
           label: labelBottom,
-          textValue: textValueRight,
+          textValue: textValueBottom,
           modValue: modBottom,
         ),
         SizedBox(height: size.height * 0.006),
