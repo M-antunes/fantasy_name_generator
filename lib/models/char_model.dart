@@ -5,15 +5,15 @@ import 'package:fantasy_name_generator/models/class_model.dart';
 import 'package:fantasy_name_generator/models/combat_model.dart';
 import 'package:fantasy_name_generator/models/equip_models/equip_model.dart';
 import 'package:fantasy_name_generator/models/equip_models/loot_model.dart';
+import 'package:fantasy_name_generator/models/name_model.dart';
 import 'package:fantasy_name_generator/models/race_model.dart';
 import 'package:fantasy_name_generator/models/resistance_model.dart';
-import 'package:fantasy_name_generator/models/saved_name_model.dart';
 
 import 'base_atribute_model.dart';
 
 class CharModel {
   RaceModel charRace;
-  SavedNameModel charName;
+  NameModel charName;
   AtributeModel baseAtributes;
   AtributeModel modAtributes;
   ClassModel charClass;
@@ -42,7 +42,7 @@ class CharModel {
 
   CharModel copyWith({
     RaceModel? charRace,
-    SavedNameModel? charName,
+    NameModel? charName,
     AtributeModel? baseAtributes,
     AtributeModel? modAtributes,
     ClassModel? charClass,
@@ -90,7 +90,7 @@ class CharModel {
   factory CharModel.fromMap(Map<String, dynamic> map) {
     return CharModel(
       charRace: RaceModel.fromMap(map['charRace']),
-      charName: SavedNameModel.fromMap(map['charName']),
+      charName: NameModel.fromMap(map['charName']),
       baseAtributes: AtributeModel.fromMap(map['baseAtributes']),
       modAtributes: AtributeModel.fromMap(map['modAtributes']),
       charClass: ClassModel.fromMap(map['charClass']),

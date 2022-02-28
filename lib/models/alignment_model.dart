@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 class AlignmentModel {
-  final String name;
+  String name;
   bool isSelected;
   AlignmentModel({
     required this.name,
@@ -9,25 +9,25 @@ class AlignmentModel {
   });
 
   AlignmentModel copyWith({
-    String? alignment,
+    String? name,
     bool? isSelected,
   }) {
     return AlignmentModel(
-      name: alignment ?? this.name,
+      name: name ?? this.name,
       isSelected: isSelected ?? this.isSelected,
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
-      'alignment': name,
+      'name': name,
       'isSelected': isSelected,
     };
   }
 
   factory AlignmentModel.fromMap(Map<String, dynamic> map) {
     return AlignmentModel(
-      name: map['alignment'] ?? '',
+      name: map['name'] ?? '',
       isSelected: map['isSelected'] ?? false,
     );
   }
@@ -38,8 +38,7 @@ class AlignmentModel {
       AlignmentModel.fromMap(json.decode(source));
 
   @override
-  String toString() =>
-      'AlignmentModel(alignment: $name, isSelected: $isSelected)';
+  String toString() => 'AlignmentModel(name: $name, isSelected: $isSelected)';
 
   @override
   bool operator ==(Object other) {

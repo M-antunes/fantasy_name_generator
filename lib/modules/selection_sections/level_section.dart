@@ -21,31 +21,57 @@ class LevelSelection extends StatelessWidget {
     return Consumer<CharController>(builder: (context, state, child) {
       return Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              LevelChoiceCampaignButton(
-                label: "Regular",
-                boxColor: state.isRegularLevelSelected
-                    ? AppColors.primary
-                    : Colors.black38,
-                textColor: state.isRegularLevelSelected
-                    ? Colors.white
-                    : Colors.grey[400]!,
-                onTap: () => state.switchToRegularLevel(),
-              ),
-              LevelChoiceCampaignButton(
-                label: "Epic",
-                boxColor: state.isEpicLevelSelected
-                    ? AppColors.primary
-                    : Colors.black38,
-                textColor: state.isEpicLevelSelected
-                    ? Colors.white
-                    : Colors.grey[400]!,
-                onTap: () => state.switchToEpicLevel(),
-              ),
-            ],
-          ),
+          state.chosenClass.name == "Aristocrat" ||
+                  state.chosenClass.name == "Commoner" ||
+                  state.chosenClass.name == "Noble"
+              ? Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 5),
+                      child: Text(
+                          state.chosenClass.name == "Aristocrat"
+                              ? "Aristocrats CANNOT be Epic and go no further than lv:10"
+                              : state.chosenClass.name == "Commoner"
+                                  ? "Commoners CANNOT be Epic and go no further than lv:5"
+                                  : state.chosenClass.name == "Noble"
+                                      ? "Nobles CANNOT be Epic and go no further than lv:15"
+                                      : "",
+                          textAlign: TextAlign.center),
+                    ),
+                    SizedBox(height: size.height * 0.01),
+                    Container(
+                      width: size.width * 0.92,
+                      height: size.height * 0.003,
+                      color: Colors.grey,
+                    ),
+                    SizedBox(height: size.height * 0.01),
+                  ],
+                )
+              : Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    LevelChoiceCampaignButton(
+                      label: "Regular",
+                      boxColor: state.isRegularLevelSelected
+                          ? AppColors.primary
+                          : Colors.black38,
+                      textColor: state.isRegularLevelSelected
+                          ? Colors.white
+                          : Colors.grey[400]!,
+                      onTap: () => state.switchToRegularLevel(),
+                    ),
+                    LevelChoiceCampaignButton(
+                      label: "Epic",
+                      boxColor: state.isEpicLevelSelected
+                          ? AppColors.primary
+                          : Colors.black38,
+                      textColor: state.isEpicLevelSelected
+                          ? Colors.white
+                          : Colors.grey[400]!,
+                      onTap: () => state.switchToEpicLevel(),
+                    ),
+                  ],
+                ),
           GridView.builder(
             itemCount: state.isEpicLevelSelected ||
                     state.chosenClass.name == "Aristocrat"

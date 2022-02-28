@@ -9,6 +9,7 @@ import 'package:fantasy_name_generator/models/combat_model.dart';
 import 'package:fantasy_name_generator/models/equip_models/equip_model.dart';
 import 'package:fantasy_name_generator/models/equip_models/loot_model.dart';
 import 'package:fantasy_name_generator/models/letter_model.dart';
+import 'package:fantasy_name_generator/models/name_model.dart';
 import 'package:fantasy_name_generator/models/resistance_model.dart';
 import 'package:fantasy_name_generator/models/saved_name_model.dart';
 import 'package:fantasy_name_generator/shared/data/alignment_data.dart';
@@ -40,10 +41,8 @@ class CharController extends ChangeNotifier {
   var listOfClasses = ClassData();
   var listOfAlignments = AlignmentData();
   var humanNames = HumanNamesData();
-  var baseAtributes = AtributeModel();
-  var modAtributes = AtributeModel();
   var resistances = ResistanceModel();
-  var weapon = WeaponData();
+  var weapon = EquipData();
   var combatStats = CombatModel();
   var loot = LootModel(items: []);
   Random randomIndex = Random();
@@ -734,17 +733,16 @@ class CharController extends ChangeNotifier {
   updateCharModel() {
     generatedChar = CharModel(
         charRace: chosenRace,
-        charName: SavedNameModel(
-            race: chosenRace,
+        charName: NameModel(
             gender: isMale ? "Male" : "Female",
-            firstName: newName,
-            lastName: newLastName,
+            name: newName,
+            surname: newLastName,
             fullName: "$newName $newLastName"),
         alignment: chosenAlignment,
         combatStats: combatStats,
         charClass: chosenClass,
-        baseAtributes: baseAtributes,
-        modAtributes: modAtributes,
+        baseAtributes: AtributeModel(),
+        modAtributes: AtributeModel(),
         charEquip: EquipModel(primaryWeapon: weapon.oneHandedWeapons[0]),
         hitPoints: 100,
         resistances: resistances,
@@ -826,6 +824,18 @@ class CharController extends ChangeNotifier {
       case "Monk":
         sortAtributesToClass(atrbValues[2], atrbValues[0], atrbValues[3],
             atrbValues[4], atrbValues[1], atrbValues[5]);
+        break;
+      case "Noble":
+        sortAtributesToClass(atrbValues[4], atrbValues[4], atrbValues[4],
+            atrbValues[2], atrbValues[2], atrbValues[1]);
+        break;
+      case "Aristocrat":
+        sortAtributesToClass(atrbValues[4], atrbValues[4], atrbValues[4],
+            atrbValues[0], atrbValues[1], atrbValues[3]);
+        break;
+      case "Bandit":
+        sortAtributesToClass(atrbValues[0], atrbValues[1], atrbValues[2],
+            atrbValues[5], atrbValues[3], atrbValues[4]);
         break;
       default:
         sortAtributesToClass(atrbValues[3], atrbValues[3], atrbValues[3],
@@ -921,15 +931,6 @@ class CharController extends ChangeNotifier {
     }
     return doubleValue.toInt();
   }
-
-  // clearAtributes() {
-  //   var atributesToZero = AtributeModel();
-  //   generatedChar.baseAtributes = atributesToZero;
-  //   generatedChar.modAtributes = atributesToZero;
-  //   // baseAtributes = atributesToZero;
-  //   // modAtributes = atributesToZero;
-  //   notifyListeners();
-  // }
 
   //=======================================================================================
 

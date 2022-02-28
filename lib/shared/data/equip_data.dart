@@ -2,7 +2,7 @@ import 'package:fantasy_name_generator/models/equip_models/armour_model.dart';
 import 'package:fantasy_name_generator/models/equip_models/shield_model.dart';
 import 'package:fantasy_name_generator/models/equip_models/weapon_model.dart';
 
-class WeaponData {
+class EquipData {
   final List<WeaponModel> oneHandedWeapons = [
     WeaponModel(weaponType: "Ligth blade", name: "Dagger"),
     WeaponModel(weaponType: "Mace", name: "Wooden stick"),
