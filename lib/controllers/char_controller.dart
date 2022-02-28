@@ -2,12 +2,18 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:fantasy_name_generator/models/alignment_model.dart';
+import 'package:fantasy_name_generator/models/base_atribute_model.dart';
 import 'package:fantasy_name_generator/models/char_model.dart';
 import 'package:fantasy_name_generator/models/class_model.dart';
+import 'package:fantasy_name_generator/models/combat_model.dart';
+import 'package:fantasy_name_generator/models/equip_models/equip_model.dart';
+import 'package:fantasy_name_generator/models/equip_models/loot_model.dart';
 import 'package:fantasy_name_generator/models/letter_model.dart';
+import 'package:fantasy_name_generator/models/resistance_model.dart';
 import 'package:fantasy_name_generator/models/saved_name_model.dart';
 import 'package:fantasy_name_generator/shared/data/alignment_data.dart';
 import 'package:fantasy_name_generator/shared/data/class_data.dart';
+import 'package:fantasy_name_generator/shared/data/equip_data.dart';
 import 'package:fantasy_name_generator/shared/widgets/call_message_snackbar.dart';
 import 'package:fantasy_name_generator/shared/data/human_names_data.dart';
 import 'package:fantasy_name_generator/shared/data/letters_data.dart';
@@ -34,6 +40,12 @@ class CharController extends ChangeNotifier {
   var listOfClasses = ClassData();
   var listOfAlignments = AlignmentData();
   var humanNames = HumanNamesData();
+  var baseAtributes = AtributeModel();
+  var modAtributes = AtributeModel();
+  var resistances = ResistanceModel();
+  var weapon = WeaponData();
+  var combatStats = CombatModel();
+  var loot = LootModel(items: []);
   Random randomIndex = Random();
   int creationStage = 1;
   int nameLength = 0;
@@ -217,8 +229,9 @@ class CharController extends ChangeNotifier {
         filteredAlignments = listOfAlignments.allAlignments;
         notifyListeners();
     }
-    filteredAlignments.first.isSelected = true;
+
     tempAlignmentForSwitching = filteredAlignments.first;
+    tempAlignmentForSwitching.isSelected = true;
     notifyListeners();
   }
 
@@ -654,7 +667,7 @@ class CharController extends ChangeNotifier {
     }
     SavedNameModel nameToSave = SavedNameModel(
         race: chosenRace,
-        gender: isMale ? 1 : 0,
+        gender: isMale ? "Male" : "Female",
         firstName: newName,
         lastName: newLastName,
         fullName: "$newName $newLastName");
@@ -714,7 +727,211 @@ class CharController extends ChangeNotifier {
     notifyListeners();
   }
 
-  // ====================================================================================
+// ======================================================================================
+
+  updateCharModel() {
+    generatedChar = CharModel(
+        charRace: chosenRace,
+        charName: SavedNameModel(
+            race: chosenRace,
+            gender: isMale ? "Male" : "Female",
+            firstName: newName,
+            lastName: newLastName,
+            fullName: "$newName $newLastName"),
+        alignment: chosenAlignment,
+        combatStats: combatStats,
+        charClass: chosenClass,
+        baseAtributes: baseAtributes,
+        modAtributes: modAtributes,
+        charEquip: EquipModel(primaryWeapon: weapon.oneHandedWeapons[0]),
+        hitPoints: 100,
+        resistances: resistances,
+        loot: loot,
+        charLevel: levelSelected + 1);
+    notifyListeners();
+  }
+
+//=======================================================================================
+
+// Section for generation Status
+
+  sortAtributesToClass(int v1, int v2, int v3, int v4, int v5, int v6) {
+    generatedChar.baseAtributes.strength = v1;
+    generatedChar.baseAtributes.dexterity = v2;
+    generatedChar.baseAtributes.constitution = v3;
+    generatedChar.baseAtributes.intelligence = v4;
+    generatedChar.baseAtributes.wisdom = v5;
+    generatedChar.baseAtributes.charisma = v6;
+    notifyListeners();
+  }
+
+  generateAllAtributs() {
+    List<int> atrbValues = [];
+    for (var i = 0; i < 6; i++) {
+      var atrbValue = randomIndex.nextInt(21) - 2;
+      while (atrbValue < 8) {
+        atrbValue = randomIndex.nextInt(21) - 2;
+      }
+      atrbValues.add(atrbValue);
+    }
+    atrbValues.sort((b, a) => a.compareTo(b));
+
+    if (generatedChar.charClass.name == "Barbarian" ||
+        generatedChar.charClass.name == "Warrior") {
+      sortAtributesToClass(atrbValues[0], atrbValues[2], atrbValues[1],
+          atrbValues[3], atrbValues[4], atrbValues[5]);
+    }
+    if (generatedChar.charClass.name == "Alchemist" ||
+        generatedChar.charClass.name == "Wizard" ||
+        generatedChar.charClass.name == "Aristocrat") {
+      sortAtributesToClass(atrbValues[5], atrbValues[3], atrbValues[2],
+          atrbValues[0], atrbValues[1], atrbValues[4]);
+    }
+    if (generatedChar.charClass.name == "Cleric") {
+      sortAtributesToClass(atrbValues[2], atrbValues[3], atrbValues[1],
+          atrbValues[4], atrbValues[0], atrbValues[5]);
+    }
+    if (generatedChar.charClass.name == "Druid") {
+      sortAtributesToClass(atrbValues[2], atrbValues[3], atrbValues[1],
+          atrbValues[5], atrbValues[0], atrbValues[4]);
+    }
+    if (generatedChar.charClass.name == "Rogue") {
+      sortAtributesToClass(atrbValues[2], atrbValues[0], atrbValues[4],
+          atrbValues[3], atrbValues[5], atrbValues[1]);
+    }
+    if (generatedChar.charClass.name == "Ranger") {
+      sortAtributesToClass(atrbValues[1], atrbValues[0], atrbValues[3],
+          atrbValues[5], atrbValues[2], atrbValues[4]);
+    }
+    if (generatedChar.charClass.name == "Paladin") {
+      sortAtributesToClass(atrbValues[0], atrbValues[4], atrbValues[2],
+          atrbValues[5], atrbValues[3], atrbValues[1]);
+    }
+    if (generatedChar.charClass.name == "Bard") {
+      sortAtributesToClass(atrbValues[5], atrbValues[3], atrbValues[4],
+          atrbValues[2], atrbValues[1], atrbValues[0]);
+    }
+    if (generatedChar.charClass.name == "Bandit") {
+      sortAtributesToClass(atrbValues[0], atrbValues[1], atrbValues[2],
+          atrbValues[5], atrbValues[3], atrbValues[4]);
+    }
+    if (generatedChar.charClass.name == "Commoner") {
+      sortAtributesToClass(atrbValues[3], atrbValues[3], atrbValues[3],
+          atrbValues[4], atrbValues[4], atrbValues[4]);
+    }
+    if (generatedChar.charClass.name == "Sorcerer") {
+      sortAtributesToClass(atrbValues[5], atrbValues[4], atrbValues[2],
+          atrbValues[3], atrbValues[1], atrbValues[0]);
+    }
+    if (generatedChar.charClass.name == "Monk") {
+      sortAtributesToClass(atrbValues[2], atrbValues[0], atrbValues[3],
+          atrbValues[4], atrbValues[1], atrbValues[5]);
+    }
+    if (generatedChar.charClass.name == "Noble") {
+      sortAtributesToClass(atrbValues[4], atrbValues[4], atrbValues[4],
+          atrbValues[1], atrbValues[1], atrbValues[1]);
+    }
+    ajustStatsToLevel();
+    calculateAllModifiers();
+  }
+
+  ajustStatsToLevel() {
+    var physicalChars = listOfClasses.physicalClasses;
+    var mentalChars = listOfClasses.mentalClasses;
+    int level = levelSelected + 1;
+    int mainAtributeIncrement = 0;
+    ClassModel? physicalClassGotten;
+    ClassModel? mentalClassGotten;
+    double secondaryAtributeIncrement = 0.0;
+    for (var i in physicalChars) {
+      if (generatedChar.charClass.name == i.name) {
+        physicalClassGotten = i;
+      }
+    }
+    if (physicalClassGotten != null) {
+      if (physicalClassGotten.name == generatedChar.charClass.name) {
+        for (var i = 0; i < level; i = i + 3) {
+          mainAtributeIncrement++;
+          secondaryAtributeIncrement = secondaryAtributeIncrement + 0.5;
+        }
+        generatedChar.baseAtributes.strength =
+            generatedChar.baseAtributes.strength! + mainAtributeIncrement;
+        generatedChar.baseAtributes.dexterity =
+            generatedChar.baseAtributes.dexterity! + mainAtributeIncrement;
+        generatedChar.baseAtributes.constitution =
+            generatedChar.baseAtributes.constitution! + mainAtributeIncrement;
+        generatedChar.baseAtributes.intelligence =
+            generatedChar.baseAtributes.intelligence! +
+                secondaryAtributeIncrement.floor();
+        generatedChar.baseAtributes.wisdom =
+            generatedChar.baseAtributes.wisdom! +
+                secondaryAtributeIncrement.floor();
+        generatedChar.baseAtributes.constitution =
+            generatedChar.baseAtributes.charisma! +
+                secondaryAtributeIncrement.floor();
+      }
+    }
+    for (var i in mentalChars) {
+      if (generatedChar.charClass.name == i.name) {
+        mentalClassGotten = i;
+      }
+    }
+    if (mentalClassGotten != null) {
+      if (mentalClassGotten.name == generatedChar.charClass.name) {
+        for (var i = 0; i < level; i + 3) {
+          mainAtributeIncrement++;
+          secondaryAtributeIncrement = secondaryAtributeIncrement + 0.5;
+        }
+        generatedChar.baseAtributes.strength =
+            generatedChar.baseAtributes.strength! +
+                secondaryAtributeIncrement.floor();
+        generatedChar.baseAtributes.dexterity =
+            generatedChar.baseAtributes.dexterity! +
+                secondaryAtributeIncrement.floor();
+        generatedChar.baseAtributes.constitution =
+            generatedChar.baseAtributes.constitution! +
+                secondaryAtributeIncrement.floor();
+        generatedChar.baseAtributes.intelligence =
+            generatedChar.baseAtributes.intelligence! + mainAtributeIncrement;
+        generatedChar.baseAtributes.wisdom =
+            generatedChar.baseAtributes.wisdom! + mainAtributeIncrement;
+        generatedChar.baseAtributes.constitution =
+            generatedChar.baseAtributes.charisma! + mainAtributeIncrement;
+      }
+    }
+    notifyListeners();
+  }
+
+  calculateAllModifiers() {
+    generatedChar.modAtributes.strength =
+        claculateModifier(generatedChar.baseAtributes.strength!);
+    generatedChar.modAtributes.dexterity =
+        claculateModifier(generatedChar.baseAtributes.dexterity!);
+    generatedChar.modAtributes.constitution =
+        claculateModifier(generatedChar.baseAtributes.constitution!);
+    generatedChar.modAtributes.intelligence =
+        claculateModifier(generatedChar.baseAtributes.intelligence!);
+    generatedChar.modAtributes.wisdom =
+        claculateModifier(generatedChar.baseAtributes.wisdom!);
+    generatedChar.modAtributes.charisma =
+        claculateModifier(generatedChar.baseAtributes.charisma!);
+    notifyListeners();
+  }
+
+  int claculateModifier(int value) {
+    double doubleValue = value.toDouble();
+    doubleValue = (doubleValue - 10) / 2;
+    if (doubleValue <= 0) {
+      doubleValue = 0;
+    }
+    return doubleValue.toInt();
+  }
+
+  //=======================================================================================
 
   // Section for Equipment of the character
+
+  generateRandomWeapon() {
+    var randomInt = randomIndex.nextInt(10);
+  }
 }

@@ -11,7 +11,7 @@ import 'package:fantasy_name_generator/modules/selection_sections/gender_section
 import 'package:fantasy_name_generator/modules/selection_sections/name_section.dart';
 import 'package:fantasy_name_generator/modules/selection_sections/race_section.dart';
 import 'package:fantasy_name_generator/modules/selection_sections/widgets/selection_label.dart';
-import '../selection_sections/char_progression_section.dart';
+import '../selection_sections/stats_section.dart';
 
 class MainScreenPage extends StatefulWidget {
   const MainScreenPage({Key? key}) : super(key: key);
@@ -85,8 +85,10 @@ class _MainScreenPageState extends State<MainScreenPage>
                                         : state.creationStage == 6
                                             ? "Level"
                                             : state.creationStage == 7
-                                                ? "Basic features ready"
-                                                : ''),
+                                                ? "Stats"
+                                                : state.creationStage == 8
+                                                    ? "Basic features ready"
+                                                    : ''),
               ],
             ),
             if (state.creationStage == 1)
@@ -131,14 +133,15 @@ class _MainScreenPageState extends State<MainScreenPage>
                   return;
                 }
                 state.updateLevelSelectedIfEpic();
+                state.updateCharModel();
                 state.advanceCreationStage();
               }),
             if (state.creationStage == 7)
-              CharProgression(onTap: () => state.advanceCreationStage()),
-            // onTap: () {
-            //   state.updateChosenAlignment();
-            //   state.advanceCreationStage();
-            // },
+              CharProgression(onGenerate: () {
+                state.generateAllAtributs();
+              }, onTap: () {
+                state.advanceCreationStage();
+              }),
           ],
         );
       }),

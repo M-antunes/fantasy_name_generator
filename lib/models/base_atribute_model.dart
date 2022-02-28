@@ -1,19 +1,19 @@
 import 'dart:convert';
 
 class AtributeModel {
-  final int strength;
-  final int dexterity;
-  final int constitution;
-  final int intelligence;
-  final int wisdom;
-  final int charisma;
+  int? strength;
+  int? dexterity;
+  int? constitution;
+  int? intelligence;
+  int? wisdom;
+  int? charisma;
   AtributeModel({
-    required this.strength,
-    required this.dexterity,
-    required this.constitution,
-    required this.intelligence,
-    required this.wisdom,
-    required this.charisma,
+    this.strength = 0,
+    this.dexterity = 0,
+    this.constitution = 0,
+    this.intelligence = 0,
+    this.wisdom = 0,
+    this.charisma = 0,
   });
 
   AtributeModel copyWith({
@@ -47,12 +47,12 @@ class AtributeModel {
 
   factory AtributeModel.fromMap(Map<String, dynamic> map) {
     return AtributeModel(
-      strength: map['strength']?.toInt() ?? 0,
-      dexterity: map['dexterity']?.toInt() ?? 0,
-      constitution: map['constitution']?.toInt() ?? 0,
-      intelligence: map['intelligence']?.toInt() ?? 0,
-      wisdom: map['wisdom']?.toInt() ?? 0,
-      charisma: map['charisma']?.toInt() ?? 0,
+      strength: map['strength']?.toInt(),
+      dexterity: map['dexterity']?.toInt(),
+      constitution: map['constitution']?.toInt(),
+      intelligence: map['intelligence']?.toInt(),
+      wisdom: map['wisdom']?.toInt(),
+      charisma: map['charisma']?.toInt(),
     );
   }
 

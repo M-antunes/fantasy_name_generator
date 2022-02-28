@@ -4,7 +4,7 @@ import 'race_model.dart';
 
 class SavedNameModel {
   /// 0 = female ;;; 1 = male
-  final int gender;
+  final String gender;
   final String fullName;
   final String firstName;
   final String lastName;
@@ -19,7 +19,7 @@ class SavedNameModel {
   });
 
   SavedNameModel copyWith({
-    int? gender,
+    String? gender,
     String? fullName,
     String? firstName,
     String? lastName,
@@ -46,7 +46,7 @@ class SavedNameModel {
 
   factory SavedNameModel.fromMap(Map<String, dynamic> map) {
     return SavedNameModel(
-      gender: map['gender']?.toInt() ?? 0,
+      gender: map['gender'] ?? '',
       fullName: map['fullName'] ?? '',
       firstName: map['firstName'] ?? '',
       lastName: map['lastName'] ?? '',

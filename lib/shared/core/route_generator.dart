@@ -13,11 +13,11 @@ abstract class RouteGenerator {
           settings: routeSettings,
         );
 
-      case AppRoutes.savedNames:
-        return MaterialPageRoute(
-          builder: (_) => const SavedNamesPage(),
-          settings: routeSettings,
-        );
+      // case AppRoutes.savedNames:
+      //   return MaterialPageRoute(
+      //     builder: (_) => const SavedNamesPage(),
+      //     settings: routeSettings,
+      //   );
       case AppRoutes.createOrCheck:
         return MaterialPageRoute(
           builder: (_) => const CreateOrCheckSavedPage(),

@@ -41,6 +41,11 @@ class AppTextStyle {
     color: Colors.white,
     fontSize: 17,
   );
+  static final modefier = TextStyle(
+    fontWeight: FontWeight.w400,
+    color: Colors.grey[200]!,
+    fontSize: 17,
+  );
   static const selectButtonNotReady = TextStyle(
     fontWeight: FontWeight.w500,
     color: Colors.grey,

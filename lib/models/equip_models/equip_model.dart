@@ -1,16 +1,18 @@
 import 'dart:convert';
 
+import 'package:fantasy_name_generator/shared/data/equip_data.dart';
+
 import 'shield_model.dart';
 import 'weapon_model.dart';
 
 class EquipModel {
   final WeaponModel primaryWeapon;
-  final WeaponModel secondaryWeapon;
+  final WeaponModel? secondaryWeapon;
   final ShieldModel? armour;
   final ShieldModel? shield;
   EquipModel({
     required this.primaryWeapon,
-    required this.secondaryWeapon,
+    this.secondaryWeapon,
     this.armour,
     this.shield,
   });
@@ -32,7 +34,7 @@ class EquipModel {
   Map<String, dynamic> toMap() {
     return {
       'primaryWeapon': primaryWeapon.toMap(),
-      'secondaryWeapon': secondaryWeapon.toMap(),
+      'secondaryWeapon': secondaryWeapon?.toMap(),
       'armour': armour?.toMap(),
       'shield': shield?.toMap(),
     };
@@ -41,7 +43,9 @@ class EquipModel {
   factory EquipModel.fromMap(Map<String, dynamic> map) {
     return EquipModel(
       primaryWeapon: WeaponModel.fromMap(map['primaryWeapon']),
-      secondaryWeapon: WeaponModel.fromMap(map['secondaryWeapon']),
+      secondaryWeapon: map['secondaryWeapon'] != null
+          ? WeaponModel.fromMap(map['secondaryWeapon'])
+          : null,
       armour: map['armour'] != null ? ShieldModel.fromMap(map['armour']) : null,
       shield: map['shield'] != null ? ShieldModel.fromMap(map['shield']) : null,
     );

@@ -32,7 +32,7 @@ class AlignmentSelection extends StatelessWidget {
                             : state.chosenClass.name == "Cleric"
                                 ? "Clerics CANNOT be Neutral"
                                 : state.chosenClass.name == "Druid"
-                                    ? "Druids CANNOT be Neutral"
+                                    ? "Druids CAN ONLY be Neutral"
                                     : state.chosenClass.name == "Bandit"
                                         ? "Bandits CANNOT be Lawful or Good"
                                         : "${state.chosenClass.name}s can be of ANY alignment"),

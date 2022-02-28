@@ -1,48 +1,71 @@
 import 'dart:convert';
 
+import 'package:fantasy_name_generator/models/alignment_model.dart';
 import 'package:fantasy_name_generator/models/class_model.dart';
+import 'package:fantasy_name_generator/models/combat_model.dart';
 import 'package:fantasy_name_generator/models/equip_models/equip_model.dart';
 import 'package:fantasy_name_generator/models/equip_models/loot_model.dart';
 import 'package:fantasy_name_generator/models/race_model.dart';
+import 'package:fantasy_name_generator/models/resistance_model.dart';
 import 'package:fantasy_name_generator/models/saved_name_model.dart';
 
-import 'atribute_model.dart';
+import 'base_atribute_model.dart';
 
 class CharModel {
-  final RaceModel charRace;
-  final SavedNameModel charName;
-  final EquipModel charEquip;
-  final AtributeModel atributes;
-  final LootModel loot;
-  final ClassModel charClass;
-  final int charLevel;
+  RaceModel charRace;
+  SavedNameModel charName;
+  AtributeModel baseAtributes;
+  AtributeModel modAtributes;
+  ClassModel charClass;
+  AlignmentModel alignment;
+  int hitPoints;
+  ResistanceModel resistances;
+  CombatModel combatStats;
+  EquipModel charEquip;
+  LootModel loot;
+  int charLevel;
 
   CharModel({
     required this.charRace,
     required this.charName,
-    required this.charEquip,
-    required this.atributes,
-    required this.loot,
+    required this.baseAtributes,
+    required this.modAtributes,
     required this.charClass,
+    required this.alignment,
+    required this.hitPoints,
+    required this.resistances,
+    required this.combatStats,
+    required this.charEquip,
+    required this.loot,
     required this.charLevel,
   });
 
   CharModel copyWith({
     RaceModel? charRace,
     SavedNameModel? charName,
-    EquipModel? charEquip,
-    AtributeModel? atributes,
-    LootModel? loot,
+    AtributeModel? baseAtributes,
+    AtributeModel? modAtributes,
     ClassModel? charClass,
+    AlignmentModel? alignment,
+    int? hitPoints,
+    ResistanceModel? resistances,
+    CombatModel? combatStats,
+    EquipModel? charEquip,
+    LootModel? loot,
     int? charLevel,
   }) {
     return CharModel(
       charRace: charRace ?? this.charRace,
       charName: charName ?? this.charName,
-      charEquip: charEquip ?? this.charEquip,
-      atributes: atributes ?? this.atributes,
-      loot: loot ?? this.loot,
+      baseAtributes: baseAtributes ?? this.baseAtributes,
+      modAtributes: modAtributes ?? this.modAtributes,
       charClass: charClass ?? this.charClass,
+      alignment: alignment ?? this.alignment,
+      hitPoints: hitPoints ?? this.hitPoints,
+      resistances: resistances ?? this.resistances,
+      combatStats: combatStats ?? this.combatStats,
+      charEquip: charEquip ?? this.charEquip,
+      loot: loot ?? this.loot,
       charLevel: charLevel ?? this.charLevel,
     );
   }
@@ -51,10 +74,15 @@ class CharModel {
     return {
       'charRace': charRace.toMap(),
       'charName': charName.toMap(),
-      'charEquip': charEquip.toMap(),
-      'atributes': atributes.toMap(),
-      'loot': loot.toMap(),
+      'baseAtributes': baseAtributes.toMap(),
+      'modAtributes': modAtributes.toMap(),
       'charClass': charClass.toMap(),
+      'alignment': alignment.toMap(),
+      'hitPoints': hitPoints,
+      'resistances': resistances.toMap(),
+      'combatStats': combatStats.toMap(),
+      'charEquip': charEquip.toMap(),
+      'loot': loot.toMap(),
       'charLevel': charLevel,
     };
   }
@@ -63,10 +91,15 @@ class CharModel {
     return CharModel(
       charRace: RaceModel.fromMap(map['charRace']),
       charName: SavedNameModel.fromMap(map['charName']),
-      charEquip: EquipModel.fromMap(map['charEquip']),
-      atributes: AtributeModel.fromMap(map['atributes']),
-      loot: LootModel.fromMap(map['loot']),
+      baseAtributes: AtributeModel.fromMap(map['baseAtributes']),
+      modAtributes: AtributeModel.fromMap(map['modAtributes']),
       charClass: ClassModel.fromMap(map['charClass']),
+      alignment: AlignmentModel.fromMap(map['alignment']),
+      hitPoints: map['hitPoints']?.toInt() ?? 0,
+      resistances: ResistanceModel.fromMap(map['resistances']),
+      combatStats: CombatModel.fromMap(map['combatStats']),
+      charEquip: EquipModel.fromMap(map['charEquip']),
+      loot: LootModel.fromMap(map['loot']),
       charLevel: map['charLevel']?.toInt() ?? 0,
     );
   }
@@ -78,7 +111,7 @@ class CharModel {
 
   @override
   String toString() {
-    return 'CharModel(charRace: $charRace, charName: $charName, charEquip: $charEquip, atributes: $atributes, loot: $loot, charClass: $charClass, charLevel: $charLevel)';
+    return 'CharModel(charRace: $charRace, charName: $charName, baseAtributes: $baseAtributes, modAtributes: $modAtributes, charClass: $charClass, alignment: $alignment, hitPoints: $hitPoints, resistances: $resistances, combatStats: $combatStats, charEquip: $charEquip, loot: $loot, charLevel: $charLevel)';
   }
 
   @override
@@ -88,10 +121,15 @@ class CharModel {
     return other is CharModel &&
         other.charRace == charRace &&
         other.charName == charName &&
-        other.charEquip == charEquip &&
-        other.atributes == atributes &&
-        other.loot == loot &&
+        other.baseAtributes == baseAtributes &&
+        other.modAtributes == modAtributes &&
         other.charClass == charClass &&
+        other.alignment == alignment &&
+        other.hitPoints == hitPoints &&
+        other.resistances == resistances &&
+        other.combatStats == combatStats &&
+        other.charEquip == charEquip &&
+        other.loot == loot &&
         other.charLevel == charLevel;
   }
 
@@ -99,10 +137,15 @@ class CharModel {
   int get hashCode {
     return charRace.hashCode ^
         charName.hashCode ^
-        charEquip.hashCode ^
-        atributes.hashCode ^
-        loot.hashCode ^
+        baseAtributes.hashCode ^
+        modAtributes.hashCode ^
         charClass.hashCode ^
+        alignment.hashCode ^
+        hitPoints.hashCode ^
+        resistances.hashCode ^
+        combatStats.hashCode ^
+        charEquip.hashCode ^
+        loot.hashCode ^
         charLevel.hashCode;
   }
 }

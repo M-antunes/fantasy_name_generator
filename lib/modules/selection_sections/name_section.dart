@@ -1,4 +1,5 @@
 import 'package:animated_button/animated_button.dart';
+import 'package:fantasy_name_generator/shared/widgets/app_animated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -71,51 +72,7 @@ class NameSelection extends StatelessWidget {
         SizedBox(
           height: size.height * 0.01,
         ),
-        AnimatedButton(
-          color: Colors.grey[700]!,
-          duration: 30,
-          height: 50,
-          onPressed: onGenerate,
-          child: Center(
-            child: SizedBox(
-              width: size.width * 0.2,
-              child: const FittedBox(
-                fit: BoxFit.fitWidth,
-                child: Text('Generate'),
-              ),
-            ),
-          ),
-        ),
-        // InkWell(
-        //   child: Padding(
-        //     padding: EdgeInsets.symmetric(
-        //       vertical: size.height * 0.02,
-        //     ),
-        //     child: Container(
-        //       height: size.height * 0.06,
-        //       width: size.width * 0.5,
-        //       decoration: BoxDecoration(
-        //         color: Colors.black87,
-        //         borderRadius: BorderRadius.circular(30),
-        //       ),
-        //       child: Center(
-        //         child: SizedBox(
-        //           width: size.width * 0.2,
-        //           child: const FittedBox(
-        //             fit: BoxFit.fitWidth,
-        //             child: Text('Generate'),
-        //           ),
-        //         ),
-        //       ),
-        //     ),
-        //   ),
-        //   customBorder: RoundedRectangleBorder(
-        //     borderRadius: BorderRadius.circular(30),
-        //   ),
-        //   radius: 0,
-        //   highlightColor: Colors.transparent,
-        //   onTap: onGenerate,
-        // ),
+        AppAnimatedButton(onGenerate: onGenerate),
         AdvanceButton(size: size, onTap: onSelect)
       ],
     );

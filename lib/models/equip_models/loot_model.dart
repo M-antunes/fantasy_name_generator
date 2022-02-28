@@ -3,11 +3,11 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 
 class LootModel {
-  final List<String> items;
-  final int gold;
+  final List<String>? items;
+  final int? gold;
   LootModel({
     required this.items,
-    required this.gold,
+    this.gold = 0,
   });
 
   LootModel copyWith({
@@ -30,7 +30,7 @@ class LootModel {
   factory LootModel.fromMap(Map<String, dynamic> map) {
     return LootModel(
       items: List<String>.from(map['items']),
-      gold: map['gold']?.toInt() ?? 0,
+      gold: map['gold']?.toInt(),
     );
   }
 
