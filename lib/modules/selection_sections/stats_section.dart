@@ -6,6 +6,7 @@ import 'package:fantasy_name_generator/modules/selection_sections/widgets/advanc
 import 'package:fantasy_name_generator/shared/themes/app_text_styles.dart';
 import 'package:fantasy_name_generator/shared/widgets/app_animated_button.dart';
 
+import 'widgets/atribute_division.dart';
 import 'widgets/char_description_column.dart';
 import 'widgets/stats_description_column.dart';
 
@@ -23,7 +24,7 @@ class CharProgression extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return Padding(
-      padding: const EdgeInsets.all(12),
+      padding: const EdgeInsets.symmetric(horizontal: 12),
       child: Column(
         children: [
           Consumer<CharController>(builder: (context, state, child) {
@@ -34,7 +35,7 @@ class CharProgression extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 15),
+                      padding: const EdgeInsets.symmetric(vertical: 5),
                       child: Text(
                         state.generatedChar.charName.fullName,
                         style: AppTextStyle.chosenName,
@@ -71,6 +72,8 @@ class CharProgression extends StatelessWidget {
                 AtributeDivision(
                   size: size,
                   label: "ATRIBUTES  (BASE / MODIFIER)",
+                  label2:
+                      "These values might get increased depending on equipment",
                 ),
                 Row(
                   children: [
@@ -136,7 +139,62 @@ class CharProgression extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(height: size.height * 0.1),
+                AtributeDivision(
+                  size: size,
+                  label: "DEFENSES",
+                  label2:
+                      "These values might get increased depending on equipment",
+                ),
+                DefenseInfo(
+                  size: size,
+                  label: "HP:",
+                  value: state.generatedChar.hitPoints,
+                ),
+                Row(
+                  children: [
+                    DefenseInfo(
+                      size: size,
+                      label: "AC:",
+                      value: 0,
+                    ),
+                    SizedBox(width: size.width * 0.03),
+                    DefenseInfo(
+                      size: size,
+                      label: "Touch:",
+                      value: 0,
+                    ),
+                    SizedBox(width: size.width * 0.03),
+                    DefenseInfo(
+                      size: size,
+                      label: "Surp:",
+                      value: 0,
+                    ),
+                    SizedBox(width: size.width * 0.03),
+                  ],
+                ),
+                Row(
+                  children: [
+                    DefenseInfo(
+                      size: size,
+                      label: "FORT",
+                      value: 0,
+                    ),
+                    SizedBox(width: size.width * 0.03),
+                    DefenseInfo(
+                      size: size,
+                      label: "REF",
+                      value: 0,
+                    ),
+                    SizedBox(width: size.width * 0.03),
+                    DefenseInfo(
+                      size: size,
+                      label: "WILL",
+                      value: 0,
+                    ),
+                    SizedBox(width: size.width * 0.03),
+                  ],
+                ),
+                SizedBox(height: size.height * 0.05),
                 Align(
                     alignment: Alignment.center,
                     child: AppAnimatedButton(onGenerate: onGenerate)),
@@ -154,36 +212,39 @@ class CharProgression extends StatelessWidget {
   }
 }
 
-class AtributeDivision extends StatelessWidget {
+class DefenseInfo extends StatelessWidget {
   final Size size;
   final String label;
-  const AtributeDivision({
+  final int value;
+  const DefenseInfo({
     Key? key,
     required this.size,
     required this.label,
+    required this.value,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(height: size.height * 0.015),
-        Container(
-          width: size.width * 0.92,
-          height: size.height * 0.002,
-          color: Colors.grey,
+        SizedBox(
+          width: size.width * 0.21,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(label, style: AppTextStyle.selectButtonNotReady),
+              CircleAvatar(
+                backgroundColor: Colors.grey[900],
+                radius: 16,
+                child: Text(
+                  value.toString(),
+                  style: AppTextStyle.selectRace,
+                ),
+              ),
+            ],
+          ),
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 3),
-          child: Text(label),
-        ),
-        Container(
-          width: size.width * 0.92,
-          height: size.height * 0.002,
-          color: Colors.grey,
-        ),
-        SizedBox(height: size.height * 0.015),
+        SizedBox(height: size.height * 0.005),
       ],
     );
   }

@@ -19,7 +19,7 @@ class DefaultCharModelData {
     charName: NameModel(fullName: "", name: "", surname: "", gender: ""),
     baseAtributes: AtributeModel(),
     modAtributes: AtributeModel(),
-    charClass: ClassModel(name: "Commoner", isSelected: false),
+    charClass: ClassModel(name: "Commoner", isSelected: false, mainAtrb: "Str"),
     alignment: AlignmentModel(name: "Neutral", isSelected: false),
     hitPoints: 10,
     resistances: ResistanceModel(),

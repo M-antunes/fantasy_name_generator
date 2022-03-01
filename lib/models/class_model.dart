@@ -3,18 +3,26 @@ import 'dart:convert';
 class ClassModel {
   final String name;
   bool isSelected;
+  final String mainAtrb;
+  final int? hitDice;
   ClassModel({
     required this.name,
     required this.isSelected,
+    required this.mainAtrb,
+    this.hitDice,
   });
 
   ClassModel copyWith({
     String? name,
     bool? isSelected,
+    String? mainAtrb,
+    int? hitDice,
   }) {
     return ClassModel(
       name: name ?? this.name,
       isSelected: isSelected ?? this.isSelected,
+      mainAtrb: mainAtrb ?? this.mainAtrb,
+      hitDice: hitDice ?? this.hitDice,
     );
   }
 
@@ -22,6 +30,8 @@ class ClassModel {
     return {
       'name': name,
       'isSelected': isSelected,
+      'mainAtrb': mainAtrb,
+      'hitDice': hitDice,
     };
   }
 
@@ -29,6 +39,8 @@ class ClassModel {
     return ClassModel(
       name: map['name'] ?? '',
       isSelected: map['isSelected'] ?? false,
+      mainAtrb: map['mainAtrb'] ?? '',
+      hitDice: map['hitDice']?.toInt(),
     );
   }
 
@@ -38,7 +50,9 @@ class ClassModel {
       ClassModel.fromMap(json.decode(source));
 
   @override
-  String toString() => 'ClassModel(name: $name, isSelected: $isSelected)';
+  String toString() {
+    return 'ClassModel(name: $name, isSelected: $isSelected, mainAtrb: $mainAtrb, hitDice: $hitDice)';
+  }
 
   @override
   bool operator ==(Object other) {
@@ -46,9 +60,16 @@ class ClassModel {
 
     return other is ClassModel &&
         other.name == name &&
-        other.isSelected == isSelected;
+        other.isSelected == isSelected &&
+        other.mainAtrb == mainAtrb &&
+        other.hitDice == hitDice;
   }
 
   @override
-  int get hashCode => name.hashCode ^ isSelected.hashCode;
+  int get hashCode {
+    return name.hashCode ^
+        isSelected.hashCode ^
+        mainAtrb.hashCode ^
+        hitDice.hashCode;
+  }
 }

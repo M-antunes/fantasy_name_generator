@@ -737,14 +737,14 @@ class CharController extends ChangeNotifier {
             gender: isMale ? "Male" : "Female",
             name: newName,
             surname: newLastName,
-            fullName: "$newName $newLastName"),
+            fullName: "$newName  $newLastName"),
         alignment: chosenAlignment,
         combatStats: combatStats,
         charClass: chosenClass,
         baseAtributes: AtributeModel(),
         modAtributes: AtributeModel(),
         charEquip: EquipModel(primaryWeapon: weapon.oneHandedWeapons[0]),
-        hitPoints: 100,
+        hitPoints: 0,
         resistances: resistances,
         loot: loot,
         charLevel: levelSelected + 1);
@@ -769,7 +769,7 @@ class CharController extends ChangeNotifier {
     List<int> atrbValues = [];
     for (var i = 0; i < 6; i++) {
       var atrbValue = randomIndex.nextInt(21) - 2;
-      while (atrbValue < 8) {
+      while (atrbValue < 7) {
         atrbValue = randomIndex.nextInt(21) - 2;
       }
       atrbValues.add(atrbValue);
@@ -843,6 +843,23 @@ class CharController extends ChangeNotifier {
     }
     ajustStatsToLevel();
     calculateAllModifiers();
+    generateHitPoints();
+  }
+
+  ClassModel? findIfClassIsPhysicalOrMental(
+      List<ClassModel> mentalChars, List<ClassModel> physicalChars) {
+    ClassModel classGotten = initialClass;
+    for (var i in mentalChars) {
+      if (generatedChar.charClass.name == i.name) {
+        classGotten = i;
+      }
+    }
+    for (var i in physicalChars) {
+      if (generatedChar.charClass.name == i.name) {
+        classGotten = i;
+      }
+    }
+    return classGotten;
   }
 
   ajustStatsToLevel() {
@@ -850,89 +867,167 @@ class CharController extends ChangeNotifier {
     var mentalChars = listOfClasses.mentalClasses;
     int level = levelSelected + 1;
     int mainAtributeIncrement = 0;
-    ClassModel? physicalClassGotten;
-    ClassModel? mentalClassGotten;
+    ClassModel? classGotten =
+        findIfClassIsPhysicalOrMental(mentalChars, physicalChars);
     double secondaryAtributeIncrement = 0.0;
     var atrbValues = generatedChar.baseAtributes;
-    for (var i in physicalChars) {
-      if (generatedChar.charClass.name == i.name) {
-        physicalClassGotten = i;
+    if (physicalChars.contains(classGotten)) {
+      for (var i = 0; i < level; i = i + 3) {
+        mainAtributeIncrement++;
+        secondaryAtributeIncrement = secondaryAtributeIncrement + 0.5;
       }
+      generatedChar.baseAtributes.strength =
+          atrbValues.strength! + mainAtributeIncrement;
+      generatedChar.baseAtributes.dexterity =
+          atrbValues.dexterity! + mainAtributeIncrement;
+      generatedChar.baseAtributes.constitution =
+          atrbValues.constitution! + mainAtributeIncrement;
+      generatedChar.baseAtributes.intelligence =
+          atrbValues.intelligence! + secondaryAtributeIncrement.floor();
+      generatedChar.baseAtributes.wisdom =
+          atrbValues.wisdom! + secondaryAtributeIncrement.floor();
+      generatedChar.baseAtributes.charisma =
+          atrbValues.charisma! + secondaryAtributeIncrement.floor();
     }
-    if (physicalClassGotten != null) {
-      if (physicalClassGotten.name == generatedChar.charClass.name) {
-        for (var i = 0; i < level; i = i + 3) {
-          mainAtributeIncrement++;
-          secondaryAtributeIncrement = secondaryAtributeIncrement + 0.5;
-        }
-        generatedChar.baseAtributes.strength =
-            atrbValues.strength! + mainAtributeIncrement;
-        generatedChar.baseAtributes.dexterity =
-            atrbValues.dexterity! + mainAtributeIncrement;
-        generatedChar.baseAtributes.constitution =
-            atrbValues.constitution! + mainAtributeIncrement;
-        generatedChar.baseAtributes.intelligence =
-            atrbValues.intelligence! + secondaryAtributeIncrement.floor();
-        generatedChar.baseAtributes.wisdom =
-            atrbValues.wisdom! + secondaryAtributeIncrement.floor();
-        generatedChar.baseAtributes.charisma =
-            atrbValues.charisma! + secondaryAtributeIncrement.floor();
+    if (mentalChars.contains(classGotten)) {
+      for (var i = 0; i < level; i = i + 3) {
+        mainAtributeIncrement++;
+        secondaryAtributeIncrement = secondaryAtributeIncrement + 0.5;
       }
-    }
-    for (var i in mentalChars) {
-      if (generatedChar.charClass.name == i.name) {
-        mentalClassGotten = i;
-      }
-    }
-    if (mentalClassGotten != null) {
-      if (mentalClassGotten.name == generatedChar.charClass.name) {
-        for (var i = 0; i < level; i + 3) {
-          mainAtributeIncrement++;
-          secondaryAtributeIncrement = secondaryAtributeIncrement + 0.5;
-        }
-        generatedChar.baseAtributes.strength =
-            atrbValues.strength! + secondaryAtributeIncrement.floor();
-        generatedChar.baseAtributes.dexterity =
-            atrbValues.dexterity! + secondaryAtributeIncrement.floor();
-        generatedChar.baseAtributes.constitution =
-            atrbValues.constitution! + secondaryAtributeIncrement.floor();
-        generatedChar.baseAtributes.intelligence =
-            atrbValues.intelligence! + mainAtributeIncrement;
-        generatedChar.baseAtributes.wisdom =
-            atrbValues.wisdom! + mainAtributeIncrement;
-        generatedChar.baseAtributes.constitution =
-            atrbValues.charisma! + mainAtributeIncrement;
-      }
+      generatedChar.baseAtributes.strength =
+          atrbValues.strength! + secondaryAtributeIncrement.floor();
+      generatedChar.baseAtributes.dexterity =
+          atrbValues.dexterity! + secondaryAtributeIncrement.floor();
+      generatedChar.baseAtributes.constitution =
+          atrbValues.constitution! + secondaryAtributeIncrement.floor();
+      generatedChar.baseAtributes.intelligence =
+          atrbValues.intelligence! + mainAtributeIncrement;
+      generatedChar.baseAtributes.wisdom =
+          atrbValues.wisdom! + mainAtributeIncrement;
+      generatedChar.baseAtributes.constitution =
+          atrbValues.charisma! + mainAtributeIncrement;
     }
     notifyListeners();
+    ajustStatsToRace(classGotten!);
   }
 
   calculateAllModifiers() {
     var atributes = generatedChar.baseAtributes;
     generatedChar.modAtributes.strength =
-        claculateModifier(atributes.strength!);
+        calculateModifier(atributes.strength!, atributes.strength!);
     generatedChar.modAtributes.dexterity =
-        claculateModifier(atributes.dexterity!);
+        calculateModifier(atributes.dexterity!, atributes.dexterity!);
     generatedChar.modAtributes.constitution =
-        claculateModifier(atributes.constitution!);
+        calculateModifier(atributes.constitution!, atributes.constitution!);
     generatedChar.modAtributes.intelligence =
-        claculateModifier(atributes.intelligence!);
-    generatedChar.modAtributes.wisdom = claculateModifier(atributes.wisdom!);
+        calculateModifier(atributes.intelligence!, atributes.intelligence!);
+    generatedChar.modAtributes.wisdom =
+        calculateModifier(atributes.wisdom!, atributes.wisdom!);
     generatedChar.modAtributes.charisma =
-        claculateModifier(atributes.charisma!);
+        calculateModifier(atributes.charisma!, atributes.charisma!);
     notifyListeners();
   }
 
-  int claculateModifier(int value) {
+  int calculateModifier(int value, int baseValue) {
     double doubleValue = value.toDouble();
     doubleValue = (doubleValue - 10) / 2;
-    if (doubleValue <= 0) {
-      doubleValue = 0;
+    if (baseValue <= 9 && baseValue >= 8) {
+      doubleValue = -1;
+    }
+    if (baseValue <= 7 && baseValue >= 6) {
+      doubleValue = -2;
     }
     return doubleValue.toInt();
   }
 
-  //=======================================================================================
+  ajustStatsToRace(ClassModel klass) {
+    if (generatedChar.charRace.name == "Human") {
+      if (klass.mainAtrb == "Str") {
+        calculateAjustToRace(2, 0, 0, 0, 0, 0);
+      }
+      if (klass.mainAtrb == "Dex") {
+        calculateAjustToRace(0, 2, 0, 0, 0, 0);
+      }
+      if (klass.mainAtrb == "Int") {
+        calculateAjustToRace(0, 0, 0, 2, 0, 0);
+      }
+      if (klass.mainAtrb == "Wis") {
+        calculateAjustToRace(0, 0, 0, 0, 2, 0);
+      }
+      if (klass.mainAtrb == "Cha") {
+        calculateAjustToRace(0, 0, 0, 0, 0, 2);
+      }
+    }
+    if (generatedChar.charRace.name == "Orc") {
+      calculateAjustToRace(4, 0, 2, -2, -2, -2);
+    }
+    if (generatedChar.charRace.name == "Elf") {
+      calculateAjustToRace(0, 2, -2, 0, 0, 0);
+    }
+    if (generatedChar.charRace.name == "Dwarf") {
+      calculateAjustToRace(0, 0, 2, 0, 0, -2);
+    }
+    if (generatedChar.charRace.name == "Gnome") {
+      calculateAjustToRace(-2, 0, 2, 0, 0, 0);
+    }
+    if (generatedChar.charRace.name == "Hafling") {
+      calculateAjustToRace(-2, 2, 0, 0, 0, 0);
+    }
+  }
+
+  calculateAjustToRace(
+    int adjutStr,
+    int ajustDex,
+    int ajustCon,
+    int adjustInt,
+    int ajustWis,
+    int ajustCha,
+  ) {
+    var ajustedAtrb = generatedChar.baseAtributes;
+    generatedChar.baseAtributes.strength = ajustedAtrb.strength! + adjutStr;
+    generatedChar.baseAtributes.dexterity = ajustedAtrb.dexterity! + ajustDex;
+    generatedChar.baseAtributes.constitution =
+        ajustedAtrb.constitution! + ajustCon;
+    generatedChar.baseAtributes.intelligence =
+        ajustedAtrb.intelligence! + adjustInt;
+    generatedChar.baseAtributes.wisdom = ajustedAtrb.wisdom! + ajustWis;
+    generatedChar.baseAtributes.charisma = ajustedAtrb.charisma! + ajustCha;
+    notifyListeners();
+  }
+
+//=======================================================================================
+
+// section for hit points generation
+
+  generateHitPoints() {
+    var changeCharInfo = generatedChar;
+    var hitPoints =
+        changeCharInfo.charLevel * changeCharInfo.modAtributes.constitution!;
+    var diceHitPoints = calculateHipPointsDicePerClass();
+    hitPoints = hitPoints + diceHitPoints;
+    generatedChar.hitPoints = hitPoints;
+    notifyListeners();
+  }
+
+  int rollingDice(int dice) {
+    var randomRoll = randomIndex.nextInt(dice);
+    while (randomRoll < 1) {
+      randomRoll = randomIndex.nextInt(dice);
+    }
+    return randomRoll;
+  }
+
+  int calculateHipPointsDicePerClass() {
+    var dice = generatedChar.charClass.hitDice;
+    var rollTimes = generatedChar.charLevel - 1;
+    var hitpoints = dice;
+    for (var i = 0; i < rollTimes; i++) {
+      hitpoints = hitpoints! + rollingDice(dice!);
+    }
+    return hitpoints!;
+  }
+
+//=======================================================================================
 
   // Section for Equipment of the character
 

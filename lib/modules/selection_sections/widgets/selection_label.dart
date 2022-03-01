@@ -16,7 +16,7 @@ class SelectionLabel extends StatelessWidget {
       children: [
         Padding(
           padding: EdgeInsets.symmetric(
-            vertical: size.height * 0.01,
+            vertical: size.height * 0.005,
           ),
           child: Text(
             label,
@@ -24,7 +24,7 @@ class SelectionLabel extends StatelessWidget {
           ),
         ),
         Container(
-          width: size.width * 0.92,
+          width: size.width * 0.95,
           height: size.height * 0.003,
           color: Colors.grey,
         ),
