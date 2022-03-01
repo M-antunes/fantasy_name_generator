@@ -1,23 +1,23 @@
 import 'dart:convert';
 
 class CombatModel {
-  final int? armourClass;
-  final int? armourTouch;
-  final int? armourSurprise;
-  final int? baseAttackBonus;
-  final int? primaryAttack;
-  final int? secundaryAttack;
-  final int? combatManeuverBonus;
-  final int? combatManeuverDefense;
+  int? armourClass;
+  int? armourTouch;
+  int? armourSurprise;
+  int? baseAttackBonus;
+  int? primaryAttack;
+  int? secundaryAttack;
+  int? combatManeuverBonus;
+  int? combatManeuverDefense;
   CombatModel({
-    this.armourClass = 10,
-    this.armourTouch = 10,
-    this.armourSurprise = 10,
+    this.armourClass = 0,
+    this.armourTouch = 0,
+    this.armourSurprise = 0,
     this.baseAttackBonus = 0,
     this.primaryAttack = 0,
     this.secundaryAttack = 0,
     this.combatManeuverBonus = 0,
-    this.combatManeuverDefense = 10,
+    this.combatManeuverDefense = 0,
   });
 
   CombatModel copyWith({

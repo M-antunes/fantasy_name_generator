@@ -844,6 +844,7 @@ class CharController extends ChangeNotifier {
     ajustStatsToLevel();
     calculateAllModifiers();
     generateHitPoints();
+    claculatingHitDefense();
   }
 
   ClassModel? findIfClassIsPhysicalOrMental(
@@ -1029,6 +1030,23 @@ class CharController extends ChangeNotifier {
 
 //=======================================================================================
 
+// section to generate Ac defense
+
+  claculatingHitDefense() {
+    var char = generatedChar;
+    int armorAc = 0;
+    int touch = 0;
+    int surprise = 0;
+    armorAc = 10 + char.modAtributes.dexterity!;
+    touch = 10 + char.modAtributes.dexterity!;
+    surprise = 10;
+    generatedChar.combatStats.armourClass = armorAc;
+    generatedChar.combatStats.armourTouch = touch;
+    generatedChar.combatStats.armourSurprise = surprise;
+    notifyListeners();
+  }
+
+//=======================================================================================
   // Section for Equipment of the character
 
   generateRandomWeapon() {

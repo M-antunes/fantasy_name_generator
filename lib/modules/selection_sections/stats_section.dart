@@ -155,19 +155,19 @@ class CharProgression extends StatelessWidget {
                     DefenseInfo(
                       size: size,
                       label: "AC:",
-                      value: 0,
+                      value: state.generatedChar.combatStats.armourClass!,
                     ),
                     SizedBox(width: size.width * 0.03),
                     DefenseInfo(
                       size: size,
                       label: "Touch:",
-                      value: 0,
+                      value: state.generatedChar.combatStats.armourTouch!,
                     ),
                     SizedBox(width: size.width * 0.03),
                     DefenseInfo(
                       size: size,
                       label: "Surp:",
-                      value: 0,
+                      value: state.generatedChar.combatStats.armourSurprise!,
                     ),
                     SizedBox(width: size.width * 0.03),
                   ],
@@ -176,19 +176,19 @@ class CharProgression extends StatelessWidget {
                   children: [
                     DefenseInfo(
                       size: size,
-                      label: "FORT",
+                      label: "FORT:",
                       value: 0,
                     ),
                     SizedBox(width: size.width * 0.03),
                     DefenseInfo(
                       size: size,
-                      label: "REF",
+                      label: "REF:",
                       value: 0,
                     ),
                     SizedBox(width: size.width * 0.03),
                     DefenseInfo(
                       size: size,
-                      label: "WILL",
+                      label: "WILL:",
                       value: 0,
                     ),
                     SizedBox(width: size.width * 0.03),
@@ -228,14 +228,14 @@ class DefenseInfo extends StatelessWidget {
     return Column(
       children: [
         SizedBox(
-          width: size.width * 0.21,
+          width: size.width * 0.23,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(label, style: AppTextStyle.selectButtonNotReady),
               CircleAvatar(
                 backgroundColor: Colors.grey[900],
-                radius: 16,
+                radius: 18,
                 child: Text(
                   value.toString(),
                   style: AppTextStyle.selectRace,
