@@ -218,5 +218,15 @@ class ClassData {
     GoodOrBadResistModel(level: 18, good: 11, bad: 6),
     GoodOrBadResistModel(level: 19, good: 11, bad: 6),
     GoodOrBadResistModel(level: 20, good: 12, bad: 6),
+    GoodOrBadResistModel(level: 21, good: 13, bad: 7),
+    GoodOrBadResistModel(level: 22, good: 13, bad: 8),
+    GoodOrBadResistModel(level: 23, good: 14, bad: 8),
+    GoodOrBadResistModel(level: 24, good: 15, bad: 8),
+    GoodOrBadResistModel(level: 25, good: 15, bad: 9),
+    GoodOrBadResistModel(level: 26, good: 16, bad: 10),
+    GoodOrBadResistModel(level: 27, good: 17, bad: 10),
+    GoodOrBadResistModel(level: 28, good: 17, bad: 10),
+    GoodOrBadResistModel(level: 29, good: 18, bad: 10),
+    GoodOrBadResistModel(level: 30, good: 19, bad: 11),
   ];
 }

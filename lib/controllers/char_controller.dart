@@ -8,14 +8,12 @@ import 'package:fantasy_name_generator/models/class_model.dart';
 import 'package:fantasy_name_generator/models/combat_model.dart';
 import 'package:fantasy_name_generator/models/equip_models/equip_model.dart';
 import 'package:fantasy_name_generator/models/equip_models/loot_model.dart';
-import 'package:fantasy_name_generator/models/equip_models/weapon_model.dart';
 import 'package:fantasy_name_generator/models/letter_model.dart';
 import 'package:fantasy_name_generator/models/name_model.dart';
 import 'package:fantasy_name_generator/models/resistance_model.dart';
 import 'package:fantasy_name_generator/models/saved_name_model.dart';
 import 'package:fantasy_name_generator/shared/data/alignment_data.dart';
 import 'package:fantasy_name_generator/shared/data/class_data.dart';
-import 'package:fantasy_name_generator/shared/data/equip_data.dart';
 import 'package:fantasy_name_generator/shared/widgets/call_message_snackbar.dart';
 import 'package:fantasy_name_generator/shared/data/human_names_data.dart';
 import 'package:fantasy_name_generator/shared/data/letters_data.dart';
@@ -609,29 +607,26 @@ class CharController extends ChangeNotifier {
 
   /// calls the respective race name generator
   newNameGenerator() {
-    if (chosenRace.name == "Human") {
-      humanNameGenerator();
-      return;
-    }
-    if (chosenRace.name == "Orc") {
-      orcNameGenerator();
-      return;
-    }
-    if (chosenRace.name == "Elf") {
-      elfNameGenerator();
-      return;
-    }
-    if (chosenRace.name == "Hafling") {
-      haflingNameGenerator();
-      return;
-    }
-    if (chosenRace.name == "Dwarf") {
-      dwarfNameGenerator();
-      return;
-    }
-    if (chosenRace.name == "Gnome") {
-      gnomeNameGenerator();
-      return;
+    switch (chosenRace.name) {
+      case "Human":
+        humanNameGenerator();
+        break;
+      case "Orc":
+        orcNameGenerator();
+        break;
+      case "Elf":
+        elfNameGenerator();
+        break;
+      case "Hafling":
+        haflingNameGenerator();
+        break;
+      case "Dwarf":
+        dwarfNameGenerator();
+        break;
+      case "Gnome":
+        gnomeNameGenerator();
+        break;
+      default:
     }
   }
 
@@ -902,7 +897,7 @@ class CharController extends ChangeNotifier {
           atrbValues.intelligence! + mainAtributeIncrement;
       generatedChar.baseAtributes.wisdom =
           atrbValues.wisdom! + mainAtributeIncrement;
-      generatedChar.baseAtributes.constitution =
+      generatedChar.baseAtributes.charisma =
           atrbValues.charisma! + mainAtributeIncrement;
     }
     notifyListeners();
@@ -939,37 +934,41 @@ class CharController extends ChangeNotifier {
   }
 
   ajustStatsToRace(ClassModel klass) {
-    if (generatedChar.charRace.name == "Human") {
-      if (klass.mainAtrb == "Str") {
+    switch (klass.resistUpgrade) {
+      case "Str":
         calculateAjustToRace(2, 0, 0, 0, 0, 0);
-      }
-      if (klass.mainAtrb == "Dex") {
+        break;
+      case "Dex":
         calculateAjustToRace(0, 2, 0, 0, 0, 0);
-      }
-      if (klass.mainAtrb == "Int") {
+        break;
+      case "Int":
         calculateAjustToRace(0, 0, 0, 2, 0, 0);
-      }
-      if (klass.mainAtrb == "Wis") {
+        break;
+      case "Wis":
         calculateAjustToRace(0, 0, 0, 0, 2, 0);
-      }
-      if (klass.mainAtrb == "Cha") {
+        break;
+      case "Cha":
         calculateAjustToRace(0, 0, 0, 0, 0, 2);
-      }
+        break;
+      default:
     }
-    if (generatedChar.charRace.name == "Orc") {
-      calculateAjustToRace(4, 0, 2, -2, -2, -2);
-    }
-    if (generatedChar.charRace.name == "Elf") {
-      calculateAjustToRace(0, 2, -2, 0, 0, 0);
-    }
-    if (generatedChar.charRace.name == "Dwarf") {
-      calculateAjustToRace(0, 0, 2, 0, 0, -2);
-    }
-    if (generatedChar.charRace.name == "Gnome") {
-      calculateAjustToRace(-2, 0, 2, 0, 0, 0);
-    }
-    if (generatedChar.charRace.name == "Hafling") {
-      calculateAjustToRace(-2, 2, 0, 0, 0, 0);
+    switch (klass.name) {
+      case "Orc":
+        calculateAjustToRace(4, 0, 2, -2, -2, -2);
+        break;
+      case "Elf":
+        calculateAjustToRace(0, 2, -2, 0, 0, 0);
+        break;
+      case "Dwarf":
+        calculateAjustToRace(0, 0, 2, 0, 0, -2);
+        break;
+      case "Gnome":
+        calculateAjustToRace(-2, 0, 2, 0, 0, 0);
+        break;
+      case "Hafling":
+        calculateAjustToRace(-2, 2, 0, 0, 0, 0);
+        break;
+      default:
     }
   }
 

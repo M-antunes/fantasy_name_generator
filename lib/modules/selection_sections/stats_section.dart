@@ -41,8 +41,22 @@ class CharProgression extends StatelessWidget {
                         style: AppTextStyle.chosenName,
                       ),
                     ),
-                    Text("lv: ${state.generatedChar.charLevel}",
-                        style: AppTextStyle.chosenName),
+                    state.isEpicLevelSelected
+                        ? RichText(
+                            text: TextSpan(
+                              children: [
+                                const TextSpan(
+                                    text: "EPIC ",
+                                    style: AppTextStyle.epicLabel),
+                                TextSpan(
+                                    text:
+                                        "lv: ${state.generatedChar.charLevel}",
+                                    style: AppTextStyle.chosenName)
+                              ],
+                            ),
+                          )
+                        : Text("lv: ${state.generatedChar.charLevel}",
+                            style: AppTextStyle.chosenName)
                   ],
                 ),
                 SizedBox(height: size.height * 0.01),

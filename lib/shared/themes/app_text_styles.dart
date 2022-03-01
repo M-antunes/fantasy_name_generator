@@ -9,7 +9,11 @@ class AppTextStyle {
   static const chosenName = TextStyle(
     fontFamily: "Grantmouth",
     color: Colors.white,
-    fontSize: 32,
+    fontSize: 29,
+  );
+  static const epicLabel = TextStyle(
+    color: AppColors.primaryGold,
+    fontSize: 25,
   );
   static const flipCardMale = TextStyle(
     fontWeight: FontWeight.bold,
