@@ -177,19 +177,19 @@ class CharProgression extends StatelessWidget {
                     DefenseInfo(
                       size: size,
                       label: "FORT:",
-                      value: 0,
+                      value: state.generatedChar.resistances.fortitude!,
                     ),
                     SizedBox(width: size.width * 0.03),
                     DefenseInfo(
                       size: size,
                       label: "REF:",
-                      value: 0,
+                      value: state.generatedChar.resistances.reflex!,
                     ),
                     SizedBox(width: size.width * 0.03),
                     DefenseInfo(
                       size: size,
                       label: "WILL:",
-                      value: 0,
+                      value: state.generatedChar.resistances.will!,
                     ),
                     SizedBox(width: size.width * 0.03),
                   ],

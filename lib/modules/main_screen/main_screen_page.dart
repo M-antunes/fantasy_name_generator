@@ -138,11 +138,13 @@ class _MainScreenPageState extends State<MainScreenPage>
                 state.advanceCreationStage();
               }),
             if (state.creationStage == 7)
-              CharProgression(
-                  onGenerate: () => state.generateAllAtributs(),
-                  onTap: () {
-                    state.advanceCreationStage();
-                  }),
+              CharProgression(onGenerate: () {
+                state.generateAllAtributs();
+                state.claculatingHitDefense();
+                state.calculateResistances();
+              }, onTap: () {
+                state.advanceCreationStage();
+              }),
           ],
         );
       }),

@@ -3,15 +3,17 @@ import 'dart:convert';
 import 'enchant_model.dart';
 
 class WeaponModel {
-  final String weaponType;
-  final String name;
+  final String? weaponType;
+  final String? name;
   final EnchantModel? enchantment;
   final int? power;
+  final String? damage;
   WeaponModel({
-    required this.weaponType,
-    required this.name,
+    this.weaponType,
+    this.name,
     this.enchantment,
     this.power,
+    this.damage,
   });
 
   WeaponModel copyWith({
@@ -19,12 +21,14 @@ class WeaponModel {
     String? name,
     EnchantModel? enchantment,
     int? power,
+    String? damage,
   }) {
     return WeaponModel(
       weaponType: weaponType ?? this.weaponType,
       name: name ?? this.name,
       enchantment: enchantment ?? this.enchantment,
       power: power ?? this.power,
+      damage: damage ?? this.damage,
     );
   }
 
@@ -34,17 +38,19 @@ class WeaponModel {
       'name': name,
       'enchantment': enchantment?.toMap(),
       'power': power,
+      'damage': damage,
     };
   }
 
   factory WeaponModel.fromMap(Map<String, dynamic> map) {
     return WeaponModel(
-      weaponType: map['weaponType'] ?? '',
-      name: map['name'] ?? '',
+      weaponType: map['weaponType'],
+      name: map['name'],
       enchantment: map['enchantment'] != null
           ? EnchantModel.fromMap(map['enchantment'])
           : null,
       power: map['power']?.toInt(),
+      damage: map['damage'],
     );
   }
 
@@ -55,7 +61,7 @@ class WeaponModel {
 
   @override
   String toString() {
-    return 'WeaponModel(weaponType: $weaponType, name: $name, enchantment: $enchantment, power: $power)';
+    return 'WeaponModel(weaponType: $weaponType, name: $name, enchantment: $enchantment, power: $power, damage: $damage)';
   }
 
   @override
@@ -66,7 +72,8 @@ class WeaponModel {
         other.weaponType == weaponType &&
         other.name == name &&
         other.enchantment == enchantment &&
-        other.power == power;
+        other.power == power &&
+        other.damage == damage;
   }
 
   @override
@@ -74,6 +81,7 @@ class WeaponModel {
     return weaponType.hashCode ^
         name.hashCode ^
         enchantment.hashCode ^
-        power.hashCode;
+        power.hashCode ^
+        damage.hashCode;
   }
 }

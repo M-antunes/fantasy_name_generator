@@ -6,12 +6,12 @@ import 'shield_model.dart';
 import 'weapon_model.dart';
 
 class EquipModel {
-  final WeaponModel primaryWeapon;
+  final WeaponModel? primaryWeapon;
   final WeaponModel? secondaryWeapon;
   final ShieldModel? armour;
   final ShieldModel? shield;
   EquipModel({
-    required this.primaryWeapon,
+    this.primaryWeapon,
     this.secondaryWeapon,
     this.armour,
     this.shield,
@@ -33,7 +33,7 @@ class EquipModel {
 
   Map<String, dynamic> toMap() {
     return {
-      'primaryWeapon': primaryWeapon.toMap(),
+      'primaryWeapon': primaryWeapon?.toMap(),
       'secondaryWeapon': secondaryWeapon?.toMap(),
       'armour': armour?.toMap(),
       'shield': shield?.toMap(),
@@ -42,7 +42,9 @@ class EquipModel {
 
   factory EquipModel.fromMap(Map<String, dynamic> map) {
     return EquipModel(
-      primaryWeapon: WeaponModel.fromMap(map['primaryWeapon']),
+      primaryWeapon: map['primaryWeapon'] != null
+          ? WeaponModel.fromMap(map['primaryWeapon'])
+          : null,
       secondaryWeapon: map['secondaryWeapon'] != null
           ? WeaponModel.fromMap(map['secondaryWeapon'])
           : null,

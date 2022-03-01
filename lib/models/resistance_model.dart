@@ -1,9 +1,9 @@
 import 'dart:convert';
 
 class ResistanceModel {
-  final int? fortitude;
-  final int? reflex;
-  final int? will;
+  int? fortitude;
+  int? reflex;
+  int? will;
   ResistanceModel({
     this.fortitude = 0,
     this.reflex = 0,

@@ -8,6 +8,7 @@ import 'package:fantasy_name_generator/models/class_model.dart';
 import 'package:fantasy_name_generator/models/combat_model.dart';
 import 'package:fantasy_name_generator/models/equip_models/equip_model.dart';
 import 'package:fantasy_name_generator/models/equip_models/loot_model.dart';
+import 'package:fantasy_name_generator/models/equip_models/weapon_model.dart';
 import 'package:fantasy_name_generator/models/letter_model.dart';
 import 'package:fantasy_name_generator/models/name_model.dart';
 import 'package:fantasy_name_generator/models/resistance_model.dart';
@@ -41,9 +42,6 @@ class CharController extends ChangeNotifier {
   var listOfClasses = ClassData();
   var listOfAlignments = AlignmentData();
   var humanNames = HumanNamesData();
-  var resistances = ResistanceModel();
-  var weapon = EquipData();
-  var combatStats = CombatModel();
   var loot = LootModel(items: []);
   Random randomIndex = Random();
   int creationStage = 1;
@@ -739,13 +737,13 @@ class CharController extends ChangeNotifier {
             surname: newLastName,
             fullName: "$newName  $newLastName"),
         alignment: chosenAlignment,
-        combatStats: combatStats,
+        combatStats: CombatModel(),
         charClass: chosenClass,
         baseAtributes: AtributeModel(),
         modAtributes: AtributeModel(),
-        charEquip: EquipModel(primaryWeapon: weapon.oneHandedWeapons[0]),
+        charEquip: EquipModel(),
         hitPoints: 0,
-        resistances: resistances,
+        resistances: ResistanceModel(),
         loot: loot,
         charLevel: levelSelected + 1);
     notifyListeners();
@@ -768,9 +766,9 @@ class CharController extends ChangeNotifier {
   generateAllAtributs() {
     List<int> atrbValues = [];
     for (var i = 0; i < 6; i++) {
-      var atrbValue = randomIndex.nextInt(21) - 2;
+      var atrbValue = randomIndex.nextInt(19);
       while (atrbValue < 7) {
-        atrbValue = randomIndex.nextInt(21) - 2;
+        atrbValue = randomIndex.nextInt(19);
       }
       atrbValues.add(atrbValue);
     }
@@ -844,7 +842,6 @@ class CharController extends ChangeNotifier {
     ajustStatsToLevel();
     calculateAllModifiers();
     generateHitPoints();
-    claculatingHitDefense();
   }
 
   ClassModel? findIfClassIsPhysicalOrMental(
@@ -1043,6 +1040,59 @@ class CharController extends ChangeNotifier {
     generatedChar.combatStats.armourClass = armorAc;
     generatedChar.combatStats.armourTouch = touch;
     generatedChar.combatStats.armourSurprise = surprise;
+    notifyListeners();
+  }
+
+  calculateResistances() {
+    var char = generatedChar;
+    int partialFort = 0;
+    int partialRef = 0;
+    int partialWill = 0;
+    int level = char.charLevel;
+    var bonusAtLevel = listOfClasses.goodOrBad[level - 1];
+    switch (char.charClass.resistUpgrade) {
+      case "fort":
+        partialFort = bonusAtLevel.good;
+        partialRef = bonusAtLevel.bad;
+        partialWill = bonusAtLevel.bad;
+        break;
+      case "ref":
+        partialFort = bonusAtLevel.bad;
+        partialRef = bonusAtLevel.good;
+        partialWill = bonusAtLevel.bad;
+        break;
+      case "will":
+        partialFort = bonusAtLevel.bad;
+        partialRef = bonusAtLevel.bad;
+        partialWill = bonusAtLevel.good;
+        break;
+      case "fort, will":
+        partialFort = bonusAtLevel.good;
+        partialRef = bonusAtLevel.bad;
+        partialWill = bonusAtLevel.good;
+        break;
+      case "fort, ref":
+        partialFort = bonusAtLevel.good;
+        partialRef = bonusAtLevel.good;
+        partialWill = bonusAtLevel.bad;
+        break;
+      case "ref, will":
+        partialFort = bonusAtLevel.bad;
+        partialRef = bonusAtLevel.good;
+        partialWill = bonusAtLevel.good;
+        break;
+      case "all":
+        partialFort = bonusAtLevel.good;
+        partialRef = bonusAtLevel.good;
+        partialWill = bonusAtLevel.good;
+        break;
+      default:
+    }
+    char.resistances.fortitude = partialFort + char.modAtributes.constitution!;
+    char.resistances.reflex = partialRef + char.modAtributes.dexterity!;
+    char.resistances.will = partialWill + char.modAtributes.wisdom!;
+
+    generatedChar.resistances = char.resistances;
     notifyListeners();
   }
 

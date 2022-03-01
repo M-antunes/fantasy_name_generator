@@ -5,11 +5,13 @@ class ClassModel {
   bool isSelected;
   final String mainAtrb;
   final int? hitDice;
+  final String? resistUpgrade;
   ClassModel({
     required this.name,
     required this.isSelected,
     required this.mainAtrb,
     this.hitDice,
+    this.resistUpgrade,
   });
 
   ClassModel copyWith({
@@ -17,12 +19,14 @@ class ClassModel {
     bool? isSelected,
     String? mainAtrb,
     int? hitDice,
+    String? resisUpgrade,
   }) {
     return ClassModel(
       name: name ?? this.name,
       isSelected: isSelected ?? this.isSelected,
       mainAtrb: mainAtrb ?? this.mainAtrb,
       hitDice: hitDice ?? this.hitDice,
+      resistUpgrade: resisUpgrade ?? this.resistUpgrade,
     );
   }
 
@@ -32,6 +36,7 @@ class ClassModel {
       'isSelected': isSelected,
       'mainAtrb': mainAtrb,
       'hitDice': hitDice,
+      'resisUpgrade': resistUpgrade,
     };
   }
 
@@ -41,6 +46,7 @@ class ClassModel {
       isSelected: map['isSelected'] ?? false,
       mainAtrb: map['mainAtrb'] ?? '',
       hitDice: map['hitDice']?.toInt(),
+      resistUpgrade: map['resisUpgrade'],
     );
   }
 
@@ -51,7 +57,7 @@ class ClassModel {
 
   @override
   String toString() {
-    return 'ClassModel(name: $name, isSelected: $isSelected, mainAtrb: $mainAtrb, hitDice: $hitDice)';
+    return 'ClassModel(name: $name, isSelected: $isSelected, mainAtrb: $mainAtrb, hitDice: $hitDice, resisUpgrade: $resistUpgrade)';
   }
 
   @override
@@ -62,7 +68,8 @@ class ClassModel {
         other.name == name &&
         other.isSelected == isSelected &&
         other.mainAtrb == mainAtrb &&
-        other.hitDice == hitDice;
+        other.hitDice == hitDice &&
+        other.resistUpgrade == resistUpgrade;
   }
 
   @override
@@ -70,6 +77,7 @@ class ClassModel {
     return name.hashCode ^
         isSelected.hashCode ^
         mainAtrb.hashCode ^
-        hitDice.hashCode;
+        hitDice.hashCode ^
+        resistUpgrade.hashCode;
   }
 }
