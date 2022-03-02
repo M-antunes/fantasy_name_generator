@@ -1,16 +1,18 @@
-import 'package:fantasy_name_generator/modules/main_screen/widgets/progression_bar.dart';
-import 'package:fantasy_name_generator/modules/selection_sections/alignment_selection.dart';
-import 'package:fantasy_name_generator/modules/selection_sections/level_section.dart';
-import 'package:fantasy_name_generator/shared/themes/app_colors.dart';
+import 'package:fantasy_name_generator/modules/selection_sections/race_selection.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:fantasy_name_generator/controllers/char_controller.dart';
+import 'package:fantasy_name_generator/modules/main_screen/widgets/progression_bar.dart';
+import 'package:fantasy_name_generator/modules/main_screen/widgets/selection_label.dart';
+import 'package:fantasy_name_generator/modules/selection_sections/alignment_selection.dart';
 import 'package:fantasy_name_generator/modules/selection_sections/class_section.dart';
 import 'package:fantasy_name_generator/modules/selection_sections/gender_section.dart';
+import 'package:fantasy_name_generator/modules/selection_sections/level_section.dart';
 import 'package:fantasy_name_generator/modules/selection_sections/name_section.dart';
-import 'package:fantasy_name_generator/modules/selection_sections/race_section.dart';
-import 'package:fantasy_name_generator/modules/selection_sections/widgets/selection_label.dart';
+import 'package:fantasy_name_generator/modules/selection_sections/widgets/race_list.dart';
+import 'package:fantasy_name_generator/shared/themes/app_colors.dart';
+
 import '../selection_sections/stats_section.dart';
 
 class MainScreenPage extends StatefulWidget {
@@ -66,39 +68,30 @@ class _MainScreenPageState extends State<MainScreenPage>
       body: Consumer<CharController>(builder: (context, state, child) {
         return ListView(
           children: [
-            Column(
-              children: [
-                ProgressionBar(
-                  controller: state,
-                ),
-                SelectionLabel(
-                    size: size,
-                    label: state.creationStage == 1
-                        ? "Race"
-                        : state.creationStage == 2
-                            ? "Gender"
-                            : state.creationStage == 3
-                                ? "Name"
-                                : state.creationStage == 4
-                                    ? "Class"
-                                    : state.creationStage == 5
-                                        ? "Alignment"
-                                        : state.creationStage == 6
-                                            ? "Level"
-                                            : state.creationStage == 7
-                                                ? "Stats"
-                                                : state.creationStage == 8
-                                                    ? "Basic features ready"
-                                                    : ''),
-              ],
+            ProgressionBar(
+              controller: state,
             ),
+            SelectionLabel(
+                size: size,
+                label: state.creationStage == 1
+                    ? "Race"
+                    : state.creationStage == 2
+                        ? "Gender"
+                        : state.creationStage == 3
+                            ? "Name"
+                            : state.creationStage == 4
+                                ? "Class"
+                                : state.creationStage == 5
+                                    ? "Alignment"
+                                    : state.creationStage == 6
+                                        ? "Level"
+                                        : state.creationStage == 7
+                                            ? "Stats"
+                                            : state.creationStage == 8
+                                                ? "Basic features ready"
+                                                : ''),
             if (state.creationStage == 1)
-              RaceSelection(
-                onTap: () {
-                  state.updateChosenRace();
-                  state.advanceCreationStage();
-                },
-              ),
+              RaceSelection(size: size, state: state),
             if (state.creationStage == 2)
               GenderSelection(
                 onTap: () {

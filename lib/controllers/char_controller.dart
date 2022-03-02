@@ -957,16 +957,16 @@ class CharController extends ChangeNotifier {
         calculateAjustToRace(4, 0, 2, -2, -2, -2);
         break;
       case "Elf":
-        calculateAjustToRace(0, 2, -2, 0, 0, 0);
+        calculateAjustToRace(0, 2, -2, 2, 0, 0);
         break;
       case "Dwarf":
-        calculateAjustToRace(0, 0, 2, 0, 0, -2);
+        calculateAjustToRace(0, 0, 2, 0, 2, -2);
         break;
       case "Gnome":
-        calculateAjustToRace(-2, 0, 2, 0, 0, 0);
+        calculateAjustToRace(-2, 0, 2, 0, 0, 2);
         break;
       case "Hafling":
-        calculateAjustToRace(-2, 2, 0, 0, 0, 0);
+        calculateAjustToRace(-2, 2, 0, 0, 0, 2);
         break;
       default:
     }

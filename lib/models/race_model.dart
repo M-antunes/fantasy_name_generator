@@ -1,20 +1,28 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
+
+import 'package:fantasy_name_generator/models/key_value.model.dart';
+
 class RaceModel {
   final String name;
   bool isSelected;
+  final List<KeyValueModel>? traits;
   RaceModel({
     required this.name,
     required this.isSelected,
+    this.traits,
   });
 
   RaceModel copyWith({
     String? name,
     bool? isSelected,
+    List<KeyValueModel>? traits,
   }) {
     return RaceModel(
       name: name ?? this.name,
       isSelected: isSelected ?? this.isSelected,
+      traits: traits ?? this.traits,
     );
   }
 
@@ -22,6 +30,7 @@ class RaceModel {
     return {
       'name': name,
       'isSelected': isSelected,
+      'traits': traits?.map((x) => x.toMap()).toList(),
     };
   }
 
@@ -29,6 +38,10 @@ class RaceModel {
     return RaceModel(
       name: map['name'] ?? '',
       isSelected: map['isSelected'] ?? false,
+      traits: map['traits'] != null
+          ? List<KeyValueModel>.from(
+              map['traits']?.map((x) => KeyValueModel.fromMap(x)))
+          : null,
     );
   }
 
@@ -38,7 +51,8 @@ class RaceModel {
       RaceModel.fromMap(json.decode(source));
 
   @override
-  String toString() => 'RaceModel(name: $name, isSelected: $isSelected)';
+  String toString() =>
+      'RaceModel(name: $name, isSelected: $isSelected, traits: $traits)';
 
   @override
   bool operator ==(Object other) {
@@ -46,9 +60,10 @@ class RaceModel {
 
     return other is RaceModel &&
         other.name == name &&
-        other.isSelected == isSelected;
+        other.isSelected == isSelected &&
+        listEquals(other.traits, traits);
   }
 
   @override
-  int get hashCode => name.hashCode ^ isSelected.hashCode;
+  int get hashCode => name.hashCode ^ isSelected.hashCode ^ traits.hashCode;
 }
