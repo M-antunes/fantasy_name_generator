@@ -10,7 +10,6 @@ import 'package:fantasy_name_generator/modules/selection_sections/class_section.
 import 'package:fantasy_name_generator/modules/selection_sections/gender_section.dart';
 import 'package:fantasy_name_generator/modules/selection_sections/level_section.dart';
 import 'package:fantasy_name_generator/modules/selection_sections/name_section.dart';
-import 'package:fantasy_name_generator/modules/selection_sections/widgets/race_list.dart';
 import 'package:fantasy_name_generator/shared/themes/app_colors.dart';
 
 import '../selection_sections/stats_section.dart';
@@ -90,7 +89,13 @@ class _MainScreenPageState extends State<MainScreenPage>
                                             : state.creationStage == 8
                                                 ? "Basic features ready"
                                                 : ''),
-            if (state.creationStage == 1) RaceSelection(),
+            if (state.creationStage == 1)
+              RaceSelection(
+                onTap: () {
+                  state.updateChosenRace();
+                  state.advanceCreationStage();
+                },
+              ),
             if (state.creationStage == 2)
               GenderSelection(
                 onTap: () {

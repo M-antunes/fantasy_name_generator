@@ -7,10 +7,8 @@ import 'package:fantasy_name_generator/modules/selection_sections/widgets/advanc
 import 'package:fantasy_name_generator/shared/themes/app_text_styles.dart';
 
 class RaceList extends StatelessWidget {
-  final VoidCallback onTap;
   const RaceList({
     Key? key,
-    required this.onTap,
   }) : super(key: key);
 
   @override

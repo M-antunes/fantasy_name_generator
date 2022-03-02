@@ -84,6 +84,33 @@ class CharProgression extends StatelessWidget {
                     ),
                   ],
                 ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      width: size.width * 0.4,
+                      child: CharDescriptionColumn(
+                        labeltop: "Height:",
+                        labelBottom: "Weight:",
+                        textValueLeft: state
+                                    .generatedChar.charRace.height!.key !=
+                                0
+                            ? "${state.generatedChar.charRace.height!.key} ft. ${state.generatedChar.charRace.height!.value} in."
+                            : "0",
+                        textValueRight: "0",
+                      ),
+                    ),
+                    SizedBox(
+                      width: size.width * 0.5,
+                      child: CharDescriptionColumn(
+                        labeltop: "Age:",
+                        labelBottom: "Desloc.:",
+                        textValueLeft: "0",
+                        textValueRight: "0",
+                      ),
+                    ),
+                  ],
+                ),
                 AtributeDivision(
                   size: size,
                   label: "ATRIBUTES  (BASE / MODIFIER)",

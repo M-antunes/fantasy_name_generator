@@ -8,6 +8,7 @@ import 'package:fantasy_name_generator/models/class_model.dart';
 import 'package:fantasy_name_generator/models/combat_model.dart';
 import 'package:fantasy_name_generator/models/equip_models/equip_model.dart';
 import 'package:fantasy_name_generator/models/equip_models/loot_model.dart';
+import 'package:fantasy_name_generator/models/key_value.model.dart';
 import 'package:fantasy_name_generator/models/letter_model.dart';
 import 'package:fantasy_name_generator/models/name_model.dart';
 import 'package:fantasy_name_generator/models/resistance_model.dart';
@@ -103,7 +104,7 @@ class CharController extends ChangeNotifier {
   getInitialRace() {
     initialRace = listOfRaces.races[0];
     chosenRace = initialRace;
-    tempRaceForSwitching = initialRace;
+    tempRaceForSwitching = chosenRace;
   }
 
   updateChosenRace() {
@@ -247,6 +248,69 @@ class CharController extends ChangeNotifier {
     isMale = false;
     notifyListeners();
   }
+// ====================================================================================
+
+// Physical characteristics based on race and atributes
+
+  applyHeight() {
+    var char = generatedChar;
+    var classGotten = listOfRaces.races
+        .firstWhere((element) => element.name == char.charRace.name);
+    var baseHeight = classGotten.height!;
+    char.charRace.height!.key = baseHeight.key;
+    char.charRace.height!.value = baseHeight.value;
+    if (generatedChar.charRace.name == "Dwarf" ||
+        generatedChar.charRace.name == "Gnome" ||
+        generatedChar.charRace.name == "Hafling") {
+      var increaseHeight = randomIndex.nextInt(3) + 1;
+      char.charRace.height!.value += increaseHeight;
+      if (char.charClass.mainAtrb == "Str") {
+        char.charRace.height!.value += (increaseHeight / 2).floor();
+      }
+      transformInchToFoot(char);
+      generatedChar.charRace.height!.key = char.charRace.height!.key;
+      generatedChar.charRace.height!.value = char.charRace.height!.value;
+      notifyListeners();
+    } else {
+      calculateHeight(char);
+    }
+  }
+
+  transformInchToFoot(CharModel char) {
+    if (char.charRace.height!.value > 10) {
+      char.charRace.height!.value -= 10;
+      char.charRace.height!.key += 1;
+    }
+  }
+
+  calculateHeight(CharModel char) {
+    int baseFeet = char.charRace.height!.key;
+    var inchesToAdd = calculateIncreaseInheight(char);
+    double extraInches = 0;
+    double extraFeet = 0.0;
+    for (var i = 0; i < inchesToAdd; i++) {
+      extraFeet++;
+    }
+    extraInches = extraFeet % 10;
+    extraFeet /= 10;
+    char.charRace.height!.key = baseFeet + extraFeet.floor();
+    char.charRace.height!.value += extraInches;
+    transformInchToFoot(char);
+    generatedChar.charRace.height!.key = char.charRace.height!.key;
+    generatedChar.charRace.height!.value = char.charRace.height!.value.floor();
+    notifyListeners();
+  }
+
+  int calculateIncreaseInheight(CharModel char) {
+    int change = 0;
+    int constt = char.baseAtributes.constitution!;
+    int str = char.baseAtributes.strength!;
+    for (var i = 12; i < constt && i < str; i++) {
+      change++;
+    }
+    return change;
+  }
+
 // ====================================================================================
 
 // Creation Advance and retreat Functions
@@ -611,8 +675,18 @@ class CharController extends ChangeNotifier {
       case "Human":
         humanNameGenerator();
         break;
+      case "Half-elf":
+        randomChance > 0 && randomChance < 3
+            ? elfNameGenerator()
+            : humanNameGenerator();
+        break;
       case "Orc":
         orcNameGenerator();
+        break;
+      case "Half-orc":
+        randomChance > 0 && randomChance < 3
+            ? orcNameGenerator()
+            : humanNameGenerator();
         break;
       case "Elf":
         elfNameGenerator();
@@ -725,7 +799,11 @@ class CharController extends ChangeNotifier {
 
   updateCharModel() {
     generatedChar = CharModel(
-        charRace: chosenRace,
+        charRace: chosenRace.copyWith(
+          height: KeyValueModel(key: 0, value: 0),
+          weight: 0,
+          age: 0,
+        ),
         charName: NameModel(
             gender: isMale ? "Male" : "Female",
             name: newName,
@@ -795,8 +873,8 @@ class CharController extends ChangeNotifier {
             atrbValues[5], atrbValues[0], atrbValues[4]);
         break;
       case "Rogue":
-        sortAtributesToClass(atrbValues[2], atrbValues[0], atrbValues[4],
-            atrbValues[3], atrbValues[5], atrbValues[1]);
+        sortAtributesToClass(atrbValues[3], atrbValues[0], atrbValues[5],
+            atrbValues[2], atrbValues[4], atrbValues[1]);
         break;
       case "Ranger":
         sortAtributesToClass(atrbValues[1], atrbValues[0], atrbValues[3],
@@ -834,6 +912,7 @@ class CharController extends ChangeNotifier {
         sortAtributesToClass(atrbValues[3], atrbValues[3], atrbValues[3],
             atrbValues[3], atrbValues[3], atrbValues[3]);
     }
+    applyHeight();
     ajustStatsToLevel();
     calculateAllModifiers();
     generateHitPoints();
@@ -856,6 +935,7 @@ class CharController extends ChangeNotifier {
   }
 
   ajustStatsToLevel() {
+    var race = generatedChar.charRace;
     var physicalChars = listOfClasses.physicalClasses;
     var mentalChars = listOfClasses.mentalClasses;
     int level = levelSelected + 1;
@@ -865,7 +945,7 @@ class CharController extends ChangeNotifier {
     double secondaryAtributeIncrement = 0.0;
     var atrbValues = generatedChar.baseAtributes;
     if (physicalChars.contains(classGotten)) {
-      for (var i = 0; i < level; i = i + 3) {
+      for (var i = 0; i < level; i = i + 4) {
         mainAtributeIncrement++;
         secondaryAtributeIncrement = secondaryAtributeIncrement + 0.5;
       }
@@ -901,7 +981,7 @@ class CharController extends ChangeNotifier {
           atrbValues.charisma! + mainAtributeIncrement;
     }
     notifyListeners();
-    ajustStatsToRace(classGotten!);
+    ajustStatsToRace(race, classGotten!);
   }
 
   calculateAllModifiers() {
@@ -933,26 +1013,30 @@ class CharController extends ChangeNotifier {
     return doubleValue.toInt();
   }
 
-  ajustStatsToRace(ClassModel klass) {
-    switch (klass.resistUpgrade) {
-      case "Str":
-        calculateAjustToRace(2, 0, 0, 0, 0, 0);
-        break;
-      case "Dex":
-        calculateAjustToRace(0, 2, 0, 0, 0, 0);
-        break;
-      case "Int":
-        calculateAjustToRace(0, 0, 0, 2, 0, 0);
-        break;
-      case "Wis":
-        calculateAjustToRace(0, 0, 0, 0, 2, 0);
-        break;
-      case "Cha":
-        calculateAjustToRace(0, 0, 0, 0, 0, 2);
-        break;
-      default:
+  ajustStatsToRace(RaceModel race, ClassModel klass) {
+    if (race.name == "Human" ||
+        race.name == "Half-elf" ||
+        race.name == "Half-orc") {
+      switch (klass.resistUpgrade) {
+        case "Str":
+          calculateAjustToRace(2, 0, 0, 0, 0, 0);
+          break;
+        case "Dex":
+          calculateAjustToRace(0, 2, 0, 0, 0, 0);
+          break;
+        case "Int":
+          calculateAjustToRace(0, 0, 0, 2, 0, 0);
+          break;
+        case "Wis":
+          calculateAjustToRace(0, 0, 0, 0, 2, 0);
+          break;
+        case "Cha":
+          calculateAjustToRace(0, 0, 0, 0, 0, 2);
+          break;
+        default:
+      }
     }
-    switch (klass.name) {
+    switch (race.name) {
       case "Orc":
         calculateAjustToRace(4, 0, 2, -2, -2, -2);
         break;
@@ -1036,6 +1120,10 @@ class CharController extends ChangeNotifier {
     armorAc = 10 + char.modAtributes.dexterity!;
     touch = 10 + char.modAtributes.dexterity!;
     surprise = 10;
+    if (chosenRace.name == "Hafling" || chosenRace.name == "Gnome") {
+      armorAc++;
+      touch++;
+    }
     generatedChar.combatStats.armourClass = armorAc;
     generatedChar.combatStats.armourTouch = touch;
     generatedChar.combatStats.armourSurprise = surprise;

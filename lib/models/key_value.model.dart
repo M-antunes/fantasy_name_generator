@@ -1,15 +1,15 @@
 import 'dart:convert';
 
 class KeyValueModel {
-  final String key;
-  final dynamic value;
+  dynamic key;
+  dynamic value;
   KeyValueModel({
     required this.key,
     required this.value,
   });
 
   KeyValueModel copyWith({
-    String? key,
+    dynamic key,
     dynamic value,
   }) {
     return KeyValueModel(
@@ -27,7 +27,7 @@ class KeyValueModel {
 
   factory KeyValueModel.fromMap(Map<String, dynamic> map) {
     return KeyValueModel(
-      key: map['key'] ?? '',
+      key: map['key'],
       value: map['value'],
     );
   }
