@@ -45,10 +45,20 @@ class AppTextStyle {
     color: Colors.white,
     fontSize: 17,
   );
+  static const statsValue = TextStyle(
+    fontWeight: FontWeight.w400,
+    color: Colors.white,
+    fontSize: 15,
+  );
   static final modefier = TextStyle(
     fontWeight: FontWeight.w400,
     color: Colors.grey[200]!,
-    fontSize: 17,
+    fontSize: 15,
+  );
+  static const statsLabel = TextStyle(
+    fontWeight: FontWeight.w500,
+    color: Colors.grey,
+    fontSize: 13,
   );
   static const selectButtonNotReady = TextStyle(
     fontWeight: FontWeight.w500,

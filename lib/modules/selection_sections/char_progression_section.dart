@@ -41,8 +41,7 @@ class CharProgression extends StatelessWidget {
                 SizedBox(height: size.height * 0.01),
                 Row(
                   children: [
-                    const Text("Race:  ",
-                        style: AppTextStyle.selectButtonNotReady),
+                    const Text("Race:  ", style: AppTextStyle.statsLabel),
                     Text(state.chosenRace.name,
                         style: AppTextStyle.selectButtonReady),
                   ],
@@ -50,8 +49,7 @@ class CharProgression extends StatelessWidget {
                 SizedBox(height: size.height * 0.01),
                 Row(
                   children: [
-                    const Text("Gender:  ",
-                        style: AppTextStyle.selectButtonNotReady),
+                    const Text("Gender:  ", style: AppTextStyle.statsLabel),
                     Text(state.isMale ? "Male" : "Female",
                         style: AppTextStyle.selectButtonReady),
                   ],
@@ -59,8 +57,7 @@ class CharProgression extends StatelessWidget {
                 SizedBox(height: size.height * 0.01),
                 Row(
                   children: [
-                    const Text("Class:  ",
-                        style: AppTextStyle.selectButtonNotReady),
+                    const Text("Class:  ", style: AppTextStyle.statsLabel),
                     Text(state.chosenClass.name,
                         style: AppTextStyle.selectButtonReady),
                   ],
@@ -68,8 +65,7 @@ class CharProgression extends StatelessWidget {
                 SizedBox(height: size.height * 0.01),
                 Row(
                   children: [
-                    const Text("Alignment:  ",
-                        style: AppTextStyle.selectButtonNotReady),
+                    const Text("Alignment:  ", style: AppTextStyle.statsLabel),
                     Text(state.chosenAlignment.name,
                         style: AppTextStyle.selectButtonReady),
                   ],

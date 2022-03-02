@@ -62,10 +62,9 @@ class StatsDescriptionText extends StatelessWidget {
         RichText(
           text: TextSpan(
             children: [
+              TextSpan(text: "$label  ", style: AppTextStyle.statsLabel),
               TextSpan(
-                  text: "$label  ", style: AppTextStyle.selectButtonNotReady),
-              TextSpan(
-                  text: textValue.toString(), style: AppTextStyle.modefier),
+                  text: textValue.toString(), style: AppTextStyle.statsValue),
             ],
           ),
         ),
@@ -76,7 +75,7 @@ class StatsDescriptionText extends StatelessWidget {
             radius: 16,
             child: Text(
               modValue.toString(),
-              style: AppTextStyle.selectRace,
+              style: AppTextStyle.modefier,
             ),
           ),
         ),

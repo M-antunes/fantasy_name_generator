@@ -64,7 +64,7 @@ class CharProgression extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     SizedBox(
-                      width: size.width * 0.43,
+                      width: size.width * 0.4,
                       child: CharDescriptionColumn(
                         labeltop: "Race:",
                         labelBottom: "Class:",
@@ -78,7 +78,8 @@ class CharProgression extends StatelessWidget {
                         labeltop: "Gender:",
                         labelBottom: "Alignment:",
                         textValueLeft: state.generatedChar.charName.gender,
-                        textValueRight: state.generatedChar.alignment.name,
+                        textValueRight:
+                            state.generatedChar.alignment.abreviation!,
                       ),
                     ),
                   ],
@@ -120,7 +121,7 @@ class CharProgression extends StatelessWidget {
                         )
                       ],
                     ),
-                    SizedBox(width: size.width * 0.05),
+                    SizedBox(width: size.width * 0.02),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -242,17 +243,17 @@ class DefenseInfo extends StatelessWidget {
     return Column(
       children: [
         SizedBox(
-          width: size.width * 0.23,
+          width: size.width * 0.26,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(label, style: AppTextStyle.selectButtonNotReady),
+              Text(label, style: AppTextStyle.statsLabel),
               CircleAvatar(
                 backgroundColor: Colors.grey[900],
                 radius: 18,
                 child: Text(
                   value.toString(),
-                  style: AppTextStyle.selectRace,
+                  style: AppTextStyle.modefier,
                 ),
               ),
             ],

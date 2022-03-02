@@ -3,18 +3,22 @@ import 'dart:convert';
 class AlignmentModel {
   String name;
   bool isSelected;
+  String? abreviation;
   AlignmentModel({
     required this.name,
     required this.isSelected,
+    this.abreviation,
   });
 
   AlignmentModel copyWith({
     String? name,
     bool? isSelected,
+    String? abreviation,
   }) {
     return AlignmentModel(
       name: name ?? this.name,
       isSelected: isSelected ?? this.isSelected,
+      abreviation: abreviation ?? this.abreviation,
     );
   }
 
@@ -22,6 +26,7 @@ class AlignmentModel {
     return {
       'name': name,
       'isSelected': isSelected,
+      'abreviation': abreviation,
     };
   }
 
@@ -29,6 +34,7 @@ class AlignmentModel {
     return AlignmentModel(
       name: map['name'] ?? '',
       isSelected: map['isSelected'] ?? false,
+      abreviation: map['abreviation'],
     );
   }
 
@@ -38,7 +44,8 @@ class AlignmentModel {
       AlignmentModel.fromMap(json.decode(source));
 
   @override
-  String toString() => 'AlignmentModel(name: $name, isSelected: $isSelected)';
+  String toString() =>
+      'AlignmentModel(name: $name, isSelected: $isSelected, abreviation: $abreviation)';
 
   @override
   bool operator ==(Object other) {
@@ -46,9 +53,11 @@ class AlignmentModel {
 
     return other is AlignmentModel &&
         other.name == name &&
-        other.isSelected == isSelected;
+        other.isSelected == isSelected &&
+        other.abreviation == abreviation;
   }
 
   @override
-  int get hashCode => name.hashCode ^ isSelected.hashCode;
+  int get hashCode =>
+      name.hashCode ^ isSelected.hashCode ^ abreviation.hashCode;
 }

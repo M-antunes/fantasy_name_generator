@@ -44,8 +44,8 @@ class CharDescriptionText extends StatelessWidget {
     return RichText(
       text: TextSpan(
         children: [
-          TextSpan(text: "$label  ", style: AppTextStyle.selectButtonNotReady),
-          TextSpan(text: textValue, style: AppTextStyle.selectRace),
+          TextSpan(text: "$label  ", style: AppTextStyle.statsLabel),
+          TextSpan(text: textValue, style: AppTextStyle.statsValue),
         ],
       ),
     );
