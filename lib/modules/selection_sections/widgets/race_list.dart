@@ -51,4 +51,3 @@ class RaceList extends StatelessWidget {
     );
   }
 }
-            // AdvanceButton(size: size, onTap: onTap),

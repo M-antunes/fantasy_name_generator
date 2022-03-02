@@ -70,14 +70,14 @@ class AppTextStyle {
     color: Colors.white,
     fontSize: 19,
   );
-  static const traitValue = TextStyle(
+  static final traitValue = TextStyle(
+    fontWeight: FontWeight.w400,
+    color: Colors.grey[300],
+    fontSize: 13,
+  );
+  static const traitDescription = TextStyle(
     fontWeight: FontWeight.w400,
     color: Colors.grey,
-    fontSize: 15,
-  );
-  static final traitDescription = TextStyle(
-    fontWeight: FontWeight.w400,
-    color: Colors.grey[400],
     fontSize: 12,
   );
 }

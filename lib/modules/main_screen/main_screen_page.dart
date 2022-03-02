@@ -90,8 +90,7 @@ class _MainScreenPageState extends State<MainScreenPage>
                                             : state.creationStage == 8
                                                 ? "Basic features ready"
                                                 : ''),
-            if (state.creationStage == 1)
-              RaceSelection(size: size, state: state),
+            if (state.creationStage == 1) RaceSelection(),
             if (state.creationStage == 2)
               GenderSelection(
                 onTap: () {
