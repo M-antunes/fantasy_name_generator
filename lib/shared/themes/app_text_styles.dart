@@ -48,17 +48,17 @@ class AppTextStyle {
   static const statsValue = TextStyle(
     fontWeight: FontWeight.w400,
     color: Colors.white,
-    fontSize: 14,
+    fontSize: 13,
   );
   static final modefier = TextStyle(
     fontWeight: FontWeight.w400,
     color: Colors.grey[200]!,
-    fontSize: 15,
+    fontSize: 13,
   );
   static const statsLabel = TextStyle(
     fontWeight: FontWeight.w500,
     color: Colors.grey,
-    fontSize: 13,
+    fontSize: 11,
   );
   static const selectButtonNotReady = TextStyle(
     fontWeight: FontWeight.w500,

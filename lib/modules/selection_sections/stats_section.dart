@@ -186,7 +186,7 @@ class CharProgression extends StatelessWidget {
                 ),
                 AtributeDivision(
                   size: size,
-                  label: "DEFENSES",
+                  label: "COMBAT",
                   label2:
                       "These values might get increased depending on equipment",
                 ),
@@ -195,6 +195,28 @@ class CharProgression extends StatelessWidget {
                   label: "HP:",
                   value: state.generatedChar.hitPoints,
                 ),
+                Row(
+                  children: [
+                    DefenseInfo(
+                      size: size,
+                      label: "BAB:",
+                      value: state.generatedChar.combatStats.baseAttackBonus!,
+                    ),
+                    SizedBox(width: size.width * 0.03),
+                    DefenseInfo(
+                      size: size,
+                      label: "CMB:",
+                      value: state.generatedChar.hitPoints,
+                    ),
+                    SizedBox(width: size.width * 0.03),
+                    DefenseInfo(
+                      size: size,
+                      label: "CMD:",
+                      value: state.generatedChar.hitPoints,
+                    ),
+                  ],
+                ),
+                SizedBox(width: size.width * 0.03),
                 Row(
                   children: [
                     DefenseInfo(
@@ -284,7 +306,7 @@ class DefenseInfo extends StatelessWidget {
               Text(label, style: AppTextStyle.statsLabel),
               CircleAvatar(
                 backgroundColor: Colors.grey[900],
-                radius: 18,
+                radius: 16,
                 child: Text(
                   value.toString(),
                   style: AppTextStyle.modefier,

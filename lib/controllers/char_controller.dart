@@ -281,8 +281,10 @@ class CharController extends ChangeNotifier {
   /// changes inches to foot
   transformInchToFoot(CharModel char) {
     if (char.charRace.height!.value > 10) {
-      char.charRace.height!.value -= 10;
-      char.charRace.height!.key += 1;
+      while (char.charRace.height!.value > 10) {
+        char.charRace.height!.value -= 10;
+        char.charRace.height!.key += 1;
+      }
     }
   }
 
@@ -297,7 +299,7 @@ class CharController extends ChangeNotifier {
     }
     extraInches = extraFeet % 10;
     extraFeet /= 10;
-    char.baseAtributes.constitution! > 15 ? extraInches += 4 : extraInches++;
+    char.baseAtributes.constitution! > 16 ? extraInches += 2 : extraInches += 0;
     char.charRace.height!.key = baseFeet + extraFeet.floor();
     char.charRace.height!.value += extraInches;
     transformInchToFoot(char);
@@ -344,6 +346,9 @@ class CharController extends ChangeNotifier {
         extraWeight = randomIndex.nextInt(baseWeight).toDouble();
         extraWeight = extraWeight * 0.3;
       }
+    }
+    if (char.charClass.name == "Ranger" || char.charClass.name == "Rogue") {
+      extraWeight -= 15;
     }
     var totalWeight = baseWeight + extraWeight;
     generatedChar.charRace.weight = totalWeight;
@@ -950,6 +955,7 @@ class CharController extends ChangeNotifier {
         resistances: ResistanceModel(),
         loot: loot,
         charLevel: levelSelected + 1);
+    isCharGeneratorCleared = !isCharGeneratorCleared;
     notifyListeners();
   }
 
@@ -1051,6 +1057,7 @@ class CharController extends ChangeNotifier {
     generateHitPoints();
     calculateSpeed();
     claculateAge();
+    calculateBaseAttackBonus();
   }
 
   ClassModel? findIfClassIsPhysicalOrMental(
@@ -1314,6 +1321,59 @@ class CharController extends ChangeNotifier {
     char.resistances.will = partialWill + char.modAtributes.wisdom!;
 
     generatedChar.resistances = char.resistances;
+    notifyListeners();
+  }
+
+// ====================================================================================
+
+// section to generate Some combat modifiers
+
+  calculateBaseAttackBonus() {
+    var char = generatedChar;
+    var baseAttackBonus = 0;
+    var magicClasses = listOfClasses.allClasses
+        .where((element) => element.hitDice! < 7)
+        .toList();
+    var physicalClasses = listOfClasses.allClasses
+        .where((element) => element.hitDice! > 9)
+        .toList();
+    var mixedClasses = listOfClasses.allClasses
+        .where((element) => element.hitDice! == 8)
+        .toList();
+    var isMagicCl =
+        magicClasses.any((element) => element.name == char.charClass.name);
+    var isMixCl =
+        mixedClasses.any((element) => element.name == char.charClass.name);
+    var isPhysCl =
+        physicalClasses.any((element) => element.name == char.charClass.name);
+    if (isPhysCl) {
+      baseAttackBonus = char.charLevel;
+    }
+    if (isMagicCl) {
+      baseAttackBonus = char.charLevel;
+      baseAttackBonus = (baseAttackBonus / 2).floor();
+    }
+    if (isMixCl) {
+      baseAttackBonus = 0;
+      var level = char.charLevel;
+
+      if (level <= 4) {
+        baseAttackBonus = level - 1;
+      } else if (level >= 5 && level <= 8) {
+        baseAttackBonus = level - 2;
+      } else if (level >= 9 && level <= 12) {
+        baseAttackBonus = level - 3;
+      } else if (level >= 13 && level <= 16) {
+        baseAttackBonus = level - 4;
+      } else if (level >= 17 && level <= 20) {
+        baseAttackBonus = level - 5;
+      } else if (level >= 21 && level <= 25) {
+        baseAttackBonus = level - 6;
+      } else {
+        baseAttackBonus = level - 7;
+      }
+    }
+    generatedChar.combatStats.baseAttackBonus = baseAttackBonus;
     notifyListeners();
   }
 

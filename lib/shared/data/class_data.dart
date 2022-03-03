@@ -12,7 +12,7 @@ class ClassData {
     ClassModel(
         isSelected: false,
         resistUpgrade: "",
-        hitDice: 8,
+        hitDice: 4,
         mainAtrb: "Int",
         name: "Aristocrat"),
     ClassModel(

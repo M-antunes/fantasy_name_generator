@@ -51,8 +51,6 @@ class _MainScreenPageState extends State<MainScreenPage>
             onPressed: () {
               if (state.creationStage == 1) {
                 Navigator.of(context).pop();
-              } else if (state.creationStage == 7) {
-                state.retreatCreationStage();
               } else {
                 state.retreatCreationStage();
               }
@@ -146,8 +144,6 @@ class _MainScreenPageState extends State<MainScreenPage>
                         }
                       : () {
                           state.updateCharModel();
-                          state.isCharGeneratorCleared =
-                              !state.isCharGeneratorCleared;
                         },
                   onTap: () {
                     state.advanceCreationStage();

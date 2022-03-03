@@ -6,9 +6,9 @@ class RaceData {
     RaceModel(
       name: 'Dwarf',
       isSelected: true,
-      height: KeyValueModel(key: 3, value: 9),
+      height: KeyValueModel(key: 3, value: 2),
       age: 40,
-      weight: 120,
+      weight: 90,
       speed: 20,
       traits: [
         KeyValueModel(
@@ -52,7 +52,7 @@ class RaceData {
       isSelected: false,
       height: KeyValueModel(key: 5, value: 4),
       age: 110,
-      weight: 100,
+      weight: 120,
       speed: 30,
       traits: [
         KeyValueModel(
@@ -86,7 +86,7 @@ class RaceData {
     RaceModel(
       name: 'Gnome',
       isSelected: false,
-      height: KeyValueModel(key: 2, value: 10),
+      height: KeyValueModel(key: 2, value: 8),
       age: 40,
       weight: 40,
       speed: 20,
@@ -130,7 +130,7 @@ class RaceData {
     RaceModel(
       name: 'Hafling',
       isSelected: false,
-      height: KeyValueModel(key: 2, value: 8),
+      height: KeyValueModel(key: 2, value: 6),
       age: 20,
       weight: 35,
       speed: 20,
@@ -166,9 +166,9 @@ class RaceData {
     RaceModel(
       name: "Half-elf",
       isSelected: false,
-      height: KeyValueModel(key: 5, value: 2),
+      height: KeyValueModel(key: 5, value: 4),
       age: 20,
-      weight: 110,
+      weight: 130,
       speed: 30,
       traits: [
         KeyValueModel(
@@ -207,7 +207,7 @@ class RaceData {
     RaceModel(
       name: "Half-orc",
       isSelected: false,
-      height: KeyValueModel(key: 5, value: 3),
+      height: KeyValueModel(key: 5, value: 4),
       age: 13,
       weight: 150,
       speed: 30,
@@ -243,9 +243,9 @@ class RaceData {
     RaceModel(
       name: 'Human',
       isSelected: false,
-      height: KeyValueModel(key: 5, value: 0),
+      height: KeyValueModel(key: 5, value: 2),
       age: 15,
-      weight: 130,
+      weight: 140,
       speed: 30,
       traits: [
         KeyValueModel(
@@ -272,7 +272,7 @@ class RaceData {
     RaceModel(
       name: 'Orc',
       isSelected: false,
-      height: KeyValueModel(key: 5, value: 8),
+      height: KeyValueModel(key: 5, value: 6),
       age: 11,
       weight: 180,
       speed: 30,
