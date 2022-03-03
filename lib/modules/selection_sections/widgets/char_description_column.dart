@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 class CharDescriptionColumn extends StatelessWidget {
   final String labeltop;
   final String labelBottom;
-  final String textValueLeft;
-  final String textValueRight;
+  final String textValueTop;
+  final String textValueBottom;
   const CharDescriptionColumn({
     Key? key,
     required this.labeltop,
     required this.labelBottom,
-    required this.textValueLeft,
-    required this.textValueRight,
+    required this.textValueTop,
+    required this.textValueBottom,
   }) : super(key: key);
 
   @override
@@ -21,9 +21,9 @@ class CharDescriptionColumn extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        CharDescriptionText(label: labeltop, textValue: textValueLeft),
+        CharDescriptionText(label: labeltop, textValue: textValueTop),
         SizedBox(height: size.height * 0.006),
-        CharDescriptionText(label: labelBottom, textValue: textValueRight),
+        CharDescriptionText(label: labelBottom, textValue: textValueBottom),
         SizedBox(height: size.height * 0.006),
       ],
     );

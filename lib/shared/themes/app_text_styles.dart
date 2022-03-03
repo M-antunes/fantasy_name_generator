@@ -48,7 +48,7 @@ class AppTextStyle {
   static const statsValue = TextStyle(
     fontWeight: FontWeight.w400,
     color: Colors.white,
-    fontSize: 15,
+    fontSize: 14,
   );
   static final modefier = TextStyle(
     fontWeight: FontWeight.w400,

@@ -68,8 +68,8 @@ class CharProgression extends StatelessWidget {
                       child: CharDescriptionColumn(
                         labeltop: "Race:",
                         labelBottom: "Class:",
-                        textValueLeft: state.generatedChar.charRace.name,
-                        textValueRight: state.generatedChar.charClass.name,
+                        textValueTop: state.generatedChar.charRace.name,
+                        textValueBottom: state.generatedChar.charClass.name,
                       ),
                     ),
                     SizedBox(
@@ -77,8 +77,8 @@ class CharProgression extends StatelessWidget {
                       child: CharDescriptionColumn(
                         labeltop: "Gender:",
                         labelBottom: "Alignment:",
-                        textValueLeft: state.generatedChar.charName.gender,
-                        textValueRight:
+                        textValueTop: state.generatedChar.charName.gender,
+                        textValueBottom:
                             state.generatedChar.alignment.abreviation!,
                       ),
                     ),
@@ -92,21 +92,24 @@ class CharProgression extends StatelessWidget {
                       child: CharDescriptionColumn(
                         labeltop: "Height:",
                         labelBottom: "Weight:",
-                        textValueLeft: state
+                        textValueTop: state
                                     .generatedChar.charRace.height!.key !=
                                 0
                             ? "${state.generatedChar.charRace.height!.key} ft. ${state.generatedChar.charRace.height!.value} in."
                             : "0",
-                        textValueRight: "0",
+                        textValueBottom:
+                            "${state.generatedChar.charRace.weight!.toInt()} lbs.",
                       ),
                     ),
                     SizedBox(
                       width: size.width * 0.5,
                       child: CharDescriptionColumn(
                         labeltop: "Age:",
-                        labelBottom: "Desloc.:",
-                        textValueLeft: "0",
-                        textValueRight: "0",
+                        labelBottom: "Speed:",
+                        textValueTop: "0",
+                        textValueBottom: state.generatedChar.charRace.speed != 0
+                            ? "${state.generatedChar.charRace.speed} ft."
+                            : "0",
                       ),
                     ),
                   ],

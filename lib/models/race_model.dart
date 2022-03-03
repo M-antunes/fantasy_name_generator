@@ -9,8 +9,9 @@ class RaceModel {
   bool isSelected;
   final List<KeyValueModel>? traits;
   final KeyValueModel? height;
-  final double? weight;
-  final int? age;
+  double? weight;
+  int? age;
+  int? speed;
   RaceModel({
     required this.name,
     required this.isSelected,
@@ -18,6 +19,7 @@ class RaceModel {
     this.height,
     this.weight,
     this.age,
+    this.speed,
   });
 
   RaceModel copyWith({
@@ -27,6 +29,7 @@ class RaceModel {
     KeyValueModel? height,
     double? weight,
     int? age,
+    int? speed,
   }) {
     return RaceModel(
       name: name ?? this.name,
@@ -35,6 +38,7 @@ class RaceModel {
       height: height ?? this.height,
       weight: weight ?? this.weight,
       age: age ?? this.age,
+      speed: speed ?? this.speed,
     );
   }
 
@@ -46,6 +50,7 @@ class RaceModel {
       'height': height?.toMap(),
       'weight': weight,
       'age': age,
+      'speed': speed,
     };
   }
 
@@ -61,6 +66,7 @@ class RaceModel {
           map['height'] != null ? KeyValueModel.fromMap(map['height']) : null,
       weight: map['weight']?.toDouble(),
       age: map['age']?.toInt(),
+      speed: map['speed']?.toInt(),
     );
   }
 
@@ -71,7 +77,7 @@ class RaceModel {
 
   @override
   String toString() {
-    return 'RaceModel(name: $name, isSelected: $isSelected, traits: $traits, height: $height, weight: $weight, age: $age)';
+    return 'RaceModel(name: $name, isSelected: $isSelected, traits: $traits, height: $height, weight: $weight, age: $age, speed: $speed)';
   }
 
   @override
@@ -84,7 +90,8 @@ class RaceModel {
         listEquals(other.traits, traits) &&
         other.height == height &&
         other.weight == weight &&
-        other.age == age;
+        other.age == age &&
+        other.speed == speed;
   }
 
   @override
@@ -94,6 +101,7 @@ class RaceModel {
         traits.hashCode ^
         height.hashCode ^
         weight.hashCode ^
-        age.hashCode;
+        age.hashCode ^
+        speed.hashCode;
   }
 }

@@ -9,6 +9,7 @@ class RaceData {
       height: KeyValueModel(key: 3, value: 9),
       age: 40,
       weight: 120,
+      speed: 20,
       traits: [
         KeyValueModel(
             key: '+2 Constitution, +2 Wisdom, –2 Charisma:',
@@ -52,6 +53,7 @@ class RaceData {
       height: KeyValueModel(key: 5, value: 4),
       age: 110,
       weight: 100,
+      speed: 30,
       traits: [
         KeyValueModel(
             key: "+2 Dexterity, +2 Intelligence, –2 Constitution:",
@@ -87,6 +89,7 @@ class RaceData {
       height: KeyValueModel(key: 2, value: 10),
       age: 40,
       weight: 40,
+      speed: 20,
       traits: [
         KeyValueModel(
             key: "+2 Constitution, +2 Charisma, –2 Strength:",
@@ -130,6 +133,7 @@ class RaceData {
       height: KeyValueModel(key: 2, value: 8),
       age: 20,
       weight: 35,
+      speed: 20,
       traits: [
         KeyValueModel(
             key: "+2 Dexterity, +2 Charisma, –2 Strength:",
@@ -165,6 +169,7 @@ class RaceData {
       height: KeyValueModel(key: 5, value: 2),
       age: 20,
       weight: 110,
+      speed: 30,
       traits: [
         KeyValueModel(
             key: "+2 to One Ability Score:",
@@ -205,6 +210,7 @@ class RaceData {
       height: KeyValueModel(key: 4, value: 10),
       age: 13,
       weight: 150,
+      speed: 30,
       traits: [
         KeyValueModel(
             key: "+2 to One Ability Score:",
@@ -240,6 +246,7 @@ class RaceData {
       height: KeyValueModel(key: 4, value: 10),
       age: 15,
       weight: 130,
+      speed: 30,
       traits: [
         KeyValueModel(
             key: "+2 to One Ability Score:",
@@ -268,6 +275,7 @@ class RaceData {
       height: KeyValueModel(key: 5, value: 2),
       age: 11,
       weight: 180,
+      speed: 30,
       traits: [
         KeyValueModel(
             key: "+4 to Strength:",

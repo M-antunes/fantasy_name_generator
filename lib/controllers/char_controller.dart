@@ -252,6 +252,7 @@ class CharController extends ChangeNotifier {
 
 // Physical characteristics based on race and atributes
 
+  /// calculates height for all character
   applyHeight() {
     var char = generatedChar;
     var classGotten = listOfRaces.races
@@ -276,6 +277,7 @@ class CharController extends ChangeNotifier {
     }
   }
 
+  /// changes inches to foot
   transformInchToFoot(CharModel char) {
     if (char.charRace.height!.value > 10) {
       char.charRace.height!.value -= 10;
@@ -283,6 +285,7 @@ class CharController extends ChangeNotifier {
     }
   }
 
+  /// calculates heights for medium size characters
   calculateHeight(CharModel char) {
     int baseFeet = char.charRace.height!.key;
     var inchesToAdd = calculateIncreaseInheight(char);
@@ -293,6 +296,7 @@ class CharController extends ChangeNotifier {
     }
     extraInches = extraFeet % 10;
     extraFeet /= 10;
+    char.modAtributes.constitution! > 3 ? extraInches += 4 : extraInches++;
     char.charRace.height!.key = baseFeet + extraFeet.floor();
     char.charRace.height!.value += extraInches;
     transformInchToFoot(char);
@@ -301,6 +305,7 @@ class CharController extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// calculates the amount of the increment
   int calculateIncreaseInheight(CharModel char) {
     int change = 0;
     int constt = char.baseAtributes.constitution!;
@@ -309,6 +314,38 @@ class CharController extends ChangeNotifier {
       change++;
     }
     return change;
+  }
+
+  /// calculates charater's weight
+  claculateWeight() {
+    var char = generatedChar;
+    var classGotten = listOfRaces.races
+        .firstWhere((element) => element.name == char.charRace.name);
+    var baseWeight = classGotten.weight!.toInt();
+    var extraWeight = 0.0;
+    if (char.charRace.name == "Dwarf" ||
+        char.charRace.name == "Gnome" ||
+        char.charRace.name == "Hafling") {
+      if (char.charClass.mainAtrb == "Str") {
+        extraWeight = randomIndex.nextInt(baseWeight).toDouble();
+        extraWeight = extraWeight * 0.4;
+      } else {
+        extraWeight = randomIndex.nextInt(baseWeight).toDouble();
+        extraWeight = extraWeight * 0.2;
+      }
+    } else {
+      if (char.charClass.mainAtrb == "Str") {
+        extraWeight = randomIndex.nextInt(baseWeight).toDouble();
+        char.modAtributes.constitution! > 3 ? extraWeight += 20 : extraWeight++;
+        extraWeight = extraWeight * 0.6;
+      } else {
+        extraWeight = randomIndex.nextInt(baseWeight).toDouble();
+        extraWeight = extraWeight * 0.3;
+      }
+    }
+    var totalWeight = baseWeight + extraWeight;
+    generatedChar.charRace.weight = totalWeight;
+    notifyListeners();
   }
 
 // ====================================================================================
@@ -803,6 +840,7 @@ class CharController extends ChangeNotifier {
           height: KeyValueModel(key: 0, value: 0),
           weight: 0,
           age: 0,
+          speed: 0,
         ),
         charName: NameModel(
             gender: isMale ? "Male" : "Female",
@@ -943,6 +981,7 @@ class CharController extends ChangeNotifier {
     ClassModel? classGotten =
         findIfClassIsPhysicalOrMental(mentalChars, physicalChars);
     double secondaryAtributeIncrement = 0.0;
+    ajustStatsToRace(race, classGotten!);
     var atrbValues = generatedChar.baseAtributes;
     if (physicalChars.contains(classGotten)) {
       for (var i = 0; i < level; i = i + 4) {
@@ -981,7 +1020,6 @@ class CharController extends ChangeNotifier {
           atrbValues.charisma! + mainAtributeIncrement;
     }
     notifyListeners();
-    ajustStatsToRace(race, classGotten!);
   }
 
   calculateAllModifiers() {
@@ -1017,7 +1055,7 @@ class CharController extends ChangeNotifier {
     if (race.name == "Human" ||
         race.name == "Half-elf" ||
         race.name == "Half-orc") {
-      switch (klass.resistUpgrade) {
+      switch (klass.mainAtrb) {
         case "Str":
           calculateAjustToRace(2, 0, 0, 0, 0, 0);
           break;
@@ -1054,6 +1092,7 @@ class CharController extends ChangeNotifier {
         break;
       default:
     }
+    claculateWeight();
   }
 
   calculateAjustToRace(
