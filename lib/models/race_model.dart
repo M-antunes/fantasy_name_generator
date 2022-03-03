@@ -8,7 +8,7 @@ class RaceModel {
   final String name;
   bool isSelected;
   final List<KeyValueModel>? traits;
-  final KeyValueModel? height;
+  KeyValueModel? height;
   double? weight;
   int? age;
   int? speed;

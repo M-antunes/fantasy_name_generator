@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 
 class AppAnimatedButton extends StatelessWidget {
   final VoidCallback onGenerate;
+  final String? label; 
   const AppAnimatedButton({
     Key? key,
     required this.onGenerate,
+    this.label,
   }) : super(key: key);
 
   @override
@@ -20,9 +22,9 @@ class AppAnimatedButton extends StatelessWidget {
       child: Center(
         child: SizedBox(
           width: size.width * 0.2,
-          child: const FittedBox(
+          child: FittedBox(
             fit: BoxFit.fitWidth,
-            child: Text('Generate'),
+            child: Text(label ?? 'Generate'),
           ),
         ),
       ),

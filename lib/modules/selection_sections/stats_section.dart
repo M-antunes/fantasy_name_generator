@@ -106,7 +106,7 @@ class CharProgression extends StatelessWidget {
                       child: CharDescriptionColumn(
                         labeltop: "Age:",
                         labelBottom: "Speed:",
-                        textValueTop: "0",
+                        textValueTop: "${state.generatedChar.charRace.age}",
                         textValueBottom: state.generatedChar.charRace.speed != 0
                             ? "${state.generatedChar.charRace.speed} ft."
                             : "0",
@@ -241,8 +241,12 @@ class CharProgression extends StatelessWidget {
                 ),
                 SizedBox(height: size.height * 0.05),
                 Align(
-                    alignment: Alignment.center,
-                    child: AppAnimatedButton(onGenerate: onGenerate)),
+                  alignment: Alignment.center,
+                  child: state.isCharGeneratorCleared
+                      ? AppAnimatedButton(onGenerate: onGenerate)
+                      : AppAnimatedButton(
+                          onGenerate: onGenerate, label: "Clear"),
+                ),
               ],
             );
           }),

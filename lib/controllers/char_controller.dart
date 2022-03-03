@@ -57,6 +57,7 @@ class CharController extends ChangeNotifier {
   int levelSelected = -1;
   bool isRegularLevelSelected = true;
   bool isEpicLevelSelected = false;
+  bool isCharGeneratorCleared = true;
 
 // Functions related to the level Section
 
@@ -255,9 +256,9 @@ class CharController extends ChangeNotifier {
   /// calculates height for all character
   applyHeight() {
     var char = generatedChar;
-    var classGotten = listOfRaces.races
+    var raceGotten = listOfRaces.races
         .firstWhere((element) => element.name == char.charRace.name);
-    var baseHeight = classGotten.height!;
+    var baseHeight = raceGotten.height!;
     char.charRace.height!.key = baseHeight.key;
     char.charRace.height!.value = baseHeight.value;
     if (generatedChar.charRace.name == "Dwarf" ||
@@ -296,7 +297,7 @@ class CharController extends ChangeNotifier {
     }
     extraInches = extraFeet % 10;
     extraFeet /= 10;
-    char.modAtributes.constitution! > 3 ? extraInches += 4 : extraInches++;
+    char.baseAtributes.constitution! > 15 ? extraInches += 4 : extraInches++;
     char.charRace.height!.key = baseFeet + extraFeet.floor();
     char.charRace.height!.value += extraInches;
     transformInchToFoot(char);
@@ -310,7 +311,8 @@ class CharController extends ChangeNotifier {
     int change = 0;
     int constt = char.baseAtributes.constitution!;
     int str = char.baseAtributes.strength!;
-    for (var i = 12; i < constt && i < str; i++) {
+    int endurance = constt + str;
+    for (var i = 20; i < endurance; i = i + 2) {
       change++;
     }
     return change;
@@ -319,9 +321,9 @@ class CharController extends ChangeNotifier {
   /// calculates charater's weight
   claculateWeight() {
     var char = generatedChar;
-    var classGotten = listOfRaces.races
+    var raceGotten = listOfRaces.races
         .firstWhere((element) => element.name == char.charRace.name);
-    var baseWeight = classGotten.weight!.toInt();
+    var baseWeight = raceGotten.weight!.toInt();
     var extraWeight = 0.0;
     if (char.charRace.name == "Dwarf" ||
         char.charRace.name == "Gnome" ||
@@ -345,6 +347,95 @@ class CharController extends ChangeNotifier {
     }
     var totalWeight = baseWeight + extraWeight;
     generatedChar.charRace.weight = totalWeight;
+    notifyListeners();
+  }
+
+  ///calculate characters speed
+  calculateSpeed() {
+    var char = generatedChar;
+    var raceGotten = listOfRaces.races
+        .firstWhere((element) => element.name == char.charRace.name);
+    var baseSpeed = raceGotten.speed!;
+    if (char.charClass.name == "Barbarian") {
+      baseSpeed = baseSpeed + 10;
+    }
+    if (char.charClass.name == "Monk" && char.charLevel > 2) {
+      for (var i = 3; i <= char.charLevel; i = i + 3) {
+        baseSpeed = baseSpeed + 10;
+      }
+    }
+    generatedChar.charRace.speed = baseSpeed;
+    notifyListeners();
+  }
+
+  int ajustAgeAccordingtoRace(
+      CharModel char, int physClassDif, int mentClassDif) {
+    double baseAge = 0;
+    var ageIncrement = 0;
+    int dif = 0;
+    bool containsPhys = listOfClasses.physicalClasses
+        .any((element) => element.name == char.charClass.name);
+    if (containsPhys) {
+      if (char.charClass.name == "Barbarian" ||
+          char.charClass.name == "Rogue") {
+        double youngClassDif = physClassDif * 0.6;
+        dif = youngClassDif.toInt();
+        ageIncrement = randomIndex.nextInt(dif);
+        baseAge = baseAge + ageIncrement;
+      } else {
+        ageIncrement = randomIndex.nextInt(physClassDif);
+        baseAge = baseAge + ageIncrement;
+      }
+    }
+    bool containsMent = listOfClasses.mentalClasses
+        .any((element) => element.name == char.charClass.name);
+    if (containsMent) {
+      ageIncrement = randomIndex.nextInt(mentClassDif);
+      baseAge = baseAge + ageIncrement;
+    }
+    if (char.charLevel > 4) {
+      for (var i = 4; i < char.charLevel; i = i + 4) {
+        baseAge = baseAge + 1.5;
+      }
+    }
+    return baseAge.toInt();
+  }
+
+  ///calculate character's Age
+  claculateAge() {
+    var char = generatedChar;
+    var raceGotten = listOfRaces.races
+        .firstWhere((element) => element.name == char.charRace.name);
+    var baseAge = raceGotten.age;
+    var tempRaceAge = 0;
+    switch (char.charRace.name) {
+      case "Dwarf":
+        tempRaceAge = ajustAgeAccordingtoRace(char, 30, 60);
+        break;
+      case "Elf":
+        tempRaceAge = ajustAgeAccordingtoRace(char, 30, 60);
+        break;
+      case "Gnome":
+        tempRaceAge = ajustAgeAccordingtoRace(char, 20, 40);
+        break;
+      case "Hafling":
+        tempRaceAge = ajustAgeAccordingtoRace(char, 10, 20);
+        break;
+      case "Half-elf":
+        tempRaceAge = ajustAgeAccordingtoRace(char, 10, 20);
+        break;
+      case "Half-orc":
+        tempRaceAge = ajustAgeAccordingtoRace(char, 7, 14);
+        break;
+      case "Human":
+        tempRaceAge = ajustAgeAccordingtoRace(char, 8, 16);
+        break;
+      case "Orc":
+        tempRaceAge = ajustAgeAccordingtoRace(char, 4, 12);
+        break;
+      default:
+    }
+    generatedChar.charRace.age = baseAge! + tempRaceAge;
     notifyListeners();
   }
 
@@ -836,7 +927,9 @@ class CharController extends ChangeNotifier {
 
   updateCharModel() {
     generatedChar = CharModel(
-        charRace: chosenRace.copyWith(
+        charRace: RaceModel(
+          name: chosenRace.name,
+          isSelected: chosenRace.isSelected,
           height: KeyValueModel(key: 0, value: 0),
           weight: 0,
           age: 0,
@@ -950,10 +1043,14 @@ class CharController extends ChangeNotifier {
         sortAtributesToClass(atrbValues[3], atrbValues[3], atrbValues[3],
             atrbValues[3], atrbValues[3], atrbValues[3]);
     }
+    ajustStatsToRace();
     applyHeight();
+    claculateWeight();
     ajustStatsToLevel();
     calculateAllModifiers();
     generateHitPoints();
+    calculateSpeed();
+    claculateAge();
   }
 
   ClassModel? findIfClassIsPhysicalOrMental(
@@ -973,7 +1070,6 @@ class CharController extends ChangeNotifier {
   }
 
   ajustStatsToLevel() {
-    var race = generatedChar.charRace;
     var physicalChars = listOfClasses.physicalClasses;
     var mentalChars = listOfClasses.mentalClasses;
     int level = levelSelected + 1;
@@ -981,7 +1077,6 @@ class CharController extends ChangeNotifier {
     ClassModel? classGotten =
         findIfClassIsPhysicalOrMental(mentalChars, physicalChars);
     double secondaryAtributeIncrement = 0.0;
-    ajustStatsToRace(race, classGotten!);
     var atrbValues = generatedChar.baseAtributes;
     if (physicalChars.contains(classGotten)) {
       for (var i = 0; i < level; i = i + 4) {
@@ -1051,11 +1146,12 @@ class CharController extends ChangeNotifier {
     return doubleValue.toInt();
   }
 
-  ajustStatsToRace(RaceModel race, ClassModel klass) {
-    if (race.name == "Human" ||
-        race.name == "Half-elf" ||
-        race.name == "Half-orc") {
-      switch (klass.mainAtrb) {
+  ajustStatsToRace() {
+    var char = generatedChar;
+    if (char.charRace.name == "Human" ||
+        char.charRace.name == "Half-elf" ||
+        char.charRace.name == "Half-orc") {
+      switch (char.charClass.mainAtrb) {
         case "Str":
           calculateAjustToRace(2, 0, 0, 0, 0, 0);
           break;
@@ -1074,7 +1170,7 @@ class CharController extends ChangeNotifier {
         default:
       }
     }
-    switch (race.name) {
+    switch (char.charRace.name) {
       case "Orc":
         calculateAjustToRace(4, 0, 2, -2, -2, -2);
         break;
@@ -1092,7 +1188,6 @@ class CharController extends ChangeNotifier {
         break;
       default:
     }
-    claculateWeight();
   }
 
   calculateAjustToRace(
