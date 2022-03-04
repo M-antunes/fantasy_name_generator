@@ -6,10 +6,11 @@ class RaceData {
     RaceModel(
       name: 'Dwarf',
       isSelected: true,
-      height: KeyValueModel(key: 3, value: 2),
+      height: KeyValueModel(key: 3, value: 9),
       age: 40,
-      weight: 90,
+      weight: 150,
       speed: 20,
+      size: "Medium",
       traits: [
         KeyValueModel(
             key: '+2 Constitution, +2 Wisdom, –2 Charisma:',
@@ -52,8 +53,9 @@ class RaceData {
       isSelected: false,
       height: KeyValueModel(key: 5, value: 4),
       age: 110,
-      weight: 120,
+      weight: 110,
       speed: 30,
+      size: "Medium",
       traits: [
         KeyValueModel(
             key: "+2 Dexterity, +2 Intelligence, –2 Constitution:",
@@ -86,10 +88,11 @@ class RaceData {
     RaceModel(
       name: 'Gnome',
       isSelected: false,
-      height: KeyValueModel(key: 2, value: 8),
+      height: KeyValueModel(key: 2, value: 10),
       age: 40,
       weight: 40,
       speed: 20,
+      size: "Small",
       traits: [
         KeyValueModel(
             key: "+2 Constitution, +2 Charisma, –2 Strength:",
@@ -130,10 +133,11 @@ class RaceData {
     RaceModel(
       name: 'Hafling',
       isSelected: false,
-      height: KeyValueModel(key: 2, value: 6),
+      height: KeyValueModel(key: 2, value: 8),
       age: 20,
       weight: 35,
       speed: 20,
+      size: "Small",
       traits: [
         KeyValueModel(
             key: "+2 Dexterity, +2 Charisma, –2 Strength:",
@@ -168,8 +172,9 @@ class RaceData {
       isSelected: false,
       height: KeyValueModel(key: 5, value: 4),
       age: 20,
-      weight: 130,
+      weight: 120,
       speed: 30,
+      size: "Medium",
       traits: [
         KeyValueModel(
             key: "+2 to One Ability Score:",
@@ -207,10 +212,11 @@ class RaceData {
     RaceModel(
       name: "Half-orc",
       isSelected: false,
-      height: KeyValueModel(key: 5, value: 4),
+      height: KeyValueModel(key: 5, value: 0),
       age: 13,
       weight: 150,
       speed: 30,
+      size: "Medium",
       traits: [
         KeyValueModel(
             key: "+2 to One Ability Score:",
@@ -243,10 +249,11 @@ class RaceData {
     RaceModel(
       name: 'Human',
       isSelected: false,
-      height: KeyValueModel(key: 5, value: 2),
+      height: KeyValueModel(key: 5, value: 0),
       age: 15,
-      weight: 140,
+      weight: 120,
       speed: 30,
+      size: "Medium",
       traits: [
         KeyValueModel(
             key: "+2 to One Ability Score:",
@@ -272,10 +279,11 @@ class RaceData {
     RaceModel(
       name: 'Orc',
       isSelected: false,
-      height: KeyValueModel(key: 5, value: 6),
+      height: KeyValueModel(key: 5, value: 3),
       age: 11,
       weight: 180,
       speed: 30,
+      size: "Medium",
       traits: [
         KeyValueModel(
             key: "+4 to Strength:",

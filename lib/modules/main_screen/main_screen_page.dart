@@ -1,4 +1,5 @@
 import 'package:fantasy_name_generator/modules/selection_sections/race_selection.dart';
+import 'package:fantasy_name_generator/shared/widgets/call_message_snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -103,7 +104,12 @@ class _MainScreenPageState extends State<MainScreenPage>
             if (state.creationStage == 3)
               NameSelection(
                 onGenerate: () => namesController.newNameGenerator(),
-                onSelect: () => state.advanceCreationStage(),
+                onSelect: state.newName == " - ? - "
+                    ? () => callMessageSnackbar(
+                        context,
+                        "You must generate a name first",
+                        AppColors.warningColor)
+                    : () => state.advanceCreationStage(),
               ),
             if (state.creationStage == 4)
               ClassSelection(onTap: () {
@@ -130,6 +136,7 @@ class _MainScreenPageState extends State<MainScreenPage>
                 }
                 state.updateLevelSelectedIfEpic();
                 state.updateCharModel();
+                state.isCharGeneratorCleared = true;
                 state.advanceCreationStage();
               }),
             if (state.creationStage == 7)

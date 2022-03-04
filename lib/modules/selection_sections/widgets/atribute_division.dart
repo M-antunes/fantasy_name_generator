@@ -31,7 +31,7 @@ class AtributeDivision extends StatelessWidget {
         if (label2 != null)
           Text(
             label2!,
-            style: TextStyle(color: Colors.grey[600], fontSize: 11),
+            style: TextStyle(color: Colors.grey[600], fontSize: 12),
           ),
         SizedBox(height: size.height * 0.01),
       ],

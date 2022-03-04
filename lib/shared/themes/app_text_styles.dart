@@ -58,7 +58,7 @@ class AppTextStyle {
   static const statsLabel = TextStyle(
     fontWeight: FontWeight.w500,
     color: Colors.grey,
-    fontSize: 11,
+    fontSize: 13,
   );
   static const selectButtonNotReady = TextStyle(
     fontWeight: FontWeight.w500,
@@ -78,6 +78,6 @@ class AppTextStyle {
   static const traitDescription = TextStyle(
     fontWeight: FontWeight.w400,
     color: Colors.grey,
-    fontSize: 12,
+    fontSize: 13,
   );
 }

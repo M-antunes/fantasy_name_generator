@@ -1,3 +1,4 @@
+import 'package:fantasy_name_generator/shared/widgets/app_animated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -48,7 +49,11 @@ class ClassSelection extends StatelessWidget {
                         state.switchClass(charClass);
                       });
                 }),
-            AdvanceButton(size: size, onTap: onTap)
+            SizedBox(height: size.height * 0.03),
+            AppAnimatedButton(
+              onGenerate: onTap,
+              label: "Advance >",
+            )
           ],
         );
       }),

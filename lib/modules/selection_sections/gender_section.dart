@@ -1,3 +1,4 @@
+import 'package:fantasy_name_generator/shared/widgets/app_animated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/src/provider.dart';
@@ -27,14 +28,14 @@ class GenderSelection extends StatelessWidget {
               children: [
                 InkWell(
                   child: AnimatedContainer(
-                    duration: Duration(milliseconds: 300),
+                    duration: const Duration(milliseconds: 300),
                     height: size.height * 0.3,
                     width: state.isMale ? size.width * 0.7 : size.width * 0.28,
-                    child: FittedBox(
+                    child: const FittedBox(
                       fit: BoxFit.fitWidth,
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Icon(Icons.male_rounded),
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        child: const Icon(Icons.male_rounded),
                       ),
                     ),
                   ),
@@ -47,14 +48,14 @@ class GenderSelection extends StatelessWidget {
                 ),
                 InkWell(
                   child: AnimatedContainer(
-                    duration: Duration(milliseconds: 300),
+                    duration: const Duration(milliseconds: 300),
                     height: size.height * 0.3,
                     width:
                         state.isFemale ? size.width * 0.7 : size.width * 0.28,
-                    child: FittedBox(
+                    child: const FittedBox(
                       fit: BoxFit.fitWidth,
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        padding: EdgeInsets.symmetric(horizontal: 10),
                         child: Icon(Icons.female_rounded),
                       ),
                     ),
@@ -63,10 +64,11 @@ class GenderSelection extends StatelessWidget {
                 ),
               ],
             ),
-            AdvanceButton(
-              size: size,
-              onTap: onTap,
-            ),
+            SizedBox(height: size.height * 0.03),
+            AppAnimatedButton(
+              onGenerate: onTap,
+              label: "Advance >",
+            )
           ],
         );
       }),

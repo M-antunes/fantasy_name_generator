@@ -21,14 +21,14 @@ class NameSelection extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(
-            vertical: 5,
-          ),
-          child: Consumer<CharController>(builder: (context, state, child) {
-            return InkWell(
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        vertical: 5,
+      ),
+      child: Consumer<CharController>(builder: (context, state, child) {
+        return Column(
+          children: [
+            InkWell(
               borderRadius: BorderRadius.circular(10),
               onDoubleTap: () => state.switchNameAndLastName(),
               child: Container(
@@ -66,15 +66,19 @@ class NameSelection extends StatelessWidget {
                 "Double tap to switch name and last name",
                 Colors.grey[700],
               ),
-            );
-          }),
-        ),
-        SizedBox(
-          height: size.height * 0.01,
-        ),
-        AppAnimatedButton(onGenerate: onGenerate),
-        AdvanceButton(size: size, onTap: onSelect)
-      ],
+            ),
+            SizedBox(
+              height: size.height * 0.01,
+            ),
+            AppAnimatedButton(onGenerate: onGenerate),
+            SizedBox(height: size.height * 0.03),
+            AppAnimatedButton(
+              onGenerate: onSelect,
+              label: "Advance >",
+            )
+          ],
+        );
+      }),
     );
   }
 }

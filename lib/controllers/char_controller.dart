@@ -253,29 +253,50 @@ class CharController extends ChangeNotifier {
 
 // Physical characteristics based on race and atributes
 
-  /// calculates height for all character
-  applyHeight() {
+  /// calculates height and weight for all character
+  applyHeightAndWeight() {
     var char = generatedChar;
+    var increment = 0;
     var raceGotten = listOfRaces.races
         .firstWhere((element) => element.name == char.charRace.name);
-    var baseHeight = raceGotten.height!;
-    char.charRace.height!.key = baseHeight.key;
-    char.charRace.height!.value = baseHeight.value;
-    if (generatedChar.charRace.name == "Dwarf" ||
-        generatedChar.charRace.name == "Gnome" ||
-        generatedChar.charRace.name == "Hafling") {
-      var increaseHeight = randomIndex.nextInt(3) + 1;
-      char.charRace.height!.value += increaseHeight;
-      if (char.charClass.mainAtrb == "Str") {
-        char.charRace.height!.value += (increaseHeight / 2).floor();
+    int baseInches = raceGotten.height!.value;
+    int baseFeet = raceGotten.height!.key;
+    var baseWeight = raceGotten.weight!;
+    if (char.charRace.name == "Dwarf" || char.charRace.size == "Small") {
+      increment = rollingDice(4) + rollingDice(4);
+      baseInches += increment;
+      if (char.charRace.name == "Dwarf") {
+        baseWeight += (increment * 7);
+      } else {
+        baseWeight += (increment * 1.5);
       }
-      transformInchToFoot(char);
-      generatedChar.charRace.height!.key = char.charRace.height!.key;
-      generatedChar.charRace.height!.value = char.charRace.height!.value;
-      notifyListeners();
+    } else if (char.charRace.name == "Half-elf" ||
+        char.charRace.name == "Elf") {
+      increment = rollingDice(8) + rollingDice(8);
+      baseInches += increment;
+      baseWeight += (increment * 3);
+    } else if (char.charRace.name == "Half-orc" ||
+        char.charRace.name == "Human") {
+      increment = rollingDice(10) + rollingDice(10);
+      baseInches += increment;
+      baseWeight += (increment * 5);
     } else {
-      calculateHeight(char);
+      increment = rollingDice(12) + rollingDice(12);
+      baseInches += increment;
+      baseWeight += (increment * 7);
     }
+    if (char.charClass.mainAtrb == "Str" && char.charRace.size != "Small") {
+      baseInches += rollingDice(6);
+      baseWeight += rollingDice(20) + rollingDice(20);
+    }
+    if (char.baseAtributes.constitution! > 14) {
+      baseWeight += rollingDice(20);
+    }
+    char.charRace.height!.value = baseInches;
+    char.charRace.height!.key = baseFeet;
+    char.charRace.weight = baseWeight;
+    transformInchToFoot(char);
+    notifyListeners();
   }
 
   /// changes inches to foot
@@ -286,73 +307,6 @@ class CharController extends ChangeNotifier {
         char.charRace.height!.key += 1;
       }
     }
-  }
-
-  /// calculates heights for medium size characters
-  calculateHeight(CharModel char) {
-    int baseFeet = char.charRace.height!.key;
-    var inchesToAdd = calculateIncreaseInheight(char);
-    double extraInches = 0;
-    double extraFeet = 0.0;
-    for (var i = 0; i < inchesToAdd; i++) {
-      extraFeet++;
-    }
-    extraInches = extraFeet % 10;
-    extraFeet /= 10;
-    char.baseAtributes.constitution! > 16 ? extraInches += 2 : extraInches += 0;
-    char.charRace.height!.key = baseFeet + extraFeet.floor();
-    char.charRace.height!.value += extraInches;
-    transformInchToFoot(char);
-    generatedChar.charRace.height!.key = char.charRace.height!.key;
-    generatedChar.charRace.height!.value = char.charRace.height!.value.floor();
-    notifyListeners();
-  }
-
-  /// calculates the amount of the increment
-  int calculateIncreaseInheight(CharModel char) {
-    int change = 0;
-    int constt = char.baseAtributes.constitution!;
-    int str = char.baseAtributes.strength!;
-    int endurance = constt + str;
-    for (var i = 20; i < endurance; i = i + 2) {
-      change++;
-    }
-    return change;
-  }
-
-  /// calculates charater's weight
-  claculateWeight() {
-    var char = generatedChar;
-    var raceGotten = listOfRaces.races
-        .firstWhere((element) => element.name == char.charRace.name);
-    var baseWeight = raceGotten.weight!.toInt();
-    var extraWeight = 0.0;
-    if (char.charRace.name == "Dwarf" ||
-        char.charRace.name == "Gnome" ||
-        char.charRace.name == "Hafling") {
-      if (char.charClass.mainAtrb == "Str") {
-        extraWeight = randomIndex.nextInt(baseWeight).toDouble();
-        extraWeight = extraWeight * 0.4;
-      } else {
-        extraWeight = randomIndex.nextInt(baseWeight).toDouble();
-        extraWeight = extraWeight * 0.2;
-      }
-    } else {
-      if (char.charClass.mainAtrb == "Str") {
-        extraWeight = randomIndex.nextInt(baseWeight).toDouble();
-        char.modAtributes.constitution! > 3 ? extraWeight += 20 : extraWeight++;
-        extraWeight = extraWeight * 0.6;
-      } else {
-        extraWeight = randomIndex.nextInt(baseWeight).toDouble();
-        extraWeight = extraWeight * 0.3;
-      }
-    }
-    if (char.charClass.name == "Ranger" || char.charClass.name == "Rogue") {
-      extraWeight -= 15;
-    }
-    var totalWeight = baseWeight + extraWeight;
-    generatedChar.charRace.weight = totalWeight;
-    notifyListeners();
   }
 
   ///calculate characters speed
@@ -994,7 +948,7 @@ class CharController extends ChangeNotifier {
             atrbValues[4], atrbValues[3], atrbValues[5]);
         break;
       case "Alchemist":
-        sortAtributesToClass(atrbValues[5], atrbValues[3], atrbValues[2],
+        sortAtributesToClass(atrbValues[5], atrbValues[2], atrbValues[3],
             atrbValues[0], atrbValues[1], atrbValues[4]);
         break;
       case "Wizard":
@@ -1050,14 +1004,14 @@ class CharController extends ChangeNotifier {
             atrbValues[3], atrbValues[3], atrbValues[3]);
     }
     ajustStatsToRace();
-    applyHeight();
-    claculateWeight();
+    applyHeightAndWeight();
     ajustStatsToLevel();
     calculateAllModifiers();
     generateHitPoints();
     calculateSpeed();
     claculateAge();
     calculateBaseAttackBonus();
+    calculateCombatManeuvers();
   }
 
   ClassModel? findIfClassIsPhysicalOrMental(
@@ -1261,7 +1215,7 @@ class CharController extends ChangeNotifier {
     armorAc = 10 + char.modAtributes.dexterity!;
     touch = 10 + char.modAtributes.dexterity!;
     surprise = 10;
-    if (chosenRace.name == "Hafling" || chosenRace.name == "Gnome") {
+    if (chosenRace.size == "Small") {
       armorAc++;
       touch++;
     }
@@ -1374,6 +1328,19 @@ class CharController extends ChangeNotifier {
       }
     }
     generatedChar.combatStats.baseAttackBonus = baseAttackBonus;
+    notifyListeners();
+  }
+
+  calculateCombatManeuvers() {
+    var char = generatedChar;
+    var bAttackBonus = char.combatStats.baseAttackBonus;
+    var atributes = char.modAtributes;
+    var cmb = 0;
+    var cmd = 0;
+    cmb = bAttackBonus! + atributes.strength!;
+    cmd = bAttackBonus + atributes.strength! + atributes.dexterity! + 10;
+    generatedChar.combatStats.combatManeuverBonus = cmb;
+    generatedChar.combatStats.combatManeuverDefense = cmd;
     notifyListeners();
   }
 

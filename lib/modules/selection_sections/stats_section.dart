@@ -1,3 +1,4 @@
+import 'package:fantasy_name_generator/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -206,13 +207,15 @@ class CharProgression extends StatelessWidget {
                     DefenseInfo(
                       size: size,
                       label: "CMB:",
-                      value: state.generatedChar.hitPoints,
+                      value:
+                          state.generatedChar.combatStats.combatManeuverBonus!,
                     ),
                     SizedBox(width: size.width * 0.03),
                     DefenseInfo(
                       size: size,
                       label: "CMD:",
-                      value: state.generatedChar.hitPoints,
+                      value: state
+                          .generatedChar.combatStats.combatManeuverDefense!,
                     ),
                   ],
                 ),
@@ -262,21 +265,46 @@ class CharProgression extends StatelessWidget {
                   ],
                 ),
                 SizedBox(height: size.height * 0.05),
-                Align(
-                  alignment: Alignment.center,
-                  child: state.isCharGeneratorCleared
-                      ? AppAnimatedButton(onGenerate: onGenerate)
-                      : AppAnimatedButton(
-                          onGenerate: onGenerate, label: "Clear"),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    AppAnimatedButton(
+                      color:
+                          state.isCharGeneratorCleared ? Colors.white10 : null,
+                      onGenerate:
+                          state.isCharGeneratorCleared ? () {} : onGenerate,
+                      label: "Clear",
+                      style: state.isCharGeneratorCleared
+                          ? const TextStyle(color: Colors.white24, fontSize: 22)
+                          : null,
+                    ),
+                    AppAnimatedButton(
+                      color:
+                          !state.isCharGeneratorCleared ? Colors.white10 : null,
+                      onGenerate:
+                          !state.isCharGeneratorCleared ? () {} : onGenerate,
+                      label: "Generate",
+                      style: !state.isCharGeneratorCleared
+                          ? const TextStyle(color: Colors.white24, fontSize: 22)
+                          : null,
+                    ),
+                  ],
                 ),
+                SizedBox(height: size.height * 0.05),
+                Center(
+                  child: AppAnimatedButton(
+                    color: state.isCharGeneratorCleared ? Colors.white10 : null,
+                    onGenerate: state.isCharGeneratorCleared ? () {} : onTap,
+                    label: "Confirm",
+                    style: state.isCharGeneratorCleared
+                        ? const TextStyle(color: Colors.white24, fontSize: 22)
+                        : null,
+                  ),
+                ),
+                SizedBox(height: size.height * 0.02),
               ],
             );
           }),
-          AdvanceButton(
-            size: size,
-            onTap: onTap,
-            label: "CONFIRM",
-          )
         ],
       ),
     );
