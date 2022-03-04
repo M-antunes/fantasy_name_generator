@@ -1,20 +1,19 @@
-import 'package:fantasy_name_generator/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:fantasy_name_generator/controllers/char_controller.dart';
-import 'package:fantasy_name_generator/modules/selection_sections/widgets/advance_button.dart';
 import 'package:fantasy_name_generator/shared/themes/app_text_styles.dart';
 import 'package:fantasy_name_generator/shared/widgets/app_animated_button.dart';
 
 import 'widgets/atribute_division.dart';
 import 'widgets/char_description_column.dart';
+import 'widgets/defense_info.dart';
 import 'widgets/stats_description_column.dart';
 
-class CharProgression extends StatelessWidget {
+class StatsSection extends StatelessWidget {
   final VoidCallback onTap;
   final VoidCallback onGenerate;
-  const CharProgression({
+  const StatsSection({
     Key? key,
     required this.onTap,
     required this.onGenerate,
@@ -93,11 +92,8 @@ class CharProgression extends StatelessWidget {
                       child: CharDescriptionColumn(
                         labeltop: "Height:",
                         labelBottom: "Weight:",
-                        textValueTop: state
-                                    .generatedChar.charRace.height!.key !=
-                                0
-                            ? "${state.generatedChar.charRace.height!.key} ft. ${state.generatedChar.charRace.height!.value} in."
-                            : "0",
+                        textValueTop:
+                            "${state.generatedChar.charRace.height!.key} ft. ${state.generatedChar.charRace.height!.value} in.",
                         textValueBottom:
                             "${state.generatedChar.charRace.weight!.toInt()} lbs.",
                       ),
@@ -105,13 +101,11 @@ class CharProgression extends StatelessWidget {
                     SizedBox(
                       width: size.width * 0.5,
                       child: CharDescriptionColumn(
-                        labeltop: "Age:",
-                        labelBottom: "Speed:",
-                        textValueTop: "${state.generatedChar.charRace.age}",
-                        textValueBottom: state.generatedChar.charRace.speed != 0
-                            ? "${state.generatedChar.charRace.speed} ft."
-                            : "0",
-                      ),
+                          labeltop: "Age:",
+                          labelBottom: "Speed:",
+                          textValueTop: "${state.generatedChar.charRace.age}",
+                          textValueBottom:
+                              "${state.generatedChar.charRace.speed} ft."),
                     ),
                   ],
                 ),
@@ -119,7 +113,7 @@ class CharProgression extends StatelessWidget {
                   size: size,
                   label: "ATRIBUTES  (BASE / MODIFIER)",
                   label2:
-                      "These values might get increased depending on equipment",
+                      "These values might be altered depending on equipment",
                 ),
                 Row(
                   children: [
@@ -189,7 +183,7 @@ class CharProgression extends StatelessWidget {
                   size: size,
                   label: "COMBAT",
                   label2:
-                      "These values might get increased depending on equipment",
+                      "These values might be altered depending on equipment",
                 ),
                 DefenseInfo(
                   size: size,
@@ -265,86 +259,63 @@ class CharProgression extends StatelessWidget {
                   ],
                 ),
                 SizedBox(height: size.height * 0.05),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    AppAnimatedButton(
-                      color:
-                          state.isCharGeneratorCleared ? Colors.white10 : null,
-                      onGenerate:
-                          state.isCharGeneratorCleared ? () {} : onGenerate,
-                      label: "Clear",
-                      style: state.isCharGeneratorCleared
-                          ? const TextStyle(color: Colors.white24, fontSize: 22)
-                          : null,
-                    ),
-                    AppAnimatedButton(
-                      color:
-                          !state.isCharGeneratorCleared ? Colors.white10 : null,
-                      onGenerate:
-                          !state.isCharGeneratorCleared ? () {} : onGenerate,
-                      label: "Generate",
-                      style: !state.isCharGeneratorCleared
-                          ? const TextStyle(color: Colors.white24, fontSize: 22)
-                          : null,
-                    ),
-                  ],
-                ),
-                SizedBox(height: size.height * 0.05),
-                Center(
-                  child: AppAnimatedButton(
-                    color: state.isCharGeneratorCleared ? Colors.white10 : null,
-                    onGenerate: state.isCharGeneratorCleared ? () {} : onTap,
-                    label: "Confirm",
-                    style: state.isCharGeneratorCleared
-                        ? const TextStyle(color: Colors.white24, fontSize: 22)
-                        : null,
+                if (state.creationStage != 8)
+                  Column(
+                    children: [
+                      Center(
+                        child: AppAnimatedButton(
+                          color: !state.isCharGeneratorCleared
+                              ? Colors.white10
+                              : null,
+                          onGenerate: !state.isCharGeneratorCleared
+                              ? () {}
+                              : onGenerate,
+                          label: "Generate",
+                          style: !state.isCharGeneratorCleared
+                              ? const TextStyle(
+                                  color: Colors.white24, fontSize: 22)
+                              : null,
+                        ),
+                      ),
+                      SizedBox(height: size.height * 0.05),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          AppAnimatedButton(
+                            color: state.isCharGeneratorCleared
+                                ? Colors.white10
+                                : null,
+                            onGenerate: state.isCharGeneratorCleared
+                                ? () {}
+                                : onGenerate,
+                            label: "Clear",
+                            style: state.isCharGeneratorCleared
+                                ? const TextStyle(
+                                    color: Colors.white24, fontSize: 22)
+                                : null,
+                          ),
+                          AppAnimatedButton(
+                            color: state.isCharGeneratorCleared
+                                ? Colors.white10
+                                : null,
+                            onGenerate:
+                                state.isCharGeneratorCleared ? () {} : onTap,
+                            label: "Confirm",
+                            style: state.isCharGeneratorCleared
+                                ? const TextStyle(
+                                    color: Colors.white24, fontSize: 22)
+                                : null,
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: size.height * 0.02),
+                    ],
                   ),
-                ),
-                SizedBox(height: size.height * 0.02),
               ],
             );
           }),
         ],
       ),
-    );
-  }
-}
-
-class DefenseInfo extends StatelessWidget {
-  final Size size;
-  final String label;
-  final int value;
-  const DefenseInfo({
-    Key? key,
-    required this.size,
-    required this.label,
-    required this.value,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SizedBox(
-          width: size.width * 0.26,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(label, style: AppTextStyle.statsLabel),
-              CircleAvatar(
-                backgroundColor: Colors.grey[900],
-                radius: 16,
-                child: Text(
-                  value.toString(),
-                  style: AppTextStyle.modefier,
-                ),
-              ),
-            ],
-          ),
-        ),
-        SizedBox(height: size.height * 0.005),
-      ],
     );
   }
 }

@@ -1,17 +1,19 @@
-import 'package:fantasy_name_generator/modules/selection_sections/race_selection.dart';
-import 'package:fantasy_name_generator/shared/widgets/call_message_snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:fantasy_name_generator/controllers/char_controller.dart';
 import 'package:fantasy_name_generator/modules/main_screen/widgets/progression_bar.dart';
 import 'package:fantasy_name_generator/modules/main_screen/widgets/selection_label.dart';
-import 'package:fantasy_name_generator/modules/selection_sections/alignment_selection.dart';
+import 'package:fantasy_name_generator/modules/selection_sections/alignment_section.dart';
 import 'package:fantasy_name_generator/modules/selection_sections/class_section.dart';
 import 'package:fantasy_name_generator/modules/selection_sections/gender_section.dart';
 import 'package:fantasy_name_generator/modules/selection_sections/level_section.dart';
 import 'package:fantasy_name_generator/modules/selection_sections/name_section.dart';
+import 'package:fantasy_name_generator/modules/selection_sections/race_section.dart';
 import 'package:fantasy_name_generator/shared/themes/app_colors.dart';
+import 'package:fantasy_name_generator/shared/themes/app_text_styles.dart';
+import 'package:fantasy_name_generator/shared/widgets/app_animated_button.dart';
+import 'package:fantasy_name_generator/shared/widgets/call_message_snackbar.dart';
 
 import '../selection_sections/stats_section.dart';
 
@@ -140,24 +142,85 @@ class _MainScreenPageState extends State<MainScreenPage>
                 state.advanceCreationStage();
               }),
             if (state.creationStage == 7)
-              CharProgression(
+              StatsSection(
                   onGenerate: state.isCharGeneratorCleared
                       ? () {
                           state.generateAllAtributs();
-                          state.claculatingHitDefense();
-                          state.calculateResistances();
                           state.isCharGeneratorCleared =
                               !state.isCharGeneratorCleared;
                         }
                       : () {
                           state.updateCharModel();
                         },
-                  onTap: () {
-                    state.advanceCreationStage();
-                  }),
+                  onTap: () => state.advanceCreationStage()),
+            if (state.creationStage == 8)
+              ProgressCheck(
+                onAdvance: () => state.advanceCreationStage(),
+              )
           ],
         );
       }),
+    );
+  }
+}
+
+class ProgressCheck extends StatelessWidget {
+  final VoidCallback onAdvance;
+  const ProgressCheck({
+    Key? key,
+    required this.onAdvance,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Text(
+              "Your Character has no equipment so far. You can either check it out or advance to equipement",
+              textAlign: TextAlign.center,
+              style: AppTextStyle.selectButtonReady,
+            ),
+          ),
+          SizedBox(height: size.height * 0.1),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              AppAnimatedButton(
+                  label: "Check",
+                  onGenerate: () {
+                    showBottomSheet(
+                        context: context,
+                        builder: (context) {
+                          return SizedBox(
+                            height: size.height * 0.6,
+                            child: ListView(
+                              children: [
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 5),
+                                  child: Container(
+                                    width: size.width - 20,
+                                    height: size.height * 0.01,
+                                    color: AppColors.primaryGold,
+                                  ),
+                                ),
+                                StatsSection(onTap: () {}, onGenerate: () {})
+                              ],
+                            ),
+                          );
+                        });
+                  }),
+              AppAnimatedButton(label: "Advance", onGenerate: onAdvance),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

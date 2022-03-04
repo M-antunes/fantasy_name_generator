@@ -1010,6 +1010,8 @@ class CharController extends ChangeNotifier {
     generateHitPoints();
     calculateSpeed();
     claculateAge();
+    claculatingHitDefense();
+    calculateResistances();
     calculateBaseAttackBonus();
     calculateCombatManeuvers();
   }

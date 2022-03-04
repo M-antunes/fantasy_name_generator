@@ -19,7 +19,7 @@ class AppAnimatedButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedButton(
-      width: 150,
+      width: 120,
       color: color ?? Colors.grey[900]!,
       duration: 30,
       height: 40,
