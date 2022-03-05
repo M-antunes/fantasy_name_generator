@@ -8,12 +8,11 @@ ScaffoldFeatureController<SnackBar, SnackBarClosedReason> callMessageSnackbar(
 ) =>
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
+        behavior: SnackBarBehavior.floating,
+        margin: EdgeInsets.symmetric(horizontal: 12),
         duration: const Duration(milliseconds: 1800),
         shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(20),
-            topRight: Radius.circular(20),
-          ),
+          borderRadius: BorderRadius.all(Radius.circular(20)),
         ),
         backgroundColor: color,
         content: Row(

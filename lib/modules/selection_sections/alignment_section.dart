@@ -7,10 +7,8 @@ import 'package:fantasy_name_generator/controllers/char_controller.dart';
 import 'widgets/advance_button.dart';
 
 class AlignmentSelection extends StatelessWidget {
-  final VoidCallback onTap;
   const AlignmentSelection({
     Key? key,
-    required this.onTap,
   }) : super(key: key);
 
   @override

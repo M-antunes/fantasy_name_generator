@@ -9,10 +9,8 @@ import 'package:fantasy_name_generator/shared/themes/app_colors.dart';
 import 'widgets/level_choice_campaign_buttonm.dart';
 
 class LevelSelection extends StatelessWidget {
-  final VoidCallback onTap;
   const LevelSelection({
     Key? key,
-    required this.onTap,
   }) : super(key: key);
 
   @override

@@ -58,6 +58,7 @@ class CharController extends ChangeNotifier {
   bool isRegularLevelSelected = true;
   bool isEpicLevelSelected = false;
   bool isCharGeneratorCleared = true;
+  bool loading = true;
 
 // Functions related to the level Section
 
@@ -120,6 +121,8 @@ class CharController extends ChangeNotifier {
     }
     race.isSelected = !race.isSelected;
     tempRaceForSwitching = race;
+    newName = ' - ? - ';
+    newLastName = ' - ? - ';
     notifyListeners();
   }
 
@@ -241,12 +244,16 @@ class CharController extends ChangeNotifier {
   switchToMale() {
     isMale = true;
     isFemale = false;
+    newName = ' - ? - ';
+    newLastName = ' - ? - ';
     notifyListeners();
   }
 
   switchToFemale() {
     isFemale = true;
     isMale = false;
+    newName = ' - ? - ';
+    newLastName = ' - ? - ';
     notifyListeners();
   }
 // ====================================================================================
@@ -1348,7 +1355,7 @@ class CharController extends ChangeNotifier {
   }
 
 //=======================================================================================
-  // Section for Equipment of the character
+  //
 
   String? activateNextButton() {
     if (creationStage == 1) {
@@ -1356,25 +1363,22 @@ class CharController extends ChangeNotifier {
       advanceCreationStage();
       return null;
     } else if (creationStage == 2) {
-      advanceCreationStage();
-      return null;
-    } else if (creationStage == 3) {
       if (newName == " - ? - ") {
         return "You must generate a name first";
       } else {
         advanceCreationStage();
+        return null;
       }
-      return null;
-    } else if (creationStage == 4) {
+    } else if (creationStage == 3) {
       updateChosenClass();
       filterAlignmentsToClass();
       advanceCreationStage();
       return null;
-    } else if (creationStage == 5) {
+    } else if (creationStage == 4) {
       updateChosenAlignment();
       advanceCreationStage();
       return null;
-    } else if (creationStage == 6) {
+    } else if (creationStage == 5) {
       if (levelSelected == -1) {
         return "You need to select a level befor advancing";
       } else {
@@ -1384,60 +1388,9 @@ class CharController extends ChangeNotifier {
         advanceCreationStage();
       }
       return null;
-    } else if (creationStage == 7) {
+    } else if (creationStage == 6) {
       advanceCreationStage();
       return null;
     }
-
-    // ,
   }
-
-  // callAllFunctionsAccordingToCurrentStage(BuildContext context, Color color) {
-  //   if (creationStage == 1) {
-  //     updateChosenRace();
-  //     advanceCreationStage();
-  //   }
-  //   if (creationStage == 2) {
-  //     advanceCreationStage();
-  //   }
-  //   if (creationStage == 3) {
-  //     newNameGenerator();
-  //     newName == " - ? - "
-  //         ? () => callMessageSnackbar(
-  //             context, "You must generate a name first", color)
-  //         : () => advanceCreationStage();
-  //   }
-  //   if (creationStage == 4) {
-  //     updateChosenClass();
-  //     filterAlignmentsToClass();
-  //     advanceCreationStage();
-  //   }
-  //   if (creationStage == 5) {
-  //     updateChosenAlignment();
-  //     advanceCreationStage();
-  //   }
-  //   if (creationStage == 6) {
-  //     if (levelSelected == -1) {
-  //       showErrorSnackBarIfLevelIsZero(
-  //         context,
-  //         "You need to select a level befor advancing",
-  //         color,
-  //       );
-  //       return;
-  //     }
-  //     updateLevelSelectedIfEpic();
-  //     updateCharModel();
-  //     isCharGeneratorCleared = true;
-  //     advanceCreationStage();
-  //   }
-  //   if (creationStage == 7) {
-  //     if (isCharGeneratorCleared) {
-  //       generateAllAtributs();
-  //       isCharGeneratorCleared = !isCharGeneratorCleared;
-  //     } else {
-  //       updateCharModel();
-  //       advanceCreationStage();
-  //     }
-  //   }
-  // }
 }

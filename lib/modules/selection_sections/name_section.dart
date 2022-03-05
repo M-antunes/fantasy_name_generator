@@ -1,10 +1,8 @@
-import 'package:animated_button/animated_button.dart';
-import 'package:fantasy_name_generator/shared/widgets/app_animated_button.dart';
+import 'package:fantasy_name_generator/shared/widgets/app_generate_button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:fantasy_name_generator/controllers/char_controller.dart';
-import 'package:fantasy_name_generator/modules/selection_sections/widgets/advance_button.dart';
 import 'package:fantasy_name_generator/shared/themes/app_text_styles.dart';
 import 'package:fantasy_name_generator/shared/widgets/call_message_snackbar.dart';
 
@@ -25,10 +23,10 @@ class NameSelection extends StatelessWidget {
       padding: const EdgeInsets.symmetric(
         vertical: 5,
       ),
-      child: Consumer<CharController>(builder: (context, state, child) {
-        return Column(
-          children: [
-            InkWell(
+      child: Column(
+        children: [
+          Consumer<CharController>(builder: (context, state, child) {
+            return InkWell(
               borderRadius: BorderRadius.circular(10),
               onDoubleTap: () => state.switchNameAndLastName(),
               child: Container(
@@ -66,30 +64,14 @@ class NameSelection extends StatelessWidget {
                 "Double tap to switch name and last name",
                 Colors.grey[700],
               ),
-            ),
-            SizedBox(
-              height: size.height * 0.01,
-            ),
-            AppAnimatedButton(
-              onTap: onGenerate,
-              label: "Generate",
-            ),
-            // SizedBox(height: size.height * 0.03),
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            //   children: [
-            //     AppAnimatedButton(
-            //       label: "Previous",
-            //       onGenerate: () => state.retreatCreationStage(),
-            //     ),
-            //     AppAnimatedButton(
-            //       onGenerate: onSelect,
-            //     ),
-            //   ],
-            // )
-          ],
-        );
-      }),
+            );
+          }),
+          SizedBox(
+            height: size.height * 0.01,
+          ),
+          AppGenerateButton(onGenerate: onGenerate)
+        ],
+      ),
     );
   }
 }
