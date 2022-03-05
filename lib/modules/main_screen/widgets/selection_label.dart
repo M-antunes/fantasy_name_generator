@@ -23,12 +23,12 @@ class SelectionLabel extends StatelessWidget {
             style: AppTextStyle.mainPageLabel,
           ),
         ),
-        Container(
-          width: size.width * 0.95,
-          height: size.height * 0.003,
-          color: Colors.grey,
-        ),
-        SizedBox(height: size.height * 0.01),
+        // Container(
+        //   width: size.width * 0.95,
+        //   height: size.height * 0.003,
+        //   color: Colors.grey,
+        // ),
+        // SizedBox(height: size.height * 0.01),
       ],
     );
   }

@@ -117,11 +117,19 @@ class LevelSelection extends StatelessWidget {
               mainAxisSpacing: 0,
             ),
           ),
-          SizedBox(height: size.height * 0.03),
-          AppAnimatedButton(
-            onGenerate: onTap,
-            label: "Advance >",
-          )
+          // SizedBox(height: size.height * 0.03),
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          //   children: [
+          //     AppAnimatedButton(
+          //       label: "Previous",
+          //       onGenerate: () => state.retreatCreationStage(),
+          //     ),
+          //     AppAnimatedButton(
+          //       onGenerate: onTap,
+          //     ),
+          //   ],
+          // )
         ],
       );
     });

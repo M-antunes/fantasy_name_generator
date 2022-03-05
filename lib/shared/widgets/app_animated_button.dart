@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:fantasy_name_generator/shared/themes/app_text_styles.dart';
 
 class AppAnimatedButton extends StatelessWidget {
-  final VoidCallback onGenerate;
+  final VoidCallback onTap;
   final String? label;
   final Color? color;
   final TextStyle? style;
   const AppAnimatedButton({
     Key? key,
-    required this.onGenerate,
+    required this.onTap,
     this.label,
     this.color,
     this.style,
@@ -23,10 +23,9 @@ class AppAnimatedButton extends StatelessWidget {
       color: color ?? Colors.grey[900]!,
       duration: 30,
       height: 40,
-      onPressed: onGenerate,
+      onPressed: onTap,
       child: Center(
-        child:
-            Text(label ?? 'Generate', style: style ?? AppTextStyle.changeRace),
+        child: Text(label ?? 'Next', style: style ?? AppTextStyle.changeRace),
       ),
     );
   }

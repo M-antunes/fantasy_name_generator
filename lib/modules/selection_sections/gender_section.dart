@@ -29,13 +29,13 @@ class GenderSelection extends StatelessWidget {
                 InkWell(
                   child: AnimatedContainer(
                     duration: const Duration(milliseconds: 300),
-                    height: size.height * 0.3,
+                    height: size.height * 0.2,
                     width: state.isMale ? size.width * 0.7 : size.width * 0.28,
                     child: const FittedBox(
                       fit: BoxFit.fitWidth,
                       child: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 10),
-                        child: const Icon(Icons.male_rounded),
+                        child: Icon(Icons.male_rounded),
                       ),
                     ),
                   ),
@@ -43,13 +43,13 @@ class GenderSelection extends StatelessWidget {
                 ),
                 Container(
                   width: size.width * 0.01,
-                  height: size.height * 0.3,
+                  height: size.height * 0.2,
                   color: Colors.white,
                 ),
                 InkWell(
                   child: AnimatedContainer(
                     duration: const Duration(milliseconds: 300),
-                    height: size.height * 0.3,
+                    height: size.height * 0.2,
                     width:
                         state.isFemale ? size.width * 0.7 : size.width * 0.28,
                     child: const FittedBox(
@@ -64,11 +64,19 @@ class GenderSelection extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: size.height * 0.03),
-            AppAnimatedButton(
-              onGenerate: onTap,
-              label: "Advance >",
-            )
+            // SizedBox(height: size.height * 0.03),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            //   children: [
+            //     AppAnimatedButton(
+            //       label: "Previous",
+            //       onGenerate: () => state.retreatCreationStage(),
+            //     ),
+            //     AppAnimatedButton(
+            //       onGenerate: onTap,
+            //     )
+            //   ],
+            // ),
           ],
         );
       }),

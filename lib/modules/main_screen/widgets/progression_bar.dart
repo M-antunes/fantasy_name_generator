@@ -14,28 +14,30 @@ class ProgressionBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.all(8),
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey, width: 2),
-        borderRadius: BorderRadius.circular(10),
-      ),
-      padding: EdgeInsets.all(4),
-      child: Column(
-        children: [
-          Text("Character Creation Progress", style: AppTextStyle.changeRace),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: StepProgressIndicator(
-              roundedEdges: const Radius.circular(10),
-              totalSteps: 11,
-              currentStep: controller.creationStage,
-              selectedColor: AppColors.primary,
-              selectedSize: 8,
-            ),
+    return
+        // Container(
+        //   margin: const EdgeInsets.all(8),
+        //   decoration: BoxDecoration(
+        //     border: Border.all(color: Colors.grey, width: 2),
+        //     borderRadius: BorderRadius.circular(10),
+        //   ),
+        //   padding: EdgeInsets.all(4),
+        //   child:
+        Column(
+      children: [
+        // Text("Character Creation Progress", style: AppTextStyle.changeRace),
+        Padding(
+          padding: const EdgeInsets.only(left: 8, right: 8, bottom: 15),
+          child: StepProgressIndicator(
+            roundedEdges: const Radius.circular(10),
+            totalSteps: 11,
+            currentStep: controller.creationStage,
+            selectedColor: AppColors.primary,
+            selectedSize: 8,
           ),
-        ],
-      ),
+        ),
+      ],
+      // ),
     );
   }
 }

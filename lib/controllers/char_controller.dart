@@ -289,7 +289,8 @@ class CharController extends ChangeNotifier {
       baseInches += rollingDice(6);
       baseWeight += rollingDice(20) + rollingDice(20);
     }
-    if (char.baseAtributes.constitution! > 14) {
+    if (char.baseAtributes.constitution! > 14 &&
+        char.charRace.size != "Small") {
       baseWeight += rollingDice(20);
     }
     char.charRace.height!.value = baseInches;
@@ -1349,7 +1350,94 @@ class CharController extends ChangeNotifier {
 //=======================================================================================
   // Section for Equipment of the character
 
-  generateRandomWeapon() {
-    var randomInt = randomIndex.nextInt(10);
+  String? activateNextButton() {
+    if (creationStage == 1) {
+      updateChosenRace();
+      advanceCreationStage();
+      return null;
+    } else if (creationStage == 2) {
+      advanceCreationStage();
+      return null;
+    } else if (creationStage == 3) {
+      if (newName == " - ? - ") {
+        return "You must generate a name first";
+      } else {
+        advanceCreationStage();
+      }
+      return null;
+    } else if (creationStage == 4) {
+      updateChosenClass();
+      filterAlignmentsToClass();
+      advanceCreationStage();
+      return null;
+    } else if (creationStage == 5) {
+      updateChosenAlignment();
+      advanceCreationStage();
+      return null;
+    } else if (creationStage == 6) {
+      if (levelSelected == -1) {
+        return "You need to select a level befor advancing";
+      } else {
+        updateLevelSelectedIfEpic();
+        updateCharModel();
+        isCharGeneratorCleared = true;
+        advanceCreationStage();
+      }
+      return null;
+    } else if (creationStage == 7) {
+      advanceCreationStage();
+      return null;
+    }
+
+    // ,
   }
+
+  // callAllFunctionsAccordingToCurrentStage(BuildContext context, Color color) {
+  //   if (creationStage == 1) {
+  //     updateChosenRace();
+  //     advanceCreationStage();
+  //   }
+  //   if (creationStage == 2) {
+  //     advanceCreationStage();
+  //   }
+  //   if (creationStage == 3) {
+  //     newNameGenerator();
+  //     newName == " - ? - "
+  //         ? () => callMessageSnackbar(
+  //             context, "You must generate a name first", color)
+  //         : () => advanceCreationStage();
+  //   }
+  //   if (creationStage == 4) {
+  //     updateChosenClass();
+  //     filterAlignmentsToClass();
+  //     advanceCreationStage();
+  //   }
+  //   if (creationStage == 5) {
+  //     updateChosenAlignment();
+  //     advanceCreationStage();
+  //   }
+  //   if (creationStage == 6) {
+  //     if (levelSelected == -1) {
+  //       showErrorSnackBarIfLevelIsZero(
+  //         context,
+  //         "You need to select a level befor advancing",
+  //         color,
+  //       );
+  //       return;
+  //     }
+  //     updateLevelSelectedIfEpic();
+  //     updateCharModel();
+  //     isCharGeneratorCleared = true;
+  //     advanceCreationStage();
+  //   }
+  //   if (creationStage == 7) {
+  //     if (isCharGeneratorCleared) {
+  //       generateAllAtributs();
+  //       isCharGeneratorCleared = !isCharGeneratorCleared;
+  //     } else {
+  //       updateCharModel();
+  //       advanceCreationStage();
+  //     }
+  //   }
+  // }
 }

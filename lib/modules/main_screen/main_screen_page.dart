@@ -41,36 +41,33 @@ class _MainScreenPageState extends State<MainScreenPage>
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        title: SizedBox(
-          width: size.width * 0.6,
-          child: const FittedBox(
-            fit: BoxFit.fitWidth,
-            child: Text('Fantasy Character Generator'),
-          ),
-        ),
-        leading: Consumer<CharController>(builder: (context, state, child) {
-          return IconButton(
-            onPressed: () {
-              if (state.creationStage == 1) {
-                Navigator.of(context).pop();
-              } else {
-                state.retreatCreationStage();
-              }
-            },
-            icon: Icon(state.creationStage == 1
-                ? Icons.arrow_back
-                : Icons.arrow_back_ios_outlined),
-          );
-        }),
-        centerTitle: true,
-      ),
+      // appBar: AppBar(
+      //   title: SizedBox(
+      //     width: size.width * 0.6,
+      //     child: const FittedBox(
+      //       fit: BoxFit.fitWidth,
+      //       child: Text('Fantasy Character Generator'),
+      //     ),
+      //   ),
+      //   leading: Consumer<CharController>(builder: (context, state, child) {
+      //     return IconButton(
+      //       onPressed: () {
+      //         if (state.creationStage == 1) {
+      //           Navigator.of(context).pop();
+      //         } else {
+      //           state.retreatCreationStage();
+      //         }
+      //       },
+      //       icon: Icon(state.creationStage == 1
+      //           ? Icons.arrow_back
+      //           : Icons.arrow_back_ios_outlined),
+      //     );
+      //   }),
+      //   centerTitle: true,
+      // ),
       body: Consumer<CharController>(builder: (context, state, child) {
         return ListView(
           children: [
-            ProgressionBar(
-              controller: state,
-            ),
             SelectionLabel(
                 size: size,
                 label: state.creationStage == 1
@@ -90,13 +87,10 @@ class _MainScreenPageState extends State<MainScreenPage>
                                             : state.creationStage == 8
                                                 ? "Basic features ready"
                                                 : ''),
-            if (state.creationStage == 1)
-              RaceSelection(
-                onTap: () {
-                  state.updateChosenRace();
-                  state.advanceCreationStage();
-                },
-              ),
+            ProgressionBar(
+              controller: state,
+            ),
+            if (state.creationStage == 1) RaceSelection(),
             if (state.creationStage == 2)
               GenderSelection(
                 onTap: () {
@@ -105,7 +99,7 @@ class _MainScreenPageState extends State<MainScreenPage>
               ),
             if (state.creationStage == 3)
               NameSelection(
-                onGenerate: () => namesController.newNameGenerator(),
+                onGenerate: () => state.newNameGenerator(),
                 onSelect: state.newName == " - ? - "
                     ? () => callMessageSnackbar(
                         context,
@@ -156,8 +150,45 @@ class _MainScreenPageState extends State<MainScreenPage>
             if (state.creationStage == 8)
               ProgressCheck(
                 onAdvance: () => state.advanceCreationStage(),
-              )
+              ),
           ],
+        );
+      }),
+      bottomNavigationBar:
+          Consumer<CharController>(builder: (context, state, child) {
+        return Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              AppAnimatedButton(
+                  label: "Previous",
+                  onTap: () {
+                    if (state.creationStage == 1) {
+                      Navigator.of(context).pop();
+                    } else {
+                      state.retreatCreationStage();
+                    }
+                  }),
+              AppAnimatedButton(
+                color: state.isCharGeneratorCleared && state.creationStage == 7
+                    ? Colors.white10
+                    : null,
+                onTap: state.isCharGeneratorCleared && state.creationStage == 7
+                    ? () {}
+                    : () {
+                        var text = state.activateNextButton();
+                        if (text != null) {
+                          callMessageSnackbar(
+                              context, text, AppColors.warningColor);
+                        }
+                      },
+                style: state.isCharGeneratorCleared && state.creationStage == 7
+                    ? const TextStyle(color: Colors.white24, fontSize: 22)
+                    : null,
+              ),
+            ],
+          ),
         );
       }),
     );
@@ -193,7 +224,7 @@ class ProgressCheck extends StatelessWidget {
             children: [
               AppAnimatedButton(
                   label: "Check",
-                  onGenerate: () {
+                  onTap: () {
                     showBottomSheet(
                         context: context,
                         builder: (context) {
@@ -216,7 +247,7 @@ class ProgressCheck extends StatelessWidget {
                           );
                         });
                   }),
-              AppAnimatedButton(label: "Advance", onGenerate: onAdvance),
+              AppAnimatedButton(label: "Advance", onTap: onAdvance),
             ],
           ),
         ],

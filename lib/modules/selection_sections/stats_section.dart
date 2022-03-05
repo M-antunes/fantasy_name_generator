@@ -32,6 +32,29 @@ class StatsSection extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    AppAnimatedButton(
+                      color:
+                          state.isCharGeneratorCleared ? Colors.white10 : null,
+                      onTap: state.isCharGeneratorCleared ? () {} : onGenerate,
+                      label: "Clear",
+                      style: state.isCharGeneratorCleared
+                          ? const TextStyle(color: Colors.white24, fontSize: 22)
+                          : null,
+                    ),
+                    AppAnimatedButton(
+                      color:
+                          !state.isCharGeneratorCleared ? Colors.white10 : null,
+                      onTap: !state.isCharGeneratorCleared ? () {} : onGenerate,
+                      label: "Generate",
+                      style: !state.isCharGeneratorCleared
+                          ? const TextStyle(color: Colors.white24, fontSize: 22)
+                          : null,
+                    ),
+                  ],
+                ),
+                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Padding(
@@ -261,54 +284,59 @@ class StatsSection extends StatelessWidget {
                 SizedBox(height: size.height * 0.05),
                 if (state.creationStage != 8)
                   Column(
-                    children: [
-                      Center(
-                        child: AppAnimatedButton(
-                          color: !state.isCharGeneratorCleared
-                              ? Colors.white10
-                              : null,
-                          onGenerate: !state.isCharGeneratorCleared
-                              ? () {}
-                              : onGenerate,
-                          label: "Generate",
-                          style: !state.isCharGeneratorCleared
-                              ? const TextStyle(
-                                  color: Colors.white24, fontSize: 22)
-                              : null,
-                        ),
-                      ),
-                      SizedBox(height: size.height * 0.05),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          AppAnimatedButton(
-                            color: state.isCharGeneratorCleared
-                                ? Colors.white10
-                                : null,
-                            onGenerate: state.isCharGeneratorCleared
-                                ? () {}
-                                : onGenerate,
-                            label: "Clear",
-                            style: state.isCharGeneratorCleared
-                                ? const TextStyle(
-                                    color: Colors.white24, fontSize: 22)
-                                : null,
-                          ),
-                          AppAnimatedButton(
-                            color: state.isCharGeneratorCleared
-                                ? Colors.white10
-                                : null,
-                            onGenerate:
-                                state.isCharGeneratorCleared ? () {} : onTap,
-                            label: "Confirm",
-                            style: state.isCharGeneratorCleared
-                                ? const TextStyle(
-                                    color: Colors.white24, fontSize: 22)
-                                : null,
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: size.height * 0.02),
+                    children: const [
+                      // Row(
+                      //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      //   children: [
+                      //     AppAnimatedButton(
+                      //       color: state.isCharGeneratorCleared
+                      //           ? Colors.white10
+                      //           : null,
+                      //       onTap: state.isCharGeneratorCleared
+                      //           ? () {}
+                      //           : onGenerate,
+                      //       label: "Clear",
+                      //       style: state.isCharGeneratorCleared
+                      //           ? const TextStyle(
+                      //               color: Colors.white24, fontSize: 22)
+                      //           : null,
+                      //     ),
+                      //     AppAnimatedButton(
+                      //       color: !state.isCharGeneratorCleared
+                      //           ? Colors.white10
+                      //           : null,
+                      //       onTap: !state.isCharGeneratorCleared
+                      //           ? () {}
+                      //           : onGenerate,
+                      //       label: "Generate",
+                      //       style: !state.isCharGeneratorCleared
+                      //           ? const TextStyle(
+                      //               color: Colors.white24, fontSize: 22)
+                      //           : null,
+                      //     ),
+                      //   ],
+                      // ),
+                      // SizedBox(height: size.height * 0.05),
+                      // Row(
+                      //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      //   children: [
+                      //     AppAnimatedButton(
+                      //       label: "Previous",
+                      //       onTap: () => state.retreatCreationStage(),
+                      //     ),
+                      //     AppAnimatedButton(
+                      //       color: state.isCharGeneratorCleared
+                      //           ? Colors.white10
+                      //           : null,
+                      //       onTap: state.isCharGeneratorCleared ? () {} : onTap,
+                      //       style: state.isCharGeneratorCleared
+                      //           ? const TextStyle(
+                      //               color: Colors.white24, fontSize: 22)
+                      //           : null,
+                      //     ),
+                      //   ],
+                      // ),
+                      // SizedBox(height: size.height * 0.02),
                     ],
                   ),
               ],

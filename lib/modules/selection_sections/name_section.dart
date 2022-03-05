@@ -70,12 +70,23 @@ class NameSelection extends StatelessWidget {
             SizedBox(
               height: size.height * 0.01,
             ),
-            AppAnimatedButton(onGenerate: onGenerate),
-            SizedBox(height: size.height * 0.03),
             AppAnimatedButton(
-              onGenerate: onSelect,
-              label: "Advance >",
-            )
+              onTap: onGenerate,
+              label: "Generate",
+            ),
+            // SizedBox(height: size.height * 0.03),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            //   children: [
+            //     AppAnimatedButton(
+            //       label: "Previous",
+            //       onGenerate: () => state.retreatCreationStage(),
+            //     ),
+            //     AppAnimatedButton(
+            //       onGenerate: onSelect,
+            //     ),
+            //   ],
+            // )
           ],
         );
       }),
