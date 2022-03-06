@@ -1,4 +1,3 @@
-import 'package:float_column/float_column.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
@@ -25,69 +24,38 @@ class ClassSelection extends StatelessWidget {
               GridView.builder(
                   shrinkWrap: true,
                   gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                      maxCrossAxisExtent: size.width * 0.4,
-                      childAspectRatio: 5 / 1.6,
-                      crossAxisSpacing: 1,
-                      mainAxisSpacing: 1),
+                      maxCrossAxisExtent: size.width * 0.3,
+                      childAspectRatio: 8 / 5,
+                      crossAxisSpacing: 0,
+                      mainAxisSpacing: 8),
                   itemCount: state.listOfClasses.allClasses.length,
                   itemBuilder: (context, index) {
                     var charClass = state.listOfClasses.allClasses[index];
                     return InkWell(
-                        child: Card(
-                          color: charClass.isSelected
-                              ? Colors.red[900]
-                              : Colors.grey[700],
-                          elevation: 12,
-                          child: Center(
-                            child: Text(
-                              charClass.name,
-                            ),
-                          ),
+                        child: SvgPicture.asset(
+                          charClass.classIcon!,
+                          color: charClass.isSelected ? Colors.red[900] : null,
                         ),
                         onTap: () {
                           state.switchClass(charClass);
                         });
                   }),
-              // Text("${state.tempoClassForSwitching.name} Traits",
-              //     style: AppTextStyle.flipCardMale),
-              // Padding(
-              //   padding: const EdgeInsets.symmetric(vertical: 3),
-              //   child: Container(
-              //     width: size.width * 0.95,
-              //     height: size.height * 0.003,
-              //     color: Colors.grey,
-              //   ),
-              // ),
+              SizedBox(height: size.height * 0.02),
               Padding(
                 padding: const EdgeInsets.all(10),
-                child: FloatColumn(
-                  children: [
-                    Floatable(
-                      padding: EdgeInsets.only(right: 10),
-                      float: FCFloat.start,
-                      child: SizedBox(
-                        height: 80,
-                        width: 80,
-                        child: SvgPicture.asset(
-                          "assets/images/classes/${state.tempoClassForSwitching.name.toLowerCase()}.svg",
-                        ),
+                child: RichText(
+                  textAlign: TextAlign.justify,
+                  text: TextSpan(
+                    children: [
+                      TextSpan(
+                          text: "${state.tempoClassForSwitching.name}:  ",
+                          style: AppTextStyle.traitValue),
+                      TextSpan(
+                        text: state.tempoClassForSwitching.description,
+                        style: AppTextStyle.traitDescription,
                       ),
-                    ),
-                    WrappableText(
-                      textAlign: TextAlign.justify,
-                      text: TextSpan(
-                        children: [
-                          TextSpan(
-                              text: "${state.tempoClassForSwitching.name}:  ",
-                              style: AppTextStyle.traitValue),
-                          TextSpan(
-                            text: state.tempoClassForSwitching.description,
-                            style: AppTextStyle.traitDescription,
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ],

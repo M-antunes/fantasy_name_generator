@@ -7,6 +7,7 @@ class ClassModel {
   final int? hitDice;
   final String? resistUpgrade;
   final String? description;
+  final String? classIcon;
   ClassModel({
     required this.name,
     required this.isSelected,
@@ -14,6 +15,7 @@ class ClassModel {
     this.hitDice,
     this.resistUpgrade,
     this.description,
+    this.classIcon,
   });
 
   ClassModel copyWith({
@@ -23,6 +25,7 @@ class ClassModel {
     int? hitDice,
     String? resistUpgrade,
     String? description,
+    String? classIcon,
   }) {
     return ClassModel(
       name: name ?? this.name,
@@ -31,6 +34,7 @@ class ClassModel {
       hitDice: hitDice ?? this.hitDice,
       resistUpgrade: resistUpgrade ?? this.resistUpgrade,
       description: description ?? this.description,
+      classIcon: classIcon ?? this.classIcon,
     );
   }
 
@@ -42,6 +46,7 @@ class ClassModel {
       'hitDice': hitDice,
       'resistUpgrade': resistUpgrade,
       'description': description,
+      'classIcon': classIcon,
     };
   }
 
@@ -53,6 +58,7 @@ class ClassModel {
       hitDice: map['hitDice']?.toInt(),
       resistUpgrade: map['resistUpgrade'],
       description: map['description'],
+      classIcon: map['classIcon'],
     );
   }
 
@@ -63,7 +69,7 @@ class ClassModel {
 
   @override
   String toString() {
-    return 'ClassModel(name: $name, isSelected: $isSelected, mainAtrb: $mainAtrb, hitDice: $hitDice, resistUpgrade: $resistUpgrade, description: $description)';
+    return 'ClassModel(name: $name, isSelected: $isSelected, mainAtrb: $mainAtrb, hitDice: $hitDice, resistUpgrade: $resistUpgrade, description: $description, classIcon: $classIcon)';
   }
 
   @override
@@ -76,7 +82,8 @@ class ClassModel {
         other.mainAtrb == mainAtrb &&
         other.hitDice == hitDice &&
         other.resistUpgrade == resistUpgrade &&
-        other.description == description;
+        other.description == description &&
+        other.classIcon == classIcon;
   }
 
   @override
@@ -86,6 +93,7 @@ class ClassModel {
         mainAtrb.hashCode ^
         hitDice.hashCode ^
         resistUpgrade.hashCode ^
-        description.hashCode;
+        description.hashCode ^
+        classIcon.hashCode;
   }
 }
