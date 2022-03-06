@@ -12,22 +12,23 @@ class RaceTraits extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
-    return Consumer<CharController>(builder: (context, state, child) {
-      return Column(
-        children: [
-          Text("${state.tempRaceForSwitching.name} Traits"),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 3),
-            child: Container(
-              width: size.width * 0.5,
-              height: size.height * 0.003,
-              color: Colors.grey,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 15),
+      child: Consumer<CharController>(builder: (context, state, child) {
+        return Column(
+          children: [
+            Text("${state.tempRaceForSwitching.name} Traits",
+                style: AppTextStyle.flipCardMale),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 3),
+              child: Container(
+                width: size.width * 0.95,
+                height: size.height * 0.003,
+                color: Colors.grey,
+              ),
             ),
-          ),
-          SizedBox(
-            width: size.width * 0.5,
-            child: ListView.builder(
-                itemCount: 5,
+            ListView.builder(
+                itemCount: state.tempRaceForSwitching.name == "Human" ? 5 : 6,
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
@@ -48,9 +49,9 @@ class RaceTraits extends StatelessWidget {
                     ),
                   );
                 }),
-          ),
-        ],
-      );
-    });
+          ],
+        );
+      }),
+    );
   }
 }

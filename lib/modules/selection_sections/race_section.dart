@@ -1,3 +1,5 @@
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:fantasy_name_generator/controllers/char_controller.dart';
 import 'package:fantasy_name_generator/shared/widgets/app_animated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -16,15 +18,15 @@ class RaceSelection extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 5),
-          child: Row(
+          child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
-              RaceList(),
-              RaceTraits(),
+            children: [
+              const RaceList(),
+              SizedBox(height: size.height * 0.03),
+              const RaceTraits(),
             ],
           ),
         ),
-        SizedBox(height: size.height * 0.03),
       ],
     );
   }

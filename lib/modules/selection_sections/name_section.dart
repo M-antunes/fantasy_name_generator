@@ -29,31 +29,38 @@ class NameSelection extends StatelessWidget {
             return InkWell(
               borderRadius: BorderRadius.circular(10),
               onDoubleTap: () => state.switchNameAndLastName(),
-              child: Container(
-                height: size.height * 0.1,
-                width: size.width * 0.8,
-                decoration: BoxDecoration(
-                  color: Colors.black,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 8,
-                  vertical: 3,
-                ),
-                child: Center(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.black,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    height: size.height * 0.035,
-                    child: FittedBox(
-                      fit: BoxFit.fitHeight,
-                      child: Text(
-                        state.lastNameShown
-                            ? "${state.newName} ${state.newLastName}"
-                            : state.newName,
-                        style: AppTextStyle.generatedName,
+              onLongPress: () {},
+              child: Card(
+                elevation: 6,
+                shadowColor: Colors.black,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)),
+                child: Container(
+                  height: size.height * 0.1,
+                  width: size.width * 0.8,
+                  decoration: BoxDecoration(
+                    color: Colors.grey.shade900,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8,
+                    vertical: 3,
+                  ),
+                  child: Center(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.grey.shade900,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      height: size.height * 0.035,
+                      child: FittedBox(
+                        fit: BoxFit.fitHeight,
+                        child: Text(
+                          state.lastNameShown
+                              ? "${state.newName} ${state.newLastName}"
+                              : state.newName,
+                          style: AppTextStyle.generatedName,
+                        ),
                       ),
                     ),
                   ),
@@ -61,7 +68,7 @@ class NameSelection extends StatelessWidget {
               ),
               onTap: () => callMessageSnackbar(
                 context,
-                "Double tap to switch name and last name",
+                "Double tap to switch name and last name\nand long press to edit names",
                 Colors.grey[700],
               ),
             );

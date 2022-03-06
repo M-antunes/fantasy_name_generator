@@ -17,11 +17,11 @@ ScaffoldFeatureController<SnackBar, SnackBarClosedReason> callMessageSnackbar(
         backgroundColor: color,
         content: Row(
           children: [
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.025,
-              child: FittedBox(
-                fit: BoxFit.fitHeight,
-                child: Text(text, style: AppTextStyle.flipCardMale),
+            Center(
+              child: Text(
+                text,
+                style: AppTextStyle.flipCardMale,
+                textAlign: TextAlign.center,
               ),
             ),
           ],

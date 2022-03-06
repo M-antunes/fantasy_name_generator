@@ -73,11 +73,11 @@ class AppTextStyle {
   static final traitValue = TextStyle(
     fontWeight: FontWeight.w400,
     color: Colors.grey[300],
-    fontSize: 13,
+    fontSize: 16,
   );
   static const traitDescription = TextStyle(
     fontWeight: FontWeight.w400,
     color: Colors.grey,
-    fontSize: 13,
+    fontSize: 15,
   );
 }

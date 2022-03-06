@@ -1,10 +1,7 @@
-import 'package:fantasy_name_generator/shared/widgets/app_animated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:fantasy_name_generator/controllers/char_controller.dart';
-
-import 'widgets/advance_button.dart';
 
 class AlignmentSelection extends StatelessWidget {
   const AlignmentSelection({

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:math';
 
@@ -58,7 +59,6 @@ class CharController extends ChangeNotifier {
   bool isRegularLevelSelected = true;
   bool isEpicLevelSelected = false;
   bool isCharGeneratorCleared = true;
-  bool loading = true;
 
 // Functions related to the level Section
 

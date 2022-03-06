@@ -1,4 +1,3 @@
-import 'package:fantasy_name_generator/modules/selection_sections/loading_section.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -82,7 +81,7 @@ class _MainScreenPageState extends State<MainScreenPage>
                   ),
                 ],
               ),
-            if (state.creationStage == 3) ClassSelection(),
+            if (state.creationStage == 3) const ClassSelection(),
             if (state.creationStage == 4) const AlignmentSelection(),
             if (state.creationStage == 5) const LevelSelection(),
             if (state.creationStage == 6)
