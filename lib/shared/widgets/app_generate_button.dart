@@ -20,6 +20,8 @@ class AppGenerateButton extends StatelessWidget {
         duration: 80,
         width: 72,
         height: 72,
-        child: icon ?? SvgPicture.asset("assets/images/dice-random.svg"));
+        child: icon ??
+            SvgPicture.asset("assets/images/dice-random.svg",
+                color: Colors.grey.shade400));
   }
 }

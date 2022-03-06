@@ -59,6 +59,8 @@ class CharController extends ChangeNotifier {
   bool isRegularLevelSelected = true;
   bool isEpicLevelSelected = false;
   bool isCharGeneratorCleared = true;
+  bool isEditingNameReady = false;
+  TextEditingController? nameController = TextEditingController();
 
 // Functions related to the level Section
 
@@ -269,21 +271,19 @@ class CharController extends ChangeNotifier {
     int baseInches = raceGotten.height!.value;
     int baseFeet = raceGotten.height!.key;
     var baseWeight = raceGotten.weight!;
-    if (char.charRace.name == "Dwarf" || char.charRace.size == "Small") {
+    if (raceGotten.name == "Dwarf" || raceGotten.size == "Small") {
       increment = rollingDice(4) + rollingDice(4);
       baseInches += increment;
-      if (char.charRace.name == "Dwarf") {
+      if (raceGotten.name == "Dwarf") {
         baseWeight += (increment * 7);
       } else {
         baseWeight += (increment * 1.5);
       }
-    } else if (char.charRace.name == "Half-elf" ||
-        char.charRace.name == "Elf") {
+    } else if (raceGotten.name == "Half-elf" || raceGotten.name == "Elf") {
       increment = rollingDice(8) + rollingDice(8);
       baseInches += increment;
       baseWeight += (increment * 3);
-    } else if (char.charRace.name == "Half-orc" ||
-        char.charRace.name == "Human") {
+    } else if (raceGotten.name == "Half-orc" || raceGotten.name == "Human") {
       increment = rollingDice(10) + rollingDice(10);
       baseInches += increment;
       baseWeight += (increment * 5);
@@ -304,6 +304,9 @@ class CharController extends ChangeNotifier {
     char.charRace.height!.key = baseFeet;
     char.charRace.weight = baseWeight;
     transformInchToFoot(char);
+    generatedChar.charRace.height!.value = char.charRace.height!.value;
+    generatedChar.charRace.height!.key = char.charRace.height!.key;
+    generatedChar.charRace.weight = char.charRace.weight;
     notifyListeners();
   }
 
@@ -495,6 +498,11 @@ class CharController extends ChangeNotifier {
 
   displayLastName() {
     lastNameShown = !lastNameShown;
+    notifyListeners();
+  }
+
+  showEdidingName() {
+    isEditingNameReady = !isEditingNameReady;
     notifyListeners();
   }
 
@@ -1280,6 +1288,18 @@ class CharController extends ChangeNotifier {
         break;
       default:
     }
+    if (char.charRace.name == "Hafling") {
+      partialFort += 1;
+      partialRef += 1;
+      partialWill += 1;
+    }
+    if (char.charClass.name == "Paladin") {
+      var caris = char.modAtributes.charisma;
+      partialFort += caris!;
+      partialWill += caris;
+      partialRef += caris;
+    }
+
     char.resistances.fortitude = partialFort + char.modAtributes.constitution!;
     char.resistances.reflex = partialRef + char.modAtributes.dexterity!;
     char.resistances.will = partialWill + char.modAtributes.wisdom!;
@@ -1349,6 +1369,10 @@ class CharController extends ChangeNotifier {
     var cmd = 0;
     cmb = bAttackBonus! + atributes.strength!;
     cmd = bAttackBonus + atributes.strength! + atributes.dexterity! + 10;
+    if (char.charRace.size == "Small") {
+      cmb -= 1;
+      cmd -= 1;
+    }
     generatedChar.combatStats.combatManeuverBonus = cmb;
     generatedChar.combatStats.combatManeuverDefense = cmd;
     notifyListeners();

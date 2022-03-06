@@ -9,22 +9,16 @@ ScaffoldFeatureController<SnackBar, SnackBarClosedReason> callMessageSnackbar(
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         behavior: SnackBarBehavior.floating,
-        margin: EdgeInsets.symmetric(horizontal: 12),
+        // margin: EdgeInsets.symmetric(horizontal: 12),
         duration: const Duration(milliseconds: 1800),
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(20)),
         ),
         backgroundColor: color,
-        content: Row(
-          children: [
-            Center(
-              child: Text(
-                text,
-                style: AppTextStyle.flipCardMale,
-                textAlign: TextAlign.center,
-              ),
-            ),
-          ],
+        content: Text(
+          text,
+          style: AppTextStyle.flipCardMale,
+          textAlign: TextAlign.center,
         ),
       ),
     );

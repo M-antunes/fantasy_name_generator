@@ -6,12 +6,14 @@ class ClassModel {
   final String mainAtrb;
   final int? hitDice;
   final String? resistUpgrade;
+  final String? description;
   ClassModel({
     required this.name,
     required this.isSelected,
     required this.mainAtrb,
     this.hitDice,
     this.resistUpgrade,
+    this.description,
   });
 
   ClassModel copyWith({
@@ -19,14 +21,16 @@ class ClassModel {
     bool? isSelected,
     String? mainAtrb,
     int? hitDice,
-    String? resisUpgrade,
+    String? resistUpgrade,
+    String? description,
   }) {
     return ClassModel(
       name: name ?? this.name,
       isSelected: isSelected ?? this.isSelected,
       mainAtrb: mainAtrb ?? this.mainAtrb,
       hitDice: hitDice ?? this.hitDice,
-      resistUpgrade: resisUpgrade ?? this.resistUpgrade,
+      resistUpgrade: resistUpgrade ?? this.resistUpgrade,
+      description: description ?? this.description,
     );
   }
 
@@ -36,7 +40,8 @@ class ClassModel {
       'isSelected': isSelected,
       'mainAtrb': mainAtrb,
       'hitDice': hitDice,
-      'resisUpgrade': resistUpgrade,
+      'resistUpgrade': resistUpgrade,
+      'description': description,
     };
   }
 
@@ -46,7 +51,8 @@ class ClassModel {
       isSelected: map['isSelected'] ?? false,
       mainAtrb: map['mainAtrb'] ?? '',
       hitDice: map['hitDice']?.toInt(),
-      resistUpgrade: map['resisUpgrade'],
+      resistUpgrade: map['resistUpgrade'],
+      description: map['description'],
     );
   }
 
@@ -57,7 +63,7 @@ class ClassModel {
 
   @override
   String toString() {
-    return 'ClassModel(name: $name, isSelected: $isSelected, mainAtrb: $mainAtrb, hitDice: $hitDice, resisUpgrade: $resistUpgrade)';
+    return 'ClassModel(name: $name, isSelected: $isSelected, mainAtrb: $mainAtrb, hitDice: $hitDice, resistUpgrade: $resistUpgrade, description: $description)';
   }
 
   @override
@@ -69,7 +75,8 @@ class ClassModel {
         other.isSelected == isSelected &&
         other.mainAtrb == mainAtrb &&
         other.hitDice == hitDice &&
-        other.resistUpgrade == resistUpgrade;
+        other.resistUpgrade == resistUpgrade &&
+        other.description == description;
   }
 
   @override
@@ -78,6 +85,7 @@ class ClassModel {
         isSelected.hashCode ^
         mainAtrb.hashCode ^
         hitDice.hashCode ^
-        resistUpgrade.hashCode;
+        resistUpgrade.hashCode ^
+        description.hashCode;
   }
 }

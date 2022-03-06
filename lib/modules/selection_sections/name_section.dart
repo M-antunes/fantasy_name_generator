@@ -29,7 +29,6 @@ class NameSelection extends StatelessWidget {
             return InkWell(
               borderRadius: BorderRadius.circular(10),
               onDoubleTap: () => state.switchNameAndLastName(),
-              onLongPress: () {},
               child: Card(
                 elevation: 6,
                 shadowColor: Colors.black,
@@ -52,14 +51,16 @@ class NameSelection extends StatelessWidget {
                         color: Colors.grey.shade900,
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      height: size.height * 0.035,
-                      child: FittedBox(
-                        fit: BoxFit.fitHeight,
-                        child: Text(
-                          state.lastNameShown
-                              ? "${state.newName} ${state.newLastName}"
-                              : state.newName,
-                          style: AppTextStyle.generatedName,
+                      child: SizedBox(
+                        height: size.height * 0.035,
+                        child: FittedBox(
+                          fit: BoxFit.fitHeight,
+                          child: Text(
+                            state.lastNameShown
+                                ? "${state.newName} ${state.newLastName}"
+                                : state.newName,
+                            style: AppTextStyle.generatedName,
+                          ),
                         ),
                       ),
                     ),
@@ -68,7 +69,7 @@ class NameSelection extends StatelessWidget {
               ),
               onTap: () => callMessageSnackbar(
                 context,
-                "Double tap to switch name and last name\nand long press to edit names",
+                "Double tap to switch name and last name",
                 Colors.grey[700],
               ),
             );
@@ -82,3 +83,17 @@ class NameSelection extends StatelessWidget {
     );
   }
 }
+
+//  state.isEditingNameReady
+//                           ? TextFormField(
+//                               cursorColor: Colors.grey,
+//                               cursorHeight: 28,
+//                               textAlign: TextAlign.center,
+//                               decoration: InputDecoration(
+//                                 border: InputBorder.none,
+//                               ),
+//                               initialValue:
+//                                   "${state.newName} ${state.newLastName}",
+//                               style: AppTextStyle.generatedName,
+//                             )
+//                           : 
