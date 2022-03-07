@@ -15,6 +15,7 @@ import 'package:fantasy_name_generator/shared/themes/app_text_styles.dart';
 import 'package:fantasy_name_generator/shared/widgets/app_animated_button.dart';
 import 'package:fantasy_name_generator/shared/widgets/call_message_snackbar.dart';
 
+import '../selection_sections/overall_equip_section.dart';
 import '../selection_sections/stats_section.dart';
 
 class MainScreenPage extends StatefulWidget {
@@ -147,65 +148,5 @@ class _MainScreenPageState extends State<MainScreenPage>
     if (text != null) {
       callMessageSnackbar(context, text, AppColors.warningColor);
     }
-  }
-}
-
-class ProgressCheck extends StatelessWidget {
-  final VoidCallback onAdvance;
-  const ProgressCheck({
-    Key? key,
-    required this.onAdvance,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        children: [
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20),
-            child: Text(
-              "Your Character has no equipment so far. You can either check it out or advance to equipement",
-              textAlign: TextAlign.center,
-              style: AppTextStyle.selectButtonReady,
-            ),
-          ),
-          SizedBox(height: size.height * 0.1),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              AppAnimatedButton(
-                  label: "Check",
-                  onTap: () {
-                    showBottomSheet(
-                        context: context,
-                        builder: (context) {
-                          return SizedBox(
-                            height: size.height * 0.6,
-                            child: ListView(
-                              children: [
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(vertical: 5),
-                                  child: Container(
-                                    width: size.width - 20,
-                                    height: size.height * 0.01,
-                                    color: AppColors.primaryGold,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          );
-                        });
-                  }),
-              AppAnimatedButton(label: "Advance", onTap: onAdvance),
-            ],
-          ),
-        ],
-      ),
-    );
   }
 }

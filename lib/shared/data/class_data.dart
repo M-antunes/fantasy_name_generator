@@ -1,4 +1,5 @@
 import 'package:fantasy_name_generator/models/class_model.dart';
+import 'package:fantasy_name_generator/models/key_value.model.dart';
 import 'package:fantasy_name_generator/models/level_model.dart';
 
 class ClassData {
@@ -104,6 +105,15 @@ class ClassData {
         name: "Paladin"),
     ClassModel(
         isSelected: false,
+        hitDice: 10,
+        mainAtrb: "Str",
+        classIcon: "assets/images/classes/antipaladin.svg",
+        resistUpgrade: "fort, will",
+        description:
+            "Although it is a rare occurrence, paladins do sometimes stray from the path of righteousness. Most of these wayward holy warriors seek out redemption and forgiveness for their misdeeds, regaining their powers through piety, charity, and powerful magic. Yet there are others, the dark and disturbed few, who turn actively to evil, courting the dark powers they once railed against in order to take vengeance on their former brothers. It's said that those who climb the farthest have the farthest to fall, and antipaladins are living proof of this fact, their pride and hatred blinding them to the glory of their forsaken patrons. Antipaladins become the antithesis of their former selves. They make pacts with fiends, take the lives of the innocent, and put nothing ahead of their personal power and wealth. Champions of evil, they often lead armies of evil creatures and work with other villains to bring ruin to the holy and tyranny to the weak. Not surprisingly, paladins stop at nothing to put an end to such nefarious antiheroes.",
+        name: "Antipaladin"),
+    ClassModel(
+        isSelected: false,
         classIcon: "assets/images/classes/ranger.svg",
         resistUpgrade: "fort, ref",
         hitDice: 10,
@@ -122,6 +132,15 @@ class ClassData {
         name: "Rogue"),
     ClassModel(
         isSelected: false,
+        classIcon: "assets/images/classes/samurai.svg",
+        resistUpgrade: "fort",
+        hitDice: 10,
+        mainAtrb: "Str",
+        description:
+            "Few warriors are more dedicated to honor and the code of the warrior than the samurai. Trained from an early age in the art of war and sworn to the service of a lord, the samurai holds a position of power and respect in many lands, often serving as the voice and justice of the local noble. The samurai takes on his training with zeal, learning the way of the blade (typically a katana), the bow, and the horse. Some even learn how to effectively use firearms, if they are available. The samurai is often the most trusted soldier in his lord's employ. In him, the common folk see honor and sacrifice. He is an honorable warrior, dedicated to the realm and the leaders that guide it.",
+        name: "Samurai"),
+    ClassModel(
+        isSelected: false,
         classIcon: "assets/images/classes/sorcerer.svg",
         resistUpgrade: "will",
         hitDice: 6,
@@ -129,6 +148,15 @@ class ClassData {
         description:
             "Scions of innately magical bloodlines, the chosen of deities, the spawn of monsters, pawns of fate and destiny, or simply flukes of fickle magic, sorcerers look within themselves for arcane prowess and draw forth might few mortals can imagine. Emboldened by lives ever threatening to be consumed by their innate powers, these magic-touched souls endlessly indulge in and refine their mysterious abilities, gradually learning how to harness their birthright and coax forth ever greater arcane feats. Just as varied as these innately powerful spellcasters' abilities and inspirations are the ways in which they choose to utilize their gifts. While some seek to control their abilities through meditation and discipline, becoming masters of their fantastic birthright, others give in to their magic, letting it rule their lives with often explosive results. Regardless, sorcerers live and breathe that which other spellcasters devote their lives to mastering, and for them magic is more than a boon or a field of study; it is life itself.",
         name: "Sorcerer"),
+    ClassModel(
+        isSelected: false,
+        classIcon: "assets/images/classes/summoner.svg",
+        resistUpgrade: "will",
+        hitDice: 8,
+        mainAtrb: "Cha",
+        description:
+            "While many who dabble in the arcane become adept at beckoning monsters from the farthest reaches of the planes, none are more skilled at it than the summoner. This practitioner of the arcane arts forms a close bond with one particular outsider, known as an eidolon, who gains power as the summoner becomes more proficient at his summoning. Over time, the two become linked, eventually even sharing a shard of the same soul. But this power comes with a price: the summoner’s spells and abilities are limited due to his time spent enhancing the power and exploring the nature of his eidolon.",
+        name: "Summoner"),
     ClassModel(
         isSelected: false,
         classIcon: "assets/images/classes/warrior.svg",
@@ -150,6 +178,12 @@ class ClassData {
   ];
 
   final List<ClassModel> physicalClasses = [
+    ClassModel(
+        isSelected: false,
+        resistUpgrade: "fort",
+        hitDice: 10,
+        mainAtrb: "Str",
+        name: "Antipaladin"),
     ClassModel(
         isSelected: false,
         resistUpgrade: "fort",
@@ -192,6 +226,12 @@ class ClassData {
         hitDice: 8,
         mainAtrb: "Dex",
         name: "Monk"),
+    ClassModel(
+        isSelected: false,
+        resistUpgrade: "fort",
+        hitDice: 10,
+        mainAtrb: "Str",
+        name: "Samurai"),
   ];
 
   final List<ClassModel> mentalClasses = [
@@ -243,6 +283,12 @@ class ClassData {
         hitDice: 8,
         mainAtrb: "Wis",
         name: "Druid"),
+    ClassModel(
+        isSelected: false,
+        resistUpgrade: "will",
+        hitDice: 8,
+        mainAtrb: "Cha",
+        name: "Summoner"),
   ];
 
   List<LevelModel> goodOrBad = [
@@ -276,5 +322,16 @@ class ClassData {
     LevelModel(level: 28, good: 17, bad: 10),
     LevelModel(level: 29, good: 18, bad: 10),
     LevelModel(level: 30, good: 19, bad: 11),
+  ];
+
+  List<KeyValueModel> fightingStyle = [
+    KeyValueModel(
+        key: "Close Combat",
+        value: KeyValueModel(
+            key: false, value: "assets/images/weapon_types/hatchet.svg")),
+    KeyValueModel(
+        key: "Distant Combat",
+        value: KeyValueModel(
+            key: false, value: "assets/images/weapon_types/bow.svg")),
   ];
 }

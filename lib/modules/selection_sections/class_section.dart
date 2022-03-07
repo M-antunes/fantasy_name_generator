@@ -1,3 +1,4 @@
+import 'package:fantasy_name_generator/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
@@ -24,32 +25,65 @@ class ClassSelection extends StatelessWidget {
               GridView.builder(
                   shrinkWrap: true,
                   gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                      maxCrossAxisExtent: size.width * 0.3,
-                      childAspectRatio: 8 / 5,
+                      maxCrossAxisExtent: size.width * 0.2,
+                      childAspectRatio: 9 / 8,
                       crossAxisSpacing: 0,
                       mainAxisSpacing: 8),
                   itemCount: state.listOfClasses.allClasses.length,
                   itemBuilder: (context, index) {
                     var charClass = state.listOfClasses.allClasses[index];
-                    return InkWell(
-                        child: SvgPicture.asset(
-                          charClass.classIcon!,
-                          color: charClass.isSelected ? Colors.red[900] : null,
-                        ),
-                        onTap: () {
-                          state.switchClass(charClass);
-                        });
+                    return Column(
+                      children: [
+                        InkWell(
+                            child: Column(
+                              children: [
+                                SvgPicture.asset(
+                                  charClass.classIcon!,
+                                  width: charClass.isSelected ? 55 : 50,
+                                  height: charClass.isSelected ? 55 : 50,
+                                  color: charClass.isSelected
+                                      ? AppColors.primary
+                                      : null,
+                                ),
+                                Text(
+                                  charClass.name,
+                                  style: TextStyle(
+                                      color: charClass.isSelected
+                                          ? AppColors.primary
+                                          : null,
+                                      fontWeight: FontWeight.bold),
+                                )
+                              ],
+                            ),
+                            onTap: () {
+                              state.switchClass(charClass);
+                            }),
+                      ],
+                    );
                   }),
               SizedBox(height: size.height * 0.02),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
+                  child: Text(state.tempoClassForSwitching.name,
+                      style: AppTextStyle.traitValue),
+                ),
+              ),
               Padding(
-                padding: const EdgeInsets.all(10),
+                padding: const EdgeInsets.symmetric(vertical: 3),
+                child: Container(
+                  width: size.width * 0.93,
+                  height: size.height * 0.003,
+                  color: Colors.grey,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: RichText(
                   textAlign: TextAlign.justify,
                   text: TextSpan(
                     children: [
-                      TextSpan(
-                          text: "${state.tempoClassForSwitching.name}:  ",
-                          style: AppTextStyle.traitValue),
                       TextSpan(
                         text: state.tempoClassForSwitching.description,
                         style: AppTextStyle.traitDescription,

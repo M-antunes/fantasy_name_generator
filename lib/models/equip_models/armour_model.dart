@@ -5,26 +5,38 @@ import 'enchant_model.dart';
 class ArmourModel {
   final String name;
   final String? material;
+  final String? type;
+  bool? isSelected;
   final EnchantModel? enchantment;
   final int? power;
+  final int? defenseBonus;
   ArmourModel({
     required this.name,
     this.material,
+    this.type,
+    this.isSelected,
     this.enchantment,
     this.power,
+    this.defenseBonus,
   });
 
   ArmourModel copyWith({
     String? name,
     String? material,
+    String? type,
+    bool? isSelected,
     EnchantModel? enchantment,
     int? power,
+    int? defenseBonus,
   }) {
     return ArmourModel(
       name: name ?? this.name,
       material: material ?? this.material,
+      type: type ?? this.type,
+      isSelected: isSelected ?? this.isSelected,
       enchantment: enchantment ?? this.enchantment,
       power: power ?? this.power,
+      defenseBonus: defenseBonus ?? this.defenseBonus,
     );
   }
 
@@ -32,8 +44,11 @@ class ArmourModel {
     return {
       'name': name,
       'material': material,
+      'type': type,
+      'isSelected': isSelected,
       'enchantment': enchantment?.toMap(),
       'power': power,
+      'defenseBonus': defenseBonus,
     };
   }
 
@@ -41,10 +56,13 @@ class ArmourModel {
     return ArmourModel(
       name: map['name'] ?? '',
       material: map['material'],
+      type: map['type'],
+      isSelected: map['isSelected'],
       enchantment: map['enchantment'] != null
           ? EnchantModel.fromMap(map['enchantment'])
           : null,
       power: map['power']?.toInt(),
+      defenseBonus: map['defenseBonus']?.toInt(),
     );
   }
 
@@ -55,7 +73,7 @@ class ArmourModel {
 
   @override
   String toString() {
-    return 'ArmourModel(name: $name, material: $material, enchantment: $enchantment, power: $power)';
+    return 'ArmourModel(name: $name, material: $material, type: $type, isSelected: $isSelected, enchantment: $enchantment, power: $power, defenseBonus: $defenseBonus)';
   }
 
   @override
@@ -65,15 +83,21 @@ class ArmourModel {
     return other is ArmourModel &&
         other.name == name &&
         other.material == material &&
+        other.type == type &&
+        other.isSelected == isSelected &&
         other.enchantment == enchantment &&
-        other.power == power;
+        other.power == power &&
+        other.defenseBonus == defenseBonus;
   }
 
   @override
   int get hashCode {
     return name.hashCode ^
         material.hashCode ^
+        type.hashCode ^
+        isSelected.hashCode ^
         enchantment.hashCode ^
-        power.hashCode;
+        power.hashCode ^
+        defenseBonus.hashCode;
   }
 }

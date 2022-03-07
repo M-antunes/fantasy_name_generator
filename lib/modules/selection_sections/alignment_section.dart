@@ -22,7 +22,7 @@ class AlignmentSelection extends StatelessWidget {
                 : state.chosenClass.name == "Rogue"
                     ? "Rogues CANNOT be Lawful"
                     : state.chosenClass.name == "Paladin"
-                        ? "Paladins CAN ONLY be Lawful"
+                        ? "Paladins CAN ONLY be Lawful Good"
                         : state.chosenClass.name == "Monk"
                             ? "Monks CANNOT be Chaotic"
                             : state.chosenClass.name == "Cleric"
@@ -31,7 +31,10 @@ class AlignmentSelection extends StatelessWidget {
                                     ? "Druids CAN ONLY be Neutral"
                                     : state.chosenClass.name == "Bandit"
                                         ? "Bandits CANNOT be Lawful or Good"
-                                        : "${state.chosenClass.name}s can be of ANY alignment"),
+                                        : state.chosenClass.name ==
+                                                "Antipaladin"
+                                            ? "Antipaladins CAN ONLY be Chaotic Evil"
+                                            : "${state.chosenClass.name}s can be of ANY alignment"),
           ),
           SizedBox(height: size.height * 0.01),
           Container(

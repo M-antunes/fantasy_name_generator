@@ -1,9 +1,7 @@
-import 'package:fantasy_name_generator/shared/widgets/app_animated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:fantasy_name_generator/controllers/char_controller.dart';
-import 'package:fantasy_name_generator/modules/selection_sections/widgets/advance_button.dart';
 import 'package:fantasy_name_generator/shared/themes/app_colors.dart';
 
 import 'widgets/level_choice_campaign_buttonm.dart';

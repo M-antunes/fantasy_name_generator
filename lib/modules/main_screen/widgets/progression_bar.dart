@@ -1,6 +1,5 @@
 import 'package:fantasy_name_generator/controllers/char_controller.dart';
 import 'package:fantasy_name_generator/shared/themes/app_colors.dart';
-import 'package:fantasy_name_generator/shared/themes/app_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
@@ -14,16 +13,7 @@ class ProgressionBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return
-        // Container(
-        //   margin: const EdgeInsets.all(8),
-        //   decoration: BoxDecoration(
-        //     border: Border.all(color: Colors.grey, width: 2),
-        //     borderRadius: BorderRadius.circular(10),
-        //   ),
-        //   padding: EdgeInsets.all(4),
-        //   child:
-        Column(
+    return Column(
       children: [
         // Text("Character Creation Progress", style: AppTextStyle.changeRace),
         Padding(

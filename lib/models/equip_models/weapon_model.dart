@@ -3,13 +3,15 @@ import 'dart:convert';
 import 'enchant_model.dart';
 
 class WeaponModel {
-  final String? weaponType;
+  final String? type;
+  bool? isSelected;
   final String? name;
   final EnchantModel? enchantment;
   final int? power;
-  final String? damage;
+  final int? damage;
   WeaponModel({
-    this.weaponType,
+    this.type,
+    this.isSelected,
     this.name,
     this.enchantment,
     this.power,
@@ -17,14 +19,16 @@ class WeaponModel {
   });
 
   WeaponModel copyWith({
-    String? weaponType,
+    String? type,
+    bool? isSelected,
     String? name,
     EnchantModel? enchantment,
     int? power,
-    String? damage,
+    int? damage,
   }) {
     return WeaponModel(
-      weaponType: weaponType ?? this.weaponType,
+      type: type ?? this.type,
+      isSelected: isSelected ?? this.isSelected,
       name: name ?? this.name,
       enchantment: enchantment ?? this.enchantment,
       power: power ?? this.power,
@@ -34,7 +38,8 @@ class WeaponModel {
 
   Map<String, dynamic> toMap() {
     return {
-      'weaponType': weaponType,
+      'type': type,
+      'isSelected': isSelected,
       'name': name,
       'enchantment': enchantment?.toMap(),
       'power': power,
@@ -44,13 +49,14 @@ class WeaponModel {
 
   factory WeaponModel.fromMap(Map<String, dynamic> map) {
     return WeaponModel(
-      weaponType: map['weaponType'],
+      type: map['type'],
+      isSelected: map['isSelected'],
       name: map['name'],
       enchantment: map['enchantment'] != null
           ? EnchantModel.fromMap(map['enchantment'])
           : null,
       power: map['power']?.toInt(),
-      damage: map['damage'],
+      damage: map['damage']?.toInt(),
     );
   }
 
@@ -61,7 +67,7 @@ class WeaponModel {
 
   @override
   String toString() {
-    return 'WeaponModel(weaponType: $weaponType, name: $name, enchantment: $enchantment, power: $power, damage: $damage)';
+    return 'WeaponModel(type: $type, isSelected: $isSelected, name: $name, enchantment: $enchantment, power: $power, damage: $damage)';
   }
 
   @override
@@ -69,7 +75,8 @@ class WeaponModel {
     if (identical(this, other)) return true;
 
     return other is WeaponModel &&
-        other.weaponType == weaponType &&
+        other.type == type &&
+        other.isSelected == isSelected &&
         other.name == name &&
         other.enchantment == enchantment &&
         other.power == power &&
@@ -78,7 +85,8 @@ class WeaponModel {
 
   @override
   int get hashCode {
-    return weaponType.hashCode ^
+    return type.hashCode ^
+        isSelected.hashCode ^
         name.hashCode ^
         enchantment.hashCode ^
         power.hashCode ^

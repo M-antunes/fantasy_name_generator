@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/src/provider.dart';
 
-import 'package:fantasy_name_generator/modules/selection_sections/widgets/advance_button.dart';
 import 'package:fantasy_name_generator/shared/themes/app_text_styles.dart';
 
 class RaceList extends StatelessWidget {

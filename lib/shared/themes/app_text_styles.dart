@@ -68,7 +68,7 @@ class AppTextStyle {
   static const selectButtonReady = TextStyle(
     fontWeight: FontWeight.w400,
     color: Colors.white,
-    fontSize: 19,
+    fontSize: 17,
   );
   static final traitValue = TextStyle(
     fontWeight: FontWeight.w400,

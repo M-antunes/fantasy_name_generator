@@ -5,8 +5,6 @@ import 'package:provider/src/provider.dart';
 
 import 'package:fantasy_name_generator/controllers/char_controller.dart';
 
-import 'widgets/advance_button.dart';
-
 class GenderSelection extends StatelessWidget {
   const GenderSelection({
     Key? key,

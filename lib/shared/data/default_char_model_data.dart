@@ -25,7 +25,7 @@ class DefaultCharModelData {
     resistances: ResistanceModel(),
     combatStats: CombatModel(),
     charEquip: EquipModel(
-        primaryWeapon: WeaponModel(name: "Dagger", weaponType: 'Light Blade')),
+        primaryWeapon: WeaponModel(name: "Dagger", type: 'Light Blade')),
     loot: LootModel(items: [], gold: 0),
     charLevel: 1,
   );

@@ -16,6 +16,7 @@ import 'package:fantasy_name_generator/models/resistance_model.dart';
 import 'package:fantasy_name_generator/models/saved_name_model.dart';
 import 'package:fantasy_name_generator/shared/data/alignment_data.dart';
 import 'package:fantasy_name_generator/shared/data/class_data.dart';
+import 'package:fantasy_name_generator/shared/data/equip_data.dart';
 import 'package:fantasy_name_generator/shared/widgets/call_message_snackbar.dart';
 import 'package:fantasy_name_generator/shared/data/human_names_data.dart';
 import 'package:fantasy_name_generator/shared/data/letters_data.dart';
@@ -41,6 +42,7 @@ class CharController extends ChangeNotifier {
   var listOfRaces = RaceData();
   var listOfClasses = ClassData();
   var listOfAlignments = AlignmentData();
+  var listOfEquip = EquipData();
   var humanNames = HumanNamesData();
   var loot = LootModel(items: []);
   Random randomIndex = Random();
@@ -59,8 +61,6 @@ class CharController extends ChangeNotifier {
   bool isRegularLevelSelected = true;
   bool isEpicLevelSelected = false;
   bool isCharGeneratorCleared = true;
-  bool isEditingNameReady = false;
-  TextEditingController? nameController = TextEditingController();
 
 // Functions related to the level Section
 
@@ -218,8 +218,13 @@ class CharController extends ChangeNotifier {
         notifyListeners();
         break;
       case "Paladin":
-        filteredAlignments = filterAlignments(
-            "Lawful Good", "Lawful Neutral", "Lawful Evil", "", "", "");
+        filteredAlignments =
+            filterAlignments("Lawful Good", "", "", "", "", "");
+        notifyListeners();
+        break;
+      case "Antipaladin":
+        filteredAlignments =
+            filterAlignments("Chaotic Evil", "", "", "", "", "");
         notifyListeners();
         break;
       case "Rogue":
@@ -498,11 +503,6 @@ class CharController extends ChangeNotifier {
 
   displayLastName() {
     lastNameShown = !lastNameShown;
-    notifyListeners();
-  }
-
-  showEdidingName() {
-    isEditingNameReady = !isEditingNameReady;
     notifyListeners();
   }
 
@@ -1015,6 +1015,18 @@ class CharController extends ChangeNotifier {
         sortAtributesToClass(atrbValues[0], atrbValues[1], atrbValues[2],
             atrbValues[5], atrbValues[3], atrbValues[4]);
         break;
+      case "Samurai":
+        sortAtributesToClass(atrbValues[0], atrbValues[1], atrbValues[2],
+            atrbValues[5], atrbValues[3], atrbValues[4]);
+        break;
+      case "Summoner":
+        sortAtributesToClass(atrbValues[1], atrbValues[2], atrbValues[3],
+            atrbValues[5], atrbValues[4], atrbValues[0]);
+        break;
+      case "Antipaladin":
+        sortAtributesToClass(atrbValues[0], atrbValues[4], atrbValues[2],
+            atrbValues[5], atrbValues[3], atrbValues[1]);
+        break;
       default:
         sortAtributesToClass(atrbValues[3], atrbValues[3], atrbValues[3],
             atrbValues[3], atrbValues[3], atrbValues[3]);
@@ -1237,6 +1249,10 @@ class CharController extends ChangeNotifier {
       armorAc++;
       touch++;
     }
+    if (chosenRace.name == "Monk") {
+      armorAc += char.modAtributes.wisdom!;
+      touch += char.modAtributes.wisdom!;
+    }
     generatedChar.combatStats.armourClass = armorAc;
     generatedChar.combatStats.armourTouch = touch;
     generatedChar.combatStats.armourSurprise = surprise;
@@ -1293,7 +1309,8 @@ class CharController extends ChangeNotifier {
       partialRef += 1;
       partialWill += 1;
     }
-    if (char.charClass.name == "Paladin") {
+    if (char.charClass.name == "Paladin" ||
+        char.charClass.name == "Antipaladin") {
       var caris = char.modAtributes.charisma;
       partialFort += caris!;
       partialWill += caris;
