@@ -5,20 +5,18 @@ import 'package:provider/provider.dart';
 
 import 'package:fantasy_name_generator/controllers/char_controller.dart';
 
-import '../../shared/themes/app_text_styles.dart';
+import '../../../shared/themes/app_text_styles.dart';
 
-class ProgressCheck extends StatefulWidget {
-  final VoidCallback onAdvance;
-  const ProgressCheck({
+class FightStyleSection extends StatefulWidget {
+  const FightStyleSection({
     Key? key,
-    required this.onAdvance,
   }) : super(key: key);
 
   @override
-  State<ProgressCheck> createState() => _ProgressCheckState();
+  State<FightStyleSection> createState() => _FightStyleSectionState();
 }
 
-class _ProgressCheckState extends State<ProgressCheck> {
+class _FightStyleSectionState extends State<FightStyleSection> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -28,36 +26,6 @@ class _ProgressCheckState extends State<ProgressCheck> {
       child: Consumer<CharController>(builder: (context, state, child) {
         return Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: RichText(
-                  textAlign: TextAlign.center,
-                  text: TextSpan(
-                      style: AppTextStyle.selectButtonNotReady,
-                      children: [
-                        const TextSpan(
-                          text: "The  ",
-                        ),
-                        TextSpan(
-                            text: state.generatedChar.charClass.name,
-                            style: AppTextStyle.selectButtonReady),
-                        const TextSpan(
-                          text: "  of level  ",
-                        ),
-                        TextSpan(
-                            text: "${state.generatedChar.charLevel}, ",
-                            style: AppTextStyle.selectButtonReady),
-                        const TextSpan(
-                          text: " named  ",
-                        ),
-                        TextSpan(
-                            text: state.generatedChar.charName.fullName,
-                            style: AppTextStyle.selectButtonReady),
-                        const TextSpan(
-                          text: "  has no equipment so far.",
-                        ),
-                      ])),
-            ),
             SizedBox(height: size.height * 0.03),
             Text(
                 "Select ${state.generatedChar.charName.fullName}'s primary fight style",

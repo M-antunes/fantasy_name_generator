@@ -1,31 +1,31 @@
+import 'package:fantasy_name_generator/shared/routes/app_roues.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:fantasy_name_generator/controllers/char_controller.dart';
-import 'package:fantasy_name_generator/modules/main_screen/widgets/progression_bar.dart';
-import 'package:fantasy_name_generator/modules/main_screen/widgets/selection_label.dart';
-import 'package:fantasy_name_generator/modules/selection_sections/alignment_section.dart';
-import 'package:fantasy_name_generator/modules/selection_sections/class_section.dart';
-import 'package:fantasy_name_generator/modules/selection_sections/gender_section.dart';
-import 'package:fantasy_name_generator/modules/selection_sections/level_section.dart';
-import 'package:fantasy_name_generator/modules/selection_sections/name_section.dart';
-import 'package:fantasy_name_generator/modules/selection_sections/race_section.dart';
+import 'package:fantasy_name_generator/modules/main_screens/widgets/progression_bar.dart';
+import 'package:fantasy_name_generator/modules/main_screens/widgets/selection_label.dart';
 import 'package:fantasy_name_generator/shared/themes/app_colors.dart';
-import 'package:fantasy_name_generator/shared/themes/app_text_styles.dart';
 import 'package:fantasy_name_generator/shared/widgets/app_animated_button.dart';
 import 'package:fantasy_name_generator/shared/widgets/call_message_snackbar.dart';
 
-import '../selection_sections/overall_equip_section.dart';
-import '../selection_sections/stats_section.dart';
+import '../selection_sections/char_selection_sections/alignment_section.dart';
+import '../selection_sections/char_selection_sections/class_section.dart';
+import '../selection_sections/char_selection_sections/gender_section.dart';
+import '../selection_sections/char_selection_sections/level_section.dart';
+import '../selection_sections/char_selection_sections/name_section.dart';
+import '../selection_sections/char_selection_sections/progress_check.dart';
+import '../selection_sections/char_selection_sections/race_section.dart';
+import '../selection_sections/char_selection_sections/stats_section.dart';
 
-class MainScreenPage extends StatefulWidget {
-  const MainScreenPage({Key? key}) : super(key: key);
+class CharDevelopmentPage extends StatefulWidget {
+  const CharDevelopmentPage({Key? key}) : super(key: key);
 
   @override
-  _MainScreenPageState createState() => _MainScreenPageState();
+  _CharDevelopmentPageState createState() => _CharDevelopmentPageState();
 }
 
-class _MainScreenPageState extends State<MainScreenPage>
+class _CharDevelopmentPageState extends State<CharDevelopmentPage>
     with TickerProviderStateMixin {
   late final CharController namesController;
 
@@ -97,10 +97,7 @@ class _MainScreenPageState extends State<MainScreenPage>
                         state.updateCharModel();
                       },
               ),
-            if (state.creationStage == 7)
-              ProgressCheck(
-                onAdvance: () => state.advanceCreationStage(),
-              ),
+            if (state.creationStage == 7) ProgressCheck(),
           ],
         );
       }),
@@ -120,22 +117,31 @@ class _MainScreenPageState extends State<MainScreenPage>
                       state.retreatCreationStage();
                     }
                   }),
-              AppAnimatedButton(
-                color: state.isCharGeneratorCleared && state.creationStage == 6
-                    ? Colors.white10
-                    : null,
-                onTap: !state.isCharGeneratorCleared && state.creationStage != 6
-                    ? () => buttonFunction(state, context)
-                    : !state.isCharGeneratorCleared && state.creationStage == 6
-                        ? () => buttonFunction(state, context)
-                        : state.isCharGeneratorCleared &&
-                                state.creationStage != 6
-                            ? () => buttonFunction(state, context)
-                            : () {},
-                style: state.isCharGeneratorCleared && state.creationStage == 6
-                    ? const TextStyle(color: Colors.white24, fontSize: 22)
-                    : null,
-              ),
+              state.creationStage == 7
+                  ? AppAnimatedButton(
+                      onTap: () =>
+                          Navigator.pushNamed(context, AppRoutes.equipPage),
+                    )
+                  : AppAnimatedButton(
+                      color: state.isCharGeneratorCleared &&
+                              state.creationStage == 6
+                          ? Colors.white10
+                          : null,
+                      onTap: !state.isCharGeneratorCleared &&
+                              state.creationStage != 6
+                          ? () => buttonFunction(state, context)
+                          : !state.isCharGeneratorCleared &&
+                                  state.creationStage == 6
+                              ? () => buttonFunction(state, context)
+                              : state.isCharGeneratorCleared &&
+                                      state.creationStage != 6
+                                  ? () => buttonFunction(state, context)
+                                  : () {},
+                      style: state.isCharGeneratorCleared &&
+                              state.creationStage == 6
+                          ? const TextStyle(color: Colors.white24, fontSize: 22)
+                          : null,
+                    ),
             ],
           ),
         );

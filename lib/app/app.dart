@@ -5,6 +5,8 @@ import 'package:fantasy_name_generator/shared/core/route_generator.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../controllers/equip_controller.dart';
+
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -19,6 +21,7 @@ class _MyAppState extends State<MyApp> {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => CharController()),
+        ChangeNotifierProvider(create: (_) => EquipController()),
       ],
       child: MaterialApp(
         title: 'Fantasy Character Generator',
