@@ -1,9 +1,13 @@
+import 'package:fantasy_name_generator/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:fantasy_name_generator/controllers/char_controller.dart';
 
 import '../../../shared/themes/app_text_styles.dart';
+import 'widgets/atribute_division.dart';
+import 'widgets/defense_info.dart';
+import 'widgets/stats_description_column.dart';
 
 class ProgressCheck extends StatefulWidget {
   const ProgressCheck({
@@ -23,35 +27,256 @@ class _ProgressCheckState extends State<ProgressCheck> {
       padding: const EdgeInsets.all(8.0),
       child: Consumer<CharController>(builder: (context, state, child) {
         return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: RichText(
-              textAlign: TextAlign.center,
-              text:
-                  TextSpan(style: AppTextStyle.selectButtonNotReady, children: [
-                const TextSpan(
-                  text: "The  ",
+          padding: const EdgeInsets.symmetric(horizontal: 5),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              RichText(
+                textAlign: TextAlign.center,
+                text: TextSpan(
+                  style: AppTextStyle.selectButtonNotReady,
+                  children: [
+                    const TextSpan(
+                      text: "The  ",
+                    ),
+                    TextSpan(
+                        text: state.generatedChar.charClass.name,
+                        style: AppTextStyle.selectButtonReady),
+                    const TextSpan(
+                      text: "  of level  ",
+                    ),
+                    TextSpan(
+                        text: "${state.generatedChar.charLevel}, ",
+                        style: AppTextStyle.selectButtonReady),
+                    const TextSpan(
+                      text: " named  ",
+                    ),
+                    TextSpan(
+                        text: state.generatedChar.charName.fullName,
+                        style: AppTextStyle.selectButtonReady),
+                    const TextSpan(
+                      text: "  has no equipment so far.",
+                    ),
+                  ],
                 ),
-                TextSpan(
-                    text: state.generatedChar.charClass.name,
-                    style: AppTextStyle.selectButtonReady),
-                const TextSpan(
-                  text: "  of level  ",
-                ),
-                TextSpan(
-                    text: "${state.generatedChar.charLevel}, ",
-                    style: AppTextStyle.selectButtonReady),
-                const TextSpan(
-                  text: " named  ",
-                ),
-                TextSpan(
-                    text: state.generatedChar.charName.fullName,
-                    style: AppTextStyle.selectButtonReady),
-                const TextSpan(
-                  text: "  has no equipment so far.",
-                ),
-              ])),
+              ),
+              SizedBox(height: size.height * 0.01),
+              AtributeDivision(
+                size: size,
+                label: "ATRIBUTES  (BASE / MODIFIER)",
+                label2: "These values might be altered depending on equipment",
+              ),
+              Row(
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        width: size.width * 0.44,
+                        child: StatsDescriptionColumn(
+                          labeltop: "Strength:",
+                          labelBottom: "Dexterity:",
+                          textValueTop:
+                              state.generatedChar.baseAtributes.strength!,
+                          textValueBottom:
+                              state.generatedChar.baseAtributes.dexterity!,
+                          modTop: state.generatedChar.modAtributes.strength!,
+                          modBottom:
+                              state.generatedChar.modAtributes.dexterity!,
+                        ),
+                      ),
+                      SizedBox(
+                        width: size.width * 0.44,
+                        child: StatsDescriptionText(
+                          label: "Constitution:",
+                          textValue:
+                              state.generatedChar.baseAtributes.constitution!,
+                          modValue:
+                              state.generatedChar.modAtributes.constitution!,
+                        ),
+                      )
+                    ],
+                  ),
+                  SizedBox(width: size.width * 0.02),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        width: size.width * 0.44,
+                        child: StatsDescriptionColumn(
+                          labeltop: "Intelligence:",
+                          labelBottom: "Wisdom:",
+                          textValueTop:
+                              state.generatedChar.baseAtributes.intelligence!,
+                          textValueBottom:
+                              state.generatedChar.baseAtributes.wisdom!,
+                          modTop:
+                              state.generatedChar.modAtributes.intelligence!,
+                          modBottom: state.generatedChar.modAtributes.wisdom!,
+                        ),
+                      ),
+                      SizedBox(
+                        width: size.width * 0.44,
+                        child: StatsDescriptionText(
+                          label: "Charisma:",
+                          textValue:
+                              state.generatedChar.baseAtributes.charisma!,
+                          modValue: state.generatedChar.modAtributes.charisma!,
+                        ),
+                      ),
+                      SizedBox(height: size.height * 0.006),
+                    ],
+                  ),
+                ],
+              ),
+              AtributeDivision(
+                size: size,
+                label: "COMBAT",
+                label2: "These values might be altered depending on equipment",
+              ),
+              DefenseInfo(
+                size: size,
+                label: "HP:",
+                value: state.generatedChar.hitPoints,
+              ),
+              Row(
+                children: [
+                  DefenseInfo(
+                    size: size,
+                    label: "BAB:",
+                    value: state.generatedChar.combatStats.baseAttackBonus!,
+                  ),
+                  SizedBox(width: size.width * 0.03),
+                  DefenseInfo(
+                    size: size,
+                    label: "CMB:",
+                    value: state.generatedChar.combatStats.combatManeuverBonus!,
+                  ),
+                  SizedBox(width: size.width * 0.03),
+                  DefenseInfo(
+                    size: size,
+                    label: "CMD:",
+                    value:
+                        state.generatedChar.combatStats.combatManeuverDefense!,
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  DefenseInfo(
+                    size: size,
+                    label: "AC:",
+                    value: state.generatedChar.combatStats.armourClass!,
+                  ),
+                  SizedBox(width: size.width * 0.03),
+                  DefenseInfo(
+                    size: size,
+                    label: "Touch:",
+                    value: state.generatedChar.combatStats.armourTouch!,
+                  ),
+                  SizedBox(width: size.width * 0.03),
+                  DefenseInfo(
+                    size: size,
+                    label: "Surp:",
+                    value: state.generatedChar.combatStats.armourSurprise!,
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  DefenseInfo(
+                    size: size,
+                    label: "FORT:",
+                    value: state.generatedChar.resistances.fortitude!,
+                  ),
+                  SizedBox(width: size.width * 0.03),
+                  DefenseInfo(
+                    size: size,
+                    label: "REF:",
+                    value: state.generatedChar.resistances.reflex!,
+                  ),
+                  SizedBox(width: size.width * 0.03),
+                  DefenseInfo(
+                    size: size,
+                    label: "WILL:",
+                    value: state.generatedChar.resistances.will!,
+                  ),
+                ],
+              ),
+              SizedBox(height: size.height * 0.05),
+              const Text("Click next to start equipment generation",
+                  style: AppTextStyle.selectButtonNotReady),
+              SizedBox(height: size.height * 0.01),
+              Row(
+                children: [
+                  const Text("Or click",
+                      style: AppTextStyle.selectButtonNotReady),
+                  TextButton(
+                      child: const Text(
+                        "HERE",
+                        style: TextStyle(color: AppColors.primaryGold),
+                      ),
+                      onPressed: () {
+                        showStartingOverConfirmation(context, state);
+                      }),
+                  const Text("to start over",
+                      style: AppTextStyle.selectButtonNotReady),
+                ],
+              ),
+            ],
+          ),
         );
       }),
     );
+  }
+
+  Future<dynamic> showStartingOverConfirmation(
+      BuildContext context, CharController state) {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: const Center(
+              child: Text(
+                "ATENTION!",
+                style: TextStyle(
+                  color: AppColors.primaryGold,
+                ),
+              ),
+            ),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                    "If you start over, the ${state.generatedChar.charClass.name} ${state.generatedChar.charName.fullName}, will be lost forever.",
+                    style: AppTextStyle.selectButtonNotReady,
+                    textAlign: TextAlign.center),
+                const Text("Is that what you desire?",
+                    style: AppTextStyle.selectButtonNotReady),
+              ],
+            ),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  state.startCharAllOver();
+                  Navigator.of(context).pop();
+                },
+                child: const Text(
+                  'YES',
+                  style: TextStyle(color: AppColors.primary),
+                ),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text(
+                  'NO',
+                  style: TextStyle(color: Colors.white70),
+                ),
+              ),
+            ],
+          );
+        });
   }
 }

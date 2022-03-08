@@ -9,11 +9,8 @@ import 'package:fantasy_name_generator/models/equip_models/weapon_model.dart';
 import 'package:fantasy_name_generator/models/name_model.dart';
 import 'package:fantasy_name_generator/models/race_model.dart';
 import 'package:fantasy_name_generator/models/resistance_model.dart';
-import 'package:fantasy_name_generator/shared/data/equip_data.dart';
 
 class DefaultCharModelData {
-  final listOfWeapons = EquipData();
-
   final defaultCharModel = CharModel(
     charRace: RaceModel(name: "Human", isSelected: false),
     charName: NameModel(fullName: "", name: "", surname: "", gender: ""),

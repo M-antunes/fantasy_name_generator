@@ -48,19 +48,19 @@ class _CharDevelopmentPageState extends State<CharDevelopmentPage>
             SelectionLabel(
                 size: size,
                 label: state.creationStage == 1
-                    ? "Race"
+                    ? "Character - Race"
                     : state.creationStage == 2
-                        ? "Gender & Name"
+                        ? "Character - Gender & Name"
                         : state.creationStage == 3
-                            ? "Class"
+                            ? "Character - Class"
                             : state.creationStage == 4
-                                ? "Alignment"
+                                ? "Character - Alignment"
                                 : state.creationStage == 5
-                                    ? "Level"
+                                    ? "Character - Level"
                                     : state.creationStage == 6
-                                        ? "Stats"
+                                        ? "Character - Stats"
                                         : state.creationStage == 7
-                                            ? "Basic features ready"
+                                            ? "Character - Basic features complete"
                                             : ''),
             ProgressionBar(
               controller: state,
@@ -119,8 +119,9 @@ class _CharDevelopmentPageState extends State<CharDevelopmentPage>
                   }),
               state.creationStage == 7
                   ? AppAnimatedButton(
-                      onTap: () =>
-                          Navigator.pushNamed(context, AppRoutes.equipPage),
+                      onTap: () => Navigator.pushNamed(
+                          context, AppRoutes.equipPage,
+                          arguments: state.generatedChar),
                     )
                   : AppAnimatedButton(
                       color: state.isCharGeneratorCleared &&

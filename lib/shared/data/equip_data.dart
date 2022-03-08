@@ -1,5 +1,6 @@
 import 'package:fantasy_name_generator/models/equip_models/armour_model.dart';
 import 'package:fantasy_name_generator/models/equip_models/weapon_model.dart';
+import 'package:fantasy_name_generator/models/equip_models/weapon_type_model.dart';
 
 class EquipData {
   final List<WeaponModel> oneHandedWeapons = [
@@ -31,8 +32,26 @@ class EquipData {
     WeaponModel(isSelected: false, type: "Mace", name: "Light mace"),
     WeaponModel(isSelected: false, type: "Exotic", name: "Scythe"),
   ];
+  final List<WeaponTypeModel> oneHandedTypes = [
+    WeaponTypeModel(
+        name: "Knife",
+        isSelected: false,
+        picture: "assets/images/weapon_types/knife.svg"),
+    WeaponTypeModel(
+        name: "Sword",
+        isSelected: false,
+        picture: "assets/images/weapon_types/sword.svg"),
+    WeaponTypeModel(
+        name: "Axe",
+        isSelected: false,
+        picture: "assets/images/weapon_types/hatchet.svg"),
+    WeaponTypeModel(
+        name: "Mace",
+        isSelected: false,
+        picture: "assets/images/weapon_types/mace.svg"),
+  ];
 
-  final List<WeaponModel> twoHandedWeapon = [
+  final List<WeaponModel> twoHandedWeapons = [
     WeaponModel(isSelected: false, type: "Long", name: "Bayonet"),
     WeaponModel(isSelected: false, type: "Long", name: "Boar spear"),
     WeaponModel(isSelected: false, type: "Long", name: "Longspear"),
@@ -53,17 +72,40 @@ class EquipData {
     WeaponModel(isSelected: false, type: "Long", name: "Chain spear"),
     WeaponModel(isSelected: false, type: "Sword", name: "Elven curved blade"),
     WeaponModel(isSelected: false, type: "Long", name: "Halberd"),
-    WeaponModel(isSelected: false, type: "Double", name: "Quarterstaff"),
-    WeaponModel(isSelected: false, type: "Double", name: "Double saber"),
+    WeaponModel(isSelected: false, type: "Exotic", name: "Quarterstaff"),
+    WeaponModel(isSelected: false, type: "Exotic", name: "Double saber"),
     WeaponModel(isSelected: false, type: "Exotic", name: "Spiked chain"),
     WeaponModel(isSelected: false, type: "Exotic", name: "Net"),
     WeaponModel(isSelected: false, type: "Exotic", name: "Flying blade"),
-    WeaponModel(isSelected: false, type: "Double", name: "Double-chained"),
+    WeaponModel(isSelected: false, type: "Exotic", name: "Double-chained"),
     WeaponModel(
         isSelected: false, type: "Exotic two-handed", name: "Dire flail"),
   ];
 
-  final List<WeaponModel> distance = [
+  final List<WeaponTypeModel> twoHandedTypes = [
+    WeaponTypeModel(
+        name: "Great Sword",
+        isSelected: false,
+        picture: "assets/images/weapon_types/great-sword.svg"),
+    WeaponTypeModel(
+        name: "Spear",
+        isSelected: false,
+        picture: "assets/images/weapon_types/spear.svg"),
+    WeaponTypeModel(
+        name: "Great Axe",
+        isSelected: false,
+        picture: "assets/images/weapon_types/battle-axe.svg"),
+    WeaponTypeModel(
+        name: "Long Mace",
+        isSelected: false,
+        picture: "assets/images/weapon_types/mace.svg"),
+    WeaponTypeModel(
+        name: "Exotic",
+        isSelected: false,
+        picture: "assets/images/weapon_types/exotic.svg"),
+  ];
+
+  final List<WeaponModel> distanceWeapons = [
     WeaponModel(isSelected: false, type: "Crossbow", name: "Heavy crossbow"),
     WeaponModel(isSelected: false, type: "Throwing", name: "Throwing axe"),
     WeaponModel(isSelected: false, type: "Throwing", name: "Javelin"),
@@ -80,6 +122,21 @@ class EquipData {
     WeaponModel(isSelected: false, type: "Crossbow", name: "Hand crossbow"),
     WeaponModel(isSelected: false, type: "Throwing", name: "Shuriken"),
     WeaponModel(isSelected: false, type: "Throwing", name: "Throwing shield"),
+  ];
+
+  final List<WeaponTypeModel> distanceTypes = [
+    WeaponTypeModel(
+        name: "Bow",
+        isSelected: false,
+        picture: "assets/images/weapon_types/bow.svg"),
+    WeaponTypeModel(
+        name: "Crossbow",
+        isSelected: false,
+        picture: "assets/images/weapon_types/crossbow.svg"),
+    WeaponTypeModel(
+        name: "Throwing",
+        isSelected: false,
+        picture: "assets/images/weapon_types/throwing.svg"),
   ];
 
   final List<WeaponModel> fistWeapons = [

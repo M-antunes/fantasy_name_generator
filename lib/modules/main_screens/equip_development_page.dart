@@ -1,4 +1,5 @@
 import 'package:fantasy_name_generator/controllers/equip_controller.dart';
+import 'package:fantasy_name_generator/models/char_model.dart';
 import 'package:fantasy_name_generator/modules/selection_sections/equip_selection_section/fight_style_section.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -10,6 +11,9 @@ import 'package:fantasy_name_generator/shared/themes/app_colors.dart';
 import 'package:fantasy_name_generator/shared/widgets/app_animated_button.dart';
 import 'package:fantasy_name_generator/shared/widgets/call_message_snackbar.dart';
 
+import '../../shared/data/test.dart';
+import '../selection_sections/equip_selection_section/style_segment_section.dart';
+
 class EquipDevelopMentPage extends StatefulWidget {
   const EquipDevelopMentPage({Key? key}) : super(key: key);
 
@@ -17,46 +21,46 @@ class EquipDevelopMentPage extends StatefulWidget {
   _EquipDevelopMentPageState createState() => _EquipDevelopMentPageState();
 }
 
-class _EquipDevelopMentPageState extends State<EquipDevelopMentPage>
-    with TickerProviderStateMixin {
+class _EquipDevelopMentPageState extends State<EquipDevelopMentPage> {
   late final EquipController equipController;
-  late final CharController charController;
 
   @override
   void initState() {
     equipController = context.read<EquipController>();
-    equipController.char = charController.generatedChar;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    CharModel char = ModalRoute.of(context)!.settings.arguments as CharModel;
     final size = MediaQuery.of(context).size;
     return Scaffold(
       body: Consumer<EquipController>(builder: (context, state, child) {
+        state.char = char;
         return ListView(
           children: [
             SelectionLabel(
                 size: size,
                 label: state.creationStage == 1
-                    ? "Style"
+                    ? "Equipment - Style"
                     : state.creationStage == 2
-                        ? "Gender & Name"
+                        ? "Equipment - Weapon segment"
                         : state.creationStage == 3
-                            ? "Class"
+                            ? "Equipment - Class"
                             : state.creationStage == 4
-                                ? "Alignment"
+                                ? "Equipment - Alignment"
                                 : state.creationStage == 5
-                                    ? "Level"
+                                    ? "Equipment - Level"
                                     : state.creationStage == 6
-                                        ? "Stats"
+                                        ? "Equipment - Stats"
                                         : state.creationStage == 7
-                                            ? "Basic features ready"
+                                            ? "Equipment - Basic features ready"
                                             : ''),
             EquipProgressionBar(
               controller: state,
             ),
-            if (state.creationStage == 1) FightStyleSection()
+            if (state.creationStage == 1) FightStyleSection(char: char),
+            if (state.creationStage == 2) StyleSegmentSection(),
           ],
         );
       }),

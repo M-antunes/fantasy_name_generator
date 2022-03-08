@@ -16,6 +16,7 @@ import 'package:fantasy_name_generator/models/resistance_model.dart';
 import 'package:fantasy_name_generator/models/saved_name_model.dart';
 import 'package:fantasy_name_generator/shared/data/alignment_data.dart';
 import 'package:fantasy_name_generator/shared/data/class_data.dart';
+import 'package:fantasy_name_generator/shared/data/default_char_model_data.dart';
 import 'package:fantasy_name_generator/shared/data/equip_data.dart';
 import 'package:fantasy_name_generator/shared/widgets/call_message_snackbar.dart';
 import 'package:fantasy_name_generator/shared/data/human_names_data.dart';
@@ -779,6 +780,7 @@ class CharController extends ChangeNotifier {
         humanNameGenerator();
         break;
       case "Half-elf":
+        randomChance = randomIndex.nextInt(6);
         randomChance > 0 && randomChance < 3
             ? elfNameGenerator()
             : humanNameGenerator();
@@ -787,6 +789,7 @@ class CharController extends ChangeNotifier {
         orcNameGenerator();
         break;
       case "Half-orc":
+        randomChance = randomIndex.nextInt(6);
         randomChance > 0 && randomChance < 3
             ? orcNameGenerator()
             : humanNameGenerator();
@@ -1433,5 +1436,18 @@ class CharController extends ChangeNotifier {
       advanceCreationStage();
       return null;
     }
+  }
+
+  startCharAllOver() {
+    newName = ' - ? - ';
+    newLastName = ' - ? - ';
+    levelSelected = -1;
+    getInitialRace();
+    getInitialClass();
+    tempRaceForSwitching.isSelected = true;
+    tempoClassForSwitching.isSelected = true;
+    getInitialAlignment();
+    creationStage = 1;
+    notifyListeners();
   }
 }

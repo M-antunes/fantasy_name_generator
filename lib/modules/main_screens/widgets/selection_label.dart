@@ -12,24 +12,13 @@ class SelectionLabel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Padding(
-          padding: EdgeInsets.symmetric(
-            vertical: size.height * 0.005,
-          ),
-          child: Text(
-            label,
-            style: AppTextStyle.mainPageLabel,
-          ),
-        ),
-        // Container(
-        //   width: size.width * 0.95,
-        //   height: size.height * 0.003,
-        //   color: Colors.grey,
-        // ),
-        // SizedBox(height: size.height * 0.01),
-      ],
+    return Padding(
+      padding: EdgeInsets.symmetric(
+          vertical: size.height * 0.005, horizontal: size.height * 0.015),
+      child: Text(
+        label,
+        style: AppTextStyle.mainPageLabel,
+      ),
     );
   }
 }

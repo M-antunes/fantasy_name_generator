@@ -36,36 +36,13 @@ class StatsSection extends StatelessWidget {
                     child: AppGenerateButton(
                         icon: state.isCharGeneratorCleared
                             ? null
-                            : Icon(Icons.delete_forever, size: 40),
+                            : const Icon(Icons.delete_forever, size: 40),
                         onGenerate: onGenerate),
                   ),
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Row(
-                    //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    //   children: [
-                    //     AppAnimatedButton(
-                    //       color:
-                    //           state.isCharGeneratorCleared ? Colors.white10 : null,
-                    //       onTap: state.isCharGeneratorCleared ? () {} : onGenerate,
-                    //       label: "Clear",
-                    //       style: state.isCharGeneratorCleared
-                    //           ? const TextStyle(color: Colors.white24, fontSize: 22)
-                    //           : null,
-                    //     ),
-                    //     AppAnimatedButton(
-                    //       color:
-                    //           !state.isCharGeneratorCleared ? Colors.white10 : null,
-                    //       onTap: !state.isCharGeneratorCleared ? () {} : onGenerate,
-                    //       label: "Generate",
-                    //       style: !state.isCharGeneratorCleared
-                    //           ? const TextStyle(color: Colors.white24, fontSize: 22)
-                    //           : null,
-                    //     ),
-                    //   ],
-                    // ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -252,7 +229,6 @@ class StatsSection extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(width: size.width * 0.03),
                     Row(
                       children: [
                         DefenseInfo(
@@ -273,7 +249,6 @@ class StatsSection extends StatelessWidget {
                           value:
                               state.generatedChar.combatStats.armourSurprise!,
                         ),
-                        SizedBox(width: size.width * 0.03),
                       ],
                     ),
                     Row(
@@ -295,7 +270,6 @@ class StatsSection extends StatelessWidget {
                           label: "WILL:",
                           value: state.generatedChar.resistances.will!,
                         ),
-                        SizedBox(width: size.width * 0.03),
                       ],
                     ),
                   ],

@@ -1,36 +1,30 @@
-import 'package:fantasy_name_generator/shared/themes/app_colors.dart';
+import 'package:fantasy_name_generator/controllers/equip_controller.dart';
+import 'package:fantasy_name_generator/models/char_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
-
-import 'package:fantasy_name_generator/controllers/char_controller.dart';
-
+import 'package:fantasy_name_generator/shared/themes/app_colors.dart';
 import '../../../shared/themes/app_text_styles.dart';
 
-class FightStyleSection extends StatefulWidget {
+class FightStyleSection extends StatelessWidget {
+  final CharModel char;
   const FightStyleSection({
     Key? key,
+    required this.char,
   }) : super(key: key);
 
-  @override
-  State<FightStyleSection> createState() => _FightStyleSectionState();
-}
-
-class _FightStyleSectionState extends State<FightStyleSection> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Consumer<CharController>(builder: (context, state, child) {
+      child: Consumer<EquipController>(builder: (context, state, child) {
         return Column(
           children: [
             SizedBox(height: size.height * 0.03),
-            Text(
-                "Select ${state.generatedChar.charName.fullName}'s primary fight style",
-                style: AppTextStyle.mainPageLabel,
-                textAlign: TextAlign.center),
+            Text("Select ${char.charName.fullName}'s primary fight style",
+                style: AppTextStyle.mainPageLabel, textAlign: TextAlign.center),
             // AtributeDivision(label: "Weapons", size: size),
             SizedBox(height: size.height * 0.15),
             GridView.builder(
@@ -46,10 +40,10 @@ class _FightStyleSectionState extends State<FightStyleSection> {
                   return InkWell(
                     splashColor: Colors.transparent,
                     child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
                       // width: size.height * 0.2,
                       // height: size.height * 0.2,
-                      margin: EdgeInsets.symmetric(horizontal: 12),
+                      margin: const EdgeInsets.symmetric(horizontal: 12),
                       decoration: BoxDecoration(
                         color: Colors.grey[900],
                         borderRadius: BorderRadius.circular(30),
@@ -74,13 +68,7 @@ class _FightStyleSectionState extends State<FightStyleSection> {
                         ],
                       ),
                     ),
-                    onTap: () {
-                      setState(() {
-                        state.listOfClasses.fightingStyle[0].value.key = false;
-                        state.listOfClasses.fightingStyle[1].value.key = false;
-                        combatStyle.value.key = !combatStyle.value.key;
-                      });
-                    },
+                    onTap: () => state.switchCombatStyle(combatStyle),
                   );
                 }),
           ],
