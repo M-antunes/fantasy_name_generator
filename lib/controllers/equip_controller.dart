@@ -12,14 +12,17 @@ class EquipController extends ChangeNotifier {
   int creationStage = 1;
   var listOfClasses = ClassData();
   var listOfEquip = EquipData();
+  List<WeaponTypeModel> allListsPrimary = [];
+  List<WeaponTypeModel> allListsSecondary = [];
   String fightStyle = "";
   String tempFightStyle = "";
   bool showOneHanded = false;
   bool showTwoHanded = false;
   bool showDistant = false;
-
-  WeaponTypeModel? tempWeaponTypeForSwitching;
-  WeaponTypeModel? chosenWeaponType;
+  WeaponTypeModel? tempPrimaryWeaponTypeForSwitching;
+  WeaponTypeModel? chosenPrimaryWeaponType;
+  WeaponTypeModel? tempSecondaryWeaponTypeForSwitching;
+  WeaponTypeModel? chosenSecondaryWeaponType;
 
   makeWeaponSegmentTrue(String show) {
     switch (show) {
@@ -39,11 +42,15 @@ class EquipController extends ChangeNotifier {
     }
   }
 
-  bool makeTheRestOfWeaponSegmentFalse(bool safe) {
+  closeAllTypeSections() {
     showOneHanded = false;
     showTwoHanded = false;
     showDistant = false;
     notifyListeners();
+  }
+
+  bool makeTheRestOfWeaponSegmentFalse(bool safe) {
+    closeAllTypeSections();
     if (safe) {
       safe = false;
     } else {
@@ -52,19 +59,60 @@ class EquipController extends ChangeNotifier {
     return safe;
   }
 
-  updateChosenweaponType() {
-    chosenWeaponType = tempWeaponTypeForSwitching;
-    notifyListeners();
+  updatePrimaryweaponType() {
+    for (var select in allListsPrimary) {
+      select.isSelected = false;
+    }
+    chosenPrimaryWeaponType = tempPrimaryWeaponTypeForSwitching;
+    tempPrimaryWeaponTypeForSwitching!.isSelected = false;
+    closeAllTypeSections();
   }
 
-  switchWeaponType(WeaponTypeModel type, List<WeaponTypeModel> list) {
+  updateSecondaryweaponType() {
+    for (var select in allListsPrimary) {
+      select.isSelected = false;
+    }
+    chosenSecondaryWeaponType = tempSecondaryWeaponTypeForSwitching;
+    closeAllTypeSections();
+  }
+
+  populateAllLists() {
+    if (allListsPrimary.length < 13) {
+      allListsPrimary.addAll(listOfEquip.oneHandedTypes);
+      allListsPrimary.addAll(listOfEquip.twoHandedTypes);
+      allListsPrimary.addAll(listOfEquip.distanceTypes);
+    }
+  }
+
+  switchPrimaryWeaponType(WeaponTypeModel type) {
     type.isSelected = !type.isSelected;
-    for (var select in list) {
+    for (var select in allListsPrimary) {
       select.isSelected = false;
     }
     type.isSelected = !type.isSelected;
-    tempWeaponTypeForSwitching = type;
+    tempPrimaryWeaponTypeForSwitching = type;
     notifyListeners();
+  }
+
+  switchSecondaryWeaponType(WeaponTypeModel type) {
+    if (chosenSecondaryWeaponType != null) {
+      return;
+    }
+    type.isSelected = !type.isSelected;
+    for (var select in allListsPrimary) {
+      select.isSelected = false;
+    }
+    type.isSelected = !type.isSelected;
+    tempSecondaryWeaponTypeForSwitching = type;
+    notifyListeners();
+  }
+
+  resetChoices() {
+    tempPrimaryWeaponTypeForSwitching = null;
+    tempSecondaryWeaponTypeForSwitching = null;
+    chosenPrimaryWeaponType = null;
+    chosenSecondaryWeaponType = null;
+    closeAllTypeSections();
   }
 
   advanceCreationStage() {
@@ -93,12 +141,9 @@ class EquipController extends ChangeNotifier {
   String? activateNextButton() {
     if (creationStage == 1) {
       advanceCreationStage();
+      updateSecondaryweaponType();
       return null;
     }
-    if (creationStage == 2) {
-      advanceCreationStage();
-      updateChosenweaponType();
-      return null;
-    }
+    return null;
   }
 }

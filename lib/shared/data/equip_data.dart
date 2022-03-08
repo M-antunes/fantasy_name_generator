@@ -4,33 +4,216 @@ import 'package:fantasy_name_generator/models/equip_models/weapon_type_model.dar
 
 class EquipData {
   final List<WeaponModel> oneHandedWeapons = [
-    WeaponModel(isSelected: false, type: "Knife", name: "Dagger"),
-    WeaponModel(isSelected: false, type: "Mace", name: "Wooden stick"),
-    WeaponModel(isSelected: false, type: "Mace", name: "Club"),
-    WeaponModel(isSelected: false, type: "Mace", name: "Heavy mace"),
-    WeaponModel(isSelected: false, type: "Long", name: "Shortspear"),
-    WeaponModel(isSelected: false, type: "Mace", name: "Morningstar"),
-    WeaponModel(isSelected: false, type: "Knife", name: "Punching dagger"),
-    WeaponModel(isSelected: false, type: "Sword", name: "Butterfly sword"),
-    WeaponModel(isSelected: false, type: "Axe", name: "Handaxe"),
-    WeaponModel(isSelected: false, type: "Knife", name: "Kukri"),
-    WeaponModel(isSelected: false, type: "Mace", name: "Light hammer"),
-    WeaponModel(isSelected: false, type: "Sword", name: "Shortsword"),
-    WeaponModel(isSelected: false, type: "Axe", name: "Light pick"),
-    WeaponModel(isSelected: false, type: "Knife", name: "Starknife"),
-    WeaponModel(isSelected: false, type: "Exotic", name: "Light flail"),
-    WeaponModel(isSelected: false, type: "Sword", name: "Longsword"),
-    WeaponModel(isSelected: false, type: "Unarmed strike", name: "Rapier"),
-    WeaponModel(isSelected: false, type: "Sword", name: "Scimitar"),
-    WeaponModel(isSelected: false, type: "Sword", name: "Falchion"),
-    WeaponModel(isSelected: false, type: "Exotic", name: "whip"),
-    WeaponModel(isSelected: false, type: "Knife", name: "Swordbreaker dagger"),
-    WeaponModel(isSelected: false, type: "Sword", name: "Bastard sword"),
-    WeaponModel(isSelected: false, type: "Axe", name: "Waraxe"),
-    WeaponModel(isSelected: false, type: "Sword", name: "Katana"),
-    WeaponModel(isSelected: false, type: "Sword", name: "Sabre"),
-    WeaponModel(isSelected: false, type: "Mace", name: "Light mace"),
-    WeaponModel(isSelected: false, type: "Exotic", name: "Scythe"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Knife",
+            isSelected: false,
+            picture: "assets/images/weapon_types/knife.svg"),
+        name: "Dagger"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Mace",
+            isSelected: false,
+            picture: "assets/images/weapon_types/mace.svg"),
+        name: "Wooden stick"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Mace",
+            isSelected: false,
+            picture: "assets/images/weapon_types/mace.svg"),
+        name: "Club"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Mace",
+            isSelected: false,
+            picture: "assets/images/weapon_types/mace.svg"),
+        name: "Heavy mace"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Mace",
+            isSelected: false,
+            picture: "assets/images/weapon_types/mace.svg"),
+        name: "Morningstar"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Knife",
+            isSelected: false,
+            picture: "assets/images/weapon_types/knife.svg"),
+        name: "Punching dagger"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Sword",
+            isSelected: false,
+            picture: "assets/images/weapon_types/sword.svg"),
+        name: "Butterfly sword"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Axe",
+            isSelected: false,
+            picture: "assets/images/weapon_types/hatchet.svg"),
+        name: "Handaxe"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Knife",
+            isSelected: false,
+            picture: "assets/images/weapon_types/knife.svg"),
+        name: "Kukri"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Mace",
+            isSelected: false,
+            picture: "assets/images/weapon_types/mace.svg"),
+        name: "Light hammer"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Sword",
+            isSelected: false,
+            picture: "assets/images/weapon_types/sword.svg"),
+        name: "Shortsword"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Axe",
+            isSelected: false,
+            picture: "assets/images/weapon_types/hatchet.svg"),
+        name: "Light pick"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Knife",
+            isSelected: false,
+            picture: "assets/images/weapon_types/knife.svg"),
+        name: "Starknife"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Exotic",
+            isSelected: false,
+            picture: "assets/images/weapon_types/exotic.svg"),
+        name: "Light flail"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Sword",
+            isSelected: false,
+            picture: "assets/images/weapon_types/sword.svg"),
+        name: "Longsword"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Sword",
+            isSelected: false,
+            picture: "assets/images/weapon_types/sword.svg"),
+        name: "Rapier"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Sword",
+            isSelected: false,
+            picture: "assets/images/weapon_types/sword.svg"),
+        name: "Scimitar"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Sword",
+            isSelected: false,
+            picture: "assets/images/weapon_types/sword.svg"),
+        name: "Falchion"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Exotic",
+            isSelected: false,
+            picture: "assets/images/weapon_types/exotic.svg"),
+        name: "whip"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Knife",
+            isSelected: false,
+            picture: "assets/images/weapon_types/knife.svg"),
+        name: "Swordbreaker dagger"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Sword",
+            isSelected: false,
+            picture: "assets/images/weapon_types/sword.svg"),
+        name: "Bastard sword"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Axe",
+            isSelected: false,
+            picture: "assets/images/weapon_types/hatchet.svg"),
+        name: "Waraxe"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Sword",
+            isSelected: false,
+            picture: "assets/images/weapon_types/sword.svg"),
+        name: "Katana"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Sword",
+            isSelected: false,
+            picture: "assets/images/weapon_types/sword.svg"),
+        name: "Sabre"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Mace",
+            isSelected: false,
+            picture: "assets/images/weapon_types/mace.svg"),
+        name: "Light mace"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Exotic",
+            isSelected: false,
+            picture: "assets/images/weapon_types/exotic.svg"),
+        name: "Scythe"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Fist",
+            isSelected: false,
+            picture: "assets/images/weapon_types/punch.svg"),
+        name: "Unarmed strike"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Fist",
+            isSelected: false,
+            picture: "assets/images/weapon_types/punch.svg"),
+        name: "Brass knuckles"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Fist",
+            isSelected: false,
+            picture: "assets/images/weapon_types/punch.svg"),
+        name: "Cestus"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Fist",
+            isSelected: false,
+            picture: "assets/images/weapon_types/punch.svg"),
+        name: "Spiked gauntlet"),
   ];
   final List<WeaponTypeModel> oneHandedTypes = [
     WeaponTypeModel(
@@ -49,42 +232,211 @@ class EquipData {
         name: "Mace",
         isSelected: false,
         picture: "assets/images/weapon_types/mace.svg"),
+    WeaponTypeModel(
+        name: "Fist",
+        isSelected: false,
+        picture: "assets/images/weapon_types/punch.svg"),
+    WeaponTypeModel(
+        name: "Exotic",
+        isSelected: false,
+        picture: "assets/images/weapon_types/exotic.svg"),
   ];
 
   final List<WeaponModel> twoHandedWeapons = [
-    WeaponModel(isSelected: false, type: "Long", name: "Bayonet"),
-    WeaponModel(isSelected: false, type: "Long", name: "Boar spear"),
-    WeaponModel(isSelected: false, type: "Long", name: "Longspear"),
-    WeaponModel(isSelected: false, type: "Long", name: "Gladius"),
-    WeaponModel(isSelected: false, type: "Long", name: "Trident"),
-    WeaponModel(isSelected: false, type: "Long", name: "Glaive"),
-    WeaponModel(isSelected: false, type: "Long", name: "Bardiche"),
-    WeaponModel(isSelected: false, type: "Mace", name: "Earth breaker"),
-    WeaponModel(isSelected: false, type: "Mace", name: "Greatclub"),
-    WeaponModel(isSelected: false, type: "Mace", name: "Warhammer"),
-    WeaponModel(isSelected: false, type: "Axe", name: "Greataxe"),
-    WeaponModel(isSelected: false, type: "Sword", name: "Greatsword"),
-    WeaponModel(isSelected: false, type: "Long", name: "Guisarme"),
-    WeaponModel(isSelected: false, type: "Long", name: "Hooked lance"),
-    WeaponModel(isSelected: false, type: "Long", name: "Lance"),
-    WeaponModel(isSelected: false, type: "Long", name: "Long scythe"),
-    WeaponModel(isSelected: false, type: "Axe", name: "Hooked axe"),
-    WeaponModel(isSelected: false, type: "Long", name: "Chain spear"),
-    WeaponModel(isSelected: false, type: "Sword", name: "Elven curved blade"),
-    WeaponModel(isSelected: false, type: "Long", name: "Halberd"),
-    WeaponModel(isSelected: false, type: "Exotic", name: "Quarterstaff"),
-    WeaponModel(isSelected: false, type: "Exotic", name: "Double saber"),
-    WeaponModel(isSelected: false, type: "Exotic", name: "Spiked chain"),
-    WeaponModel(isSelected: false, type: "Exotic", name: "Net"),
-    WeaponModel(isSelected: false, type: "Exotic", name: "Flying blade"),
-    WeaponModel(isSelected: false, type: "Exotic", name: "Double-chained"),
     WeaponModel(
-        isSelected: false, type: "Exotic two-handed", name: "Dire flail"),
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Polearm",
+            isSelected: false,
+            picture: "assets/images/weapon_types/polearm.svg"),
+        name: "Bayonet"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Spear",
+            isSelected: false,
+            picture: "assets/images/weapon_types/spear.svg"),
+        name: "Boar spear"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Spear",
+            isSelected: false,
+            picture: "assets/images/weapon_types/spear.svg"),
+        name: "Longspear"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Polearm",
+            isSelected: false,
+            picture: "assets/images/weapon_types/polearm.svg"),
+        name: "Gladius"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Polearm",
+            isSelected: false,
+            picture: "assets/images/weapon_types/polearm.svg"),
+        name: "Trident"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Polearm",
+            isSelected: false,
+            picture: "assets/images/weapon_types/polearm.svg"),
+        name: "Glaive"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Polearm",
+            isSelected: false,
+            picture: "assets/images/weapon_types/polearm.svg"),
+        name: "Bardiche"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Mace",
+            isSelected: false,
+            picture: "assets/images/weapon_types/mace.svg"),
+        name: "Earth breaker"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Mace",
+            isSelected: false,
+            picture: "assets/images/weapon_types/mace.svg"),
+        name: "Greatclub"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Mace",
+            isSelected: false,
+            picture: "assets/images/weapon_types/mace.svg"),
+        name: "Warhammer"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Axe",
+            isSelected: false,
+            picture: "assets/images/weapon_types/battle-axe.svg"),
+        name: "Greataxe"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Sword",
+            isSelected: false,
+            picture: "assets/images/weapon_types/great-sword.svg"),
+        name: "Greatsword"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Polearm",
+            isSelected: false,
+            picture: "assets/images/weapon_types/polearm.svg"),
+        name: "Guisarme"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Spear",
+            isSelected: false,
+            picture: "assets/images/weapon_types/spear.svg"),
+        name: "Hooked lance"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Spear",
+            isSelected: false,
+            picture: "assets/images/weapon_types/spear.svg"),
+        name: "Lance"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Polearm",
+            isSelected: false,
+            picture: "assets/images/weapon_types/polearm.svg"),
+        name: "Long scythe"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Axe",
+            isSelected: false,
+            picture: "assets/images/weapon_types/battle-axe.svg"),
+        name: "Hooked axe"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Spear",
+            isSelected: false,
+            picture: "assets/images/weapon_types/spear.svg"),
+        name: "Chain spear"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Sword",
+            isSelected: false,
+            picture: "assets/images/weapon_types/great-sword.svg"),
+        name: "Elven curved blade"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Polearm",
+            isSelected: false,
+            picture: "assets/images/weapon_types/polearm.svg"),
+        name: "Halberd"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Exotic",
+            isSelected: false,
+            picture: "assets/images/weapon_types/exotic.svg"),
+        name: "Quarterstaff"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Exotic",
+            isSelected: false,
+            picture: "assets/images/weapon_types/exotic.svg"),
+        name: "Double saber"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Exotic",
+            isSelected: false,
+            picture: "assets/images/weapon_types/exotic.svg"),
+        name: "Spiked chain"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Exotic",
+            isSelected: false,
+            picture: "assets/images/weapon_types/exotic.svg"),
+        name: "Net"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Exotic",
+            isSelected: false,
+            picture: "assets/images/weapon_types/exotic.svg"),
+        name: "Flying blade"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Exotic",
+            isSelected: false,
+            picture: "assets/images/weapon_types/exotic.svg"),
+        name: "Double-chained"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Exotic",
+            isSelected: false,
+            picture: "assets/images/weapon_types/exotic.svg"),
+        name: "Dire flail"),
   ];
 
   final List<WeaponTypeModel> twoHandedTypes = [
     WeaponTypeModel(
-        name: "Great Sword",
+        name: "Sword",
         isSelected: false,
         picture: "assets/images/weapon_types/great-sword.svg"),
     WeaponTypeModel(
@@ -92,13 +444,17 @@ class EquipData {
         isSelected: false,
         picture: "assets/images/weapon_types/spear.svg"),
     WeaponTypeModel(
-        name: "Great Axe",
+        name: "Axe",
         isSelected: false,
         picture: "assets/images/weapon_types/battle-axe.svg"),
     WeaponTypeModel(
-        name: "Long Mace",
+        name: "Mace",
         isSelected: false,
         picture: "assets/images/weapon_types/mace.svg"),
+    WeaponTypeModel(
+        name: "Polearm",
+        isSelected: false,
+        picture: "assets/images/weapon_types/polearm.svg"),
     WeaponTypeModel(
         name: "Exotic",
         isSelected: false,
@@ -106,22 +462,118 @@ class EquipData {
   ];
 
   final List<WeaponModel> distanceWeapons = [
-    WeaponModel(isSelected: false, type: "Crossbow", name: "Heavy crossbow"),
-    WeaponModel(isSelected: false, type: "Throwing", name: "Throwing axe"),
-    WeaponModel(isSelected: false, type: "Throwing", name: "Javelin"),
-    WeaponModel(isSelected: false, type: "Throwing", name: "Sling"),
-    WeaponModel(isSelected: false, type: "Throwing", name: "Chakram"),
-    WeaponModel(isSelected: false, type: "Crossbow", name: "Light crossbow"),
-    WeaponModel(isSelected: false, type: "Bow", name: "Composite longbow"),
-    WeaponModel(isSelected: false, type: "Bow", name: "Composite shortbow"),
-    WeaponModel(isSelected: false, type: "Bow", name: "Longbow"),
-    WeaponModel(isSelected: false, type: "Throwing", name: "Pilum"),
-    WeaponModel(isSelected: false, type: "Bow", name: "Shortbow"),
-    WeaponModel(isSelected: false, type: "Throwing", name: "Bolas"),
-    WeaponModel(isSelected: false, type: "Throwing", name: "Boomerang"),
-    WeaponModel(isSelected: false, type: "Crossbow", name: "Hand crossbow"),
-    WeaponModel(isSelected: false, type: "Throwing", name: "Shuriken"),
-    WeaponModel(isSelected: false, type: "Throwing", name: "Throwing shield"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Crossbow",
+            isSelected: false,
+            picture: "assets/images/weapon_types/crossbow.svg"),
+        name: "Heavy crossbow"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Throwing",
+            isSelected: false,
+            picture: "assets/images/weapon_types/throwing.svg"),
+        name: "Throwing axe"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Throwing",
+            isSelected: false,
+            picture: "assets/images/weapon_types/throwing.svg"),
+        name: "Javelin"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Throwing",
+            isSelected: false,
+            picture: "assets/images/weapon_types/throwing.svg"),
+        name: "Sling"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Throwing",
+            isSelected: false,
+            picture: "assets/images/weapon_types/throwing.svg"),
+        name: "Chakram"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Crossbow",
+            isSelected: false,
+            picture: "assets/images/weapon_types/crossbow.svg"),
+        name: "Light crossbow"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Bow",
+            isSelected: false,
+            picture: "assets/images/weapon_types/bow.svg"),
+        name: "Composite longbow"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Bow",
+            isSelected: false,
+            picture: "assets/images/weapon_types/bow.svg"),
+        name: "Composite shortbow"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Bow",
+            isSelected: false,
+            picture: "assets/images/weapon_types/bow.svg"),
+        name: "Longbow"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Throwing",
+            isSelected: false,
+            picture: "assets/images/weapon_types/throwing.svg"),
+        name: "Pilum"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Bow",
+            isSelected: false,
+            picture: "assets/images/weapon_types/bow.svg"),
+        name: "Shortbow"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Throwing",
+            isSelected: false,
+            picture: "assets/images/weapon_types/throwing.svg"),
+        name: "Bolas"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Throwing",
+            isSelected: false,
+            picture: "assets/images/weapon_types/throwing.svg"),
+        name: "Boomerang"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Crossbow",
+            isSelected: false,
+            picture: "assets/images/weapon_types/crossbow.svg"),
+        name: "Hand crossbow"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Throwing",
+            isSelected: false,
+            picture: "assets/images/weapon_types/throwing.svg"),
+        name: "Shuriken"),
+    WeaponModel(
+        isSelected: false,
+        type: WeaponTypeModel(
+            name: "Throwing",
+            isSelected: false,
+            picture: "assets/images/weapon_types/throwing.svg"),
+        name: "Throwing shield"),
   ];
 
   final List<WeaponTypeModel> distanceTypes = [
@@ -139,12 +591,7 @@ class EquipData {
         picture: "assets/images/weapon_types/throwing.svg"),
   ];
 
-  final List<WeaponModel> fistWeapons = [
-    WeaponModel(isSelected: false, type: "Fist", name: "Unarmed strike"),
-    WeaponModel(isSelected: false, type: "Fist", name: "Brass knuckles"),
-    WeaponModel(isSelected: false, type: "Fist", name: "Cestus"),
-    WeaponModel(isSelected: false, type: "Fist", name: "Spiked gauntlet"),
-  ];
+  final List<WeaponModel> fistWeapons = [];
 
   final List<ArmourModel> lightArmours = [
     ArmourModel(type: "armor", isSelected: false, name: "Padded"),

@@ -6,6 +6,7 @@ import 'package:fantasy_name_generator/models/combat_model.dart';
 import 'package:fantasy_name_generator/models/equip_models/equip_model.dart';
 import 'package:fantasy_name_generator/models/equip_models/loot_model.dart';
 import 'package:fantasy_name_generator/models/equip_models/weapon_model.dart';
+import 'package:fantasy_name_generator/models/equip_models/weapon_type_model.dart';
 import 'package:fantasy_name_generator/models/name_model.dart';
 import 'package:fantasy_name_generator/models/race_model.dart';
 import 'package:fantasy_name_generator/models/resistance_model.dart';
@@ -22,7 +23,12 @@ class DefaultCharModelData {
     resistances: ResistanceModel(),
     combatStats: CombatModel(),
     charEquip: EquipModel(
-        primaryWeapon: WeaponModel(name: "Dagger", type: 'Light Blade')),
+        primaryWeapon: WeaponModel(
+            name: "Dagger",
+            type: WeaponTypeModel(
+                name: "Knife",
+                isSelected: false,
+                picture: "assets/images/weapon_types/knife.svg"))),
     loot: LootModel(items: [], gold: 0),
     charLevel: 1,
   );

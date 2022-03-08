@@ -917,7 +917,7 @@ class CharController extends ChangeNotifier {
             gender: isMale ? "Male" : "Female",
             name: newName,
             surname: newLastName,
-            fullName: "$newName  $newLastName"),
+            fullName: "$newName $newLastName"),
         alignment: chosenAlignment,
         combatStats: CombatModel(),
         charClass: chosenClass,
