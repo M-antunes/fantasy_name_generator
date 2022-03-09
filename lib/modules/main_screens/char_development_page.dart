@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 
 import 'package:fantasy_name_generator/controllers/char_controller.dart';
 import 'package:fantasy_name_generator/modules/main_screens/widgets/progression_bar.dart';
-import 'package:fantasy_name_generator/modules/main_screens/widgets/selection_label.dart';
+import 'package:fantasy_name_generator/modules/main_screens/widgets/char_selection_label.dart';
 import 'package:fantasy_name_generator/shared/themes/app_colors.dart';
 import 'package:fantasy_name_generator/shared/widgets/app_animated_button.dart';
 import 'package:fantasy_name_generator/shared/widgets/call_message_snackbar.dart';
@@ -46,7 +46,7 @@ class _CharDevelopmentPageState extends State<CharDevelopmentPage>
         return ListView(
           children: [
             const SizedBox(height: 5),
-            SelectionLabel(
+            CharSelectionLabel(
                 size: size,
                 label: state.creationStage == 1
                     ? "Character - Race"
@@ -66,6 +66,7 @@ class _CharDevelopmentPageState extends State<CharDevelopmentPage>
             ProgressionBar(
               controller: state,
             ),
+            SizedBox(height: size.height * 0.01),
             if (state.creationStage == 1) const RaceSelection(),
             if (state.creationStage == 2)
               Column(
@@ -115,7 +116,7 @@ class _CharDevelopmentPageState extends State<CharDevelopmentPage>
                     if (state.creationStage == 1) {
                       Navigator.of(context).pop();
                     } else if (state.creationStage == 6) {
-                      state.generatedChar.charLevel = -1;
+                      state.resetLevel();
                       state.retreatCreationStage();
                     } else {
                       state.retreatCreationStage();

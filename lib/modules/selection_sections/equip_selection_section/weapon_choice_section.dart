@@ -27,19 +27,24 @@ class WeaponChoiceSection extends StatelessWidget {
         state.populateAllLists();
         return Column(
           children: [
-            SizedBox(height: size.height * 0.02),
+            SizedBox(height: size.height * 0.03),
             RichText(
               textAlign: TextAlign.center,
               text: TextSpan(
                 style: AppTextStyle.subTextGreyPlusSize,
                 children: [
-                  TextSpan(text: "Select ${char.charName.fullName}'s"),
+                  const TextSpan(
+                    text: "Select ",
+                  ),
+                  TextSpan(
+                    text: "${char.charName.fullName}'s",
+                    style: AppTextStyle.subTextWhitePlusSize,
+                  ),
                   TextSpan(
                     text: state.chosenPrimaryWeaponType != null
                         ? " Secondary weapon type"
                         : " Primary weapon type",
                   ),
-                  TextSpan(text: "  (${char.charClass.name})"),
                 ],
               ),
             ),
@@ -144,7 +149,7 @@ class ChosenWeaponDisplay extends StatelessWidget {
           style: AppTextStyle.weaponSelectedText,
           textAlign: TextAlign.center,
         ),
-        SizedBox(height: 5),
+        const SizedBox(height: 5),
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           margin: const EdgeInsets.symmetric(horizontal: 12),

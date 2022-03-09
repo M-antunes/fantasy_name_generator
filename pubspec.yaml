@@ -74,9 +74,9 @@ flutter:
     - family: Chomsky
       fonts:
         - asset: assets/fonts/Chomsky.ttf
-    - family: Archaic
+    - family: OldLondon
       fonts:
-        - asset: assets/fonts/Archaic.ttf
+        - asset: assets/fonts/OldLondon.ttf
     - family: Kallamar
       fonts:
         - asset: assets/fonts/Kallamar.ttf
@@ -86,6 +86,9 @@ flutter:
     - family: David
       fonts:
         - asset: assets/fonts/David.ttf
+    - family: Planew
+      fonts:
+        - asset: assets/fonts/Planew.ttf
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

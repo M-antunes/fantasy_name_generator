@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:fantasy_name_generator/models/char_model.dart';
 import 'package:fantasy_name_generator/models/key_value.model.dart';
 import 'package:fantasy_name_generator/shared/data/default_char_model_data.dart';
@@ -19,10 +21,16 @@ class EquipController extends ChangeNotifier {
   bool showOneHanded = false;
   bool showTwoHanded = false;
   bool showDistant = false;
+  bool showResetButton = false;
   WeaponTypeModel? tempPrimaryWeaponTypeForSwitching;
   WeaponTypeModel? chosenPrimaryWeaponType;
   WeaponTypeModel? tempSecondaryWeaponTypeForSwitching;
   WeaponTypeModel? chosenSecondaryWeaponType;
+
+  updateShowResetButton() {
+    showResetButton = true;
+    notifyListeners();
+  }
 
   makeWeaponSegmentTrue(String show) {
     switch (show) {
@@ -112,6 +120,7 @@ class EquipController extends ChangeNotifier {
     tempSecondaryWeaponTypeForSwitching = null;
     chosenPrimaryWeaponType = null;
     chosenSecondaryWeaponType = null;
+    showResetButton = false;
     closeAllTypeSections();
   }
 

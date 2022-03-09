@@ -4,24 +4,34 @@ import 'package:flutter/material.dart';
 class AppTextStyle {
   static const generatedName = TextStyle(
     fontWeight: FontWeight.w400,
-    fontFamily: "Archaic",
-    fontSize: 25,
+    fontFamily: "David",
+    fontSize: 30,
     color: Colors.white,
   );
   static const chosenName = TextStyle(
-    fontFamily: "Grantmouth",
+    fontFamily: "David",
     color: Colors.white,
-    fontSize: 29,
+    fontSize: 26,
+  );
+  static const levelDisplayStatsPageText = TextStyle(
+    fontFamily: "David",
+    color: Colors.white,
+    fontSize: 34,
+  );
+  static const levelDisplayEquipPageText = TextStyle(
+    fontFamily: "David",
+    color: AppColors.primaryText,
+    fontSize: 26,
   );
   static const epicLabel = TextStyle(
     color: AppColors.primaryGold,
     fontFamily: "Chomsky",
-    fontSize: 26,
+    fontSize: 22,
   );
   static const legendaryLabel = TextStyle(
-    color: AppColors.primaryGold,
-    fontFamily: "Dark",
-    fontSize: 30,
+    color: AppColors.primaryOrange,
+    fontFamily: "Grantmouth",
+    fontSize: 24,
   );
   static const nameExhibition = TextStyle(
     fontWeight: FontWeight.w400,
@@ -37,7 +47,7 @@ class AppTextStyle {
     fontWeight: FontWeight.w400,
     color: Colors.white,
     fontFamily: "David",
-    fontSize: 22,
+    fontSize: 20,
   );
   static const selectRace = TextStyle(
     fontWeight: FontWeight.w400,
@@ -92,6 +102,12 @@ class AppTextStyle {
     color: Colors.white,
     fontFamily: "David",
     fontSize: 19,
+  );
+  static const subTextWhitePlusSize = TextStyle(
+    fontWeight: FontWeight.w400,
+    color: Colors.white,
+    fontFamily: "David",
+    fontSize: 22,
   );
   static const subTextGreyPlusSize = TextStyle(
     fontWeight: FontWeight.w400,

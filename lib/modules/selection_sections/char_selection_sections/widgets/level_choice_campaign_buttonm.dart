@@ -25,7 +25,7 @@ class LevelChoiceCampaignButton extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
         child: Text(
           label,
-          style: TextStyle(color: textColor, fontFamily: "Tinos", fontSize: 18),
+          style: TextStyle(color: textColor, fontFamily: "David", fontSize: 18),
         ),
       ),
       onTap: onTap,

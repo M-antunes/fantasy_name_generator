@@ -50,7 +50,7 @@ class StatsSection extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(vertical: 5),
                           child: Text(
                             state.generatedChar.charName.fullName,
-                            style: AppTextStyle.generatedName,
+                            style: AppTextStyle.chosenName,
                           ),
                         ),
                         RichText(
@@ -60,12 +60,20 @@ class StatsSection extends StatelessWidget {
                                   ? const TextSpan(
                                       text: "Epic ",
                                       style: AppTextStyle.epicLabel)
-                                  : const TextSpan(
-                                      text: "Legendary ",
-                                      style: AppTextStyle.legendaryLabel),
+                                  : state.isLegendaryLevelSelected
+                                      ? const TextSpan(
+                                          text: "Legendary ",
+                                          style: AppTextStyle.epicLabel)
+                                      : const TextSpan(
+                                          text: "",
+                                          style: AppTextStyle.legendaryLabel),
+                              const TextSpan(
+                                  text: "lv: ",
+                                  style: AppTextStyle.subTextWhite),
                               TextSpan(
-                                  text: "lv: ${state.generatedChar.charLevel}",
-                                  style: AppTextStyle.chosenName)
+                                  text:
+                                      state.generatedChar.charLevel.toString(),
+                                  style: AppTextStyle.levelDisplayStatsPageText)
                             ],
                           ),
                         )

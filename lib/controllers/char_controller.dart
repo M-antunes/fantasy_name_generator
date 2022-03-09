@@ -120,6 +120,13 @@ class CharController extends ChangeNotifier {
     notifyListeners();
   }
 
+  resetLevel() {
+    levelSelected = -1;
+    isEpicLevelSelected = false;
+    isLegendaryLevelSelected = false;
+    notifyListeners();
+  }
+
 // ====================================================================================
 
 // Functions related to the Character Race

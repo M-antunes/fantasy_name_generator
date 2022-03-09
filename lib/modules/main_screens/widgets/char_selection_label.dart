@@ -1,10 +1,10 @@
 import 'package:fantasy_name_generator/shared/themes/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
-class SelectionLabel extends StatelessWidget {
+class CharSelectionLabel extends StatelessWidget {
   final Size size;
   final String label;
-  const SelectionLabel({
+  const CharSelectionLabel({
     Key? key,
     required this.size,
     required this.label,

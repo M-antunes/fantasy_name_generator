@@ -19,7 +19,7 @@ class ProgressionBar extends StatelessWidget {
       children: [
         // Text("Character Creation Progress", style: AppTextStyle.changeRace),
         Padding(
-          padding: const EdgeInsets.only(left: 8, right: 8, bottom: 15),
+          padding: const EdgeInsets.only(left: 8, right: 8),
           child: StepProgressIndicator(
             roundedEdges: const Radius.circular(10),
             totalSteps: 7,
@@ -48,7 +48,7 @@ class EquipProgressionBar extends StatelessWidget {
       children: [
         // Text("Character Creation Progress", style: AppTextStyle.changeRace),
         Padding(
-          padding: const EdgeInsets.only(left: 8, right: 8, bottom: 15),
+          padding: const EdgeInsets.only(left: 8, right: 8),
           child: StepProgressIndicator(
             roundedEdges: const Radius.circular(10),
             totalSteps: 8,
