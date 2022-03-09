@@ -1,3 +1,4 @@
+import 'package:fantasy_name_generator/shared/themes/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../controllers/equip_controller.dart';
@@ -30,7 +31,7 @@ class WeaponLabelSection extends StatelessWidget {
             ),
           ),
           Chip(
-            label: Text(label),
+            label: Text(label, style: AppTextStyle.weaponCategoryText),
           ),
         ],
       ),

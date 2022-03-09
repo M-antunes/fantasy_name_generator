@@ -17,7 +17,7 @@ ScaffoldFeatureController<SnackBar, SnackBarClosedReason> callMessageSnackbar(
         backgroundColor: color,
         content: Text(
           text,
-          style: AppTextStyle.flipCardMale,
+          style: AppTextStyle.snackbarText,
           textAlign: TextAlign.center,
         ),
       ),

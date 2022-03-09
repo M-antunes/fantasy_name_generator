@@ -45,6 +45,7 @@ class _CharDevelopmentPageState extends State<CharDevelopmentPage>
       body: Consumer<CharController>(builder: (context, state, child) {
         return ListView(
           children: [
+            const SizedBox(height: 5),
             SelectionLabel(
                 size: size,
                 label: state.creationStage == 1
@@ -113,6 +114,9 @@ class _CharDevelopmentPageState extends State<CharDevelopmentPage>
                   onTap: () {
                     if (state.creationStage == 1) {
                       Navigator.of(context).pop();
+                    } else if (state.creationStage == 6) {
+                      state.generatedChar.charLevel = -1;
+                      state.retreatCreationStage();
                     } else {
                       state.retreatCreationStage();
                     }

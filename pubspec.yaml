@@ -71,6 +71,21 @@ flutter:
     - family: Grantmouth
       fonts:
         - asset: assets/fonts/Grantmouth.ttf
+    - family: Chomsky
+      fonts:
+        - asset: assets/fonts/Chomsky.ttf
+    - family: Archaic
+      fonts:
+        - asset: assets/fonts/Archaic.ttf
+    - family: Kallamar
+      fonts:
+        - asset: assets/fonts/Kallamar.ttf
+    - family: Dark
+      fonts:
+        - asset: assets/fonts/Dark.ttf
+    - family: David
+      fonts:
+        - asset: assets/fonts/David.ttf
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

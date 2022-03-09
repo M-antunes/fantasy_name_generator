@@ -34,26 +34,26 @@ class _ProgressCheckState extends State<ProgressCheck> {
               RichText(
                 textAlign: TextAlign.center,
                 text: TextSpan(
-                  style: AppTextStyle.selectButtonNotReady,
+                  style: AppTextStyle.subTextGrey,
                   children: [
                     const TextSpan(
                       text: "The  ",
                     ),
                     TextSpan(
                         text: state.generatedChar.charClass.name,
-                        style: AppTextStyle.selectButtonReady),
+                        style: AppTextStyle.subTextWhite),
                     const TextSpan(
                       text: "  of level  ",
                     ),
                     TextSpan(
                         text: "${state.generatedChar.charLevel}, ",
-                        style: AppTextStyle.selectButtonReady),
+                        style: AppTextStyle.subTextWhite),
                     const TextSpan(
                       text: " named  ",
                     ),
                     TextSpan(
                         text: state.generatedChar.charName.fullName,
-                        style: AppTextStyle.selectButtonReady),
+                        style: AppTextStyle.subTextWhite),
                     const TextSpan(
                       text: "  has no equipment so far.",
                     ),
@@ -205,12 +205,11 @@ class _ProgressCheckState extends State<ProgressCheck> {
               ),
               SizedBox(height: size.height * 0.05),
               const Text("Click next to start equipment generation",
-                  style: AppTextStyle.selectButtonNotReady),
+                  style: AppTextStyle.subTextGrey),
               SizedBox(height: size.height * 0.01),
               Row(
                 children: [
-                  const Text("Or click",
-                      style: AppTextStyle.selectButtonNotReady),
+                  const Text("Or click", style: AppTextStyle.subTextGrey),
                   TextButton(
                       child: const Text(
                         "HERE",
@@ -219,8 +218,7 @@ class _ProgressCheckState extends State<ProgressCheck> {
                       onPressed: () {
                         showStartingOverConfirmation(context, state);
                       }),
-                  const Text("to start over",
-                      style: AppTextStyle.selectButtonNotReady),
+                  const Text("to start over", style: AppTextStyle.subTextGrey),
                 ],
               ),
             ],
@@ -249,10 +247,10 @@ class _ProgressCheckState extends State<ProgressCheck> {
               children: [
                 Text(
                     "If you start over, the ${state.generatedChar.charClass.name} ${state.generatedChar.charName.fullName}, will be lost forever.",
-                    style: AppTextStyle.selectButtonNotReady,
+                    style: AppTextStyle.subTextGrey,
                     textAlign: TextAlign.center),
                 const Text("Is that what you desire?",
-                    style: AppTextStyle.selectButtonNotReady),
+                    style: AppTextStyle.subTextGrey),
               ],
             ),
             actions: [

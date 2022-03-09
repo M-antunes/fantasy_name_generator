@@ -1,3 +1,4 @@
+import 'package:fantasy_name_generator/shared/themes/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
 class AtributeDivision extends StatelessWidget {
@@ -22,7 +23,12 @@ class AtributeDivision extends StatelessWidget {
           height: size.height * 0.002,
           color: Colors.grey,
         ),
-        Padding(padding: const EdgeInsets.only(top: 3), child: Text(label)),
+        Padding(
+            padding: const EdgeInsets.only(top: 3),
+            child: Text(
+              label,
+              style: AppTextStyle.atributeDivisionText,
+            )),
         Container(
           width: size.width * 0.92,
           height: size.height * 0.002,

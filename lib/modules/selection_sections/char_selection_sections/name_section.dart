@@ -51,17 +51,11 @@ class NameSelection extends StatelessWidget {
                         color: Colors.grey.shade900,
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      child: SizedBox(
-                        height: size.height * 0.035,
-                        child: FittedBox(
-                          fit: BoxFit.fitHeight,
-                          child: Text(
-                            state.lastNameShown
-                                ? "${state.newName} ${state.newLastName}"
-                                : state.newName,
-                            style: AppTextStyle.generatedName,
-                          ),
-                        ),
+                      child: Text(
+                        state.lastNameShown
+                            ? "${state.newName} ${state.newLastName}"
+                            : state.newName,
+                        style: AppTextStyle.generatedName,
                       ),
                     ),
                   ),

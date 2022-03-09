@@ -45,12 +45,14 @@ class ClassSelection extends StatelessWidget {
                                       ? AppColors.primary
                                       : null,
                                 ),
+                                const SizedBox(height: 2),
                                 Text(
                                   charClass.name,
                                   style: TextStyle(
                                       color: charClass.isSelected
                                           ? AppColors.primary
                                           : null,
+                                      fontFamily: "David",
                                       fontWeight: FontWeight.bold),
                                 )
                               ],
@@ -86,7 +88,7 @@ class ClassSelection extends StatelessWidget {
                     children: [
                       TextSpan(
                         text: state.tempoClassForSwitching.description,
-                        style: AppTextStyle.traitDescription,
+                        style: TextStyle(color: Colors.grey),
                       ),
                     ],
                   ),

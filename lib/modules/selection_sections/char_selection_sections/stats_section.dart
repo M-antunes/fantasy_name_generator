@@ -50,25 +50,27 @@ class StatsSection extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(vertical: 5),
                           child: Text(
                             state.generatedChar.charName.fullName,
-                            style: AppTextStyle.chosenName,
+                            style: AppTextStyle.generatedName,
                           ),
                         ),
-                        state.isEpicLevelSelected
-                            ? RichText(
-                                text: TextSpan(
-                                  children: [
-                                    const TextSpan(
-                                        text: "EPIC ",
-                                        style: AppTextStyle.epicLabel),
-                                    TextSpan(
-                                        text:
-                                            "lv: ${state.generatedChar.charLevel}",
-                                        style: AppTextStyle.chosenName)
-                                  ],
-                                ),
-                              )
-                            : Text("lv: ${state.generatedChar.charLevel}",
-                                style: AppTextStyle.chosenName)
+                        RichText(
+                          text: TextSpan(
+                            children: [
+                              state.isEpicLevelSelected
+                                  ? const TextSpan(
+                                      text: "Epic ",
+                                      style: AppTextStyle.epicLabel)
+                                  : const TextSpan(
+                                      text: "Legendary ",
+                                      style: AppTextStyle.legendaryLabel),
+                              TextSpan(
+                                  text: "lv: ${state.generatedChar.charLevel}",
+                                  style: AppTextStyle.chosenName)
+                            ],
+                          ),
+                        )
+                        //  Text("lv: ${state.generatedChar.charLevel}",
+                        //     style: AppTextStyle.chosenName)
                       ],
                     ),
                     SizedBox(height: size.height * 0.01),

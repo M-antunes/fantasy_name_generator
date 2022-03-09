@@ -17,7 +17,7 @@ class RaceList extends StatelessWidget {
     return SizedBox(
       child: Consumer<CharController>(builder: (context, state, child) {
         return GridView.builder(
-          physics: NeverScrollableScrollPhysics(),
+          physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           itemCount: state.listOfRaces.races.length,
           itemBuilder: (context, index) {

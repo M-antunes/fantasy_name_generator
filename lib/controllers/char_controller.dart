@@ -61,13 +61,23 @@ class CharController extends ChangeNotifier {
   int levelSelected = -1;
   bool isRegularLevelSelected = true;
   bool isEpicLevelSelected = false;
+  bool isLegendaryLevelSelected = false;
   bool isCharGeneratorCleared = true;
 
 // Functions related to the level Section
 
   switchToEpicLevel() {
     isRegularLevelSelected = false;
+    isLegendaryLevelSelected = false;
     isEpicLevelSelected = true;
+    levelSelected = -1;
+    notifyListeners();
+  }
+
+  switchToLegendary() {
+    isRegularLevelSelected = false;
+    isLegendaryLevelSelected = true;
+    isEpicLevelSelected = false;
     levelSelected = -1;
     notifyListeners();
   }
@@ -75,6 +85,7 @@ class CharController extends ChangeNotifier {
   switchToRegularLevel() {
     isRegularLevelSelected = true;
     isEpicLevelSelected = false;
+    isLegendaryLevelSelected = false;
     levelSelected = -1;
     notifyListeners();
   }
@@ -82,6 +93,13 @@ class CharController extends ChangeNotifier {
   updateLevelSelectedIfEpic() {
     if (isEpicLevelSelected) {
       levelSelected = levelSelected + 20;
+    }
+    notifyListeners();
+  }
+
+  updateLevelSelectedIfLegendary() {
+    if (isLegendaryLevelSelected) {
+      levelSelected = levelSelected + 25;
     }
     notifyListeners();
   }
@@ -577,6 +595,15 @@ class CharController extends ChangeNotifier {
     return [temporaryName, temporaryLastName];
   }
 
+  /// generates all names according to race and length
+  generalNameGenerator(int desiredLength, int maxLength) {
+    var temporaryFullName = generateNameSize(desiredLength, desiredLength);
+    fullName = alterNameLength(
+        7, randomChance, temporaryFullName[0], temporaryFullName[1]);
+    fullName = alterHaflingNameCharacters(fullName[0], fullName[1]);
+    capitalize(fullName[0], fullName[1]);
+  }
+
 // Dwarf designated part =================================================================
 
   /// alters some of the letters of names for dwarfs
@@ -596,11 +623,7 @@ class CharController extends ChangeNotifier {
 
   /// generates names for dwarf
   dwarfNameGenerator() {
-    var temporaryFullName = generateNameSize(4, 7);
-    fullName = alterNameLength(
-        7, randomChance, temporaryFullName[0], temporaryFullName[1]);
-    fullName = alterDwarfNameCharacters(fullName[0], fullName[1]);
-    capitalize(fullName[0], fullName[1]);
+    generalNameGenerator(4, 7);
   }
 
 // Elf designated part ======================================================================
@@ -651,11 +674,7 @@ class CharController extends ChangeNotifier {
 
   /// generates names for elves
   elfNameGenerator() {
-    var temporaryFullName = generateNameSize(5, 8);
-    fullName = alterNameLength(
-        7, randomChance, temporaryFullName[0], temporaryFullName[1]);
-    fullName = alterElfNameCharacters(fullName[0], fullName[1]);
-    capitalize(fullName[0], fullName[1]);
+    generalNameGenerator(5, 8);
   }
 
   // Gnome designated part =================================================================
@@ -677,11 +696,7 @@ class CharController extends ChangeNotifier {
 
   /// generates names for haflings
   gnomeNameGenerator() {
-    var temporaryFullName = generateNameSize(3, 6);
-    fullName = alterNameLength(
-        7, randomChance, temporaryFullName[0], temporaryFullName[1]);
-    fullName = alterGnomeNameCharacters(fullName[0], fullName[1]);
-    capitalize(fullName[0], fullName[1]);
+    generalNameGenerator(3, 6);
   }
 
 // Hafling designated part =================================================================
@@ -703,11 +718,7 @@ class CharController extends ChangeNotifier {
 
   /// generates names for haflings
   haflingNameGenerator() {
-    var temporaryFullName = generateNameSize(5, 8);
-    fullName = alterNameLength(
-        7, randomChance, temporaryFullName[0], temporaryFullName[1]);
-    fullName = alterHaflingNameCharacters(fullName[0], fullName[1]);
-    capitalize(fullName[0], fullName[1]);
+    generalNameGenerator(5, 8);
   }
 
 // Human designated part ====================================================================
@@ -766,11 +777,7 @@ class CharController extends ChangeNotifier {
 
   /// generates names for orcs
   orcNameGenerator() {
-    var temporaryFullName = generateNameSize(3, 6);
-    fullName = alterNameLength(
-        7, randomChance, temporaryFullName[0], temporaryFullName[1]);
-    fullName = alterOrcNameCharacters(fullName[0], fullName[1]);
-    capitalize(fullName[0], fullName[1]);
+    generalNameGenerator(3, 6);
   }
 
   /// calls the respective race name generator
@@ -950,8 +957,16 @@ class CharController extends ChangeNotifier {
     List<int> atrbValues = [];
     for (var i = 0; i < 6; i++) {
       var atrbValue = randomIndex.nextInt(19);
-      while (atrbValue < 7) {
-        atrbValue = randomIndex.nextInt(19);
+      if (generatedChar.charLevel <= 20) {
+        while (atrbValue < 6) {
+          atrbValue = randomIndex.nextInt(19);
+        }
+      } else if (generatedChar.charLevel > 20 && generatedChar.charLevel < 26) {
+        while (atrbValue < 8) {
+          atrbValue = randomIndex.nextInt(19);
+        }
+      } else {
+        atrbValue = 18;
       }
       atrbValues.add(atrbValue);
     }
@@ -1091,7 +1106,7 @@ class CharController extends ChangeNotifier {
           atrbValues.charisma! + secondaryAtributeIncrement.floor();
     }
     if (mentalChars.contains(classGotten)) {
-      for (var i = 0; i < level; i = i + 3) {
+      for (var i = 0; i < level; i = i + 4) {
         mainAtributeIncrement++;
         secondaryAtributeIncrement = secondaryAtributeIncrement + 0.5;
       }
@@ -1427,6 +1442,7 @@ class CharController extends ChangeNotifier {
         return "You need to select a level befor advancing";
       } else {
         updateLevelSelectedIfEpic();
+        updateLevelSelectedIfLegendary();
         updateCharModel();
         isCharGeneratorCleared = true;
         advanceCreationStage();
@@ -1436,6 +1452,7 @@ class CharController extends ChangeNotifier {
       advanceCreationStage();
       return null;
     }
+    return null;
   }
 
   startCharAllOver() {

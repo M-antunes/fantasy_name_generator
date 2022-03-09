@@ -1,3 +1,4 @@
+import 'package:fantasy_name_generator/shared/themes/app_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
@@ -5,7 +6,6 @@ import 'package:provider/provider.dart';
 import 'package:fantasy_name_generator/controllers/equip_controller.dart';
 import 'package:fantasy_name_generator/models/char_model.dart';
 import 'package:fantasy_name_generator/shared/themes/app_colors.dart';
-import 'package:fantasy_name_generator/shared/widgets/app_animated_button.dart';
 import 'package:fantasy_name_generator/shared/widgets/expanded_section.dart';
 
 import 'widgets/row_of_weapon_types.dart';
@@ -31,10 +31,7 @@ class WeaponChoiceSection extends StatelessWidget {
             RichText(
               textAlign: TextAlign.center,
               text: TextSpan(
-                style: const TextStyle(
-                  color: Colors.white70,
-                  fontSize: 19,
-                ),
+                style: AppTextStyle.subTextGreyPlusSize,
                 children: [
                   TextSpan(text: "Select ${char.charName.fullName}'s"),
                   TextSpan(
@@ -144,10 +141,7 @@ class ChosenWeaponDisplay extends StatelessWidget {
       children: [
         Text(
           weaponRank,
-          style: TextStyle(
-            fontSize: 16,
-            color: null,
-          ),
+          style: AppTextStyle.weaponSelectedText,
           textAlign: TextAlign.center,
         ),
         SizedBox(height: 5),

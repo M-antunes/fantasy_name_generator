@@ -1,4 +1,5 @@
 import 'package:fantasy_name_generator/controllers/char_controller.dart';
+import 'package:fantasy_name_generator/shared/themes/app_colors.dart';
 import 'package:fantasy_name_generator/shared/themes/app_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -18,7 +19,7 @@ class RaceTraits extends StatelessWidget {
         return Column(
           children: [
             Text("${state.tempRaceForSwitching.name} Traits",
-                style: AppTextStyle.flipCardMale),
+                style: AppTextStyle.raceDescriptionLabel),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 3),
               child: Container(
@@ -30,11 +31,11 @@ class RaceTraits extends StatelessWidget {
             ListView.builder(
                 itemCount: state.tempRaceForSwitching.name == "Human" ? 5 : 6,
                 shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
                   var trait = state.tempRaceForSwitching.traits;
                   return Padding(
-                    padding: const EdgeInsets.only(bottom: 6),
+                    padding: const EdgeInsets.only(bottom: 12),
                     child: RichText(
                       text: TextSpan(
                         children: [
@@ -43,7 +44,7 @@ class RaceTraits extends StatelessWidget {
                               style: AppTextStyle.traitValue),
                           TextSpan(
                               text: trait[index].value,
-                              style: AppTextStyle.traitDescription),
+                              style: TextStyle(color: AppColors.primaryText0)),
                         ],
                       ),
                     ),

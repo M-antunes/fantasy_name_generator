@@ -67,21 +67,36 @@ class LevelSelection extends StatelessWidget {
                           : Colors.grey[400]!,
                       onTap: () => state.switchToEpicLevel(),
                     ),
+                    LevelChoiceCampaignButton(
+                      label: "Legendary",
+                      boxColor: state.isLegendaryLevelSelected
+                          ? AppColors.primary
+                          : Colors.black38,
+                      textColor: state.isLegendaryLevelSelected
+                          ? Colors.white
+                          : Colors.grey[400]!,
+                      onTap: () => state.switchToLegendary(),
+                    ),
                   ],
                 ),
           GridView.builder(
-            itemCount: state.isEpicLevelSelected ||
-                    state.chosenClass.name == "Aristocrat"
+            itemCount: state.chosenClass.name == "Aristocrat"
                 ? 10
                 : state.chosenClass.name == "Noble"
                     ? 15
-                    : state.chosenClass.name == "Commoner"
+                    : state.chosenClass.name == "Commoner" ||
+                            state.isEpicLevelSelected ||
+                            state.isLegendaryLevelSelected
                         ? 5
                         : 20,
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {
-              var level = state.isEpicLevelSelected ? index + 21 : index + 1;
+              var level = state.isEpicLevelSelected
+                  ? index + 21
+                  : state.isLegendaryLevelSelected
+                      ? index + 26
+                      : index + 1;
               return Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30),
@@ -113,19 +128,6 @@ class LevelSelection extends StatelessWidget {
               mainAxisSpacing: 0,
             ),
           ),
-          // SizedBox(height: size.height * 0.03),
-          // Row(
-          //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          //   children: [
-          //     AppAnimatedButton(
-          //       label: "Previous",
-          //       onGenerate: () => state.retreatCreationStage(),
-          //     ),
-          //     AppAnimatedButton(
-          //       onGenerate: onTap,
-          //     ),
-          //   ],
-          // )
         ],
       );
     });

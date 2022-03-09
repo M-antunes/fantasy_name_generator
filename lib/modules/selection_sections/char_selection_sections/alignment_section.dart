@@ -1,3 +1,4 @@
+import 'package:fantasy_name_generator/shared/themes/app_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -17,24 +18,27 @@ class AlignmentSelection extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 5),
-            child: Text(state.chosenClass.name == "Barbarian"
-                ? "Barbarians CANNOT be Lawful"
-                : state.chosenClass.name == "Rogue"
-                    ? "Rogues CANNOT be Lawful"
-                    : state.chosenClass.name == "Paladin"
-                        ? "Paladins CAN ONLY be Lawful Good"
-                        : state.chosenClass.name == "Monk"
-                            ? "Monks CANNOT be Chaotic"
-                            : state.chosenClass.name == "Cleric"
-                                ? "Clerics CANNOT be Neutral"
-                                : state.chosenClass.name == "Druid"
-                                    ? "Druids CAN ONLY be Neutral"
-                                    : state.chosenClass.name == "Bandit"
-                                        ? "Bandits CANNOT be Lawful or Good"
-                                        : state.chosenClass.name ==
-                                                "Antipaladin"
-                                            ? "Antipaladins CAN ONLY be Chaotic Evil"
-                                            : "${state.chosenClass.name}s can be of ANY alignment"),
+            child: Text(
+              state.chosenClass.name == "Barbarian"
+                  ? "Barbarians CANNOT be Lawful"
+                  : state.chosenClass.name == "Rogue"
+                      ? "Rogues CANNOT be Lawful"
+                      : state.chosenClass.name == "Paladin"
+                          ? "Paladins CAN ONLY be Lawful Good"
+                          : state.chosenClass.name == "Monk"
+                              ? "Monks CANNOT be Chaotic"
+                              : state.chosenClass.name == "Cleric"
+                                  ? "Clerics CANNOT be Neutral"
+                                  : state.chosenClass.name == "Druid"
+                                      ? "Druids CAN ONLY be Neutral"
+                                      : state.chosenClass.name == "Bandit"
+                                          ? "Bandits CANNOT be Lawful or Good"
+                                          : state.chosenClass.name ==
+                                                  "Antipaladin"
+                                              ? "Antipaladins CAN ONLY be Chaotic Evil"
+                                              : "${state.chosenClass.name}s can be of ANY alignment",
+              style: AppTextStyle.alignmentLabel,
+            ),
           ),
           SizedBox(height: size.height * 0.01),
           Container(
@@ -68,6 +72,7 @@ class AlignmentSelection extends StatelessWidget {
                             child: Text(
                               alignment.name,
                               textAlign: TextAlign.center,
+                              style: AppTextStyle.selectAlignment,
                             ),
                           ),
                         ),

@@ -41,9 +41,9 @@ class _EquipDevelopMentPageState extends State<EquipDevelopMentPage> {
                 label: state.creationStage == 1
                     ? "Equipment - Weapons"
                     : state.creationStage == 2
-                        ? "Equipment - Weapon segment"
+                        ? "Equipment - Shield"
                         : state.creationStage == 3
-                            ? "Equipment - Class"
+                            ? "Equipment - Armor"
                             : state.creationStage == 4
                                 ? "Equipment - Alignment"
                                 : state.creationStage == 5
