@@ -203,13 +203,10 @@ class _ProgressCheckState extends State<ProgressCheck> {
                   ),
                 ],
               ),
-              SizedBox(height: size.height * 0.05),
-              const Text("Click next to start equipment generation",
-                  style: AppTextStyle.subTextGrey),
-              SizedBox(height: size.height * 0.01),
+              SizedBox(height: size.height * 0.015),
               Row(
                 children: [
-                  const Text("Or click", style: AppTextStyle.subTextGrey),
+                  Text("Click", style: AppTextStyle.subTextGrey),
                   TextButton(
                       child: const Text(
                         "HERE",
@@ -218,9 +215,12 @@ class _ProgressCheckState extends State<ProgressCheck> {
                       onPressed: () {
                         showStartingOverConfirmation(context, state);
                       }),
-                  const Text("to start over", style: AppTextStyle.subTextGrey),
+                  Text("to start over", style: AppTextStyle.subTextGrey),
                 ],
               ),
+              Text("Or click next to start equipment generation",
+                  style: AppTextStyle.subTextGrey),
+              SizedBox(height: size.height * 0.01),
             ],
           ),
         );
@@ -249,7 +249,7 @@ class _ProgressCheckState extends State<ProgressCheck> {
                     "If you start over, the ${state.generatedChar.charClass.name} ${state.generatedChar.charName.fullName}, will be lost forever.",
                     style: AppTextStyle.subTextGrey,
                     textAlign: TextAlign.center),
-                const Text("Is that what you desire?",
+                Text("Is that what you desire?",
                     style: AppTextStyle.subTextGrey),
               ],
             ),

@@ -1,3 +1,4 @@
+import 'package:fantasy_name_generator/shared/themes/app_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -43,14 +44,10 @@ class RowOfWeaponType extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  weaponType.name,
-                  style: TextStyle(
-                    color: weaponType.isSelected
-                        ? AppColors.primary
-                        : Colors.grey[400],
-                  ),
-                ),
+                Text(weaponType.name,
+                    style: weaponType.isSelected
+                        ? AppTextStyle.weaponSelected
+                        : AppTextStyle.weaponNotSelected),
                 SizedBox(
                   height: size.height * 0.1,
                   child: SvgPicture.asset(

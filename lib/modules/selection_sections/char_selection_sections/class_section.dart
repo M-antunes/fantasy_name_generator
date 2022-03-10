@@ -26,9 +26,10 @@ class ClassSelection extends StatelessWidget {
                   shrinkWrap: true,
                   gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                       maxCrossAxisExtent: size.width * 0.2,
-                      childAspectRatio: 9 / 8,
+                      childAspectRatio: 9 / 10,
                       crossAxisSpacing: 0,
                       mainAxisSpacing: 8),
+                  physics: const NeverScrollableScrollPhysics(),
                   itemCount: state.listOfClasses.allClasses.length,
                   itemBuilder: (context, index) {
                     var charClass = state.listOfClasses.allClasses[index];
@@ -53,7 +54,8 @@ class ClassSelection extends StatelessWidget {
                                           ? AppColors.primary
                                           : null,
                                       fontFamily: "David",
-                                      fontWeight: FontWeight.bold),
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 11),
                                 )
                               ],
                             ),
@@ -88,7 +90,7 @@ class ClassSelection extends StatelessWidget {
                     children: [
                       TextSpan(
                         text: state.tempoClassForSwitching.description,
-                        style: TextStyle(color: Colors.grey),
+                        style: AppTextStyle.longDescription,
                       ),
                     ],
                   ),

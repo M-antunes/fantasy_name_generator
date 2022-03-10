@@ -1,3 +1,4 @@
+import 'package:fantasy_name_generator/shared/constants/phone_sizes.dart';
 import 'package:fantasy_name_generator/shared/routes/app_roues.dart';
 import 'package:flutter/material.dart';
 
@@ -8,11 +9,12 @@ class CreateOrCheckSavedPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+    deviceHeight = MediaQuery.of(context).size.height;
+    deviceWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
         title: SizedBox(
-          width: size.width * 0.6,
+          width: deviceWidth! * 0.6,
           child: const FittedBox(
             fit: BoxFit.fitWidth,
             child: Text('Fantasy Character Generator'),
@@ -28,8 +30,8 @@ class CreateOrCheckSavedPage extends StatelessWidget {
             borderRadius: BorderRadius.circular(30),
           ),
           child: Container(
-            width: size.width * 0.7,
-            height: size.height * 0.4,
+            width: deviceWidth! * 0.7,
+            height: deviceHeight! * 0.4,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30),
             ),

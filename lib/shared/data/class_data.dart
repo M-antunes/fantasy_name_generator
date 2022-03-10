@@ -328,10 +328,10 @@ class ClassData {
     KeyValueModel(
         key: "Close Combat",
         value: KeyValueModel(
-            key: false, value: "assets/images/weapon_types/hatchet.svg")),
+            key: false, value: "assets/images/weapon_types/close.svg")),
     KeyValueModel(
         key: "Distant Combat",
         value: KeyValueModel(
-            key: false, value: "assets/images/weapon_types/bow.svg")),
+            key: false, value: "assets/images/weapon_types/bullseye.svg")),
   ];
 }

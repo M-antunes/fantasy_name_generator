@@ -55,6 +55,7 @@ class CharController extends ChangeNotifier {
   List<SavedNameModel> savedNames = [];
   List<AlignmentModel> filteredAlignments = [];
   List<String> fullName = [];
+  List<String> tempFullName = [];
   bool isMale = true;
   bool isFemale = false;
   bool lastNameShown = true;
@@ -461,7 +462,7 @@ class CharController extends ChangeNotifier {
   getVowel() {
     List<LetterModel> vowelList = [];
     for (var n in letters.alphabet) {
-      if (n.type == LetterOrSyllabus.vowel) {
+      if (n.type == "vowel") {
         vowelList.add(n);
       }
     }
@@ -472,7 +473,7 @@ class CharController extends ChangeNotifier {
   getConsonant() {
     List<LetterModel> consonantList = [];
     for (var n in letters.alphabet) {
-      if (n.type == LetterOrSyllabus.consonant) {
+      if (n.type == "consonant") {
         consonantList.add(n);
       }
     }
@@ -483,7 +484,7 @@ class CharController extends ChangeNotifier {
   getSyllabus() {
     List<LetterModel> syllabusList = [];
     for (var n in letters.syllabus) {
-      if (n.type == LetterOrSyllabus.twoLetterSyllabus) {
+      if (n.type == "twoLetterSyllabus") {
         syllabusList.add(n);
       }
     }
@@ -494,7 +495,7 @@ class CharController extends ChangeNotifier {
   getThreeLetterSyllabous() {
     List<LetterModel> threeSyllabusList = [];
     for (var n in letters.syllabus) {
-      if (n.type == LetterOrSyllabus.threeLetterSyllabus) {
+      if (n.type == "threeLetterSyllabus") {
         threeSyllabusList.add(n);
       }
     }
@@ -505,7 +506,7 @@ class CharController extends ChangeNotifier {
   getFourLetterSyllabous() {
     List<LetterModel> fourSyllabusList = [];
     for (var n in letters.syllabus) {
-      if (n.type == LetterOrSyllabus.fourLetterSyllabus) {
+      if (n.type == "fourLetterSyllabus") {
         fourSyllabusList.add(n);
       }
     }
@@ -568,14 +569,7 @@ class CharController extends ChangeNotifier {
           ? temporaryName = temporaryName + getSyllabus()
           : temporaryName = temporaryName;
     }
-    if (temporaryName.length == 2) {
-      chosenRace.name == "Elf" || chosenRace.name == "Hafling"
-          ? temporaryName = temporaryName +
-              getThreeLetterSyllabous() +
-              getFourLetterSyllabous()
-          : temporaryName = temporaryName + getThreeLetterSyllabous();
-    }
-    if (temporaryName.length == 1) {
+    if (temporaryName.length <= 2) {
       chosenRace.name == "Elf" || chosenRace.name == "Hafling"
           ? temporaryName = temporaryName +
               getSyllabus() +
@@ -584,31 +578,65 @@ class CharController extends ChangeNotifier {
           : temporaryName = temporaryName + getFourLetterSyllabous();
     }
     if (temporaryLastName.length < 3) {
-      temporaryLastName = temporaryLastName + getSyllabus();
+      temporaryLastName = temporaryLastName + getFourLetterSyllabous();
     }
     if (temporaryName.length > maxLength) {
-      temporaryName = temporaryName.substring(1, (randomChance + 2));
-      if (temporaryLastName.length < 3) {
-        temporaryLastName = temporaryLastName + getSyllabus();
-      }
+      temporaryName = temporaryName.substring(1, maxLength);
     }
     if (temporaryLastName.length > maxLength) {
-      temporaryLastName = temporaryLastName.substring(1, (randomChance + 2));
-      if (temporaryLastName.length < 3) {
-        temporaryLastName = temporaryLastName + getSyllabus();
-      }
+      temporaryLastName = temporaryLastName.substring(1, maxLength);
     }
-
     return [temporaryName, temporaryLastName];
   }
 
   /// generates all names according to race and length
   generalNameGenerator(int desiredLength, int maxLength) {
     var temporaryFullName = generateNameSize(desiredLength, desiredLength);
-    fullName = alterNameLength(
+    tempFullName = alterNameLength(
         7, randomChance, temporaryFullName[0], temporaryFullName[1]);
-    fullName = alterHaflingNameCharacters(fullName[0], fullName[1]);
-    capitalize(fullName[0], fullName[1]);
+    notifyListeners();
+  }
+
+  stopingTripleLetters(String temporaryName, String temporaryLastName) {
+    var vowels = letters.alphabet
+        .where(
+            (element) => element.type == "vowel" || element.type == "semiVowel")
+        .toList();
+    var consonants = letters.alphabet
+        .where((element) => element.type == "consonant")
+        .toList();
+    for (var i in vowels) {
+      var chance = randomIndex.nextInt(20) + 1;
+      var randomConsonant = consonants.elementAt(chance);
+      if (temporaryName.contains(i.value + i.value + i.value)) {
+        temporaryName.replaceFirst(i.value + i.value + i.value,
+            i.value + randomConsonant.value + i.value);
+      }
+      if (temporaryLastName.contains(i.value + i.value + i.value)) {
+        temporaryLastName.replaceFirst(i.value + i.value + i.value,
+            i.value + randomConsonant.value + i.value);
+      }
+    }
+  }
+
+  String changeLastLettersAcordingToGender(
+      String temporaryName,
+      String letter1,
+      String letter2,
+      String letter3,
+      String replace1,
+      String replace2,
+      String replace3) {
+    if (temporaryName.endsWith(letter1) ||
+        temporaryName.endsWith(letter2) ||
+        temporaryName.endsWith(letter3)) {
+      randomChance < 3
+          ? temporaryName = temporaryName + replace1
+          : randomChance < 5
+              ? temporaryName = temporaryName + replace2
+              : temporaryName = temporaryName + replace3;
+    }
+    return temporaryName;
   }
 
 // Dwarf designated part =================================================================
@@ -616,21 +644,32 @@ class CharController extends ChangeNotifier {
   /// alters some of the letters of names for dwarfs
   List<String> alterDwarfNameCharacters(
       String temporaryName, String temporaryLastName) {
-    if (randomChance > 0 && randomChance < 3) {
+    if (randomChance < 3) {
       temporaryName = temporaryName.replaceFirst('h', "sh");
-      temporaryName = temporaryName.replaceAll('h', "ch");
+      temporaryName = temporaryName.replaceAll('q', "ch");
       temporaryLastName = temporaryLastName.replaceFirst('y', "ya");
     } else {
       temporaryName = temporaryName.replaceFirst('h', "ch");
-      temporaryName = temporaryName.replaceAll('h', "sh");
+      temporaryName = temporaryName.replaceAll('q', "sh");
       temporaryLastName = temporaryLastName.replaceFirst('y', "yo");
     }
+    if (isMale) {
+      temporaryName = changeLastLettersAcordingToGender(
+          temporaryName, "a", "e", "i", "ng", "z", "ck");
+    } else {
+      temporaryName = changeLastLettersAcordingToGender(
+          temporaryName, "o", "r", "k", "ila", "yen", "es");
+    }
+    stopingTripleLetters(temporaryName, temporaryLastName);
     return [temporaryName, temporaryLastName];
   }
 
   /// generates names for dwarf
   dwarfNameGenerator() {
     generalNameGenerator(4, 7);
+    fullName = alterDwarfNameCharacters(tempFullName[0], tempFullName[1]);
+    capitalize(fullName[0], fullName[1]);
+    notifyListeners();
   }
 
 // Elf designated part ======================================================================
@@ -641,7 +680,7 @@ class CharController extends ChangeNotifier {
     if (temporaryName.length > 8) {
       temporaryName = temporaryName.substring(randomChance - 2);
     }
-    if (randomChance > 0 && randomChance < 4) {
+    if (randomChance < 4) {
       temporaryName = temporaryName.replaceAll('x', "a");
       temporaryName = temporaryName.replaceAll('r', "l");
       temporaryName = temporaryName.replaceFirst('k', "an");
@@ -668,13 +707,15 @@ class CharController extends ChangeNotifier {
       temporaryLastName = temporaryLastName.replaceAll('u', "e");
       temporaryName = temporaryName.replaceAll('q', "d");
     }
-    if (temporaryName.endsWith("a") || temporaryName.endsWith("e")) {
-      randomChance > 0 && randomChance < 3
-          ? temporaryName = temporaryName + "l"
-          : randomChance > 0 && randomChance < 5
-              ? temporaryName = temporaryName + "s"
-              : temporaryName = temporaryName + "";
+    if (isMale) {
+      temporaryName = changeLastLettersAcordingToGender(
+          temporaryName, "a", "e", "i", "l", "s", "n");
+    } else {
+      temporaryName = changeLastLettersAcordingToGender(
+          temporaryName, "o", "u", "i", "la", "nes", "pa");
     }
+
+    stopingTripleLetters(temporaryName, temporaryLastName);
 
     return [temporaryName, temporaryLastName];
   }
@@ -682,6 +723,9 @@ class CharController extends ChangeNotifier {
   /// generates names for elves
   elfNameGenerator() {
     generalNameGenerator(5, 8);
+    fullName = alterElfNameCharacters(tempFullName[0], tempFullName[1]);
+    capitalize(fullName[0], fullName[1]);
+    notifyListeners();
   }
 
   // Gnome designated part =================================================================
@@ -689,21 +733,37 @@ class CharController extends ChangeNotifier {
   ///  /// alters some of the letters of names for gnomes
   List<String> alterGnomeNameCharacters(
       String temporaryName, String temporaryLastName) {
-    if (randomChance > 0 && randomChance < 3) {
+    if (randomChance < 3) {
       temporaryName = temporaryName.replaceFirst('h', "sh");
-      temporaryName = temporaryName.replaceAll('h', "ch");
+      temporaryName = temporaryName.replaceAll('q', "ch");
+      temporaryName = temporaryName.replaceFirst('z', "ch");
       temporaryLastName = temporaryLastName.replaceFirst('y', "ya");
+      temporaryLastName = temporaryLastName.replaceAll('q', "ya");
     } else {
       temporaryName = temporaryName.replaceFirst('h', "ch");
-      temporaryName = temporaryName.replaceAll('h', "sh");
+      temporaryName = temporaryName.replaceAll('q', "sh");
+      temporaryName = temporaryName.replaceFirst('z', "sh");
       temporaryLastName = temporaryLastName.replaceFirst('y', "yo");
+      temporaryLastName = temporaryLastName.replaceAll('q', "yo");
     }
+    if (isMale) {
+      temporaryName = changeLastLettersAcordingToGender(
+          temporaryName, "a", "e", "i", "n", "ng", "c");
+    } else {
+      temporaryName = changeLastLettersAcordingToGender(
+          temporaryName, "o", "k", "r", "ha", "ez", "aw");
+    }
+    stopingTripleLetters(temporaryName, temporaryLastName);
+
     return [temporaryName, temporaryLastName];
   }
 
   /// generates names for haflings
   gnomeNameGenerator() {
     generalNameGenerator(3, 6);
+    fullName = alterGnomeNameCharacters(tempFullName[0], tempFullName[1]);
+    capitalize(fullName[0], fullName[1]);
+    notifyListeners();
   }
 
 // Hafling designated part =================================================================
@@ -711,21 +771,45 @@ class CharController extends ChangeNotifier {
   ///  /// alters some of the letters of names for haflings
   List<String> alterHaflingNameCharacters(
       String temporaryName, String temporaryLastName) {
-    if (randomChance > 0 && randomChance < 3) {
-      temporaryName = temporaryName.replaceFirst('w', "f");
-      temporaryName = temporaryName.replaceAll('w', "d");
-      temporaryLastName = temporaryLastName.replaceFirst('w', "f");
+    if (randomChance < 3) {
+      temporaryName = temporaryName.replaceFirst('w', "fi");
+      temporaryName = temporaryName.replaceFirst('k', "fu");
+      temporaryName = temporaryName.replaceFirst('z', "pa");
+      temporaryName = temporaryName.replaceFirst('x', "la");
+      temporaryName = temporaryName.replaceAll('q', "v");
+      temporaryLastName = temporaryLastName.replaceFirst('w', "kla");
+      temporaryLastName = temporaryLastName.replaceFirst('k', "b");
+      temporaryLastName = temporaryLastName.replaceFirst('x', "g");
+      temporaryLastName = temporaryLastName.replaceAll('q', "b");
     } else {
-      temporaryName = temporaryName.replaceFirst('w', "d");
-      temporaryName = temporaryName.replaceAll('w', "f");
-      temporaryLastName = temporaryLastName.replaceFirst('w', "d");
+      temporaryName = temporaryName.replaceFirst('w', "de");
+      temporaryName = temporaryName.replaceFirst('k', "ga");
+      temporaryName = temporaryName.replaceFirst('z', "ta");
+      temporaryName = temporaryName.replaceFirst('x', "le");
+      temporaryName = temporaryName.replaceAll('q', "b");
+      temporaryLastName = temporaryLastName.replaceAll('q', "v");
+      temporaryLastName = temporaryLastName.replaceFirst('x', "ga");
+      temporaryLastName = temporaryLastName.replaceFirst('w', "du");
+      temporaryLastName = temporaryLastName.replaceFirst('k', "fe");
     }
+    if (isMale) {
+      temporaryName = changeLastLettersAcordingToGender(
+          temporaryName, "a", "e", "i", "z", "g", "r");
+    } else {
+      temporaryName = changeLastLettersAcordingToGender(
+          temporaryName, "o", "u", "i", "y", "az", "l");
+    }
+    stopingTripleLetters(temporaryName, temporaryLastName);
+
     return [temporaryName, temporaryLastName];
   }
 
   /// generates names for haflings
   haflingNameGenerator() {
     generalNameGenerator(5, 8);
+    fullName = alterHaflingNameCharacters(tempFullName[0], tempFullName[1]);
+    capitalize(fullName[0], fullName[1]);
+    notifyListeners();
   }
 
 // Human designated part ====================================================================
@@ -766,25 +850,36 @@ class CharController extends ChangeNotifier {
   /// alters some of the characters of names for orcs
   List<String> alterOrcNameCharacters(
       String temporaryName, String temporaryLastName) {
-    if (randomChance > 0 && randomChance < 3) {
+    if (randomChance < 3) {
       temporaryName = temporaryName.replaceFirst('h', "sh");
-      temporaryName = temporaryName.replaceAll('h', "ch");
+      temporaryName = temporaryName.replaceAll('q', "ch");
       temporaryName = temporaryName.replaceFirst('a', "ak");
       temporaryLastName = temporaryLastName.replaceFirst('y', "ya");
       temporaryLastName = temporaryLastName.replaceFirst('a', "ka");
     } else {
       temporaryName = temporaryName.replaceFirst('h', "ch");
-      temporaryName = temporaryName.replaceAll('h', "sh");
+      temporaryName = temporaryName.replaceAll('q', "sh");
       temporaryName = temporaryName.replaceFirst('a', "ac");
       temporaryLastName = temporaryLastName.replaceFirst('a', "ca");
       temporaryLastName = temporaryLastName.replaceFirst('y', "yo");
     }
+    if (isMale) {
+      temporaryName = changeLastLettersAcordingToGender(
+          temporaryName, "a", "e", "i", "ck", "zur", "d");
+    } else {
+      temporaryName = changeLastLettersAcordingToGender(
+          temporaryName, "o", "u", "i", "la", "dar", "par");
+    }
+    stopingTripleLetters(temporaryName, temporaryLastName);
     return [temporaryName, temporaryLastName];
   }
 
   /// generates names for orcs
   orcNameGenerator() {
     generalNameGenerator(3, 6);
+    fullName = alterOrcNameCharacters(tempFullName[0], tempFullName[1]);
+    capitalize(fullName[0], fullName[1]);
+    notifyListeners();
   }
 
   /// calls the respective race name generator
@@ -795,18 +890,14 @@ class CharController extends ChangeNotifier {
         break;
       case "Half-elf":
         randomChance = randomIndex.nextInt(6);
-        randomChance > 0 && randomChance < 3
-            ? elfNameGenerator()
-            : humanNameGenerator();
+        randomChance < 3 ? elfNameGenerator() : humanNameGenerator();
         break;
       case "Orc":
         orcNameGenerator();
         break;
       case "Half-orc":
         randomChance = randomIndex.nextInt(6);
-        randomChance > 0 && randomChance < 3
-            ? orcNameGenerator()
-            : humanNameGenerator();
+        randomChance < 3 ? orcNameGenerator() : humanNameGenerator();
         break;
       case "Elf":
         elfNameGenerator();
@@ -1252,8 +1343,22 @@ class CharController extends ChangeNotifier {
     var dice = generatedChar.charClass.hitDice;
     var rollTimes = generatedChar.charLevel - 1;
     var hitpoints = dice;
-    for (var i = 0; i < rollTimes; i++) {
-      hitpoints = hitpoints! + rollingDice(dice!);
+    if (levelSelected > 20 && levelSelected < 26) {
+      dice = dice! - 3;
+      for (var i = 0; i < rollTimes; i++) {
+        var sum = rollingDice(dice) + 3;
+        hitpoints = hitpoints! + sum;
+      }
+    } else if (levelSelected > 25) {
+      dice = dice! - 5;
+      for (var i = 0; i < rollTimes; i++) {
+        var sum = rollingDice(dice) + 5;
+        hitpoints = hitpoints! + sum;
+      }
+    } else {
+      for (var i = 0; i < rollTimes; i++) {
+        hitpoints = hitpoints! + rollingDice(dice!);
+      }
     }
     return hitpoints!;
   }

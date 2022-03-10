@@ -1,3 +1,4 @@
+import 'package:fantasy_name_generator/shared/constants/phone_sizes.dart';
 import 'package:fantasy_name_generator/shared/themes/app_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -28,24 +29,27 @@ class WeaponChoiceSection extends StatelessWidget {
         return Column(
           children: [
             SizedBox(height: size.height * 0.03),
-            RichText(
-              textAlign: TextAlign.center,
-              text: TextSpan(
-                style: AppTextStyle.subTextGreyPlusSize,
-                children: [
-                  const TextSpan(
-                    text: "Select ",
-                  ),
-                  TextSpan(
-                    text: "${char.charName.fullName}'s",
-                    style: AppTextStyle.subTextWhitePlusSize,
-                  ),
-                  TextSpan(
-                    text: state.chosenPrimaryWeaponType != null
-                        ? " Secondary weapon type"
-                        : " Primary weapon type",
-                  ),
-                ],
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 2),
+              child: RichText(
+                textAlign: TextAlign.center,
+                text: TextSpan(
+                  style: AppTextStyle.subTextGreyPlusSize,
+                  children: [
+                    const TextSpan(
+                      text: "Select ",
+                    ),
+                    TextSpan(
+                      text: "${char.charName.fullName}'s",
+                      style: AppTextStyle.subTextWhitePlusSize,
+                    ),
+                    TextSpan(
+                      text: state.chosenPrimaryWeaponType != null
+                          ? " Secondary weapon type"
+                          : " Primary weapon type",
+                    ),
+                  ],
+                ),
               ),
             ),
             SizedBox(height: size.height * 0.03),
@@ -88,37 +92,51 @@ class WeaponChoiceSection extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: size.height * 0.03),
-            WeaponLabelSection(size: size, ctrl: state, label: "One-handed"),
-            ExpandedSection(
-              expand: state.showOneHanded,
-              child: RowOfWeaponType(
-                size: size,
-                ctrl: state,
-                weaponTypeList: state.listOfEquip.oneHandedTypes,
-                isTypeDescriptionSelected: state.showOneHanded,
+            SizedBox(height: size.height * 0.015),
+            if (state.fightStyle == "Close Combat" ||
+                state.chosenPrimaryWeaponType != null)
+              Column(
+                children: [
+                  WeaponLabelSection(
+                      size: size, ctrl: state, label: "One-handed"),
+                  ExpandedSection(
+                    expand: state.showOneHanded,
+                    child: RowOfWeaponType(
+                      size: size,
+                      ctrl: state,
+                      weaponTypeList: state.listOfEquip.oneHandedTypes,
+                      isTypeDescriptionSelected: state.showOneHanded,
+                    ),
+                  ),
+                  WeaponLabelSection(
+                      size: size, ctrl: state, label: "Two-handed"),
+                  ExpandedSection(
+                    expand: state.showTwoHanded,
+                    child: RowOfWeaponType(
+                      size: size,
+                      ctrl: state,
+                      weaponTypeList: state.listOfEquip.twoHandedTypes,
+                      isTypeDescriptionSelected: state.showTwoHanded,
+                    ),
+                  ),
+                ],
               ),
-            ),
-            WeaponLabelSection(size: size, ctrl: state, label: "Two-handed"),
-            ExpandedSection(
-              expand: state.showTwoHanded,
-              child: RowOfWeaponType(
-                size: size,
-                ctrl: state,
-                weaponTypeList: state.listOfEquip.twoHandedTypes,
-                isTypeDescriptionSelected: state.showTwoHanded,
+            if (state.fightStyle == "Distant Combat" ||
+                state.chosenPrimaryWeaponType != null)
+              Column(
+                children: [
+                  WeaponLabelSection(size: size, ctrl: state, label: "Distant"),
+                  ExpandedSection(
+                    expand: state.showDistant,
+                    child: RowOfWeaponType(
+                      size: size,
+                      ctrl: state,
+                      weaponTypeList: state.listOfEquip.distanceTypes,
+                      isTypeDescriptionSelected: state.showDistant,
+                    ),
+                  ),
+                ],
               ),
-            ),
-            WeaponLabelSection(size: size, ctrl: state, label: "Distant"),
-            ExpandedSection(
-              expand: state.showDistant,
-              child: RowOfWeaponType(
-                size: size,
-                ctrl: state,
-                weaponTypeList: state.listOfEquip.distanceTypes,
-                isTypeDescriptionSelected: state.showDistant,
-              ),
-            ),
             SizedBox(height: size.height * 0.03),
           ],
         );
@@ -157,8 +175,8 @@ class ChosenWeaponDisplay extends StatelessWidget {
             color: Colors.grey[900],
             borderRadius: BorderRadius.circular(30),
           ),
-          width: 70,
-          height: 70,
+          width: deviceWidth! < 400 ? 55 : 70,
+          height: deviceWidth! < 400 ? 55 : 70,
           child: weapon,
         ),
       ],

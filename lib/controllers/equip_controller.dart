@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:fantasy_name_generator/models/char_model.dart';
 import 'package:fantasy_name_generator/models/key_value.model.dart';
 import 'package:fantasy_name_generator/shared/data/default_char_model_data.dart';
@@ -149,6 +147,11 @@ class EquipController extends ChangeNotifier {
 
   String? activateNextButton() {
     if (creationStage == 1) {
+      advanceCreationStage();
+      updateCombatStyle();
+      return null;
+    }
+    if (creationStage == 2) {
       advanceCreationStage();
       updateSecondaryweaponType();
       return null;

@@ -1,3 +1,4 @@
+import 'package:fantasy_name_generator/shared/constants/phone_sizes.dart';
 import 'package:animated_button/animated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -18,8 +19,8 @@ class AppGenerateButton extends StatelessWidget {
         onPressed: onGenerate,
         color: Colors.grey[900]!,
         duration: 80,
-        width: 72,
-        height: 72,
+        width: deviceWidth! < 400 ? 62 : 72,
+        height: deviceWidth! < 400 ? 62 : 72,
         child: icon ??
             SvgPicture.asset("assets/images/dice-random.svg",
                 color: Colors.grey.shade400));

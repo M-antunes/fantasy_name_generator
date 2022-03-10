@@ -1,3 +1,4 @@
+import 'package:fantasy_name_generator/shared/constants/phone_sizes.dart';
 import 'package:fantasy_name_generator/shared/widgets/app_generate_button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -29,7 +30,9 @@ class StatsSection extends StatelessWidget {
             return Stack(
               children: [
                 Positioned(
-                  top: size.height * 0.05,
+                  top: deviceWidth! < 400
+                      ? size.height * 0.07
+                      : size.height * 0.05,
                   right: 0,
                   child: Align(
                     alignment: Alignment.centerRight,
@@ -57,17 +60,17 @@ class StatsSection extends StatelessWidget {
                           text: TextSpan(
                             children: [
                               state.isEpicLevelSelected
-                                  ? const TextSpan(
+                                  ? TextSpan(
                                       text: "Epic ",
                                       style: AppTextStyle.epicLabel)
                                   : state.isLegendaryLevelSelected
-                                      ? const TextSpan(
+                                      ? TextSpan(
                                           text: "Legendary ",
                                           style: AppTextStyle.epicLabel)
-                                      : const TextSpan(
+                                      : TextSpan(
                                           text: "",
                                           style: AppTextStyle.legendaryLabel),
-                              const TextSpan(
+                              TextSpan(
                                   text: "lv: ",
                                   style: AppTextStyle.subTextWhite),
                               TextSpan(
@@ -282,6 +285,7 @@ class StatsSection extends StatelessWidget {
                         ),
                       ],
                     ),
+                    SizedBox(height: size.height * 0.02),
                   ],
                 ),
               ],

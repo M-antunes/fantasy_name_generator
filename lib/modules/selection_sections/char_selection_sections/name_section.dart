@@ -1,3 +1,4 @@
+import 'package:fantasy_name_generator/shared/constants/phone_sizes.dart';
 import 'package:fantasy_name_generator/shared/widgets/app_generate_button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -36,13 +37,13 @@ class NameSelection extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10)),
                 child: Container(
                   height: size.height * 0.1,
-                  width: size.width * 0.8,
+                  width:
+                      deviceWidth! < 400 ? size.width * 0.96 : size.width * 0.9,
                   decoration: BoxDecoration(
                     color: Colors.grey.shade900,
                     borderRadius: BorderRadius.circular(10),
                   ),
                   padding: const EdgeInsets.symmetric(
-                    horizontal: 8,
                     vertical: 3,
                   ),
                   child: Center(

@@ -106,7 +106,7 @@ class _CharDevelopmentPageState extends State<CharDevelopmentPage>
       bottomNavigationBar:
           Consumer<CharController>(builder: (context, state, child) {
         return Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.only(left: 8.0, right: 8, bottom: 8),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [

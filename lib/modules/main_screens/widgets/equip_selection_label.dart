@@ -33,9 +33,9 @@ class EquipSelectionLabel extends StatelessWidget {
               children: [
                 // TextSpan(text: "  (${char.charClass.name})"),
                 if (char.charLevel > 20 && char.charLevel < 26)
-                  const TextSpan(text: " Epic", style: AppTextStyle.epicLabel),
+                  TextSpan(text: " Epic", style: AppTextStyle.epicLabel),
                 if (char.charLevel > 25)
-                  const TextSpan(
+                  TextSpan(
                       text: " Legendary", style: AppTextStyle.legendaryLabel),
                 TextSpan(
                     text: " (${char.charLevel})",

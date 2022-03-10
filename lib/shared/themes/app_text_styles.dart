@@ -1,154 +1,171 @@
+import 'package:fantasy_name_generator/shared/constants/phone_sizes.dart';
 import 'package:fantasy_name_generator/shared/themes/app_colors.dart';
+
 import 'package:flutter/material.dart';
 
 class AppTextStyle {
-  static const generatedName = TextStyle(
+  static final generatedName = TextStyle(
     fontWeight: FontWeight.w400,
     fontFamily: "David",
-    fontSize: 30,
+    fontSize: deviceWidth! < 400 ? 24 : 29,
     color: Colors.white,
   );
-  static const chosenName = TextStyle(
+  static final chosenName = TextStyle(
     fontFamily: "David",
     color: Colors.white,
-    fontSize: 26,
+    fontSize: deviceWidth! < 400 ? 23 : 29,
   );
-  static const levelDisplayStatsPageText = TextStyle(
+  static final levelDisplayStatsPageText = TextStyle(
     fontFamily: "David",
     color: Colors.white,
-    fontSize: 34,
+    fontSize: deviceWidth! < 400 ? 29 : 34,
   );
-  static const levelDisplayEquipPageText = TextStyle(
+  static final levelDisplayEquipPageText = TextStyle(
     fontFamily: "David",
     color: AppColors.primaryText,
-    fontSize: 26,
+    fontSize: deviceWidth! < 400 ? 21 : 26,
   );
-  static const epicLabel = TextStyle(
+  static final epicLabel = TextStyle(
     color: AppColors.primaryGold,
     fontFamily: "Chomsky",
-    fontSize: 22,
+    fontSize: deviceWidth! < 400 ? 17 : 22,
   );
-  static const legendaryLabel = TextStyle(
+  static final legendaryLabel = TextStyle(
     color: AppColors.primaryOrange,
     fontFamily: "Grantmouth",
-    fontSize: 24,
+    fontSize: deviceWidth! < 400 ? 19 : 24,
   );
-  static const nameExhibition = TextStyle(
+  static final nameExhibition = TextStyle(
     fontWeight: FontWeight.w400,
     color: Colors.white,
-    fontSize: 24,
+    fontSize: deviceWidth! < 400 ? 19 : 24,
   );
-  static const changeRace = TextStyle(
+  static final changeRace = TextStyle(
     fontWeight: FontWeight.w400,
     color: Colors.white,
-    fontSize: 22,
+    fontSize: deviceWidth! < 400 ? 17 : 22,
   );
-  static const mainPageLabel = TextStyle(
-    fontWeight: FontWeight.w400,
-    color: Colors.white,
-    fontFamily: "David",
-    fontSize: 20,
-  );
-  static const selectRace = TextStyle(
-    fontWeight: FontWeight.w400,
-    color: Colors.white,
-    fontFamily: "Kallamar",
-    fontSize: 22,
-  );
-  static const selectAlignment = TextStyle(
-    fontWeight: FontWeight.w400,
-    color: Colors.white,
-    fontFamily: "Kallamar",
-    fontSize: 22,
-  );
-  static const statsValue = TextStyle(
+  static final mainPageLabel = TextStyle(
     fontWeight: FontWeight.w400,
     color: Colors.white,
     fontFamily: "David",
-    fontSize: 16,
+    fontSize: deviceWidth! < 400 ? 15 : 20,
   );
-  static const statsLabel = TextStyle(
+  static final selectRace = TextStyle(
+    fontWeight: FontWeight.w400,
+    color: Colors.white,
+    fontFamily: "Kallamar",
+    fontSize: deviceWidth! < 400 ? 17 : 22,
+  );
+  static final selectAlignment = TextStyle(
+    fontWeight: FontWeight.w400,
+    color: Colors.white,
+    fontFamily: "Kallamar",
+    fontSize: deviceWidth! < 400 ? 19 : 24,
+  );
+  static final statsValue = TextStyle(
+    fontWeight: FontWeight.w400,
+    color: Colors.white,
+    fontFamily: "David",
+    fontSize: deviceWidth! < 400 ? 14 : 19,
+  );
+  static final statsLabel = TextStyle(
     fontWeight: FontWeight.w500,
     color: Colors.grey,
     fontFamily: "David",
-    fontSize: 15,
+    fontSize: deviceWidth! < 400 ? 13 : 18,
   );
-  static const modefier = TextStyle(
+  static final modefier = TextStyle(
     fontWeight: FontWeight.w400,
     fontFamily: "David",
     color: Colors.white,
-    fontSize: 15,
+    fontSize: deviceWidth! < 400 ? 14 : 19,
   );
-  static const raceDescriptionLabel = TextStyle(
+  static final raceDescriptionLabel = TextStyle(
     fontWeight: FontWeight.w400,
     color: Colors.white,
     fontFamily: "David",
-    fontSize: 23,
+    fontSize: deviceWidth! < 400 ? 18 : 23,
   );
-  static const alignmentLabel = TextStyle(
+  static final alignmentLabel = TextStyle(
     fontWeight: FontWeight.w400,
     color: Colors.white,
     fontFamily: "David",
-    fontSize: 18,
+    fontSize: deviceWidth! < 400 ? 14 : 19,
   );
-  static const subTextGrey = TextStyle(
+  static final subTextGrey = TextStyle(
     fontWeight: FontWeight.w500,
     fontFamily: "David",
     color: AppColors.primaryText0,
-    fontSize: 18,
+    fontSize: deviceWidth! < 400 ? 15 : 19,
   );
-  static const subTextWhite = TextStyle(
+  static final subTextWhite = TextStyle(
     fontWeight: FontWeight.w400,
     color: Colors.white,
     fontFamily: "David",
-    fontSize: 19,
+    fontSize: deviceWidth! < 400 ? 16 : 19,
   );
-  static const subTextWhitePlusSize = TextStyle(
+  static final subTextWhitePlusSize = TextStyle(
     fontWeight: FontWeight.w400,
     color: Colors.white,
     fontFamily: "David",
-    fontSize: 22,
+    fontSize: deviceWidth! < 400 ? 19 : 22,
   );
-  static const subTextGreyPlusSize = TextStyle(
+  static final subTextGreyPlusSize = TextStyle(
     fontWeight: FontWeight.w400,
     color: AppColors.primaryText,
     fontFamily: "David",
-    fontSize: 21,
+    fontSize: deviceWidth! < 400 ? 17 : 21,
   );
-  static const weaponSelectedText = TextStyle(
+  static final weaponSelectedText = TextStyle(
     fontWeight: FontWeight.w400,
     color: AppColors.primaryText,
     fontFamily: "David",
-    fontSize: 19,
+    fontSize: deviceWidth! < 400 ? 14 : 19,
   );
-  static const weaponCategoryText = TextStyle(
+  static final weaponCategoryText = TextStyle(
     fontWeight: FontWeight.w400,
     color: AppColors.primaryText2,
     fontFamily: "David",
-    fontSize: 19,
+    fontSize: deviceWidth! < 400 ? 14 : 19,
   );
-  static const snackbarText = TextStyle(
+  static final snackbarText = TextStyle(
     fontWeight: FontWeight.w400,
     fontFamily: "David",
     color: Colors.white,
-    fontSize: 17,
+    fontSize: deviceWidth! < 400 ? 14 : 19,
   );
-  static const atributeDivisionText = TextStyle(
+  static final atributeDivisionText = TextStyle(
     fontWeight: FontWeight.w400,
     fontFamily: "David",
     color: Colors.white,
-    fontSize: 16,
+    fontSize: deviceWidth! < 400 ? 14 : 19,
   );
-  static const traitValue = TextStyle(
+  static final traitValue = TextStyle(
     fontWeight: FontWeight.w400,
     color: AppColors.primaryText2,
     fontFamily: "David",
-    fontSize: 17,
+    fontSize: deviceWidth! < 400 ? 14 : 19,
   );
-  static const traitDescription = TextStyle(
+  static final traitDescription = TextStyle(
     fontWeight: FontWeight.w400,
     fontFamily: "David",
     color: Colors.grey,
-    fontSize: 16,
+    fontSize: deviceWidth! < 400 ? 12 : 17,
+  );
+  static final longDescription = TextStyle(
+    fontWeight: FontWeight.w400,
+    color: AppColors.primaryText0,
+    fontSize: deviceWidth! < 400 ? 12 : 15,
+  );
+  static final weaponSelected = TextStyle(
+    fontWeight: FontWeight.w400,
+    color: AppColors.primary,
+    fontSize: deviceWidth! < 400 ? 12 : 15,
+  );
+  static final weaponNotSelected = TextStyle(
+    fontWeight: FontWeight.w400,
+    color: AppColors.primaryText0,
+    fontSize: deviceWidth! < 400 ? 12 : 15,
   );
 }

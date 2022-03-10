@@ -43,8 +43,9 @@ class RaceTraits extends StatelessWidget {
                               text: "${trait![index].key}  ",
                               style: AppTextStyle.traitValue),
                           TextSpan(
-                              text: trait[index].value,
-                              style: TextStyle(color: AppColors.primaryText0)),
+                            text: trait[index].value,
+                            style: AppTextStyle.longDescription,
+                          ),
                         ],
                       ),
                     ),
