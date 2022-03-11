@@ -51,7 +51,7 @@ class RaceData {
     RaceModel(
       name: 'Elf',
       isSelected: false,
-      height: KeyValueModel(key: 5, value: 4),
+      height: KeyValueModel(key: 5, value: 3),
       age: 110,
       weight: 110,
       speed: 30,
@@ -170,7 +170,7 @@ class RaceData {
     RaceModel(
       name: "Half-elf",
       isSelected: false,
-      height: KeyValueModel(key: 5, value: 4),
+      height: KeyValueModel(key: 5, value: 3),
       age: 20,
       weight: 120,
       speed: 30,
@@ -212,7 +212,7 @@ class RaceData {
     RaceModel(
       name: "Half-orc",
       isSelected: false,
-      height: KeyValueModel(key: 5, value: 0),
+      height: KeyValueModel(key: 5, value: 2),
       age: 13,
       weight: 150,
       speed: 30,

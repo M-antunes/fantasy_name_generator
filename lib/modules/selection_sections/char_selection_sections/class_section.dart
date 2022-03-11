@@ -1,3 +1,4 @@
+import 'package:fantasy_name_generator/shared/constants/phone_sizes.dart';
 import 'package:fantasy_name_generator/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -16,7 +17,6 @@ class ClassSelection extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return SizedBox(
-      // height: size.height * 0.7,
       width: double.maxFinite,
       child: Consumer<CharController>(
         builder: (context, state, child) {
@@ -26,7 +26,7 @@ class ClassSelection extends StatelessWidget {
                   shrinkWrap: true,
                   gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                       maxCrossAxisExtent: size.width * 0.2,
-                      childAspectRatio: 9 / 10,
+                      childAspectRatio: deviceWidth! < 350 ? 9 / 10 : 9 / 8,
                       crossAxisSpacing: 0,
                       mainAxisSpacing: 8),
                   physics: const NeverScrollableScrollPhysics(),

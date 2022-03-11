@@ -470,17 +470,6 @@ class CharController extends ChangeNotifier {
     return vowelList[chance].value;
   }
 
-  getConsonant() {
-    List<LetterModel> consonantList = [];
-    for (var n in letters.alphabet) {
-      if (n.type == "consonant") {
-        consonantList.add(n);
-      }
-    }
-    var chance = randomIndex.nextInt(consonantList.length);
-    return consonantList[chance].value;
-  }
-
   getSyllabus() {
     List<LetterModel> syllabusList = [];
     for (var n in letters.syllabus) {
@@ -539,21 +528,23 @@ class CharController extends ChangeNotifier {
     String temporaryName = '';
     String temporaryLastName = '';
     List<String> temporaryFullName = [];
-    for (var i = 0; i < randomChance; i++) {
+    for (var i = 0; i < desiredLength; i++) {
       List<dynamic> letterPicker = [
+        getVowel(),
         getVowel(),
         getSyllabus(),
         getThreeLetterSyllabous(),
         getFourLetterSyllabous(),
       ];
-      var mutableIndexName = randomIndex.nextInt(3);
-      var mutableIndexLastName = randomIndex.nextInt(3);
-      while (mutableIndexName == mutableIndexLastName) {
-        mutableIndexLastName = randomIndex.nextInt(3);
+      letterPicker.shuffle();
+      var changableIndexName = randomIndex.nextInt(4);
+      var changableIndexLastName = randomIndex.nextInt(4);
+      while (changableIndexName == changableIndexLastName) {
+        changableIndexLastName = randomIndex.nextInt(4);
       }
-      temporaryName = temporaryName + letterPicker[mutableIndexName];
+      temporaryName = temporaryName + letterPicker[changableIndexName];
       temporaryLastName =
-          temporaryLastName + letterPicker[mutableIndexLastName];
+          temporaryLastName + letterPicker[changableIndexLastName];
     }
     temporaryFullName = [temporaryName, temporaryLastName];
     return temporaryFullName;
@@ -597,26 +588,114 @@ class CharController extends ChangeNotifier {
     notifyListeners();
   }
 
-  stopingTripleLetters(String temporaryName, String temporaryLastName) {
-    var vowels = letters.alphabet
-        .where(
-            (element) => element.type == "vowel" || element.type == "semiVowel")
-        .toList();
+  String stoppingTripleAndQuadripleLetters(String name) {
+    List<String> nameToList = name.split('');
     var consonants = letters.alphabet
         .where((element) => element.type == "consonant")
         .toList();
-    for (var i in vowels) {
-      var chance = randomIndex.nextInt(20) + 1;
-      var randomConsonant = consonants.elementAt(chance);
-      if (temporaryName.contains(i.value + i.value + i.value)) {
-        temporaryName.replaceFirst(i.value + i.value + i.value,
-            i.value + randomConsonant.value + i.value);
-      }
-      if (temporaryLastName.contains(i.value + i.value + i.value)) {
-        temporaryLastName.replaceFirst(i.value + i.value + i.value,
-            i.value + randomConsonant.value + i.value);
+    var vowels =
+        letters.alphabet.where((element) => element.type == "vowel").toList();
+    var consonantChance = randomIndex.nextInt(20) + 1;
+    var randomConsonant = consonants.elementAt(consonantChance);
+    var consonantChance2 = randomIndex.nextInt(20) + 1;
+    var randomConsonant2 = consonants.elementAt(consonantChance2);
+    var listToCompare = [];
+    List<int> listOfIndexes = [];
+    var index = 0;
+    for (var i in nameToList) {
+      if (vowels.any((element) => element.value == i)) {
+        if (listToCompare.contains(i)) {
+          index = index + listOfIndexes.length;
+        } else {
+          if (index == 0) {
+            index = 0;
+          } else {
+            index = index - listOfIndexes.length;
+          }
+        }
+        listToCompare.add(i);
+        listOfIndexes
+            .add(nameToList.indexWhere((element) => element == i) + index);
       }
     }
+    var indexes = listOfIndexes.join();
+    if (indexes.contains("0123")) {
+      replaceTwoExtraLetter(
+          nameToList, randomConsonant.value, randomConsonant2.value, 1);
+      return name = nameToList.join();
+    } else if (indexes.contains("1234")) {
+      replaceTwoExtraLetter(
+          nameToList, randomConsonant.value, randomConsonant2.value, 1);
+      return name = nameToList.join();
+    } else if (indexes.contains("2345")) {
+      replaceTwoExtraLetter(
+          nameToList, randomConsonant.value, randomConsonant2.value, 1);
+      return name = nameToList.join();
+    } else if (indexes.contains("3456")) {
+      replaceTwoExtraLetter(
+          nameToList, randomConsonant.value, randomConsonant2.value, 1);
+      return name = nameToList.join();
+    } else if (indexes.contains("4567")) {
+      replaceTwoExtraLetter(
+          nameToList, randomConsonant.value, randomConsonant2.value, 1);
+      return name = nameToList.join();
+    } else if (indexes.contains("5678")) {
+      replaceTwoExtraLetter(
+          nameToList, randomConsonant.value, randomConsonant2.value, 1);
+      return name = nameToList.join();
+    } else if (indexes.contains("012")) {
+      replaceExtraLetter(nameToList, randomConsonant.value, 1);
+      return name = nameToList.join();
+    } else if (indexes.contains("123")) {
+      replaceExtraLetter(nameToList, randomConsonant.value, 2);
+      return name = nameToList.join();
+    } else if (indexes.contains("234")) {
+      replaceExtraLetter(nameToList, randomConsonant.value, 3);
+      return name = nameToList.join();
+    } else if (indexes.contains("345")) {
+      replaceExtraLetter(nameToList, randomConsonant.value, 4);
+      return name = nameToList.join();
+    } else if (indexes.contains("456")) {
+      replaceExtraLetter(nameToList, randomConsonant.value, 5);
+      return name = nameToList.join();
+    } else if (indexes.contains("567")) {
+      replaceExtraLetter(nameToList, randomConsonant.value, 6);
+      return name = nameToList.join();
+    }
+    return name;
+  }
+
+  replaceTwoExtraLetter(
+      List<String> name, String consonant, String consonant2, int index) {
+    var replaceLetter = consonant;
+    var replaceLetter2 = consonant2;
+    name.removeAt(index);
+    name.insert(index, replaceLetter);
+    name.removeAt(index + 2);
+    name.insert(index + 2, replaceLetter2);
+  }
+
+  replaceExtraLetter(List<String> name, String consonant, int index) {
+    var replaceLetter = consonant;
+    name.removeAt(index);
+    name.insert(index, replaceLetter);
+  }
+
+  String stoppingUnlikelyDoubleLetters(String name) {
+    name = name.replaceFirst("rl", "r");
+    name = name.replaceFirst("cm", "o");
+    name = name.replaceFirst("fp", "phy");
+    name = name.replaceFirst("vm", "va");
+    name = name.replaceFirst("mv", "me");
+    name = name.replaceFirst("xv", "pe");
+    name = name.replaceFirst("vx", "la");
+    name = name.replaceFirst("mr", "my");
+    name = name.replaceFirst("nr", "ce");
+    name = name.replaceFirst("rm", "ba");
+    name = name.replaceFirst("jl", "al");
+    name = name.replaceFirst("jg", "ja");
+
+    return name;
   }
 
   String changeLastLettersAcordingToGender(
@@ -646,13 +725,18 @@ class CharController extends ChangeNotifier {
       String temporaryName, String temporaryLastName) {
     if (randomChance < 3) {
       temporaryName = temporaryName.replaceFirst('h', "sh");
-      temporaryName = temporaryName.replaceAll('q', "ch");
+      temporaryName = temporaryName.replaceAll('q', "qa");
       temporaryLastName = temporaryLastName.replaceFirst('y', "ya");
+      temporaryLastName = temporaryLastName.replaceFirst('q', "qa");
     } else {
       temporaryName = temporaryName.replaceFirst('h', "ch");
-      temporaryName = temporaryName.replaceAll('q', "sh");
-      temporaryLastName = temporaryLastName.replaceFirst('y', "yo");
+      temporaryName = temporaryName.replaceAll('q', "qo");
+      temporaryLastName = temporaryLastName.replaceFirst('q', "qy");
     }
+    temporaryName = stoppingUnlikelyDoubleLetters(temporaryName);
+    temporaryLastName = stoppingUnlikelyDoubleLetters(temporaryLastName);
+    temporaryName = stoppingTripleAndQuadripleLetters(temporaryName);
+    temporaryLastName = stoppingTripleAndQuadripleLetters(temporaryLastName);
     if (isMale) {
       temporaryName = changeLastLettersAcordingToGender(
           temporaryName, "a", "e", "i", "ng", "z", "ck");
@@ -660,13 +744,12 @@ class CharController extends ChangeNotifier {
       temporaryName = changeLastLettersAcordingToGender(
           temporaryName, "o", "r", "k", "ila", "yen", "es");
     }
-    stopingTripleLetters(temporaryName, temporaryLastName);
     return [temporaryName, temporaryLastName];
   }
 
   /// generates names for dwarf
   dwarfNameGenerator() {
-    generalNameGenerator(4, 7);
+    generalNameGenerator(2, 6);
     fullName = alterDwarfNameCharacters(tempFullName[0], tempFullName[1]);
     capitalize(fullName[0], fullName[1]);
     notifyListeners();
@@ -677,9 +760,6 @@ class CharController extends ChangeNotifier {
   /// alters some of the letters of names for elves
   List<String> alterElfNameCharacters(
       String temporaryName, String temporaryLastName) {
-    if (temporaryName.length > 8) {
-      temporaryName = temporaryName.substring(randomChance - 2);
-    }
     if (randomChance < 4) {
       temporaryName = temporaryName.replaceAll('x', "a");
       temporaryName = temporaryName.replaceAll('r', "l");
@@ -707,6 +787,10 @@ class CharController extends ChangeNotifier {
       temporaryLastName = temporaryLastName.replaceAll('u', "e");
       temporaryName = temporaryName.replaceAll('q', "d");
     }
+    temporaryName = stoppingUnlikelyDoubleLetters(temporaryName);
+    temporaryLastName = stoppingUnlikelyDoubleLetters(temporaryLastName);
+    temporaryName = stoppingTripleAndQuadripleLetters(temporaryName);
+    temporaryLastName = stoppingTripleAndQuadripleLetters(temporaryLastName);
     if (isMale) {
       temporaryName = changeLastLettersAcordingToGender(
           temporaryName, "a", "e", "i", "l", "s", "n");
@@ -714,15 +798,12 @@ class CharController extends ChangeNotifier {
       temporaryName = changeLastLettersAcordingToGender(
           temporaryName, "o", "u", "i", "la", "nes", "pa");
     }
-
-    stopingTripleLetters(temporaryName, temporaryLastName);
-
     return [temporaryName, temporaryLastName];
   }
 
   /// generates names for elves
   elfNameGenerator() {
-    generalNameGenerator(5, 8);
+    generalNameGenerator(3, 7);
     fullName = alterElfNameCharacters(tempFullName[0], tempFullName[1]);
     capitalize(fullName[0], fullName[1]);
     notifyListeners();
@@ -735,17 +816,21 @@ class CharController extends ChangeNotifier {
       String temporaryName, String temporaryLastName) {
     if (randomChance < 3) {
       temporaryName = temporaryName.replaceFirst('h', "sh");
-      temporaryName = temporaryName.replaceAll('q', "ch");
+      temporaryName = temporaryName.replaceAll('q', "qy");
       temporaryName = temporaryName.replaceFirst('z', "ch");
       temporaryLastName = temporaryLastName.replaceFirst('y', "ya");
       temporaryLastName = temporaryLastName.replaceAll('q', "ya");
     } else {
       temporaryName = temporaryName.replaceFirst('h', "ch");
-      temporaryName = temporaryName.replaceAll('q', "sh");
+      temporaryName = temporaryName.replaceAll('q', "qe");
       temporaryName = temporaryName.replaceFirst('z', "sh");
       temporaryLastName = temporaryLastName.replaceFirst('y', "yo");
-      temporaryLastName = temporaryLastName.replaceAll('q', "yo");
+      temporaryLastName = temporaryLastName.replaceAll('q', "qo");
     }
+    temporaryName = stoppingUnlikelyDoubleLetters(temporaryName);
+    temporaryLastName = stoppingUnlikelyDoubleLetters(temporaryLastName);
+    temporaryName = stoppingTripleAndQuadripleLetters(temporaryName);
+    temporaryLastName = stoppingTripleAndQuadripleLetters(temporaryLastName);
     if (isMale) {
       temporaryName = changeLastLettersAcordingToGender(
           temporaryName, "a", "e", "i", "n", "ng", "c");
@@ -753,8 +838,6 @@ class CharController extends ChangeNotifier {
       temporaryName = changeLastLettersAcordingToGender(
           temporaryName, "o", "k", "r", "ha", "ez", "aw");
     }
-    stopingTripleLetters(temporaryName, temporaryLastName);
-
     return [temporaryName, temporaryLastName];
   }
 
@@ -776,22 +859,26 @@ class CharController extends ChangeNotifier {
       temporaryName = temporaryName.replaceFirst('k', "fu");
       temporaryName = temporaryName.replaceFirst('z', "pa");
       temporaryName = temporaryName.replaceFirst('x', "la");
-      temporaryName = temporaryName.replaceAll('q', "v");
+      temporaryName = temporaryName.replaceAll('q', "qa");
       temporaryLastName = temporaryLastName.replaceFirst('w', "kla");
       temporaryLastName = temporaryLastName.replaceFirst('k', "b");
       temporaryLastName = temporaryLastName.replaceFirst('x', "g");
-      temporaryLastName = temporaryLastName.replaceAll('q', "b");
+      temporaryLastName = temporaryLastName.replaceAll('q', "qi");
     } else {
       temporaryName = temporaryName.replaceFirst('w', "de");
       temporaryName = temporaryName.replaceFirst('k', "ga");
       temporaryName = temporaryName.replaceFirst('z', "ta");
       temporaryName = temporaryName.replaceFirst('x', "le");
-      temporaryName = temporaryName.replaceAll('q', "b");
-      temporaryLastName = temporaryLastName.replaceAll('q', "v");
+      temporaryName = temporaryName.replaceAll('q', "qi");
+      temporaryLastName = temporaryLastName.replaceAll('q', "qy");
       temporaryLastName = temporaryLastName.replaceFirst('x', "ga");
       temporaryLastName = temporaryLastName.replaceFirst('w', "du");
       temporaryLastName = temporaryLastName.replaceFirst('k', "fe");
     }
+    temporaryName = stoppingUnlikelyDoubleLetters(temporaryName);
+    temporaryLastName = stoppingUnlikelyDoubleLetters(temporaryLastName);
+    temporaryName = stoppingTripleAndQuadripleLetters(temporaryName);
+    temporaryLastName = stoppingTripleAndQuadripleLetters(temporaryLastName);
     if (isMale) {
       temporaryName = changeLastLettersAcordingToGender(
           temporaryName, "a", "e", "i", "z", "g", "r");
@@ -799,17 +886,54 @@ class CharController extends ChangeNotifier {
       temporaryName = changeLastLettersAcordingToGender(
           temporaryName, "o", "u", "i", "y", "az", "l");
     }
-    stopingTripleLetters(temporaryName, temporaryLastName);
-
     return [temporaryName, temporaryLastName];
   }
 
   /// generates names for haflings
   haflingNameGenerator() {
-    generalNameGenerator(5, 8);
+    generalNameGenerator(3, 7);
     fullName = alterHaflingNameCharacters(tempFullName[0], tempFullName[1]);
     capitalize(fullName[0], fullName[1]);
     notifyListeners();
+  }
+
+// Half-elf and Half-orc designated part ====================================================
+
+  halfHumanNameGenerator() {
+    var chance = randomIndex.nextInt(12);
+    if (chance < 3) {
+      if (chosenRace.name == "Half-elf") {
+        elfNameGenerator();
+      } else {
+        orcNameGenerator();
+      }
+    } else if (chance > 3 && chance < 7) {
+      if (chosenRace.name == "Half-elf") {
+        elfNameGenerator();
+        humanNameGenerator();
+        newLastName = fullName[1];
+        notifyListeners();
+      } else {
+        orcNameGenerator();
+        humanNameGenerator();
+        newLastName = fullName[1];
+        notifyListeners();
+      }
+    } else if (chance > 7 && chance < 10) {
+      if (chosenRace.name == "Half-elf") {
+        elfNameGenerator();
+        humanNameGenerator();
+        newName = fullName[0];
+        notifyListeners();
+      } else {
+        orcNameGenerator();
+        humanNameGenerator();
+        newName = fullName[0];
+        notifyListeners();
+      }
+    } else if (chance > 9) {
+      humanNameGenerator();
+    }
   }
 
 // Human designated part ====================================================================
@@ -852,17 +976,23 @@ class CharController extends ChangeNotifier {
       String temporaryName, String temporaryLastName) {
     if (randomChance < 3) {
       temporaryName = temporaryName.replaceFirst('h', "sh");
-      temporaryName = temporaryName.replaceAll('q', "ch");
+      temporaryName = temporaryName.replaceFirst('q', "qka");
       temporaryName = temporaryName.replaceFirst('a', "ak");
       temporaryLastName = temporaryLastName.replaceFirst('y', "ya");
       temporaryLastName = temporaryLastName.replaceFirst('a', "ka");
+      temporaryLastName = temporaryLastName.replaceFirst('q', "qy");
     } else {
       temporaryName = temporaryName.replaceFirst('h', "ch");
-      temporaryName = temporaryName.replaceAll('q', "sh");
+      temporaryName = temporaryName.replaceFirst('q', "qt");
       temporaryName = temporaryName.replaceFirst('a', "ac");
       temporaryLastName = temporaryLastName.replaceFirst('a', "ca");
       temporaryLastName = temporaryLastName.replaceFirst('y', "yo");
+      temporaryLastName = temporaryLastName.replaceFirst('q', "qi");
     }
+    temporaryName = stoppingUnlikelyDoubleLetters(temporaryName);
+    temporaryLastName = stoppingUnlikelyDoubleLetters(temporaryLastName);
+    temporaryName = stoppingTripleAndQuadripleLetters(temporaryName);
+    temporaryLastName = stoppingTripleAndQuadripleLetters(temporaryLastName);
     if (isMale) {
       temporaryName = changeLastLettersAcordingToGender(
           temporaryName, "a", "e", "i", "ck", "zur", "d");
@@ -870,13 +1000,12 @@ class CharController extends ChangeNotifier {
       temporaryName = changeLastLettersAcordingToGender(
           temporaryName, "o", "u", "i", "la", "dar", "par");
     }
-    stopingTripleLetters(temporaryName, temporaryLastName);
     return [temporaryName, temporaryLastName];
   }
 
   /// generates names for orcs
   orcNameGenerator() {
-    generalNameGenerator(3, 6);
+    generalNameGenerator(2, 5);
     fullName = alterOrcNameCharacters(tempFullName[0], tempFullName[1]);
     capitalize(fullName[0], fullName[1]);
     notifyListeners();
@@ -889,15 +1018,13 @@ class CharController extends ChangeNotifier {
         humanNameGenerator();
         break;
       case "Half-elf":
-        randomChance = randomIndex.nextInt(6);
-        randomChance < 3 ? elfNameGenerator() : humanNameGenerator();
+        halfHumanNameGenerator();
         break;
       case "Orc":
         orcNameGenerator();
         break;
       case "Half-orc":
-        randomChance = randomIndex.nextInt(6);
-        randomChance < 3 ? orcNameGenerator() : humanNameGenerator();
+        halfHumanNameGenerator();
         break;
       case "Elf":
         elfNameGenerator();

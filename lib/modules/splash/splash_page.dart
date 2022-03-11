@@ -23,7 +23,7 @@ class SplashPage extends StatelessWidget {
             child: Text(
               'Fantasy\nCharacter\nGenerator',
               textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color: Colors.white, fontFamily: "Chomsky"),
             ),
           ),
         ),
