@@ -16,7 +16,6 @@ import 'package:fantasy_name_generator/models/resistance_model.dart';
 import 'package:fantasy_name_generator/models/saved_name_model.dart';
 import 'package:fantasy_name_generator/shared/data/alignment_data.dart';
 import 'package:fantasy_name_generator/shared/data/class_data.dart';
-import 'package:fantasy_name_generator/shared/data/default_char_model_data.dart';
 import 'package:fantasy_name_generator/shared/data/equip_data.dart';
 import 'package:fantasy_name_generator/shared/widgets/call_message_snackbar.dart';
 import 'package:fantasy_name_generator/shared/data/human_names_data.dart';
@@ -314,21 +313,21 @@ class CharController extends ChangeNotifier {
     } else if (raceGotten.name == "Half-elf" || raceGotten.name == "Elf") {
       increment = rollingDice(8) + rollingDice(8);
       baseInches += increment;
-      baseWeight += (increment * 3);
+      baseWeight += (increment * 7);
     } else if (raceGotten.name == "Half-orc" || raceGotten.name == "Human") {
       increment = rollingDice(10) + rollingDice(10);
       baseInches += increment;
-      baseWeight += (increment * 5);
+      baseWeight += (increment * 7);
     } else {
       increment = rollingDice(12) + rollingDice(12);
       baseInches += increment;
-      baseWeight += (increment * 7);
+      baseWeight += (increment * 9);
     }
     if (char.charClass.mainAtrb == "Str" && char.charRace.size != "Small") {
-      baseInches += rollingDice(6);
+      baseInches += rollingDice(4);
       baseWeight += rollingDice(20) + rollingDice(20);
     }
-    if (char.baseAtributes.constitution! > 14 &&
+    if (char.baseAtributes.constitution! > 13 &&
         char.charRace.size != "Small") {
       baseWeight += rollingDice(20);
     }
@@ -531,16 +530,15 @@ class CharController extends ChangeNotifier {
     for (var i = 0; i < desiredLength; i++) {
       List<dynamic> letterPicker = [
         getVowel(),
-        getVowel(),
         getSyllabus(),
         getThreeLetterSyllabous(),
         getFourLetterSyllabous(),
       ];
       letterPicker.shuffle();
-      var changableIndexName = randomIndex.nextInt(4);
-      var changableIndexLastName = randomIndex.nextInt(4);
+      var changableIndexName = randomIndex.nextInt(3);
+      var changableIndexLastName = randomIndex.nextInt(3);
       while (changableIndexName == changableIndexLastName) {
-        changableIndexLastName = randomIndex.nextInt(4);
+        changableIndexLastName = randomIndex.nextInt(3);
       }
       temporaryName = temporaryName + letterPicker[changableIndexName];
       temporaryLastName =
@@ -595,6 +593,7 @@ class CharController extends ChangeNotifier {
         .toList();
     var vowels =
         letters.alphabet.where((element) => element.type == "vowel").toList();
+    consonants.shuffle();
     var consonantChance = randomIndex.nextInt(20) + 1;
     var randomConsonant = consonants.elementAt(consonantChance);
     var consonantChance2 = randomIndex.nextInt(20) + 1;
@@ -602,46 +601,46 @@ class CharController extends ChangeNotifier {
     var listToCompare = [];
     List<int> listOfIndexes = [];
     var index = 0;
+    var count = 0;
     for (var i in nameToList) {
       if (vowels.any((element) => element.value == i)) {
-        if (listToCompare.contains(i)) {
-          index = index + listOfIndexes.length;
+        if (listToCompare.contains(i) &&
+            listToCompare.length > listOfIndexes.length) {
+          listOfIndexes.add(count);
+        } else if (listToCompare.length > listOfIndexes.length) {
+          listOfIndexes.add(count);
         } else {
-          if (index == 0) {
-            index = 0;
-          } else {
-            index = index - listOfIndexes.length;
-          }
+          listOfIndexes.add(index);
+          index++;
         }
-        listToCompare.add(i);
-        listOfIndexes
-            .add(nameToList.indexWhere((element) => element == i) + index);
       }
+      count++;
+      listToCompare.add(i);
     }
     var indexes = listOfIndexes.join();
     if (indexes.contains("0123")) {
       replaceTwoExtraLetter(
-          nameToList, randomConsonant.value, randomConsonant2.value, 1);
+          nameToList, randomConsonant.value, randomConsonant2.value, 1, 3);
       return name = nameToList.join();
     } else if (indexes.contains("1234")) {
       replaceTwoExtraLetter(
-          nameToList, randomConsonant.value, randomConsonant2.value, 1);
+          nameToList, randomConsonant.value, randomConsonant2.value, 2, 4);
       return name = nameToList.join();
     } else if (indexes.contains("2345")) {
       replaceTwoExtraLetter(
-          nameToList, randomConsonant.value, randomConsonant2.value, 1);
+          nameToList, randomConsonant.value, randomConsonant2.value, 3, 5);
       return name = nameToList.join();
     } else if (indexes.contains("3456")) {
       replaceTwoExtraLetter(
-          nameToList, randomConsonant.value, randomConsonant2.value, 1);
+          nameToList, randomConsonant.value, randomConsonant2.value, 4, 6);
       return name = nameToList.join();
     } else if (indexes.contains("4567")) {
       replaceTwoExtraLetter(
-          nameToList, randomConsonant.value, randomConsonant2.value, 1);
+          nameToList, randomConsonant.value, randomConsonant2.value, 5, 7);
       return name = nameToList.join();
     } else if (indexes.contains("5678")) {
       replaceTwoExtraLetter(
-          nameToList, randomConsonant.value, randomConsonant2.value, 1);
+          nameToList, randomConsonant.value, randomConsonant2.value, 6, 8);
       return name = nameToList.join();
     } else if (indexes.contains("012")) {
       replaceExtraLetter(nameToList, randomConsonant.value, 1);
@@ -661,18 +660,21 @@ class CharController extends ChangeNotifier {
     } else if (indexes.contains("567")) {
       replaceExtraLetter(nameToList, randomConsonant.value, 6);
       return name = nameToList.join();
+    } else if (indexes.contains("678")) {
+      replaceExtraLetter(nameToList, randomConsonant.value, 7);
+      return name = nameToList.join();
     }
     return name;
   }
 
-  replaceTwoExtraLetter(
-      List<String> name, String consonant, String consonant2, int index) {
+  replaceTwoExtraLetter(List<String> name, String consonant, String consonant2,
+      int index, int index2) {
     var replaceLetter = consonant;
     var replaceLetter2 = consonant2;
     name.removeAt(index);
     name.insert(index, replaceLetter);
-    name.removeAt(index + 2);
-    name.insert(index + 2, replaceLetter2);
+    name.removeAt(index2);
+    name.insert(index2, replaceLetter2);
   }
 
   replaceExtraLetter(List<String> name, String consonant, int index) {
@@ -694,7 +696,6 @@ class CharController extends ChangeNotifier {
     name = name.replaceFirst("rm", "ba");
     name = name.replaceFirst("jl", "al");
     name = name.replaceFirst("jg", "ja");
-
     return name;
   }
 

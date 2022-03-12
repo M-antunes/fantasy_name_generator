@@ -40,29 +40,37 @@ class RowOfWeaponType extends StatelessWidget {
         itemBuilder: (context, index) {
           var weaponType = weaponTypeList[index];
           return InkWell(
-            splashColor: Colors.transparent,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(weaponType.name,
-                    style: weaponType.isSelected
-                        ? AppTextStyle.weaponSelected
-                        : AppTextStyle.weaponNotSelected),
-                SizedBox(
-                  height: size.height * 0.1,
-                  child: SvgPicture.asset(
-                    weaponType.picture,
-                    color: weaponType.isSelected
-                        ? AppColors.primary
-                        : Colors.grey[400],
+              splashColor: Colors.transparent,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(weaponType.name,
+                      style: weaponType.isSelected
+                          ? AppTextStyle.weaponSelected
+                          : AppTextStyle.weaponNotSelected),
+                  SizedBox(
+                    height: size.height * 0.1,
+                    child: SvgPicture.asset(
+                      weaponType.picture,
+                      color: weaponType.isSelected
+                          ? AppColors.primary
+                          : Colors.grey[400],
+                    ),
                   ),
-                ),
-              ],
-            ),
-            onTap: () => ctrl.chosenPrimaryWeaponType != null
-                ? ctrl.switchSecondaryWeaponType(weaponType)
-                : ctrl.switchPrimaryWeaponType(weaponType),
-          );
+                ],
+              ),
+              onTap: () {
+                if (ctrl.chosenPrimaryWeaponType == null &&
+                    ctrl.chosenSecondaryWeaponType == null &&
+                    ctrl.chosenEmergencyWeaponType == null) {
+                  ctrl.switchPrimaryWeaponType(weaponType);
+                } else if (ctrl.chosenPrimaryWeaponType != null &&
+                    ctrl.chosenSecondaryWeaponType == null) {
+                  ctrl.switchSecondaryWeaponType(weaponType);
+                } else {
+                  ctrl.switchEmergencyWeaponType(weaponType);
+                }
+              });
         },
       ),
     );

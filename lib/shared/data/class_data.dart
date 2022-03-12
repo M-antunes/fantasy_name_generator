@@ -1,5 +1,4 @@
 import 'package:fantasy_name_generator/models/class_model.dart';
-import 'package:fantasy_name_generator/models/key_value.model.dart';
 import 'package:fantasy_name_generator/models/level_model.dart';
 
 class ClassData {
@@ -322,16 +321,5 @@ class ClassData {
     LevelModel(level: 28, good: 17, bad: 10),
     LevelModel(level: 29, good: 18, bad: 10),
     LevelModel(level: 30, good: 19, bad: 11),
-  ];
-
-  List<KeyValueModel> fightingStyle = [
-    KeyValueModel(
-        key: "Close Combat",
-        value: KeyValueModel(
-            key: false, value: "assets/images/weapon_types/close.svg")),
-    KeyValueModel(
-        key: "Distant Combat",
-        value: KeyValueModel(
-            key: false, value: "assets/images/weapon_types/bullseye.svg")),
   ];
 }

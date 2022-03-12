@@ -8,7 +8,7 @@ class RaceData {
       isSelected: true,
       height: KeyValueModel(key: 3, value: 9),
       age: 40,
-      weight: 150,
+      weight: 160,
       speed: 20,
       size: "Medium",
       traits: [
@@ -53,7 +53,7 @@ class RaceData {
       isSelected: false,
       height: KeyValueModel(key: 5, value: 3),
       age: 110,
-      weight: 110,
+      weight: 130,
       speed: 30,
       size: "Medium",
       traits: [
@@ -90,7 +90,7 @@ class RaceData {
       isSelected: false,
       height: KeyValueModel(key: 2, value: 10),
       age: 40,
-      weight: 40,
+      weight: 50,
       speed: 20,
       size: "Small",
       traits: [
@@ -135,7 +135,7 @@ class RaceData {
       isSelected: false,
       height: KeyValueModel(key: 2, value: 8),
       age: 20,
-      weight: 35,
+      weight: 45,
       speed: 20,
       size: "Small",
       traits: [
@@ -172,7 +172,7 @@ class RaceData {
       isSelected: false,
       height: KeyValueModel(key: 5, value: 3),
       age: 20,
-      weight: 120,
+      weight: 150,
       speed: 30,
       size: "Medium",
       traits: [
@@ -214,7 +214,7 @@ class RaceData {
       isSelected: false,
       height: KeyValueModel(key: 5, value: 2),
       age: 13,
-      weight: 150,
+      weight: 160,
       speed: 30,
       size: "Medium",
       traits: [
@@ -251,7 +251,7 @@ class RaceData {
       isSelected: false,
       height: KeyValueModel(key: 5, value: 0),
       age: 15,
-      weight: 120,
+      weight: 130,
       speed: 30,
       size: "Medium",
       traits: [
@@ -281,7 +281,7 @@ class RaceData {
       isSelected: false,
       height: KeyValueModel(key: 5, value: 3),
       age: 11,
-      weight: 180,
+      weight: 190,
       speed: 30,
       size: "Medium",
       traits: [

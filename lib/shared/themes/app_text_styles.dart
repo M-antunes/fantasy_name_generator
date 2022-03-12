@@ -202,10 +202,10 @@ class AppTextStyle {
     color: AppColors.primaryText,
     fontFamily: "David",
     fontSize: deviceWidth! < 350
-        ? 14
+        ? 12
         : deviceWidth! > 350 && deviceWidth! < 400
-            ? 16
-            : 19,
+            ? 14
+            : 16,
   );
   static final weaponCategoryText = TextStyle(
     fontWeight: FontWeight.w400,

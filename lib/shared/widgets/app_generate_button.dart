@@ -16,13 +16,16 @@ class AppGenerateButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedButton(
-        onPressed: onGenerate,
-        color: Colors.grey[900]!,
-        duration: 80,
-        width: deviceWidth! < 400 ? 62 : 72,
-        height: deviceWidth! < 400 ? 62 : 72,
-        child: icon ??
-            SvgPicture.asset("assets/images/dice-random.svg",
-                color: Colors.grey.shade400));
+      onPressed: onGenerate,
+      color: Colors.grey[900]!,
+      duration: 60,
+      width: deviceWidth! < 400 ? 62 : 72,
+      height: deviceWidth! < 400 ? 62 : 72,
+      child: icon ??
+          SvgPicture.asset(
+            "assets/images/dice-random.svg",
+            color: Colors.grey.shade400,
+          ),
+    );
   }
 }

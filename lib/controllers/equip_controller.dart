@@ -1,5 +1,4 @@
 import 'package:fantasy_name_generator/models/char_model.dart';
-import 'package:fantasy_name_generator/models/key_value.model.dart';
 import 'package:fantasy_name_generator/shared/data/default_char_model_data.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -24,6 +23,8 @@ class EquipController extends ChangeNotifier {
   WeaponTypeModel? chosenPrimaryWeaponType;
   WeaponTypeModel? tempSecondaryWeaponTypeForSwitching;
   WeaponTypeModel? chosenSecondaryWeaponType;
+  WeaponTypeModel? tempEmergencyWeaponTypeForSwitching;
+  WeaponTypeModel? chosenEmergencyWeaponType;
 
   updateShowResetButton() {
     showResetButton = true;
@@ -82,6 +83,14 @@ class EquipController extends ChangeNotifier {
     closeAllTypeSections();
   }
 
+  updateEmergencyweaponType() {
+    for (var select in allListsPrimary) {
+      select.isSelected = false;
+    }
+    chosenEmergencyWeaponType = tempEmergencyWeaponTypeForSwitching;
+    closeAllTypeSections();
+  }
+
   populateAllLists() {
     if (allListsPrimary.length < 13) {
       allListsPrimary.addAll(listOfEquip.oneHandedTypes);
@@ -113,11 +122,26 @@ class EquipController extends ChangeNotifier {
     notifyListeners();
   }
 
+  switchEmergencyWeaponType(WeaponTypeModel type) {
+    if (chosenEmergencyWeaponType != null) {
+      return;
+    }
+    type.isSelected = !type.isSelected;
+    for (var select in allListsPrimary) {
+      select.isSelected = false;
+    }
+    type.isSelected = !type.isSelected;
+    tempEmergencyWeaponTypeForSwitching = type;
+    notifyListeners();
+  }
+
   resetChoices() {
     tempPrimaryWeaponTypeForSwitching = null;
     tempSecondaryWeaponTypeForSwitching = null;
+    tempEmergencyWeaponTypeForSwitching = null;
     chosenPrimaryWeaponType = null;
     chosenSecondaryWeaponType = null;
+    chosenEmergencyWeaponType = null;
     showResetButton = false;
     closeAllTypeSections();
   }
@@ -137,23 +161,14 @@ class EquipController extends ChangeNotifier {
     notifyListeners();
   }
 
-  switchCombatStyle(KeyValueModel combatStyle) {
-    listOfClasses.fightingStyle[0].value.key = false;
-    listOfClasses.fightingStyle[1].value.key = false;
-    combatStyle.value.key = !combatStyle.value.key;
-    tempFightStyle = combatStyle.key;
-    notifyListeners();
-  }
-
   String? activateNextButton() {
     if (creationStage == 1) {
       advanceCreationStage();
-      updateCombatStyle();
       return null;
     }
     if (creationStage == 2) {
       advanceCreationStage();
-      updateSecondaryweaponType();
+      updateEmergencyweaponType();
       return null;
     }
     return null;

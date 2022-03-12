@@ -18,7 +18,7 @@ class WeaponLabelSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       splashColor:
-          ctrl.chosenSecondaryWeaponType != null ? Colors.transparent : null,
+          ctrl.chosenEmergencyWeaponType != null ? Colors.transparent : null,
       child: Stack(
         alignment: Alignment.center,
         children: [
@@ -35,7 +35,7 @@ class WeaponLabelSection extends StatelessWidget {
           ),
         ],
       ),
-      onTap: () => ctrl.chosenSecondaryWeaponType != null
+      onTap: () => ctrl.chosenEmergencyWeaponType != null
           ? null
           : ctrl.makeWeaponSegmentTrue(label),
     );

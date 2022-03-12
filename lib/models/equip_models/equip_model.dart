@@ -7,11 +7,13 @@ import 'weapon_model.dart';
 class EquipModel {
   final WeaponModel? primaryWeapon;
   final WeaponModel? secondaryWeapon;
+  final WeaponModel? emergencyWeapon;
   final ArmourModel? armour;
   final ArmourModel? shield;
   EquipModel({
     this.primaryWeapon,
     this.secondaryWeapon,
+    this.emergencyWeapon,
     this.armour,
     this.shield,
   });
@@ -19,12 +21,14 @@ class EquipModel {
   EquipModel copyWith({
     WeaponModel? primaryWeapon,
     WeaponModel? secondaryWeapon,
+    WeaponModel? emergencyWeapon,
     ArmourModel? armour,
     ArmourModel? shield,
   }) {
     return EquipModel(
       primaryWeapon: primaryWeapon ?? this.primaryWeapon,
       secondaryWeapon: secondaryWeapon ?? this.secondaryWeapon,
+      emergencyWeapon: emergencyWeapon ?? this.emergencyWeapon,
       armour: armour ?? this.armour,
       shield: shield ?? this.shield,
     );
@@ -34,6 +38,7 @@ class EquipModel {
     return {
       'primaryWeapon': primaryWeapon?.toMap(),
       'secondaryWeapon': secondaryWeapon?.toMap(),
+      'emergencyWeapon': emergencyWeapon?.toMap(),
       'armour': armour?.toMap(),
       'shield': shield?.toMap(),
     };
@@ -47,6 +52,9 @@ class EquipModel {
       secondaryWeapon: map['secondaryWeapon'] != null
           ? WeaponModel.fromMap(map['secondaryWeapon'])
           : null,
+      emergencyWeapon: map['emergencyWeapon'] != null
+          ? WeaponModel.fromMap(map['emergencyWeapon'])
+          : null,
       armour: map['armour'] != null ? ArmourModel.fromMap(map['armour']) : null,
       shield: map['shield'] != null ? ArmourModel.fromMap(map['shield']) : null,
     );
@@ -59,7 +67,7 @@ class EquipModel {
 
   @override
   String toString() {
-    return 'EquipModel(primaryWeapon: $primaryWeapon, secondaryWeapon: $secondaryWeapon, armour: $armour, shield: $shield)';
+    return 'EquipModel(primaryWeapon: $primaryWeapon, secondaryWeapon: $secondaryWeapon, emergencyWeapon: $emergencyWeapon, armour: $armour, shield: $shield)';
   }
 
   @override
@@ -69,6 +77,7 @@ class EquipModel {
     return other is EquipModel &&
         other.primaryWeapon == primaryWeapon &&
         other.secondaryWeapon == secondaryWeapon &&
+        other.emergencyWeapon == emergencyWeapon &&
         other.armour == armour &&
         other.shield == shield;
   }
@@ -77,6 +86,7 @@ class EquipModel {
   int get hashCode {
     return primaryWeapon.hashCode ^
         secondaryWeapon.hashCode ^
+        emergencyWeapon.hashCode ^
         armour.hashCode ^
         shield.hashCode;
   }
