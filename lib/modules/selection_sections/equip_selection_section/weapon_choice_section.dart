@@ -37,10 +37,10 @@ class WeaponChoiceSection extends StatelessWidget {
                   style: AppTextStyle.subTextGreyPlusSize,
                   children: [
                     const TextSpan(
-                      text: "Select ",
+                      text: "Weapon selection for ",
                     ),
                     TextSpan(
-                      text: "${char.charName.fullName}'s",
+                      text: "${char.charName.fullName} - status:",
                       style: AppTextStyle.subTextWhitePlusSize,
                     ),
                     TextSpan(
@@ -64,44 +64,59 @@ class WeaponChoiceSection extends StatelessWidget {
             ),
             SizedBox(height: size.height * 0.03),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                ChosenWeaponDisplay(
-                  size: deviceWidth! < 400 ? 75 : 90,
-                  state: state,
-                  color: AppColors.primary,
-                  weaponRank: "Primary\nWeapon",
-                  weapon: state.chosenPrimaryWeaponType != null
-                      ? WeaponOfChoice(
-                          weaponPic: state.chosenPrimaryWeaponType!.picture)
-                      : const Center(
-                          child: Text(
-                            "?",
-                            style: TextStyle(
-                                fontSize: 40,
-                                fontWeight: FontWeight.w700,
-                                color: Colors.white70),
+                !state.hasDualWeild
+                    ? Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          ChosenWeaponDisplay(
+                            size: deviceWidth! < 400 ? 75 : 90,
+                            state: state,
+                            color: AppColors.primary,
+                            weaponRank: "Primary\nWeapon",
+                            weapon: state.chosenPrimaryWeaponType != null
+                                ? WeaponOfChoice(
+                                    weaponPic:
+                                        state.chosenPrimaryWeaponType!.picture)
+                                : const Center(
+                                    child: Text(
+                                      "?",
+                                      style: TextStyle(
+                                          fontSize: 40,
+                                          fontWeight: FontWeight.w700,
+                                          color: Colors.white70),
+                                    ),
+                                  ),
                           ),
-                        ),
-                ),
-                ChosenWeaponDisplay(
-                  size: deviceWidth! < 400 ? 65 : 80,
-                  state: state,
-                  color: Colors.white70,
-                  weaponRank: "Secondary\nWeapon",
-                  weapon: state.chosenSecondaryWeaponType != null
-                      ? WeaponOfChoice(
-                          weaponPic: state.chosenSecondaryWeaponType!.picture)
-                      : const Center(
-                          child: Text(
-                            "?",
-                            style: TextStyle(
-                                fontSize: 40,
-                                fontWeight: FontWeight.w700,
-                                color: Colors.white70),
+                          ChosenWeaponDisplay(
+                            size: deviceWidth! < 400 ? 65 : 80,
+                            state: state,
+                            color: Colors.white70,
+                            weaponRank: "Secondary\nWeapon",
+                            weapon: state.chosenSecondaryWeaponType != null
+                                ? WeaponOfChoice(
+                                    weaponPic: state
+                                        .chosenSecondaryWeaponType!.picture)
+                                : const Center(
+                                    child: Text(
+                                      "?",
+                                      style: TextStyle(
+                                          fontSize: 40,
+                                          fontWeight: FontWeight.w700,
+                                          color: Colors.white70),
+                                    ),
+                                  ),
                           ),
-                        ),
-                ),
+                        ],
+                      )
+                    : ChosenWeaponDisplay(
+                        size: deviceWidth! < 400 ? 90 : 105,
+                        state: state,
+                        color: AppColors.primary,
+                        weaponRank:
+                            "Dual Weild\n${state.chosenPrimaryWeaponType!.name} & ${state.chosenSecondaryWeaponType!.name}",
+                        weapon: DualWeildIcon(state: state)),
                 ChosenWeaponDisplay(
                   size: deviceWidth! < 400 ? 55 : 70,
                   state: state,
@@ -168,6 +183,34 @@ class WeaponChoiceSection extends StatelessWidget {
           ],
         );
       },
+    );
+  }
+}
+
+class DualWeildIcon extends StatelessWidget {
+  final EquipController state;
+
+  const DualWeildIcon({
+    Key? key,
+    required this.state,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        SizedBox(
+          width: deviceWidth! < 400 ? 30 : 40,
+          child:
+              WeaponOfChoice(weaponPic: state.chosenPrimaryWeaponType!.picture),
+        ),
+        SizedBox(
+          width: deviceWidth! < 400 ? 30 : 40,
+          child: WeaponOfChoice(
+              weaponPic: state.chosenSecondaryWeaponType!.picture),
+        ),
+      ],
     );
   }
 }

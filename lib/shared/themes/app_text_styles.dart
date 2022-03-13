@@ -59,6 +59,24 @@ class AppTextStyle {
             ? 21
             : 24,
   );
+  static final warningButtonConfirm = TextStyle(
+    color: AppColors.primaryGold,
+    fontFamily: "Grantmouth",
+    fontSize: deviceWidth! < 350
+        ? 19
+        : deviceWidth! > 350 && deviceWidth! < 400
+            ? 21
+            : 24,
+  );
+  static final warningButtonDeny = TextStyle(
+    color: AppColors.primaryOrange,
+    fontFamily: "Grantmouth",
+    fontSize: deviceWidth! < 350
+        ? 19
+        : deviceWidth! > 350 && deviceWidth! < 400
+            ? 21
+            : 24,
+  );
   static final nameExhibition = TextStyle(
     fontWeight: FontWeight.w400,
     color: Colors.white,

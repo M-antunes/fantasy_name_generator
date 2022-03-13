@@ -10,6 +10,7 @@ Future<dynamic> callWarningWidget(
       context: context,
       builder: (context) {
         return AlertDialog(
+          elevation: 6,
           title: Text(
             "Warning",
             style: AppTextStyle.changeRace,
@@ -24,7 +25,7 @@ Future<dynamic> callWarningWidget(
                 onPressed: () => Navigator.of(context).pop(),
                 child: Text(
                   "Ok",
-                  style: AppTextStyle.epicLabel,
+                  style: AppTextStyle.warningButtonConfirm,
                 ))
           ],
         );

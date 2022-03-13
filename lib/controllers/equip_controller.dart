@@ -20,6 +20,7 @@ class EquipController extends ChangeNotifier {
   bool showTwoHanded = false;
   bool showDistant = false;
   bool showResetButton = false;
+  bool hasDualWeild = false;
   WeaponTypeModel? tempPrimaryWeaponTypeForSwitching;
   WeaponTypeModel? chosenPrimaryWeaponType;
   WeaponTypeModel? tempSecondaryWeaponTypeForSwitching;
@@ -136,13 +137,30 @@ class EquipController extends ChangeNotifier {
     notifyListeners();
   }
 
+  showDualWeildIntentionCheck(VoidCallback dualWeildCheck) {
+    if (listOfEquip.oneHandedTypes.contains(chosenPrimaryWeaponType) &&
+        listOfEquip.oneHandedTypes.contains(chosenSecondaryWeaponType)) {
+      dualWeildCheck();
+    }
+  }
+
+  confirmDualWeild(VoidCallback twoCloseCombatWeapons) {
+    hasDualWeild = true;
+    notifyListeners();
+    twoCloseCombatWeapons();
+  }
+
   informImportanceOfVersatileCombat(VoidCallback twoCloseCombatWeapons,
       VoidCallback twoDistantCombatWeapons) {
     bool closeCombatWeapon = listOfEquip.oneHandedTypes
-            .contains(chosenPrimaryWeaponType) ||
+                .contains(chosenPrimaryWeaponType) &&
+            listOfEquip.twoHandedTypes.contains(chosenSecondaryWeaponType) ||
         listOfEquip.twoHandedTypes.contains(chosenPrimaryWeaponType) &&
             listOfEquip.oneHandedTypes.contains(chosenSecondaryWeaponType) ||
-        listOfEquip.twoHandedTypes.contains(chosenSecondaryWeaponType);
+        // listOfEquip.oneHandedTypes.contains(chosenPrimaryWeaponType) &&
+        //     listOfEquip.oneHandedTypes.contains(chosenSecondaryWeaponType) ||
+        listOfEquip.twoHandedTypes.contains(chosenPrimaryWeaponType) &&
+            listOfEquip.twoHandedTypes.contains(chosenSecondaryWeaponType);
     bool distantCombatWeapon =
         listOfEquip.distanceTypes.contains(chosenPrimaryWeaponType) &&
             listOfEquip.distanceTypes.contains(chosenSecondaryWeaponType);
@@ -161,6 +179,7 @@ class EquipController extends ChangeNotifier {
     chosenSecondaryWeaponType = null;
     chosenEmergencyWeaponType = null;
     showResetButton = false;
+    hasDualWeild = false;
     closeAllTypeSections();
   }
 

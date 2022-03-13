@@ -14,6 +14,7 @@ import '../../shared/themes/app_text_styles.dart';
 import '../../shared/widgets/call_warning_widget.dart';
 import '../selection_sections/equip_selection_section/weapon_choice.dart';
 import '../selection_sections/equip_selection_section/weapon_choice_section.dart';
+import 'widgets/call_dual_weild_check_dialog.dart';
 import 'widgets/equip_selection_label.dart';
 
 class EquipDevelopMentPage extends StatefulWidget {
@@ -36,7 +37,9 @@ class _EquipDevelopMentPageState extends State<EquipDevelopMentPage> {
   Widget build(BuildContext context) {
     CharModel char = ModalRoute.of(context)!.settings.arguments as CharModel;
     final size = MediaQuery.of(context).size;
-    final pronoun = char.charName.gender == "Male" ? "his" : "her";
+    final personalPronoun = char.charName.gender == "Male" ? "he" : "she";
+    final possessiveAdjective = char.charName.gender == "Male" ? "his" : "her";
+    final objectPronoun = char.charName.gender == "Male" ? "him" : "her";
     return Scaffold(
       body: Consumer<EquipController>(builder: (context, state, child) {
         state.char = char;
@@ -102,9 +105,13 @@ class _EquipDevelopMentPageState extends State<EquipDevelopMentPage> {
                     label: "Confirm",
                     onTap: () {
                       state.updateSecondaryweaponType();
-                      callWarningWidget(
-                        context,
-                        "You have chosen two close combat weapons for ${state.char.charName.fullName}.\nIt is recomended that at least $pronoun emergency weapon is fit for distant combat.",
+                      dualWeildCheck(state, context, char, personalPronoun,
+                          possessiveAdjective);
+                      state.informImportanceOfVersatileCombat(
+                        () => callNoDistantCombatWeaponWarning(
+                            context, state, possessiveAdjective),
+                        () => callNoColseCombatWeaponWarning(
+                            context, state, possessiveAdjective),
                       );
                     }),
               if (state.creationStage == 2 &&
@@ -143,6 +150,34 @@ class _EquipDevelopMentPageState extends State<EquipDevelopMentPage> {
           ),
         );
       }),
+    );
+  }
+
+  dualWeildCheck(EquipController state, BuildContext context, CharModel char,
+      String personalPronoun, String possessiveAdjective) {
+    state.showDualWeildIntentionCheck(() => callDualWeildCheck(
+        context,
+        "${state.chosenPrimaryWeaponType!.name} & ${state.chosenSecondaryWeaponType!.name}.\nIs ${char.charName.fullName} supposed to Dual Weild?",
+        () => state.confirmDualWeild(() {
+              Navigator.of(context).pop();
+              callNoDistantCombatWeaponWarning(
+                  context, state, possessiveAdjective);
+            })));
+  }
+
+  Future<dynamic> callNoDistantCombatWeaponWarning(
+      BuildContext context, EquipController state, String pronoun) {
+    return callWarningWidget(
+      context,
+      "You have chosen two close combat weapons for ${state.char.charName.fullName}.\nIt is recomended that at least $pronoun emergency weapon is fit for distant combat.",
+    );
+  }
+
+  Future<dynamic> callNoColseCombatWeaponWarning(
+      BuildContext context, EquipController state, String pronoun) {
+    return callWarningWidget(
+      context,
+      "You have chosen two distant combat weapons for ${state.char.charName.fullName}.\nIt is recomended that at least $pronoun emergency weapon is fit for close combat.",
     );
   }
 
