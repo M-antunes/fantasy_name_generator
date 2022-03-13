@@ -1,38 +1,44 @@
 import 'dart:convert';
 
+import 'package:fantasy_name_generator/models/equip_models/armor_type_model.dart';
+
 import 'enchant_model.dart';
 
-class ArmourModel {
+class ArmorModel {
   final String name;
   final String? material;
-  final String? type;
+  final ArmorTypeModel? type;
+  final String? picture;
   bool? isSelected;
   final EnchantModel? enchantment;
   final int? power;
   final int? defenseBonus;
-  ArmourModel({
+  ArmorModel({
     required this.name,
     this.material,
     this.type,
+    this.picture,
     this.isSelected,
     this.enchantment,
     this.power,
     this.defenseBonus,
   });
 
-  ArmourModel copyWith({
+  ArmorModel copyWith({
     String? name,
     String? material,
-    String? type,
+    ArmorTypeModel? type,
+    String? picture,
     bool? isSelected,
     EnchantModel? enchantment,
     int? power,
     int? defenseBonus,
   }) {
-    return ArmourModel(
+    return ArmorModel(
       name: name ?? this.name,
       material: material ?? this.material,
       type: type ?? this.type,
+      picture: picture ?? this.picture,
       isSelected: isSelected ?? this.isSelected,
       enchantment: enchantment ?? this.enchantment,
       power: power ?? this.power,
@@ -44,7 +50,8 @@ class ArmourModel {
     return {
       'name': name,
       'material': material,
-      'type': type,
+      'type': type?.toMap(),
+      'picture': picture,
       'isSelected': isSelected,
       'enchantment': enchantment?.toMap(),
       'power': power,
@@ -52,11 +59,12 @@ class ArmourModel {
     };
   }
 
-  factory ArmourModel.fromMap(Map<String, dynamic> map) {
-    return ArmourModel(
+  factory ArmorModel.fromMap(Map<String, dynamic> map) {
+    return ArmorModel(
       name: map['name'] ?? '',
       material: map['material'],
-      type: map['type'],
+      type: map['type'] != null ? ArmorTypeModel.fromMap(map['type']) : null,
+      picture: map['picture'],
       isSelected: map['isSelected'],
       enchantment: map['enchantment'] != null
           ? EnchantModel.fromMap(map['enchantment'])
@@ -68,22 +76,23 @@ class ArmourModel {
 
   String toJson() => json.encode(toMap());
 
-  factory ArmourModel.fromJson(String source) =>
-      ArmourModel.fromMap(json.decode(source));
+  factory ArmorModel.fromJson(String source) =>
+      ArmorModel.fromMap(json.decode(source));
 
   @override
   String toString() {
-    return 'ArmourModel(name: $name, material: $material, type: $type, isSelected: $isSelected, enchantment: $enchantment, power: $power, defenseBonus: $defenseBonus)';
+    return 'ArmorModel(name: $name, material: $material, type: $type, picture: $picture, isSelected: $isSelected, enchantment: $enchantment, power: $power, defenseBonus: $defenseBonus)';
   }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is ArmourModel &&
+    return other is ArmorModel &&
         other.name == name &&
         other.material == material &&
         other.type == type &&
+        other.picture == picture &&
         other.isSelected == isSelected &&
         other.enchantment == enchantment &&
         other.power == power &&
@@ -95,6 +104,7 @@ class ArmourModel {
     return name.hashCode ^
         material.hashCode ^
         type.hashCode ^
+        picture.hashCode ^
         isSelected.hashCode ^
         enchantment.hashCode ^
         power.hashCode ^

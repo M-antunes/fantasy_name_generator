@@ -1,4 +1,5 @@
-import 'package:fantasy_name_generator/models/equip_models/armour_model.dart';
+import 'package:fantasy_name_generator/models/equip_models/armor_model.dart';
+import 'package:fantasy_name_generator/models/equip_models/armor_type_model.dart';
 import 'package:fantasy_name_generator/models/equip_models/weapon_model.dart';
 import 'package:fantasy_name_generator/models/equip_models/weapon_type_model.dart';
 
@@ -591,47 +592,251 @@ class EquipData {
         picture: "assets/images/weapon_types/throwing.svg"),
   ];
 
-  final List<WeaponModel> fistWeapons = [];
-
-  final List<ArmourModel> lightArmours = [
-    ArmourModel(type: "armor", isSelected: false, name: "Padded"),
-    ArmourModel(type: "armor", isSelected: false, name: "Quilted cloth"),
-    ArmourModel(type: "armor", isSelected: false, name: "Silken ceremonial"),
-    ArmourModel(type: "armor", isSelected: false, name: "Lamellar cuirass"),
-    ArmourModel(type: "armor", isSelected: false, name: "Leather"),
+  final List<ArmorModel> lightArmours = [
+    ArmorModel(
+        type: ArmorTypeModel(
+            name: "light armor",
+            isSelected: false,
+            picture: "assets/images/armors/light.svg"),
+        isSelected: false,
+        name: "Quilted cloth"),
+    ArmorModel(
+        type: ArmorTypeModel(
+            name: "light armor",
+            isSelected: false,
+            picture: "assets/images/armors/light.svg"),
+        isSelected: false,
+        name: "Padded"),
+    ArmorModel(
+        type: ArmorTypeModel(
+            name: "light armor",
+            isSelected: false,
+            picture: "assets/images/armors/light.svg"),
+        isSelected: false,
+        name: "Silken ceremonial"),
+    ArmorModel(
+        type: ArmorTypeModel(
+            name: "light armor",
+            isSelected: false,
+            picture: "assets/images/armors/light.svg"),
+        isSelected: false,
+        name: "Lamellar cuirass"),
+    ArmorModel(
+        type: ArmorTypeModel(
+            name: "light armor",
+            isSelected: false,
+            picture: "assets/images/armors/light.svg"),
+        isSelected: false,
+        name: "Leather"),
   ];
-  List<ArmourModel> mediumArmours = [
-    ArmourModel(type: "armor", isSelected: false, name: "Studded leather"),
-    ArmourModel(type: "armor", isSelected: false, name: "Wooden plaques"),
-    ArmourModel(type: "armor", isSelected: false, name: "Chain shirt"),
-    ArmourModel(type: "armor", isSelected: false, name: "Hide"),
-    ArmourModel(type: "armor", isSelected: false, name: "Lamellar"),
-    ArmourModel(type: "armor", isSelected: false, name: "Scale mail"),
-    ArmourModel(type: "armor", isSelected: false, name: "Agile breastplate"),
+  List<ArmorModel> mediumArmours = [
+    ArmorModel(
+        type: ArmorTypeModel(
+            name: "medium armor",
+            isSelected: false,
+            picture: "assets/images/armors/medium.svg"),
+        isSelected: false,
+        name: "Studded leather"),
+    ArmorModel(
+        type: ArmorTypeModel(
+            name: "medium armor",
+            isSelected: false,
+            picture: "assets/images/armors/medium.svg"),
+        isSelected: false,
+        name: "Wooden plaques"),
+    ArmorModel(
+        type: ArmorTypeModel(
+            name: "medium armor",
+            isSelected: false,
+            picture: "assets/images/armors/medium.svg"),
+        isSelected: false,
+        name: "Chain shirt"),
+    ArmorModel(
+        type: ArmorTypeModel(
+            name: "medium armor",
+            isSelected: false,
+            picture: "assets/images/armors/medium.svg"),
+        isSelected: false,
+        name: "Hide"),
+    ArmorModel(
+        type: ArmorTypeModel(
+            name: "medium armor",
+            isSelected: false,
+            picture: "assets/images/armors/medium.svg"),
+        isSelected: false,
+        name: "Lamellar"),
+    ArmorModel(
+        type: ArmorTypeModel(
+            name: "medium armor",
+            isSelected: false,
+            picture: "assets/images/armors/medium.svg"),
+        isSelected: false,
+        name: "Scale mail"),
+    ArmorModel(
+        type: ArmorTypeModel(
+            name: "medium armor",
+            isSelected: false,
+            picture: "assets/images/armors/medium.svg"),
+        isSelected: false,
+        name: "Agile breastplate"),
   ];
 
-  List<ArmourModel> heavyArmours = [
-    ArmourModel(type: "armor", isSelected: false, name: "Breastplate"),
-    ArmourModel(type: "armor", isSelected: false, name: "Chainmail"),
-    ArmourModel(type: "armor", isSelected: false, name: "Mountain pattern"),
-    ArmourModel(type: "armor", isSelected: false, name: "Splint mail"),
-    ArmourModel(type: "armor", isSelected: false, name: "Agile half-plate"),
-    ArmourModel(type: "armor", isSelected: false, name: "Half-plate"),
-    ArmourModel(type: "armor", isSelected: false, name: "Full plate"),
-    ArmourModel(type: "armor", isSelected: false, name: "Stoneplate"),
+  List<ArmorModel> heavyArmours = [
+    ArmorModel(
+        type: ArmorTypeModel(
+            name: "heavy armor",
+            isSelected: false,
+            picture: "assets/images/armors/heavy.svg"),
+        isSelected: false,
+        name: "Breastplate"),
+    ArmorModel(
+        type: ArmorTypeModel(
+            name: "heavy armor",
+            isSelected: false,
+            picture: "assets/images/armors/heavy.svg"),
+        isSelected: false,
+        name: "Chainmail"),
+    ArmorModel(
+        type: ArmorTypeModel(
+            name: "heavy armor",
+            isSelected: false,
+            picture: "assets/images/armors/heavy.svg"),
+        isSelected: false,
+        name: "Mountain pattern"),
+    ArmorModel(
+        type: ArmorTypeModel(
+            name: "heavy armor",
+            isSelected: false,
+            picture: "assets/images/armors/heavy.svg"),
+        isSelected: false,
+        name: "Splint mail"),
+    ArmorModel(
+        type: ArmorTypeModel(
+            name: "heavy armor",
+            isSelected: false,
+            picture: "assets/images/armors/heavy.svg"),
+        isSelected: false,
+        name: "Agile half-plate"),
+    ArmorModel(
+        type: ArmorTypeModel(
+            name: "heavy armor",
+            isSelected: false,
+            picture: "assets/images/armors/heavy.svg"),
+        isSelected: false,
+        name: "Half-plate"),
+    ArmorModel(
+        type: ArmorTypeModel(
+            name: "heavy armor",
+            isSelected: false,
+            picture: "assets/images/armors/heavy.svg"),
+        isSelected: false,
+        name: "Full plate"),
+    ArmorModel(
+        type: ArmorTypeModel(
+            name: "heavy armor",
+            isSelected: false,
+            picture: "assets/images/armors/heavy.svg"),
+        isSelected: false,
+        name: "Stoneplate"),
   ];
 
-  List<ArmourModel> lightshields = [
-    ArmourModel(type: "shield", isSelected: false, name: "Buckler"),
-    ArmourModel(type: "shield", isSelected: false, name: "wooden shield"),
-    ArmourModel(type: "shield", isSelected: false, name: "iron shield"),
-    ArmourModel(type: "shield", isSelected: false, name: "steel shield"),
+  List<ArmorModel> lightshields = [
+    ArmorModel(
+        type: ArmorTypeModel(
+            name: "buckler",
+            isSelected: false,
+            picture: "assets/images/shields/buckler.svg"),
+        isSelected: false,
+        name: "Buckler"),
+    ArmorModel(
+        type: ArmorTypeModel(
+            name: "light shield",
+            isSelected: false,
+            picture: "assets/images/shields/light.svg"),
+        isSelected: false,
+        name: "wooden shield"),
+    ArmorModel(
+        type: ArmorTypeModel(
+            name: "light shield",
+            isSelected: false,
+            picture: "assets/images/shields/light.svg"),
+        isSelected: false,
+        name: "iron shield"),
+    ArmorModel(
+        type: ArmorTypeModel(
+            name: "light shield",
+            isSelected: false,
+            picture: "assets/images/shields/light.svg"),
+        isSelected: false,
+        name: "steel shield"),
   ];
 
-  List<ArmourModel> heavyShields = [
-    ArmourModel(type: "shield", isSelected: false, name: "Wooden shield"),
-    ArmourModel(type: "shield", isSelected: false, name: "Iron shield"),
-    ArmourModel(type: "shield", isSelected: false, name: "Steel shield"),
-    ArmourModel(type: "shield", isSelected: false, name: "Tower shield"),
+  List<ArmorModel> heavyShields = [
+    ArmorModel(
+        type: ArmorTypeModel(
+            name: "heavy shield",
+            isSelected: false,
+            picture: "assets/images/shields/heavy.svg"),
+        isSelected: false,
+        name: "Wooden shield"),
+    ArmorModel(
+        type: ArmorTypeModel(
+            name: "heavy shield",
+            isSelected: false,
+            picture: "assets/images/shields/heavy.svg"),
+        isSelected: false,
+        name: "Iron shield"),
+    ArmorModel(
+        type: ArmorTypeModel(
+            name: "heavy shield",
+            isSelected: false,
+            picture: "assets/images/shields/heavy.svg"),
+        isSelected: false,
+        name: "Steel shield"),
+    ArmorModel(
+        type: ArmorTypeModel(
+            name: "heavy shield",
+            isSelected: false,
+            picture: "assets/images/shields/heavy.svg"),
+        isSelected: false,
+        name: "Tower shield"),
+  ];
+
+  List<ArmorTypeModel> armorTypes = [
+    ArmorTypeModel(
+        name: "No armor",
+        isSelected: false,
+        picture: "assets/images/armors/none.svg"),
+    ArmorTypeModel(
+        name: "Light armor",
+        isSelected: false,
+        picture: "assets/images/armors/light.svg"),
+    ArmorTypeModel(
+        name: "Medium armor",
+        isSelected: false,
+        picture: "assets/images/armors/medium.svg"),
+    ArmorTypeModel(
+        name: "Heavy armor",
+        isSelected: false,
+        picture: "assets/images/armors/heavy.svg"),
+  ];
+
+  List<ArmorTypeModel> shieldTypes = [
+    ArmorTypeModel(
+        name: "No shield",
+        isSelected: false,
+        picture: "assets/images/shields/no-shield.svg"),
+    ArmorTypeModel(
+        name: "Buckler",
+        isSelected: false,
+        picture: "assets/images/shields/buckler.svg"),
+    ArmorTypeModel(
+        name: "Light shield",
+        isSelected: false,
+        picture: "assets/images/shields/light.svg"),
+    ArmorTypeModel(
+        name: "Heavy shield",
+        isSelected: false,
+        picture: "assets/images/shields/heavy.svg"),
   ];
 }

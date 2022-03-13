@@ -13,6 +13,7 @@ Future<dynamic> callWarningWidget(
           elevation: 6,
           title: Text(
             "Warning",
+            strutStyle: const StrutStyle(fontSize: 20),
             style: AppTextStyle.changeRace,
           ),
           content: Text(

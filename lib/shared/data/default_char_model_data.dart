@@ -14,7 +14,15 @@ import 'package:fantasy_name_generator/models/resistance_model.dart';
 class DefaultCharModelData {
   final defaultCharModel = CharModel(
     charRace: RaceModel(name: "Human", isSelected: false),
-    charName: NameModel(fullName: "", name: "", surname: "", gender: ""),
+    charName: NameModel(
+      fullName: "",
+      name: "",
+      surname: "",
+      gender: "",
+      objectPronoun: "",
+      personalPronoun: "",
+      possessiveAdjective: "",
+    ),
     baseAtributes: AtributeModel(),
     modAtributes: AtributeModel(),
     charClass: ClassModel(name: "Commoner", isSelected: false, mainAtrb: "Str"),

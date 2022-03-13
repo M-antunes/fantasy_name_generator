@@ -285,7 +285,7 @@ class AppTextStyle {
             : 15,
   );
   static final weaponSelected = TextStyle(
-    fontWeight: FontWeight.w400,
+    fontWeight: FontWeight.w500,
     color: AppColors.primary,
     fontSize: deviceWidth! < 350
         ? 12
@@ -301,5 +301,23 @@ class AppTextStyle {
         : deviceWidth! > 350 && deviceWidth! < 400
             ? 13
             : 15,
+  );
+  static final classSelected = TextStyle(
+    fontWeight: FontWeight.w500,
+    color: AppColors.primary,
+    fontSize: deviceWidth! < 350
+        ? 11
+        : deviceWidth! > 350 && deviceWidth! < 400
+            ? 12
+            : 13,
+  );
+  static final classNotSelected = TextStyle(
+    fontWeight: FontWeight.w400,
+    color: AppColors.primaryText0,
+    fontSize: deviceWidth! < 350
+        ? 11
+        : deviceWidth! > 350 && deviceWidth! < 400
+            ? 12
+            : 13,
   );
 }

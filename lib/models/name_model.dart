@@ -5,11 +5,17 @@ class NameModel {
   final String surname;
   final String fullName;
   final String gender;
+  final String personalPronoun;
+  final String possessiveAdjective;
+  final String objectPronoun;
   NameModel({
     required this.name,
     required this.surname,
     required this.fullName,
     required this.gender,
+    required this.personalPronoun,
+    required this.possessiveAdjective,
+    required this.objectPronoun,
   });
 
   NameModel copyWith({
@@ -17,12 +23,18 @@ class NameModel {
     String? surname,
     String? fullName,
     String? gender,
+    String? personalPronoun,
+    String? possessiveAdjective,
+    String? objectPronoun,
   }) {
     return NameModel(
       name: name ?? this.name,
       surname: surname ?? this.surname,
       fullName: fullName ?? this.fullName,
       gender: gender ?? this.gender,
+      personalPronoun: personalPronoun ?? this.personalPronoun,
+      possessiveAdjective: possessiveAdjective ?? this.possessiveAdjective,
+      objectPronoun: objectPronoun ?? this.objectPronoun,
     );
   }
 
@@ -32,6 +44,9 @@ class NameModel {
       'surname': surname,
       'fullName': fullName,
       'gender': gender,
+      'personalPronoun': personalPronoun,
+      'possessiveAdjective': possessiveAdjective,
+      'objectPronoun': objectPronoun,
     };
   }
 
@@ -41,6 +56,9 @@ class NameModel {
       surname: map['surname'] ?? '',
       fullName: map['fullName'] ?? '',
       gender: map['gender'] ?? '',
+      personalPronoun: map['personalPronoun'] ?? '',
+      possessiveAdjective: map['possessiveAdjective'] ?? '',
+      objectPronoun: map['objectPronoun'] ?? '',
     );
   }
 
@@ -51,7 +69,7 @@ class NameModel {
 
   @override
   String toString() {
-    return 'NameModel(name: $name, surname: $surname, fullName: $fullName, gender: $gender)';
+    return 'NameModel(name: $name, surname: $surname, fullName: $fullName, gender: $gender, personalPronoun: $personalPronoun, possessiveAdjective: $possessiveAdjective, objectPronoun: $objectPronoun)';
   }
 
   @override
@@ -62,7 +80,10 @@ class NameModel {
         other.name == name &&
         other.surname == surname &&
         other.fullName == fullName &&
-        other.gender == gender;
+        other.gender == gender &&
+        other.personalPronoun == personalPronoun &&
+        other.possessiveAdjective == possessiveAdjective &&
+        other.objectPronoun == objectPronoun;
   }
 
   @override
@@ -70,6 +91,9 @@ class NameModel {
     return name.hashCode ^
         surname.hashCode ^
         fullName.hashCode ^
-        gender.hashCode;
+        gender.hashCode ^
+        personalPronoun.hashCode ^
+        possessiveAdjective.hashCode ^
+        objectPronoun.hashCode;
   }
 }

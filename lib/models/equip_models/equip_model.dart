@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:fantasy_name_generator/models/equip_models/armour_model.dart';
+import 'package:fantasy_name_generator/models/equip_models/armor_model.dart';
 
 import 'weapon_model.dart';
 
@@ -8,8 +8,8 @@ class EquipModel {
   final WeaponModel? primaryWeapon;
   final WeaponModel? secondaryWeapon;
   final WeaponModel? emergencyWeapon;
-  final ArmourModel? armour;
-  final ArmourModel? shield;
+  final ArmorModel? armour;
+  final ArmorModel? shield;
   EquipModel({
     this.primaryWeapon,
     this.secondaryWeapon,
@@ -22,8 +22,8 @@ class EquipModel {
     WeaponModel? primaryWeapon,
     WeaponModel? secondaryWeapon,
     WeaponModel? emergencyWeapon,
-    ArmourModel? armour,
-    ArmourModel? shield,
+    ArmorModel? armour,
+    ArmorModel? shield,
   }) {
     return EquipModel(
       primaryWeapon: primaryWeapon ?? this.primaryWeapon,
@@ -55,8 +55,8 @@ class EquipModel {
       emergencyWeapon: map['emergencyWeapon'] != null
           ? WeaponModel.fromMap(map['emergencyWeapon'])
           : null,
-      armour: map['armour'] != null ? ArmourModel.fromMap(map['armour']) : null,
-      shield: map['shield'] != null ? ArmourModel.fromMap(map['shield']) : null,
+      armour: map['armour'] != null ? ArmorModel.fromMap(map['armour']) : null,
+      shield: map['shield'] != null ? ArmorModel.fromMap(map['shield']) : null,
     );
   }
 

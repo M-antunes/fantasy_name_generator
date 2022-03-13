@@ -5,7 +5,8 @@ import '../../../shared/themes/app_text_styles.dart';
 Future<dynamic> callDualWeildCheck(
   BuildContext context,
   String text,
-  VoidCallback onPressed,
+  VoidCallback onYesPressed,
+  VoidCallback onNoPressed,
 ) {
   return showDialog(
       context: context,
@@ -19,14 +20,14 @@ Future<dynamic> callDualWeildCheck(
           ),
           actions: [
             TextButton(
-              onPressed: onPressed,
+              onPressed: onYesPressed,
               child: Text(
                 "Yes",
                 style: AppTextStyle.warningButtonConfirm,
               ),
             ),
             TextButton(
-              onPressed: () => Navigator.of(context).pop(),
+              onPressed: onNoPressed,
               child: Text(
                 "No",
                 style: AppTextStyle.warningButtonDeny,

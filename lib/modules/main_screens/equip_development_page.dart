@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:fantasy_name_generator/controllers/equip_controller.dart';
 import 'package:fantasy_name_generator/models/char_model.dart';
+import 'package:fantasy_name_generator/shared/constants/phone_sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -12,7 +13,9 @@ import 'package:fantasy_name_generator/shared/widgets/call_message_snackbar.dart
 
 import '../../shared/themes/app_text_styles.dart';
 import '../../shared/widgets/call_warning_widget.dart';
-import '../selection_sections/equip_selection_section/weapon_choice.dart';
+import '../selection_sections/equip_selection_section/choice_section.dart';
+import '../selection_sections/equip_selection_section/shield_section.dart';
+import '../selection_sections/equip_selection_section/widgets/will_char_have_shield_or_not.dart';
 import '../selection_sections/equip_selection_section/weapon_choice_section.dart';
 import 'widgets/call_dual_weild_check_dialog.dart';
 import 'widgets/equip_selection_label.dart';
@@ -37,9 +40,6 @@ class _EquipDevelopMentPageState extends State<EquipDevelopMentPage> {
   Widget build(BuildContext context) {
     CharModel char = ModalRoute.of(context)!.settings.arguments as CharModel;
     final size = MediaQuery.of(context).size;
-    final personalPronoun = char.charName.gender == "Male" ? "he" : "she";
-    final possessiveAdjective = char.charName.gender == "Male" ? "his" : "her";
-    final objectPronoun = char.charName.gender == "Male" ? "him" : "her";
     return Scaffold(
       body: Consumer<EquipController>(builder: (context, state, child) {
         state.char = char;
@@ -48,19 +48,21 @@ class _EquipDevelopMentPageState extends State<EquipDevelopMentPage> {
             EquipSelectionLabel(
                 char: char,
                 size: size,
-                label: state.creationStage == 1 || state.creationStage == 2
-                    ? "Equipment - Weapons"
-                    : state.creationStage == 3
-                        ? "Equipment - Shield"
-                        : state.creationStage == 4
-                            ? "Equipment - Armor"
-                            : state.creationStage == 5
-                                ? "Equipment - Level"
-                                : state.creationStage == 6
-                                    ? "Equipment - Stats"
-                                    : state.creationStage == 7
-                                        ? "Equipment - Basic features ready"
-                                        : ''),
+                label: state.creationStage == 1
+                    ? "Equipment - Auto generate"
+                    : state.creationStage == 2
+                        ? "Equipment - Weapons"
+                        : state.creationStage == 3
+                            ? "Equipment - Shield"
+                            : state.creationStage == 4
+                                ? "Equipment - Armor"
+                                : state.creationStage == 5
+                                    ? "Equipment - Level"
+                                    : state.creationStage == 6
+                                        ? "Equipment - Stats"
+                                        : state.creationStage == 7
+                                            ? "Equipment - Basic features ready"
+                                            : ''),
             EquipProgressionBar(
               controller: state,
             ),
@@ -78,8 +80,9 @@ class _EquipDevelopMentPageState extends State<EquipDevelopMentPage> {
                 ],
               ),
             ),
-            if (state.creationStage == 1) WeaponChoice(),
+            if (state.creationStage == 1) ChoiceSection(),
             if (state.creationStage == 2) WeaponChoiceSection(char: char),
+            if (state.creationStage == 3) ShieldSection(ctrl: state),
           ],
         );
       }),
@@ -105,13 +108,14 @@ class _EquipDevelopMentPageState extends State<EquipDevelopMentPage> {
                     label: "Confirm",
                     onTap: () {
                       state.updateSecondaryweaponType();
-                      dualWeildCheck(state, context, char, personalPronoun,
-                          possessiveAdjective);
+                      dualWeildCheck(
+                        state,
+                        context,
+                        char,
+                      );
                       state.informImportanceOfVersatileCombat(
-                        () => callNoDistantCombatWeaponWarning(
-                            context, state, possessiveAdjective),
-                        () => callNoColseCombatWeaponWarning(
-                            context, state, possessiveAdjective),
+                        () => callNoDistantCombatWeaponWarning(context, state),
+                        () => callNoColseCombatWeaponWarning(context, state),
                       );
                     }),
               if (state.creationStage == 2 &&
@@ -153,35 +157,48 @@ class _EquipDevelopMentPageState extends State<EquipDevelopMentPage> {
     );
   }
 
-  dualWeildCheck(EquipController state, BuildContext context, CharModel char,
-      String personalPronoun, String possessiveAdjective) {
+  dualWeildCheck(EquipController state, BuildContext context, CharModel char) {
     state.showDualWeildIntentionCheck(() => callDualWeildCheck(
-        context,
-        "${state.chosenPrimaryWeaponType!.name} & ${state.chosenSecondaryWeaponType!.name}.\nIs ${char.charName.fullName} supposed to Dual Weild?",
-        () => state.confirmDualWeild(() {
-              Navigator.of(context).pop();
-              callNoDistantCombatWeaponWarning(
-                  context, state, possessiveAdjective);
-            })));
+          context,
+          "${state.chosenPrimaryWeaponType!.name} & ${state.chosenSecondaryWeaponType!.name}.\nIs ${char.charName.fullName} supposed to Dual Weild?",
+          () => state.confirmDualWeild(() {
+            Navigator.of(context).pop();
+            callNoDistantCombatWeaponWarning(context, state);
+          }),
+          () {
+            Navigator.of(context).pop();
+            callNoDistantCombatWeaponWarning(context, state);
+          },
+        ));
   }
 
   Future<dynamic> callNoDistantCombatWeaponWarning(
-      BuildContext context, EquipController state, String pronoun) {
+      BuildContext context, EquipController state) {
     return callWarningWidget(
       context,
-      "You have chosen two close combat weapons for ${state.char.charName.fullName}.\nIt is recomended that at least $pronoun emergency weapon is fit for distant combat.",
+      "You have chosen two close combat weapons for ${state.char.charName.fullName}.\nIt is recomended that at least ${state.char.charName.possessiveAdjective} emergency weapon is fit for distant combat.",
     );
   }
 
   Future<dynamic> callNoColseCombatWeaponWarning(
-      BuildContext context, EquipController state, String pronoun) {
+      BuildContext context, EquipController state) {
     return callWarningWidget(
       context,
-      "You have chosen two distant combat weapons for ${state.char.charName.fullName}.\nIt is recomended that at least $pronoun emergency weapon is fit for close combat.",
+      "You have chosen two distant combat weapons for ${state.char.charName.fullName}.\nIt is recomended that at least ${state.char.charName.possessiveAdjective} emergency weapon is fit for close combat.",
     );
   }
 
   void buttonFunction(EquipController state, BuildContext context) {
+    if (state.creationStage == 2) {
+      if (state.hasDualWeild ||
+          state.listOfEquip.twoHandedTypes
+              .contains(state.chosenPrimaryWeaponType) ||
+          state.listOfEquip.distanceTypes
+              .contains(state.chosenPrimaryWeaponType)) {
+        state.retreatCreationStage();
+        callShieldDesireConfirmation(context, state);
+      }
+    }
     var text = state.activateNextButton();
     if (text != null) {
       callMessageSnackbar(context, text, AppColors.warningColor, null);

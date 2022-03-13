@@ -47,16 +47,10 @@ class ClassSelection extends StatelessWidget {
                                       : null,
                                 ),
                                 const SizedBox(height: 2),
-                                Text(
-                                  charClass.name,
-                                  style: TextStyle(
-                                      color: charClass.isSelected
-                                          ? AppColors.primary
-                                          : null,
-                                      fontFamily: "David",
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 11),
-                                )
+                                Text(charClass.name,
+                                    style: charClass.isSelected
+                                        ? AppTextStyle.classSelected
+                                        : AppTextStyle.classNotSelected)
                               ],
                             ),
                             onTap: () {
