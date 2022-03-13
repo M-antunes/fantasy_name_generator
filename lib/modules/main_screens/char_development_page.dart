@@ -79,7 +79,8 @@ class _CharDevelopmentPageState extends State<CharDevelopmentPage>
                         ? () => callMessageSnackbar(
                             context,
                             "You must generate a name first",
-                            AppColors.warningColor)
+                            AppColors.warningColor,
+                            null)
                         : () => state.advanceCreationStage(),
                   ),
                 ],
@@ -158,7 +159,7 @@ class _CharDevelopmentPageState extends State<CharDevelopmentPage>
   void buttonFunction(CharController state, BuildContext context) {
     var text = state.activateNextButton();
     if (text != null) {
-      callMessageSnackbar(context, text, AppColors.warningColor);
+      callMessageSnackbar(context, text, AppColors.warningColor, null);
     }
   }
 }

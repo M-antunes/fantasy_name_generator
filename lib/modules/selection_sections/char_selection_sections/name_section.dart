@@ -63,10 +63,10 @@ class NameSelection extends StatelessWidget {
                 ),
               ),
               onTap: () => callMessageSnackbar(
-                context,
-                "Double tap to switch name and last name",
-                Colors.grey[700],
-              ),
+                  context,
+                  "Double tap to switch name and last name",
+                  Colors.grey[700],
+                  null),
             );
           }),
           SizedBox(

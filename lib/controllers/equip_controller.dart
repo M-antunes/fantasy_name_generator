@@ -1,5 +1,6 @@
 import 'package:fantasy_name_generator/models/char_model.dart';
 import 'package:fantasy_name_generator/shared/data/default_char_model_data.dart';
+import 'package:fantasy_name_generator/shared/widgets/call_message_snackbar.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../models/equip_models/weapon_type_model.dart';
@@ -133,6 +134,23 @@ class EquipController extends ChangeNotifier {
     type.isSelected = !type.isSelected;
     tempEmergencyWeaponTypeForSwitching = type;
     notifyListeners();
+  }
+
+  informImportanceOfVersatileCombat(VoidCallback twoCloseCombatWeapons,
+      VoidCallback twoDistantCombatWeapons) {
+    bool closeCombatWeapon = listOfEquip.oneHandedTypes
+            .contains(chosenPrimaryWeaponType) ||
+        listOfEquip.twoHandedTypes.contains(chosenPrimaryWeaponType) &&
+            listOfEquip.oneHandedTypes.contains(chosenSecondaryWeaponType) ||
+        listOfEquip.twoHandedTypes.contains(chosenSecondaryWeaponType);
+    bool distantCombatWeapon =
+        listOfEquip.distanceTypes.contains(chosenPrimaryWeaponType) &&
+            listOfEquip.distanceTypes.contains(chosenSecondaryWeaponType);
+    if (closeCombatWeapon) {
+      twoCloseCombatWeapons();
+    } else if (distantCombatWeapon) {
+      twoDistantCombatWeapons();
+    }
   }
 
   resetChoices() {

@@ -107,7 +107,7 @@ class CharController extends ChangeNotifier {
   showErrorSnackBarIfLevelIsZero(
       BuildContext context, String text, Color color) {
     if (levelSelected == -1) {
-      callMessageSnackbar(context, text, color);
+      callMessageSnackbar(context, text, color, null);
     }
   }
 
@@ -752,8 +752,6 @@ class CharController extends ChangeNotifier {
   dwarfNameGenerator() {
     generalNameGenerator(2, 6);
     fullName = alterDwarfNameCharacters(tempFullName[0], tempFullName[1]);
-    capitalize(fullName[0], fullName[1]);
-    notifyListeners();
   }
 
 // Elf designated part ======================================================================
@@ -806,8 +804,6 @@ class CharController extends ChangeNotifier {
   elfNameGenerator() {
     generalNameGenerator(3, 7);
     fullName = alterElfNameCharacters(tempFullName[0], tempFullName[1]);
-    capitalize(fullName[0], fullName[1]);
-    notifyListeners();
   }
 
   // Gnome designated part =================================================================
@@ -846,8 +842,6 @@ class CharController extends ChangeNotifier {
   gnomeNameGenerator() {
     generalNameGenerator(3, 6);
     fullName = alterGnomeNameCharacters(tempFullName[0], tempFullName[1]);
-    capitalize(fullName[0], fullName[1]);
-    notifyListeners();
   }
 
 // Hafling designated part =================================================================
@@ -894,15 +888,13 @@ class CharController extends ChangeNotifier {
   haflingNameGenerator() {
     generalNameGenerator(3, 7);
     fullName = alterHaflingNameCharacters(tempFullName[0], tempFullName[1]);
-    capitalize(fullName[0], fullName[1]);
-    notifyListeners();
   }
 
 // Half-elf and Half-orc designated part ====================================================
 
   halfHumanNameGenerator() {
-    var chance = randomIndex.nextInt(12);
-    if (chance < 3) {
+    var chance = rollingDice(12);
+    if (chance < 4) {
       if (chosenRace.name == "Half-elf") {
         elfNameGenerator();
       } else {
@@ -920,7 +912,7 @@ class CharController extends ChangeNotifier {
         newLastName = fullName[1];
         notifyListeners();
       }
-    } else if (chance > 7 && chance < 10) {
+    } else if (chance > 6 && chance < 10) {
       if (chosenRace.name == "Half-elf") {
         elfNameGenerator();
         humanNameGenerator();
@@ -949,8 +941,7 @@ class CharController extends ChangeNotifier {
         newName = humanNames.maleNames[nameChance];
       }
       notifyListeners();
-    }
-    if (isFemale) {
+    } else if (isFemale) {
       var previousName = newName;
       var nameChance = randomIndex.nextInt(humanNames.femaleNames.length);
       newName = humanNames.femaleNames[nameChance];
@@ -966,8 +957,9 @@ class CharController extends ChangeNotifier {
     while (newLastName == previousLastName) {
       lastNameChance = randomIndex.nextInt(humanNames.lastNames.length);
       newLastName = humanNames.lastNames[lastNameChance];
-      notifyListeners();
     }
+    fullName = [newName, newLastName];
+    notifyListeners();
   }
 
 // Orc designated part ====================================================================
@@ -1008,8 +1000,6 @@ class CharController extends ChangeNotifier {
   orcNameGenerator() {
     generalNameGenerator(2, 5);
     fullName = alterOrcNameCharacters(tempFullName[0], tempFullName[1]);
-    capitalize(fullName[0], fullName[1]);
-    notifyListeners();
   }
 
   /// calls the respective race name generator
@@ -1041,6 +1031,8 @@ class CharController extends ChangeNotifier {
         break;
       default:
     }
+    capitalize(fullName[0], fullName[1]);
+    notifyListeners();
   }
 
   /// inverts the name and last name position
@@ -1063,12 +1055,13 @@ class CharController extends ChangeNotifier {
     Color alreadySavedColor,
   ) {
     if (newName == " - ? - " || newLastName == " - ? - ") {
-      callMessageSnackbar(context, noNameMessage, noNameColor);
+      callMessageSnackbar(context, noNameMessage, noNameColor, null);
       return;
     }
     for (var name in savedNames) {
       if (name.firstName == newName && name.lastName == newLastName) {
-        callMessageSnackbar(context, alreadySavedmessage, alreadySavedColor);
+        callMessageSnackbar(
+            context, alreadySavedmessage, alreadySavedColor, null);
         return;
       }
     }
@@ -1080,7 +1073,7 @@ class CharController extends ChangeNotifier {
         fullName: "$newName $newLastName");
     savedNames.insert(0, nameToSave);
     storeName(savedNames);
-    callMessageSnackbar(context, savedMessage, sucessColor);
+    callMessageSnackbar(context, savedMessage, sucessColor, null);
   }
 
   /// Erase name from the list

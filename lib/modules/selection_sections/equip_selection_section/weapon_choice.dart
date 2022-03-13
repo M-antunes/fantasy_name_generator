@@ -13,31 +13,19 @@ class WeaponChoice extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(height: deviceHeight! * 0.15),
-          RichText(
-            strutStyle: const StrutStyle(height: 1.8),
+          Text(
+            "Generate all weapons automatically according to what is preferable for the character's race and class",
+            style: AppTextStyle.subTextGreyPlusSize,
             textAlign: TextAlign.center,
-            text: TextSpan(
-              style: AppTextStyle.subTextGreyPlusSize,
-              children: [
-                const TextSpan(
-                    text:
-                        "You can either choose the weapons you want by clicking "),
-                TextSpan(
-                    text: "next", style: AppTextStyle.subTextWhitePlusSize),
-                const TextSpan(text: " or you can click on the "),
-                TextSpan(
-                    text: "Generate Button ",
-                    style: AppTextStyle.subTextWhitePlusSize),
-                const TextSpan(
-                  text:
-                      "and have them automatically assigned to you character.\n(based on your the class and race you chose)",
-                ),
-              ],
-            ),
           ),
-          SizedBox(height: deviceHeight! * 0.1),
+          SizedBox(height: deviceHeight! * 0.02),
           AppGenerateButton(
             onGenerate: () {},
+          ),
+          SizedBox(height: deviceHeight! * 0.2),
+          Text(
+            "Click next to choose the types by yourself.",
+            style: AppTextStyle.subTextGreyPlusSize,
           ),
         ],
       ),

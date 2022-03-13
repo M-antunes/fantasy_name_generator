@@ -231,7 +231,7 @@ class EquipData {
     WeaponTypeModel(
         name: "Mace",
         isSelected: false,
-        picture: "assets/images/weapon_types/mace.svg"),
+        picture: "assets/images/weapon_types/hammer.svg"),
     WeaponTypeModel(
         name: "Fist",
         isSelected: false,
@@ -458,7 +458,7 @@ class EquipData {
     WeaponTypeModel(
         name: "Exotic",
         isSelected: false,
-        picture: "assets/images/weapon_types/exotic.svg"),
+        picture: "assets/images/weapon_types/exotic_tw.svg"),
   ];
 
   final List<WeaponModel> distanceWeapons = [
