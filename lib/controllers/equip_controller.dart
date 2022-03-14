@@ -13,6 +13,8 @@ class EquipController extends ChangeNotifier {
   var listOfClasses = ClassData();
   var listOfEquip = EquipData();
   List<WeaponTypeModel> allListsOfWeapons = [];
+  List<ArmorTypeModel> filteredArmors = [];
+  List<ArmorTypeModel> filteredShields = [];
   bool showOneHanded = false;
   bool showTwoHanded = false;
   bool showDistant = false;
@@ -158,8 +160,6 @@ class EquipController extends ChangeNotifier {
             listOfEquip.twoHandedTypes.contains(chosenSecondaryWeaponType) ||
         listOfEquip.twoHandedTypes.contains(chosenPrimaryWeaponType) &&
             listOfEquip.oneHandedTypes.contains(chosenSecondaryWeaponType) ||
-        // listOfEquip.oneHandedTypes.contains(chosenPrimaryWeaponType) &&
-        //     listOfEquip.oneHandedTypes.contains(chosenSecondaryWeaponType) ||
         listOfEquip.twoHandedTypes.contains(chosenPrimaryWeaponType) &&
             listOfEquip.twoHandedTypes.contains(chosenSecondaryWeaponType);
     bool distantCombatWeapon =
@@ -183,6 +183,8 @@ class EquipController extends ChangeNotifier {
     hasDualWeild = false;
     closeAllTypeSections();
   }
+
+// Armor section =========================================================================
 
   switchShieldType(ArmorTypeModel type) {
     type.isSelected = !type.isSelected;
@@ -209,6 +211,106 @@ class EquipController extends ChangeNotifier {
     notifyListeners();
   }
 
+  chooseNoShieldAuto() {
+    var zeroShield = listOfEquip.shieldTypes[0];
+    tempChosenShieldType = zeroShield;
+    tempChosenShieldType!.isSelected = true;
+    chosenShieldType = tempChosenShieldType;
+    notifyListeners();
+  }
+
+  undoNoshield() {
+    tempChosenShieldType!.isSelected = false;
+    notifyListeners();
+  }
+
+  filterEquip(
+    List<ArmorTypeModel> list,
+    String permited1,
+    String permited2,
+    String permited3,
+  ) {
+    return list
+        .where((type) =>
+            type.name == permited1 ||
+            type.name == permited2 ||
+            type.name == permited3)
+        .toList();
+  }
+
+  filterArmorToClass() {
+    switch (char.charClass.name) {
+      case "Barbarian":
+        filteredArmors = filterEquip(
+            listOfEquip.armorTypes, "No armor", "Light armor", "Medium armor");
+        notifyListeners();
+        break;
+      case "Ranger":
+        filteredArmors = filterEquip(
+            listOfEquip.armorTypes, "No armor", "Light armor", "Medium armor");
+        notifyListeners();
+        break;
+      case "Druid":
+        filteredArmors = filterEquip(
+            listOfEquip.armorTypes, "No armor", "Light armor", "Medium armor");
+        notifyListeners();
+        break;
+      case "Summoner":
+        filteredArmors = filterEquip(
+            listOfEquip.armorTypes, "No armor", "Light armor", "Medium armor");
+        filteredShields =
+            filterEquip(listOfEquip.shieldTypes, "No shield", "", "");
+        notifyListeners();
+        break;
+      case "Alchemist":
+        filteredArmors =
+            filterEquip(listOfEquip.armorTypes, "No armor", "Light armor", "");
+        filteredShields =
+            filterEquip(listOfEquip.shieldTypes, "No shield", "", "");
+        notifyListeners();
+        break;
+      case "Monk":
+        filteredArmors =
+            filterEquip(listOfEquip.armorTypes, "No armor", "", "");
+        filteredShields =
+            filterEquip(listOfEquip.shieldTypes, "No shield", "", "");
+        notifyListeners();
+        break;
+      case "Rogue":
+        filteredArmors =
+            filterEquip(listOfEquip.armorTypes, "No armor", "Light armor", "");
+        filteredShields =
+            filterEquip(listOfEquip.shieldTypes, "No shield", "", "");
+        notifyListeners();
+        break;
+      case "Bard":
+        filteredArmors =
+            filterEquip(listOfEquip.armorTypes, "No armor", "Light armor", "");
+        notifyListeners();
+        break;
+      case "Sorcerer":
+        filteredArmors =
+            filterEquip(listOfEquip.armorTypes, "No armor", "", "");
+        filteredShields =
+            filterEquip(listOfEquip.shieldTypes, "No shield", "", "");
+        notifyListeners();
+        break;
+      case "Wizard":
+        filteredArmors =
+            filterEquip(listOfEquip.armorTypes, "No armor", "", "");
+        filteredShields =
+            filterEquip(listOfEquip.shieldTypes, "No shield", "", "");
+        notifyListeners();
+        break;
+      default:
+        filteredArmors = listOfEquip.armorTypes;
+        filteredShields = listOfEquip.shieldTypes;
+        notifyListeners();
+    }
+  }
+
+  // Move on with the selections ===========================================================
+
   updateChosenArmor() {
     chosenArmorType = tempChosenArmorType;
     notifyListeners();
@@ -227,6 +329,7 @@ class EquipController extends ChangeNotifier {
   String? activateNextButton() {
     if (creationStage == 1) {
       advanceCreationStage();
+      filterArmorToClass();
       return null;
     } else if (creationStage == 2) {
       if (chosenEmergencyWeaponType == null) {

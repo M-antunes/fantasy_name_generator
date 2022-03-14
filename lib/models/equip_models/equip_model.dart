@@ -5,11 +5,11 @@ import 'package:fantasy_name_generator/models/equip_models/armor_model.dart';
 import 'weapon_model.dart';
 
 class EquipModel {
-  final WeaponModel? primaryWeapon;
-  final WeaponModel? secondaryWeapon;
-  final WeaponModel? emergencyWeapon;
-  final ArmorModel? armour;
-  final ArmorModel? shield;
+  WeaponModel? primaryWeapon;
+  WeaponModel? secondaryWeapon;
+  WeaponModel? emergencyWeapon;
+  ArmorModel? armour;
+  ArmorModel? shield;
   EquipModel({
     this.primaryWeapon,
     this.secondaryWeapon,

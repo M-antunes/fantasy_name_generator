@@ -20,23 +20,44 @@ class ArmorSection extends StatelessWidget {
       children: [
         SizedBox(height: deviceHeight! * 0.2),
         Text(
-          "Choose armor type:",
+          ctrl.char.charClass.name == "Alchemist" ||
+                  ctrl.char.charClass.name == "Summoner" ||
+                  ctrl.char.charClass.name == "Barbarian" ||
+                  ctrl.char.charClass.name == "Ranger"
+              ? "${ctrl.char.charClass.name}s are NOT proficient with heavy armors"
+              : ctrl.char.charClass.name == "Bard" ||
+                      ctrl.char.charClass.name == "Rogue"
+                  ? "${ctrl.char.charClass.name}s are NOT proficient with medium or heavy armors"
+                  : ctrl.char.charClass.name == "Wizard" ||
+                          ctrl.char.charClass.name == "Sorcerer" ||
+                          ctrl.char.charClass.name == "Monk"
+                      ? "${ctrl.char.charClass.name}s are NOT proficient with ANY armors"
+                      : ctrl.char.charClass.name == "Druid"
+                          ? "${ctrl.char.charClass.name}s are NOT proficient with heavy armors or any made out of metal"
+                          : "${ctrl.char.charClass.name}s are proficient with all armors",
           style: AppTextStyle.subTextGreyPlusSize,
+          textAlign: TextAlign.center,
+        ),
+        SizedBox(height: deviceHeight! * 0.003),
+        Container(
+          width: deviceWidth! * 0.92,
+          height: deviceHeight! * 0.003,
+          color: Colors.grey,
         ),
         SizedBox(height: deviceHeight! * 0.05),
         Consumer<EquipController>(builder: (context, state, child) {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 40),
             child: GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   childAspectRatio: 8 / 6,
-                  crossAxisCount: 2,
+                  crossAxisCount: state.filteredArmors.length > 1 ? 2 : 1,
                 ),
-                itemCount: state.listOfEquip.armorTypes.length,
+                itemCount: state.filteredArmors.length,
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
-                  var armor = state.listOfEquip.armorTypes[index];
+                  var armor = state.filteredArmors[index];
                   return InkWell(
                     splashColor: Colors.transparent,
                     child: Column(

@@ -20,23 +20,36 @@ class ShieldSection extends StatelessWidget {
       children: [
         SizedBox(height: deviceHeight! * 0.2),
         Text(
-          "Choose shield type:",
+          ctrl.char.charClass.name == "Rogue" ||
+                  ctrl.char.charClass.name == "Sorcerer" ||
+                  ctrl.char.charClass.name == "Wizard" ||
+                  ctrl.char.charClass.name == "Summoner" ||
+                  ctrl.char.charClass.name == "Alchemist" ||
+                  ctrl.char.charClass.name == "Monk"
+              ? "${ctrl.char.charClass.name}s are NOT proficient with shields"
+              : "${ctrl.char.charClass.name}s are proficient with all shields",
           style: AppTextStyle.subTextGreyPlusSize,
+        ),
+        SizedBox(height: deviceHeight! * 0.003),
+        Container(
+          width: deviceWidth! * 0.92,
+          height: deviceHeight! * 0.003,
+          color: Colors.grey,
         ),
         SizedBox(height: deviceHeight! * 0.05),
         Consumer<EquipController>(builder: (context, state, child) {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 40),
             child: GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   childAspectRatio: 8 / 6,
-                  crossAxisCount: 2,
+                  crossAxisCount: state.filteredShields.length > 1 ? 2 : 1,
                 ),
-                itemCount: state.listOfEquip.shieldTypes.length,
+                itemCount: state.filteredShields.length,
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
-                  var shield = state.listOfEquip.shieldTypes[index];
+                  var shield = state.filteredShields[index];
                   return InkWell(
                     splashColor: Colors.transparent,
                     child: Column(

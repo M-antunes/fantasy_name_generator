@@ -16,17 +16,12 @@ Future<dynamic> callShieldDesireConfirmation(
           actions: [
             TextButton(
                 onPressed: () {
+                  state.chooseNoShieldAuto();
                   state.advanceCreationStage();
                   state.advanceCreationStage();
                   Navigator.of(context).pop();
                 },
-                child: Text("Yes", style: AppTextStyle.warningButtonConfirm)),
-            TextButton(
-                onPressed: () {
-                  state.advanceCreationStage();
-                  Navigator.of(context).pop();
-                },
-                child: Text("No", style: AppTextStyle.warningButtonDeny)),
+                child: Text("Ok", style: AppTextStyle.warningButtonConfirm)),
           ],
         );
       });
@@ -56,7 +51,7 @@ class WillCharHaveShieldOrNot extends StatelessWidget {
               style: AppTextStyle.subTextWhitePlusSize),
           const TextSpan(
               text:
-                  " doesn't requier any shield.\nDo you wish to skip the section for choosing a shield?")
+                  " doesn't requier any shield.\nThe section for choosing a shield shall be skipped.")
         ],
       ),
     );
