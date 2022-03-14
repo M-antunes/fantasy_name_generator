@@ -26,6 +26,8 @@ class EquipController extends ChangeNotifier {
   WeaponTypeModel? chosenEmergencyWeaponType;
   ArmorTypeModel? tempChosenShieldType;
   ArmorTypeModel? chosenShieldType;
+  ArmorTypeModel? tempChosenArmorType;
+  ArmorTypeModel? chosenArmorType;
 
   updateShowResetButton() {
     showResetButton = true;
@@ -192,8 +194,23 @@ class EquipController extends ChangeNotifier {
     notifyListeners();
   }
 
+  switchArmorType(ArmorTypeModel type) {
+    type.isSelected = !type.isSelected;
+    for (var select in listOfEquip.armorTypes) {
+      select.isSelected = false;
+    }
+    type.isSelected = !type.isSelected;
+    tempChosenArmorType = type;
+    notifyListeners();
+  }
+
   updateChosenShield() {
     chosenShieldType = tempChosenShieldType;
+    notifyListeners();
+  }
+
+  updateChosenArmor() {
+    chosenArmorType = tempChosenArmorType;
     notifyListeners();
   }
 
@@ -223,6 +240,12 @@ class EquipController extends ChangeNotifier {
       }
       advanceCreationStage();
       updateChosenShield();
+    } else if (creationStage == 4) {
+      if (tempChosenArmorType == null) {
+        return "You must select an armor type first.";
+      }
+      advanceCreationStage();
+      updateChosenArmor();
     }
     return null;
   }

@@ -13,10 +13,11 @@ import 'package:fantasy_name_generator/shared/widgets/call_message_snackbar.dart
 
 import '../../shared/themes/app_text_styles.dart';
 import '../../shared/widgets/call_warning_widget.dart';
+import '../selection_sections/equip_selection_section/armor_section.dart';
 import '../selection_sections/equip_selection_section/choice_section.dart';
 import '../selection_sections/equip_selection_section/shield_section.dart';
 import '../selection_sections/equip_selection_section/widgets/will_char_have_shield_or_not.dart';
-import '../selection_sections/equip_selection_section/weapon_choice_section.dart';
+import '../selection_sections/equip_selection_section/weapon_section.dart';
 import 'widgets/call_dual_weild_check_dialog.dart';
 import 'widgets/equip_selection_label.dart';
 
@@ -80,9 +81,10 @@ class _EquipDevelopMentPageState extends State<EquipDevelopMentPage> {
                 ],
               ),
             ),
-            if (state.creationStage == 1) ChoiceSection(),
+            if (state.creationStage == 1) const ChoiceSection(),
             if (state.creationStage == 2) WeaponChoiceSection(char: char),
             if (state.creationStage == 3) ShieldSection(ctrl: state),
+            if (state.creationStage == 4) ArmorSection(ctrl: state),
           ],
         );
       }),
