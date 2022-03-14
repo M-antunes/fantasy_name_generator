@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:fantasy_name_generator/controllers/equip_controller.dart';
 import 'package:fantasy_name_generator/models/char_model.dart';
+import 'package:fantasy_name_generator/modules/selection_sections/equip_selection_section/equip_progress_check.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -57,7 +58,7 @@ class _EquipDevelopMentPageState extends State<EquipDevelopMentPage> {
                             : state.creationStage == 4
                                 ? "Equipment - Armor"
                                 : state.creationStage == 5
-                                    ? "Equipment - Level"
+                                    ? "Equipment - Progress Check"
                                     : state.creationStage == 6
                                         ? "Equipment - Stats"
                                         : state.creationStage == 7
@@ -84,6 +85,7 @@ class _EquipDevelopMentPageState extends State<EquipDevelopMentPage> {
             if (state.creationStage == 2) WeaponChoiceSection(char: char),
             if (state.creationStage == 3) ShieldSection(ctrl: state),
             if (state.creationStage == 4) ArmorSection(ctrl: state),
+            if (state.creationStage == 5) EquipProgressCheck(ctrl: state),
           ],
         );
       }),

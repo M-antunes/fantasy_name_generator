@@ -309,12 +309,11 @@ class EquipController extends ChangeNotifier {
     }
   }
 
-  // Move on with the selections ===========================================================
-
   updateChosenArmor() {
     chosenArmorType = tempChosenArmorType;
     notifyListeners();
   }
+  // Move on with the selections ===========================================================
 
   advanceCreationStage() {
     creationStage++;

@@ -7,6 +7,8 @@ class EquipData {
   final List<WeaponModel> oneHandedWeapons = [
     WeaponModel(
         isSelected: false,
+        critical: "19-20 x2",
+        damage: "1d4",
         type: WeaponTypeModel(
             name: "Knife",
             isSelected: false,
@@ -14,13 +16,17 @@ class EquipData {
         name: "Dagger"),
     WeaponModel(
         isSelected: false,
+        critical: "x2",
+        damage: "1d4",
         type: WeaponTypeModel(
             name: "Mace",
             isSelected: false,
             picture: "assets/images/weapon_types/mace.svg"),
-        name: "Wooden stick"),
+        name: "Wooden club"),
     WeaponModel(
         isSelected: false,
+        critical: "x2",
+        damage: "1d6",
         type: WeaponTypeModel(
             name: "Mace",
             isSelected: false,
@@ -28,153 +34,8 @@ class EquipData {
         name: "Club"),
     WeaponModel(
         isSelected: false,
-        type: WeaponTypeModel(
-            name: "Mace",
-            isSelected: false,
-            picture: "assets/images/weapon_types/mace.svg"),
-        name: "Heavy mace"),
-    WeaponModel(
-        isSelected: false,
-        type: WeaponTypeModel(
-            name: "Mace",
-            isSelected: false,
-            picture: "assets/images/weapon_types/mace.svg"),
-        name: "Morningstar"),
-    WeaponModel(
-        isSelected: false,
-        type: WeaponTypeModel(
-            name: "Knife",
-            isSelected: false,
-            picture: "assets/images/weapon_types/knife.svg"),
-        name: "Punching dagger"),
-    WeaponModel(
-        isSelected: false,
-        type: WeaponTypeModel(
-            name: "Sword",
-            isSelected: false,
-            picture: "assets/images/weapon_types/sword.svg"),
-        name: "Butterfly sword"),
-    WeaponModel(
-        isSelected: false,
-        type: WeaponTypeModel(
-            name: "Axe",
-            isSelected: false,
-            picture: "assets/images/weapon_types/hatchet.svg"),
-        name: "Handaxe"),
-    WeaponModel(
-        isSelected: false,
-        type: WeaponTypeModel(
-            name: "Knife",
-            isSelected: false,
-            picture: "assets/images/weapon_types/knife.svg"),
-        name: "Kukri"),
-    WeaponModel(
-        isSelected: false,
-        type: WeaponTypeModel(
-            name: "Mace",
-            isSelected: false,
-            picture: "assets/images/weapon_types/mace.svg"),
-        name: "Light hammer"),
-    WeaponModel(
-        isSelected: false,
-        type: WeaponTypeModel(
-            name: "Sword",
-            isSelected: false,
-            picture: "assets/images/weapon_types/sword.svg"),
-        name: "Shortsword"),
-    WeaponModel(
-        isSelected: false,
-        type: WeaponTypeModel(
-            name: "Axe",
-            isSelected: false,
-            picture: "assets/images/weapon_types/hatchet.svg"),
-        name: "Light pick"),
-    WeaponModel(
-        isSelected: false,
-        type: WeaponTypeModel(
-            name: "Knife",
-            isSelected: false,
-            picture: "assets/images/weapon_types/knife.svg"),
-        name: "Starknife"),
-    WeaponModel(
-        isSelected: false,
-        type: WeaponTypeModel(
-            name: "Exotic",
-            isSelected: false,
-            picture: "assets/images/weapon_types/exotic.svg"),
-        name: "Light flail"),
-    WeaponModel(
-        isSelected: false,
-        type: WeaponTypeModel(
-            name: "Sword",
-            isSelected: false,
-            picture: "assets/images/weapon_types/sword.svg"),
-        name: "Longsword"),
-    WeaponModel(
-        isSelected: false,
-        type: WeaponTypeModel(
-            name: "Sword",
-            isSelected: false,
-            picture: "assets/images/weapon_types/sword.svg"),
-        name: "Rapier"),
-    WeaponModel(
-        isSelected: false,
-        type: WeaponTypeModel(
-            name: "Sword",
-            isSelected: false,
-            picture: "assets/images/weapon_types/sword.svg"),
-        name: "Scimitar"),
-    WeaponModel(
-        isSelected: false,
-        type: WeaponTypeModel(
-            name: "Sword",
-            isSelected: false,
-            picture: "assets/images/weapon_types/sword.svg"),
-        name: "Falchion"),
-    WeaponModel(
-        isSelected: false,
-        type: WeaponTypeModel(
-            name: "Exotic",
-            isSelected: false,
-            picture: "assets/images/weapon_types/exotic.svg"),
-        name: "whip"),
-    WeaponModel(
-        isSelected: false,
-        type: WeaponTypeModel(
-            name: "Knife",
-            isSelected: false,
-            picture: "assets/images/weapon_types/knife.svg"),
-        name: "Swordbreaker dagger"),
-    WeaponModel(
-        isSelected: false,
-        type: WeaponTypeModel(
-            name: "Sword",
-            isSelected: false,
-            picture: "assets/images/weapon_types/sword.svg"),
-        name: "Bastard sword"),
-    WeaponModel(
-        isSelected: false,
-        type: WeaponTypeModel(
-            name: "Axe",
-            isSelected: false,
-            picture: "assets/images/weapon_types/hatchet.svg"),
-        name: "Waraxe"),
-    WeaponModel(
-        isSelected: false,
-        type: WeaponTypeModel(
-            name: "Sword",
-            isSelected: false,
-            picture: "assets/images/weapon_types/sword.svg"),
-        name: "Katana"),
-    WeaponModel(
-        isSelected: false,
-        type: WeaponTypeModel(
-            name: "Sword",
-            isSelected: false,
-            picture: "assets/images/weapon_types/sword.svg"),
-        name: "Sabre"),
-    WeaponModel(
-        isSelected: false,
+        critical: "x2",
+        damage: "1d8",
         type: WeaponTypeModel(
             name: "Mace",
             isSelected: false,
@@ -182,6 +43,188 @@ class EquipData {
         name: "Light mace"),
     WeaponModel(
         isSelected: false,
+        critical: "x2",
+        damage: "1d8",
+        type: WeaponTypeModel(
+            name: "Mace",
+            isSelected: false,
+            picture: "assets/images/weapon_types/mace.svg"),
+        name: "Morningstar"),
+    WeaponModel(
+        isSelected: false,
+        critical: "19-20 x2",
+        damage: "1d4",
+        type: WeaponTypeModel(
+            name: "Knife",
+            isSelected: false,
+            picture: "assets/images/weapon_types/knife.svg"),
+        name: "Punching dagger"),
+    WeaponModel(
+        isSelected: false,
+        critical: "19-20 x2",
+        damage: "1d6",
+        type: WeaponTypeModel(
+            name: "Sword",
+            isSelected: false,
+            picture: "assets/images/weapon_types/sword.svg"),
+        name: "Butterfly sword"),
+    WeaponModel(
+        isSelected: false,
+        critical: "x3",
+        damage: "1d6",
+        type: WeaponTypeModel(
+            name: "Axe",
+            isSelected: false,
+            picture: "assets/images/weapon_types/hatchet.svg"),
+        name: "Handaxe"),
+    WeaponModel(
+        isSelected: false,
+        critical: "19-20 x2",
+        damage: "1d4",
+        type: WeaponTypeModel(
+            name: "Knife",
+            isSelected: false,
+            picture: "assets/images/weapon_types/knife.svg"),
+        name: "Kukri"),
+    WeaponModel(
+        isSelected: false,
+        critical: "x2",
+        damage: "1d4",
+        type: WeaponTypeModel(
+            name: "Mace",
+            isSelected: false,
+            picture: "assets/images/weapon_types/mace.svg"),
+        name: "Light hammer"),
+    WeaponModel(
+        isSelected: false,
+        critical: "19-20 x2",
+        damage: "1d6",
+        type: WeaponTypeModel(
+            name: "Sword",
+            isSelected: false,
+            picture: "assets/images/weapon_types/sword.svg"),
+        name: "Shortsword"),
+    WeaponModel(
+        isSelected: false,
+        critical: "x4",
+        damage: "1d6",
+        type: WeaponTypeModel(
+            name: "Axe",
+            isSelected: false,
+            picture: "assets/images/weapon_types/hatchet.svg"),
+        name: "Light pick"),
+    WeaponModel(
+        isSelected: false,
+        critical: "19-20 x2",
+        damage: "1d4",
+        type: WeaponTypeModel(
+            name: "Knife",
+            isSelected: false,
+            picture: "assets/images/weapon_types/knife.svg"),
+        name: "Starknife"),
+    WeaponModel(
+        isSelected: false,
+        critical: "x2",
+        damage: "1d8",
+        type: WeaponTypeModel(
+            name: "Exotic",
+            isSelected: false,
+            picture: "assets/images/weapon_types/exotic.svg"),
+        name: "Light flail"),
+    WeaponModel(
+        isSelected: false,
+        critical: "19-20 x2",
+        damage: "1d8",
+        type: WeaponTypeModel(
+            name: "Sword",
+            isSelected: false,
+            picture: "assets/images/weapon_types/sword.svg"),
+        name: "Longsword"),
+    WeaponModel(
+        isSelected: false,
+        critical: "19-20 x2",
+        damage: "1d6",
+        type: WeaponTypeModel(
+            name: "Sword",
+            isSelected: false,
+            picture: "assets/images/weapon_types/sword.svg"),
+        name: "Rapier"),
+    WeaponModel(
+        isSelected: false,
+        critical: "19-20 x2",
+        damage: "1d6",
+        type: WeaponTypeModel(
+            name: "Sword",
+            isSelected: false,
+            picture: "assets/images/weapon_types/sword.svg"),
+        name: "Scimitar"),
+    WeaponModel(
+        isSelected: false,
+        critical: "19-20 x2",
+        damage: "2d4",
+        type: WeaponTypeModel(
+            name: "Sword",
+            isSelected: false,
+            picture: "assets/images/weapon_types/sword.svg"),
+        name: "Falchion"),
+    WeaponModel(
+        isSelected: false,
+        critical: "x2",
+        damage: "1d2",
+        type: WeaponTypeModel(
+            name: "Exotic",
+            isSelected: false,
+            picture: "assets/images/weapon_types/exotic.svg"),
+        name: "whip"),
+    WeaponModel(
+        isSelected: false,
+        critical: "19-20 x2",
+        damage: "1d4",
+        type: WeaponTypeModel(
+            name: "Knife",
+            isSelected: false,
+            picture: "assets/images/weapon_types/knife.svg"),
+        name: "Swordbreaker dagger"),
+    WeaponModel(
+        isSelected: false,
+        critical: "19-20 x2",
+        damage: "1d10",
+        type: WeaponTypeModel(
+            name: "Sword",
+            isSelected: false,
+            picture: "assets/images/weapon_types/sword.svg"),
+        name: "Bastard sword"),
+    WeaponModel(
+        isSelected: false,
+        critical: "x3",
+        damage: "1d10",
+        type: WeaponTypeModel(
+            name: "Axe",
+            isSelected: false,
+            picture: "assets/images/weapon_types/hatchet.svg"),
+        name: "Waraxe"),
+    WeaponModel(
+        isSelected: false,
+        critical: "19-20 x2",
+        damage: "1d8",
+        type: WeaponTypeModel(
+            name: "Sword",
+            isSelected: false,
+            picture: "assets/images/weapon_types/sword.svg"),
+        name: "Katana"),
+    WeaponModel(
+        isSelected: false,
+        critical: "19-20 x2",
+        damage: "1d8",
+        type: WeaponTypeModel(
+            name: "Sword",
+            isSelected: false,
+            picture: "assets/images/weapon_types/sword.svg"),
+        name: "Sabre"),
+    WeaponModel(
+        isSelected: false,
+        critical: "x4",
+        damage: "2d4",
         type: WeaponTypeModel(
             name: "Exotic",
             isSelected: false,
@@ -189,6 +232,8 @@ class EquipData {
         name: "Scythe"),
     WeaponModel(
         isSelected: false,
+        critical: "x2",
+        damage: "1d4",
         type: WeaponTypeModel(
             name: "Fist",
             isSelected: false,
@@ -196,6 +241,8 @@ class EquipData {
         name: "Unarmed strike"),
     WeaponModel(
         isSelected: false,
+        critical: "x2",
+        damage: "1d4",
         type: WeaponTypeModel(
             name: "Fist",
             isSelected: false,
@@ -203,6 +250,8 @@ class EquipData {
         name: "Brass knuckles"),
     WeaponModel(
         isSelected: false,
+        critical: "x2",
+        damage: "1d4",
         type: WeaponTypeModel(
             name: "Fist",
             isSelected: false,
@@ -210,6 +259,8 @@ class EquipData {
         name: "Cestus"),
     WeaponModel(
         isSelected: false,
+        critical: "x2",
+        damage: "1d4",
         type: WeaponTypeModel(
             name: "Fist",
             isSelected: false,
@@ -246,6 +297,8 @@ class EquipData {
   final List<WeaponModel> twoHandedWeapons = [
     WeaponModel(
         isSelected: false,
+        critical: "19-20 x2",
+        damage: "1d6",
         type: WeaponTypeModel(
             name: "Polearm",
             isSelected: false,
@@ -253,6 +306,8 @@ class EquipData {
         name: "Bayonet"),
     WeaponModel(
         isSelected: false,
+        critical: "x3",
+        damage: "1d8",
         type: WeaponTypeModel(
             name: "Spear",
             isSelected: false,
@@ -260,6 +315,8 @@ class EquipData {
         name: "Boar spear"),
     WeaponModel(
         isSelected: false,
+        critical: "x3",
+        damage: "1d8",
         type: WeaponTypeModel(
             name: "Spear",
             isSelected: false,
@@ -267,6 +324,8 @@ class EquipData {
         name: "Longspear"),
     WeaponModel(
         isSelected: false,
+        critical: "x2",
+        damage: "1d10",
         type: WeaponTypeModel(
             name: "Polearm",
             isSelected: false,
@@ -274,6 +333,8 @@ class EquipData {
         name: "Gladius"),
     WeaponModel(
         isSelected: false,
+        critical: "x3",
+        damage: "1d8",
         type: WeaponTypeModel(
             name: "Polearm",
             isSelected: false,
@@ -281,6 +342,8 @@ class EquipData {
         name: "Trident"),
     WeaponModel(
         isSelected: false,
+        critical: "x3",
+        damage: "1d10",
         type: WeaponTypeModel(
             name: "Polearm",
             isSelected: false,
@@ -288,6 +351,8 @@ class EquipData {
         name: "Glaive"),
     WeaponModel(
         isSelected: false,
+        critical: "x2",
+        damage: "1d10",
         type: WeaponTypeModel(
             name: "Polearm",
             isSelected: false,
@@ -295,6 +360,8 @@ class EquipData {
         name: "Bardiche"),
     WeaponModel(
         isSelected: false,
+        critical: "x3",
+        damage: "2d6",
         type: WeaponTypeModel(
             name: "Mace",
             isSelected: false,
@@ -302,6 +369,8 @@ class EquipData {
         name: "Earth breaker"),
     WeaponModel(
         isSelected: false,
+        critical: "x3",
+        damage: "1d10",
         type: WeaponTypeModel(
             name: "Mace",
             isSelected: false,
@@ -309,6 +378,8 @@ class EquipData {
         name: "Greatclub"),
     WeaponModel(
         isSelected: false,
+        critical: "x3",
+        damage: "1d12",
         type: WeaponTypeModel(
             name: "Mace",
             isSelected: false,
@@ -316,6 +387,8 @@ class EquipData {
         name: "Warhammer"),
     WeaponModel(
         isSelected: false,
+        critical: "x3",
+        damage: "1d12",
         type: WeaponTypeModel(
             name: "Axe",
             isSelected: false,
@@ -323,6 +396,8 @@ class EquipData {
         name: "Greataxe"),
     WeaponModel(
         isSelected: false,
+        critical: "19-20x2",
+        damage: "2d6",
         type: WeaponTypeModel(
             name: "Sword",
             isSelected: false,
@@ -330,6 +405,8 @@ class EquipData {
         name: "Greatsword"),
     WeaponModel(
         isSelected: false,
+        critical: "x2",
+        damage: "1d10",
         type: WeaponTypeModel(
             name: "Polearm",
             isSelected: false,
@@ -337,6 +414,8 @@ class EquipData {
         name: "Guisarme"),
     WeaponModel(
         isSelected: false,
+        critical: "x2",
+        damage: "1d8",
         type: WeaponTypeModel(
             name: "Spear",
             isSelected: false,
@@ -344,6 +423,8 @@ class EquipData {
         name: "Hooked lance"),
     WeaponModel(
         isSelected: false,
+        critical: "x3",
+        damage: "1d8",
         type: WeaponTypeModel(
             name: "Spear",
             isSelected: false,
@@ -351,6 +432,8 @@ class EquipData {
         name: "Lance"),
     WeaponModel(
         isSelected: false,
+        critical: "x4",
+        damage: "2d4",
         type: WeaponTypeModel(
             name: "Polearm",
             isSelected: false,
@@ -358,6 +441,8 @@ class EquipData {
         name: "Long scythe"),
     WeaponModel(
         isSelected: false,
+        critical: "x2",
+        damage: "1d10",
         type: WeaponTypeModel(
             name: "Axe",
             isSelected: false,
@@ -365,6 +450,8 @@ class EquipData {
         name: "Hooked axe"),
     WeaponModel(
         isSelected: false,
+        critical: "x2",
+        damage: "1d8",
         type: WeaponTypeModel(
             name: "Spear",
             isSelected: false,
@@ -372,6 +459,8 @@ class EquipData {
         name: "Chain spear"),
     WeaponModel(
         isSelected: false,
+        critical: "19-20x2",
+        damage: "1d10",
         type: WeaponTypeModel(
             name: "Sword",
             isSelected: false,
@@ -379,6 +468,8 @@ class EquipData {
         name: "Elven curved blade"),
     WeaponModel(
         isSelected: false,
+        critical: "x2",
+        damage: "1d10",
         type: WeaponTypeModel(
             name: "Polearm",
             isSelected: false,
@@ -386,6 +477,8 @@ class EquipData {
         name: "Halberd"),
     WeaponModel(
         isSelected: false,
+        critical: "x2",
+        damage: "1d6/1d6",
         type: WeaponTypeModel(
             name: "Exotic",
             isSelected: false,
@@ -393,6 +486,8 @@ class EquipData {
         name: "Quarterstaff"),
     WeaponModel(
         isSelected: false,
+        critical: "19-20 x2",
+        damage: "1d8/1d8",
         type: WeaponTypeModel(
             name: "Exotic",
             isSelected: false,
@@ -400,6 +495,8 @@ class EquipData {
         name: "Double saber"),
     WeaponModel(
         isSelected: false,
+        critical: "x2",
+        damage: "2d4",
         type: WeaponTypeModel(
             name: "Exotic",
             isSelected: false,
@@ -407,6 +504,8 @@ class EquipData {
         name: "Spiked chain"),
     WeaponModel(
         isSelected: false,
+        critical: "-",
+        damage: "-",
         type: WeaponTypeModel(
             name: "Exotic",
             isSelected: false,
@@ -414,6 +513,8 @@ class EquipData {
         name: "Net"),
     WeaponModel(
         isSelected: false,
+        critical: "19-20 x2",
+        damage: "1d12",
         type: WeaponTypeModel(
             name: "Exotic",
             isSelected: false,
@@ -421,6 +522,8 @@ class EquipData {
         name: "Flying blade"),
     WeaponModel(
         isSelected: false,
+        critical: "x2",
+        damage: "1d6/1d6",
         type: WeaponTypeModel(
             name: "Exotic",
             isSelected: false,
@@ -428,11 +531,22 @@ class EquipData {
         name: "Double-chained"),
     WeaponModel(
         isSelected: false,
+        critical: "x2",
+        damage: "1d8/1d8",
         type: WeaponTypeModel(
             name: "Exotic",
             isSelected: false,
             picture: "assets/images/weapon_types/exotic.svg"),
         name: "Dire flail"),
+    WeaponModel(
+        isSelected: false,
+        critical: "x4",
+        damage: "1d10",
+        type: WeaponTypeModel(
+            name: "Exotic",
+            isSelected: false,
+            picture: "assets/images/weapon_types/battle-axe.svg"),
+        name: "Heavy pick"),
   ];
 
   final List<WeaponTypeModel> twoHandedTypes = [
@@ -465,6 +579,8 @@ class EquipData {
   final List<WeaponModel> distanceWeapons = [
     WeaponModel(
         isSelected: false,
+        critical: "",
+        damage: "1d10",
         type: WeaponTypeModel(
             name: "Crossbow",
             isSelected: false,
@@ -472,6 +588,8 @@ class EquipData {
         name: "Heavy crossbow"),
     WeaponModel(
         isSelected: false,
+        critical: "",
+        damage: "1d6",
         type: WeaponTypeModel(
             name: "Throwing",
             isSelected: false,
@@ -479,6 +597,8 @@ class EquipData {
         name: "Throwing axe"),
     WeaponModel(
         isSelected: false,
+        critical: "",
+        damage: "1d6",
         type: WeaponTypeModel(
             name: "Throwing",
             isSelected: false,
@@ -486,6 +606,8 @@ class EquipData {
         name: "Javelin"),
     WeaponModel(
         isSelected: false,
+        critical: "",
+        damage: "1d8",
         type: WeaponTypeModel(
             name: "Throwing",
             isSelected: false,
@@ -493,6 +615,8 @@ class EquipData {
         name: "Sling"),
     WeaponModel(
         isSelected: false,
+        critical: "",
+        damage: "1d8",
         type: WeaponTypeModel(
             name: "Throwing",
             isSelected: false,
@@ -500,6 +624,8 @@ class EquipData {
         name: "Chakram"),
     WeaponModel(
         isSelected: false,
+        critical: "",
+        damage: "1d8",
         type: WeaponTypeModel(
             name: "Crossbow",
             isSelected: false,
@@ -507,6 +633,8 @@ class EquipData {
         name: "Light crossbow"),
     WeaponModel(
         isSelected: false,
+        critical: "",
+        damage: "1d8",
         type: WeaponTypeModel(
             name: "Bow",
             isSelected: false,
@@ -514,6 +642,8 @@ class EquipData {
         name: "Composite longbow"),
     WeaponModel(
         isSelected: false,
+        critical: "",
+        damage: "1d6",
         type: WeaponTypeModel(
             name: "Bow",
             isSelected: false,
@@ -521,6 +651,8 @@ class EquipData {
         name: "Composite shortbow"),
     WeaponModel(
         isSelected: false,
+        critical: "",
+        damage: "1d8",
         type: WeaponTypeModel(
             name: "Bow",
             isSelected: false,
@@ -528,6 +660,8 @@ class EquipData {
         name: "Longbow"),
     WeaponModel(
         isSelected: false,
+        critical: "",
+        damage: "1d6",
         type: WeaponTypeModel(
             name: "Throwing",
             isSelected: false,
@@ -535,6 +669,8 @@ class EquipData {
         name: "Pilum"),
     WeaponModel(
         isSelected: false,
+        critical: "",
+        damage: "1d6",
         type: WeaponTypeModel(
             name: "Bow",
             isSelected: false,
@@ -542,6 +678,8 @@ class EquipData {
         name: "Shortbow"),
     WeaponModel(
         isSelected: false,
+        critical: "",
+        damage: "-",
         type: WeaponTypeModel(
             name: "Throwing",
             isSelected: false,
@@ -549,20 +687,8 @@ class EquipData {
         name: "Bolas"),
     WeaponModel(
         isSelected: false,
-        type: WeaponTypeModel(
-            name: "Throwing",
-            isSelected: false,
-            picture: "assets/images/weapon_types/throwing.svg"),
-        name: "Boomerang"),
-    WeaponModel(
-        isSelected: false,
-        type: WeaponTypeModel(
-            name: "Crossbow",
-            isSelected: false,
-            picture: "assets/images/weapon_types/crossbow.svg"),
-        name: "Hand crossbow"),
-    WeaponModel(
-        isSelected: false,
+        critical: "",
+        damage: "1d2",
         type: WeaponTypeModel(
             name: "Throwing",
             isSelected: false,
@@ -570,6 +696,8 @@ class EquipData {
         name: "Shuriken"),
     WeaponModel(
         isSelected: false,
+        critical: "",
+        damage: "1d6",
         type: WeaponTypeModel(
             name: "Throwing",
             isSelected: false,

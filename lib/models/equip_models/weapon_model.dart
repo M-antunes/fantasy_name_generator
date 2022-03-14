@@ -10,7 +10,8 @@ class WeaponModel {
   final String? name;
   final EnchantModel? enchantment;
   final int? power;
-  final int? damage;
+  final String? damage;
+  final String? critical;
   WeaponModel({
     this.type,
     this.isSelected,
@@ -18,6 +19,7 @@ class WeaponModel {
     this.enchantment,
     this.power,
     this.damage,
+    this.critical,
   });
 
   WeaponModel copyWith({
@@ -26,7 +28,8 @@ class WeaponModel {
     String? name,
     EnchantModel? enchantment,
     int? power,
-    int? damage,
+    String? damage,
+    String? critical,
   }) {
     return WeaponModel(
       type: type ?? this.type,
@@ -35,6 +38,7 @@ class WeaponModel {
       enchantment: enchantment ?? this.enchantment,
       power: power ?? this.power,
       damage: damage ?? this.damage,
+      critical: critical ?? this.critical,
     );
   }
 
@@ -46,6 +50,7 @@ class WeaponModel {
       'enchantment': enchantment?.toMap(),
       'power': power,
       'damage': damage,
+      'critical': critical,
     };
   }
 
@@ -58,7 +63,8 @@ class WeaponModel {
           ? EnchantModel.fromMap(map['enchantment'])
           : null,
       power: map['power']?.toInt(),
-      damage: map['damage']?.toInt(),
+      damage: map['damage'],
+      critical: map['critical'],
     );
   }
 
@@ -69,7 +75,7 @@ class WeaponModel {
 
   @override
   String toString() {
-    return 'WeaponModel(type: $type, isSelected: $isSelected, name: $name, enchantment: $enchantment, power: $power, damage: $damage)';
+    return 'WeaponModel(type: $type, isSelected: $isSelected, name: $name, enchantment: $enchantment, power: $power, damage: $damage, critical: $critical)';
   }
 
   @override
@@ -82,7 +88,8 @@ class WeaponModel {
         other.name == name &&
         other.enchantment == enchantment &&
         other.power == power &&
-        other.damage == damage;
+        other.damage == damage &&
+        other.critical == critical;
   }
 
   @override
@@ -92,6 +99,7 @@ class WeaponModel {
         name.hashCode ^
         enchantment.hashCode ^
         power.hashCode ^
-        damage.hashCode;
+        damage.hashCode ^
+        critical.hashCode;
   }
 }
