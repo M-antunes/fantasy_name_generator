@@ -3,7 +3,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
 import 'package:fantasy_name_generator/controllers/equip_controller.dart';
-import 'package:fantasy_name_generator/models/char_model.dart';
 import 'package:fantasy_name_generator/shared/constants/phone_sizes.dart';
 import 'package:fantasy_name_generator/shared/themes/app_colors.dart';
 import 'package:fantasy_name_generator/shared/themes/app_text_styles.dart';
@@ -13,10 +12,8 @@ import 'widgets/row_of_weapon_types.dart';
 import 'widgets/weapon_label_division.dart';
 
 class WeaponChoiceSection extends StatelessWidget {
-  final CharModel char;
   const WeaponChoiceSection({
     Key? key,
-    required this.char,
   }) : super(key: key);
 
   @override
@@ -40,23 +37,23 @@ class WeaponChoiceSection extends StatelessWidget {
                       text: "Weapon selection for ",
                     ),
                     TextSpan(
-                      text: "${char.charName.fullName} - status:",
+                      text: "${state.char.charName.fullName} - status:",
                       style: AppTextStyle.subTextWhitePlusSize,
                     ),
                     TextSpan(
                       text: state.chosenPrimaryWeaponType == null &&
                               state.chosenSecondaryWeaponType == null &&
                               state.chosenEmergencyWeaponType == null
-                          ? " Primary weapon type"
+                          ? " Primary weapon family"
                           : state.chosenPrimaryWeaponType != null &&
                                   state.chosenSecondaryWeaponType == null &&
                                   state.chosenEmergencyWeaponType == null
-                              ? " Secondary weapon type"
+                              ? " Secondary weapon family"
                               : state.chosenPrimaryWeaponType != null &&
                                       state.chosenSecondaryWeaponType != null &&
                                       state.chosenEmergencyWeaponType != null
                                   ? " Finished"
-                                  : " Emergency weapon type",
+                                  : " Emergency weapon family",
                     ),
                   ],
                 ),

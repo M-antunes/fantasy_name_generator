@@ -1,13 +1,14 @@
+import 'package:fantasy_name_generator/shared/constants/phone_sizes.dart';
 import 'package:fantasy_name_generator/shared/themes/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
+import 'app_horizontal_line.dart';
+
 class AtributeDivision extends StatelessWidget {
-  final Size size;
   final String label;
   final String? label2;
   const AtributeDivision({
     Key? key,
-    required this.size,
     required this.label,
     this.label2,
   }) : super(key: key);
@@ -17,29 +18,21 @@ class AtributeDivision extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(height: size.height * 0.005),
-        Container(
-          width: size.width * 0.92,
-          height: size.height * 0.002,
-          color: Colors.grey,
-        ),
+        SizedBox(height: deviceHeight! * 0.005),
+        const AppHorizontalLine(),
         Padding(
             padding: const EdgeInsets.only(top: 3),
             child: Text(
               label,
               style: AppTextStyle.atributeDivisionText,
             )),
-        Container(
-          width: size.width * 0.92,
-          height: size.height * 0.002,
-          color: Colors.grey,
-        ),
+        const AppHorizontalLine(),
         if (label2 != null)
           Text(
             label2!,
             style: TextStyle(color: Colors.grey[600], fontSize: 12),
           ),
-        SizedBox(height: size.height * 0.01),
+        SizedBox(height: deviceHeight! * 0.01),
       ],
     );
   }

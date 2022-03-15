@@ -10,7 +10,7 @@ import '../../../../shared/themes/app_colors.dart';
 class RowOfWeaponType extends StatelessWidget {
   final Size size;
   final EquipController ctrl;
-  final List<WeaponTypeModel> weaponTypeList;
+  final List<WeaponFamilyModel> weaponTypeList;
   final bool isTypeDescriptionSelected;
   const RowOfWeaponType({
     Key? key,

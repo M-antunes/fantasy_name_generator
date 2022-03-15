@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:fantasy_name_generator/controllers/char_controller.dart';
 
 import '../../../shared/themes/app_text_styles.dart';
-import 'widgets/atribute_division.dart';
+import '../../../shared/widgets/atribute_division.dart';
 import 'widgets/defense_info.dart';
 import 'widgets/stats_description_column.dart';
 
@@ -61,9 +61,8 @@ class _ProgressCheckState extends State<ProgressCheck> {
                 ),
               ),
               SizedBox(height: size.height * 0.01),
-              AtributeDivision(
-                size: size,
-                label: "ATRIBUTES  (BASE / MODIFIER)",
+              const AtributeDivision(
+                label: "ABILITY SCORES  (base / modifier)",
                 label2: "These values might be altered depending on equipment",
               ),
               Row(
@@ -129,35 +128,43 @@ class _ProgressCheckState extends State<ProgressCheck> {
                   ),
                 ],
               ),
-              AtributeDivision(
-                size: size,
+              const AtributeDivision(
                 label: "COMBAT",
                 label2: "These values might be altered depending on equipment",
-              ),
-              DefenseInfo(
-                size: size,
-                label: "HP:",
-                value: state.generatedChar.hitPoints,
               ),
               Row(
                 children: [
                   DefenseInfo(
                     size: size,
-                    label: "BAB:",
-                    value: state.generatedChar.combatStats.baseAttackBonus!,
+                    label: "HP:",
+                    value: state.generatedChar.hitPoints,
                   ),
                   SizedBox(width: size.width * 0.03),
                   DefenseInfo(
                     size: size,
-                    label: "CMB:",
-                    value: state.generatedChar.combatStats.combatManeuverBonus!,
+                    label: "Initiative",
+                    value: state.generatedChar.modAtributes.dexterity!,
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  DefenseInfo(
+                    size: size,
+                    label: "FORT:",
+                    value: state.generatedChar.resistances.fortitude!,
                   ),
                   SizedBox(width: size.width * 0.03),
                   DefenseInfo(
                     size: size,
-                    label: "CMD:",
-                    value:
-                        state.generatedChar.combatStats.combatManeuverDefense!,
+                    label: "REF:",
+                    value: state.generatedChar.resistances.reflex!,
+                  ),
+                  SizedBox(width: size.width * 0.03),
+                  DefenseInfo(
+                    size: size,
+                    label: "WILL:",
+                    value: state.generatedChar.resistances.will!,
                   ),
                 ],
               ),
@@ -186,20 +193,21 @@ class _ProgressCheckState extends State<ProgressCheck> {
                 children: [
                   DefenseInfo(
                     size: size,
-                    label: "FORT:",
-                    value: state.generatedChar.resistances.fortitude!,
+                    label: "BAB:",
+                    value: state.generatedChar.combatStats.baseAttackBonus!,
                   ),
                   SizedBox(width: size.width * 0.03),
                   DefenseInfo(
                     size: size,
-                    label: "REF:",
-                    value: state.generatedChar.resistances.reflex!,
+                    label: "CMB:",
+                    value: state.generatedChar.combatStats.combatManeuverBonus!,
                   ),
                   SizedBox(width: size.width * 0.03),
                   DefenseInfo(
                     size: size,
-                    label: "WILL:",
-                    value: state.generatedChar.resistances.will!,
+                    label: "CMD:",
+                    value:
+                        state.generatedChar.combatStats.combatManeuverDefense!,
                   ),
                 ],
               ),

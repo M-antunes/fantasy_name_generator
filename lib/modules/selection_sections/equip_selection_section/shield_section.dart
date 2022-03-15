@@ -1,6 +1,7 @@
 import 'package:fantasy_name_generator/shared/constants/phone_sizes.dart';
 import 'package:fantasy_name_generator/shared/themes/app_colors.dart';
 import 'package:fantasy_name_generator/shared/themes/app_text_styles.dart';
+import 'package:fantasy_name_generator/shared/widgets/app_horizontal_line.dart';
 import 'package:flutter/material.dart';
 
 import 'package:fantasy_name_generator/controllers/equip_controller.dart';
@@ -19,23 +20,22 @@ class ShieldSection extends StatelessWidget {
     return Column(
       children: [
         SizedBox(height: deviceHeight! * 0.2),
-        Text(
-          ctrl.char.charClass.name == "Rogue" ||
-                  ctrl.char.charClass.name == "Sorcerer" ||
-                  ctrl.char.charClass.name == "Wizard" ||
-                  ctrl.char.charClass.name == "Summoner" ||
-                  ctrl.char.charClass.name == "Alchemist" ||
-                  ctrl.char.charClass.name == "Monk"
-              ? "${ctrl.char.charClass.name}s are NOT proficient with shields"
-              : "${ctrl.char.charClass.name}s are proficient with all shields",
-          style: AppTextStyle.subTextGreyPlusSize,
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12),
+          child: Text(
+            ctrl.char.charClass.name == "Rogue" ||
+                    ctrl.char.charClass.name == "Sorcerer" ||
+                    ctrl.char.charClass.name == "Wizard" ||
+                    ctrl.char.charClass.name == "Summoner" ||
+                    ctrl.char.charClass.name == "Alchemist" ||
+                    ctrl.char.charClass.name == "Monk"
+                ? "${ctrl.char.charClass.name}s are NOT proficient with shields"
+                : "${ctrl.char.charClass.name}s are proficient with all shields",
+            style: AppTextStyle.subTextGrey,
+          ),
         ),
         SizedBox(height: deviceHeight! * 0.003),
-        Container(
-          width: deviceWidth! * 0.92,
-          height: deviceHeight! * 0.003,
-          color: Colors.grey,
-        ),
+        const AppHorizontalLine(),
         SizedBox(height: deviceHeight! * 0.05),
         Consumer<EquipController>(builder: (context, state, child) {
           return Padding(

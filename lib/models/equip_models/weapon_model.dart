@@ -5,7 +5,7 @@ import 'package:fantasy_name_generator/models/equip_models/weapon_type_model.dar
 import 'enchant_model.dart';
 
 class WeaponModel {
-  final WeaponTypeModel? type;
+  final WeaponFamilyModel? type;
   bool? isSelected;
   final String? name;
   final EnchantModel? enchantment;
@@ -23,7 +23,7 @@ class WeaponModel {
   });
 
   WeaponModel copyWith({
-    WeaponTypeModel? type,
+    WeaponFamilyModel? type,
     bool? isSelected,
     String? name,
     EnchantModel? enchantment,
@@ -56,7 +56,7 @@ class WeaponModel {
 
   factory WeaponModel.fromMap(Map<String, dynamic> map) {
     return WeaponModel(
-      type: map['type'] != null ? WeaponTypeModel.fromMap(map['type']) : null,
+      type: map['type'] != null ? WeaponFamilyModel.fromMap(map['type']) : null,
       isSelected: map['isSelected'],
       name: map['name'],
       enchantment: map['enchantment'] != null

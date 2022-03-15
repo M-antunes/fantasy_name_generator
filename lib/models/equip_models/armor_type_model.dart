@@ -1,21 +1,21 @@
 import 'dart:convert';
 
-class ArmorTypeModel {
+class ArmorFamilyModel {
   String name;
   bool isSelected;
   String picture;
-  ArmorTypeModel({
+  ArmorFamilyModel({
     required this.name,
     required this.isSelected,
     required this.picture,
   });
 
-  ArmorTypeModel copyWith({
+  ArmorFamilyModel copyWith({
     String? name,
     bool? isSelected,
     String? picture,
   }) {
-    return ArmorTypeModel(
+    return ArmorFamilyModel(
       name: name ?? this.name,
       isSelected: isSelected ?? this.isSelected,
       picture: picture ?? this.picture,
@@ -30,8 +30,8 @@ class ArmorTypeModel {
     };
   }
 
-  factory ArmorTypeModel.fromMap(Map<String, dynamic> map) {
-    return ArmorTypeModel(
+  factory ArmorFamilyModel.fromMap(Map<String, dynamic> map) {
+    return ArmorFamilyModel(
       name: map['name'] ?? '',
       isSelected: map['isSelected'] ?? false,
       picture: map['picture'] ?? '',
@@ -40,8 +40,8 @@ class ArmorTypeModel {
 
   String toJson() => json.encode(toMap());
 
-  factory ArmorTypeModel.fromJson(String source) =>
-      ArmorTypeModel.fromMap(json.decode(source));
+  factory ArmorFamilyModel.fromJson(String source) =>
+      ArmorFamilyModel.fromMap(json.decode(source));
 
   @override
   String toString() =>
@@ -51,7 +51,7 @@ class ArmorTypeModel {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is ArmorTypeModel &&
+    return other is ArmorFamilyModel &&
         other.name == name &&
         other.isSelected == isSelected &&
         other.picture == picture;

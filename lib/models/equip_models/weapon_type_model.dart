@@ -1,21 +1,21 @@
 import 'dart:convert';
 
-class WeaponTypeModel {
+class WeaponFamilyModel {
   String name;
   bool isSelected;
   String picture;
-  WeaponTypeModel({
+  WeaponFamilyModel({
     required this.name,
     required this.isSelected,
     required this.picture,
   });
 
-  WeaponTypeModel copyWith({
+  WeaponFamilyModel copyWith({
     String? name,
     bool? isSelected,
     String? picture,
   }) {
-    return WeaponTypeModel(
+    return WeaponFamilyModel(
       name: name ?? this.name,
       isSelected: isSelected ?? this.isSelected,
       picture: picture ?? this.picture,
@@ -30,8 +30,8 @@ class WeaponTypeModel {
     };
   }
 
-  factory WeaponTypeModel.fromMap(Map<String, dynamic> map) {
-    return WeaponTypeModel(
+  factory WeaponFamilyModel.fromMap(Map<String, dynamic> map) {
+    return WeaponFamilyModel(
       name: map['name'] ?? '',
       isSelected: map['isSelected'] ?? false,
       picture: map['picture'] ?? '',
@@ -40,8 +40,8 @@ class WeaponTypeModel {
 
   String toJson() => json.encode(toMap());
 
-  factory WeaponTypeModel.fromJson(String source) =>
-      WeaponTypeModel.fromMap(json.decode(source));
+  factory WeaponFamilyModel.fromJson(String source) =>
+      WeaponFamilyModel.fromMap(json.decode(source));
 
   @override
   String toString() =>
@@ -51,7 +51,7 @@ class WeaponTypeModel {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is WeaponTypeModel &&
+    return other is WeaponFamilyModel &&
         other.name == name &&
         other.isSelected == isSelected &&
         other.picture == picture;

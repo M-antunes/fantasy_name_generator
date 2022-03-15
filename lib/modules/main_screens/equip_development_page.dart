@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:fantasy_name_generator/controllers/equip_controller.dart';
 import 'package:fantasy_name_generator/models/char_model.dart';
-import 'package:fantasy_name_generator/modules/selection_sections/equip_selection_section/equip_progress_check.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -82,10 +81,9 @@ class _EquipDevelopMentPageState extends State<EquipDevelopMentPage> {
               ),
             ),
             if (state.creationStage == 1) const ChoiceSection(),
-            if (state.creationStage == 2) WeaponChoiceSection(char: char),
+            if (state.creationStage == 2) const WeaponChoiceSection(),
             if (state.creationStage == 3) ShieldSection(ctrl: state),
             if (state.creationStage == 4) ArmorSection(ctrl: state),
-            if (state.creationStage == 5) EquipProgressCheck(ctrl: state),
           ],
         );
       }),
@@ -149,11 +147,11 @@ class _EquipDevelopMentPageState extends State<EquipDevelopMentPage> {
                           state.undoNoshield();
                           state.retreatCreationStage();
                         } else if (state.creationStage == 4 &&
-                                state.hasDualWeild ||
-                            state.listOfEquip.twoHandedTypes
-                                .contains(state.chosenPrimaryWeaponType) ||
-                            state.listOfEquip.distanceTypes
-                                .contains(state.chosenPrimaryWeaponType)) {
+                            (state.hasDualWeild ||
+                                state.listOfEquip.twoHandedTypes
+                                    .contains(state.chosenPrimaryWeaponType) ||
+                                state.listOfEquip.distanceTypes
+                                    .contains(state.chosenPrimaryWeaponType))) {
                           state.retreatCreationStage();
                           state.retreatCreationStage();
                         } else {

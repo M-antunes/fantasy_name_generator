@@ -7,42 +7,50 @@ import 'enchant_model.dart';
 class ArmorModel {
   final String name;
   final String? material;
-  final ArmorTypeModel? type;
-  final String? picture;
+  final ArmorFamilyModel? type;
   bool? isSelected;
   final EnchantModel? enchantment;
   final int? power;
   final int? defenseBonus;
+  final int? checkPenalty;
+  final int? maxDexAllowed;
+  final int? speedPenalty;
   ArmorModel({
     required this.name,
     this.material,
     this.type,
-    this.picture,
     this.isSelected,
     this.enchantment,
     this.power,
     this.defenseBonus,
+    this.checkPenalty,
+    this.maxDexAllowed,
+    this.speedPenalty,
   });
 
   ArmorModel copyWith({
     String? name,
     String? material,
-    ArmorTypeModel? type,
-    String? picture,
+    ArmorFamilyModel? type,
     bool? isSelected,
     EnchantModel? enchantment,
     int? power,
     int? defenseBonus,
+    int? checkPenalty,
+    int? maxDexAllowed,
+    int? speedPenalty,
   }) {
     return ArmorModel(
       name: name ?? this.name,
       material: material ?? this.material,
       type: type ?? this.type,
-      picture: picture ?? this.picture,
       isSelected: isSelected ?? this.isSelected,
       enchantment: enchantment ?? this.enchantment,
       power: power ?? this.power,
       defenseBonus: defenseBonus ?? this.defenseBonus,
+      checkPenalty: checkPenalty ?? this.checkPenalty,
+      maxDexAllowed: maxDexAllowed ?? this.maxDexAllowed,
+      speedPenalty: speedPenalty ?? this.speedPenalty,
     );
   }
 
@@ -51,11 +59,13 @@ class ArmorModel {
       'name': name,
       'material': material,
       'type': type?.toMap(),
-      'picture': picture,
       'isSelected': isSelected,
       'enchantment': enchantment?.toMap(),
       'power': power,
       'defenseBonus': defenseBonus,
+      'checkPenalty': checkPenalty,
+      'maxDexAllowed': maxDexAllowed,
+      'speedPenalty': speedPenalty,
     };
   }
 
@@ -63,14 +73,16 @@ class ArmorModel {
     return ArmorModel(
       name: map['name'] ?? '',
       material: map['material'],
-      type: map['type'] != null ? ArmorTypeModel.fromMap(map['type']) : null,
-      picture: map['picture'],
+      type: map['type'] != null ? ArmorFamilyModel.fromMap(map['type']) : null,
       isSelected: map['isSelected'],
       enchantment: map['enchantment'] != null
           ? EnchantModel.fromMap(map['enchantment'])
           : null,
       power: map['power']?.toInt(),
       defenseBonus: map['defenseBonus']?.toInt(),
+      checkPenalty: map['checkPenalty']?.toInt(),
+      maxDexAllowed: map['maxDexAllowed']?.toInt(),
+      speedPenalty: map['speedPenalty']?.toInt(),
     );
   }
 
@@ -81,7 +93,7 @@ class ArmorModel {
 
   @override
   String toString() {
-    return 'ArmorModel(name: $name, material: $material, type: $type, picture: $picture, isSelected: $isSelected, enchantment: $enchantment, power: $power, defenseBonus: $defenseBonus)';
+    return 'ArmorModel(name: $name, material: $material, type: $type, isSelected: $isSelected, enchantment: $enchantment, power: $power, defenseBonus: $defenseBonus, checkPenalty: $checkPenalty, maxDexAllowed: $maxDexAllowed, speedPenalty: $speedPenalty)';
   }
 
   @override
@@ -92,11 +104,13 @@ class ArmorModel {
         other.name == name &&
         other.material == material &&
         other.type == type &&
-        other.picture == picture &&
         other.isSelected == isSelected &&
         other.enchantment == enchantment &&
         other.power == power &&
-        other.defenseBonus == defenseBonus;
+        other.defenseBonus == defenseBonus &&
+        other.checkPenalty == checkPenalty &&
+        other.maxDexAllowed == maxDexAllowed &&
+        other.speedPenalty == speedPenalty;
   }
 
   @override
@@ -104,10 +118,12 @@ class ArmorModel {
     return name.hashCode ^
         material.hashCode ^
         type.hashCode ^
-        picture.hashCode ^
         isSelected.hashCode ^
         enchantment.hashCode ^
         power.hashCode ^
-        defenseBonus.hashCode;
+        defenseBonus.hashCode ^
+        checkPenalty.hashCode ^
+        maxDexAllowed.hashCode ^
+        speedPenalty.hashCode;
   }
 }

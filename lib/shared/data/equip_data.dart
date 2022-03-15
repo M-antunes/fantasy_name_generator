@@ -9,7 +9,7 @@ class EquipData {
         isSelected: false,
         critical: "19-20 x2",
         damage: "1d4",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Knife",
             isSelected: false,
             picture: "assets/images/weapon_types/knife.svg"),
@@ -18,7 +18,7 @@ class EquipData {
         isSelected: false,
         critical: "x2",
         damage: "1d4",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Mace",
             isSelected: false,
             picture: "assets/images/weapon_types/mace.svg"),
@@ -27,7 +27,7 @@ class EquipData {
         isSelected: false,
         critical: "x2",
         damage: "1d6",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Mace",
             isSelected: false,
             picture: "assets/images/weapon_types/mace.svg"),
@@ -36,7 +36,7 @@ class EquipData {
         isSelected: false,
         critical: "x2",
         damage: "1d8",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Mace",
             isSelected: false,
             picture: "assets/images/weapon_types/mace.svg"),
@@ -45,7 +45,7 @@ class EquipData {
         isSelected: false,
         critical: "x2",
         damage: "1d8",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Mace",
             isSelected: false,
             picture: "assets/images/weapon_types/mace.svg"),
@@ -54,7 +54,7 @@ class EquipData {
         isSelected: false,
         critical: "19-20 x2",
         damage: "1d4",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Knife",
             isSelected: false,
             picture: "assets/images/weapon_types/knife.svg"),
@@ -63,7 +63,7 @@ class EquipData {
         isSelected: false,
         critical: "19-20 x2",
         damage: "1d6",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Sword",
             isSelected: false,
             picture: "assets/images/weapon_types/sword.svg"),
@@ -72,7 +72,7 @@ class EquipData {
         isSelected: false,
         critical: "x3",
         damage: "1d6",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Axe",
             isSelected: false,
             picture: "assets/images/weapon_types/hatchet.svg"),
@@ -81,7 +81,7 @@ class EquipData {
         isSelected: false,
         critical: "19-20 x2",
         damage: "1d4",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Knife",
             isSelected: false,
             picture: "assets/images/weapon_types/knife.svg"),
@@ -90,7 +90,7 @@ class EquipData {
         isSelected: false,
         critical: "x2",
         damage: "1d4",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Mace",
             isSelected: false,
             picture: "assets/images/weapon_types/mace.svg"),
@@ -99,7 +99,7 @@ class EquipData {
         isSelected: false,
         critical: "19-20 x2",
         damage: "1d6",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Sword",
             isSelected: false,
             picture: "assets/images/weapon_types/sword.svg"),
@@ -108,7 +108,7 @@ class EquipData {
         isSelected: false,
         critical: "x4",
         damage: "1d6",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Axe",
             isSelected: false,
             picture: "assets/images/weapon_types/hatchet.svg"),
@@ -117,7 +117,7 @@ class EquipData {
         isSelected: false,
         critical: "19-20 x2",
         damage: "1d4",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Knife",
             isSelected: false,
             picture: "assets/images/weapon_types/knife.svg"),
@@ -126,7 +126,7 @@ class EquipData {
         isSelected: false,
         critical: "x2",
         damage: "1d8",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Exotic",
             isSelected: false,
             picture: "assets/images/weapon_types/exotic.svg"),
@@ -135,7 +135,7 @@ class EquipData {
         isSelected: false,
         critical: "19-20 x2",
         damage: "1d8",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Sword",
             isSelected: false,
             picture: "assets/images/weapon_types/sword.svg"),
@@ -144,7 +144,7 @@ class EquipData {
         isSelected: false,
         critical: "19-20 x2",
         damage: "1d6",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Sword",
             isSelected: false,
             picture: "assets/images/weapon_types/sword.svg"),
@@ -153,7 +153,7 @@ class EquipData {
         isSelected: false,
         critical: "19-20 x2",
         damage: "1d6",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Sword",
             isSelected: false,
             picture: "assets/images/weapon_types/sword.svg"),
@@ -162,7 +162,7 @@ class EquipData {
         isSelected: false,
         critical: "19-20 x2",
         damage: "2d4",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Sword",
             isSelected: false,
             picture: "assets/images/weapon_types/sword.svg"),
@@ -171,7 +171,7 @@ class EquipData {
         isSelected: false,
         critical: "x2",
         damage: "1d2",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Exotic",
             isSelected: false,
             picture: "assets/images/weapon_types/exotic.svg"),
@@ -180,7 +180,7 @@ class EquipData {
         isSelected: false,
         critical: "19-20 x2",
         damage: "1d4",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Knife",
             isSelected: false,
             picture: "assets/images/weapon_types/knife.svg"),
@@ -189,7 +189,7 @@ class EquipData {
         isSelected: false,
         critical: "19-20 x2",
         damage: "1d10",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Sword",
             isSelected: false,
             picture: "assets/images/weapon_types/sword.svg"),
@@ -198,7 +198,7 @@ class EquipData {
         isSelected: false,
         critical: "x3",
         damage: "1d10",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Axe",
             isSelected: false,
             picture: "assets/images/weapon_types/hatchet.svg"),
@@ -207,7 +207,7 @@ class EquipData {
         isSelected: false,
         critical: "19-20 x2",
         damage: "1d8",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Sword",
             isSelected: false,
             picture: "assets/images/weapon_types/sword.svg"),
@@ -216,7 +216,7 @@ class EquipData {
         isSelected: false,
         critical: "19-20 x2",
         damage: "1d8",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Sword",
             isSelected: false,
             picture: "assets/images/weapon_types/sword.svg"),
@@ -225,7 +225,7 @@ class EquipData {
         isSelected: false,
         critical: "x4",
         damage: "2d4",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Exotic",
             isSelected: false,
             picture: "assets/images/weapon_types/exotic.svg"),
@@ -234,7 +234,7 @@ class EquipData {
         isSelected: false,
         critical: "x2",
         damage: "1d4",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Fist",
             isSelected: false,
             picture: "assets/images/weapon_types/punch.svg"),
@@ -243,7 +243,7 @@ class EquipData {
         isSelected: false,
         critical: "x2",
         damage: "1d4",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Fist",
             isSelected: false,
             picture: "assets/images/weapon_types/punch.svg"),
@@ -252,7 +252,7 @@ class EquipData {
         isSelected: false,
         critical: "x2",
         damage: "1d4",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Fist",
             isSelected: false,
             picture: "assets/images/weapon_types/punch.svg"),
@@ -261,34 +261,34 @@ class EquipData {
         isSelected: false,
         critical: "x2",
         damage: "1d4",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Fist",
             isSelected: false,
             picture: "assets/images/weapon_types/punch.svg"),
         name: "Spiked gauntlet"),
   ];
-  final List<WeaponTypeModel> oneHandedTypes = [
-    WeaponTypeModel(
+  final List<WeaponFamilyModel> oneHandedTypes = [
+    WeaponFamilyModel(
         name: "Knife",
         isSelected: false,
         picture: "assets/images/weapon_types/knife.svg"),
-    WeaponTypeModel(
+    WeaponFamilyModel(
         name: "Sword",
         isSelected: false,
         picture: "assets/images/weapon_types/sword.svg"),
-    WeaponTypeModel(
+    WeaponFamilyModel(
         name: "Axe",
         isSelected: false,
         picture: "assets/images/weapon_types/hatchet.svg"),
-    WeaponTypeModel(
+    WeaponFamilyModel(
         name: "Mace",
         isSelected: false,
         picture: "assets/images/weapon_types/hammer.svg"),
-    WeaponTypeModel(
+    WeaponFamilyModel(
         name: "Fist",
         isSelected: false,
         picture: "assets/images/weapon_types/punch.svg"),
-    WeaponTypeModel(
+    WeaponFamilyModel(
         name: "Exotic",
         isSelected: false,
         picture: "assets/images/weapon_types/exotic.svg"),
@@ -299,7 +299,7 @@ class EquipData {
         isSelected: false,
         critical: "19-20 x2",
         damage: "1d6",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Polearm",
             isSelected: false,
             picture: "assets/images/weapon_types/polearm.svg"),
@@ -308,7 +308,7 @@ class EquipData {
         isSelected: false,
         critical: "x3",
         damage: "1d8",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Spear",
             isSelected: false,
             picture: "assets/images/weapon_types/spear.svg"),
@@ -317,7 +317,7 @@ class EquipData {
         isSelected: false,
         critical: "x3",
         damage: "1d8",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Spear",
             isSelected: false,
             picture: "assets/images/weapon_types/spear.svg"),
@@ -326,7 +326,7 @@ class EquipData {
         isSelected: false,
         critical: "x2",
         damage: "1d10",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Polearm",
             isSelected: false,
             picture: "assets/images/weapon_types/polearm.svg"),
@@ -335,7 +335,7 @@ class EquipData {
         isSelected: false,
         critical: "x3",
         damage: "1d8",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Polearm",
             isSelected: false,
             picture: "assets/images/weapon_types/polearm.svg"),
@@ -344,7 +344,7 @@ class EquipData {
         isSelected: false,
         critical: "x3",
         damage: "1d10",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Polearm",
             isSelected: false,
             picture: "assets/images/weapon_types/polearm.svg"),
@@ -353,7 +353,7 @@ class EquipData {
         isSelected: false,
         critical: "x2",
         damage: "1d10",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Polearm",
             isSelected: false,
             picture: "assets/images/weapon_types/polearm.svg"),
@@ -362,7 +362,7 @@ class EquipData {
         isSelected: false,
         critical: "x3",
         damage: "2d6",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Mace",
             isSelected: false,
             picture: "assets/images/weapon_types/mace.svg"),
@@ -371,7 +371,7 @@ class EquipData {
         isSelected: false,
         critical: "x3",
         damage: "1d10",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Mace",
             isSelected: false,
             picture: "assets/images/weapon_types/mace.svg"),
@@ -380,7 +380,7 @@ class EquipData {
         isSelected: false,
         critical: "x3",
         damage: "1d12",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Mace",
             isSelected: false,
             picture: "assets/images/weapon_types/mace.svg"),
@@ -389,7 +389,7 @@ class EquipData {
         isSelected: false,
         critical: "x3",
         damage: "1d12",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Axe",
             isSelected: false,
             picture: "assets/images/weapon_types/battle-axe.svg"),
@@ -398,7 +398,7 @@ class EquipData {
         isSelected: false,
         critical: "19-20x2",
         damage: "2d6",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Sword",
             isSelected: false,
             picture: "assets/images/weapon_types/great-sword.svg"),
@@ -407,7 +407,7 @@ class EquipData {
         isSelected: false,
         critical: "x2",
         damage: "1d10",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Polearm",
             isSelected: false,
             picture: "assets/images/weapon_types/polearm.svg"),
@@ -416,7 +416,7 @@ class EquipData {
         isSelected: false,
         critical: "x2",
         damage: "1d8",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Spear",
             isSelected: false,
             picture: "assets/images/weapon_types/spear.svg"),
@@ -425,7 +425,7 @@ class EquipData {
         isSelected: false,
         critical: "x3",
         damage: "1d8",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Spear",
             isSelected: false,
             picture: "assets/images/weapon_types/spear.svg"),
@@ -434,7 +434,7 @@ class EquipData {
         isSelected: false,
         critical: "x4",
         damage: "2d4",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Polearm",
             isSelected: false,
             picture: "assets/images/weapon_types/polearm.svg"),
@@ -443,7 +443,7 @@ class EquipData {
         isSelected: false,
         critical: "x2",
         damage: "1d10",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Axe",
             isSelected: false,
             picture: "assets/images/weapon_types/battle-axe.svg"),
@@ -452,7 +452,7 @@ class EquipData {
         isSelected: false,
         critical: "x2",
         damage: "1d8",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Spear",
             isSelected: false,
             picture: "assets/images/weapon_types/spear.svg"),
@@ -461,7 +461,7 @@ class EquipData {
         isSelected: false,
         critical: "19-20x2",
         damage: "1d10",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Sword",
             isSelected: false,
             picture: "assets/images/weapon_types/great-sword.svg"),
@@ -470,7 +470,7 @@ class EquipData {
         isSelected: false,
         critical: "x2",
         damage: "1d10",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Polearm",
             isSelected: false,
             picture: "assets/images/weapon_types/polearm.svg"),
@@ -479,7 +479,7 @@ class EquipData {
         isSelected: false,
         critical: "x2",
         damage: "1d6/1d6",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Exotic",
             isSelected: false,
             picture: "assets/images/weapon_types/exotic.svg"),
@@ -488,7 +488,7 @@ class EquipData {
         isSelected: false,
         critical: "19-20 x2",
         damage: "1d8/1d8",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Exotic",
             isSelected: false,
             picture: "assets/images/weapon_types/exotic.svg"),
@@ -497,7 +497,7 @@ class EquipData {
         isSelected: false,
         critical: "x2",
         damage: "2d4",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Exotic",
             isSelected: false,
             picture: "assets/images/weapon_types/exotic.svg"),
@@ -506,7 +506,7 @@ class EquipData {
         isSelected: false,
         critical: "-",
         damage: "-",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Exotic",
             isSelected: false,
             picture: "assets/images/weapon_types/exotic.svg"),
@@ -515,7 +515,7 @@ class EquipData {
         isSelected: false,
         critical: "19-20 x2",
         damage: "1d12",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Exotic",
             isSelected: false,
             picture: "assets/images/weapon_types/exotic.svg"),
@@ -524,7 +524,7 @@ class EquipData {
         isSelected: false,
         critical: "x2",
         damage: "1d6/1d6",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Exotic",
             isSelected: false,
             picture: "assets/images/weapon_types/exotic.svg"),
@@ -533,7 +533,7 @@ class EquipData {
         isSelected: false,
         critical: "x2",
         damage: "1d8/1d8",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Exotic",
             isSelected: false,
             picture: "assets/images/weapon_types/exotic.svg"),
@@ -542,35 +542,35 @@ class EquipData {
         isSelected: false,
         critical: "x4",
         damage: "1d10",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Exotic",
             isSelected: false,
             picture: "assets/images/weapon_types/battle-axe.svg"),
         name: "Heavy pick"),
   ];
 
-  final List<WeaponTypeModel> twoHandedTypes = [
-    WeaponTypeModel(
+  final List<WeaponFamilyModel> twoHandedTypes = [
+    WeaponFamilyModel(
         name: "Sword",
         isSelected: false,
         picture: "assets/images/weapon_types/great-sword.svg"),
-    WeaponTypeModel(
+    WeaponFamilyModel(
         name: "Spear",
         isSelected: false,
         picture: "assets/images/weapon_types/spear.svg"),
-    WeaponTypeModel(
+    WeaponFamilyModel(
         name: "Axe",
         isSelected: false,
         picture: "assets/images/weapon_types/battle-axe.svg"),
-    WeaponTypeModel(
+    WeaponFamilyModel(
         name: "Mace",
         isSelected: false,
         picture: "assets/images/weapon_types/mace.svg"),
-    WeaponTypeModel(
+    WeaponFamilyModel(
         name: "Polearm",
         isSelected: false,
         picture: "assets/images/weapon_types/polearm.svg"),
-    WeaponTypeModel(
+    WeaponFamilyModel(
         name: "Exotic",
         isSelected: false,
         picture: "assets/images/weapon_types/exotic_tw.svg"),
@@ -581,7 +581,7 @@ class EquipData {
         isSelected: false,
         critical: "",
         damage: "1d10",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Crossbow",
             isSelected: false,
             picture: "assets/images/weapon_types/crossbow.svg"),
@@ -590,7 +590,7 @@ class EquipData {
         isSelected: false,
         critical: "",
         damage: "1d6",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Throwing",
             isSelected: false,
             picture: "assets/images/weapon_types/throwing.svg"),
@@ -599,7 +599,7 @@ class EquipData {
         isSelected: false,
         critical: "",
         damage: "1d6",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Throwing",
             isSelected: false,
             picture: "assets/images/weapon_types/throwing.svg"),
@@ -608,7 +608,7 @@ class EquipData {
         isSelected: false,
         critical: "",
         damage: "1d8",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Throwing",
             isSelected: false,
             picture: "assets/images/weapon_types/throwing.svg"),
@@ -617,7 +617,7 @@ class EquipData {
         isSelected: false,
         critical: "",
         damage: "1d8",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Throwing",
             isSelected: false,
             picture: "assets/images/weapon_types/throwing.svg"),
@@ -626,7 +626,7 @@ class EquipData {
         isSelected: false,
         critical: "",
         damage: "1d8",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Crossbow",
             isSelected: false,
             picture: "assets/images/weapon_types/crossbow.svg"),
@@ -635,7 +635,7 @@ class EquipData {
         isSelected: false,
         critical: "",
         damage: "1d8",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Bow",
             isSelected: false,
             picture: "assets/images/weapon_types/bow.svg"),
@@ -644,7 +644,7 @@ class EquipData {
         isSelected: false,
         critical: "",
         damage: "1d6",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Bow",
             isSelected: false,
             picture: "assets/images/weapon_types/bow.svg"),
@@ -653,7 +653,7 @@ class EquipData {
         isSelected: false,
         critical: "",
         damage: "1d8",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Bow",
             isSelected: false,
             picture: "assets/images/weapon_types/bow.svg"),
@@ -662,7 +662,7 @@ class EquipData {
         isSelected: false,
         critical: "",
         damage: "1d6",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Throwing",
             isSelected: false,
             picture: "assets/images/weapon_types/throwing.svg"),
@@ -671,7 +671,7 @@ class EquipData {
         isSelected: false,
         critical: "",
         damage: "1d6",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Bow",
             isSelected: false,
             picture: "assets/images/weapon_types/bow.svg"),
@@ -680,7 +680,7 @@ class EquipData {
         isSelected: false,
         critical: "",
         damage: "-",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Throwing",
             isSelected: false,
             picture: "assets/images/weapon_types/throwing.svg"),
@@ -689,7 +689,7 @@ class EquipData {
         isSelected: false,
         critical: "",
         damage: "1d2",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Throwing",
             isSelected: false,
             picture: "assets/images/weapon_types/throwing.svg"),
@@ -698,23 +698,23 @@ class EquipData {
         isSelected: false,
         critical: "",
         damage: "1d6",
-        type: WeaponTypeModel(
+        type: WeaponFamilyModel(
             name: "Throwing",
             isSelected: false,
             picture: "assets/images/weapon_types/throwing.svg"),
         name: "Throwing shield"),
   ];
 
-  final List<WeaponTypeModel> distanceTypes = [
-    WeaponTypeModel(
+  final List<WeaponFamilyModel> distanceTypes = [
+    WeaponFamilyModel(
         name: "Bow",
         isSelected: false,
         picture: "assets/images/weapon_types/bow.svg"),
-    WeaponTypeModel(
+    WeaponFamilyModel(
         name: "Crossbow",
         isSelected: false,
         picture: "assets/images/weapon_types/crossbow.svg"),
-    WeaponTypeModel(
+    WeaponFamilyModel(
         name: "Throwing",
         isSelected: false,
         picture: "assets/images/weapon_types/throwing.svg"),
@@ -722,247 +722,359 @@ class EquipData {
 
   final List<ArmorModel> lightArmours = [
     ArmorModel(
-        type: ArmorTypeModel(
+        type: ArmorFamilyModel(
             name: "light armor",
             isSelected: false,
             picture: "assets/images/armors/light.svg"),
+        defenseBonus: 1,
+        maxDexAllowed: 8,
+        checkPenalty: 0,
+        speedPenalty: 0,
         isSelected: false,
         name: "Quilted cloth"),
     ArmorModel(
-        type: ArmorTypeModel(
+        type: ArmorFamilyModel(
             name: "light armor",
             isSelected: false,
             picture: "assets/images/armors/light.svg"),
+        defenseBonus: 1,
+        maxDexAllowed: 8,
+        checkPenalty: 0,
+        speedPenalty: 0,
         isSelected: false,
         name: "Padded"),
     ArmorModel(
-        type: ArmorTypeModel(
+        type: ArmorFamilyModel(
             name: "light armor",
             isSelected: false,
             picture: "assets/images/armors/light.svg"),
+        defenseBonus: 1,
+        maxDexAllowed: 8,
+        checkPenalty: 0,
+        speedPenalty: 0,
         isSelected: false,
         name: "Silken ceremonial"),
     ArmorModel(
-        type: ArmorTypeModel(
+        type: ArmorFamilyModel(
             name: "light armor",
             isSelected: false,
             picture: "assets/images/armors/light.svg"),
+        defenseBonus: 2,
+        maxDexAllowed: 4,
+        checkPenalty: 0,
+        speedPenalty: 0,
         isSelected: false,
-        name: "Lamellar cuirass"),
+        name: "Lamellar (cuirass)"),
     ArmorModel(
-        type: ArmorTypeModel(
+        type: ArmorFamilyModel(
             name: "light armor",
             isSelected: false,
             picture: "assets/images/armors/light.svg"),
+        defenseBonus: 2,
+        maxDexAllowed: 6,
+        checkPenalty: 0,
+        speedPenalty: 0,
         isSelected: false,
         name: "Leather"),
   ];
   List<ArmorModel> mediumArmours = [
     ArmorModel(
-        type: ArmorTypeModel(
+        type: ArmorFamilyModel(
             name: "medium armor",
             isSelected: false,
             picture: "assets/images/armors/medium.svg"),
+        defenseBonus: 3,
+        maxDexAllowed: 5,
+        checkPenalty: 1,
+        speedPenalty: 5,
         isSelected: false,
         name: "Studded leather"),
     ArmorModel(
-        type: ArmorTypeModel(
+        type: ArmorFamilyModel(
             name: "medium armor",
             isSelected: false,
             picture: "assets/images/armors/medium.svg"),
+        defenseBonus: 3,
+        maxDexAllowed: 5,
+        checkPenalty: 1,
+        speedPenalty: 5,
         isSelected: false,
         name: "Wooden plaques"),
     ArmorModel(
-        type: ArmorTypeModel(
+        type: ArmorFamilyModel(
             name: "medium armor",
             isSelected: false,
             picture: "assets/images/armors/medium.svg"),
+        defenseBonus: 4,
+        maxDexAllowed: 4,
+        checkPenalty: 2,
+        speedPenalty: 5,
         isSelected: false,
         name: "Chain shirt"),
     ArmorModel(
-        type: ArmorTypeModel(
+        type: ArmorFamilyModel(
             name: "medium armor",
             isSelected: false,
             picture: "assets/images/armors/medium.svg"),
+        defenseBonus: 4,
+        maxDexAllowed: 4,
+        checkPenalty: 3,
+        speedPenalty: 5,
         isSelected: false,
         name: "Hide"),
     ArmorModel(
-        type: ArmorTypeModel(
+        type: ArmorFamilyModel(
             name: "medium armor",
             isSelected: false,
             picture: "assets/images/armors/medium.svg"),
+        defenseBonus: 5,
+        maxDexAllowed: 3,
+        checkPenalty: 4,
+        speedPenalty: 5,
         isSelected: false,
-        name: "Lamellar"),
+        name: "Lamellar (wooden)"),
     ArmorModel(
-        type: ArmorTypeModel(
+        type: ArmorFamilyModel(
             name: "medium armor",
             isSelected: false,
             picture: "assets/images/armors/medium.svg"),
+        defenseBonus: 5,
+        maxDexAllowed: 3,
+        checkPenalty: 4,
+        speedPenalty: 5,
         isSelected: false,
         name: "Scale mail"),
     ArmorModel(
-        type: ArmorTypeModel(
+        type: ArmorFamilyModel(
             name: "medium armor",
             isSelected: false,
             picture: "assets/images/armors/medium.svg"),
+        defenseBonus: 6,
+        maxDexAllowed: 3,
+        checkPenalty: 4,
+        speedPenalty: 5,
         isSelected: false,
         name: "Agile breastplate"),
+    ArmorModel(
+        type: ArmorFamilyModel(
+            name: "medium armor",
+            isSelected: false,
+            picture: "assets/images/armors/medium.svg"),
+        defenseBonus: 6,
+        maxDexAllowed: 3,
+        checkPenalty: 4,
+        speedPenalty: 5,
+        isSelected: false,
+        name: "Chainmail"),
   ];
 
   List<ArmorModel> heavyArmours = [
     ArmorModel(
-        type: ArmorTypeModel(
+        type: ArmorFamilyModel(
             name: "heavy armor",
             isSelected: false,
             picture: "assets/images/armors/heavy.svg"),
+        defenseBonus: 7,
+        maxDexAllowed: 2,
+        checkPenalty: 6,
+        speedPenalty: 5,
         isSelected: false,
         name: "Breastplate"),
     ArmorModel(
-        type: ArmorTypeModel(
+        type: ArmorFamilyModel(
             name: "heavy armor",
             isSelected: false,
             picture: "assets/images/armors/heavy.svg"),
-        isSelected: false,
-        name: "Chainmail"),
-    ArmorModel(
-        type: ArmorTypeModel(
-            name: "heavy armor",
-            isSelected: false,
-            picture: "assets/images/armors/heavy.svg"),
+        defenseBonus: 6,
+        maxDexAllowed: 3,
+        checkPenalty: 4,
+        speedPenalty: 5,
         isSelected: false,
         name: "Mountain pattern"),
     ArmorModel(
-        type: ArmorTypeModel(
+        type: ArmorFamilyModel(
             name: "heavy armor",
             isSelected: false,
             picture: "assets/images/armors/heavy.svg"),
+        defenseBonus: 7,
+        maxDexAllowed: 2,
+        checkPenalty: 7,
+        speedPenalty: 5,
         isSelected: false,
         name: "Splint mail"),
     ArmorModel(
-        type: ArmorTypeModel(
+        type: ArmorFamilyModel(
             name: "heavy armor",
             isSelected: false,
             picture: "assets/images/armors/heavy.svg"),
+        defenseBonus: 7,
+        maxDexAllowed: 1,
+        checkPenalty: 7,
+        speedPenalty: 5,
+        isSelected: false,
+        name: "Lamellar (iron)"),
+    ArmorModel(
+        type: ArmorFamilyModel(
+            name: "heavy armor",
+            isSelected: false,
+            picture: "assets/images/armors/heavy.svg"),
+        defenseBonus: 8,
+        maxDexAllowed: 2,
+        checkPenalty: 5,
+        speedPenalty: 5,
         isSelected: false,
         name: "Agile half-plate"),
     ArmorModel(
-        type: ArmorTypeModel(
+        type: ArmorFamilyModel(
             name: "heavy armor",
             isSelected: false,
             picture: "assets/images/armors/heavy.svg"),
+        defenseBonus: 8,
+        maxDexAllowed: 1,
+        checkPenalty: 7,
+        speedPenalty: 5,
         isSelected: false,
         name: "Half-plate"),
     ArmorModel(
-        type: ArmorTypeModel(
+        type: ArmorFamilyModel(
             name: "heavy armor",
             isSelected: false,
             picture: "assets/images/armors/heavy.svg"),
+        defenseBonus: 9,
+        maxDexAllowed: 1,
+        checkPenalty: 6,
+        speedPenalty: 5,
         isSelected: false,
         name: "Full plate"),
     ArmorModel(
-        type: ArmorTypeModel(
+        type: ArmorFamilyModel(
             name: "heavy armor",
             isSelected: false,
             picture: "assets/images/armors/heavy.svg"),
+        defenseBonus: 9,
+        maxDexAllowed: 1,
+        checkPenalty: 6,
+        speedPenalty: 5,
         isSelected: false,
         name: "Stoneplate"),
   ];
 
   List<ArmorModel> lightshields = [
     ArmorModel(
-        type: ArmorTypeModel(
+        type: ArmorFamilyModel(
             name: "buckler",
             isSelected: false,
             picture: "assets/images/shields/buckler.svg"),
+        defenseBonus: 1,
+        maxDexAllowed: null,
+        checkPenalty: 1,
+        speedPenalty: null,
         isSelected: false,
         name: "Buckler"),
     ArmorModel(
-        type: ArmorTypeModel(
+        type: ArmorFamilyModel(
             name: "light shield",
             isSelected: false,
             picture: "assets/images/shields/light.svg"),
+        defenseBonus: 1,
+        maxDexAllowed: null,
+        checkPenalty: 1,
+        speedPenalty: null,
         isSelected: false,
-        name: "wooden shield"),
+        name: "Wooden shield"),
     ArmorModel(
-        type: ArmorTypeModel(
+        type: ArmorFamilyModel(
             name: "light shield",
             isSelected: false,
             picture: "assets/images/shields/light.svg"),
+        defenseBonus: 2,
+        maxDexAllowed: null,
+        checkPenalty: 1,
+        speedPenalty: null,
         isSelected: false,
-        name: "iron shield"),
-    ArmorModel(
-        type: ArmorTypeModel(
-            name: "light shield",
-            isSelected: false,
-            picture: "assets/images/shields/light.svg"),
-        isSelected: false,
-        name: "steel shield"),
+        name: "Iron-wood shield"),
   ];
 
   List<ArmorModel> heavyShields = [
     ArmorModel(
-        type: ArmorTypeModel(
+        type: ArmorFamilyModel(
             name: "heavy shield",
             isSelected: false,
             picture: "assets/images/shields/heavy.svg"),
+        defenseBonus: 2,
+        maxDexAllowed: null,
+        checkPenalty: 2,
+        speedPenalty: null,
         isSelected: false,
-        name: "Wooden shield"),
+        name: "Steel-wood shield"),
     ArmorModel(
-        type: ArmorTypeModel(
+        type: ArmorFamilyModel(
             name: "heavy shield",
             isSelected: false,
             picture: "assets/images/shields/heavy.svg"),
+        defenseBonus: 2,
+        maxDexAllowed: null,
+        checkPenalty: 2,
+        speedPenalty: null,
         isSelected: false,
         name: "Iron shield"),
     ArmorModel(
-        type: ArmorTypeModel(
+        type: ArmorFamilyModel(
             name: "heavy shield",
             isSelected: false,
             picture: "assets/images/shields/heavy.svg"),
+        defenseBonus: 2,
+        maxDexAllowed: null,
+        checkPenalty: 2,
+        speedPenalty: null,
         isSelected: false,
         name: "Steel shield"),
     ArmorModel(
-        type: ArmorTypeModel(
+        type: ArmorFamilyModel(
             name: "heavy shield",
             isSelected: false,
             picture: "assets/images/shields/heavy.svg"),
+        defenseBonus: 2,
+        maxDexAllowed: null,
+        checkPenalty: 2,
+        speedPenalty: null,
         isSelected: false,
         name: "Tower shield"),
   ];
 
-  List<ArmorTypeModel> armorTypes = [
-    ArmorTypeModel(
+  List<ArmorFamilyModel> armorTypes = [
+    ArmorFamilyModel(
         name: "No armor",
         isSelected: false,
         picture: "assets/images/armors/none.svg"),
-    ArmorTypeModel(
+    ArmorFamilyModel(
         name: "Light armor",
         isSelected: false,
         picture: "assets/images/armors/light.svg"),
-    ArmorTypeModel(
+    ArmorFamilyModel(
         name: "Medium armor",
         isSelected: false,
         picture: "assets/images/armors/medium.svg"),
-    ArmorTypeModel(
+    ArmorFamilyModel(
         name: "Heavy armor",
         isSelected: false,
         picture: "assets/images/armors/heavy.svg"),
   ];
 
-  List<ArmorTypeModel> shieldTypes = [
-    ArmorTypeModel(
+  List<ArmorFamilyModel> shieldTypes = [
+    ArmorFamilyModel(
         name: "No shield",
         isSelected: false,
         picture: "assets/images/shields/no-shield.svg"),
-    ArmorTypeModel(
+    ArmorFamilyModel(
         name: "Buckler",
         isSelected: false,
         picture: "assets/images/shields/buckler.svg"),
-    ArmorTypeModel(
+    ArmorFamilyModel(
         name: "Light shield",
         isSelected: false,
         picture: "assets/images/shields/light.svg"),
-    ArmorTypeModel(
+    ArmorFamilyModel(
         name: "Heavy shield",
         isSelected: false,
         picture: "assets/images/shields/heavy.svg"),

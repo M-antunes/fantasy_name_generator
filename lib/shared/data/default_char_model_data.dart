@@ -33,7 +33,7 @@ class DefaultCharModelData {
     charEquip: EquipModel(
         primaryWeapon: WeaponModel(
             name: "Dagger",
-            type: WeaponTypeModel(
+            type: WeaponFamilyModel(
                 name: "Knife",
                 isSelected: false,
                 picture: "assets/images/weapon_types/knife.svg"))),

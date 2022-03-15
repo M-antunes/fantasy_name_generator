@@ -12,24 +12,24 @@ class EquipController extends ChangeNotifier {
   int creationStage = 1;
   var listOfClasses = ClassData();
   var listOfEquip = EquipData();
-  List<WeaponTypeModel> allListsOfWeapons = [];
-  List<ArmorTypeModel> filteredArmors = [];
-  List<ArmorTypeModel> filteredShields = [];
+  List<WeaponFamilyModel> allListsOfWeapons = [];
+  List<ArmorFamilyModel> filteredArmors = [];
+  List<ArmorFamilyModel> filteredShields = [];
   bool showOneHanded = false;
   bool showTwoHanded = false;
   bool showDistant = false;
   bool showResetButton = false;
   bool hasDualWeild = false;
-  WeaponTypeModel? tempPrimaryWeaponTypeForSwitching;
-  WeaponTypeModel? chosenPrimaryWeaponType;
-  WeaponTypeModel? tempSecondaryWeaponTypeForSwitching;
-  WeaponTypeModel? chosenSecondaryWeaponType;
-  WeaponTypeModel? tempEmergencyWeaponTypeForSwitching;
-  WeaponTypeModel? chosenEmergencyWeaponType;
-  ArmorTypeModel? tempChosenShieldType;
-  ArmorTypeModel? chosenShieldType;
-  ArmorTypeModel? tempChosenArmorType;
-  ArmorTypeModel? chosenArmorType;
+  WeaponFamilyModel? tempPrimaryWeaponTypeForSwitching;
+  WeaponFamilyModel? chosenPrimaryWeaponType;
+  WeaponFamilyModel? tempSecondaryWeaponTypeForSwitching;
+  WeaponFamilyModel? chosenSecondaryWeaponType;
+  WeaponFamilyModel? tempEmergencyWeaponTypeForSwitching;
+  WeaponFamilyModel? chosenEmergencyWeaponType;
+  ArmorFamilyModel? tempChosenShieldType;
+  ArmorFamilyModel? chosenShieldType;
+  ArmorFamilyModel? tempChosenArmorType;
+  ArmorFamilyModel? chosenArmorType;
 
   updateShowResetButton() {
     showResetButton = true;
@@ -104,7 +104,7 @@ class EquipController extends ChangeNotifier {
     }
   }
 
-  switchPrimaryWeaponType(WeaponTypeModel type) {
+  switchPrimaryWeaponType(WeaponFamilyModel type) {
     type.isSelected = !type.isSelected;
     for (var select in allListsOfWeapons) {
       select.isSelected = false;
@@ -114,7 +114,7 @@ class EquipController extends ChangeNotifier {
     notifyListeners();
   }
 
-  switchSecondaryWeaponType(WeaponTypeModel type) {
+  switchSecondaryWeaponType(WeaponFamilyModel type) {
     if (chosenSecondaryWeaponType != null) {
       return;
     }
@@ -127,7 +127,7 @@ class EquipController extends ChangeNotifier {
     notifyListeners();
   }
 
-  switchEmergencyWeaponType(WeaponTypeModel type) {
+  switchEmergencyWeaponType(WeaponFamilyModel type) {
     if (chosenEmergencyWeaponType != null) {
       return;
     }
@@ -186,7 +186,7 @@ class EquipController extends ChangeNotifier {
 
 // Armor section =========================================================================
 
-  switchShieldType(ArmorTypeModel type) {
+  switchShieldType(ArmorFamilyModel type) {
     type.isSelected = !type.isSelected;
     for (var select in listOfEquip.shieldTypes) {
       select.isSelected = false;
@@ -196,7 +196,7 @@ class EquipController extends ChangeNotifier {
     notifyListeners();
   }
 
-  switchArmorType(ArmorTypeModel type) {
+  switchArmorType(ArmorFamilyModel type) {
     type.isSelected = !type.isSelected;
     for (var select in listOfEquip.armorTypes) {
       select.isSelected = false;
@@ -225,7 +225,7 @@ class EquipController extends ChangeNotifier {
   }
 
   filterEquip(
-    List<ArmorTypeModel> list,
+    List<ArmorFamilyModel> list,
     String permited1,
     String permited2,
     String permited3,
