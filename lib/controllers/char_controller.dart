@@ -531,14 +531,15 @@ class CharController extends ChangeNotifier {
       List<dynamic> letterPicker = [
         getVowel(),
         getSyllabus(),
+        getSyllabus(),
         getThreeLetterSyllabous(),
         getFourLetterSyllabous(),
       ];
       letterPicker.shuffle();
-      var changableIndexName = randomIndex.nextInt(3);
-      var changableIndexLastName = randomIndex.nextInt(3);
+      var changableIndexName = randomIndex.nextInt(4);
+      var changableIndexLastName = randomIndex.nextInt(4);
       while (changableIndexName == changableIndexLastName) {
-        changableIndexLastName = randomIndex.nextInt(3);
+        changableIndexLastName = randomIndex.nextInt(4);
       }
       temporaryName = temporaryName + letterPicker[changableIndexName];
       temporaryLastName =
@@ -582,7 +583,7 @@ class CharController extends ChangeNotifier {
   generalNameGenerator(int desiredLength, int maxLength) {
     var temporaryFullName = generateNameSize(desiredLength, desiredLength);
     tempFullName = alterNameLength(
-        7, randomChance, temporaryFullName[0], temporaryFullName[1]);
+        maxLength, randomChance, temporaryFullName[0], temporaryFullName[1]);
     notifyListeners();
   }
 
@@ -886,7 +887,7 @@ class CharController extends ChangeNotifier {
 
   /// generates names for haflings
   haflingNameGenerator() {
-    generalNameGenerator(3, 7);
+    generalNameGenerator(3, 6);
     fullName = alterHaflingNameCharacters(tempFullName[0], tempFullName[1]);
   }
 
