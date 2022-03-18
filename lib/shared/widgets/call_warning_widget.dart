@@ -2,17 +2,15 @@ import 'package:flutter/material.dart';
 
 import '../themes/app_text_styles.dart';
 
-Future<dynamic> callWarningWidget(
-  BuildContext context,
-  String text,
-) {
+Future<dynamic> callWarningWidget(BuildContext context, String text,
+    String? notWarning, VoidCallback? onConfirm) {
   return showDialog(
       context: context,
       builder: (context) {
         return AlertDialog(
           elevation: 6,
           title: Text(
-            "Warning",
+            notWarning ?? "Warning",
             strutStyle: const StrutStyle(fontSize: 20),
             style: AppTextStyle.changeRace,
           ),
@@ -23,7 +21,7 @@ Future<dynamic> callWarningWidget(
           ),
           actions: [
             TextButton(
-                onPressed: () => Navigator.of(context).pop(),
+                onPressed: onConfirm,
                 child: Text(
                   "Ok",
                   style: AppTextStyle.warningButtonConfirm,

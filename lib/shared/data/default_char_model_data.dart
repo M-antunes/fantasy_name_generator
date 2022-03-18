@@ -35,6 +35,7 @@ class DefaultCharModelData {
             name: "Dagger",
             type: WeaponFamilyModel(
                 name: "Knife",
+                wielding: "One-handed",
                 isSelected: false,
                 picture: "assets/images/weapon_types/knife.svg"))),
     loot: LootModel(items: [], gold: 0),

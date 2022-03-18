@@ -4,21 +4,26 @@ class WeaponFamilyModel {
   String name;
   bool isSelected;
   String picture;
+  String wielding;
+
   WeaponFamilyModel({
     required this.name,
     required this.isSelected,
     required this.picture,
+    required this.wielding,
   });
 
   WeaponFamilyModel copyWith({
     String? name,
     bool? isSelected,
     String? picture,
+    String? wielding,
   }) {
     return WeaponFamilyModel(
       name: name ?? this.name,
       isSelected: isSelected ?? this.isSelected,
       picture: picture ?? this.picture,
+      wielding: wielding ?? this.wielding,
     );
   }
 
@@ -27,6 +32,7 @@ class WeaponFamilyModel {
       'name': name,
       'isSelected': isSelected,
       'picture': picture,
+      'wielding': wielding,
     };
   }
 
@@ -35,6 +41,7 @@ class WeaponFamilyModel {
       name: map['name'] ?? '',
       isSelected: map['isSelected'] ?? false,
       picture: map['picture'] ?? '',
+      wielding: map['wielding'] ?? '',
     );
   }
 
@@ -44,8 +51,9 @@ class WeaponFamilyModel {
       WeaponFamilyModel.fromMap(json.decode(source));
 
   @override
-  String toString() =>
-      'WeaponWeildingModel(name: $name, isSelected: $isSelected, picture: $picture)';
+  String toString() {
+    return 'WeaponFamilyModel(name: $name, isSelected: $isSelected, picture: $picture, wielding: $wielding)';
+  }
 
   @override
   bool operator ==(Object other) {
@@ -54,9 +62,15 @@ class WeaponFamilyModel {
     return other is WeaponFamilyModel &&
         other.name == name &&
         other.isSelected == isSelected &&
-        other.picture == picture;
+        other.picture == picture &&
+        other.wielding == wielding;
   }
 
   @override
-  int get hashCode => name.hashCode ^ isSelected.hashCode ^ picture.hashCode;
+  int get hashCode {
+    return name.hashCode ^
+        isSelected.hashCode ^
+        picture.hashCode ^
+        wielding.hashCode;
+  }
 }

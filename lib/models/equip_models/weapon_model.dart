@@ -5,13 +5,13 @@ import 'package:fantasy_name_generator/models/equip_models/weapon_type_model.dar
 import 'enchant_model.dart';
 
 class WeaponModel {
-  final WeaponFamilyModel? type;
+  WeaponFamilyModel? type;
   bool? isSelected;
-  final String? name;
-  final EnchantModel? enchantment;
-  final int? power;
-  final String? damage;
-  final String? critical;
+  String? name;
+  EnchantModel? enchantment;
+  int? power;
+  String? damage;
+  String? critical;
   WeaponModel({
     this.type,
     this.isSelected,

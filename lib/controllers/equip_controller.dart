@@ -1,8 +1,8 @@
 import 'package:fantasy_name_generator/models/char_model.dart';
-import 'package:fantasy_name_generator/models/equip_models/armor_type_model.dart';
 import 'package:fantasy_name_generator/shared/data/default_char_model_data.dart';
 import 'package:flutter/cupertino.dart';
 
+import '../models/equip_models/armor_type_model.dart';
 import '../models/equip_models/weapon_type_model.dart';
 import '../shared/data/class_data.dart';
 import '../shared/data/equip_data.dart';
@@ -12,215 +12,146 @@ class EquipController extends ChangeNotifier {
   int creationStage = 1;
   var listOfClasses = ClassData();
   var listOfEquip = EquipData();
-  List<WeaponFamilyModel> allListsOfWeapons = [];
-  List<ArmorFamilyModel> filteredArmors = [];
-  List<ArmorFamilyModel> filteredShields = [];
-  bool showOneHanded = false;
-  bool showTwoHanded = false;
-  bool showDistant = false;
-  bool showResetButton = false;
-  bool hasDualWeild = false;
-  WeaponFamilyModel? tempPrimaryWeaponTypeForSwitching;
+  List<WeaponFamilyModel> allListsOfWeaponsFamily = [];
+  List<ArmorFamilyModel> allListsOfArmorFamily = [];
+  List<ArmorFamilyModel> allListsOfShieldFamily = [];
+  List<ArmorFamilyModel> filteredArmorTypes = [];
+  List<ArmorFamilyModel> filteredShieldTypes = [];
+
   WeaponFamilyModel? chosenPrimaryWeaponType;
-  WeaponFamilyModel? tempSecondaryWeaponTypeForSwitching;
+  WeaponFamilyModel? tempPrimaryWeaponType;
   WeaponFamilyModel? chosenSecondaryWeaponType;
-  WeaponFamilyModel? tempEmergencyWeaponTypeForSwitching;
-  WeaponFamilyModel? chosenEmergencyWeaponType;
-  ArmorFamilyModel? tempChosenShieldType;
+  WeaponFamilyModel? tempSecondaryWeaponType;
+
+  ArmorFamilyModel? tempShieldType;
   ArmorFamilyModel? chosenShieldType;
-  ArmorFamilyModel? tempChosenArmorType;
+  ArmorFamilyModel? tempArmorType;
   ArmorFamilyModel? chosenArmorType;
 
-  updateShowResetButton() {
-    showResetButton = true;
+  bool hasChosenPrimaryWeapon = false;
+  bool hasChosenSecondaryWeapon = false;
+  bool hasChosenArmor = false;
+  bool hasChosenShield = false;
+  bool isDualWield = false;
+
+  populateListsOfWeaponFamily() {
+    if (allListsOfWeaponsFamily.isNotEmpty) {
+      return;
+    }
+    List<WeaponFamilyModel> tempList = [];
+    tempList.addAll(listOfEquip.oneHandedTypes);
+    tempList.addAll(listOfEquip.twoHandedTypes);
+    tempList.addAll(listOfEquip.distanceTypes);
+    allListsOfWeaponsFamily = tempList;
     notifyListeners();
   }
 
-  makeWeaponSegmentTrue(String show) {
-    switch (show) {
-      case "One-handed":
-        showOneHanded = makeTheRestOfWeaponSegmentFalse(showOneHanded);
-        notifyListeners();
-        break;
-      case "Two-handed":
-        showTwoHanded = makeTheRestOfWeaponSegmentFalse(showTwoHanded);
-        notifyListeners();
-        break;
-      case "Distant":
-        showDistant = makeTheRestOfWeaponSegmentFalse(showDistant);
-        notifyListeners();
-        break;
-      default:
-    }
-  }
-
-  closeAllTypeSections() {
-    showOneHanded = false;
-    showTwoHanded = false;
-    showDistant = false;
+  confirmDualWield() {
+    isDualWield = true;
     notifyListeners();
-  }
-
-  bool makeTheRestOfWeaponSegmentFalse(bool safe) {
-    closeAllTypeSections();
-    if (safe) {
-      safe = false;
-    } else {
-      safe = true;
-    }
-    return safe;
   }
 
   updatePrimaryweaponType() {
-    for (var select in allListsOfWeapons) {
-      select.isSelected = false;
-    }
-    chosenPrimaryWeaponType = tempPrimaryWeaponTypeForSwitching;
-    tempPrimaryWeaponTypeForSwitching!.isSelected = false;
-    closeAllTypeSections();
+    chosenPrimaryWeaponType = tempPrimaryWeaponType;
+    tempPrimaryWeaponType!.isSelected = false;
+    hasChosenPrimaryWeapon = true;
+    notifyListeners();
   }
 
-  updateSecondaryweaponType() {
-    for (var select in allListsOfWeapons) {
-      select.isSelected = false;
+  updateSecondaryweaponType(Future<dynamic> dualWieldChecl) {
+    chosenSecondaryWeaponType = tempSecondaryWeaponType;
+    tempSecondaryWeaponType!.isSelected = false;
+    hasChosenSecondaryWeapon = true;
+    notifyListeners();
+    if (chosenPrimaryWeaponType!.wielding == "One-handed" &&
+        chosenSecondaryWeaponType!.wielding == "One-handed") {
+      dualWieldChecl;
     }
-    chosenSecondaryWeaponType = tempSecondaryWeaponTypeForSwitching;
-    closeAllTypeSections();
   }
 
-  updateEmergencyweaponType() {
-    for (var select in allListsOfWeapons) {
-      select.isSelected = false;
-    }
-    chosenEmergencyWeaponType = tempEmergencyWeaponTypeForSwitching;
-    closeAllTypeSections();
+  updateArmorType() {
+    chosenArmorType = tempArmorType;
+    tempArmorType!.isSelected = false;
+    hasChosenArmor = true;
+    notifyListeners();
   }
 
-  populateAllLists() {
-    if (allListsOfWeapons.length < 13) {
-      allListsOfWeapons.addAll(listOfEquip.oneHandedTypes);
-      allListsOfWeapons.addAll(listOfEquip.twoHandedTypes);
-      allListsOfWeapons.addAll(listOfEquip.distanceTypes);
+  updateShieldType() {
+    chosenShieldType = tempShieldType;
+    tempShieldType!.isSelected = false;
+    hasChosenShield = true;
+    notifyListeners();
+  }
+
+  switchBothWeapons(WeaponFamilyModel type) {
+    if (chosenPrimaryWeaponType == null) {
+      switchPrimaryWeaponType(type);
+    } else {
+      switchSecondaryWeaponType(type);
     }
   }
 
   switchPrimaryWeaponType(WeaponFamilyModel type) {
-    type.isSelected = !type.isSelected;
-    for (var select in allListsOfWeapons) {
+    type.isSelected = type.isSelected;
+    for (var select in allListsOfWeaponsFamily) {
       select.isSelected = false;
     }
     type.isSelected = !type.isSelected;
-    tempPrimaryWeaponTypeForSwitching = type;
+    tempPrimaryWeaponType = type;
     notifyListeners();
   }
 
   switchSecondaryWeaponType(WeaponFamilyModel type) {
-    if (chosenSecondaryWeaponType != null) {
-      return;
-    }
-    type.isSelected = !type.isSelected;
-    for (var select in allListsOfWeapons) {
+    type.isSelected = type.isSelected;
+    for (var select in allListsOfWeaponsFamily) {
       select.isSelected = false;
     }
     type.isSelected = !type.isSelected;
-    tempSecondaryWeaponTypeForSwitching = type;
+    tempSecondaryWeaponType = type;
     notifyListeners();
   }
 
-  switchEmergencyWeaponType(WeaponFamilyModel type) {
-    if (chosenEmergencyWeaponType != null) {
-      return;
+  switchBothArmors(ArmorFamilyModel type) {
+    if (chosenArmorType == null) {
+      switchArmorType(type);
+    } else {
+      switchShieldType(type);
     }
-    type.isSelected = !type.isSelected;
-    for (var select in allListsOfWeapons) {
-      select.isSelected = false;
-    }
-    type.isSelected = !type.isSelected;
-    tempEmergencyWeaponTypeForSwitching = type;
-    notifyListeners();
-  }
-
-  showDualWeildIntentionCheck(VoidCallback dualWeildCheck) {
-    if (listOfEquip.oneHandedTypes.contains(chosenPrimaryWeaponType) &&
-        listOfEquip.oneHandedTypes.contains(chosenSecondaryWeaponType)) {
-      dualWeildCheck();
-    }
-  }
-
-  confirmDualWeild(VoidCallback twoCloseCombatWeapons) {
-    hasDualWeild = true;
-    notifyListeners();
-    twoCloseCombatWeapons();
-  }
-
-  informImportanceOfVersatileCombat(VoidCallback twoCloseCombatWeapons,
-      VoidCallback twoDistantCombatWeapons) {
-    bool closeCombatWeapon = listOfEquip.oneHandedTypes
-                .contains(chosenPrimaryWeaponType) &&
-            listOfEquip.twoHandedTypes.contains(chosenSecondaryWeaponType) ||
-        listOfEquip.twoHandedTypes.contains(chosenPrimaryWeaponType) &&
-            listOfEquip.oneHandedTypes.contains(chosenSecondaryWeaponType) ||
-        listOfEquip.twoHandedTypes.contains(chosenPrimaryWeaponType) &&
-            listOfEquip.twoHandedTypes.contains(chosenSecondaryWeaponType);
-    bool distantCombatWeapon =
-        listOfEquip.distanceTypes.contains(chosenPrimaryWeaponType) &&
-            listOfEquip.distanceTypes.contains(chosenSecondaryWeaponType);
-    if (closeCombatWeapon) {
-      twoCloseCombatWeapons();
-    } else if (distantCombatWeapon) {
-      twoDistantCombatWeapons();
-    }
-  }
-
-  resetChoices() {
-    tempPrimaryWeaponTypeForSwitching = null;
-    tempSecondaryWeaponTypeForSwitching = null;
-    tempEmergencyWeaponTypeForSwitching = null;
-    chosenPrimaryWeaponType = null;
-    chosenSecondaryWeaponType = null;
-    chosenEmergencyWeaponType = null;
-    showResetButton = false;
-    hasDualWeild = false;
-    closeAllTypeSections();
-  }
-
-// Armor section =========================================================================
-
-  switchShieldType(ArmorFamilyModel type) {
-    type.isSelected = !type.isSelected;
-    for (var select in listOfEquip.shieldTypes) {
-      select.isSelected = false;
-    }
-    type.isSelected = !type.isSelected;
-    tempChosenShieldType = type;
-    notifyListeners();
   }
 
   switchArmorType(ArmorFamilyModel type) {
-    type.isSelected = !type.isSelected;
-    for (var select in listOfEquip.armorTypes) {
+    for (var select in filteredArmorTypes) {
+      select.isSelected = false;
+    }
+    type.isSelected = true;
+    tempArmorType = type;
+    notifyListeners();
+  }
+
+  switchShieldType(ArmorFamilyModel type) {
+    for (var select in filteredShieldTypes) {
       select.isSelected = false;
     }
     type.isSelected = !type.isSelected;
-    tempChosenArmorType = type;
+    tempShieldType = type;
     notifyListeners();
   }
 
-  updateChosenShield() {
-    chosenShieldType = tempChosenShieldType;
-    notifyListeners();
-  }
-
-  chooseNoShieldAuto() {
-    var zeroShield = listOfEquip.shieldTypes[0];
-    tempChosenShieldType = zeroShield;
-    tempChosenShieldType!.isSelected = true;
-    chosenShieldType = tempChosenShieldType;
-    notifyListeners();
-  }
-
-  undoNoshield() {
-    tempChosenShieldType!.isSelected = false;
+  resetChoices() {
+    tempArmorType = null;
+    tempShieldType = null;
+    tempPrimaryWeaponType!.isSelected = false;
+    tempPrimaryWeaponType = null;
+    tempSecondaryWeaponType = null;
+    chosenArmorType = null;
+    chosenPrimaryWeaponType = null;
+    chosenSecondaryWeaponType = null;
+    chosenShieldType = null;
+    hasChosenArmor = false;
+    hasChosenPrimaryWeapon = false;
+    hasChosenSecondaryWeapon = false;
+    hasChosenShield = false;
+    isDualWield = false;
     notifyListeners();
   }
 
@@ -241,78 +172,82 @@ class EquipController extends ChangeNotifier {
   filterArmorToClass() {
     switch (char.charClass.name) {
       case "Barbarian":
-        filteredArmors = filterEquip(
-            listOfEquip.armorTypes, "No armor", "Light armor", "Medium armor");
+        filteredArmorTypes =
+            filterEquip(listOfEquip.armorTypes, "No armor", "Light", "Medium");
+        filteredShieldTypes = listOfEquip.shieldTypes;
+
         notifyListeners();
         break;
       case "Ranger":
-        filteredArmors = filterEquip(
-            listOfEquip.armorTypes, "No armor", "Light armor", "Medium armor");
+        filteredArmorTypes =
+            filterEquip(listOfEquip.armorTypes, "No armor", "Light", "Medium");
+        filteredShieldTypes = listOfEquip.shieldTypes;
+
         notifyListeners();
         break;
       case "Druid":
-        filteredArmors = filterEquip(
-            listOfEquip.armorTypes, "No armor", "Light armor", "Medium armor");
+        filteredArmorTypes =
+            filterEquip(listOfEquip.armorTypes, "No armor", "Light", "Medium");
+        filteredShieldTypes = listOfEquip.shieldTypes;
+
         notifyListeners();
         break;
       case "Summoner":
-        filteredArmors = filterEquip(
-            listOfEquip.armorTypes, "No armor", "Light armor", "Medium armor");
-        filteredShields =
+        filteredArmorTypes =
+            filterEquip(listOfEquip.armorTypes, "No armor", "Light", "Medium");
+        filteredShieldTypes =
             filterEquip(listOfEquip.shieldTypes, "No shield", "", "");
         notifyListeners();
         break;
       case "Alchemist":
-        filteredArmors =
-            filterEquip(listOfEquip.armorTypes, "No armor", "Light armor", "");
-        filteredShields =
+        filteredArmorTypes =
+            filterEquip(listOfEquip.armorTypes, "No armor", "Light", "");
+        filteredShieldTypes =
             filterEquip(listOfEquip.shieldTypes, "No shield", "", "");
         notifyListeners();
         break;
       case "Monk":
-        filteredArmors =
+        filteredArmorTypes =
             filterEquip(listOfEquip.armorTypes, "No armor", "", "");
-        filteredShields =
+        filteredShieldTypes =
             filterEquip(listOfEquip.shieldTypes, "No shield", "", "");
         notifyListeners();
         break;
       case "Rogue":
-        filteredArmors =
-            filterEquip(listOfEquip.armorTypes, "No armor", "Light armor", "");
-        filteredShields =
+        filteredArmorTypes =
+            filterEquip(listOfEquip.armorTypes, "No armor", "Light", "");
+        filteredShieldTypes =
             filterEquip(listOfEquip.shieldTypes, "No shield", "", "");
         notifyListeners();
         break;
       case "Bard":
-        filteredArmors =
-            filterEquip(listOfEquip.armorTypes, "No armor", "Light armor", "");
+        filteredArmorTypes =
+            filterEquip(listOfEquip.armorTypes, "No armor", "Light", "");
+        filteredShieldTypes = listOfEquip.shieldTypes;
+
         notifyListeners();
         break;
       case "Sorcerer":
-        filteredArmors =
+        filteredArmorTypes =
             filterEquip(listOfEquip.armorTypes, "No armor", "", "");
-        filteredShields =
+        filteredShieldTypes =
             filterEquip(listOfEquip.shieldTypes, "No shield", "", "");
         notifyListeners();
         break;
       case "Wizard":
-        filteredArmors =
+        filteredArmorTypes =
             filterEquip(listOfEquip.armorTypes, "No armor", "", "");
-        filteredShields =
+        filteredShieldTypes =
             filterEquip(listOfEquip.shieldTypes, "No shield", "", "");
         notifyListeners();
         break;
       default:
-        filteredArmors = listOfEquip.armorTypes;
-        filteredShields = listOfEquip.shieldTypes;
+        filteredArmorTypes = listOfEquip.armorTypes;
+        filteredShieldTypes = listOfEquip.shieldTypes;
         notifyListeners();
     }
   }
 
-  updateChosenArmor() {
-    chosenArmorType = tempChosenArmorType;
-    notifyListeners();
-  }
   // Move on with the selections ===========================================================
 
   advanceCreationStage() {
@@ -327,27 +262,16 @@ class EquipController extends ChangeNotifier {
 
   String? activateNextButton() {
     if (creationStage == 1) {
-      advanceCreationStage();
+      populateListsOfWeaponFamily();
+      // populateListsOfArmorFamily();
       filterArmorToClass();
-      return null;
-    } else if (creationStage == 2) {
-      if (chosenEmergencyWeaponType == null) {
-        return "You must select all three weapon types first.";
-      }
       advanceCreationStage();
       return null;
-    } else if (creationStage == 3) {
-      if (tempChosenShieldType == null) {
-        return "You must select a shild type first.";
+    }
+    if (creationStage == 2) {
+      if (!hasChosenShield) {
+        return "You need to select all equipment before advancing";
       }
-      advanceCreationStage();
-      updateChosenShield();
-    } else if (creationStage == 4) {
-      if (tempChosenArmorType == null) {
-        return "You must select an armor type first.";
-      }
-      advanceCreationStage();
-      updateChosenArmor();
     }
     return null;
   }

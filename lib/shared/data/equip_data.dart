@@ -4,12 +4,13 @@ import 'package:fantasy_name_generator/models/equip_models/weapon_model.dart';
 import 'package:fantasy_name_generator/models/equip_models/weapon_type_model.dart';
 
 class EquipData {
-  final List<WeaponModel> oneHandedWeapons = [
+  final List<WeaponModel> allWeapons = [
     WeaponModel(
         isSelected: false,
         critical: "19-20 x2",
         damage: "1d4",
         type: WeaponFamilyModel(
+            wielding: "One-handed",
             name: "Knife",
             isSelected: false,
             picture: "assets/images/weapon_types/knife.svg"),
@@ -19,6 +20,7 @@ class EquipData {
         critical: "x2",
         damage: "1d4",
         type: WeaponFamilyModel(
+            wielding: "One-handed",
             name: "Mace",
             isSelected: false,
             picture: "assets/images/weapon_types/mace.svg"),
@@ -28,6 +30,7 @@ class EquipData {
         critical: "x2",
         damage: "1d6",
         type: WeaponFamilyModel(
+            wielding: "One-handed",
             name: "Mace",
             isSelected: false,
             picture: "assets/images/weapon_types/mace.svg"),
@@ -37,6 +40,7 @@ class EquipData {
         critical: "x2",
         damage: "1d8",
         type: WeaponFamilyModel(
+            wielding: "One-handed",
             name: "Mace",
             isSelected: false,
             picture: "assets/images/weapon_types/mace.svg"),
@@ -46,6 +50,7 @@ class EquipData {
         critical: "x2",
         damage: "1d8",
         type: WeaponFamilyModel(
+            wielding: "One-handed",
             name: "Mace",
             isSelected: false,
             picture: "assets/images/weapon_types/mace.svg"),
@@ -55,6 +60,7 @@ class EquipData {
         critical: "19-20 x2",
         damage: "1d4",
         type: WeaponFamilyModel(
+            wielding: "One-handed",
             name: "Knife",
             isSelected: false,
             picture: "assets/images/weapon_types/knife.svg"),
@@ -64,6 +70,7 @@ class EquipData {
         critical: "19-20 x2",
         damage: "1d6",
         type: WeaponFamilyModel(
+            wielding: "One-handed",
             name: "Sword",
             isSelected: false,
             picture: "assets/images/weapon_types/sword.svg"),
@@ -73,6 +80,7 @@ class EquipData {
         critical: "x3",
         damage: "1d6",
         type: WeaponFamilyModel(
+            wielding: "One-handed",
             name: "Axe",
             isSelected: false,
             picture: "assets/images/weapon_types/hatchet.svg"),
@@ -82,6 +90,7 @@ class EquipData {
         critical: "19-20 x2",
         damage: "1d4",
         type: WeaponFamilyModel(
+            wielding: "One-handed",
             name: "Knife",
             isSelected: false,
             picture: "assets/images/weapon_types/knife.svg"),
@@ -91,6 +100,7 @@ class EquipData {
         critical: "x2",
         damage: "1d4",
         type: WeaponFamilyModel(
+            wielding: "One-handed",
             name: "Mace",
             isSelected: false,
             picture: "assets/images/weapon_types/mace.svg"),
@@ -100,6 +110,7 @@ class EquipData {
         critical: "19-20 x2",
         damage: "1d6",
         type: WeaponFamilyModel(
+            wielding: "One-handed",
             name: "Sword",
             isSelected: false,
             picture: "assets/images/weapon_types/sword.svg"),
@@ -109,6 +120,7 @@ class EquipData {
         critical: "x4",
         damage: "1d6",
         type: WeaponFamilyModel(
+            wielding: "One-handed",
             name: "Axe",
             isSelected: false,
             picture: "assets/images/weapon_types/hatchet.svg"),
@@ -118,6 +130,7 @@ class EquipData {
         critical: "19-20 x2",
         damage: "1d4",
         type: WeaponFamilyModel(
+            wielding: "One-handed",
             name: "Knife",
             isSelected: false,
             picture: "assets/images/weapon_types/knife.svg"),
@@ -127,6 +140,7 @@ class EquipData {
         critical: "x2",
         damage: "1d8",
         type: WeaponFamilyModel(
+            wielding: "One-handed",
             name: "Exotic",
             isSelected: false,
             picture: "assets/images/weapon_types/exotic.svg"),
@@ -136,6 +150,7 @@ class EquipData {
         critical: "19-20 x2",
         damage: "1d8",
         type: WeaponFamilyModel(
+            wielding: "One-handed",
             name: "Sword",
             isSelected: false,
             picture: "assets/images/weapon_types/sword.svg"),
@@ -145,6 +160,7 @@ class EquipData {
         critical: "19-20 x2",
         damage: "1d6",
         type: WeaponFamilyModel(
+            wielding: "One-handed",
             name: "Sword",
             isSelected: false,
             picture: "assets/images/weapon_types/sword.svg"),
@@ -154,6 +170,7 @@ class EquipData {
         critical: "19-20 x2",
         damage: "1d6",
         type: WeaponFamilyModel(
+            wielding: "One-handed",
             name: "Sword",
             isSelected: false,
             picture: "assets/images/weapon_types/sword.svg"),
@@ -163,6 +180,7 @@ class EquipData {
         critical: "19-20 x2",
         damage: "2d4",
         type: WeaponFamilyModel(
+            wielding: "One-handed",
             name: "Sword",
             isSelected: false,
             picture: "assets/images/weapon_types/sword.svg"),
@@ -172,6 +190,7 @@ class EquipData {
         critical: "x2",
         damage: "1d2",
         type: WeaponFamilyModel(
+            wielding: "One-handed",
             name: "Exotic",
             isSelected: false,
             picture: "assets/images/weapon_types/exotic.svg"),
@@ -181,6 +200,7 @@ class EquipData {
         critical: "19-20 x2",
         damage: "1d4",
         type: WeaponFamilyModel(
+            wielding: "One-handed",
             name: "Knife",
             isSelected: false,
             picture: "assets/images/weapon_types/knife.svg"),
@@ -190,6 +210,7 @@ class EquipData {
         critical: "19-20 x2",
         damage: "1d10",
         type: WeaponFamilyModel(
+            wielding: "One-handed",
             name: "Sword",
             isSelected: false,
             picture: "assets/images/weapon_types/sword.svg"),
@@ -199,6 +220,7 @@ class EquipData {
         critical: "x3",
         damage: "1d10",
         type: WeaponFamilyModel(
+            wielding: "One-handed",
             name: "Axe",
             isSelected: false,
             picture: "assets/images/weapon_types/hatchet.svg"),
@@ -208,6 +230,7 @@ class EquipData {
         critical: "19-20 x2",
         damage: "1d8",
         type: WeaponFamilyModel(
+            wielding: "One-handed",
             name: "Sword",
             isSelected: false,
             picture: "assets/images/weapon_types/sword.svg"),
@@ -217,6 +240,7 @@ class EquipData {
         critical: "19-20 x2",
         damage: "1d8",
         type: WeaponFamilyModel(
+            wielding: "One-handed",
             name: "Sword",
             isSelected: false,
             picture: "assets/images/weapon_types/sword.svg"),
@@ -226,6 +250,7 @@ class EquipData {
         critical: "x4",
         damage: "2d4",
         type: WeaponFamilyModel(
+            wielding: "One-handed",
             name: "Exotic",
             isSelected: false,
             picture: "assets/images/weapon_types/exotic.svg"),
@@ -235,6 +260,7 @@ class EquipData {
         critical: "x2",
         damage: "1d4",
         type: WeaponFamilyModel(
+            wielding: "One-handed",
             name: "Fist",
             isSelected: false,
             picture: "assets/images/weapon_types/punch.svg"),
@@ -244,6 +270,7 @@ class EquipData {
         critical: "x2",
         damage: "1d4",
         type: WeaponFamilyModel(
+            wielding: "One-handed",
             name: "Fist",
             isSelected: false,
             picture: "assets/images/weapon_types/punch.svg"),
@@ -253,6 +280,7 @@ class EquipData {
         critical: "x2",
         damage: "1d4",
         type: WeaponFamilyModel(
+            wielding: "One-handed",
             name: "Fist",
             isSelected: false,
             picture: "assets/images/weapon_types/punch.svg"),
@@ -262,53 +290,27 @@ class EquipData {
         critical: "x2",
         damage: "1d4",
         type: WeaponFamilyModel(
+            wielding: "One-handed",
             name: "Fist",
             isSelected: false,
             picture: "assets/images/weapon_types/punch.svg"),
         name: "Spiked gauntlet"),
-  ];
-  final List<WeaponFamilyModel> oneHandedTypes = [
-    WeaponFamilyModel(
-        name: "Knife",
-        isSelected: false,
-        picture: "assets/images/weapon_types/knife.svg"),
-    WeaponFamilyModel(
-        name: "Sword",
-        isSelected: false,
-        picture: "assets/images/weapon_types/sword.svg"),
-    WeaponFamilyModel(
-        name: "Axe",
-        isSelected: false,
-        picture: "assets/images/weapon_types/hatchet.svg"),
-    WeaponFamilyModel(
-        name: "Mace",
-        isSelected: false,
-        picture: "assets/images/weapon_types/hammer.svg"),
-    WeaponFamilyModel(
-        name: "Fist",
-        isSelected: false,
-        picture: "assets/images/weapon_types/punch.svg"),
-    WeaponFamilyModel(
-        name: "Exotic",
-        isSelected: false,
-        picture: "assets/images/weapon_types/exotic.svg"),
-  ];
-
-  final List<WeaponModel> twoHandedWeapons = [
     WeaponModel(
         isSelected: false,
         critical: "19-20 x2",
         damage: "1d6",
         type: WeaponFamilyModel(
+            wielding: "Two-handed",
             name: "Polearm",
             isSelected: false,
             picture: "assets/images/weapon_types/polearm.svg"),
-        name: "Bayonet"),
+        name: "BayTwot"),
     WeaponModel(
         isSelected: false,
         critical: "x3",
         damage: "1d8",
         type: WeaponFamilyModel(
+            wielding: "Two-handed",
             name: "Spear",
             isSelected: false,
             picture: "assets/images/weapon_types/spear.svg"),
@@ -318,6 +320,7 @@ class EquipData {
         critical: "x3",
         damage: "1d8",
         type: WeaponFamilyModel(
+            wielding: "Two-handed",
             name: "Spear",
             isSelected: false,
             picture: "assets/images/weapon_types/spear.svg"),
@@ -327,6 +330,7 @@ class EquipData {
         critical: "x2",
         damage: "1d10",
         type: WeaponFamilyModel(
+            wielding: "Two-handed",
             name: "Polearm",
             isSelected: false,
             picture: "assets/images/weapon_types/polearm.svg"),
@@ -336,6 +340,7 @@ class EquipData {
         critical: "x3",
         damage: "1d8",
         type: WeaponFamilyModel(
+            wielding: "Two-handed",
             name: "Polearm",
             isSelected: false,
             picture: "assets/images/weapon_types/polearm.svg"),
@@ -345,6 +350,7 @@ class EquipData {
         critical: "x3",
         damage: "1d10",
         type: WeaponFamilyModel(
+            wielding: "Two-handed",
             name: "Polearm",
             isSelected: false,
             picture: "assets/images/weapon_types/polearm.svg"),
@@ -354,6 +360,7 @@ class EquipData {
         critical: "x2",
         damage: "1d10",
         type: WeaponFamilyModel(
+            wielding: "Two-handed",
             name: "Polearm",
             isSelected: false,
             picture: "assets/images/weapon_types/polearm.svg"),
@@ -363,6 +370,7 @@ class EquipData {
         critical: "x3",
         damage: "2d6",
         type: WeaponFamilyModel(
+            wielding: "Two-handed",
             name: "Mace",
             isSelected: false,
             picture: "assets/images/weapon_types/mace.svg"),
@@ -372,6 +380,7 @@ class EquipData {
         critical: "x3",
         damage: "1d10",
         type: WeaponFamilyModel(
+            wielding: "Two-handed",
             name: "Mace",
             isSelected: false,
             picture: "assets/images/weapon_types/mace.svg"),
@@ -381,6 +390,7 @@ class EquipData {
         critical: "x3",
         damage: "1d12",
         type: WeaponFamilyModel(
+            wielding: "Two-handed",
             name: "Mace",
             isSelected: false,
             picture: "assets/images/weapon_types/mace.svg"),
@@ -390,6 +400,7 @@ class EquipData {
         critical: "x3",
         damage: "1d12",
         type: WeaponFamilyModel(
+            wielding: "Two-handed",
             name: "Axe",
             isSelected: false,
             picture: "assets/images/weapon_types/battle-axe.svg"),
@@ -399,6 +410,7 @@ class EquipData {
         critical: "19-20x2",
         damage: "2d6",
         type: WeaponFamilyModel(
+            wielding: "Two-handed",
             name: "Sword",
             isSelected: false,
             picture: "assets/images/weapon_types/great-sword.svg"),
@@ -408,6 +420,7 @@ class EquipData {
         critical: "x2",
         damage: "1d10",
         type: WeaponFamilyModel(
+            wielding: "Two-handed",
             name: "Polearm",
             isSelected: false,
             picture: "assets/images/weapon_types/polearm.svg"),
@@ -417,6 +430,7 @@ class EquipData {
         critical: "x2",
         damage: "1d8",
         type: WeaponFamilyModel(
+            wielding: "Two-handed",
             name: "Spear",
             isSelected: false,
             picture: "assets/images/weapon_types/spear.svg"),
@@ -426,6 +440,7 @@ class EquipData {
         critical: "x3",
         damage: "1d8",
         type: WeaponFamilyModel(
+            wielding: "Two-handed",
             name: "Spear",
             isSelected: false,
             picture: "assets/images/weapon_types/spear.svg"),
@@ -435,6 +450,7 @@ class EquipData {
         critical: "x4",
         damage: "2d4",
         type: WeaponFamilyModel(
+            wielding: "Two-handed",
             name: "Polearm",
             isSelected: false,
             picture: "assets/images/weapon_types/polearm.svg"),
@@ -444,6 +460,7 @@ class EquipData {
         critical: "x2",
         damage: "1d10",
         type: WeaponFamilyModel(
+            wielding: "Two-handed",
             name: "Axe",
             isSelected: false,
             picture: "assets/images/weapon_types/battle-axe.svg"),
@@ -453,6 +470,7 @@ class EquipData {
         critical: "x2",
         damage: "1d8",
         type: WeaponFamilyModel(
+            wielding: "Two-handed",
             name: "Spear",
             isSelected: false,
             picture: "assets/images/weapon_types/spear.svg"),
@@ -462,6 +480,7 @@ class EquipData {
         critical: "19-20x2",
         damage: "1d10",
         type: WeaponFamilyModel(
+            wielding: "Two-handed",
             name: "Sword",
             isSelected: false,
             picture: "assets/images/weapon_types/great-sword.svg"),
@@ -471,6 +490,7 @@ class EquipData {
         critical: "x2",
         damage: "1d10",
         type: WeaponFamilyModel(
+            wielding: "Two-handed",
             name: "Polearm",
             isSelected: false,
             picture: "assets/images/weapon_types/polearm.svg"),
@@ -480,6 +500,7 @@ class EquipData {
         critical: "x2",
         damage: "1d6/1d6",
         type: WeaponFamilyModel(
+            wielding: "Two-handed",
             name: "Exotic",
             isSelected: false,
             picture: "assets/images/weapon_types/exotic.svg"),
@@ -489,6 +510,7 @@ class EquipData {
         critical: "19-20 x2",
         damage: "1d8/1d8",
         type: WeaponFamilyModel(
+            wielding: "Two-handed",
             name: "Exotic",
             isSelected: false,
             picture: "assets/images/weapon_types/exotic.svg"),
@@ -498,6 +520,7 @@ class EquipData {
         critical: "x2",
         damage: "2d4",
         type: WeaponFamilyModel(
+            wielding: "Two-handed",
             name: "Exotic",
             isSelected: false,
             picture: "assets/images/weapon_types/exotic.svg"),
@@ -507,6 +530,7 @@ class EquipData {
         critical: "-",
         damage: "-",
         type: WeaponFamilyModel(
+            wielding: "Two-handed",
             name: "Exotic",
             isSelected: false,
             picture: "assets/images/weapon_types/exotic.svg"),
@@ -516,6 +540,7 @@ class EquipData {
         critical: "19-20 x2",
         damage: "1d12",
         type: WeaponFamilyModel(
+            wielding: "Two-handed",
             name: "Exotic",
             isSelected: false,
             picture: "assets/images/weapon_types/exotic.svg"),
@@ -525,6 +550,7 @@ class EquipData {
         critical: "x2",
         damage: "1d6/1d6",
         type: WeaponFamilyModel(
+            wielding: "Two-handed",
             name: "Exotic",
             isSelected: false,
             picture: "assets/images/weapon_types/exotic.svg"),
@@ -534,6 +560,7 @@ class EquipData {
         critical: "x2",
         damage: "1d8/1d8",
         type: WeaponFamilyModel(
+            wielding: "Two-handed",
             name: "Exotic",
             isSelected: false,
             picture: "assets/images/weapon_types/exotic.svg"),
@@ -543,45 +570,17 @@ class EquipData {
         critical: "x4",
         damage: "1d10",
         type: WeaponFamilyModel(
+            wielding: "Two-handed",
             name: "Exotic",
             isSelected: false,
             picture: "assets/images/weapon_types/battle-axe.svg"),
         name: "Heavy pick"),
-  ];
-
-  final List<WeaponFamilyModel> twoHandedTypes = [
-    WeaponFamilyModel(
-        name: "Sword",
-        isSelected: false,
-        picture: "assets/images/weapon_types/great-sword.svg"),
-    WeaponFamilyModel(
-        name: "Spear",
-        isSelected: false,
-        picture: "assets/images/weapon_types/spear.svg"),
-    WeaponFamilyModel(
-        name: "Axe",
-        isSelected: false,
-        picture: "assets/images/weapon_types/battle-axe.svg"),
-    WeaponFamilyModel(
-        name: "Mace",
-        isSelected: false,
-        picture: "assets/images/weapon_types/mace.svg"),
-    WeaponFamilyModel(
-        name: "Polearm",
-        isSelected: false,
-        picture: "assets/images/weapon_types/polearm.svg"),
-    WeaponFamilyModel(
-        name: "Exotic",
-        isSelected: false,
-        picture: "assets/images/weapon_types/exotic_tw.svg"),
-  ];
-
-  final List<WeaponModel> distanceWeapons = [
     WeaponModel(
         isSelected: false,
         critical: "",
         damage: "1d10",
         type: WeaponFamilyModel(
+            wielding: "Range",
             name: "Crossbow",
             isSelected: false,
             picture: "assets/images/weapon_types/crossbow.svg"),
@@ -591,6 +590,7 @@ class EquipData {
         critical: "",
         damage: "1d6",
         type: WeaponFamilyModel(
+            wielding: "Range",
             name: "Throwing",
             isSelected: false,
             picture: "assets/images/weapon_types/throwing.svg"),
@@ -600,6 +600,7 @@ class EquipData {
         critical: "",
         damage: "1d6",
         type: WeaponFamilyModel(
+            wielding: "Range",
             name: "Throwing",
             isSelected: false,
             picture: "assets/images/weapon_types/throwing.svg"),
@@ -609,6 +610,7 @@ class EquipData {
         critical: "",
         damage: "1d8",
         type: WeaponFamilyModel(
+            wielding: "Range",
             name: "Throwing",
             isSelected: false,
             picture: "assets/images/weapon_types/throwing.svg"),
@@ -618,6 +620,7 @@ class EquipData {
         critical: "",
         damage: "1d8",
         type: WeaponFamilyModel(
+            wielding: "Range",
             name: "Throwing",
             isSelected: false,
             picture: "assets/images/weapon_types/throwing.svg"),
@@ -627,6 +630,7 @@ class EquipData {
         critical: "",
         damage: "1d8",
         type: WeaponFamilyModel(
+            wielding: "Range",
             name: "Crossbow",
             isSelected: false,
             picture: "assets/images/weapon_types/crossbow.svg"),
@@ -636,6 +640,7 @@ class EquipData {
         critical: "",
         damage: "1d8",
         type: WeaponFamilyModel(
+            wielding: "Range",
             name: "Bow",
             isSelected: false,
             picture: "assets/images/weapon_types/bow.svg"),
@@ -645,6 +650,7 @@ class EquipData {
         critical: "",
         damage: "1d6",
         type: WeaponFamilyModel(
+            wielding: "Range",
             name: "Bow",
             isSelected: false,
             picture: "assets/images/weapon_types/bow.svg"),
@@ -654,6 +660,7 @@ class EquipData {
         critical: "",
         damage: "1d8",
         type: WeaponFamilyModel(
+            wielding: "Range",
             name: "Bow",
             isSelected: false,
             picture: "assets/images/weapon_types/bow.svg"),
@@ -663,6 +670,7 @@ class EquipData {
         critical: "",
         damage: "1d6",
         type: WeaponFamilyModel(
+            wielding: "Range",
             name: "Throwing",
             isSelected: false,
             picture: "assets/images/weapon_types/throwing.svg"),
@@ -672,6 +680,7 @@ class EquipData {
         critical: "",
         damage: "1d6",
         type: WeaponFamilyModel(
+            wielding: "Range",
             name: "Bow",
             isSelected: false,
             picture: "assets/images/weapon_types/bow.svg"),
@@ -681,6 +690,7 @@ class EquipData {
         critical: "",
         damage: "-",
         type: WeaponFamilyModel(
+            wielding: "Range",
             name: "Throwing",
             isSelected: false,
             picture: "assets/images/weapon_types/throwing.svg"),
@@ -690,6 +700,7 @@ class EquipData {
         critical: "",
         damage: "1d2",
         type: WeaponFamilyModel(
+            wielding: "Range",
             name: "Throwing",
             isSelected: false,
             picture: "assets/images/weapon_types/throwing.svg"),
@@ -699,24 +710,93 @@ class EquipData {
         critical: "",
         damage: "1d6",
         type: WeaponFamilyModel(
+            wielding: "Range",
             name: "Throwing",
             isSelected: false,
             picture: "assets/images/weapon_types/throwing.svg"),
         name: "Throwing shield"),
+  ];
+  final List<WeaponFamilyModel> oneHandedTypes = [
+    WeaponFamilyModel(
+        name: "Knife",
+        wielding: "One-handed",
+        isSelected: false,
+        picture: "assets/images/weapon_types/knife.svg"),
+    WeaponFamilyModel(
+        name: "Sword",
+        wielding: "One-handed",
+        isSelected: false,
+        picture: "assets/images/weapon_types/sword.svg"),
+    WeaponFamilyModel(
+        name: "Axe",
+        wielding: "One-handed",
+        isSelected: false,
+        picture: "assets/images/weapon_types/hatchet.svg"),
+    WeaponFamilyModel(
+        name: "Mace",
+        wielding: "One-handed",
+        isSelected: false,
+        picture: "assets/images/weapon_types/hammer.svg"),
+    WeaponFamilyModel(
+        name: "Fist",
+        wielding: "One-handed",
+        isSelected: false,
+        picture: "assets/images/weapon_types/punch.svg"),
+    WeaponFamilyModel(
+        name: "Exotic",
+        wielding: "One-handed",
+        isSelected: false,
+        picture: "assets/images/weapon_types/exotic.svg"),
+  ];
+
+  final List<WeaponFamilyModel> twoHandedTypes = [
+    WeaponFamilyModel(
+        name: "Sword",
+        wielding: "Two-handed",
+        isSelected: false,
+        picture: "assets/images/weapon_types/great-sword.svg"),
+    WeaponFamilyModel(
+        name: "Spear",
+        wielding: "Two-handed",
+        isSelected: false,
+        picture: "assets/images/weapon_types/spear.svg"),
+    WeaponFamilyModel(
+        name: "Axe",
+        isSelected: false,
+        wielding: "Two-handed",
+        picture: "assets/images/weapon_types/battle-axe.svg"),
+    WeaponFamilyModel(
+        name: "Mace",
+        isSelected: false,
+        wielding: "Two-handed",
+        picture: "assets/images/weapon_types/mace.svg"),
+    WeaponFamilyModel(
+        name: "Polearm",
+        isSelected: false,
+        wielding: "Two-handed",
+        picture: "assets/images/weapon_types/polearm.svg"),
+    WeaponFamilyModel(
+        name: "Exotic",
+        isSelected: false,
+        wielding: "Two-handed",
+        picture: "assets/images/weapon_types/exotic_tw.svg"),
   ];
 
   final List<WeaponFamilyModel> distanceTypes = [
     WeaponFamilyModel(
         name: "Bow",
         isSelected: false,
+        wielding: "Range",
         picture: "assets/images/weapon_types/bow.svg"),
     WeaponFamilyModel(
         name: "Crossbow",
         isSelected: false,
+        wielding: "Range",
         picture: "assets/images/weapon_types/crossbow.svg"),
     WeaponFamilyModel(
         name: "Throwing",
         isSelected: false,
+        wielding: "Range",
         picture: "assets/images/weapon_types/throwing.svg"),
   ];
 
@@ -1048,15 +1128,15 @@ class EquipData {
         isSelected: false,
         picture: "assets/images/armors/none.svg"),
     ArmorFamilyModel(
-        name: "Light armor",
+        name: "Light",
         isSelected: false,
         picture: "assets/images/armors/light.svg"),
     ArmorFamilyModel(
-        name: "Medium armor",
+        name: "Medium",
         isSelected: false,
         picture: "assets/images/armors/medium.svg"),
     ArmorFamilyModel(
-        name: "Heavy armor",
+        name: "Heavy",
         isSelected: false,
         picture: "assets/images/armors/heavy.svg"),
   ];
@@ -1071,11 +1151,11 @@ class EquipData {
         isSelected: false,
         picture: "assets/images/shields/buckler.svg"),
     ArmorFamilyModel(
-        name: "Light shield",
+        name: "Light",
         isSelected: false,
         picture: "assets/images/shields/light.svg"),
     ArmorFamilyModel(
-        name: "Heavy shield",
+        name: "Heavy",
         isSelected: false,
         picture: "assets/images/shields/heavy.svg"),
   ];

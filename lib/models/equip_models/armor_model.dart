@@ -5,16 +5,16 @@ import 'package:fantasy_name_generator/models/equip_models/armor_type_model.dart
 import 'enchant_model.dart';
 
 class ArmorModel {
-  final String name;
-  final String? material;
-  final ArmorFamilyModel? type;
+  String name;
+  String? material;
+  ArmorFamilyModel? type;
   bool? isSelected;
-  final EnchantModel? enchantment;
-  final int? power;
-  final int? defenseBonus;
-  final int? checkPenalty;
-  final int? maxDexAllowed;
-  final int? speedPenalty;
+  EnchantModel? enchantment;
+  int? power;
+  int? defenseBonus;
+  int? checkPenalty;
+  int? maxDexAllowed;
+  int? speedPenalty;
   ArmorModel({
     required this.name,
     this.material,
