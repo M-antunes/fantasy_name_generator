@@ -1,5 +1,6 @@
 import 'package:fantasy_name_generator/models/equip_models/armor_model.dart';
 import 'package:fantasy_name_generator/models/equip_models/armor_type_model.dart';
+import 'package:fantasy_name_generator/models/equip_models/equip_model.dart';
 import 'package:fantasy_name_generator/models/equip_models/weapon_model.dart';
 import 'package:fantasy_name_generator/models/equip_models/weapon_type_model.dart';
 
@@ -1158,5 +1159,90 @@ class EquipData {
         name: "Heavy",
         isSelected: false,
         picture: "assets/images/shields/heavy.svg"),
+  ];
+
+  List<EquipModel> offHandTypeModel = [
+    EquipModel(
+      primaryWeapon: WeaponModel(
+        type: WeaponFamilyModel(
+            name: "Knife",
+            wielding: "One-handed",
+            isSelected: false,
+            picture: "assets/images/weapon_types/knife.svg"),
+      ),
+    ),
+    EquipModel(
+      primaryWeapon: WeaponModel(
+        type: WeaponFamilyModel(
+            name: "Sword",
+            wielding: "One-handed",
+            isSelected: false,
+            picture: "assets/images/weapon_types/sword.svg"),
+      ),
+    ),
+    EquipModel(
+      primaryWeapon: WeaponModel(
+        type: WeaponFamilyModel(
+            name: "Axe",
+            wielding: "One-handed",
+            isSelected: false,
+            picture: "assets/images/weapon_types/hatchet.svg"),
+      ),
+    ),
+    EquipModel(
+      primaryWeapon: WeaponModel(
+        type: WeaponFamilyModel(
+            name: "Mace",
+            wielding: "One-handed",
+            isSelected: false,
+            picture: "assets/images/weapon_types/hammer.svg"),
+      ),
+    ),
+    EquipModel(
+      primaryWeapon: WeaponModel(
+        type: WeaponFamilyModel(
+            name: "Fist",
+            wielding: "One-handed",
+            isSelected: false,
+            picture: "assets/images/weapon_types/punch.svg"),
+      ),
+    ),
+    EquipModel(
+      primaryWeapon: WeaponModel(
+        type: WeaponFamilyModel(
+            name: "Exotic",
+            wielding: "One-handed",
+            isSelected: false,
+            picture: "assets/images/weapon_types/exotic.svg"),
+      ),
+    ),
+    EquipModel(
+        shield: ArmorModel(
+      type: ArmorFamilyModel(
+          name: "No shield",
+          isSelected: false,
+          picture: "assets/images/shields/no-shield.svg"),
+    )),
+    EquipModel(
+        shield: ArmorModel(
+      type: ArmorFamilyModel(
+          name: "Buckler",
+          isSelected: false,
+          picture: "assets/images/shields/buckler.svg"),
+    )),
+    EquipModel(
+        shield: ArmorModel(
+      type: ArmorFamilyModel(
+          name: "Medium",
+          isSelected: false,
+          picture: "assets/images/armors/medium.svg"),
+    )),
+    EquipModel(
+        shield: ArmorModel(
+      type: ArmorFamilyModel(
+          name: "Heavy",
+          isSelected: false,
+          picture: "assets/images/armors/heavy.svg"),
+    )),
   ];
 }

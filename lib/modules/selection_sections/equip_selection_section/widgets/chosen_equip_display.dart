@@ -51,10 +51,11 @@ class ChosenEquipDisplay extends StatelessWidget {
 
 class EquipOfChoice extends StatelessWidget {
   final String weaponPic;
-
+  final double? size;
   const EquipOfChoice({
     Key? key,
     required this.weaponPic,
+    this.size,
   }) : super(key: key);
 
   @override
@@ -62,6 +63,7 @@ class EquipOfChoice extends StatelessWidget {
     return SvgPicture.asset(
       weaponPic,
       color: AppColors.primary,
+      height: size,
     );
   }
 }

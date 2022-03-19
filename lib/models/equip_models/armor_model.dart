@@ -5,7 +5,7 @@ import 'package:fantasy_name_generator/models/equip_models/armor_type_model.dart
 import 'enchant_model.dart';
 
 class ArmorModel {
-  String name;
+  String? name;
   String? material;
   ArmorFamilyModel? type;
   bool? isSelected;
@@ -16,7 +16,7 @@ class ArmorModel {
   int? maxDexAllowed;
   int? speedPenalty;
   ArmorModel({
-    required this.name,
+    this.name,
     this.material,
     this.type,
     this.isSelected,
@@ -71,7 +71,7 @@ class ArmorModel {
 
   factory ArmorModel.fromMap(Map<String, dynamic> map) {
     return ArmorModel(
-      name: map['name'] ?? '',
+      name: map['name'],
       material: map['material'],
       type: map['type'] != null ? ArmorFamilyModel.fromMap(map['type']) : null,
       isSelected: map['isSelected'],

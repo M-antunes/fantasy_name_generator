@@ -17,6 +17,7 @@ class EquipController extends ChangeNotifier {
   List<ArmorFamilyModel> allListsOfShieldFamily = [];
   List<ArmorFamilyModel> filteredArmorTypes = [];
   List<ArmorFamilyModel> filteredShieldTypes = [];
+  List<dynamic> filteredOffHandTypes = [];
 
   WeaponFamilyModel? chosenPrimaryWeaponType;
   WeaponFamilyModel? tempPrimaryWeaponType;
@@ -33,6 +34,9 @@ class EquipController extends ChangeNotifier {
   bool hasChosenArmor = false;
   bool hasChosenShield = false;
   bool isDualWield = false;
+  bool displayTwoHandedIcon = false;
+  bool cantChooseTwoHandedAnymore = false;
+  bool readyToChoseShield = false;
 
   populateListsOfWeaponFamily() {
     if (allListsOfWeaponsFamily.isNotEmpty) {
@@ -51,10 +55,31 @@ class EquipController extends ChangeNotifier {
     notifyListeners();
   }
 
+  confirmTwoHanded() {
+    cantChooseTwoHandedAnymore = true;
+    notifyListeners();
+  }
+
   updatePrimaryweaponType() {
     chosenPrimaryWeaponType = tempPrimaryWeaponType;
     tempPrimaryWeaponType!.isSelected = false;
     hasChosenPrimaryWeapon = true;
+    readyToChoseShield = true;
+    if (chosenPrimaryWeaponType!.wielding == "Two-handed" ||
+        chosenPrimaryWeaponType!.wielding == "Range") {
+      chosenSecondaryWeaponType = chosenPrimaryWeaponType;
+      displayTwoHandedIcon = true;
+      hasChosenSecondaryWeapon = true;
+    }
+    cantChooseTwoHandedAnymore = true;
+    notifyListeners();
+  }
+
+  mergeOffHandEquip() {
+    List<dynamic> list = [];
+    list.addAll(listOfEquip.oneHandedTypes);
+    list.addAll(filteredShieldTypes);
+    filteredOffHandTypes = list;
     notifyListeners();
   }
 
@@ -92,7 +117,6 @@ class EquipController extends ChangeNotifier {
   }
 
   switchPrimaryWeaponType(WeaponFamilyModel type) {
-    type.isSelected = type.isSelected;
     for (var select in allListsOfWeaponsFamily) {
       select.isSelected = false;
     }
@@ -102,7 +126,6 @@ class EquipController extends ChangeNotifier {
   }
 
   switchSecondaryWeaponType(WeaponFamilyModel type) {
-    type.isSelected = type.isSelected;
     for (var select in allListsOfWeaponsFamily) {
       select.isSelected = false;
     }
@@ -112,10 +135,10 @@ class EquipController extends ChangeNotifier {
   }
 
   switchBothArmors(ArmorFamilyModel type) {
-    if (chosenArmorType == null) {
-      switchArmorType(type);
-    } else {
+    if (readyToChoseShield) {
       switchShieldType(type);
+    } else {
+      switchArmorType(type);
     }
   }
 
@@ -152,6 +175,9 @@ class EquipController extends ChangeNotifier {
     hasChosenSecondaryWeapon = false;
     hasChosenShield = false;
     isDualWield = false;
+    displayTwoHandedIcon = false;
+    cantChooseTwoHandedAnymore = false;
+    readyToChoseShield = false;
     notifyListeners();
   }
 
