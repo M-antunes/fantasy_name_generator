@@ -4,25 +4,21 @@ class OffHandTypeModel {
   String name;
   bool isSelected;
   String picture;
-  String wielding;
   OffHandTypeModel({
     required this.name,
     required this.isSelected,
     required this.picture,
-    required this.wielding,
   });
 
   OffHandTypeModel copyWith({
     String? name,
     bool? isSelected,
     String? picture,
-    String? wielding,
   }) {
     return OffHandTypeModel(
       name: name ?? this.name,
       isSelected: isSelected ?? this.isSelected,
       picture: picture ?? this.picture,
-      wielding: wielding ?? this.wielding,
     );
   }
 
@@ -31,7 +27,6 @@ class OffHandTypeModel {
       'name': name,
       'isSelected': isSelected,
       'picture': picture,
-      'wielding': wielding,
     };
   }
 
@@ -40,7 +35,6 @@ class OffHandTypeModel {
       name: map['name'] ?? '',
       isSelected: map['isSelected'] ?? false,
       picture: map['picture'] ?? '',
-      wielding: map['wielding'] ?? '',
     );
   }
 
@@ -50,9 +44,8 @@ class OffHandTypeModel {
       OffHandTypeModel.fromMap(json.decode(source));
 
   @override
-  String toString() {
-    return 'OffHandTypeModel(name: $name, isSelected: $isSelected, picture: $picture, wielding: $wielding)';
-  }
+  String toString() =>
+      'OffHandTypeModel(name: $name, isSelected: $isSelected, picture: $picture)';
 
   @override
   bool operator ==(Object other) {
@@ -61,15 +54,9 @@ class OffHandTypeModel {
     return other is OffHandTypeModel &&
         other.name == name &&
         other.isSelected == isSelected &&
-        other.picture == picture &&
-        other.wielding == wielding;
+        other.picture == picture;
   }
 
   @override
-  int get hashCode {
-    return name.hashCode ^
-        isSelected.hashCode ^
-        picture.hashCode ^
-        wielding.hashCode;
-  }
+  int get hashCode => name.hashCode ^ isSelected.hashCode ^ picture.hashCode;
 }

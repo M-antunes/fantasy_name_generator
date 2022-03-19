@@ -17,7 +17,6 @@ class EquipDisplayRow extends StatelessWidget {
   final VoidCallback onLongPress;
   final List<WeaponFamilyModel>? weaponList;
   final List<ArmorFamilyModel>? armorList;
-  final List<ArmorFamilyModel>? shieldList;
   const EquipDisplayRow({
     Key? key,
     required this.label,
@@ -25,7 +24,6 @@ class EquipDisplayRow extends StatelessWidget {
     required this.onLongPress,
     this.weaponList,
     this.armorList,
-    this.shieldList,
   }) : super(key: key);
 
   @override
@@ -63,7 +61,6 @@ class EquipDisplayRow extends StatelessWidget {
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: itemCounting,
                 itemBuilder: (context, index) {
-                  var shield = shieldList?[index];
                   var armor = armorList?[index];
                   var weapon = weaponList?[index];
                   return weapon != null
@@ -95,7 +92,7 @@ class EquipDisplayRow extends StatelessWidget {
                           ? InkWell(
                               splashColor: Colors.transparent,
                               onLongPress: onLongPress,
-                              onTap: () => state.switchBothArmors(armor),
+                              onTap: () => state.switchArmorType(armor),
                               child: Column(
                                 children: [
                                   Padding(
@@ -115,32 +112,7 @@ class EquipDisplayRow extends StatelessWidget {
                                 ],
                               ),
                             )
-                          : shield != null
-                              ? InkWell(
-                                  splashColor: Colors.transparent,
-                                  onLongPress: onLongPress,
-                                  onTap: () => state.switchBothArmors(shield),
-                                  child: Column(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.all(2),
-                                        child: Text(shield.name,
-                                            style: shield.isSelected
-                                                ? AppTextStyle.weaponSelected
-                                                : AppTextStyle
-                                                    .weaponNotSelected),
-                                      ),
-                                      SvgPicture.asset(
-                                        shield.picture,
-                                        height: deviceWidth! < 400 ? 30 : 40,
-                                        color: shield.isSelected
-                                            ? AppColors.primary
-                                            : null,
-                                      ),
-                                    ],
-                                  ),
-                                )
-                              : const SizedBox();
+                          : const SizedBox();
                 });
           }),
         ),

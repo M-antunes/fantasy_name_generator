@@ -1,4 +1,5 @@
 import 'package:fantasy_name_generator/models/char_model.dart';
+import 'package:fantasy_name_generator/models/equip_models/off_hand_type_model.dart';
 import 'package:fantasy_name_generator/shared/data/default_char_model_data.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -16,8 +17,8 @@ class EquipController extends ChangeNotifier {
   List<ArmorFamilyModel> allListsOfArmorFamily = [];
   List<ArmorFamilyModel> allListsOfShieldFamily = [];
   List<ArmorFamilyModel> filteredArmorTypes = [];
-  List<ArmorFamilyModel> filteredShieldTypes = [];
-  List<dynamic> filteredOffHandTypes = [];
+  List<OffHandTypeModel> filteredShieldTypes = [];
+  List<OffHandTypeModel> filteredOffHandTypes = [];
 
   WeaponFamilyModel? chosenPrimaryWeaponType;
   WeaponFamilyModel? tempPrimaryWeaponType;
@@ -28,6 +29,9 @@ class EquipController extends ChangeNotifier {
   ArmorFamilyModel? chosenShieldType;
   ArmorFamilyModel? tempArmorType;
   ArmorFamilyModel? chosenArmorType;
+
+  OffHandTypeModel? tempOffHandType;
+  OffHandTypeModel? chosenOffHandType;
 
   bool hasChosenPrimaryWeapon = false;
   bool hasChosenSecondaryWeapon = false;
@@ -75,22 +79,14 @@ class EquipController extends ChangeNotifier {
     notifyListeners();
   }
 
-  mergeOffHandEquip() {
-    List<dynamic> list = [];
-    list.addAll(listOfEquip.oneHandedTypes);
-    list.addAll(filteredShieldTypes);
-    filteredOffHandTypes = list;
-    notifyListeners();
-  }
-
-  updateSecondaryweaponType(Future<dynamic> dualWieldChecl) {
+  updateSecondaryweaponType(Future<dynamic> dualWieldCheck) {
     chosenSecondaryWeaponType = tempSecondaryWeaponType;
     tempSecondaryWeaponType!.isSelected = false;
     hasChosenSecondaryWeapon = true;
     notifyListeners();
     if (chosenPrimaryWeaponType!.wielding == "One-handed" &&
         chosenSecondaryWeaponType!.wielding == "One-handed") {
-      dualWieldChecl;
+      dualWieldCheck;
     }
   }
 
@@ -101,10 +97,28 @@ class EquipController extends ChangeNotifier {
     notifyListeners();
   }
 
-  updateShieldType() {
-    chosenShieldType = tempShieldType;
-    tempShieldType!.isSelected = false;
+  updateOffHandType(VoidCallback dualWieldCheck) {
+    chosenOffHandType = tempOffHandType;
     hasChosenShield = true;
+    bool hasShield = listOfEquip.shieldTypesForOffHand
+        .any((element) => element == chosenOffHandType);
+    if (hasShield) {
+      chosenShieldType = ArmorFamilyModel(
+          name: chosenOffHandType!.name,
+          isSelected: true,
+          picture: chosenOffHandType!.picture);
+    } else {
+      chosenSecondaryWeaponType = WeaponFamilyModel(
+          name: chosenOffHandType!.name,
+          isSelected: true,
+          picture: chosenOffHandType!.picture,
+          wielding: "One-handed");
+      if (chosenPrimaryWeaponType!.wielding == "One-handed" &&
+          chosenSecondaryWeaponType!.wielding == "One-handed") {
+        dualWieldCheck;
+      }
+    }
+    hasChosenSecondaryWeapon = true;
     notifyListeners();
   }
 
@@ -134,12 +148,13 @@ class EquipController extends ChangeNotifier {
     notifyListeners();
   }
 
-  switchBothArmors(ArmorFamilyModel type) {
-    if (readyToChoseShield) {
-      switchShieldType(type);
-    } else {
-      switchArmorType(type);
+  switchOffHandWeaponType(OffHandTypeModel type) {
+    for (var select in filteredOffHandTypes) {
+      select.isSelected = false;
     }
+    type.isSelected = !type.isSelected;
+    tempOffHandType = type;
+    notifyListeners();
   }
 
   switchArmorType(ArmorFamilyModel type) {
@@ -163,13 +178,16 @@ class EquipController extends ChangeNotifier {
   resetChoices() {
     tempArmorType = null;
     tempShieldType = null;
-    tempPrimaryWeaponType!.isSelected = false;
+    // tempPrimaryWeaponType!.isSelected = false;
     tempPrimaryWeaponType = null;
     tempSecondaryWeaponType = null;
     chosenArmorType = null;
     chosenPrimaryWeaponType = null;
     chosenSecondaryWeaponType = null;
     chosenShieldType = null;
+    // tempOffHandType!.isSelected = false;
+    tempOffHandType = null;
+    chosenOffHandType = null;
     hasChosenArmor = false;
     hasChosenPrimaryWeapon = false;
     hasChosenSecondaryWeapon = false;
@@ -195,26 +213,43 @@ class EquipController extends ChangeNotifier {
         .toList();
   }
 
+  filterShield(
+    List<OffHandTypeModel> list,
+    String permited1,
+    String permited2,
+    String permited3,
+  ) {
+    return list
+        .where((type) =>
+            type.name == permited1 ||
+            type.name == permited2 ||
+            type.name == permited3)
+        .toList();
+  }
+
   filterArmorToClass() {
+    if (filteredArmorTypes.isNotEmpty) {
+      return;
+    }
     switch (char.charClass.name) {
       case "Barbarian":
         filteredArmorTypes =
             filterEquip(listOfEquip.armorTypes, "No armor", "Light", "Medium");
-        filteredShieldTypes = listOfEquip.shieldTypes;
+        filteredShieldTypes = listOfEquip.shieldTypesForOffHand;
 
         notifyListeners();
         break;
       case "Ranger":
         filteredArmorTypes =
             filterEquip(listOfEquip.armorTypes, "No armor", "Light", "Medium");
-        filteredShieldTypes = listOfEquip.shieldTypes;
+        filteredShieldTypes = listOfEquip.shieldTypesForOffHand;
 
         notifyListeners();
         break;
       case "Druid":
         filteredArmorTypes =
             filterEquip(listOfEquip.armorTypes, "No armor", "Light", "Medium");
-        filteredShieldTypes = listOfEquip.shieldTypes;
+        filteredShieldTypes = listOfEquip.shieldTypesForOffHand;
 
         notifyListeners();
         break;
@@ -222,34 +257,34 @@ class EquipController extends ChangeNotifier {
         filteredArmorTypes =
             filterEquip(listOfEquip.armorTypes, "No armor", "Light", "Medium");
         filteredShieldTypes =
-            filterEquip(listOfEquip.shieldTypes, "No shield", "", "");
+            filterShield(listOfEquip.shieldTypesForOffHand, "Empty", "", "");
         notifyListeners();
         break;
       case "Alchemist":
         filteredArmorTypes =
             filterEquip(listOfEquip.armorTypes, "No armor", "Light", "");
         filteredShieldTypes =
-            filterEquip(listOfEquip.shieldTypes, "No shield", "", "");
+            filterShield(listOfEquip.shieldTypesForOffHand, "Empty", "", "");
         notifyListeners();
         break;
       case "Monk":
         filteredArmorTypes =
             filterEquip(listOfEquip.armorTypes, "No armor", "", "");
         filteredShieldTypes =
-            filterEquip(listOfEquip.shieldTypes, "No shield", "", "");
+            filterShield(listOfEquip.shieldTypesForOffHand, "Empty", "", "");
         notifyListeners();
         break;
       case "Rogue":
         filteredArmorTypes =
             filterEquip(listOfEquip.armorTypes, "No armor", "Light", "");
         filteredShieldTypes =
-            filterEquip(listOfEquip.shieldTypes, "No shield", "", "");
+            filterShield(listOfEquip.shieldTypesForOffHand, "Empty", "", "");
         notifyListeners();
         break;
       case "Bard":
         filteredArmorTypes =
             filterEquip(listOfEquip.armorTypes, "No armor", "Light", "");
-        filteredShieldTypes = listOfEquip.shieldTypes;
+        filteredShieldTypes = listOfEquip.shieldTypesForOffHand;
 
         notifyListeners();
         break;
@@ -257,21 +292,24 @@ class EquipController extends ChangeNotifier {
         filteredArmorTypes =
             filterEquip(listOfEquip.armorTypes, "No armor", "", "");
         filteredShieldTypes =
-            filterEquip(listOfEquip.shieldTypes, "No shield", "", "");
+            filterShield(listOfEquip.shieldTypesForOffHand, "Empty", "", "");
         notifyListeners();
         break;
       case "Wizard":
         filteredArmorTypes =
             filterEquip(listOfEquip.armorTypes, "No armor", "", "");
-        filteredShieldTypes =
-            filterEquip(listOfEquip.shieldTypes, "No shield", "", "");
+        filteredShieldTypes = filterShield(
+            listOfEquip.shieldTypesForOffHand, "No shield", "", "");
         notifyListeners();
         break;
       default:
         filteredArmorTypes = listOfEquip.armorTypes;
-        filteredShieldTypes = listOfEquip.shieldTypes;
+        filteredShieldTypes = listOfEquip.shieldTypesForOffHand;
         notifyListeners();
     }
+    filteredOffHandTypes.addAll(listOfEquip.oneHandedTypeForOffHand);
+    filteredOffHandTypes.addAll(filteredShieldTypes);
+    notifyListeners();
   }
 
   // Move on with the selections ===========================================================
