@@ -22,7 +22,7 @@ class ProgressionBar extends StatelessWidget {
           padding: const EdgeInsets.only(left: 8, right: 8),
           child: StepProgressIndicator(
             roundedEdges: const Radius.circular(10),
-            totalSteps: 7,
+            totalSteps: 6,
             currentStep: controller.creationStage,
             selectedColor: AppColors.primary,
             selectedSize: 8,

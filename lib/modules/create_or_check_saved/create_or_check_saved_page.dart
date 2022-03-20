@@ -2,8 +2,6 @@ import 'package:fantasy_name_generator/shared/constants/phone_sizes.dart';
 import 'package:fantasy_name_generator/shared/routes/app_roues.dart';
 import 'package:flutter/material.dart';
 
-import '../../shared/widgets/app_generate_button.dart';
-
 class CreateOrCheckSavedPage extends StatelessWidget {
   const CreateOrCheckSavedPage({Key? key}) : super(key: key);
 

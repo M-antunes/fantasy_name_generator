@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:fantasy_name_generator/controllers/equip_controller.dart';
 import 'package:fantasy_name_generator/models/char_model.dart';
 import 'package:fantasy_name_generator/modules/selection_sections/equip_selection_section/combat_gear_section.dart';

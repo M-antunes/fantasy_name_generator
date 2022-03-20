@@ -6,8 +6,8 @@ import 'package:fantasy_name_generator/controllers/char_controller.dart';
 
 import '../../../shared/themes/app_text_styles.dart';
 import '../../../shared/widgets/atribute_division.dart';
-import 'widgets/defense_info.dart';
-import 'widgets/stats_description_column.dart';
+import '../char_selection_sections/widgets/defense_info.dart';
+import '../char_selection_sections/widgets/stats_description_column.dart';
 
 class ProgressCheck extends StatefulWidget {
   const ProgressCheck({

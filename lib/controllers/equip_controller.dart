@@ -113,10 +113,10 @@ class EquipController extends ChangeNotifier {
           isSelected: true,
           picture: chosenOffHandType!.picture,
           wielding: "One-handed");
-      if (chosenPrimaryWeaponType!.wielding == "One-handed" &&
-          chosenSecondaryWeaponType!.wielding == "One-handed") {
-        dualWieldCheck;
-      }
+      // if (chosenPrimaryWeaponType!.wielding == "One-handed" &&
+      //     chosenSecondaryWeaponType!.wielding == "One-handed") {
+      dualWieldCheck;
+      // }
     }
     hasChosenSecondaryWeapon = true;
     notifyListeners();

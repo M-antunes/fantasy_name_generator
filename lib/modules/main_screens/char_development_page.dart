@@ -14,7 +14,6 @@ import '../selection_sections/char_selection_sections/class_section.dart';
 import '../selection_sections/char_selection_sections/gender_section.dart';
 import '../selection_sections/char_selection_sections/level_section.dart';
 import '../selection_sections/char_selection_sections/name_section.dart';
-import '../selection_sections/char_selection_sections/progress_check.dart';
 import '../selection_sections/char_selection_sections/race_section.dart';
 import '../selection_sections/char_selection_sections/stats_section.dart';
 
@@ -58,11 +57,10 @@ class _CharDevelopmentPageState extends State<CharDevelopmentPage>
                                 ? "Character - Alignment"
                                 : state.creationStage == 5
                                     ? "Character - Level"
-                                    : state.creationStage == 6
-                                        ? "Character - Stats"
-                                        : state.creationStage == 7
-                                            ? "Character - Basic features complete"
-                                            : ''),
+                                    : state.creationStage == 6 &&
+                                            state.isCharGeneratorCleared
+                                        ? "Character - Basic features generator"
+                                        : 'Character - Basic features complete'),
             ProgressionBar(
               controller: state,
             ),
@@ -100,7 +98,6 @@ class _CharDevelopmentPageState extends State<CharDevelopmentPage>
                         state.updateCharModel();
                       },
               ),
-            if (state.creationStage == 7) ProgressCheck(),
           ],
         );
       }),
@@ -123,7 +120,7 @@ class _CharDevelopmentPageState extends State<CharDevelopmentPage>
                       state.retreatCreationStage();
                     }
                   }),
-              state.creationStage == 7
+              state.creationStage == 6
                   ? AppAnimatedButton(
                       onTap: () => Navigator.pushNamed(
                           context, AppRoutes.equipPage,

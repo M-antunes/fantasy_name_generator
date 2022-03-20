@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:fantasy_name_generator/controllers/char_controller.dart';
 import 'package:fantasy_name_generator/shared/themes/app_text_styles.dart';
 
+import '../../../shared/themes/app_colors.dart';
 import '../../../shared/widgets/atribute_division.dart';
 import 'widgets/char_description_column.dart';
 import 'widgets/defense_info.dart';
@@ -292,6 +293,46 @@ class StatsSection extends StatelessWidget {
                       ],
                     ),
                     SizedBox(height: size.height * 0.02),
+                    if (!state.isCharGeneratorCleared)
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          RichText(
+                            textAlign: TextAlign.center,
+                            text: TextSpan(
+                              style: AppTextStyle.subTextGrey,
+                              children: [
+                                TextSpan(
+                                    text: state.generatedChar.charName.fullName,
+                                    style: AppTextStyle.subTextWhite),
+                                const TextSpan(
+                                  text: "  has no equipment so far.",
+                                ),
+                              ],
+                            ),
+                          ),
+                          Row(
+                            children: [
+                              Text("Click", style: AppTextStyle.subTextGrey),
+                              TextButton(
+                                  child: const Text(
+                                    "HERE",
+                                    style:
+                                        TextStyle(color: AppColors.primaryGold),
+                                  ),
+                                  onPressed: () {
+                                    showStartingOverConfirmation(
+                                        context, state);
+                                  }),
+                              Text("to start over",
+                                  style: AppTextStyle.subTextGrey),
+                            ],
+                          ),
+                          Text("Or click next to start equipment generation",
+                              style: AppTextStyle.subTextGrey),
+                        ],
+                      ),
+                    SizedBox(height: size.height * 0.01),
                   ],
                 ),
               ],
@@ -301,4 +342,53 @@ class StatsSection extends StatelessWidget {
       ),
     );
   }
+}
+
+Future<dynamic> showStartingOverConfirmation(
+    BuildContext context, CharController state) {
+  return showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Center(
+            child: Text(
+              "ATENTION!",
+              style: TextStyle(
+                color: AppColors.primaryGold,
+              ),
+            ),
+          ),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                  "If you start over, the ${state.generatedChar.charClass.name} ${state.generatedChar.charName.fullName}, will be lost forever.",
+                  style: AppTextStyle.subTextGrey,
+                  textAlign: TextAlign.center),
+              Text("Is that what you desire?", style: AppTextStyle.subTextGrey),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                state.startCharAllOver();
+                Navigator.of(context).pop();
+              },
+              child: const Text(
+                'YES',
+                style: TextStyle(color: AppColors.primary),
+              ),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text(
+                'NO',
+                style: TextStyle(color: Colors.white70),
+              ),
+            ),
+          ],
+        );
+      });
 }
