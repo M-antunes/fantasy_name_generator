@@ -6,7 +6,6 @@ import 'package:fantasy_name_generator/controllers/equip_controller.dart';
 import 'package:fantasy_name_generator/shared/constants/phone_sizes.dart';
 
 import '../../../shared/themes/app_colors.dart';
-import 'widgets/call_dual_wield_check.dart';
 import 'widgets/chosen_equip_display.dart';
 import 'widgets/equip_display_row.dart';
 import 'widgets/off_hand_display_row.dart';
@@ -163,8 +162,7 @@ class CombatGear extends StatelessWidget {
                   label: "Off-Hand Equip",
                   itemCounting: state.filteredOffHandTypes.length,
                   offHandList: state.filteredOffHandTypes,
-                  onLongPress: () => state.updateOffHandType(
-                      () => callDualWieldCheck(context, state)),
+                  onLongPress: () => state.updateOffHandType(),
                 ),
               ],
             ),

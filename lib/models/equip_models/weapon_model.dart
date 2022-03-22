@@ -11,6 +11,7 @@ class WeaponModel {
   EnchantModel? enchantment;
   int? power;
   String? damage;
+  String? damageType;
   String? critical;
   WeaponModel({
     this.type,
@@ -19,6 +20,7 @@ class WeaponModel {
     this.enchantment,
     this.power,
     this.damage,
+    this.damageType,
     this.critical,
   });
 
@@ -29,6 +31,7 @@ class WeaponModel {
     EnchantModel? enchantment,
     int? power,
     String? damage,
+    String? damageType,
     String? critical,
   }) {
     return WeaponModel(
@@ -38,6 +41,7 @@ class WeaponModel {
       enchantment: enchantment ?? this.enchantment,
       power: power ?? this.power,
       damage: damage ?? this.damage,
+      damageType: damageType ?? this.damageType,
       critical: critical ?? this.critical,
     );
   }
@@ -50,6 +54,7 @@ class WeaponModel {
       'enchantment': enchantment?.toMap(),
       'power': power,
       'damage': damage,
+      'damageType': damageType,
       'critical': critical,
     };
   }
@@ -64,6 +69,7 @@ class WeaponModel {
           : null,
       power: map['power']?.toInt(),
       damage: map['damage'],
+      damageType: map['damageType'],
       critical: map['critical'],
     );
   }
@@ -75,7 +81,7 @@ class WeaponModel {
 
   @override
   String toString() {
-    return 'WeaponModel(type: $type, isSelected: $isSelected, name: $name, enchantment: $enchantment, power: $power, damage: $damage, critical: $critical)';
+    return 'WeaponModel(type: $type, isSelected: $isSelected, name: $name, enchantment: $enchantment, power: $power, damage: $damage, damageType: $damageType, critical: $critical)';
   }
 
   @override
@@ -89,6 +95,7 @@ class WeaponModel {
         other.enchantment == enchantment &&
         other.power == power &&
         other.damage == damage &&
+        other.damageType == damageType &&
         other.critical == critical;
   }
 
@@ -100,6 +107,7 @@ class WeaponModel {
         enchantment.hashCode ^
         power.hashCode ^
         damage.hashCode ^
+        damageType.hashCode ^
         critical.hashCode;
   }
 }

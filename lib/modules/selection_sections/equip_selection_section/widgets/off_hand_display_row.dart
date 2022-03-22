@@ -63,7 +63,10 @@ class OffHandDisplayRow extends StatelessWidget {
                 itemBuilder: (context, index) {
                   var offHand = offHandList?[index];
                   return InkWell(
-                    radius: 10,
+                    focusColor: Colors.transparent,
+                    highlightColor: AppColors.primaryText0,
+                    borderRadius: BorderRadius.circular(50),
+                    radius: 5,
                     splashColor: Colors.transparent,
                     onLongPress: onLongPress,
                     onTap: () => state.switchOffHandWeaponType(offHand!),

@@ -10,6 +10,7 @@ import '../../../../models/equip_models/weapon_type_model.dart';
 import '../../../../shared/constants/phone_sizes.dart';
 import '../../../../shared/themes/app_text_styles.dart';
 import '../../../../shared/widgets/app_horizontal_line.dart';
+import 'armor_permission_label.dart';
 
 class EquipDisplayRow extends StatelessWidget {
   final String label;
@@ -44,6 +45,7 @@ class EquipDisplayRow extends StatelessWidget {
             ],
           ),
         ),
+        if (armorList != null) const ArmorPermissionLabel(),
         Container(
           height: deviceHeight! * 0.1,
           width: deviceWidth! - 20,
@@ -65,6 +67,9 @@ class EquipDisplayRow extends StatelessWidget {
                   var weapon = weaponList?[index];
                   return weapon != null
                       ? InkWell(
+                          focusColor: Colors.transparent,
+                          highlightColor: AppColors.primaryText0,
+                          borderRadius: BorderRadius.circular(50),
                           radius: 10,
                           splashColor: Colors.transparent,
                           onLongPress: onLongPress,
@@ -90,6 +95,10 @@ class EquipDisplayRow extends StatelessWidget {
                         )
                       : armor != null
                           ? InkWell(
+                              focusColor: Colors.transparent,
+                              highlightColor: AppColors.primaryText0,
+                              borderRadius: BorderRadius.circular(50),
+                              radius: 10,
                               splashColor: Colors.transparent,
                               onLongPress: onLongPress,
                               onTap: () => state.switchArmorType(armor),

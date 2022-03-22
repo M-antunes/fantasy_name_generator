@@ -10,6 +10,7 @@ class EquipData {
         isSelected: false,
         critical: "19-20 x2",
         damage: "1d4",
+        damageType: "Slashing or piercing",
         type: WeaponFamilyModel(
             wielding: "One-handed",
             name: "Knife",
@@ -20,6 +21,7 @@ class EquipData {
         isSelected: false,
         critical: "x2",
         damage: "1d4",
+        damageType: "Bludgeoning",
         type: WeaponFamilyModel(
             wielding: "One-handed",
             name: "Mace",
@@ -30,6 +32,7 @@ class EquipData {
         isSelected: false,
         critical: "x2",
         damage: "1d6",
+        damageType: "Bludgeoning",
         type: WeaponFamilyModel(
             wielding: "One-handed",
             name: "Mace",
@@ -40,6 +43,7 @@ class EquipData {
         isSelected: false,
         critical: "x2",
         damage: "1d8",
+        damageType: "Bludgeoning",
         type: WeaponFamilyModel(
             wielding: "One-handed",
             name: "Mace",
@@ -50,6 +54,7 @@ class EquipData {
         isSelected: false,
         critical: "x2",
         damage: "1d8",
+        damageType: "Bludgeoning and piercing",
         type: WeaponFamilyModel(
             wielding: "One-handed",
             name: "Mace",
@@ -60,6 +65,7 @@ class EquipData {
         isSelected: false,
         critical: "19-20 x2",
         damage: "1d4",
+        damageType: "Piercing",
         type: WeaponFamilyModel(
             wielding: "One-handed",
             name: "Knife",
@@ -70,6 +76,7 @@ class EquipData {
         isSelected: false,
         critical: "19-20 x2",
         damage: "1d6",
+        damageType: "Slashing",
         type: WeaponFamilyModel(
             wielding: "One-handed",
             name: "Sword",
@@ -80,6 +87,7 @@ class EquipData {
         isSelected: false,
         critical: "x3",
         damage: "1d6",
+        damageType: "Slashing",
         type: WeaponFamilyModel(
             wielding: "One-handed",
             name: "Axe",
@@ -90,6 +98,7 @@ class EquipData {
         isSelected: false,
         critical: "19-20 x2",
         damage: "1d4",
+        damageType: "Slashing or piercing",
         type: WeaponFamilyModel(
             wielding: "One-handed",
             name: "Knife",
@@ -100,6 +109,7 @@ class EquipData {
         isSelected: false,
         critical: "x2",
         damage: "1d4",
+        damageType: "Bludgeoning",
         type: WeaponFamilyModel(
             wielding: "One-handed",
             name: "Mace",
@@ -110,6 +120,7 @@ class EquipData {
         isSelected: false,
         critical: "19-20 x2",
         damage: "1d6",
+        damageType: "Slashing",
         type: WeaponFamilyModel(
             wielding: "One-handed",
             name: "Sword",
@@ -120,6 +131,7 @@ class EquipData {
         isSelected: false,
         critical: "x4",
         damage: "1d6",
+        damageType: "Piercing",
         type: WeaponFamilyModel(
             wielding: "One-handed",
             name: "Axe",
@@ -130,6 +142,7 @@ class EquipData {
         isSelected: false,
         critical: "19-20 x2",
         damage: "1d4",
+        damageType: "Slasing or piercing",
         type: WeaponFamilyModel(
             wielding: "One-handed",
             name: "Knife",
@@ -140,6 +153,7 @@ class EquipData {
         isSelected: false,
         critical: "x2",
         damage: "1d8",
+        damageType: "Bludgeoning",
         type: WeaponFamilyModel(
             wielding: "One-handed",
             name: "Exotic",
@@ -150,6 +164,7 @@ class EquipData {
         isSelected: false,
         critical: "19-20 x2",
         damage: "1d8",
+        damageType: "Slashing",
         type: WeaponFamilyModel(
             wielding: "One-handed",
             name: "Sword",
@@ -160,6 +175,7 @@ class EquipData {
         isSelected: false,
         critical: "19-20 x2",
         damage: "1d6",
+        damageType: "Piercing",
         type: WeaponFamilyModel(
             wielding: "One-handed",
             name: "Sword",
@@ -170,6 +186,7 @@ class EquipData {
         isSelected: false,
         critical: "19-20 x2",
         damage: "1d6",
+        damageType: "Slashing",
         type: WeaponFamilyModel(
             wielding: "One-handed",
             name: "Sword",
@@ -180,6 +197,7 @@ class EquipData {
         isSelected: false,
         critical: "19-20 x2",
         damage: "2d4",
+        damageType: "Slashing",
         type: WeaponFamilyModel(
             wielding: "One-handed",
             name: "Sword",
@@ -190,6 +208,7 @@ class EquipData {
         isSelected: false,
         critical: "x2",
         damage: "1d2",
+        damageType: "Slashing",
         type: WeaponFamilyModel(
             wielding: "One-handed",
             name: "Exotic",
@@ -200,6 +219,7 @@ class EquipData {
         isSelected: false,
         critical: "19-20 x2",
         damage: "1d4",
+        damageType: "Piercing or slashing",
         type: WeaponFamilyModel(
             wielding: "One-handed",
             name: "Knife",
@@ -210,6 +230,7 @@ class EquipData {
         isSelected: false,
         critical: "19-20 x2",
         damage: "1d10",
+        damageType: "Slashing",
         type: WeaponFamilyModel(
             wielding: "One-handed",
             name: "Sword",
@@ -220,6 +241,7 @@ class EquipData {
         isSelected: false,
         critical: "x3",
         damage: "1d10",
+        damageType: "Slashing",
         type: WeaponFamilyModel(
             wielding: "One-handed",
             name: "Axe",
@@ -230,6 +252,7 @@ class EquipData {
         isSelected: false,
         critical: "19-20 x2",
         damage: "1d8",
+        damageType: "Slashing",
         type: WeaponFamilyModel(
             wielding: "One-handed",
             name: "Sword",
@@ -240,6 +263,7 @@ class EquipData {
         isSelected: false,
         critical: "19-20 x2",
         damage: "1d8",
+        damageType: "Slashing",
         type: WeaponFamilyModel(
             wielding: "One-handed",
             name: "Sword",
@@ -250,6 +274,7 @@ class EquipData {
         isSelected: false,
         critical: "x4",
         damage: "2d4",
+        damageType: "Piercing",
         type: WeaponFamilyModel(
             wielding: "One-handed",
             name: "Exotic",
@@ -260,6 +285,7 @@ class EquipData {
         isSelected: false,
         critical: "x2",
         damage: "1d4",
+        damageType: "Bludgeoning",
         type: WeaponFamilyModel(
             wielding: "One-handed",
             name: "Fist",
@@ -270,6 +296,7 @@ class EquipData {
         isSelected: false,
         critical: "x2",
         damage: "1d4",
+        damageType: "Bludgeoning",
         type: WeaponFamilyModel(
             wielding: "One-handed",
             name: "Fist",
@@ -280,6 +307,7 @@ class EquipData {
         isSelected: false,
         critical: "x2",
         damage: "1d4",
+        damageType: "Bludgeoning",
         type: WeaponFamilyModel(
             wielding: "One-handed",
             name: "Fist",
@@ -290,6 +318,7 @@ class EquipData {
         isSelected: false,
         critical: "x2",
         damage: "1d4",
+        damageType: "Bludgeoning and piercing",
         type: WeaponFamilyModel(
             wielding: "One-handed",
             name: "Fist",
@@ -300,6 +329,7 @@ class EquipData {
         isSelected: false,
         critical: "19-20 x2",
         damage: "1d6",
+        damageType: "Piercing",
         type: WeaponFamilyModel(
             wielding: "Two-handed",
             name: "Polearm",
@@ -310,6 +340,7 @@ class EquipData {
         isSelected: false,
         critical: "x3",
         damage: "1d8",
+        damageType: "Piercing",
         type: WeaponFamilyModel(
             wielding: "Two-handed",
             name: "Spear",
@@ -320,6 +351,7 @@ class EquipData {
         isSelected: false,
         critical: "x3",
         damage: "1d8",
+        damageType: "Piercing",
         type: WeaponFamilyModel(
             wielding: "Two-handed",
             name: "Spear",
@@ -330,6 +362,7 @@ class EquipData {
         isSelected: false,
         critical: "x2",
         damage: "1d10",
+        damageType: "Piercing",
         type: WeaponFamilyModel(
             wielding: "Two-handed",
             name: "Polearm",
@@ -340,6 +373,7 @@ class EquipData {
         isSelected: false,
         critical: "x3",
         damage: "1d8",
+        damageType: "Piercing",
         type: WeaponFamilyModel(
             wielding: "Two-handed",
             name: "Polearm",
@@ -350,6 +384,7 @@ class EquipData {
         isSelected: false,
         critical: "x3",
         damage: "1d10",
+        damageType: "Piercing or slashing",
         type: WeaponFamilyModel(
             wielding: "Two-handed",
             name: "Polearm",
@@ -360,6 +395,7 @@ class EquipData {
         isSelected: false,
         critical: "x2",
         damage: "1d10",
+        damageType: "Piercing or slashing",
         type: WeaponFamilyModel(
             wielding: "Two-handed",
             name: "Polearm",
@@ -370,6 +406,7 @@ class EquipData {
         isSelected: false,
         critical: "x3",
         damage: "2d6",
+        damageType: "Bludgeoning",
         type: WeaponFamilyModel(
             wielding: "Two-handed",
             name: "Mace",
@@ -380,6 +417,7 @@ class EquipData {
         isSelected: false,
         critical: "x3",
         damage: "1d10",
+        damageType: "Bludgeoning",
         type: WeaponFamilyModel(
             wielding: "Two-handed",
             name: "Mace",
@@ -390,6 +428,7 @@ class EquipData {
         isSelected: false,
         critical: "x3",
         damage: "1d12",
+        damageType: "Bludgeoning",
         type: WeaponFamilyModel(
             wielding: "Two-handed",
             name: "Mace",
@@ -400,6 +439,7 @@ class EquipData {
         isSelected: false,
         critical: "x3",
         damage: "1d12",
+        damageType: "Slashing",
         type: WeaponFamilyModel(
             wielding: "Two-handed",
             name: "Axe",
@@ -410,6 +450,7 @@ class EquipData {
         isSelected: false,
         critical: "19-20x2",
         damage: "2d6",
+        damageType: "Slashing",
         type: WeaponFamilyModel(
             wielding: "Two-handed",
             name: "Sword",
@@ -420,6 +461,7 @@ class EquipData {
         isSelected: false,
         critical: "x2",
         damage: "1d10",
+        damageType: "Piercing",
         type: WeaponFamilyModel(
             wielding: "Two-handed",
             name: "Polearm",
@@ -430,6 +472,7 @@ class EquipData {
         isSelected: false,
         critical: "x2",
         damage: "1d8",
+        damageType: "Piercing",
         type: WeaponFamilyModel(
             wielding: "Two-handed",
             name: "Spear",
@@ -440,6 +483,7 @@ class EquipData {
         isSelected: false,
         critical: "x3",
         damage: "1d8",
+        damageType: "Piercing",
         type: WeaponFamilyModel(
             wielding: "Two-handed",
             name: "Spear",
@@ -450,6 +494,7 @@ class EquipData {
         isSelected: false,
         critical: "x4",
         damage: "2d4",
+        damageType: "Piercing",
         type: WeaponFamilyModel(
             wielding: "Two-handed",
             name: "Polearm",
@@ -460,6 +505,7 @@ class EquipData {
         isSelected: false,
         critical: "x2",
         damage: "1d10",
+        damageType: "Piercing or slashing",
         type: WeaponFamilyModel(
             wielding: "Two-handed",
             name: "Axe",
@@ -470,6 +516,7 @@ class EquipData {
         isSelected: false,
         critical: "x2",
         damage: "1d8",
+        damageType: "Piercing",
         type: WeaponFamilyModel(
             wielding: "Two-handed",
             name: "Spear",
@@ -480,6 +527,7 @@ class EquipData {
         isSelected: false,
         critical: "19-20x2",
         damage: "1d10",
+        damageType: "Slashing",
         type: WeaponFamilyModel(
             wielding: "Two-handed",
             name: "Sword",
@@ -490,6 +538,7 @@ class EquipData {
         isSelected: false,
         critical: "x2",
         damage: "1d10",
+        damageType: "Piercing or slashing",
         type: WeaponFamilyModel(
             wielding: "Two-handed",
             name: "Polearm",
@@ -500,6 +549,7 @@ class EquipData {
         isSelected: false,
         critical: "x2",
         damage: "1d6/1d6",
+        damageType: "Bludgeoning",
         type: WeaponFamilyModel(
             wielding: "Two-handed",
             name: "Exotic",
@@ -510,6 +560,7 @@ class EquipData {
         isSelected: false,
         critical: "19-20 x2",
         damage: "1d8/1d8",
+        damageType: "Slashing",
         type: WeaponFamilyModel(
             wielding: "Two-handed",
             name: "Exotic",
@@ -520,6 +571,7 @@ class EquipData {
         isSelected: false,
         critical: "x2",
         damage: "2d4",
+        damageType: "Piercing",
         type: WeaponFamilyModel(
             wielding: "Two-handed",
             name: "Exotic",
@@ -530,6 +582,7 @@ class EquipData {
         isSelected: false,
         critical: "-",
         damage: "-",
+        damageType: "-",
         type: WeaponFamilyModel(
             wielding: "Two-handed",
             name: "Exotic",
@@ -540,6 +593,7 @@ class EquipData {
         isSelected: false,
         critical: "19-20 x2",
         damage: "1d12",
+        damageType: "Slashing",
         type: WeaponFamilyModel(
             wielding: "Two-handed",
             name: "Exotic",
@@ -550,6 +604,7 @@ class EquipData {
         isSelected: false,
         critical: "x2",
         damage: "1d6/1d6",
+        damageType: "Bludgeoning",
         type: WeaponFamilyModel(
             wielding: "Two-handed",
             name: "Exotic",
@@ -560,6 +615,7 @@ class EquipData {
         isSelected: false,
         critical: "x2",
         damage: "1d8/1d8",
+        damageType: "Bludgeoning",
         type: WeaponFamilyModel(
             wielding: "Two-handed",
             name: "Exotic",
@@ -570,6 +626,7 @@ class EquipData {
         isSelected: false,
         critical: "x4",
         damage: "1d10",
+        damageType: "Piercing",
         type: WeaponFamilyModel(
             wielding: "Two-handed",
             name: "Exotic",
@@ -578,8 +635,9 @@ class EquipData {
         name: "Heavy pick"),
     WeaponModel(
         isSelected: false,
-        critical: "",
+        critical: "x3",
         damage: "1d10",
+        damageType: "Piercing",
         type: WeaponFamilyModel(
             wielding: "Range",
             name: "Crossbow",
@@ -588,8 +646,9 @@ class EquipData {
         name: "Heavy crossbow"),
     WeaponModel(
         isSelected: false,
-        critical: "",
+        critical: "x3",
         damage: "1d6",
+        damageType: "Slashing",
         type: WeaponFamilyModel(
             wielding: "Range",
             name: "Throwing",
@@ -598,8 +657,9 @@ class EquipData {
         name: "Throwing axe"),
     WeaponModel(
         isSelected: false,
-        critical: "",
+        critical: "x2",
         damage: "1d6",
+        damageType: "Piercing",
         type: WeaponFamilyModel(
             wielding: "Range",
             name: "Throwing",
@@ -608,8 +668,9 @@ class EquipData {
         name: "Javelin"),
     WeaponModel(
         isSelected: false,
-        critical: "",
+        critical: "x3",
         damage: "1d8",
+        damageType: "Bludgeoning",
         type: WeaponFamilyModel(
             wielding: "Range",
             name: "Throwing",
@@ -618,8 +679,9 @@ class EquipData {
         name: "Sling"),
     WeaponModel(
         isSelected: false,
-        critical: "",
+        critical: "x2",
         damage: "1d8",
+        damageType: "Slashing",
         type: WeaponFamilyModel(
             wielding: "Range",
             name: "Throwing",
@@ -628,8 +690,9 @@ class EquipData {
         name: "Chakram"),
     WeaponModel(
         isSelected: false,
-        critical: "",
+        critical: "x3",
         damage: "1d8",
+        damageType: "Piercing",
         type: WeaponFamilyModel(
             wielding: "Range",
             name: "Crossbow",
@@ -638,8 +701,9 @@ class EquipData {
         name: "Light crossbow"),
     WeaponModel(
         isSelected: false,
-        critical: "",
+        critical: "x3",
         damage: "1d8",
+        damageType: "Piercing",
         type: WeaponFamilyModel(
             wielding: "Range",
             name: "Bow",
@@ -648,8 +712,9 @@ class EquipData {
         name: "Composite longbow"),
     WeaponModel(
         isSelected: false,
-        critical: "",
+        critical: "x3",
         damage: "1d6",
+        damageType: "Piercing",
         type: WeaponFamilyModel(
             wielding: "Range",
             name: "Bow",
@@ -658,8 +723,9 @@ class EquipData {
         name: "Composite shortbow"),
     WeaponModel(
         isSelected: false,
-        critical: "",
+        critical: "x3",
         damage: "1d8",
+        damageType: "Piercing",
         type: WeaponFamilyModel(
             wielding: "Range",
             name: "Bow",
@@ -668,8 +734,9 @@ class EquipData {
         name: "Longbow"),
     WeaponModel(
         isSelected: false,
-        critical: "",
+        critical: "x2",
         damage: "1d6",
+        damageType: "Piercing",
         type: WeaponFamilyModel(
             wielding: "Range",
             name: "Throwing",
@@ -678,8 +745,9 @@ class EquipData {
         name: "Pilum"),
     WeaponModel(
         isSelected: false,
-        critical: "",
+        critical: "x3",
         damage: "1d6",
+        damageType: "Piercing",
         type: WeaponFamilyModel(
             wielding: "Range",
             name: "Bow",
@@ -688,8 +756,9 @@ class EquipData {
         name: "Shortbow"),
     WeaponModel(
         isSelected: false,
-        critical: "",
+        critical: "-",
         damage: "-",
+        damageType: "-",
         type: WeaponFamilyModel(
             wielding: "Range",
             name: "Throwing",
@@ -698,8 +767,9 @@ class EquipData {
         name: "Bolas"),
     WeaponModel(
         isSelected: false,
-        critical: "",
+        critical: "x3",
         damage: "1d2",
+        damageType: "Piercing",
         type: WeaponFamilyModel(
             wielding: "Range",
             name: "Throwing",
@@ -708,8 +778,9 @@ class EquipData {
         name: "Shuriken"),
     WeaponModel(
         isSelected: false,
-        critical: "",
+        critical: "x2",
         damage: "1d6",
+        damageType: "Bludgeoning",
         type: WeaponFamilyModel(
             wielding: "Range",
             name: "Throwing",

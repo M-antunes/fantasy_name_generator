@@ -97,7 +97,7 @@ class EquipController extends ChangeNotifier {
     notifyListeners();
   }
 
-  updateOffHandType(VoidCallback dualWieldCheck) {
+  updateOffHandType() {
     chosenOffHandType = tempOffHandType;
     hasChosenShield = true;
     bool hasShield = listOfEquip.shieldTypesForOffHand
@@ -113,10 +113,10 @@ class EquipController extends ChangeNotifier {
           isSelected: true,
           picture: chosenOffHandType!.picture,
           wielding: "One-handed");
-      // if (chosenPrimaryWeaponType!.wielding == "One-handed" &&
-      //     chosenSecondaryWeaponType!.wielding == "One-handed") {
-      dualWieldCheck;
-      // }
+      if (chosenPrimaryWeaponType!.wielding == "One-handed" &&
+          chosenSecondaryWeaponType!.wielding == "One-handed") {
+        confirmDualWield();
+      }
     }
     hasChosenSecondaryWeapon = true;
     notifyListeners();
@@ -177,15 +177,11 @@ class EquipController extends ChangeNotifier {
 
   resetChoices() {
     tempArmorType = null;
-    tempShieldType = null;
-    // tempPrimaryWeaponType!.isSelected = false;
-    tempPrimaryWeaponType = null;
-    tempSecondaryWeaponType = null;
     chosenArmorType = null;
+    tempPrimaryWeaponType = null;
     chosenPrimaryWeaponType = null;
+    tempSecondaryWeaponType = null;
     chosenSecondaryWeaponType = null;
-    chosenShieldType = null;
-    // tempOffHandType!.isSelected = false;
     tempOffHandType = null;
     chosenOffHandType = null;
     hasChosenArmor = false;
@@ -196,6 +192,9 @@ class EquipController extends ChangeNotifier {
     displayTwoHandedIcon = false;
     cantChooseTwoHandedAnymore = false;
     readyToChoseShield = false;
+    for (var select in filteredOffHandTypes) {
+      select.isSelected = false;
+    }
     notifyListeners();
   }
 
