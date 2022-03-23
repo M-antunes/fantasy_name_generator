@@ -26,7 +26,7 @@ class EquipData {
             wielding: "One-handed",
             name: "Mace",
             isSelected: false,
-            picture: "assets/images/weapon_types/mace.svg"),
+            picture: "assets/images/weapon_types/hammer.svg"),
         name: "Wooden club"),
     WeaponModel(
         isSelected: false,
@@ -37,7 +37,7 @@ class EquipData {
             wielding: "One-handed",
             name: "Mace",
             isSelected: false,
-            picture: "assets/images/weapon_types/mace.svg"),
+            picture: "assets/images/weapon_types/hammer.svg"),
         name: "Club"),
     WeaponModel(
         isSelected: false,
@@ -48,7 +48,7 @@ class EquipData {
             wielding: "One-handed",
             name: "Mace",
             isSelected: false,
-            picture: "assets/images/weapon_types/mace.svg"),
+            picture: "assets/images/weapon_types/hammer.svg"),
         name: "Light mace"),
     WeaponModel(
         isSelected: false,
@@ -59,7 +59,7 @@ class EquipData {
             wielding: "One-handed",
             name: "Mace",
             isSelected: false,
-            picture: "assets/images/weapon_types/mace.svg"),
+            picture: "assets/images/weapon_types/hammer.svg"),
         name: "Morningstar"),
     WeaponModel(
         isSelected: false,
@@ -114,7 +114,7 @@ class EquipData {
             wielding: "One-handed",
             name: "Mace",
             isSelected: false,
-            picture: "assets/images/weapon_types/mace.svg"),
+            picture: "assets/images/weapon_types/hammer.svg"),
         name: "Light hammer"),
     WeaponModel(
         isSelected: false,
@@ -872,10 +872,10 @@ class EquipData {
         picture: "assets/images/weapon_types/throwing.svg"),
   ];
 
-  final List<ArmorModel> lightArmours = [
+  final List<ArmorModel> allArmors = [
     ArmorModel(
         type: ArmorFamilyModel(
-            name: "light armor",
+            name: "Light",
             isSelected: false,
             picture: "assets/images/armors/light.svg"),
         defenseBonus: 1,
@@ -886,7 +886,7 @@ class EquipData {
         name: "Quilted cloth"),
     ArmorModel(
         type: ArmorFamilyModel(
-            name: "light armor",
+            name: "Light",
             isSelected: false,
             picture: "assets/images/armors/light.svg"),
         defenseBonus: 1,
@@ -897,7 +897,7 @@ class EquipData {
         name: "Padded"),
     ArmorModel(
         type: ArmorFamilyModel(
-            name: "light armor",
+            name: "Light",
             isSelected: false,
             picture: "assets/images/armors/light.svg"),
         defenseBonus: 1,
@@ -908,7 +908,7 @@ class EquipData {
         name: "Silken ceremonial"),
     ArmorModel(
         type: ArmorFamilyModel(
-            name: "light armor",
+            name: "Light",
             isSelected: false,
             picture: "assets/images/armors/light.svg"),
         defenseBonus: 2,
@@ -919,7 +919,7 @@ class EquipData {
         name: "Lamellar (cuirass)"),
     ArmorModel(
         type: ArmorFamilyModel(
-            name: "light armor",
+            name: "Light",
             isSelected: false,
             picture: "assets/images/armors/light.svg"),
         defenseBonus: 2,
@@ -928,11 +928,9 @@ class EquipData {
         speedPenalty: 0,
         isSelected: false,
         name: "Leather"),
-  ];
-  List<ArmorModel> mediumArmours = [
     ArmorModel(
         type: ArmorFamilyModel(
-            name: "medium armor",
+            name: "Medium",
             isSelected: false,
             picture: "assets/images/armors/medium.svg"),
         defenseBonus: 3,
@@ -943,7 +941,7 @@ class EquipData {
         name: "Studded leather"),
     ArmorModel(
         type: ArmorFamilyModel(
-            name: "medium armor",
+            name: "Medium",
             isSelected: false,
             picture: "assets/images/armors/medium.svg"),
         defenseBonus: 3,
@@ -954,7 +952,7 @@ class EquipData {
         name: "Wooden plaques"),
     ArmorModel(
         type: ArmorFamilyModel(
-            name: "medium armor",
+            name: "Medium",
             isSelected: false,
             picture: "assets/images/armors/medium.svg"),
         defenseBonus: 4,
@@ -965,7 +963,7 @@ class EquipData {
         name: "Chain shirt"),
     ArmorModel(
         type: ArmorFamilyModel(
-            name: "medium armor",
+            name: "Medium",
             isSelected: false,
             picture: "assets/images/armors/medium.svg"),
         defenseBonus: 4,
@@ -976,7 +974,7 @@ class EquipData {
         name: "Hide"),
     ArmorModel(
         type: ArmorFamilyModel(
-            name: "medium armor",
+            name: "Medium",
             isSelected: false,
             picture: "assets/images/armors/medium.svg"),
         defenseBonus: 5,
@@ -987,7 +985,7 @@ class EquipData {
         name: "Lamellar (wooden)"),
     ArmorModel(
         type: ArmorFamilyModel(
-            name: "medium armor",
+            name: "Medium",
             isSelected: false,
             picture: "assets/images/armors/medium.svg"),
         defenseBonus: 5,
@@ -998,7 +996,7 @@ class EquipData {
         name: "Scale mail"),
     ArmorModel(
         type: ArmorFamilyModel(
-            name: "medium armor",
+            name: "Medium",
             isSelected: false,
             picture: "assets/images/armors/medium.svg"),
         defenseBonus: 6,
@@ -1009,7 +1007,7 @@ class EquipData {
         name: "Agile breastplate"),
     ArmorModel(
         type: ArmorFamilyModel(
-            name: "medium armor",
+            name: "Medium",
             isSelected: false,
             picture: "assets/images/armors/medium.svg"),
         defenseBonus: 6,
@@ -1018,12 +1016,9 @@ class EquipData {
         speedPenalty: 5,
         isSelected: false,
         name: "Chainmail"),
-  ];
-
-  List<ArmorModel> heavyArmours = [
     ArmorModel(
         type: ArmorFamilyModel(
-            name: "heavy armor",
+            name: "Heavy",
             isSelected: false,
             picture: "assets/images/armors/heavy.svg"),
         defenseBonus: 7,
@@ -1034,7 +1029,7 @@ class EquipData {
         name: "Breastplate"),
     ArmorModel(
         type: ArmorFamilyModel(
-            name: "heavy armor",
+            name: "Heavy",
             isSelected: false,
             picture: "assets/images/armors/heavy.svg"),
         defenseBonus: 6,
@@ -1045,7 +1040,7 @@ class EquipData {
         name: "Mountain pattern"),
     ArmorModel(
         type: ArmorFamilyModel(
-            name: "heavy armor",
+            name: "Heavy",
             isSelected: false,
             picture: "assets/images/armors/heavy.svg"),
         defenseBonus: 7,
@@ -1056,7 +1051,7 @@ class EquipData {
         name: "Splint mail"),
     ArmorModel(
         type: ArmorFamilyModel(
-            name: "heavy armor",
+            name: "Heavy",
             isSelected: false,
             picture: "assets/images/armors/heavy.svg"),
         defenseBonus: 7,
@@ -1067,7 +1062,7 @@ class EquipData {
         name: "Lamellar (iron)"),
     ArmorModel(
         type: ArmorFamilyModel(
-            name: "heavy armor",
+            name: "Heavy",
             isSelected: false,
             picture: "assets/images/armors/heavy.svg"),
         defenseBonus: 8,
@@ -1078,7 +1073,7 @@ class EquipData {
         name: "Agile half-plate"),
     ArmorModel(
         type: ArmorFamilyModel(
-            name: "heavy armor",
+            name: "Heavy",
             isSelected: false,
             picture: "assets/images/armors/heavy.svg"),
         defenseBonus: 8,
@@ -1089,7 +1084,7 @@ class EquipData {
         name: "Half-plate"),
     ArmorModel(
         type: ArmorFamilyModel(
-            name: "heavy armor",
+            name: "Heavy",
             isSelected: false,
             picture: "assets/images/armors/heavy.svg"),
         defenseBonus: 9,
@@ -1100,7 +1095,7 @@ class EquipData {
         name: "Full plate"),
     ArmorModel(
         type: ArmorFamilyModel(
-            name: "heavy armor",
+            name: "Heavy",
             isSelected: false,
             picture: "assets/images/armors/heavy.svg"),
         defenseBonus: 9,

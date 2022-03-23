@@ -320,4 +320,22 @@ class AppTextStyle {
             ? 12
             : 13,
   );
+  static final equipTypeDisplayValue = TextStyle(
+    fontWeight: FontWeight.w400,
+    color: AppColors.primaryText2,
+    fontSize: deviceWidth! < 350
+        ? 10
+        : deviceWidth! > 350 && deviceWidth! < 400
+            ? 11
+            : 12,
+  );
+  static final equipTypeDisplay = TextStyle(
+    fontWeight: FontWeight.w400,
+    color: AppColors.primaryText0,
+    fontSize: deviceWidth! < 350
+        ? 10
+        : deviceWidth! > 350 && deviceWidth! < 400
+            ? 11
+            : 12,
+  );
 }

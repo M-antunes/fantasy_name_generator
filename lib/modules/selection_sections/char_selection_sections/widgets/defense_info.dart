@@ -1,13 +1,12 @@
+import 'package:fantasy_name_generator/shared/constants/phone_sizes.dart';
 import 'package:fantasy_name_generator/shared/themes/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
 class DefenseInfo extends StatelessWidget {
-  final Size size;
   final String label;
   final int value;
   const DefenseInfo({
     Key? key,
-    required this.size,
     required this.label,
     required this.value,
   }) : super(key: key);
@@ -17,7 +16,7 @@ class DefenseInfo extends StatelessWidget {
     return Column(
       children: [
         SizedBox(
-          width: size.width * 0.26,
+          width: deviceWidth! * 0.26,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -33,7 +32,7 @@ class DefenseInfo extends StatelessWidget {
             ],
           ),
         ),
-        SizedBox(height: size.height * 0.005),
+        SizedBox(height: deviceHeight! * 0.005),
       ],
     );
   }

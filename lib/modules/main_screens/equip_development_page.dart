@@ -1,6 +1,7 @@
 import 'package:fantasy_name_generator/controllers/equip_controller.dart';
 import 'package:fantasy_name_generator/models/char_model.dart';
 import 'package:fantasy_name_generator/modules/selection_sections/equip_selection_section/combat_gear_section.dart';
+import 'package:fantasy_name_generator/modules/selection_sections/equip_selection_section/equip_generation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -9,6 +10,7 @@ import 'package:fantasy_name_generator/shared/themes/app_colors.dart';
 import 'package:fantasy_name_generator/shared/widgets/app_animated_button.dart';
 import 'package:fantasy_name_generator/shared/widgets/call_message_snackbar.dart';
 
+import '../../shared/constants/phone_sizes.dart';
 import '../../shared/themes/app_text_styles.dart';
 import '../selection_sections/equip_selection_section/choice_section.dart';
 import 'widgets/equip_selection_label.dart';
@@ -41,21 +43,19 @@ class _EquipDevelopMentPageState extends State<EquipDevelopMentPage> {
             EquipSelectionLabel(
                 char: char,
                 size: size,
-                label: state.creationStage == 1
+                label: state.creationStage == 7
                     ? "Equipment - Auto generate"
-                    : state.creationStage == 2
+                    : state.creationStage == 8
                         ? "Equipment - Combat Gear"
-                        : state.creationStage == 3
-                            ? "Equipment - Shield"
-                            : state.creationStage == 4
+                        : state.creationStage == 9
+                            ? "Equipment - Generation"
+                            : state.creationStage == 10
                                 ? "Equipment - Armor"
-                                : state.creationStage == 5
-                                    ? "Equipment - Progress Check"
-                                    : state.creationStage == 6
-                                        ? "Equipment - Stats"
-                                        : state.creationStage == 7
-                                            ? "Equipment - Basic features ready"
-                                            : ''),
+                                : state.creationStage == 11
+                                    ? "Equipment - Stats"
+                                    : state.creationStage == 12
+                                        ? "Equipment - Basic features ready"
+                                        : ''),
             EquipProgressionBar(
               controller: state,
             ),
@@ -66,15 +66,22 @@ class _EquipDevelopMentPageState extends State<EquipDevelopMentPage> {
                 children: [
                   Text(" (${char.charRace.name})",
                       style: AppTextStyle.subTextGreyPlusSize),
-                  Text(" (${char.charName.fullName})",
-                      style: AppTextStyle.subTextGreyPlusSize),
+                  SizedBox(
+                    height: deviceHeight! * 0.03,
+                    child: FittedBox(
+                      fit: BoxFit.fitHeight,
+                      child: Text(" (${char.charName.fullName})",
+                          style: AppTextStyle.subTextGreyPlusSize),
+                    ),
+                  ),
                   Text(" (${char.charClass.name})",
                       style: AppTextStyle.subTextGreyPlusSize),
                 ],
               ),
             ),
-            if (state.creationStage == 1) const ChoiceSection(),
-            if (state.creationStage == 2) const CombatGear(),
+            if (state.creationStage == 7) const ChoiceSection(),
+            if (state.creationStage == 8) const CombatGear(),
+            if (state.creationStage == 9) const EquipGeneration(),
           ],
         );
       }),
@@ -91,7 +98,7 @@ class _EquipDevelopMentPageState extends State<EquipDevelopMentPage> {
                   AppAnimatedButton(
                       label: "Previous",
                       onTap: () {
-                        if (state.creationStage == 1) {
+                        if (state.creationStage == 7) {
                           Navigator.of(context).pop();
                         } else {
                           state.retreatCreationStage();
@@ -109,7 +116,6 @@ class _EquipDevelopMentPageState extends State<EquipDevelopMentPage> {
   }
 
   void buttonFunction(EquipController state, BuildContext context) {
-    if (state.creationStage == 2) {}
     var text = state.activateNextButton();
     if (text != null) {
       callMessageSnackbar(context, text, AppColors.warningColor, null);

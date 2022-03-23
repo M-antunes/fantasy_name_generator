@@ -1,5 +1,9 @@
+import 'dart:math';
+
 import 'package:fantasy_name_generator/models/char_model.dart';
+import 'package:fantasy_name_generator/models/equip_models/armor_model.dart';
 import 'package:fantasy_name_generator/models/equip_models/off_hand_type_model.dart';
+import 'package:fantasy_name_generator/models/equip_models/weapon_model.dart';
 import 'package:fantasy_name_generator/shared/data/default_char_model_data.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -10,9 +14,11 @@ import '../shared/data/equip_data.dart';
 
 class EquipController extends ChangeNotifier {
   CharModel char = DefaultCharModelData().defaultCharModel;
-  int creationStage = 1;
+  int creationStage = 7;
   var listOfClasses = ClassData();
   var listOfEquip = EquipData();
+  Random randomIndex = Random();
+
   List<WeaponFamilyModel> allListsOfWeaponsFamily = [];
   List<ArmorFamilyModel> allListsOfArmorFamily = [];
   List<ArmorFamilyModel> allListsOfShieldFamily = [];
@@ -41,6 +47,7 @@ class EquipController extends ChangeNotifier {
   bool displayTwoHandedIcon = false;
   bool cantChooseTwoHandedAnymore = false;
   bool readyToChoseShield = false;
+  bool equipGenerated = false;
 
   populateListsOfWeaponFamily() {
     if (allListsOfWeaponsFamily.isNotEmpty) {
@@ -284,7 +291,6 @@ class EquipController extends ChangeNotifier {
         filteredArmorTypes =
             filterEquip(listOfEquip.armorTypes, "No armor", "Light", "");
         filteredShieldTypes = listOfEquip.shieldTypesForOffHand;
-
         notifyListeners();
         break;
       case "Sorcerer":
@@ -301,6 +307,27 @@ class EquipController extends ChangeNotifier {
             listOfEquip.shieldTypesForOffHand, "No shield", "", "");
         notifyListeners();
         break;
+      case "Aristocrat":
+        filteredArmorTypes =
+            filterEquip(listOfEquip.armorTypes, "No armor", "", "");
+        filteredShieldTypes = filterShield(
+            listOfEquip.shieldTypesForOffHand, "No shield", "", "");
+        notifyListeners();
+        break;
+      case "Commoner":
+        filteredArmorTypes =
+            filterEquip(listOfEquip.armorTypes, "No armor", "", "");
+        filteredShieldTypes = filterShield(
+            listOfEquip.shieldTypesForOffHand, "No shield", "", "");
+        notifyListeners();
+        break;
+      case "Noble":
+        filteredArmorTypes =
+            filterEquip(listOfEquip.armorTypes, "No armor", "", "");
+        filteredShieldTypes = filterShield(
+            listOfEquip.shieldTypesForOffHand, "No shield", "", "");
+        notifyListeners();
+        break;
       default:
         filteredArmorTypes = listOfEquip.armorTypes;
         filteredShieldTypes = listOfEquip.shieldTypesForOffHand;
@@ -308,6 +335,80 @@ class EquipController extends ChangeNotifier {
     }
     filteredOffHandTypes.addAll(listOfEquip.oneHandedTypeForOffHand);
     filteredOffHandTypes.addAll(filteredShieldTypes);
+    notifyListeners();
+  }
+
+  //=======================================================================================
+
+  // weapon generation
+
+  generateEquip() {
+    generateWeapon();
+    calculateAttackAndDamage();
+    calculatingAC();
+    equipGenerated = true;
+    notifyListeners();
+  }
+
+  generateWeapon() {
+    WeaponModel weapon;
+    List<WeaponModel> list = listOfEquip.allWeapons
+        .where((element) => element.type == chosenPrimaryWeaponType)
+        .toList();
+    var randomWeapon = randomIndex.nextInt(list.length);
+    while (randomWeapon < 1) {
+      randomWeapon = randomIndex.nextInt(list.length);
+    }
+    weapon = list[randomWeapon];
+    char.charEquip.primaryWeapon = weapon;
+    notifyListeners();
+  }
+
+  calculateAttackAndDamage() {
+    var attack = 0;
+    var attackToString = "";
+    var damageToString = "${char.modAtributes.strength}";
+    if (listOfEquip.oneHandedTypes
+            .any((element) => element == chosenPrimaryWeaponType) ||
+        listOfEquip.twoHandedTypes
+            .any((element) => element == chosenPrimaryWeaponType)) {
+      attack = char.modAtributes.strength! + char.combatStats.baseAttackBonus!;
+    } else {
+      attack = char.modAtributes.dexterity! + char.combatStats.baseAttackBonus!;
+    }
+    if (char.charLevel < 6) {
+      attackToString = "+$attack";
+    } else if (char.charLevel > 5 && char.charLevel < 11) {
+      attackToString = "+$attack / +${(attack - 5)}";
+    } else if (char.charLevel > 10 && char.charLevel < 16) {
+      attackToString = "+$attack / +${(attack - 5)} / +${(attack - 10)}";
+    } else {
+      attackToString =
+          "+$attack / +${(attack - 5)} / +${(attack - 10)} / +${(attack - 15)}";
+    }
+    char.combatStats.primaryAttack = attackToString;
+    char.combatStats.primaryDamage =
+        "${char.charEquip.primaryWeapon!.damage!} + $damageToString";
+    notifyListeners();
+  }
+
+  calculatingAC() {
+    ArmorModel armor;
+    List<ArmorModel> list = listOfEquip.allArmors
+        .where((element) => element.type == chosenArmorType)
+        .toList();
+    var randomArmor = randomIndex.nextInt(list.length);
+    while (randomArmor < 1) {
+      randomArmor = randomIndex.nextInt(list.length);
+    }
+    armor = list[randomArmor];
+    char.charEquip.armour = armor;
+    var newAC = 0;
+    newAC =
+        char.combatStats.armourClass! + char.charEquip.armour!.defenseBonus!;
+    char.combatStats.armourClass = newAC;
+    char.combatStats.armourSurprise = newAC - char.modAtributes.dexterity!;
+    char.combatStats.armourTouch = newAC - char.charEquip.armour!.defenseBonus!;
     notifyListeners();
   }
 
@@ -324,17 +425,22 @@ class EquipController extends ChangeNotifier {
   }
 
   String? activateNextButton() {
-    if (creationStage == 1) {
+    if (creationStage == 7) {
       populateListsOfWeaponFamily();
       // populateListsOfArmorFamily();
       filterArmorToClass();
       advanceCreationStage();
       return null;
     }
-    if (creationStage == 2) {
-      if (!hasChosenShield) {
+    if (creationStage == 8) {
+      if (!hasChosenArmor) {
         return "You need to select all equipment before advancing";
       }
+      advanceCreationStage();
+    }
+    if (creationStage == 9) {
+      // generateEquip();
+      // advanceCreationStage();
     }
     return null;
   }

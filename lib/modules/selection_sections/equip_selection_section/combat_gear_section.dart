@@ -109,23 +109,6 @@ class CombatGear extends StatelessWidget {
                           ),
                         ),
                 ),
-              // if (state.hasChosenArmor)
-              //   ChosenEquipDisplay(
-              //     size: deviceWidth! < 400 ? 55 : 75,
-              //     color: AppColors.primary,
-              //     equipType: "\nShield",
-              //     weapon: state.tempShieldType != null
-              //         ? EquipOfChoice(weaponPic: state.tempShieldType!.picture)
-              //         : const Center(
-              //             child: Text(
-              //               "?",
-              //               style: TextStyle(
-              //                   fontSize: 40,
-              //                   fontWeight: FontWeight.w700,
-              //                   color: Colors.white70),
-              //             ),
-              //           ),
-              //   ),
             ],
           ),
           SizedBox(height: deviceHeight! * 0.02),
