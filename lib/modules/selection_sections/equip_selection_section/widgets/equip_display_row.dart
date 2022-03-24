@@ -73,7 +73,7 @@ class EquipDisplayRow extends StatelessWidget {
                           radius: 10,
                           splashColor: Colors.transparent,
                           onLongPress: onLongPress,
-                          onTap: () => state.switchBothWeapons(weapon),
+                          onTap: () => state.switchPrimaryWeaponType(weapon),
                           child: Column(
                             children: [
                               Padding(

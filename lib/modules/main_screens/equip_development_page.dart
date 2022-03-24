@@ -13,6 +13,7 @@ import 'package:fantasy_name_generator/shared/widgets/call_message_snackbar.dart
 import '../../shared/constants/phone_sizes.dart';
 import '../../shared/themes/app_text_styles.dart';
 import '../selection_sections/equip_selection_section/choice_section.dart';
+import '../selection_sections/equip_selection_section/magic_equip_section.dart';
 import 'widgets/equip_selection_label.dart';
 
 class EquipDevelopMentPage extends StatefulWidget {
@@ -36,55 +37,67 @@ class _EquipDevelopMentPageState extends State<EquipDevelopMentPage> {
     CharModel char = ModalRoute.of(context)!.settings.arguments as CharModel;
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      body: Consumer<EquipController>(builder: (context, state, child) {
-        state.char = char;
-        return ListView(
-          children: [
-            EquipSelectionLabel(
-                char: char,
-                size: size,
-                label: state.creationStage == 7
-                    ? "Equipment - Auto generate"
-                    : state.creationStage == 8
-                        ? "Equipment - Combat Gear"
-                        : state.creationStage == 9
-                            ? "Equipment - Generation"
-                            : state.creationStage == 10
-                                ? "Equipment - Armor"
-                                : state.creationStage == 11
-                                    ? "Equipment - Stats"
-                                    : state.creationStage == 12
-                                        ? "Equipment - Basic features ready"
-                                        : ''),
-            EquipProgressionBar(
-              controller: state,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(" (${char.charRace.name})",
-                      style: AppTextStyle.subTextGreyPlusSize),
-                  SizedBox(
-                    height: deviceHeight! * 0.03,
-                    child: FittedBox(
-                      fit: BoxFit.fitHeight,
-                      child: Text(" (${char.charName.fullName})",
-                          style: AppTextStyle.subTextGreyPlusSize),
-                    ),
-                  ),
-                  Text(" (${char.charClass.name})",
-                      style: AppTextStyle.subTextGreyPlusSize),
-                ],
+      body: SafeArea(
+        child: Consumer<EquipController>(builder: (context, state, child) {
+          state.char = char;
+          return ListView(
+            children: [
+              EquipSelectionLabel(
+                  char: char,
+                  size: size,
+                  label: state.creationStage == 7
+                      ? "Equipment - Auto generate"
+                      : state.creationStage == 8
+                          ? "Equipment - Combat Gear Choice"
+                          : state.creationStage == 9
+                              ? "Equipment - Combat Gear Generation"
+                              : state.creationStage == 10
+                                  ? "Equipment - Apply Magic"
+                                  : state.creationStage == 11
+                                      ? "Equipment - Stats"
+                                      : state.creationStage == 12
+                                          ? "Equipment - Basic features ready"
+                                          : ''),
+              EquipProgressionBar(
+                controller: state,
               ),
-            ),
-            if (state.creationStage == 7) const ChoiceSection(),
-            if (state.creationStage == 8) const CombatGear(),
-            if (state.creationStage == 9) const EquipGeneration(),
-          ],
-        );
-      }),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(" (${char.charRace.name})",
+                        style: AppTextStyle.subTextGreyPlusSize),
+                    SizedBox(
+                      height: deviceHeight! * 0.03,
+                      child: FittedBox(
+                        fit: BoxFit.fitHeight,
+                        child: Text(" (${char.charName.fullName})",
+                            style: AppTextStyle.subTextGreyPlusSize),
+                      ),
+                    ),
+                    Text(" (${char.charClass.name})",
+                        style: AppTextStyle.subTextGreyPlusSize),
+                  ],
+                ),
+              ),
+              if (state.creationStage == 7) const ChoiceSection(),
+              if (state.creationStage == 8) const CombatGearSection(),
+              if (state.creationStage == 9)
+                EquipGeneration(
+                  onGenerate: state.equipGenerated
+                      ? () {
+                          state.resetEquipStats();
+                        }
+                      : () {
+                          state.generateEquip();
+                        },
+                ),
+              if (state.creationStage == 10) const MagicEquipSection(),
+            ],
+          );
+        }),
+      ),
       bottomNavigationBar:
           Consumer<EquipController>(builder: (context, state, child) {
         return Padding(

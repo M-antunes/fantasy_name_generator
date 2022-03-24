@@ -41,66 +41,68 @@ class _CharDevelopmentPageState extends State<CharDevelopmentPage>
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      body: Consumer<CharController>(builder: (context, state, child) {
-        return ListView(
-          children: [
-            const SizedBox(height: 5),
-            CharSelectionLabel(
-                size: size,
-                label: state.creationStage == 1
-                    ? "Character - Race"
-                    : state.creationStage == 2
-                        ? "Character - Gender & Name"
-                        : state.creationStage == 3
-                            ? "Character - Class"
-                            : state.creationStage == 4
-                                ? "Character - Alignment"
-                                : state.creationStage == 5
-                                    ? "Character - Level"
-                                    : state.creationStage == 6 &&
-                                            state.isCharGeneratorCleared
-                                        ? "Character - Basic features generator"
-                                        : 'Character - Basic features complete'),
-            ProgressionBar(
-              controller: state,
-            ),
-            SizedBox(height: size.height * 0.01),
-            if (state.creationStage == 1) const RaceSelection(),
-            if (state.creationStage == 2)
-              Column(
-                children: [
-                  const GenderSelection(),
-                  SizedBox(height: size.height * 0.07),
-                  NameSelection(
-                    onGenerate: () => state.newNameGenerator(),
-                    onSelect: state.newName == " - ? - "
-                        ? () => callMessageSnackbar(
-                            context,
-                            "You must generate a name first",
-                            AppColors.warningColor,
-                            null)
-                        : () => state.advanceCreationStage(),
-                  ),
-                ],
+      body: SafeArea(
+        child: Consumer<CharController>(builder: (context, state, child) {
+          return ListView(
+            children: [
+              const SizedBox(height: 5),
+              CharSelectionLabel(
+                  size: size,
+                  label: state.creationStage == 1
+                      ? "Character - Race"
+                      : state.creationStage == 2
+                          ? "Character - Gender & Name"
+                          : state.creationStage == 3
+                              ? "Character - Class"
+                              : state.creationStage == 4
+                                  ? "Character - Alignment"
+                                  : state.creationStage == 5
+                                      ? "Character - Level"
+                                      : state.creationStage == 6 &&
+                                              state.isCharGeneratorCleared
+                                          ? "Character - Basic features generator"
+                                          : 'Character - Basic features complete'),
+              ProgressionBar(
+                controller: state,
               ),
-            if (state.creationStage == 3) const ClassSelection(),
-            if (state.creationStage == 4) const AlignmentSelection(),
-            if (state.creationStage == 5) const LevelSelection(),
-            if (state.creationStage == 6)
-              StatsSection(
-                onGenerate: state.isCharGeneratorCleared
-                    ? () {
-                        state.generateAllAtributs();
-                        state.isCharGeneratorCleared =
-                            !state.isCharGeneratorCleared;
-                      }
-                    : () {
-                        state.updateCharModel();
-                      },
-              ),
-          ],
-        );
-      }),
+              SizedBox(height: size.height * 0.01),
+              if (state.creationStage == 1) const RaceSelection(),
+              if (state.creationStage == 2)
+                Column(
+                  children: [
+                    const GenderSelection(),
+                    SizedBox(height: size.height * 0.07),
+                    NameSelection(
+                      onGenerate: () => state.newNameGenerator(),
+                      onSelect: state.newName == " - ? - "
+                          ? () => callMessageSnackbar(
+                              context,
+                              "You must generate a name first",
+                              AppColors.warningColor,
+                              null)
+                          : () => state.advanceCreationStage(),
+                    ),
+                  ],
+                ),
+              if (state.creationStage == 3) const ClassSelection(),
+              if (state.creationStage == 4) const AlignmentSelection(),
+              if (state.creationStage == 5) const LevelSelection(),
+              if (state.creationStage == 6)
+                StatsSection(
+                  onGenerate: state.isCharGeneratorCleared
+                      ? () {
+                          state.generateAllAtributs();
+                          state.isCharGeneratorCleared =
+                              !state.isCharGeneratorCleared;
+                        }
+                      : () {
+                          state.updateCharModel();
+                        },
+                ),
+            ],
+          );
+        }),
+      ),
       bottomNavigationBar:
           Consumer<CharController>(builder: (context, state, child) {
         return Padding(

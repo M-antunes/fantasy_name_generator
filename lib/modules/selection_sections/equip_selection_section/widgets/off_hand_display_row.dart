@@ -9,6 +9,7 @@ import '../../../../models/equip_models/off_hand_type_model.dart';
 import '../../../../shared/constants/phone_sizes.dart';
 import '../../../../shared/themes/app_text_styles.dart';
 import '../../../../shared/widgets/app_horizontal_line.dart';
+import 'shield_permission_label.dart';
 
 class OffHandDisplayRow extends StatelessWidget {
   final String label;
@@ -41,6 +42,7 @@ class OffHandDisplayRow extends StatelessWidget {
             ],
           ),
         ),
+        const ShieldPermissionLabel(),
         Container(
           width: deviceWidth! - 20,
           decoration: BoxDecoration(

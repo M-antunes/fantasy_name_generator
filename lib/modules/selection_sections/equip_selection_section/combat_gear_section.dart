@@ -9,9 +9,10 @@ import '../../../shared/themes/app_colors.dart';
 import 'widgets/chosen_equip_display.dart';
 import 'widgets/equip_display_row.dart';
 import 'widgets/off_hand_display_row.dart';
+import 'widgets/shield_permission_label.dart';
 
-class CombatGear extends StatelessWidget {
-  const CombatGear({Key? key}) : super(key: key);
+class CombatGearSection extends StatelessWidget {
+  const CombatGearSection({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

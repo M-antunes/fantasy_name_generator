@@ -175,6 +175,26 @@ class AppTextStyle {
             ? 16
             : 19,
   );
+  static final penaltyStyle = TextStyle(
+    fontWeight: FontWeight.w400,
+    color: AppColors.primary,
+    fontFamily: "David",
+    fontSize: deviceWidth! < 350
+        ? 19
+        : deviceWidth! > 350 && deviceWidth! < 400
+            ? 20
+            : 22,
+  );
+  static final penaltyStyleText = TextStyle(
+    fontWeight: FontWeight.w400,
+    color: AppColors.primary,
+    fontFamily: "David",
+    fontSize: deviceWidth! < 350
+        ? 12
+        : deviceWidth! > 350 && deviceWidth! < 400
+            ? 13
+            : 14,
+  );
   static final subTextGrey = TextStyle(
     fontWeight: FontWeight.w500,
     fontFamily: "David",

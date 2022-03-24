@@ -9,7 +9,6 @@ class WeaponModel {
   bool? isSelected;
   String? name;
   EnchantModel? enchantment;
-  int? power;
   String? damage;
   String? damageType;
   String? critical;
@@ -18,7 +17,6 @@ class WeaponModel {
     this.isSelected,
     this.name,
     this.enchantment,
-    this.power,
     this.damage,
     this.damageType,
     this.critical,
@@ -29,7 +27,6 @@ class WeaponModel {
     bool? isSelected,
     String? name,
     EnchantModel? enchantment,
-    int? power,
     String? damage,
     String? damageType,
     String? critical,
@@ -39,7 +36,6 @@ class WeaponModel {
       isSelected: isSelected ?? this.isSelected,
       name: name ?? this.name,
       enchantment: enchantment ?? this.enchantment,
-      power: power ?? this.power,
       damage: damage ?? this.damage,
       damageType: damageType ?? this.damageType,
       critical: critical ?? this.critical,
@@ -52,7 +48,6 @@ class WeaponModel {
       'isSelected': isSelected,
       'name': name,
       'enchantment': enchantment?.toMap(),
-      'power': power,
       'damage': damage,
       'damageType': damageType,
       'critical': critical,
@@ -67,7 +62,6 @@ class WeaponModel {
       enchantment: map['enchantment'] != null
           ? EnchantModel.fromMap(map['enchantment'])
           : null,
-      power: map['power']?.toInt(),
       damage: map['damage'],
       damageType: map['damageType'],
       critical: map['critical'],
@@ -81,7 +75,7 @@ class WeaponModel {
 
   @override
   String toString() {
-    return 'WeaponModel(type: $type, isSelected: $isSelected, name: $name, enchantment: $enchantment, power: $power, damage: $damage, damageType: $damageType, critical: $critical)';
+    return 'WeaponModel(type: $type, isSelected: $isSelected, name: $name, enchantment: $enchantment, damage: $damage, damageType: $damageType, critical: $critical)';
   }
 
   @override
@@ -93,7 +87,6 @@ class WeaponModel {
         other.isSelected == isSelected &&
         other.name == name &&
         other.enchantment == enchantment &&
-        other.power == power &&
         other.damage == damage &&
         other.damageType == damageType &&
         other.critical == critical;
@@ -105,7 +98,6 @@ class WeaponModel {
         isSelected.hashCode ^
         name.hashCode ^
         enchantment.hashCode ^
-        power.hashCode ^
         damage.hashCode ^
         damageType.hashCode ^
         critical.hashCode;

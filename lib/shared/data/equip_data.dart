@@ -756,17 +756,6 @@ class EquipData {
         name: "Shortbow"),
     WeaponModel(
         isSelected: false,
-        critical: "-",
-        damage: "-",
-        damageType: "-",
-        type: WeaponFamilyModel(
-            wielding: "Range",
-            name: "Throwing",
-            isSelected: false,
-            picture: "assets/images/weapon_types/throwing.svg"),
-        name: "Bolas"),
-    WeaponModel(
-        isSelected: false,
         critical: "x3",
         damage: "1d2",
         damageType: "Piercing",
@@ -776,17 +765,6 @@ class EquipData {
             isSelected: false,
             picture: "assets/images/weapon_types/throwing.svg"),
         name: "Shuriken"),
-    WeaponModel(
-        isSelected: false,
-        critical: "x2",
-        damage: "1d6",
-        damageType: "Bludgeoning",
-        type: WeaponFamilyModel(
-            wielding: "Range",
-            name: "Throwing",
-            isSelected: false,
-            picture: "assets/images/weapon_types/throwing.svg"),
-        name: "Throwing shield"),
   ];
   final List<WeaponFamilyModel> oneHandedTypes = [
     WeaponFamilyModel(
@@ -1106,10 +1084,10 @@ class EquipData {
         name: "Stoneplate"),
   ];
 
-  List<ArmorModel> lightshields = [
+  List<ArmorModel> allShields = [
     ArmorModel(
         type: ArmorFamilyModel(
-            name: "buckler",
+            name: "Buckler",
             isSelected: false,
             picture: "assets/images/shields/buckler.svg"),
         defenseBonus: 1,
@@ -1120,7 +1098,7 @@ class EquipData {
         name: "Buckler"),
     ArmorModel(
         type: ArmorFamilyModel(
-            name: "light shield",
+            name: "Light",
             isSelected: false,
             picture: "assets/images/shields/light.svg"),
         defenseBonus: 1,
@@ -1131,7 +1109,7 @@ class EquipData {
         name: "Wooden shield"),
     ArmorModel(
         type: ArmorFamilyModel(
-            name: "light shield",
+            name: "Light",
             isSelected: false,
             picture: "assets/images/shields/light.svg"),
         defenseBonus: 2,
@@ -1140,12 +1118,9 @@ class EquipData {
         speedPenalty: null,
         isSelected: false,
         name: "Iron-wood shield"),
-  ];
-
-  List<ArmorModel> heavyShields = [
     ArmorModel(
         type: ArmorFamilyModel(
-            name: "heavy shield",
+            name: "Heavy",
             isSelected: false,
             picture: "assets/images/shields/heavy.svg"),
         defenseBonus: 2,
@@ -1156,7 +1131,7 @@ class EquipData {
         name: "Steel-wood shield"),
     ArmorModel(
         type: ArmorFamilyModel(
-            name: "heavy shield",
+            name: "Heavy",
             isSelected: false,
             picture: "assets/images/shields/heavy.svg"),
         defenseBonus: 2,
@@ -1167,7 +1142,7 @@ class EquipData {
         name: "Iron shield"),
     ArmorModel(
         type: ArmorFamilyModel(
-            name: "heavy shield",
+            name: "Heavy",
             isSelected: false,
             picture: "assets/images/shields/heavy.svg"),
         defenseBonus: 2,
@@ -1178,15 +1153,15 @@ class EquipData {
         name: "Steel shield"),
     ArmorModel(
         type: ArmorFamilyModel(
-            name: "heavy shield",
+            name: "Heavy",
             isSelected: false,
             picture: "assets/images/shields/heavy.svg"),
-        defenseBonus: 2,
+        defenseBonus: 3,
         maxDexAllowed: null,
-        checkPenalty: 2,
+        checkPenalty: 4,
         speedPenalty: null,
         isSelected: false,
-        name: "Tower shield"),
+        name: "Broad shield"),
   ];
 
   List<ArmorFamilyModel> armorTypes = [

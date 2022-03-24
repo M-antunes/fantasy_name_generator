@@ -26,6 +26,9 @@ class ArmorPermissionLabel extends StatelessWidget {
                     ? "${ctrl.char.charClass.name}s are NOT proficient with medium or heavy armors"
                     : ctrl.char.charClass.name == "Wizard" ||
                             ctrl.char.charClass.name == "Sorcerer" ||
+                            ctrl.char.charClass.name == "Commoner" ||
+                            ctrl.char.charClass.name == "Noble" ||
+                            ctrl.char.charClass.name == "Aristocrat" ||
                             ctrl.char.charClass.name == "Monk"
                         ? "${ctrl.char.charClass.name}s are NOT proficient with ANY armors"
                         : ctrl.char.charClass.name == "Druid"
