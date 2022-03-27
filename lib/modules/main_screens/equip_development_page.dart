@@ -48,11 +48,11 @@ class _EquipDevelopMentPageState extends State<EquipDevelopMentPage> {
                   label: state.creationStage == 7
                       ? "Equipment - Auto generate"
                       : state.creationStage == 8
-                          ? "Equipment - Combat Gear Choice"
+                          ? "Equipment - Combat Gear"
                           : state.creationStage == 9
-                              ? "Equipment - Combat Gear Generation"
+                              ? "Equipment - Apply Magic"
                               : state.creationStage == 10
-                                  ? "Equipment - Apply Magic"
+                                  ? "Equipment - "
                                   : state.creationStage == 11
                                       ? "Equipment - Stats"
                                       : state.creationStage == 12
@@ -82,9 +82,8 @@ class _EquipDevelopMentPageState extends State<EquipDevelopMentPage> {
                 ),
               ),
               if (state.creationStage == 7) const ChoiceSection(),
-              if (state.creationStage == 8) const CombatGearSection(),
-              if (state.creationStage == 9)
-                EquipGeneration(
+              if (state.creationStage == 8)
+                CombatGearSection(
                   onGenerate: state.equipGenerated
                       ? () {
                           state.resetEquipStats();
@@ -93,7 +92,7 @@ class _EquipDevelopMentPageState extends State<EquipDevelopMentPage> {
                           state.generateEquip();
                         },
                 ),
-              if (state.creationStage == 10) const MagicEquipSection(),
+              if (state.creationStage == 9) const MagicEquipSection(),
             ],
           );
         }),

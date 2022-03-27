@@ -1,8 +1,11 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
+
 import 'package:fantasy_name_generator/models/equip_models/armor_model.dart';
 
 import 'weapon_model.dart';
+import 'wonderous_items_model.dart';
 
 class EquipModel {
   WeaponModel? primaryWeapon;
@@ -10,12 +13,14 @@ class EquipModel {
   WeaponModel? emergencyWeapon;
   ArmorModel? armour;
   ArmorModel? shield;
+  List<WonderousItemsModel?>? wonderousItems;
   EquipModel({
     this.primaryWeapon,
     this.secondaryWeapon,
     this.emergencyWeapon,
     this.armour,
     this.shield,
+    this.wonderousItems,
   });
 
   EquipModel copyWith({
@@ -24,6 +29,7 @@ class EquipModel {
     WeaponModel? emergencyWeapon,
     ArmorModel? armour,
     ArmorModel? shield,
+    List<WonderousItemsModel?>? wonderousItems,
   }) {
     return EquipModel(
       primaryWeapon: primaryWeapon ?? this.primaryWeapon,
@@ -31,6 +37,7 @@ class EquipModel {
       emergencyWeapon: emergencyWeapon ?? this.emergencyWeapon,
       armour: armour ?? this.armour,
       shield: shield ?? this.shield,
+      wonderousItems: wonderousItems ?? this.wonderousItems,
     );
   }
 
@@ -41,6 +48,7 @@ class EquipModel {
       'emergencyWeapon': emergencyWeapon?.toMap(),
       'armour': armour?.toMap(),
       'shield': shield?.toMap(),
+      'wonderousItems': wonderousItems?.map((x) => x?.toMap())?.toList(),
     };
   }
 
@@ -57,6 +65,10 @@ class EquipModel {
           : null,
       armour: map['armour'] != null ? ArmorModel.fromMap(map['armour']) : null,
       shield: map['shield'] != null ? ArmorModel.fromMap(map['shield']) : null,
+      wonderousItems: map['wonderousItems'] != null
+          ? List<WonderousItemsModel?>.from(map['wonderousItems']
+              ?.map((x) => WonderousItemsModel?.fromMap(x)))
+          : null,
     );
   }
 
@@ -67,7 +79,7 @@ class EquipModel {
 
   @override
   String toString() {
-    return 'EquipModel(primaryWeapon: $primaryWeapon, secondaryWeapon: $secondaryWeapon, emergencyWeapon: $emergencyWeapon, armour: $armour, shield: $shield)';
+    return 'EquipModel(primaryWeapon: $primaryWeapon, secondaryWeapon: $secondaryWeapon, emergencyWeapon: $emergencyWeapon, armour: $armour, shield: $shield, wonderousItems: $wonderousItems)';
   }
 
   @override
@@ -79,7 +91,8 @@ class EquipModel {
         other.secondaryWeapon == secondaryWeapon &&
         other.emergencyWeapon == emergencyWeapon &&
         other.armour == armour &&
-        other.shield == shield;
+        other.shield == shield &&
+        listEquals(other.wonderousItems, wonderousItems);
   }
 
   @override
@@ -88,6 +101,7 @@ class EquipModel {
         secondaryWeapon.hashCode ^
         emergencyWeapon.hashCode ^
         armour.hashCode ^
-        shield.hashCode;
+        shield.hashCode ^
+        wonderousItems.hashCode;
   }
 }

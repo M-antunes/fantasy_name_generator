@@ -173,6 +173,7 @@ class EquipController extends ChangeNotifier {
     displayTwoHandedIcon = false;
     cantChooseTwoHandedAnymore = false;
     readyToChoseShield = false;
+    equipGenerated = false;
     for (var select in filteredOffHandTypes) {
       select.isSelected = false;
     }
@@ -338,7 +339,7 @@ class EquipController extends ChangeNotifier {
             element.type!.name == chosenPrimaryWeaponType!.name)
         .toList();
     var randomWeapon = randomIndex.nextInt(list.length);
-    while (randomWeapon < 1) {
+    while (randomWeapon == list.length) {
       randomWeapon = randomIndex.nextInt(list.length);
     }
     weapon = list[randomWeapon];
@@ -356,7 +357,7 @@ class EquipController extends ChangeNotifier {
               element.type!.name == chosenPrimaryWeaponType!.name)
           .toList();
       var randomWeapon = randomIndex.nextInt(list.length);
-      while (randomWeapon < 1) {
+      while (randomWeapon == list.length) {
         randomWeapon = randomIndex.nextInt(list.length);
       }
       weapon = list[randomWeapon];
@@ -373,7 +374,7 @@ class EquipController extends ChangeNotifier {
           .where((element) => element.type!.wielding == "One-handed")
           .toList();
       var randomWeapon = randomIndex.nextInt(list.length);
-      while (randomWeapon < 1) {
+      while (randomWeapon == list.length) {
         randomWeapon = randomIndex.nextInt(list.length);
       }
       weapon = list[randomWeapon];
@@ -384,7 +385,7 @@ class EquipController extends ChangeNotifier {
           .where((element) => element.type!.wielding == "Range")
           .toList();
       var randomWeapon = randomIndex.nextInt(list.length);
-      while (randomWeapon < 1) {
+      while (randomWeapon == list.length) {
         randomWeapon = randomIndex.nextInt(list.length);
       }
       weapon = list[randomWeapon];

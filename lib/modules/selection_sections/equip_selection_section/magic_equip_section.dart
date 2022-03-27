@@ -1,6 +1,7 @@
-import 'package:fantasy_name_generator/shared/widgets/app_generate_button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import 'package:fantasy_name_generator/shared/widgets/app_generate_button.dart';
 
 import '../../../controllers/equip_controller.dart';
 import '../../../shared/constants/phone_sizes.dart';
@@ -78,16 +79,21 @@ class MagicEquipSection extends StatelessWidget {
                         : "",
                     style: AppTextStyle.subTextWhite),
                 const SizedBox(width: 15),
+              ],
+            ),
+            SizedBox(height: deviceHeight! * 0.004),
+            Row(
+              children: [
                 Text("Damage ", style: AppTextStyle.statsLabel),
                 const SizedBox(width: 6),
                 Text("${state.char.charEquip.primaryWeapon!.damage}",
                     style: AppTextStyle.subTextWhite),
               ],
             ),
-            if (state.isDualWield || state.cantChooseTwoHandedAnymore)
+            if (state.isDualWield)
               Column(
                 children: [
-                  SizedBox(height: deviceHeight! * 0.01),
+                  SizedBox(height: deviceHeight! * 0.02),
                   const EquipSectionModal(label: "Off-hand Weapon"),
                   SizedBox(height: deviceHeight! * 0.01),
                   Row(
@@ -103,12 +109,17 @@ class MagicEquipSection extends StatelessWidget {
                           style: AppTextStyle.subTextWhite),
                       const SizedBox(width: 6),
                       Text(
-                          state.char.charEquip.secondaryWeapon!.enchantment !=
+                          state.char.charEquip.secondaryWeapon?.enchantment !=
                                   null
                               ? "${state.char.charEquip.secondaryWeapon!.enchantment?.power}"
                               : "",
                           style: AppTextStyle.subTextWhite),
                       const SizedBox(width: 15),
+                    ],
+                  ),
+                  SizedBox(height: deviceHeight! * 0.004),
+                  Row(
+                    children: [
                       Text("Damage ", style: AppTextStyle.statsLabel),
                       const SizedBox(width: 6),
                       Text("${state.char.charEquip.secondaryWeapon!.damage}",
@@ -139,6 +150,14 @@ class MagicEquipSection extends StatelessWidget {
                               ? "${state.char.charEquip.shield!.enchantment?.power}"
                               : "",
                           style: AppTextStyle.subTextWhite),
+                    ],
+                  ),
+                  SizedBox(height: deviceHeight! * 0.004),
+                  Row(
+                    children: [
+                      Text("AC bonus: ", style: AppTextStyle.statsLabel),
+                      Text("(${state.char.charEquip.shield!.defenseBonus!})",
+                          style: AppTextStyle.subTextWhite),
                       const SizedBox(width: 10),
                       Text("Check penalty: ", style: AppTextStyle.statsLabel),
                       Text(
@@ -150,7 +169,7 @@ class MagicEquipSection extends StatelessWidget {
                   ),
                 ],
               ),
-            SizedBox(height: deviceHeight! * 0.01),
+            SizedBox(height: deviceHeight! * 0.02),
             const EquipSectionModal(label: "Armor"),
             SizedBox(height: deviceHeight! * 0.01),
             Row(
@@ -169,6 +188,12 @@ class MagicEquipSection extends StatelessWidget {
                         ? "${state.char.charEquip.armour!.enchantment?.power}"
                         : "",
                     style: AppTextStyle.statsLabel),
+              ],
+            ),
+            SizedBox(height: deviceHeight! * 0.004),
+            Row(
+              children: [
+                Text("AC bonus: ", style: AppTextStyle.statsLabel),
                 Text("(${state.char.charEquip.armour!.defenseBonus!})",
                     style: AppTextStyle.subTextWhite),
                 const SizedBox(width: 6),
@@ -178,44 +203,55 @@ class MagicEquipSection extends StatelessWidget {
                     style: AppTextStyle.subTextWhite),
               ],
             ),
+            SizedBox(height: deviceHeight! * 0.02),
+            const EquipSectionModal(label: "Emergency Weapon"),
+            SizedBox(height: deviceHeight! * 0.01),
+            Row(
+              children: [
+                Text(
+                    state.char.charEquip.emergencyWeapon!.enchantment != null
+                        ? "${state.char.charEquip.emergencyWeapon!.enchantment?.power}"
+                        : "Mundane",
+                    style: AppTextStyle.statsLabel),
+                const SizedBox(width: 6),
+                Text("${state.char.charEquip.emergencyWeapon!.name}",
+                    style: AppTextStyle.subTextWhite),
+                const SizedBox(width: 6),
+                Text(
+                    state.char.charEquip.emergencyWeapon!.enchantment != null
+                        ? "${state.char.charEquip.emergencyWeapon!.enchantment?.power}"
+                        : "",
+                    style: AppTextStyle.subTextWhite),
+                const SizedBox(width: 15),
+              ],
+            ),
+            SizedBox(height: deviceHeight! * 0.004),
+            Row(
+              children: [
+                Text("Damage ", style: AppTextStyle.statsLabel),
+                const SizedBox(width: 6),
+                Text("${state.char.charEquip.emergencyWeapon!.damage}",
+                    style: AppTextStyle.subTextWhite),
+              ],
+            ),
             SizedBox(height: deviceHeight! * 0.015),
             const EquipSectionModal(label: "General Magic Equipment"),
             SizedBox(height: deviceHeight! * 0.015),
-            GeneralEquipmentRow(
-              rightLabel: "Belt:",
-              leftLabel: "Body:",
-            ),
-            SizedBox(height: deviceHeight! * 0.015),
-            GeneralEquipmentRow(
-              rightLabel: "Chest:",
-              leftLabel: "Eyes:",
-            ),
-            SizedBox(height: deviceHeight! * 0.015),
-            GeneralEquipmentRow(
-              rightLabel: "Feet:",
-              leftLabel: "Hands:",
-            ),
-            SizedBox(height: deviceHeight! * 0.015),
-            GeneralEquipmentRow(
-              rightLabel: "Head:",
-              leftLabel: "Headband:",
-            ),
-            SizedBox(height: deviceHeight! * 0.015),
-            GeneralEquipmentRow(
-              rightLabel: "L. Ring:",
-              leftLabel: "Neck:",
-            ),
-            SizedBox(height: deviceHeight! * 0.015),
-            GeneralEquipmentRow(
-              rightLabel: "R. Ring:",
-              leftLabel: "Shoulders:",
-            ),
-            SizedBox(height: deviceHeight! * 0.015),
-            GeneralEquipmentRow(
-              rightLabel: "Wrist:",
-              leftLabel: "Slotless:",
-            ),
-            SizedBox(height: deviceHeight! * 0.015),
+
+            GeneralEquipRow(label: "Belt", item: "hdhdhfhff fjjgkg kdkdd"),
+            GeneralEquipRow(label: "Body", item: "-"),
+            GeneralEquipRow(label: "Ches", item: "-"),
+            GeneralEquipRow(label: "Eyes", item: "-"),
+            GeneralEquipRow(label: "Feet", item: "-"),
+            GeneralEquipRow(label: "Hands", item: "-"),
+            GeneralEquipRow(label: "Headband", item: "-"),
+            GeneralEquipRow(label: "Left Ring", item: "-"),
+            GeneralEquipRow(label: "Neck", item: "-"),
+            GeneralEquipRow(label: "Right Ring", item: "-"),
+            GeneralEquipRow(label: "Shoulders", item: "-"),
+            GeneralEquipRow(label: "Wrist", item: "-"),
+            GeneralEquipRow(label: "Slotless", item: "-"),
+
             Center(child: AppGenerateButton(onGenerate: () {})),
           ],
         ),
@@ -224,40 +260,25 @@ class MagicEquipSection extends StatelessWidget {
   }
 }
 
-class GeneralEquipmentRow extends StatelessWidget {
-  final String rightLabel;
-  final String leftLabel;
-  final String? rightName;
-  final String? leftName;
-  const GeneralEquipmentRow({
+class GeneralEquipRow extends StatelessWidget {
+  final String label;
+  final String item;
+  const GeneralEquipRow({
     Key? key,
-    required this.rightLabel,
-    required this.leftLabel,
-    this.rightName,
-    this.leftName,
+    required this.label,
+    required this.item,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Column(
       children: [
-        SizedBox(
-          width: deviceWidth! * 0.47,
-          child: Row(
-            children: [
-              Text(rightLabel, style: AppTextStyle.statsLabel),
-              const SizedBox(width: 3),
-              Text(rightName ?? "--", style: AppTextStyle.subTextWhite),
-            ],
-          ),
-        ),
-        Row(
-          children: [
-            Text(leftLabel, style: AppTextStyle.statsLabel),
-            const SizedBox(width: 3),
-            Text(leftName ?? "--", style: AppTextStyle.subTextWhite),
-          ],
-        ),
+        RichText(
+            text: TextSpan(children: [
+          TextSpan(text: "$label:  ", style: AppTextStyle.statsLabel),
+          TextSpan(text: item, style: AppTextStyle.weaponSelectedText),
+        ])),
+        SizedBox(height: deviceHeight! * 0.008),
       ],
     );
   }
