@@ -49,6 +49,7 @@ class EquipController extends ChangeNotifier {
   bool readyToChoseShield = false;
   bool equipGenerated = false;
   bool penaltyToDexApplied = false;
+  bool showDescriptionOfMagicItems = false;
 
   populateListsOfWeaponFamily() {
     if (allListsOfWeaponsFamily.isNotEmpty) {
@@ -517,6 +518,11 @@ class EquipController extends ChangeNotifier {
     }
   }
 
+  showMagicItemDescription() {
+    showDescriptionOfMagicItems = !showDescriptionOfMagicItems;
+    notifyListeners();
+  }
+
   // Move on with the selections ===========================================================
 
   advanceCreationStage() {
@@ -537,8 +543,8 @@ class EquipController extends ChangeNotifier {
       advanceCreationStage();
       return null;
     } else if (creationStage == 8) {
-      if (!hasChosenArmor) {
-        return "You need to select all equipment before advancing";
+      if (!equipGenerated) {
+        return "You need to select and generate all equipment before advancing";
       }
       advanceCreationStage();
     } else if (creationStage == 9) {

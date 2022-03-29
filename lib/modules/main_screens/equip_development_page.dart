@@ -1,7 +1,10 @@
 import 'package:fantasy_name_generator/controllers/equip_controller.dart';
+import 'package:fantasy_name_generator/controllers/magic_item_controller.dart';
 import 'package:fantasy_name_generator/models/char_model.dart';
 import 'package:fantasy_name_generator/modules/selection_sections/equip_selection_section/combat_gear_section.dart';
 import 'package:fantasy_name_generator/modules/selection_sections/equip_selection_section/equip_generation.dart';
+import 'package:fantasy_name_generator/shared/data/wonderous_items_data.dart';
+import 'package:fantasy_name_generator/shared/widgets/app_generate_button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -82,16 +85,7 @@ class _EquipDevelopMentPageState extends State<EquipDevelopMentPage> {
                 ),
               ),
               if (state.creationStage == 7) const ChoiceSection(),
-              if (state.creationStage == 8)
-                CombatGearSection(
-                  onGenerate: state.equipGenerated
-                      ? () {
-                          state.resetEquipStats();
-                        }
-                      : () {
-                          state.generateEquip();
-                        },
-                ),
+              if (state.creationStage == 8) const CombatGearSection(),
               if (state.creationStage == 9) const MagicEquipSection(),
             ],
           );
@@ -100,7 +94,7 @@ class _EquipDevelopMentPageState extends State<EquipDevelopMentPage> {
       bottomNavigationBar:
           Consumer<EquipController>(builder: (context, state, child) {
         return Padding(
-          padding: const EdgeInsets.only(left: 8.0, right: 8, bottom: 8),
+          padding: const EdgeInsets.only(left: 8.0, right: 8, bottom: 4),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -116,6 +110,31 @@ class _EquipDevelopMentPageState extends State<EquipDevelopMentPage> {
                           state.retreatCreationStage();
                         }
                       }),
+                  if (state.creationStage == 8 && state.hasChosenArmor)
+                    AppGenerateButton(
+                      icon: state.equipGenerated
+                          ? const Icon(Icons.delete_forever, size: 40)
+                          : null,
+                      onGenerate: state.equipGenerated
+                          ? () {
+                              state.resetEquipStats();
+                            }
+                          : () {
+                              state.generateEquip();
+                            },
+                    ),
+                  if (state.creationStage == 9)
+                    Consumer<MagicItemController>(
+                        builder: (context, ctrl, child) {
+                      return AppGenerateButton(
+                        icon: ctrl.magicItemsGenerated
+                            ? const Icon(Icons.delete_forever, size: 35)
+                            : null,
+                        onGenerate: ctrl.magicItemsGenerated
+                            ? () => ctrl.resetItems()
+                            : () => ctrl.generateMagicEquip(),
+                      );
+                    }),
                   AppAnimatedButton(
                       onTap: () => buttonFunction(state, context)),
                 ],

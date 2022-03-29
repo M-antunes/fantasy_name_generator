@@ -19,8 +19,8 @@ class AppGenerateButton extends StatelessWidget {
       onPressed: onGenerate,
       color: Colors.grey[900]!,
       duration: 60,
-      width: deviceWidth! < 400 ? 62 : 72,
-      height: deviceWidth! < 400 ? 62 : 72,
+      width: deviceWidth! < 400 ? 52 : 62,
+      height: deviceWidth! < 400 ? 52 : 62,
       child: icon ??
           SvgPicture.asset(
             "assets/images/dice-random.svg",

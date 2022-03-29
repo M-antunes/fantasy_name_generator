@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:fantasy_name_generator/shared/widgets/app_generate_button.dart';
+import 'package:fantasy_name_generator/controllers/magic_item_controller.dart';
+import 'package:fantasy_name_generator/shared/widgets/expanded_section.dart';
 
 import '../../../controllers/equip_controller.dart';
 import '../../../shared/constants/phone_sizes.dart';
@@ -66,7 +67,7 @@ class MagicEquipSection extends StatelessWidget {
               children: [
                 Text(
                     state.char.charEquip.primaryWeapon!.enchantment != null
-                        ? "${state.char.charEquip.primaryWeapon!.enchantment?.power}"
+                        ? "${state.char.charEquip.primaryWeapon!.enchantment?[0].power}"
                         : "Mundane",
                     style: AppTextStyle.statsLabel),
                 const SizedBox(width: 6),
@@ -75,7 +76,7 @@ class MagicEquipSection extends StatelessWidget {
                 const SizedBox(width: 6),
                 Text(
                     state.char.charEquip.primaryWeapon!.enchantment != null
-                        ? "${state.char.charEquip.primaryWeapon!.enchantment?.power}"
+                        ? "${state.char.charEquip.primaryWeapon!.enchantment?[0].power}"
                         : "",
                     style: AppTextStyle.subTextWhite),
                 const SizedBox(width: 15),
@@ -101,7 +102,7 @@ class MagicEquipSection extends StatelessWidget {
                       Text(
                           state.char.charEquip.secondaryWeapon!.enchantment !=
                                   null
-                              ? "${state.char.charEquip.secondaryWeapon!.enchantment?.power}"
+                              ? "${state.char.charEquip.secondaryWeapon!.enchantment?[1].power}"
                               : "Mundane",
                           style: AppTextStyle.statsLabel),
                       const SizedBox(width: 6),
@@ -111,7 +112,7 @@ class MagicEquipSection extends StatelessWidget {
                       Text(
                           state.char.charEquip.secondaryWeapon?.enchantment !=
                                   null
-                              ? "${state.char.charEquip.secondaryWeapon!.enchantment?.power}"
+                              ? "${state.char.charEquip.secondaryWeapon!.enchantment?[0].power}"
                               : "",
                           style: AppTextStyle.subTextWhite),
                       const SizedBox(width: 15),
@@ -203,6 +204,28 @@ class MagicEquipSection extends StatelessWidget {
                     style: AppTextStyle.subTextWhite),
               ],
             ),
+            if (state.penaltyToDexApplied)
+              Column(
+                children: [
+                  SizedBox(height: deviceHeight! * 0.004),
+                  Row(
+                    children: [
+                      Text("Dex ", style: AppTextStyle.statsLabel),
+                      Text("${state.char.baseAtributes.dexterity!}  ",
+                          style: AppTextStyle.subTextWhite),
+                      Text(
+                        "(${state.char.modAtributes.dexterity!})",
+                        style: state.penaltyToDexApplied
+                            ? AppTextStyle.penaltyStyle
+                            : null,
+                      ),
+                      const SizedBox(width: 6),
+                      Text("Penalty applied",
+                          style: AppTextStyle.penaltyStyleText),
+                    ],
+                  ),
+                ],
+              ),
             SizedBox(height: deviceHeight! * 0.02),
             const EquipSectionModal(label: "Emergency Weapon"),
             SizedBox(height: deviceHeight! * 0.01),
@@ -210,7 +233,7 @@ class MagicEquipSection extends StatelessWidget {
               children: [
                 Text(
                     state.char.charEquip.emergencyWeapon!.enchantment != null
-                        ? "${state.char.charEquip.emergencyWeapon!.enchantment?.power}"
+                        ? "${state.char.charEquip.emergencyWeapon!.enchantment?[1].power}"
                         : "Mundane",
                     style: AppTextStyle.statsLabel),
                 const SizedBox(width: 6),
@@ -219,7 +242,7 @@ class MagicEquipSection extends StatelessWidget {
                 const SizedBox(width: 6),
                 Text(
                     state.char.charEquip.emergencyWeapon!.enchantment != null
-                        ? "${state.char.charEquip.emergencyWeapon!.enchantment?.power}"
+                        ? "${state.char.charEquip.emergencyWeapon!.enchantment?[0].power}"
                         : "",
                     style: AppTextStyle.subTextWhite),
                 const SizedBox(width: 15),
@@ -238,21 +261,34 @@ class MagicEquipSection extends StatelessWidget {
             const EquipSectionModal(label: "General Magic Equipment"),
             SizedBox(height: deviceHeight! * 0.015),
 
-            GeneralEquipRow(label: "Belt", item: "hdhdhfhff fjjgkg kdkdd"),
-            GeneralEquipRow(label: "Body", item: "-"),
-            GeneralEquipRow(label: "Ches", item: "-"),
-            GeneralEquipRow(label: "Eyes", item: "-"),
-            GeneralEquipRow(label: "Feet", item: "-"),
-            GeneralEquipRow(label: "Hands", item: "-"),
-            GeneralEquipRow(label: "Headband", item: "-"),
-            GeneralEquipRow(label: "Left Ring", item: "-"),
-            GeneralEquipRow(label: "Neck", item: "-"),
-            GeneralEquipRow(label: "Right Ring", item: "-"),
-            GeneralEquipRow(label: "Shoulders", item: "-"),
-            GeneralEquipRow(label: "Wrist", item: "-"),
-            GeneralEquipRow(label: "Slotless", item: "-"),
+            Consumer<MagicItemController>(builder: (context, ctrl, child) {
+              ctrl.character = state.char;
+              return ctrl.magicItemsGenerated
+                  ? ListView.builder(
+                      itemCount:
+                          ctrl.character!.charEquip.wonderousItems!.length,
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemBuilder: (context, index) {
+                        var item =
+                            ctrl.character!.charEquip.wonderousItems![index];
+                        return GeneralEquipRow(
+                          label: item.type!,
+                          item: item.name!,
+                          description: item.description!,
+                          onTap: () => ctrl.showItemDescription(index),
+                          selected: item.isSelected,
+                        );
+                      })
+                  : const Center(
+                      child: Text(
+                        "?",
+                        style: TextStyle(fontSize: 60, color: Colors.grey),
+                      ),
+                    );
+            }),
 
-            Center(child: AppGenerateButton(onGenerate: () {})),
+            // Center(child: AppGenerateButton(onGenerate: () {})),
           ],
         ),
       );
@@ -263,23 +299,64 @@ class MagicEquipSection extends StatelessWidget {
 class GeneralEquipRow extends StatelessWidget {
   final String label;
   final String item;
-  const GeneralEquipRow({
+  final String description;
+  final VoidCallback onTap;
+  bool selected;
+  GeneralEquipRow({
     Key? key,
     required this.label,
     required this.item,
+    required this.description,
+    required this.onTap,
+    required this.selected,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        RichText(
-            text: TextSpan(children: [
-          TextSpan(text: "$label:  ", style: AppTextStyle.statsLabel),
-          TextSpan(text: item, style: AppTextStyle.weaponSelectedText),
-        ])),
-        SizedBox(height: deviceHeight! * 0.008),
-      ],
-    );
+    return Consumer<EquipController>(builder: (context, state, child) {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              RichText(
+                  text: TextSpan(children: [
+                TextSpan(text: "$label:  ", style: AppTextStyle.statsLabel),
+                TextSpan(text: item, style: AppTextStyle.statsValue),
+              ])),
+              const SizedBox(width: 6),
+              InkWell(
+                  child: selected
+                      ? const Icon(Icons.arrow_drop_down,
+                          size: 30, color: Colors.blueGrey)
+                      : const Icon(Icons.arrow_right,
+                          size: 30, color: Colors.blueGrey),
+                  onTap: onTap),
+            ],
+          ),
+          ExpandedSection(
+            expand: selected,
+            child: Card(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10)),
+              child: Padding(
+                padding: const EdgeInsets.all(6),
+                child: RichText(
+                  textAlign: TextAlign.justify,
+                  text: TextSpan(
+                    children: [
+                      TextSpan(
+                          text: description,
+                          style: AppTextStyle.longDescription),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(height: deviceHeight! * 0.004),
+        ],
+      );
+    });
   }
 }

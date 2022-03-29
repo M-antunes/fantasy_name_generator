@@ -13,7 +13,7 @@ class EquipModel {
   WeaponModel? emergencyWeapon;
   ArmorModel? armour;
   ArmorModel? shield;
-  List<WonderousItemsModel?>? wonderousItems;
+  List<WonderousItemsModel>? wonderousItems;
   EquipModel({
     this.primaryWeapon,
     this.secondaryWeapon,
@@ -29,7 +29,7 @@ class EquipModel {
     WeaponModel? emergencyWeapon,
     ArmorModel? armour,
     ArmorModel? shield,
-    List<WonderousItemsModel?>? wonderousItems,
+    List<WonderousItemsModel>? wonderousItems,
   }) {
     return EquipModel(
       primaryWeapon: primaryWeapon ?? this.primaryWeapon,
@@ -48,7 +48,7 @@ class EquipModel {
       'emergencyWeapon': emergencyWeapon?.toMap(),
       'armour': armour?.toMap(),
       'shield': shield?.toMap(),
-      'wonderousItems': wonderousItems?.map((x) => x?.toMap())?.toList(),
+      'wonderousItems': wonderousItems?.map((x) => x.toMap()).toList(),
     };
   }
 
@@ -66,8 +66,8 @@ class EquipModel {
       armour: map['armour'] != null ? ArmorModel.fromMap(map['armour']) : null,
       shield: map['shield'] != null ? ArmorModel.fromMap(map['shield']) : null,
       wonderousItems: map['wonderousItems'] != null
-          ? List<WonderousItemsModel?>.from(map['wonderousItems']
-              ?.map((x) => WonderousItemsModel?.fromMap(x)))
+          ? List<WonderousItemsModel>.from(
+              map['wonderousItems']?.map((x) => WonderousItemsModel.fromMap(x)))
           : null,
     );
   }

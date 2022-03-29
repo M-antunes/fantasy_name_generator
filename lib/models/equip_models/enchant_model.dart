@@ -3,22 +3,26 @@ import 'dart:convert';
 class EnchantModel {
   final String enchant;
   final int power;
-  final String magicPorperty;
+  final String magicalPorperty;
+  final String? additionalDiceDamage;
   EnchantModel({
     required this.enchant,
     required this.power,
-    required this.magicPorperty,
+    required this.magicalPorperty,
+    this.additionalDiceDamage,
   });
 
   EnchantModel copyWith({
     String? enchant,
     int? power,
-    String? magicPorperty,
+    String? magicalPorperty,
+    String? additionalDamage,
   }) {
     return EnchantModel(
       enchant: enchant ?? this.enchant,
       power: power ?? this.power,
-      magicPorperty: magicPorperty ?? this.magicPorperty,
+      magicalPorperty: magicalPorperty ?? this.magicalPorperty,
+      additionalDiceDamage: additionalDamage ?? this.additionalDiceDamage,
     );
   }
 
@@ -26,7 +30,8 @@ class EnchantModel {
     return {
       'enchant': enchant,
       'power': power,
-      'magicPorperty': magicPorperty,
+      'magicalPorperty': magicalPorperty,
+      'additionalDamage': additionalDiceDamage,
     };
   }
 
@@ -34,7 +39,8 @@ class EnchantModel {
     return EnchantModel(
       enchant: map['enchant'] ?? '',
       power: map['power']?.toInt() ?? 0,
-      magicPorperty: map['magicPorperty'] ?? '',
+      magicalPorperty: map['magicalPorperty'] ?? '',
+      additionalDiceDamage: map['additionalDamage'],
     );
   }
 
@@ -44,8 +50,9 @@ class EnchantModel {
       EnchantModel.fromMap(json.decode(source));
 
   @override
-  String toString() =>
-      'EnchantModel(enchant: $enchant, power: $power, magicPorperty: $magicPorperty)';
+  String toString() {
+    return 'EnchantModel(enchant: $enchant, power: $power, magicalPorperty: $magicalPorperty, additionalDamage: $additionalDiceDamage)';
+  }
 
   @override
   bool operator ==(Object other) {
@@ -54,10 +61,15 @@ class EnchantModel {
     return other is EnchantModel &&
         other.enchant == enchant &&
         other.power == power &&
-        other.magicPorperty == magicPorperty;
+        other.magicalPorperty == magicalPorperty &&
+        other.additionalDiceDamage == additionalDiceDamage;
   }
 
   @override
-  int get hashCode =>
-      enchant.hashCode ^ power.hashCode ^ magicPorperty.hashCode;
+  int get hashCode {
+    return enchant.hashCode ^
+        power.hashCode ^
+        magicalPorperty.hashCode ^
+        additionalDiceDamage.hashCode;
+  }
 }

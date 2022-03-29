@@ -7,17 +7,14 @@ import 'package:fantasy_name_generator/shared/widgets/app_animated_button.dart';
 
 import '../../../shared/themes/app_colors.dart';
 import '../../../shared/themes/app_text_styles.dart';
-import '../../../shared/widgets/app_generate_button.dart';
 import 'equip_generation.dart';
 import 'widgets/chosen_equip_display.dart';
 import 'widgets/equip_display_row.dart';
 import 'widgets/off_hand_display_row.dart';
 
 class CombatGearSection extends StatelessWidget {
-  final VoidCallback onGenerate;
   const CombatGearSection({
     Key? key,
-    required this.onGenerate,
   }) : super(key: key);
 
   @override
@@ -172,15 +169,6 @@ class CombatGearSection extends StatelessWidget {
               label: "Reset",
             ),
           SizedBox(height: deviceHeight! * 0.03),
-          if (state.hasChosenArmor)
-            Center(
-              child: AppGenerateButton(
-                  icon: state.equipGenerated
-                      ? const Icon(Icons.delete_forever, size: 40)
-                      : null,
-                  onGenerate: onGenerate),
-            ),
-          SizedBox(height: deviceHeight! * 0.01),
           if (state.equipGenerated)
             Padding(
               padding: EdgeInsets.symmetric(horizontal: deviceWidth! * 0.03),
@@ -230,6 +218,7 @@ class CombatGearSection extends StatelessWidget {
                         SizedBox(height: deviceHeight! * 0.01),
                         Row(
                           children: [
+                            const SizedBox(width: 6),
                             Text(state.char.charEquip.shield!.name!,
                                 style: AppTextStyle.subTextWhite),
                             const SizedBox(width: 3),
@@ -238,6 +227,12 @@ class CombatGearSection extends StatelessWidget {
                                 "(${state.char.charEquip.shield!.defenseBonus!})",
                                 style: AppTextStyle.subTextWhite),
                             const SizedBox(width: 10),
+                          ],
+                        ),
+                        SizedBox(height: deviceHeight! * 0.01),
+                        Row(
+                          children: [
+                            const SizedBox(width: 6),
                             Text("Check penalty: ",
                                 style: AppTextStyle.statsLabel),
                             Text(
@@ -261,10 +256,46 @@ class CombatGearSection extends StatelessWidget {
                       Text("AC bonus: ", style: AppTextStyle.statsLabel),
                       Text("(${state.char.charEquip.armour!.defenseBonus!})",
                           style: AppTextStyle.subTextWhite),
+                    ],
+                  ),
+                  SizedBox(height: deviceHeight! * 0.01),
+                  Row(
+                    children: [
                       const SizedBox(width: 6),
                       Text("Max Dex ", style: AppTextStyle.statsLabel),
                       const SizedBox(width: 3),
                       Text("(${state.char.charEquip.armour!.maxDexAllowed!})",
+                          style: AppTextStyle.subTextWhite),
+                      const SizedBox(width: 16),
+                      if (state.penaltyToDexApplied)
+                        Row(
+                          children: [
+                            Text("Dex ", style: AppTextStyle.statsLabel),
+                            Text("${state.char.baseAtributes.dexterity!}  ",
+                                style: AppTextStyle.subTextWhite),
+                            Text(
+                              "(${state.char.modAtributes.dexterity!})",
+                              style: state.penaltyToDexApplied
+                                  ? AppTextStyle.penaltyStyle
+                                  : null,
+                            ),
+                            const SizedBox(width: 6),
+                            Text("Penalty applied",
+                                style: AppTextStyle.penaltyStyleText),
+                          ],
+                        ),
+                    ],
+                  ),
+                  SizedBox(height: deviceHeight! * 0.01),
+                  Row(
+                    children: [
+                      const SizedBox(width: 6),
+                      Text("Check penalty: ", style: AppTextStyle.statsLabel),
+                      const SizedBox(width: 6),
+                      Text(
+                          state.char.charEquip.armour!.checkPenalty! == 0
+                              ? "(0)"
+                              : "(-${state.char.charEquip.armour!.checkPenalty!})",
                           style: AppTextStyle.subTextWhite),
                     ],
                   ),

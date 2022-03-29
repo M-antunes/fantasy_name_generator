@@ -5,17 +5,19 @@ class WonderousItemsModel {
   final String? name;
   final String? description;
   final int? price;
-  final int? availability;
+  final int availability;
   final String? exclusiveClasses;
   final int? bonus;
+  bool isSelected;
   WonderousItemsModel({
     this.type,
     this.name,
     this.description,
     this.price,
-    this.availability,
+    required this.availability,
     this.exclusiveClasses,
     this.bonus,
+    this.isSelected = false,
   });
 
   WonderousItemsModel copyWith({
@@ -26,6 +28,7 @@ class WonderousItemsModel {
     int? availability,
     String? exclusiveClasses,
     int? bonus,
+    bool? isSelected,
   }) {
     return WonderousItemsModel(
       type: type ?? this.type,
@@ -35,6 +38,7 @@ class WonderousItemsModel {
       availability: availability ?? this.availability,
       exclusiveClasses: exclusiveClasses ?? this.exclusiveClasses,
       bonus: bonus ?? this.bonus,
+      isSelected: isSelected ?? this.isSelected,
     );
   }
 
@@ -47,6 +51,7 @@ class WonderousItemsModel {
       'availability': availability,
       'exclusiveClasses': exclusiveClasses,
       'bonus': bonus,
+      'isSelected': isSelected,
     };
   }
 
@@ -56,9 +61,10 @@ class WonderousItemsModel {
       name: map['name'],
       description: map['description'],
       price: map['price']?.toInt(),
-      availability: map['availability']?.toInt(),
+      availability: map['availability']?.toInt() ?? 0,
       exclusiveClasses: map['exclusiveClasses'],
       bonus: map['bonus']?.toInt(),
+      isSelected: map['isSelected'] ?? false,
     );
   }
 
@@ -69,7 +75,7 @@ class WonderousItemsModel {
 
   @override
   String toString() {
-    return 'WonderousItemsModel(type: $type, name: $name, description: $description, price: $price, availability: $availability, exclusiveClasses: $exclusiveClasses, bonus: $bonus)';
+    return 'WonderousItemsModel(type: $type, name: $name, description: $description, price: $price, availability: $availability, exclusiveClasses: $exclusiveClasses, bonus: $bonus, isSelected: $isSelected)';
   }
 
   @override
@@ -83,7 +89,8 @@ class WonderousItemsModel {
         other.price == price &&
         other.availability == availability &&
         other.exclusiveClasses == exclusiveClasses &&
-        other.bonus == bonus;
+        other.bonus == bonus &&
+        other.isSelected == isSelected;
   }
 
   @override
@@ -94,6 +101,7 @@ class WonderousItemsModel {
         price.hashCode ^
         availability.hashCode ^
         exclusiveClasses.hashCode ^
-        bonus.hashCode;
+        bonus.hashCode ^
+        isSelected.hashCode;
   }
 }

@@ -72,7 +72,7 @@ class NameSelection extends StatelessWidget {
           SizedBox(
             height: size.height * 0.01,
           ),
-          AppGenerateButton(onGenerate: onGenerate)
+          // AppGenerateButton(onGenerate: onGenerate)
         ],
       ),
     );

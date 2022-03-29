@@ -9,6 +9,7 @@ import 'package:fantasy_name_generator/shared/themes/app_colors.dart';
 import 'package:fantasy_name_generator/shared/widgets/app_animated_button.dart';
 import 'package:fantasy_name_generator/shared/widgets/call_message_snackbar.dart';
 
+import '../../shared/widgets/app_generate_button.dart';
 import '../selection_sections/char_selection_sections/alignment_section.dart';
 import '../selection_sections/char_selection_sections/class_section.dart';
 import '../selection_sections/char_selection_sections/gender_section.dart';
@@ -87,18 +88,7 @@ class _CharDevelopmentPageState extends State<CharDevelopmentPage>
               if (state.creationStage == 3) const ClassSelection(),
               if (state.creationStage == 4) const AlignmentSelection(),
               if (state.creationStage == 5) const LevelSelection(),
-              if (state.creationStage == 6)
-                StatsSection(
-                  onGenerate: state.isCharGeneratorCleared
-                      ? () {
-                          state.generateAllAtributs();
-                          state.isCharGeneratorCleared =
-                              !state.isCharGeneratorCleared;
-                        }
-                      : () {
-                          state.updateCharModel();
-                        },
-                ),
+              if (state.creationStage == 6) const StatsSection(),
             ],
           );
         }),
@@ -122,6 +112,25 @@ class _CharDevelopmentPageState extends State<CharDevelopmentPage>
                       state.retreatCreationStage();
                     }
                   }),
+              if (state.creationStage == 2)
+                AppGenerateButton(
+                  onGenerate: () => state.newNameGenerator(),
+                ),
+              if (state.creationStage == 6)
+                AppGenerateButton(
+                  icon: state.isCharGeneratorCleared
+                      ? null
+                      : const Icon(Icons.delete_forever, size: 35),
+                  onGenerate: state.isCharGeneratorCleared
+                      ? () {
+                          state.generateAllAtributs();
+                          state.isCharGeneratorCleared =
+                              !state.isCharGeneratorCleared;
+                        }
+                      : () {
+                          state.updateCharModel();
+                        },
+                ),
               state.creationStage == 6
                   ? AppAnimatedButton(
                       onTap: () => Navigator.pushNamed(

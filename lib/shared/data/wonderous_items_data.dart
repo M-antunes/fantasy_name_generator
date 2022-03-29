@@ -14,6 +14,59 @@ class WonderousItemsData {
     "Greater Artefact",
   ];
 
+  final List<WonderousItemsModel> protRings = [
+    WonderousItemsModel(
+      type: "Ring",
+      name: "Ring of protection +1",
+      availability: 2,
+      exclusiveClasses: "Regular",
+      description:
+          "This ring offers continual magical protection in the form of a deflection bonus of +1 to AC.",
+      bonus: 1,
+      price: 2000,
+    ),
+    WonderousItemsModel(
+      type: "Ring",
+      name: "Ring of protection +2",
+      availability: 5,
+      exclusiveClasses: "Regular",
+      description:
+          "This ring offers continual magical protection in the form of a deflection bonus of +2 to AC.",
+      bonus: 2,
+      price: 8000,
+    ),
+    WonderousItemsModel(
+      type: "Ring",
+      name: "Ring of protection +3",
+      availability: 9,
+      exclusiveClasses: "Regular",
+      description:
+          "This ring offers continual magical protection in the form of a deflection bonus of +3 to AC.",
+      bonus: 3,
+      price: 18000,
+    ),
+    WonderousItemsModel(
+      type: "Ring",
+      name: "Ring of protection +4",
+      availability: 13,
+      exclusiveClasses: "Regular",
+      description:
+          "This ring offers continual magical protection in the form of a deflection bonus of +4 to AC.",
+      bonus: 4,
+      price: 32000,
+    ),
+    WonderousItemsModel(
+      type: "Ring",
+      name: "Ring of protection +5",
+      availability: 16,
+      exclusiveClasses: "Regular",
+      description:
+          "This ring offers continual magical protection in the form of a deflection bonus of +5 to AC.",
+      bonus: 5,
+      price: 50000,
+    ),
+  ];
+
   final List<WonderousItemsModel> allItems = [
     WonderousItemsModel(
       type: "Belt",
@@ -1634,56 +1687,6 @@ class WonderousItemsData {
           "These finely crafted leather gauntlets have plates of silvered steel covering the back, and silver buckles at the wrist and forearm. The gloves enable the wearer to use any traditional elven weapon (longbows, composite longbows, longswords, rapiers, shortbows, composite shortbows, and any weapon with the word 'elven' in its name) as if he were proficient in its use. If he uses such a weapon and is already proficient with it, he gains a +1 competence bonus on attack and damage rolls. Both gloves must be worn for the magic to be effective",
       bonus: 1,
       price: 30000,
-    ),
-    WonderousItemsModel(
-      type: "Ring",
-      name: "Ring of protection +1",
-      availability: 3,
-      exclusiveClasses: "Regular",
-      description:
-          "This ring offers continual magical protection in the form of a deflection bonus of +1 to AC.",
-      bonus: 1,
-      price: 2000,
-    ),
-    WonderousItemsModel(
-      type: "Ring",
-      name: "Ring of protection +2",
-      availability: 6,
-      exclusiveClasses: "Regular",
-      description:
-          "This ring offers continual magical protection in the form of a deflection bonus of +2 to AC.",
-      bonus: 2,
-      price: 8000,
-    ),
-    WonderousItemsModel(
-      type: "Ring",
-      name: "Ring of protection +3",
-      availability: 7,
-      exclusiveClasses: "Regular",
-      description:
-          "This ring offers continual magical protection in the form of a deflection bonus of +3 to AC.",
-      bonus: 3,
-      price: 18000,
-    ),
-    WonderousItemsModel(
-      type: "Ring",
-      name: "Ring of protection +4",
-      availability: 10,
-      exclusiveClasses: "Regular",
-      description:
-          "This ring offers continual magical protection in the form of a deflection bonus of +4 to AC.",
-      bonus: 4,
-      price: 32000,
-    ),
-    WonderousItemsModel(
-      type: "Ring",
-      name: "Ring of protection +5",
-      availability: 14,
-      exclusiveClasses: "Regular",
-      description:
-          "This ring offers continual magical protection in the form of a deflection bonus of +5 to AC.",
-      bonus: 5,
-      price: 50000,
     ),
     WonderousItemsModel(
       type: "Ring",

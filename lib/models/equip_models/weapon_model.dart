@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
+
 import 'package:fantasy_name_generator/models/equip_models/weapon_type_model.dart';
 
 import 'enchant_model.dart';
@@ -8,7 +10,7 @@ class WeaponModel {
   WeaponFamilyModel? type;
   bool? isSelected;
   String? name;
-  EnchantModel? enchantment;
+  List<EnchantModel>? enchantment;
   String? damage;
   String? damageType;
   String? critical;
@@ -26,7 +28,7 @@ class WeaponModel {
     WeaponFamilyModel? type,
     bool? isSelected,
     String? name,
-    EnchantModel? enchantment,
+    List<EnchantModel>? enchantment,
     String? damage,
     String? damageType,
     String? critical,
@@ -47,7 +49,7 @@ class WeaponModel {
       'type': type?.toMap(),
       'isSelected': isSelected,
       'name': name,
-      'enchantment': enchantment?.toMap(),
+      'enchantment': enchantment?.map((x) => x.toMap()).toList(),
       'damage': damage,
       'damageType': damageType,
       'critical': critical,
@@ -60,7 +62,8 @@ class WeaponModel {
       isSelected: map['isSelected'],
       name: map['name'],
       enchantment: map['enchantment'] != null
-          ? EnchantModel.fromMap(map['enchantment'])
+          ? List<EnchantModel>.from(
+              map['enchantment']?.map((x) => EnchantModel.fromMap(x)))
           : null,
       damage: map['damage'],
       damageType: map['damageType'],
@@ -86,7 +89,7 @@ class WeaponModel {
         other.type == type &&
         other.isSelected == isSelected &&
         other.name == name &&
-        other.enchantment == enchantment &&
+        listEquals(other.enchantment, enchantment) &&
         other.damage == damage &&
         other.damageType == damageType &&
         other.critical == critical;
