@@ -177,7 +177,7 @@ class AppTextStyle {
   );
   static final penaltyStyle = TextStyle(
     fontWeight: FontWeight.w400,
-    color: AppColors.primary,
+    color: AppColors.errorColor,
     fontFamily: "David",
     fontSize: deviceWidth! < 350
         ? 19
@@ -187,7 +187,7 @@ class AppTextStyle {
   );
   static final penaltyStyleText = TextStyle(
     fontWeight: FontWeight.w400,
-    color: AppColors.primary,
+    color: AppColors.errorColor,
     fontFamily: "David",
     fontSize: deviceWidth! < 350
         ? 12

@@ -1,13 +1,16 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
+
 class WonderousItemsModel {
   final String? type;
   final String? name;
   final String? description;
   final int? price;
   final int availability;
-  final String? exclusiveClasses;
+  final List<String> exclusiveClasses;
   final int? bonus;
+  final String? additionalInfo;
   bool isSelected;
   WonderousItemsModel({
     this.type,
@@ -15,8 +18,9 @@ class WonderousItemsModel {
     this.description,
     this.price,
     required this.availability,
-    this.exclusiveClasses,
+    required this.exclusiveClasses,
     this.bonus,
+    this.additionalInfo,
     this.isSelected = false,
   });
 
@@ -26,8 +30,9 @@ class WonderousItemsModel {
     String? description,
     int? price,
     int? availability,
-    String? exclusiveClasses,
+    List<String>? exclusiveClasses,
     int? bonus,
+    String? additionalInfo,
     bool? isSelected,
   }) {
     return WonderousItemsModel(
@@ -38,6 +43,7 @@ class WonderousItemsModel {
       availability: availability ?? this.availability,
       exclusiveClasses: exclusiveClasses ?? this.exclusiveClasses,
       bonus: bonus ?? this.bonus,
+      additionalInfo: additionalInfo ?? this.additionalInfo,
       isSelected: isSelected ?? this.isSelected,
     );
   }
@@ -51,6 +57,7 @@ class WonderousItemsModel {
       'availability': availability,
       'exclusiveClasses': exclusiveClasses,
       'bonus': bonus,
+      'additionalInfo': additionalInfo,
       'isSelected': isSelected,
     };
   }
@@ -62,8 +69,9 @@ class WonderousItemsModel {
       description: map['description'],
       price: map['price']?.toInt(),
       availability: map['availability']?.toInt() ?? 0,
-      exclusiveClasses: map['exclusiveClasses'],
+      exclusiveClasses: List<String>.from(map['exclusiveClasses']),
       bonus: map['bonus']?.toInt(),
+      additionalInfo: map['additionalInfo'],
       isSelected: map['isSelected'] ?? false,
     );
   }
@@ -75,7 +83,7 @@ class WonderousItemsModel {
 
   @override
   String toString() {
-    return 'WonderousItemsModel(type: $type, name: $name, description: $description, price: $price, availability: $availability, exclusiveClasses: $exclusiveClasses, bonus: $bonus, isSelected: $isSelected)';
+    return 'WonderousItemsModel(type: $type, name: $name, description: $description, price: $price, availability: $availability, exclusiveClasses: $exclusiveClasses, bonus: $bonus, additionalInfo: $additionalInfo, isSelected: $isSelected)';
   }
 
   @override
@@ -88,8 +96,9 @@ class WonderousItemsModel {
         other.description == description &&
         other.price == price &&
         other.availability == availability &&
-        other.exclusiveClasses == exclusiveClasses &&
+        listEquals(other.exclusiveClasses, exclusiveClasses) &&
         other.bonus == bonus &&
+        other.additionalInfo == additionalInfo &&
         other.isSelected == isSelected;
   }
 
@@ -102,6 +111,7 @@ class WonderousItemsModel {
         availability.hashCode ^
         exclusiveClasses.hashCode ^
         bonus.hashCode ^
+        additionalInfo.hashCode ^
         isSelected.hashCode;
   }
 }

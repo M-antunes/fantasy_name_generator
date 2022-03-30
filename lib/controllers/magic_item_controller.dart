@@ -10,18 +10,23 @@ class MagicItemController extends ChangeNotifier {
   var listOfWonderousItems = WonderousItemsData();
   Random randomIndex = Random();
 
-  List<String> itemsLabel = [
+  final List<String> itemsLabel = [
+    "Belt",
+    "Belt",
     "Belt",
     "Body",
     "Chest",
     "Eyes",
     "Feet",
+    "Feet",
     "Hands",
     "Head",
     "Headband",
+    "Headband",
+    "Headband",
     "Neck",
-    "Cloak",
     "Wrist",
+    "Ring",
     "Slotless",
   ];
 
@@ -37,13 +42,8 @@ class MagicItemController extends ChangeNotifier {
   }
 
   generateMagicEquip() {
-    switch (character!.charLevel) {
-      case 10:
-        generateMagicItemForLv2();
-        break;
-      default:
-        return;
-    }
+    generateMagicItemForLv2();
+
     updateMagicItems();
   }
 
@@ -54,31 +54,51 @@ class MagicItemController extends ChangeNotifier {
 
   List<String> findItemForBodyParts(int qnt) {
     List<String> listOfItemsForChar = [];
-    List<String> listOfItemsLeft = itemsLabel;
+    List<String> listOfItemsLeft = [];
+    listOfItemsLeft.addAll(itemsLabel);
     for (var i = 0; i < qnt; i++) {
-      var random = randomIndex.nextInt(listOfItemsLeft.length - 1);
+      listOfItemsLeft.shuffle();
+      var random = randomIndex.nextInt(listOfItemsLeft.length);
+      if (random == listOfItemsLeft.length) {
+        random--;
+      }
       listOfItemsForChar.add(listOfItemsLeft[random]);
-      listOfItemsLeft.remove(listOfItemsLeft[random]);
+      listOfItemsLeft
+          .removeWhere((element) => element == listOfItemsLeft[random]);
     }
     return listOfItemsForChar;
   }
 
-  List<WonderousItemsModel> findMagicItem(int lvAvailable) {
-    var minLvavailable = 0;
+  int discoverMinAvailability(int lvAvailable) {
+    var minLvAvailable = 0;
     if (lvAvailable > 8) {
-      minLvavailable = lvAvailable - 5;
+      minLvAvailable = lvAvailable - 8;
     }
+    return minLvAvailable;
+  }
+
+  List<WonderousItemsModel> findMagicItem(int lvAvailable) {
+    var minLvAvailable = discoverMinAvailability(lvAvailable);
     var list = listOfWonderousItems.allItems
         .where((element) =>
             element.availability <= lvAvailable &&
-            element.availability >= minLvavailable &&
-            (element.exclusiveClasses == "Regular" ||
-                element.exclusiveClasses == character!.charClass.name))
+            element.availability >= minLvAvailable &&
+            (element.exclusiveClasses.isEmpty ||
+                // ignore: iterable_contains_unrelated_type
+                element.exclusiveClasses.contains(
+                    (element) => element == character!.charClass.name)))
         .toList();
     return list;
   }
 
   generateMagicItemForLv2() {
+    if (character!.charLevel < 4) {
+      var random = randomIndex.nextInt(10);
+      random < 5
+          ? addIndispensableItem(listOfWonderousItems.protRings)
+          : addIndispensableItem(listOfWonderousItems.resistCloaks);
+      return;
+    }
     var availableItems = findMagicItem(character!.charLevel);
     var numberOfItems = (character!.charLevel / 4).floor();
     var itemsPerBodyParts = findItemForBodyParts(numberOfItems);
@@ -90,46 +110,84 @@ class MagicItemController extends ChangeNotifier {
           .toList();
       charPossibleMagicItems.addAll(item);
     }
+
     for (var i = 0; i < numberOfItems; i++) {
       var list = charPossibleMagicItems
           .where((element) => element.type == itemsPerBodyParts[i])
           .toList();
       var random = randomIndex.nextInt(list.length);
+      if (random == list.length) {
+        random--;
+      }
       charMagicItems.add(list[random]);
     }
     character!.charEquip.wonderousItems = charMagicItems;
-    addRingOfProtection();
+    if (itemsPerBodyParts
+        .any((element) => element == "belt" || element == "Headband")) {
+      adjustingItemForMainAtrbBoost();
+    }
+    addIndispensableItem(listOfWonderousItems.protRings);
+    addIndispensableItem(listOfWonderousItems.resistCloaks);
+    character!.charEquip.wonderousItems!.shuffle();
     notifyListeners();
   }
 
-  addRingOfProtection() {
+  addIndispensableItem(List<WonderousItemsModel> list) {
+    var random = randomIndex.nextInt(10);
     if (character!.charLevel > 1 && character!.charLevel < 5) {
-      character!.charEquip.wonderousItems!
-          .add(listOfWonderousItems.protRings[0]);
-      notifyListeners();
-      return;
+      character!.charEquip.wonderousItems!.add(list[0]);
     } else if (character!.charLevel > 4 && character!.charLevel < 9) {
-      character!.charEquip.wonderousItems!
-          .add(listOfWonderousItems.protRings[1]);
-      notifyListeners();
-      return;
+      random < 4
+          ? character!.charEquip.wonderousItems!.add(list[0])
+          : character!.charEquip.wonderousItems!.add(list[1]);
     } else if (character!.charLevel > 8 && character!.charLevel < 13) {
-      character!.charEquip.wonderousItems!
-          .add(listOfWonderousItems.protRings[2]);
-      notifyListeners();
-      return;
+      random < 4
+          ? character!.charEquip.wonderousItems!.add(list[1])
+          : character!.charEquip.wonderousItems!.add(list[2]);
     } else if (character!.charLevel > 12 && character!.charLevel < 16) {
-      character!.charEquip.wonderousItems!
-          .add(listOfWonderousItems.protRings[3]);
-      notifyListeners();
-      return;
+      random < 4
+          ? character!.charEquip.wonderousItems!.add(list[2])
+          : character!.charEquip.wonderousItems!.add(list[3]);
     } else {
-      character!.charEquip.wonderousItems!
-          .add(listOfWonderousItems.protRings[4]);
-      notifyListeners();
-      return;
+      random < 4
+          ? character!.charEquip.wonderousItems!.add(list[3])
+          : character!.charEquip.wonderousItems!.add(list[4]);
+    }
+    notifyListeners();
+  }
+
+  adjustingBeltOrHeadband(String item, String itemName) {
+    var list = listOfWonderousItems.allItems
+        .where((element) =>
+            element.name!.contains(itemName) &&
+            element.availability <= character!.charLevel)
+        .toList();
+    character!.charEquip.wonderousItems!
+        .removeWhere((element) => element.type == item);
+    character!.charEquip.wonderousItems!.add(list.last);
+    notifyListeners();
+  }
+
+  adjustingItemForMainAtrbBoost() {
+    switch (character!.charClass.mainAtrb) {
+      case "Str":
+        adjustingBeltOrHeadband("Belt", "Belt of giant strength");
+        break;
+      case "Dex":
+        adjustingBeltOrHeadband("Belt", "Belt of incredible dexterity");
+        break;
+      case "Int":
+        adjustingBeltOrHeadband("Headband", "Headband of vast intelligence");
+        break;
+      case "Wis":
+        adjustingBeltOrHeadband("Headband", "Headband of inspired wisdom");
+        break;
+      default:
+        adjustingBeltOrHeadband("Headband", "Headband of alluring charisma");
     }
   }
+
+  adjustingHeadbandToChar() {}
 
   showItemDescription(int index) {
     if (character!.charEquip.wonderousItems![index].isSelected == true) {

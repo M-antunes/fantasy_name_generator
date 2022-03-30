@@ -890,7 +890,7 @@ class EquipData {
             isSelected: false,
             picture: "assets/images/armors/light.svg"),
         defenseBonus: 2,
-        maxDexAllowed: 4,
+        maxDexAllowed: 5,
         checkPenalty: 0,
         speedPenalty: 0,
         isSelected: false,
@@ -908,6 +908,17 @@ class EquipData {
         name: "Leather"),
     ArmorModel(
         type: ArmorFamilyModel(
+            name: "Light",
+            isSelected: false,
+            picture: "assets/images/armors/light.svg"),
+        defenseBonus: 2,
+        maxDexAllowed: 7,
+        checkPenalty: 1,
+        speedPenalty: 0,
+        isSelected: false,
+        name: "Fur stripes"),
+    ArmorModel(
+        type: ArmorFamilyModel(
             name: "Medium",
             isSelected: false,
             picture: "assets/images/armors/medium.svg"),
@@ -917,6 +928,17 @@ class EquipData {
         speedPenalty: 5,
         isSelected: false,
         name: "Studded leather"),
+    ArmorModel(
+        type: ArmorFamilyModel(
+            name: "Medium",
+            isSelected: false,
+            picture: "assets/images/armors/medium.svg"),
+        defenseBonus: 4,
+        maxDexAllowed: 4,
+        checkPenalty: 3,
+        speedPenalty: 5,
+        isSelected: false,
+        name: "Ring mail"),
     ArmorModel(
         type: ArmorFamilyModel(
             name: "Medium",
@@ -933,12 +955,12 @@ class EquipData {
             name: "Medium",
             isSelected: false,
             picture: "assets/images/armors/medium.svg"),
-        defenseBonus: 4,
+        defenseBonus: 5,
         maxDexAllowed: 4,
-        checkPenalty: 2,
+        checkPenalty: 3,
         speedPenalty: 5,
         isSelected: false,
-        name: "Chain shirt"),
+        name: "Banded iron"),
     ArmorModel(
         type: ArmorFamilyModel(
             name: "Medium",

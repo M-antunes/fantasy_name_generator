@@ -9,7 +9,7 @@ import '../../../shared/themes/app_colors.dart';
 import '../../../shared/themes/app_text_styles.dart';
 import 'equip_generation.dart';
 import 'widgets/chosen_equip_display.dart';
-import 'widgets/equip_display_row.dart';
+import 'widgets/equip_display_choice_row.dart';
 import 'widgets/off_hand_display_row.dart';
 
 class CombatGearSection extends StatelessWidget {
@@ -79,7 +79,12 @@ class CombatGearSection extends StatelessWidget {
                               ChosenEquipDisplay(
                                 size: deviceWidth! < 400 ? 55 : 75,
                                 color: AppColors.primary,
-                                equipType: "\nOff Hand",
+                                equipType: state.char.charEquip
+                                                .secondaryWeapon ==
+                                            null &&
+                                        state.tempOffHandType?.name == "Empty"
+                                    ? "Off hand\n Empty"
+                                    : "\nOff hand",
                                 weapon: state.tempOffHandType != null
                                     ? EquipOfChoice(
                                         weaponPic:
@@ -122,21 +127,21 @@ class CombatGearSection extends StatelessWidget {
             Column(
               children: [
                 if (!state.cantChooseTwoHandedAnymore)
-                  EquipDisplayRow(
+                  EquipDisplayChoiceRow(
                     label: "One-handed",
                     itemCounting: state.listOfEquip.oneHandedTypes.length,
                     weaponList: state.listOfEquip.oneHandedTypes,
                     onLongPress: () => state.updatePrimaryweaponType(),
                   ),
                 if (!state.cantChooseTwoHandedAnymore)
-                  EquipDisplayRow(
+                  EquipDisplayChoiceRow(
                     label: "Two-handed",
                     itemCounting: state.listOfEquip.twoHandedTypes.length,
                     weaponList: state.listOfEquip.twoHandedTypes,
                     onLongPress: () => state.updatePrimaryweaponType(),
                   ),
                 if (!state.cantChooseTwoHandedAnymore)
-                  EquipDisplayRow(
+                  EquipDisplayChoiceRow(
                     label: "Range",
                     itemCounting: state.listOfEquip.distanceTypes.length,
                     weaponList: state.listOfEquip.distanceTypes,
@@ -156,7 +161,7 @@ class CombatGearSection extends StatelessWidget {
               ],
             ),
           if (state.hasChosenSecondaryWeapon && state.chosenArmorType == null)
-            EquipDisplayRow(
+            EquipDisplayChoiceRow(
               label: "Armor",
               itemCounting: state.filteredArmorTypes.length,
               onLongPress: () => state.updateArmorType(),
@@ -210,7 +215,7 @@ class CombatGearSection extends StatelessWidget {
                         ),
                       ],
                     ),
-                  if (state.chosenShieldType != null)
+                  if (state.char.charEquip.shield != null)
                     Column(
                       children: [
                         SizedBox(height: deviceHeight! * 0.02),

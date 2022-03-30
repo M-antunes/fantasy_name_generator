@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:fantasy_name_generator/controllers/magic_item_controller.dart';
-import 'package:fantasy_name_generator/shared/widgets/expanded_section.dart';
 
 import '../../../controllers/equip_controller.dart';
 import '../../../shared/constants/phone_sizes.dart';
 import '../../../shared/themes/app_text_styles.dart';
 import 'equip_generation.dart';
+import 'widgets/general_magical_equip_row.dart';
 
 class MagicEquipSection extends StatelessWidget {
   const MagicEquipSection({Key? key}) : super(key: key);
@@ -67,7 +67,7 @@ class MagicEquipSection extends StatelessWidget {
               children: [
                 Text(
                     state.char.charEquip.primaryWeapon!.enchantment != null
-                        ? "${state.char.charEquip.primaryWeapon!.enchantment?[0].power}"
+                        ? "${state.char.charEquip.primaryWeapon!.enchantment?[1].power}"
                         : "Mundane",
                     style: AppTextStyle.statsLabel),
                 const SizedBox(width: 6),
@@ -213,12 +213,8 @@ class MagicEquipSection extends StatelessWidget {
                       Text("Dex ", style: AppTextStyle.statsLabel),
                       Text("${state.char.baseAtributes.dexterity!}  ",
                           style: AppTextStyle.subTextWhite),
-                      Text(
-                        "(${state.char.modAtributes.dexterity!})",
-                        style: state.penaltyToDexApplied
-                            ? AppTextStyle.penaltyStyle
-                            : null,
-                      ),
+                      Text("(${state.char.modAtributes.dexterity!})",
+                          style: AppTextStyle.penaltyStyle),
                       const SizedBox(width: 6),
                       Text("Penalty applied",
                           style: AppTextStyle.penaltyStyleText),
@@ -272,7 +268,7 @@ class MagicEquipSection extends StatelessWidget {
                       itemBuilder: (context, index) {
                         var item =
                             ctrl.character!.charEquip.wonderousItems![index];
-                        return GeneralEquipRow(
+                        return GeneralMagicalEquipRow(
                           label: item.type!,
                           item: item.name!,
                           description: item.description!,
@@ -291,71 +287,6 @@ class MagicEquipSection extends StatelessWidget {
             // Center(child: AppGenerateButton(onGenerate: () {})),
           ],
         ),
-      );
-    });
-  }
-}
-
-class GeneralEquipRow extends StatelessWidget {
-  final String label;
-  final String item;
-  final String description;
-  final VoidCallback onTap;
-  bool selected;
-  GeneralEquipRow({
-    Key? key,
-    required this.label,
-    required this.item,
-    required this.description,
-    required this.onTap,
-    required this.selected,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Consumer<EquipController>(builder: (context, state, child) {
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              RichText(
-                  text: TextSpan(children: [
-                TextSpan(text: "$label:  ", style: AppTextStyle.statsLabel),
-                TextSpan(text: item, style: AppTextStyle.statsValue),
-              ])),
-              const SizedBox(width: 6),
-              InkWell(
-                  child: selected
-                      ? const Icon(Icons.arrow_drop_down,
-                          size: 30, color: Colors.blueGrey)
-                      : const Icon(Icons.arrow_right,
-                          size: 30, color: Colors.blueGrey),
-                  onTap: onTap),
-            ],
-          ),
-          ExpandedSection(
-            expand: selected,
-            child: Card(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10)),
-              child: Padding(
-                padding: const EdgeInsets.all(6),
-                child: RichText(
-                  textAlign: TextAlign.justify,
-                  text: TextSpan(
-                    children: [
-                      TextSpan(
-                          text: description,
-                          style: AppTextStyle.longDescription),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
-          SizedBox(height: deviceHeight! * 0.004),
-        ],
       );
     });
   }

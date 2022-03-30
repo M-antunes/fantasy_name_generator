@@ -42,7 +42,7 @@ class EquipController extends ChangeNotifier {
   bool hasChosenPrimaryWeapon = false;
   bool hasChosenSecondaryWeapon = false;
   bool hasChosenArmor = false;
-  bool hasChosenShield = false;
+  bool hasChosenOffHandType = false;
   bool isDualWield = false;
   bool displayTwoHandedIcon = false;
   bool cantChooseTwoHandedAnymore = false;
@@ -97,7 +97,7 @@ class EquipController extends ChangeNotifier {
 
   updateOffHandType() {
     chosenOffHandType = tempOffHandType;
-    hasChosenShield = true;
+    hasChosenOffHandType = true;
     bool hasShield = listOfEquip.shieldTypesForOffHand
         .any((element) => element == chosenOffHandType);
     if (hasShield) {
@@ -169,7 +169,7 @@ class EquipController extends ChangeNotifier {
     hasChosenArmor = false;
     hasChosenPrimaryWeapon = false;
     hasChosenSecondaryWeapon = false;
-    hasChosenShield = false;
+    hasChosenOffHandType = false;
     isDualWield = false;
     displayTwoHandedIcon = false;
     cantChooseTwoHandedAnymore = false;
@@ -471,7 +471,7 @@ class EquipController extends ChangeNotifier {
   }
 
   bool checkIFCharHasShield() {
-    if (chosenShieldType == null) {
+    if (chosenShieldType == null || tempOffHandType!.name == "Empty") {
       return false;
     }
     ArmorModel shield;
@@ -516,11 +516,6 @@ class EquipController extends ChangeNotifier {
           char.charEquip.shield!.defenseBonus!;
       notifyListeners();
     }
-  }
-
-  showMagicItemDescription() {
-    showDescriptionOfMagicItems = !showDescriptionOfMagicItems;
-    notifyListeners();
   }
 
   // Move on with the selections ===========================================================

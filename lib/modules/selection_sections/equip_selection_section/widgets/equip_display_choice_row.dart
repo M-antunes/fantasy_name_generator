@@ -12,13 +12,13 @@ import '../../../../shared/themes/app_text_styles.dart';
 import '../../../../shared/widgets/app_horizontal_line.dart';
 import 'armor_permission_label.dart';
 
-class EquipDisplayRow extends StatelessWidget {
+class EquipDisplayChoiceRow extends StatelessWidget {
   final String label;
   final int itemCounting;
   final VoidCallback onLongPress;
   final List<WeaponFamilyModel>? weaponList;
   final List<ArmorFamilyModel>? armorList;
-  const EquipDisplayRow({
+  const EquipDisplayChoiceRow({
     Key? key,
     required this.label,
     required this.itemCounting,
