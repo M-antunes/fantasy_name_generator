@@ -20,6 +20,22 @@ class CombatGearSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<EquipController>(builder: (context, state, child) {
+      var oneHandedList = state.listOfEquip.oneHandedTypes
+          .where((element) =>
+              !element.forbiddenTo.contains(state.char.charClass.name))
+          .toList();
+      var twoHandedList = state.listOfEquip.twoHandedTypes
+          .where((element) =>
+              !element.forbiddenTo.contains(state.char.charClass.name))
+          .toList();
+      var rangeList = state.listOfEquip.distanceTypes
+          .where((element) =>
+              !element.forbiddenTo.contains(state.char.charClass.name))
+          .toList();
+      var offHandList = state.filteredOffHandTypes
+          .where((element) =>
+              !element.forbiddenTo.contains(state.char.charClass.name))
+          .toList();
       return Column(
         children: [
           SizedBox(height: deviceHeight! * 0.02),
@@ -129,22 +145,22 @@ class CombatGearSection extends StatelessWidget {
                 if (!state.cantChooseTwoHandedAnymore)
                   EquipDisplayChoiceRow(
                     label: "One-handed",
-                    itemCounting: state.listOfEquip.oneHandedTypes.length,
-                    weaponList: state.listOfEquip.oneHandedTypes,
+                    itemCounting: oneHandedList.length,
+                    weaponList: oneHandedList,
                     onLongPress: () => state.updatePrimaryweaponType(),
                   ),
                 if (!state.cantChooseTwoHandedAnymore)
                   EquipDisplayChoiceRow(
                     label: "Two-handed",
-                    itemCounting: state.listOfEquip.twoHandedTypes.length,
-                    weaponList: state.listOfEquip.twoHandedTypes,
+                    itemCounting: twoHandedList.length,
+                    weaponList: twoHandedList,
                     onLongPress: () => state.updatePrimaryweaponType(),
                   ),
                 if (!state.cantChooseTwoHandedAnymore)
                   EquipDisplayChoiceRow(
                     label: "Range",
-                    itemCounting: state.listOfEquip.distanceTypes.length,
-                    weaponList: state.listOfEquip.distanceTypes,
+                    itemCounting: rangeList.length,
+                    weaponList: rangeList,
                     onLongPress: () => state.updatePrimaryweaponType(),
                   ),
               ],
@@ -154,8 +170,8 @@ class CombatGearSection extends StatelessWidget {
               children: [
                 OffHandDisplayRow(
                   label: "Off-Hand Equip",
-                  itemCounting: state.filteredOffHandTypes.length,
-                  offHandList: state.filteredOffHandTypes,
+                  itemCounting: offHandList.length,
+                  offHandList: offHandList,
                   onLongPress: () => state.updateOffHandType(),
                 ),
               ],
@@ -173,7 +189,14 @@ class CombatGearSection extends StatelessWidget {
               onTap: () => state.resetChoices(),
               label: "Reset",
             ),
-          SizedBox(height: deviceHeight! * 0.03),
+          SizedBox(height: deviceHeight! * 0.01),
+          if (state.equipGenerated && state.char.charClass.name == "Druid")
+            Text(
+              'Note: Druids CANNOT wear armor or use shield made out of metal',
+              style: AppTextStyle.subTextGrey,
+              textAlign: TextAlign.center,
+            ),
+          SizedBox(height: deviceHeight! * 0.01),
           if (state.equipGenerated)
             Padding(
               padding: EdgeInsets.symmetric(horizontal: deviceWidth! * 0.03),

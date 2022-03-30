@@ -9,9 +9,11 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "19-20 x2",
+        forbiddenTo: [],
         damage: "1d4",
         damageType: "Slashing or piercing",
         type: WeaponFamilyModel(
+            forbiddenTo: [],
             wielding: "One-handed",
             name: "Knife",
             isSelected: false,
@@ -20,9 +22,11 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "x2",
+        forbiddenTo: [],
         damage: "1d4",
         damageType: "Bludgeoning",
         type: WeaponFamilyModel(
+            forbiddenTo: [],
             wielding: "One-handed",
             name: "Mace",
             isSelected: false,
@@ -31,9 +35,11 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "x2",
+        forbiddenTo: [],
         damage: "1d6",
         damageType: "Bludgeoning",
         type: WeaponFamilyModel(
+            forbiddenTo: [],
             wielding: "One-handed",
             name: "Mace",
             isSelected: false,
@@ -42,9 +48,11 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "x2",
+        forbiddenTo: [],
         damage: "1d8",
         damageType: "Bludgeoning",
         type: WeaponFamilyModel(
+            forbiddenTo: [],
             wielding: "One-handed",
             name: "Mace",
             isSelected: false,
@@ -53,9 +61,11 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "x2",
+        forbiddenTo: [],
         damage: "1d8",
         damageType: "Bludgeoning and piercing",
         type: WeaponFamilyModel(
+            forbiddenTo: [],
             wielding: "One-handed",
             name: "Mace",
             isSelected: false,
@@ -64,9 +74,11 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "19-20 x2",
+        forbiddenTo: [],
         damage: "1d4",
         damageType: "Piercing",
         type: WeaponFamilyModel(
+            forbiddenTo: [],
             wielding: "One-handed",
             name: "Knife",
             isSelected: false,
@@ -77,7 +89,19 @@ class EquipData {
         critical: "19-20 x2",
         damage: "1d6",
         damageType: "Slashing",
+        forbiddenTo: [
+          "Wizard",
+          "Arcanist",
+          "Sorcerer",
+          "Aristocrat",
+          "Noble",
+          "Commoner",
+          "Druid",
+          "Bard",
+          "Rogue"
+        ],
         type: WeaponFamilyModel(
+            forbiddenTo: [],
             wielding: "One-handed",
             name: "Sword",
             isSelected: false,
@@ -86,9 +110,11 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "x3",
+        forbiddenTo: [],
         damage: "1d6",
         damageType: "Slashing",
         type: WeaponFamilyModel(
+            forbiddenTo: [],
             wielding: "One-handed",
             name: "Axe",
             isSelected: false,
@@ -97,9 +123,11 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "19-20 x2",
+        forbiddenTo: [],
         damage: "1d4",
         damageType: "Slashing or piercing",
         type: WeaponFamilyModel(
+            forbiddenTo: [],
             wielding: "One-handed",
             name: "Knife",
             isSelected: false,
@@ -108,9 +136,11 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "x2",
+        forbiddenTo: [],
         damage: "1d4",
         damageType: "Bludgeoning",
         type: WeaponFamilyModel(
+            forbiddenTo: [],
             wielding: "One-handed",
             name: "Mace",
             isSelected: false,
@@ -119,9 +149,11 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "19-20 x2",
+        forbiddenTo: [],
         damage: "1d6",
         damageType: "Slashing",
         type: WeaponFamilyModel(
+            forbiddenTo: [],
             wielding: "One-handed",
             name: "Sword",
             isSelected: false,
@@ -130,9 +162,11 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "x4",
+        forbiddenTo: [],
         damage: "1d6",
         damageType: "Piercing",
         type: WeaponFamilyModel(
+            forbiddenTo: [],
             wielding: "One-handed",
             name: "Axe",
             isSelected: false,
@@ -141,9 +175,11 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "19-20 x2",
+        forbiddenTo: [],
         damage: "1d4",
         damageType: "Slasing or piercing",
         type: WeaponFamilyModel(
+            forbiddenTo: [],
             wielding: "One-handed",
             name: "Knife",
             isSelected: false,
@@ -152,9 +188,11 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "x2",
+        forbiddenTo: [],
         damage: "1d8",
         damageType: "Bludgeoning",
         type: WeaponFamilyModel(
+            forbiddenTo: [],
             wielding: "One-handed",
             name: "Exotic",
             isSelected: false,
@@ -165,7 +203,16 @@ class EquipData {
         critical: "19-20 x2",
         damage: "1d8",
         damageType: "Slashing",
+        forbiddenTo: [
+          "Wizard",
+          "Arcanist",
+          "Sorcerer",
+          "Aristocrat",
+          "Noble",
+          "Commoner",
+        ],
         type: WeaponFamilyModel(
+            forbiddenTo: [],
             wielding: "One-handed",
             name: "Sword",
             isSelected: false,
@@ -176,7 +223,17 @@ class EquipData {
         critical: "19-20 x2",
         damage: "1d6",
         damageType: "Piercing",
+        forbiddenTo: [
+          "Wizard",
+          "Arcanist",
+          "Sorcerer",
+          "Aristocrat",
+          "Noble",
+          "Commoner",
+          "Druid"
+        ],
         type: WeaponFamilyModel(
+            forbiddenTo: [],
             wielding: "One-handed",
             name: "Sword",
             isSelected: false,
@@ -187,7 +244,16 @@ class EquipData {
         critical: "19-20 x2",
         damage: "1d6",
         damageType: "Slashing",
+        forbiddenTo: [
+          "Wizard",
+          "Arcanist",
+          "Sorcerer",
+          "Aristocrat",
+          "Noble",
+          "Commoner"
+        ],
         type: WeaponFamilyModel(
+            forbiddenTo: [],
             wielding: "One-handed",
             name: "Sword",
             isSelected: false,
@@ -198,7 +264,19 @@ class EquipData {
         critical: "19-20 x2",
         damage: "2d4",
         damageType: "Slashing",
+        forbiddenTo: [
+          "Wizard",
+          "Arcanist",
+          "Sorcerer",
+          "Aristocrat",
+          "Noble",
+          "Commoner",
+          "Druid",
+          "Bard",
+          "Rogue"
+        ],
         type: WeaponFamilyModel(
+            forbiddenTo: [],
             wielding: "One-handed",
             name: "Sword",
             isSelected: false,
@@ -207,9 +285,11 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "x2",
+        forbiddenTo: [],
         damage: "1d2",
         damageType: "Slashing",
         type: WeaponFamilyModel(
+            forbiddenTo: [],
             wielding: "One-handed",
             name: "Exotic",
             isSelected: false,
@@ -218,9 +298,11 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "19-20 x2",
+        forbiddenTo: [],
         damage: "1d4",
         damageType: "Piercing or slashing",
         type: WeaponFamilyModel(
+            forbiddenTo: [],
             wielding: "One-handed",
             name: "Knife",
             isSelected: false,
@@ -231,7 +313,19 @@ class EquipData {
         critical: "19-20 x2",
         damage: "1d10",
         damageType: "Slashing",
+        forbiddenTo: [
+          "Wizard",
+          "Arcanist",
+          "Sorcerer",
+          "Aristocrat",
+          "Noble",
+          "Commoner",
+          "Druid",
+          "Bard",
+          "Rogue"
+        ],
         type: WeaponFamilyModel(
+            forbiddenTo: [],
             wielding: "One-handed",
             name: "Sword",
             isSelected: false,
@@ -240,9 +334,11 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "x3",
+        forbiddenTo: [],
         damage: "1d10",
         damageType: "Slashing",
         type: WeaponFamilyModel(
+            forbiddenTo: [],
             wielding: "One-handed",
             name: "Axe",
             isSelected: false,
@@ -253,7 +349,19 @@ class EquipData {
         critical: "19-20 x2",
         damage: "1d8",
         damageType: "Slashing",
+        forbiddenTo: [
+          "Wizard",
+          "Arcanist",
+          "Sorcerer",
+          "Aristocrat",
+          "Noble",
+          "Commoner",
+          "Druid",
+          "Bard",
+          "Rogue"
+        ],
         type: WeaponFamilyModel(
+            forbiddenTo: [],
             wielding: "One-handed",
             name: "Sword",
             isSelected: false,
@@ -264,7 +372,18 @@ class EquipData {
         critical: "19-20 x2",
         damage: "1d8",
         damageType: "Slashing",
+        forbiddenTo: [
+          "Wizard",
+          "Arcanist",
+          "Sorcerer",
+          "Aristocrat",
+          "Noble",
+          "Commoner",
+          "Druid",
+          "Rogue"
+        ],
         type: WeaponFamilyModel(
+            forbiddenTo: [],
             wielding: "One-handed",
             name: "Sword",
             isSelected: false,
@@ -273,9 +392,11 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "x4",
+        forbiddenTo: [],
         damage: "2d4",
         damageType: "Piercing",
         type: WeaponFamilyModel(
+            forbiddenTo: [],
             wielding: "One-handed",
             name: "Exotic",
             isSelected: false,
@@ -284,9 +405,11 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "x2",
+        forbiddenTo: [],
         damage: "1d4",
         damageType: "Bludgeoning",
         type: WeaponFamilyModel(
+            forbiddenTo: [],
             wielding: "One-handed",
             name: "Fist",
             isSelected: false,
@@ -295,9 +418,11 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "x2",
+        forbiddenTo: [],
         damage: "1d4",
         damageType: "Bludgeoning",
         type: WeaponFamilyModel(
+            forbiddenTo: [],
             wielding: "One-handed",
             name: "Fist",
             isSelected: false,
@@ -306,9 +431,11 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "x2",
+        forbiddenTo: [],
         damage: "1d4",
         damageType: "Bludgeoning",
         type: WeaponFamilyModel(
+            forbiddenTo: [],
             wielding: "One-handed",
             name: "Fist",
             isSelected: false,
@@ -317,9 +444,11 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "x2",
+        forbiddenTo: [],
         damage: "1d4",
         damageType: "Bludgeoning and piercing",
         type: WeaponFamilyModel(
+            forbiddenTo: [],
             wielding: "One-handed",
             name: "Fist",
             isSelected: false,
@@ -328,10 +457,12 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "19-20 x2",
+        forbiddenTo: [],
         damage: "1d6",
         damageType: "Piercing",
         type: WeaponFamilyModel(
             wielding: "Two-handed",
+            forbiddenTo: [],
             name: "Polearm",
             isSelected: false,
             picture: "assets/images/weapon_types/polearm.svg"),
@@ -339,10 +470,12 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "x3",
+        forbiddenTo: [],
         damage: "1d8",
         damageType: "Piercing",
         type: WeaponFamilyModel(
             wielding: "Two-handed",
+            forbiddenTo: [],
             name: "Spear",
             isSelected: false,
             picture: "assets/images/weapon_types/spear.svg"),
@@ -350,10 +483,12 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "x3",
+        forbiddenTo: [],
         damage: "1d8",
         damageType: "Piercing",
         type: WeaponFamilyModel(
             wielding: "Two-handed",
+            forbiddenTo: [],
             name: "Spear",
             isSelected: false,
             picture: "assets/images/weapon_types/spear.svg"),
@@ -361,10 +496,12 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "x2",
+        forbiddenTo: [],
         damage: "1d10",
         damageType: "Piercing",
         type: WeaponFamilyModel(
             wielding: "Two-handed",
+            forbiddenTo: [],
             name: "Polearm",
             isSelected: false,
             picture: "assets/images/weapon_types/polearm.svg"),
@@ -372,10 +509,12 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "x3",
+        forbiddenTo: [],
         damage: "1d8",
         damageType: "Piercing",
         type: WeaponFamilyModel(
             wielding: "Two-handed",
+            forbiddenTo: [],
             name: "Polearm",
             isSelected: false,
             picture: "assets/images/weapon_types/polearm.svg"),
@@ -383,10 +522,12 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "x3",
+        forbiddenTo: [],
         damage: "1d10",
         damageType: "Piercing or slashing",
         type: WeaponFamilyModel(
             wielding: "Two-handed",
+            forbiddenTo: [],
             name: "Polearm",
             isSelected: false,
             picture: "assets/images/weapon_types/polearm.svg"),
@@ -394,10 +535,12 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "x2",
+        forbiddenTo: [],
         damage: "1d10",
         damageType: "Piercing or slashing",
         type: WeaponFamilyModel(
             wielding: "Two-handed",
+            forbiddenTo: [],
             name: "Polearm",
             isSelected: false,
             picture: "assets/images/weapon_types/polearm.svg"),
@@ -405,10 +548,12 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "x3",
+        forbiddenTo: [],
         damage: "2d6",
         damageType: "Bludgeoning",
         type: WeaponFamilyModel(
             wielding: "Two-handed",
+            forbiddenTo: [],
             name: "Mace",
             isSelected: false,
             picture: "assets/images/weapon_types/mace.svg"),
@@ -416,10 +561,12 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "x3",
+        forbiddenTo: [],
         damage: "1d10",
         damageType: "Bludgeoning",
         type: WeaponFamilyModel(
             wielding: "Two-handed",
+            forbiddenTo: [],
             name: "Mace",
             isSelected: false,
             picture: "assets/images/weapon_types/mace.svg"),
@@ -427,10 +574,12 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "x3",
+        forbiddenTo: [],
         damage: "1d12",
         damageType: "Bludgeoning",
         type: WeaponFamilyModel(
             wielding: "Two-handed",
+            forbiddenTo: [],
             name: "Mace",
             isSelected: false,
             picture: "assets/images/weapon_types/mace.svg"),
@@ -438,10 +587,12 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "x3",
+        forbiddenTo: [],
         damage: "1d12",
         damageType: "Slashing",
         type: WeaponFamilyModel(
             wielding: "Two-handed",
+            forbiddenTo: [],
             name: "Axe",
             isSelected: false,
             picture: "assets/images/weapon_types/battle-axe.svg"),
@@ -449,10 +600,12 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "19-20x2",
+        forbiddenTo: [],
         damage: "2d6",
         damageType: "Slashing",
         type: WeaponFamilyModel(
             wielding: "Two-handed",
+            forbiddenTo: [],
             name: "Sword",
             isSelected: false,
             picture: "assets/images/weapon_types/great-sword.svg"),
@@ -460,10 +613,12 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "x2",
+        forbiddenTo: [],
         damage: "1d10",
         damageType: "Piercing",
         type: WeaponFamilyModel(
             wielding: "Two-handed",
+            forbiddenTo: [],
             name: "Polearm",
             isSelected: false,
             picture: "assets/images/weapon_types/polearm.svg"),
@@ -471,10 +626,12 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "x2",
+        forbiddenTo: [],
         damage: "1d8",
         damageType: "Piercing",
         type: WeaponFamilyModel(
             wielding: "Two-handed",
+            forbiddenTo: [],
             name: "Spear",
             isSelected: false,
             picture: "assets/images/weapon_types/spear.svg"),
@@ -482,10 +639,12 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "x3",
+        forbiddenTo: [],
         damage: "1d8",
         damageType: "Piercing",
         type: WeaponFamilyModel(
             wielding: "Two-handed",
+            forbiddenTo: [],
             name: "Spear",
             isSelected: false,
             picture: "assets/images/weapon_types/spear.svg"),
@@ -493,10 +652,12 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "x4",
+        forbiddenTo: [],
         damage: "2d4",
         damageType: "Piercing",
         type: WeaponFamilyModel(
             wielding: "Two-handed",
+            forbiddenTo: [],
             name: "Polearm",
             isSelected: false,
             picture: "assets/images/weapon_types/polearm.svg"),
@@ -504,10 +665,12 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "x2",
+        forbiddenTo: [],
         damage: "1d10",
         damageType: "Piercing or slashing",
         type: WeaponFamilyModel(
             wielding: "Two-handed",
+            forbiddenTo: [],
             name: "Axe",
             isSelected: false,
             picture: "assets/images/weapon_types/battle-axe.svg"),
@@ -515,10 +678,12 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "x2",
+        forbiddenTo: [],
         damage: "1d8",
         damageType: "Piercing",
         type: WeaponFamilyModel(
             wielding: "Two-handed",
+            forbiddenTo: [],
             name: "Spear",
             isSelected: false,
             picture: "assets/images/weapon_types/spear.svg"),
@@ -526,10 +691,12 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "19-20x2",
+        forbiddenTo: [],
         damage: "1d10",
         damageType: "Slashing",
         type: WeaponFamilyModel(
             wielding: "Two-handed",
+            forbiddenTo: [],
             name: "Sword",
             isSelected: false,
             picture: "assets/images/weapon_types/great-sword.svg"),
@@ -537,10 +704,12 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "x2",
+        forbiddenTo: [],
         damage: "1d10",
         damageType: "Piercing or slashing",
         type: WeaponFamilyModel(
             wielding: "Two-handed",
+            forbiddenTo: [],
             name: "Polearm",
             isSelected: false,
             picture: "assets/images/weapon_types/polearm.svg"),
@@ -548,10 +717,12 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "x2",
+        forbiddenTo: [],
         damage: "1d6/1d6",
         damageType: "Bludgeoning",
         type: WeaponFamilyModel(
             wielding: "Two-handed",
+            forbiddenTo: [],
             name: "Exotic",
             isSelected: false,
             picture: "assets/images/weapon_types/exotic.svg"),
@@ -559,10 +730,12 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "19-20 x2",
+        forbiddenTo: [],
         damage: "1d8/1d8",
         damageType: "Slashing",
         type: WeaponFamilyModel(
             wielding: "Two-handed",
+            forbiddenTo: [],
             name: "Exotic",
             isSelected: false,
             picture: "assets/images/weapon_types/exotic.svg"),
@@ -570,10 +743,12 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "x2",
+        forbiddenTo: [],
         damage: "2d4",
         damageType: "Piercing",
         type: WeaponFamilyModel(
             wielding: "Two-handed",
+            forbiddenTo: [],
             name: "Exotic",
             isSelected: false,
             picture: "assets/images/weapon_types/exotic.svg"),
@@ -581,10 +756,12 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "-",
+        forbiddenTo: [],
         damage: "-",
         damageType: "-",
         type: WeaponFamilyModel(
             wielding: "Two-handed",
+            forbiddenTo: [],
             name: "Exotic",
             isSelected: false,
             picture: "assets/images/weapon_types/exotic.svg"),
@@ -592,10 +769,12 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "19-20 x2",
+        forbiddenTo: [],
         damage: "1d12",
         damageType: "Slashing",
         type: WeaponFamilyModel(
             wielding: "Two-handed",
+            forbiddenTo: [],
             name: "Exotic",
             isSelected: false,
             picture: "assets/images/weapon_types/exotic.svg"),
@@ -603,10 +782,12 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "x2",
+        forbiddenTo: [],
         damage: "1d6/1d6",
         damageType: "Bludgeoning",
         type: WeaponFamilyModel(
             wielding: "Two-handed",
+            forbiddenTo: [],
             name: "Exotic",
             isSelected: false,
             picture: "assets/images/weapon_types/exotic.svg"),
@@ -614,10 +795,12 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "x2",
+        forbiddenTo: [],
         damage: "1d8/1d8",
         damageType: "Bludgeoning",
         type: WeaponFamilyModel(
             wielding: "Two-handed",
+            forbiddenTo: [],
             name: "Exotic",
             isSelected: false,
             picture: "assets/images/weapon_types/exotic.svg"),
@@ -625,10 +808,12 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "x4",
+        forbiddenTo: [],
         damage: "1d10",
         damageType: "Piercing",
         type: WeaponFamilyModel(
             wielding: "Two-handed",
+            forbiddenTo: [],
             name: "Exotic",
             isSelected: false,
             picture: "assets/images/weapon_types/battle-axe.svg"),
@@ -636,10 +821,12 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "x3",
+        forbiddenTo: [],
         damage: "1d10",
         damageType: "Piercing",
         type: WeaponFamilyModel(
             wielding: "Range",
+            forbiddenTo: [],
             name: "Crossbow",
             isSelected: false,
             picture: "assets/images/weapon_types/crossbow.svg"),
@@ -647,10 +834,12 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "x3",
+        forbiddenTo: [],
         damage: "1d6",
         damageType: "Slashing",
         type: WeaponFamilyModel(
             wielding: "Range",
+            forbiddenTo: [],
             name: "Throwing",
             isSelected: false,
             picture: "assets/images/weapon_types/throwing.svg"),
@@ -658,10 +847,12 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "x2",
+        forbiddenTo: [],
         damage: "1d6",
         damageType: "Piercing",
         type: WeaponFamilyModel(
             wielding: "Range",
+            forbiddenTo: [],
             name: "Throwing",
             isSelected: false,
             picture: "assets/images/weapon_types/throwing.svg"),
@@ -669,10 +860,12 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "x3",
+        forbiddenTo: [],
         damage: "1d8",
         damageType: "Bludgeoning",
         type: WeaponFamilyModel(
             wielding: "Range",
+            forbiddenTo: [],
             name: "Throwing",
             isSelected: false,
             picture: "assets/images/weapon_types/throwing.svg"),
@@ -680,10 +873,12 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "x2",
+        forbiddenTo: [],
         damage: "1d8",
         damageType: "Slashing",
         type: WeaponFamilyModel(
             wielding: "Range",
+            forbiddenTo: [],
             name: "Throwing",
             isSelected: false,
             picture: "assets/images/weapon_types/throwing.svg"),
@@ -691,10 +886,12 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "x3",
+        forbiddenTo: [],
         damage: "1d8",
         damageType: "Piercing",
         type: WeaponFamilyModel(
             wielding: "Range",
+            forbiddenTo: [],
             name: "Crossbow",
             isSelected: false,
             picture: "assets/images/weapon_types/crossbow.svg"),
@@ -702,10 +899,12 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "x3",
+        forbiddenTo: [],
         damage: "1d8",
         damageType: "Piercing",
         type: WeaponFamilyModel(
             wielding: "Range",
+            forbiddenTo: [],
             name: "Bow",
             isSelected: false,
             picture: "assets/images/weapon_types/bow.svg"),
@@ -713,10 +912,12 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "x3",
+        forbiddenTo: [],
         damage: "1d6",
         damageType: "Piercing",
         type: WeaponFamilyModel(
             wielding: "Range",
+            forbiddenTo: [],
             name: "Bow",
             isSelected: false,
             picture: "assets/images/weapon_types/bow.svg"),
@@ -724,10 +925,12 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "x3",
+        forbiddenTo: [],
         damage: "1d8",
         damageType: "Piercing",
         type: WeaponFamilyModel(
             wielding: "Range",
+            forbiddenTo: [],
             name: "Bow",
             isSelected: false,
             picture: "assets/images/weapon_types/bow.svg"),
@@ -735,10 +938,12 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "x2",
+        forbiddenTo: [],
         damage: "1d6",
         damageType: "Piercing",
         type: WeaponFamilyModel(
             wielding: "Range",
+            forbiddenTo: [],
             name: "Throwing",
             isSelected: false,
             picture: "assets/images/weapon_types/throwing.svg"),
@@ -746,10 +951,12 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "x3",
+        forbiddenTo: [],
         damage: "1d6",
         damageType: "Piercing",
         type: WeaponFamilyModel(
             wielding: "Range",
+            forbiddenTo: [],
             name: "Bow",
             isSelected: false,
             picture: "assets/images/weapon_types/bow.svg"),
@@ -757,10 +964,12 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "x3",
+        forbiddenTo: [],
         damage: "1d2",
         damageType: "Piercing",
         type: WeaponFamilyModel(
             wielding: "Range",
+            forbiddenTo: [],
             name: "Throwing",
             isSelected: false,
             picture: "assets/images/weapon_types/throwing.svg"),
@@ -771,9 +980,11 @@ class EquipData {
         name: "Knife",
         wielding: "One-handed",
         isSelected: false,
+        forbiddenTo: [],
         picture: "assets/images/weapon_types/knife.svg"),
     WeaponFamilyModel(
         name: "Sword",
+        forbiddenTo: [],
         wielding: "One-handed",
         isSelected: false,
         picture: "assets/images/weapon_types/sword.svg"),
@@ -781,21 +992,55 @@ class EquipData {
         name: "Axe",
         wielding: "One-handed",
         isSelected: false,
+        forbiddenTo: [
+          "Wizard",
+          "Arcanist",
+          "Sorcerer",
+          "Aristocrat",
+          "Commoner",
+          "Druid"
+        ],
         picture: "assets/images/weapon_types/hatchet.svg"),
     WeaponFamilyModel(
         name: "Mace",
         wielding: "One-handed",
         isSelected: false,
+        forbiddenTo: [
+          "Wizard",
+          "Arcanist",
+          "Sorcerer",
+          "Aristocrat",
+          "Commoner"
+        ],
         picture: "assets/images/weapon_types/hammer.svg"),
     WeaponFamilyModel(
         name: "Fist",
         wielding: "One-handed",
         isSelected: false,
+        forbiddenTo: [
+          "Wizard",
+          "Arcanist",
+          "Sorcerer",
+          "Aristocrat",
+          "Commoner"
+        ],
         picture: "assets/images/weapon_types/punch.svg"),
     WeaponFamilyModel(
         name: "Exotic",
         wielding: "One-handed",
         isSelected: false,
+        forbiddenTo: [
+          "Wizard",
+          "Arcanist",
+          "Sorcerer",
+          "Aristocrat",
+          "Commoner",
+          "Druid",
+          "Cleric",
+          "Summoner",
+          "Bard",
+          "Rogue"
+        ],
         picture: "assets/images/weapon_types/exotic.svg"),
   ];
 
@@ -804,30 +1049,95 @@ class EquipData {
         name: "Sword",
         wielding: "Two-handed",
         isSelected: false,
+        forbiddenTo: [
+          "Wizard",
+          "Arcanist",
+          "Sorcerer",
+          "Aristocrat",
+          "Noble",
+          "Commoner",
+          "Bard",
+          "Druid",
+          "Rogue",
+          "Summoner"
+        ],
         picture: "assets/images/weapon_types/great-sword.svg"),
     WeaponFamilyModel(
         name: "Spear",
         wielding: "Two-handed",
         isSelected: false,
+        forbiddenTo: [
+          "Wizard",
+          "Arcanist",
+          "Sorcerer",
+          "Aristocrat",
+          "Noble",
+          "Commoner"
+        ],
         picture: "assets/images/weapon_types/spear.svg"),
     WeaponFamilyModel(
         name: "Axe",
         isSelected: false,
+        forbiddenTo: [
+          "Wizard",
+          "Arcanist",
+          "Sorcerer",
+          "Aristocrat",
+          "Noble",
+          "Commoner",
+          "Bard",
+          "Druid",
+          "Rogue",
+          "Summoner"
+        ],
         wielding: "Two-handed",
         picture: "assets/images/weapon_types/battle-axe.svg"),
     WeaponFamilyModel(
         name: "Mace",
         isSelected: false,
+        forbiddenTo: [
+          "Wizard",
+          "Arcanist",
+          "Sorcerer",
+          "Aristocrat",
+          "Noble",
+          "Commoner",
+          "Bard",
+          "Rogue",
+          "Summoner"
+        ],
         wielding: "Two-handed",
         picture: "assets/images/weapon_types/mace.svg"),
     WeaponFamilyModel(
         name: "Polearm",
         isSelected: false,
+        forbiddenTo: [
+          "Wizard",
+          "Arcanist",
+          "Sorcerer",
+          "Aristocrat",
+          "Noble",
+          "Commoner",
+          "Bard",
+          "Rogue"
+        ],
         wielding: "Two-handed",
         picture: "assets/images/weapon_types/polearm.svg"),
     WeaponFamilyModel(
         name: "Exotic",
         isSelected: false,
+        forbiddenTo: [
+          "Wizard",
+          "Arcanist",
+          "Sorcerer",
+          "Aristocrat",
+          "Noble",
+          "Commoner",
+          "Bard",
+          "Rogue",
+          "Summoner",
+          "Druid"
+        ],
         wielding: "Two-handed",
         picture: "assets/images/weapon_types/exotic_tw.svg"),
   ];
@@ -836,16 +1146,33 @@ class EquipData {
     WeaponFamilyModel(
         name: "Bow",
         isSelected: false,
+        forbiddenTo: [
+          "Wizard",
+          "Arcanist",
+          "Sorcerer",
+          "Aristocrat",
+          "Noble",
+          "Commoner"
+        ],
         wielding: "Range",
         picture: "assets/images/weapon_types/bow.svg"),
     WeaponFamilyModel(
         name: "Crossbow",
         isSelected: false,
+        forbiddenTo: [],
         wielding: "Range",
         picture: "assets/images/weapon_types/crossbow.svg"),
     WeaponFamilyModel(
         name: "Throwing",
         isSelected: false,
+        forbiddenTo: [
+          "Wizard",
+          "Arcanist",
+          "Sorcerer",
+          "Aristocrat",
+          "Noble",
+          "Commoner"
+        ],
         wielding: "Range",
         picture: "assets/images/weapon_types/throwing.svg"),
   ];
@@ -938,6 +1265,7 @@ class EquipData {
         checkPenalty: 3,
         speedPenalty: 5,
         isSelected: false,
+        fitForDruid: false,
         name: "Ring mail"),
     ArmorModel(
         type: ArmorFamilyModel(
@@ -960,6 +1288,7 @@ class EquipData {
         checkPenalty: 3,
         speedPenalty: 5,
         isSelected: false,
+        fitForDruid: false,
         name: "Banded iron"),
     ArmorModel(
         type: ArmorFamilyModel(
@@ -993,6 +1322,7 @@ class EquipData {
         checkPenalty: 4,
         speedPenalty: 5,
         isSelected: false,
+        fitForDruid: false,
         name: "Scale mail"),
     ArmorModel(
         type: ArmorFamilyModel(
@@ -1004,6 +1334,7 @@ class EquipData {
         checkPenalty: 4,
         speedPenalty: 5,
         isSelected: false,
+        fitForDruid: false,
         name: "Agile breastplate"),
     ArmorModel(
         type: ArmorFamilyModel(
@@ -1015,6 +1346,7 @@ class EquipData {
         checkPenalty: 4,
         speedPenalty: 5,
         isSelected: false,
+        fitForDruid: false,
         name: "Chainmail"),
     ArmorModel(
         type: ArmorFamilyModel(
@@ -1026,6 +1358,7 @@ class EquipData {
         checkPenalty: 6,
         speedPenalty: 5,
         isSelected: false,
+        fitForDruid: false,
         name: "Breastplate"),
     ArmorModel(
         type: ArmorFamilyModel(
@@ -1048,6 +1381,7 @@ class EquipData {
         checkPenalty: 7,
         speedPenalty: 5,
         isSelected: false,
+        fitForDruid: false,
         name: "Splint mail"),
     ArmorModel(
         type: ArmorFamilyModel(
@@ -1059,6 +1393,7 @@ class EquipData {
         checkPenalty: 7,
         speedPenalty: 5,
         isSelected: false,
+        fitForDruid: false,
         name: "Lamellar (iron)"),
     ArmorModel(
         type: ArmorFamilyModel(
@@ -1070,6 +1405,7 @@ class EquipData {
         checkPenalty: 5,
         speedPenalty: 5,
         isSelected: false,
+        fitForDruid: false,
         name: "Agile half-plate"),
     ArmorModel(
         type: ArmorFamilyModel(
@@ -1081,6 +1417,7 @@ class EquipData {
         checkPenalty: 7,
         speedPenalty: 5,
         isSelected: false,
+        fitForDruid: false,
         name: "Half-plate"),
     ArmorModel(
         type: ArmorFamilyModel(
@@ -1092,6 +1429,7 @@ class EquipData {
         checkPenalty: 6,
         speedPenalty: 5,
         isSelected: false,
+        fitForDruid: false,
         name: "Full plate"),
     ArmorModel(
         type: ArmorFamilyModel(
@@ -1139,6 +1477,7 @@ class EquipData {
         checkPenalty: 1,
         speedPenalty: null,
         isSelected: false,
+        fitForDruid: false,
         name: "Iron-wood shield"),
     ArmorModel(
         type: ArmorFamilyModel(
@@ -1150,7 +1489,7 @@ class EquipData {
         checkPenalty: 2,
         speedPenalty: null,
         isSelected: false,
-        name: "Steel-wood shield"),
+        name: "Large wood shield"),
     ArmorModel(
         type: ArmorFamilyModel(
             name: "Heavy",
@@ -1161,6 +1500,7 @@ class EquipData {
         checkPenalty: 2,
         speedPenalty: null,
         isSelected: false,
+        fitForDruid: false,
         name: "Iron shield"),
     ArmorModel(
         type: ArmorFamilyModel(
@@ -1172,6 +1512,7 @@ class EquipData {
         checkPenalty: 2,
         speedPenalty: null,
         isSelected: false,
+        fitForDruid: false,
         name: "Steel shield"),
     ArmorModel(
         type: ArmorFamilyModel(
@@ -1183,6 +1524,7 @@ class EquipData {
         checkPenalty: 4,
         speedPenalty: null,
         isSelected: false,
+        fitForDruid: false,
         name: "Broad shield"),
   ];
 
@@ -1228,18 +1570,22 @@ class EquipData {
     OffHandTypeModel(
         name: "Empty",
         isSelected: false,
+        forbiddenTo: [],
         picture: "assets/images/shields/no-shield.svg"),
     OffHandTypeModel(
         name: "Buckler",
         isSelected: false,
+        forbiddenTo: [],
         picture: "assets/images/shields/buckler.svg"),
     OffHandTypeModel(
         name: "Light",
         isSelected: false,
+        forbiddenTo: [],
         picture: "assets/images/shields/light.svg"),
     OffHandTypeModel(
         name: "Heavy",
         isSelected: false,
+        forbiddenTo: [],
         picture: "assets/images/shields/heavy.svg"),
   ];
 
@@ -1247,18 +1593,30 @@ class EquipData {
     OffHandTypeModel(
         name: "Knife",
         isSelected: false,
+        forbiddenTo: [],
         picture: "assets/images/weapon_types/knife.svg"),
     OffHandTypeModel(
         name: "Sword",
         isSelected: false,
+        forbiddenTo: [],
         picture: "assets/images/weapon_types/sword.svg"),
     OffHandTypeModel(
         name: "Axe",
         isSelected: false,
+        forbiddenTo: [
+          "Druid",
+          "Wizard",
+          "Arcanist",
+          "Sorcerer",
+          "Aristocrat",
+          "Noble",
+          "Commoner"
+        ],
         picture: "assets/images/weapon_types/hatchet.svg"),
     OffHandTypeModel(
         name: "Fist",
         isSelected: false,
+        forbiddenTo: [],
         picture: "assets/images/weapon_types/punch.svg"),
   ];
 }

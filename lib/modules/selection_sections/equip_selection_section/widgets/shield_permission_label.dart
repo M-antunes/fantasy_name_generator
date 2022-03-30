@@ -26,9 +26,7 @@ class ShieldPermissionLabel extends StatelessWidget {
                     ctrl.char.charClass.name == "Summoner" ||
                     ctrl.char.charClass.name == "Monk"
                 ? "${ctrl.char.charClass.name}s are NOT proficient with ANY shields"
-                : ctrl.char.charClass.name == "Druid"
-                    ? "${ctrl.char.charClass.name}s are NOT proficient with metal shields"
-                    : "${ctrl.char.charClass.name}s are proficient with all shields",
+                : "${ctrl.char.charClass.name}s are proficient with all shields",
             style: AppTextStyle.subTextGrey,
             textAlign: TextAlign.center,
           );

@@ -10,6 +10,7 @@ class ArmorModel {
   ArmorFamilyModel? type;
   bool? isSelected;
   EnchantModel? enchantment;
+  bool fitForDruid;
   int? power;
   int? defenseBonus;
   int? checkPenalty;
@@ -21,6 +22,7 @@ class ArmorModel {
     this.type,
     this.isSelected,
     this.enchantment,
+    this.fitForDruid = true,
     this.power,
     this.defenseBonus,
     this.checkPenalty,
@@ -34,6 +36,7 @@ class ArmorModel {
     ArmorFamilyModel? type,
     bool? isSelected,
     EnchantModel? enchantment,
+    bool? fitForDruid,
     int? power,
     int? defenseBonus,
     int? checkPenalty,
@@ -46,6 +49,7 @@ class ArmorModel {
       type: type ?? this.type,
       isSelected: isSelected ?? this.isSelected,
       enchantment: enchantment ?? this.enchantment,
+      fitForDruid: fitForDruid ?? this.fitForDruid,
       power: power ?? this.power,
       defenseBonus: defenseBonus ?? this.defenseBonus,
       checkPenalty: checkPenalty ?? this.checkPenalty,
@@ -61,6 +65,7 @@ class ArmorModel {
       'type': type?.toMap(),
       'isSelected': isSelected,
       'enchantment': enchantment?.toMap(),
+      'fitForDruid': fitForDruid,
       'power': power,
       'defenseBonus': defenseBonus,
       'checkPenalty': checkPenalty,
@@ -78,6 +83,7 @@ class ArmorModel {
       enchantment: map['enchantment'] != null
           ? EnchantModel.fromMap(map['enchantment'])
           : null,
+      fitForDruid: map['fitForDruid'] ?? false,
       power: map['power']?.toInt(),
       defenseBonus: map['defenseBonus']?.toInt(),
       checkPenalty: map['checkPenalty']?.toInt(),
@@ -93,7 +99,7 @@ class ArmorModel {
 
   @override
   String toString() {
-    return 'ArmorModel(name: $name, material: $material, type: $type, isSelected: $isSelected, enchantment: $enchantment, power: $power, defenseBonus: $defenseBonus, checkPenalty: $checkPenalty, maxDexAllowed: $maxDexAllowed, speedPenalty: $speedPenalty)';
+    return 'ArmorModel(name: $name, material: $material, type: $type, isSelected: $isSelected, enchantment: $enchantment, fitForDruid: $fitForDruid, power: $power, defenseBonus: $defenseBonus, checkPenalty: $checkPenalty, maxDexAllowed: $maxDexAllowed, speedPenalty: $speedPenalty)';
   }
 
   @override
@@ -106,6 +112,7 @@ class ArmorModel {
         other.type == type &&
         other.isSelected == isSelected &&
         other.enchantment == enchantment &&
+        other.fitForDruid == fitForDruid &&
         other.power == power &&
         other.defenseBonus == defenseBonus &&
         other.checkPenalty == checkPenalty &&
@@ -120,6 +127,7 @@ class ArmorModel {
         type.hashCode ^
         isSelected.hashCode ^
         enchantment.hashCode ^
+        fitForDruid.hashCode ^
         power.hashCode ^
         defenseBonus.hashCode ^
         checkPenalty.hashCode ^

@@ -28,6 +28,7 @@ class MagicItemController extends ChangeNotifier {
     "Wrist",
     "Ring",
     "Slotless",
+    "Slotless",
   ];
 
   bool magicItemsGenerated = false;
@@ -42,7 +43,7 @@ class MagicItemController extends ChangeNotifier {
   }
 
   generateMagicEquip() {
-    generateMagicItemForLv2();
+    generateMagicItems();
 
     updateMagicItems();
   }
@@ -63,8 +64,10 @@ class MagicItemController extends ChangeNotifier {
         random--;
       }
       listOfItemsForChar.add(listOfItemsLeft[random]);
-      listOfItemsLeft
-          .removeWhere((element) => element == listOfItemsLeft[random]);
+      if (listOfItemsLeft[random] != "Slotless") {
+        listOfItemsLeft
+            .removeWhere((element) => element == listOfItemsLeft[random]);
+      }
     }
     return listOfItemsForChar;
   }
@@ -91,7 +94,7 @@ class MagicItemController extends ChangeNotifier {
     return list;
   }
 
-  generateMagicItemForLv2() {
+  generateMagicItems() {
     if (character!.charLevel < 4) {
       var random = randomIndex.nextInt(10);
       random < 5
@@ -102,32 +105,83 @@ class MagicItemController extends ChangeNotifier {
     var availableItems = findMagicItem(character!.charLevel);
     var numberOfItems = (character!.charLevel / 4).floor();
     var itemsPerBodyParts = findItemForBodyParts(numberOfItems);
-    List<WonderousItemsModel> charPossibleMagicItems = [];
     List<WonderousItemsModel> charMagicItems = [];
     for (var i = 0; i < numberOfItems; i++) {
-      List<WonderousItemsModel> item = availableItems
+      List<WonderousItemsModel> items = availableItems
           .where((element) => element.type == itemsPerBodyParts[i])
           .toList();
-      charPossibleMagicItems.addAll(item);
-    }
-
-    for (var i = 0; i < numberOfItems; i++) {
-      var list = charPossibleMagicItems
-          .where((element) => element.type == itemsPerBodyParts[i])
-          .toList();
-      var random = randomIndex.nextInt(list.length);
-      if (random == list.length) {
+      var random = randomIndex.nextInt(items.length);
+      if (random == items.length) {
         random--;
       }
-      charMagicItems.add(list[random]);
+      charMagicItems.add(items[random]);
     }
     character!.charEquip.wonderousItems = charMagicItems;
-    if (itemsPerBodyParts
-        .any((element) => element == "belt" || element == "Headband")) {
-      adjustingItemForMainAtrbBoost();
+    if (itemsPerBodyParts.any((element) => element == "Belt")) {
+      switch (character!.charClass.mainAtrb) {
+        case "Str":
+          adjustingItemForMainAtrbBoost("Belt", "Belt of giant strength",
+              "Belt of physical might", "Belt of physical perfection");
+          break;
+        case "Dex":
+          adjustingItemForMainAtrbBoost("Belt", "Belt of incredible dexterity",
+              "Belt of physical might", "Belt of physical perfection");
+          break;
+        case "Int":
+          adjustingItemForMainAtrbBoost("Belt", "Belt of mighty constitution",
+              "Belt of physical might", "Belt of physical perfection");
+          break;
+        case "Wis":
+          adjustingItemForMainAtrbBoost("Belt", "Belt of mighty constitution",
+              "Belt of physical might", "Belt of physical perfection");
+          break;
+        default:
+          adjustingItemForMainAtrbBoost("Belt", "Belt of mighty constitution",
+              "Belt of physical might", "Belt of physical perfection");
+      }
+    }
+    if (itemsPerBodyParts.any((element) => element == "Headband")) {
+      switch (character!.charClass.mainAtrb) {
+        case "Str":
+          adjustingItemForMainAtrbBoost(
+              "Headband",
+              "Headband of inspired wisdom",
+              "Headband of mental prowess",
+              "Headband of mental superiority");
+          break;
+        case "Dex":
+          adjustingItemForMainAtrbBoost(
+              "Headband",
+              "Headband of inspired wisdom",
+              "Headband of mental prowess",
+              "Headband of mental superiority");
+          break;
+        case "Int":
+          adjustingItemForMainAtrbBoost(
+              "Headband",
+              "Headband of vast intelligence",
+              "Headband of mental prowess",
+              "Headband of mental superiority");
+          break;
+        case "Wis":
+          adjustingItemForMainAtrbBoost(
+              "Headband",
+              "Headband of inspired wisdom",
+              "Headband of mental prowess",
+              "Headband of mental superiority");
+          break;
+        default:
+          adjustingItemForMainAtrbBoost(
+              "Headband",
+              "Headband of alluring charisma",
+              "Headband of mental prowess",
+              "Headband of mental superiority");
+      }
     }
     addIndispensableItem(listOfWonderousItems.protRings);
     addIndispensableItem(listOfWonderousItems.resistCloaks);
+    adjustingIounStoneToClass();
+    addExtraIounStone();
     character!.charEquip.wonderousItems!.shuffle();
     notifyListeners();
   }
@@ -168,26 +222,75 @@ class MagicItemController extends ChangeNotifier {
     notifyListeners();
   }
 
-  adjustingItemForMainAtrbBoost() {
-    switch (character!.charClass.mainAtrb) {
-      case "Str":
-        adjustingBeltOrHeadband("Belt", "Belt of giant strength");
-        break;
-      case "Dex":
-        adjustingBeltOrHeadband("Belt", "Belt of incredible dexterity");
-        break;
-      case "Int":
-        adjustingBeltOrHeadband("Headband", "Headband of vast intelligence");
-        break;
-      case "Wis":
-        adjustingBeltOrHeadband("Headband", "Headband of inspired wisdom");
-        break;
-      default:
-        adjustingBeltOrHeadband("Headband", "Headband of alluring charisma");
+  adjustingItemForMainAtrbBoost(
+      String item, String lesser, String medium, String greater) {
+    var randomChance = randomIndex.nextInt(10);
+    if (character!.charLevel < 7) {
+      adjustingBeltOrHeadband(item, lesser);
+    } else if (character!.charLevel > 6 && character!.charLevel < 14) {
+      randomChance < 4
+          ? adjustingBeltOrHeadband(item, lesser)
+          : adjustingBeltOrHeadband(item, medium);
+    } else if (character!.charLevel > 14 && character!.charLevel < 21) {
+      randomChance < 4
+          ? adjustingBeltOrHeadband(item, medium)
+          : adjustingBeltOrHeadband(item, greater);
     }
   }
 
-  adjustingHeadbandToChar() {}
+  adjustingIounStoneToClass() {
+    if (character!.charEquip.wonderousItems!
+        .any((element) => element.name!.contains("Ioun Stone"))) {
+      character!.charEquip.wonderousItems!
+          .removeWhere((element) => element.name!.contains("Ioun Stone"));
+      switch (character!.charClass.mainAtrb) {
+        case "Str":
+          var newIounStone = listOfWonderousItems.allItems
+              .where((element) => element.name == "Ioun Stone (Pale blue)")
+              .toList();
+          character!.charEquip.wonderousItems!.addAll(newIounStone);
+          break;
+        case "Dex":
+          var newIounStone = listOfWonderousItems.allItems
+              .where((element) => element.name == "Ioun Stone (Deep red)")
+              .toList();
+          character!.charEquip.wonderousItems!.addAll(newIounStone);
+          break;
+        case "Int":
+          var newIounStone = listOfWonderousItems.allItems
+              .where(
+                  (element) => element.name == "Ioun Stone (Scarlet and blue)")
+              .toList();
+          character!.charEquip.wonderousItems!.addAll(newIounStone);
+          break;
+        case "Wis":
+          var newIounStone = listOfWonderousItems.allItems
+              .where(
+                  (element) => element.name == "Ioun Stone (Incandescent blue)")
+              .toList();
+          character!.charEquip.wonderousItems!.addAll(newIounStone);
+          break;
+        default:
+          var newIounStone = listOfWonderousItems.allItems
+              .where((element) => element.name == "Ioun Stone (Pink and green)")
+              .toList();
+          character!.charEquip.wonderousItems!.addAll(newIounStone);
+      }
+      notifyListeners();
+    } else {
+      return;
+    }
+  }
+
+  addExtraIounStone() {
+    if (character!.charLevel > 11) {
+      var newIounStone = listOfWonderousItems.allItems
+          .where((element) => element.name == "Ioun Stone (dusty rose)")
+          .toList();
+      character!.charEquip.wonderousItems!.addAll(newIounStone);
+    }
+    notifyListeners();
+  }
 
   showItemDescription(int index) {
     if (character!.charEquip.wonderousItems![index].isSelected == true) {

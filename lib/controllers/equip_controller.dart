@@ -107,6 +107,7 @@ class EquipController extends ChangeNotifier {
           picture: chosenOffHandType!.picture);
     } else {
       chosenSecondaryWeaponType = WeaponFamilyModel(
+          forbiddenTo: [],
           name: chosenOffHandType!.name,
           isSelected: true,
           picture: chosenOffHandType!.picture,
@@ -337,7 +338,8 @@ class EquipController extends ChangeNotifier {
     List<WeaponModel> list = listOfEquip.allWeapons
         .where((element) =>
             element.type!.wielding == chosenPrimaryWeaponType!.wielding &&
-            element.type!.name == chosenPrimaryWeaponType!.name)
+            element.type!.name == chosenPrimaryWeaponType!.name &&
+            !element.forbiddenTo.contains(char.charClass.name))
         .toList();
     var randomWeapon = randomIndex.nextInt(list.length);
     while (randomWeapon == list.length) {
@@ -355,7 +357,8 @@ class EquipController extends ChangeNotifier {
       List<WeaponModel> list = listOfEquip.allWeapons
           .where((element) =>
               element.type!.wielding == chosenSecondaryWeaponType!.wielding &&
-              element.type!.name == chosenPrimaryWeaponType!.name)
+              element.type!.name == chosenPrimaryWeaponType!.name &&
+              !element.forbiddenTo.contains(char.charClass.name))
           .toList();
       var randomWeapon = randomIndex.nextInt(list.length);
       while (randomWeapon == list.length) {
@@ -372,7 +375,9 @@ class EquipController extends ChangeNotifier {
         .any((element) => element == chosenPrimaryWeaponType)) {
       WeaponModel weapon;
       List<WeaponModel> list = listOfEquip.allWeapons
-          .where((element) => element.type!.wielding == "One-handed")
+          .where((element) =>
+              element.type!.wielding == "One-handed" &&
+              !element.forbiddenTo.contains(char.charClass.name))
           .toList();
       var randomWeapon = randomIndex.nextInt(list.length);
       while (randomWeapon == list.length) {
@@ -383,7 +388,9 @@ class EquipController extends ChangeNotifier {
     } else {
       WeaponModel weapon;
       List<WeaponModel> list = listOfEquip.allWeapons
-          .where((element) => element.type!.wielding == "Range")
+          .where((element) =>
+              element.type!.wielding == "Range" &&
+              !element.forbiddenTo.contains(char.charClass.name))
           .toList();
       var randomWeapon = randomIndex.nextInt(list.length);
       while (randomWeapon == list.length) {
@@ -457,6 +464,10 @@ class EquipController extends ChangeNotifier {
     List<ArmorModel> armorList = listOfEquip.allArmors
         .where((element) => element.type == chosenArmorType)
         .toList();
+    if (char.charClass.name == "Druid") {
+      armorList =
+          armorList.where((element) => element.fitForDruid == true).toList();
+    }
     if (armorList.isNotEmpty) {
       var randomArmor = randomIndex.nextInt(armorList.length);
       if (randomArmor == armorList.length) {
@@ -478,6 +489,10 @@ class EquipController extends ChangeNotifier {
     List<ArmorModel> shieldList = listOfEquip.allShields
         .where((element) => element.type!.name == chosenShieldType!.name)
         .toList();
+    if (char.charClass.name == "Druid") {
+      shieldList =
+          shieldList.where((element) => element.fitForDruid == true).toList();
+    }
     if (shieldList.isNotEmpty) {
       var randomShield = randomIndex.nextInt(shieldList.length);
       if (randomShield == shieldList.length) {

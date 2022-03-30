@@ -1023,7 +1023,7 @@ class WonderousItemsData {
     ),
     WonderousItemsModel(
       type: "Body",
-      name: "Corset of the vishkanya",
+      name: "Corset of the Vishkanya",
       availability: 5,
       exclusiveClasses: [],
       description:
@@ -1035,7 +1035,7 @@ class WonderousItemsData {
       type: "Body",
       name: "Druid's vestment",
       availability: 5,
-      exclusiveClasses: [],
+      exclusiveClasses: ["Druid"],
       description:
           "This light garment is worn over normal clothing or armor. Most such vestments are green, embroidered with elaborate plant or animal motifs. When this item is worn by a character with the wild shape ability, the character can use that ability one additional time each day.",
       bonus: null,
@@ -1043,13 +1043,23 @@ class WonderousItemsData {
     ),
     WonderousItemsModel(
       type: "Body",
-      name: "Druid's vestment",
-      availability: 5,
+      name: "Cleric's vestment",
+      availability: 6,
       exclusiveClasses: [],
       description:
-          "This light garment is worn over normal clothing or armor. Most such vestments are green, embroidered with elaborate plant or animal motifs. When this item is worn by a character with the wild shape ability, the character can use that ability one additional time each day.",
+          "This light garment is worn over normal clothing or armor. Most such vestments are white, embroidered with elaborate diety symbol motifs. When this item is worn, the character can use channel positive energy once per day as a level 6 cleric would.",
       bonus: null,
-      price: 3750,
+      price: 6700,
+    ),
+    WonderousItemsModel(
+      type: "Body",
+      name: "Diplomatist's vest",
+      availability: 8,
+      exclusiveClasses: [],
+      description:
+          "This exquisite vest made from the best silk gold can buy is a blessing for those who see it. It gives the wearer a bonus of +12 in diplomacy checks. In addition, the wearer can cast the spell suggestion (Will DC 14 negates) twice a day as spell-like ability.",
+      bonus: null,
+      price: 16000,
     ),
     WonderousItemsModel(
       type: "Body",
@@ -1060,6 +1070,16 @@ class WonderousItemsData {
           "This slimming garment is fastened with laces, buckles, and buttons and reinforced with ribs of leather or bone. If the wearer is not wearing any armor, the corset of dire witchdoctor grants a +4 armor bonus to AC.",
       bonus: null,
       price: 25000,
+    ),
+    WonderousItemsModel(
+      type: "Body",
+      name: "Robe of scintillating colors",
+      availability: 10,
+      exclusiveClasses: [],
+      description:
+          "The wearer of this robe can cause the garment to display a shifting pattern of incredible hues, color after color cascading from the upper part of the robe to the hem in sparkling rainbows of dazzling light. The colors daze those near the wearer, conceal the wearer, and illuminate the surroundings. It takes 1 full round after the wearer speaks the command word for the colors to start flowing on the robe. The colors create the equivalent of a gaze attack with a 30-foot range. Those who look at the wearer are dazed for 1d4+1 rounds (Will DC 18 negates). This is a mind-affecting pattern effect. Every round of continuous scintillation of the robe gives the wearer better concealment. The miss chance on attacks against the wearer starts at 10% and increases by 10% each round until it reaches 50% (total concealment). Additionally the robe continuously illuminates a 30-foot radius. The effect can be used no more than a total of 10 rounds per day.",
+      bonus: null,
+      price: 29500,
     ),
     WonderousItemsModel(
       type: "Body",

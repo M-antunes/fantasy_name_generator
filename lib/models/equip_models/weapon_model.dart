@@ -14,6 +14,7 @@ class WeaponModel {
   String? damage;
   String? damageType;
   String? critical;
+  List<String> forbiddenTo;
   WeaponModel({
     this.type,
     this.isSelected,
@@ -22,6 +23,7 @@ class WeaponModel {
     this.damage,
     this.damageType,
     this.critical,
+    required this.forbiddenTo,
   });
 
   WeaponModel copyWith({
@@ -32,6 +34,7 @@ class WeaponModel {
     String? damage,
     String? damageType,
     String? critical,
+    List<String>? forbiddenTo,
   }) {
     return WeaponModel(
       type: type ?? this.type,
@@ -41,6 +44,7 @@ class WeaponModel {
       damage: damage ?? this.damage,
       damageType: damageType ?? this.damageType,
       critical: critical ?? this.critical,
+      forbiddenTo: forbiddenTo ?? this.forbiddenTo,
     );
   }
 
@@ -53,6 +57,7 @@ class WeaponModel {
       'damage': damage,
       'damageType': damageType,
       'critical': critical,
+      'forbiddenTo': forbiddenTo,
     };
   }
 
@@ -68,6 +73,7 @@ class WeaponModel {
       damage: map['damage'],
       damageType: map['damageType'],
       critical: map['critical'],
+      forbiddenTo: List<String>.from(map['forbiddenTo']),
     );
   }
 
@@ -78,7 +84,7 @@ class WeaponModel {
 
   @override
   String toString() {
-    return 'WeaponModel(type: $type, isSelected: $isSelected, name: $name, enchantment: $enchantment, damage: $damage, damageType: $damageType, critical: $critical)';
+    return 'WeaponModel(type: $type, isSelected: $isSelected, name: $name, enchantment: $enchantment, damage: $damage, damageType: $damageType, critical: $critical, forbiddenTo: $forbiddenTo)';
   }
 
   @override
@@ -92,7 +98,8 @@ class WeaponModel {
         listEquals(other.enchantment, enchantment) &&
         other.damage == damage &&
         other.damageType == damageType &&
-        other.critical == critical;
+        other.critical == critical &&
+        listEquals(other.forbiddenTo, forbiddenTo);
   }
 
   @override
@@ -103,6 +110,7 @@ class WeaponModel {
         enchantment.hashCode ^
         damage.hashCode ^
         damageType.hashCode ^
-        critical.hashCode;
+        critical.hashCode ^
+        forbiddenTo.hashCode;
   }
 }

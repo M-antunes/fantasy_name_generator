@@ -32,7 +32,7 @@ class ArmorPermissionLabel extends StatelessWidget {
                             ctrl.char.charClass.name == "Monk"
                         ? "${ctrl.char.charClass.name}s are NOT proficient with ANY armors"
                         : ctrl.char.charClass.name == "Druid"
-                            ? "${ctrl.char.charClass.name}s are NOT proficient with heavy armors or any made out of metal"
+                            ? "${ctrl.char.charClass.name}s are NOT proficient with heavy armors"
                             : "${ctrl.char.charClass.name}s are proficient with all armors",
             style: AppTextStyle.subTextGrey,
             textAlign: TextAlign.center,

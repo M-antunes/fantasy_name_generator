@@ -52,11 +52,17 @@ class OffHandDisplayRow extends StatelessWidget {
           child: Consumer<EquipController>(builder: (context, state, child) {
             return GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: itemCounting < 6
+                  crossAxisCount: itemCounting > 6
                       ? 5
-                      : itemCounting > 5 && itemCounting < 8
-                          ? 3
-                          : 4,
+                      : itemCounting == 5
+                          ? 5
+                          : itemCounting == 4
+                              ? 4
+                              : itemCounting == 3
+                                  ? 3
+                                  : itemCounting == 2
+                                      ? 2
+                                      : 1,
                   childAspectRatio: 1 / 1,
                 ),
                 shrinkWrap: true,

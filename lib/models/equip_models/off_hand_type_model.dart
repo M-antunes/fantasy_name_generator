@@ -1,24 +1,30 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
+
 class OffHandTypeModel {
   String name;
   bool isSelected;
   String picture;
+  List<String> forbiddenTo;
   OffHandTypeModel({
     required this.name,
     required this.isSelected,
     required this.picture,
+    required this.forbiddenTo,
   });
 
   OffHandTypeModel copyWith({
     String? name,
     bool? isSelected,
     String? picture,
+    List<String>? forbiddenTo,
   }) {
     return OffHandTypeModel(
       name: name ?? this.name,
       isSelected: isSelected ?? this.isSelected,
       picture: picture ?? this.picture,
+      forbiddenTo: forbiddenTo ?? this.forbiddenTo,
     );
   }
 
@@ -27,6 +33,7 @@ class OffHandTypeModel {
       'name': name,
       'isSelected': isSelected,
       'picture': picture,
+      'forbiddenTo': forbiddenTo,
     };
   }
 
@@ -35,6 +42,7 @@ class OffHandTypeModel {
       name: map['name'] ?? '',
       isSelected: map['isSelected'] ?? false,
       picture: map['picture'] ?? '',
+      forbiddenTo: List<String>.from(map['forbiddenTo']),
     );
   }
 
@@ -44,8 +52,9 @@ class OffHandTypeModel {
       OffHandTypeModel.fromMap(json.decode(source));
 
   @override
-  String toString() =>
-      'OffHandTypeModel(name: $name, isSelected: $isSelected, picture: $picture)';
+  String toString() {
+    return 'OffHandTypeModel(name: $name, isSelected: $isSelected, picture: $picture, forbiddenTo: $forbiddenTo)';
+  }
 
   @override
   bool operator ==(Object other) {
@@ -54,9 +63,15 @@ class OffHandTypeModel {
     return other is OffHandTypeModel &&
         other.name == name &&
         other.isSelected == isSelected &&
-        other.picture == picture;
+        other.picture == picture &&
+        listEquals(other.forbiddenTo, forbiddenTo);
   }
 
   @override
-  int get hashCode => name.hashCode ^ isSelected.hashCode ^ picture.hashCode;
+  int get hashCode {
+    return name.hashCode ^
+        isSelected.hashCode ^
+        picture.hashCode ^
+        forbiddenTo.hashCode;
+  }
 }

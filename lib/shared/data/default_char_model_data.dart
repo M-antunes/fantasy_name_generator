@@ -32,8 +32,10 @@ class DefaultCharModelData {
     combatStats: CombatModel(),
     charEquip: EquipModel(
         primaryWeapon: WeaponModel(
+            forbiddenTo: [],
             name: "Dagger",
             type: WeaponFamilyModel(
+                forbiddenTo: [],
                 name: "Knife",
                 wielding: "One-handed",
                 isSelected: false,

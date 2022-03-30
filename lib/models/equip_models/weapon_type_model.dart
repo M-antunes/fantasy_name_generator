@@ -1,16 +1,19 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
+
 class WeaponFamilyModel {
   String name;
   bool isSelected;
   String picture;
   String wielding;
-
+  List<String> forbiddenTo;
   WeaponFamilyModel({
     required this.name,
     required this.isSelected,
     required this.picture,
     required this.wielding,
+    required this.forbiddenTo,
   });
 
   WeaponFamilyModel copyWith({
@@ -18,12 +21,14 @@ class WeaponFamilyModel {
     bool? isSelected,
     String? picture,
     String? wielding,
+    List<String>? forbiddenTo,
   }) {
     return WeaponFamilyModel(
       name: name ?? this.name,
       isSelected: isSelected ?? this.isSelected,
       picture: picture ?? this.picture,
       wielding: wielding ?? this.wielding,
+      forbiddenTo: forbiddenTo ?? this.forbiddenTo,
     );
   }
 
@@ -33,6 +38,7 @@ class WeaponFamilyModel {
       'isSelected': isSelected,
       'picture': picture,
       'wielding': wielding,
+      'forbiddenTo': forbiddenTo,
     };
   }
 
@@ -42,6 +48,7 @@ class WeaponFamilyModel {
       isSelected: map['isSelected'] ?? false,
       picture: map['picture'] ?? '',
       wielding: map['wielding'] ?? '',
+      forbiddenTo: List<String>.from(map['forbiddenTo']),
     );
   }
 
@@ -52,7 +59,7 @@ class WeaponFamilyModel {
 
   @override
   String toString() {
-    return 'WeaponFamilyModel(name: $name, isSelected: $isSelected, picture: $picture, wielding: $wielding)';
+    return 'WeaponFamilyModel(name: $name, isSelected: $isSelected, picture: $picture, wielding: $wielding, forbiddenTo: $forbiddenTo)';
   }
 
   @override
@@ -63,7 +70,8 @@ class WeaponFamilyModel {
         other.name == name &&
         other.isSelected == isSelected &&
         other.picture == picture &&
-        other.wielding == wielding;
+        other.wielding == wielding &&
+        listEquals(other.forbiddenTo, forbiddenTo);
   }
 
   @override
@@ -71,6 +79,7 @@ class WeaponFamilyModel {
     return name.hashCode ^
         isSelected.hashCode ^
         picture.hashCode ^
-        wielding.hashCode;
+        wielding.hashCode ^
+        forbiddenTo.hashCode;
   }
 }
