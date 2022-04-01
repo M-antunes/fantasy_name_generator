@@ -120,6 +120,312 @@ class WonderousItemsData {
     ),
   ];
 
+  final List<WonderousItemsModel> manuals = [
+    WonderousItemsModel(
+      type: "Slotless",
+      name: "Manual of bodily health +1",
+      availability: 15,
+      exclusiveClasses: [],
+      description:
+          "This thick tome contains exercise descriptions and diet suggestions, but entwined within the words is a powerful magical effect. If anyone reads this book, which takes a total of 48 hours over a minimum of 6 days, she gains an inherent bonus of +1 to her constitution score. Once the book is read, the magic disappears from the pages and it becomes a normal book.",
+      bonus: 1,
+      price: null,
+    ),
+    WonderousItemsModel(
+      type: "Slotless",
+      name: "Manual of bodily health +2",
+      availability: 18,
+      exclusiveClasses: [],
+      description:
+          "This thick tome contains exercise descriptions and diet suggestions, but entwined within the words is a powerful magical effect. If anyone reads this book, which takes a total of 48 hours over a minimum of 6 days, she gains an inherent bonus of +2 to her constitution score. Once the book is read, the magic disappears from the pages and it becomes a normal book.",
+      bonus: 2,
+      price: null,
+    ),
+    WonderousItemsModel(
+      type: "Slotless",
+      name: "Manual of bodily health +3",
+      availability: 20,
+      exclusiveClasses: [],
+      description:
+          "This thick tome contains exercise descriptions and diet suggestions, but entwined within the words is a powerful magical effect. If anyone reads this book, which takes a total of 48 hours over a minimum of 6 days, she gains an inherent bonus of +3 to her constitution score. Once the book is read, the magic disappears from the pages and it becomes a normal book.",
+      bonus: 3,
+      price: null,
+    ),
+    WonderousItemsModel(
+      type: "Slotless",
+      name: "Manual of bodily health +4",
+      availability: 21,
+      exclusiveClasses: [],
+      description:
+          "This thick tome contains exercise descriptions and diet suggestions, but entwined within the words is a powerful magical effect. If anyone reads this book, which takes a total of 48 hours over a minimum of 6 days, she gains an inherent bonus of +4 to her constitution score. Once the book is read, the magic disappears from the pages and it becomes a normal book.",
+      bonus: 4,
+      price: null,
+    ),
+    WonderousItemsModel(
+      type: "Slotless",
+      name: "Manual of bodily health +5",
+      availability: 23,
+      exclusiveClasses: [],
+      description:
+          "This thick tome contains exercise descriptions and diet suggestions, but entwined within the words is a powerful magical effect. If anyone reads this book, which takes a total of 48 hours over a minimum of 6 days, she gains an inherent bonus of +5 to her constitution score. Once the book is read, the magic disappears from the pages and it becomes a normal book.",
+      bonus: 5,
+      price: null,
+    ),
+    WonderousItemsModel(
+      type: "Slotless",
+      name: "Manual of gainful exercise +1",
+      availability: 15,
+      exclusiveClasses: [],
+      description:
+          "This thick tome contains exercise descriptions and diet suggestions, but entwined within the words is a powerful magical effect. If anyone reads this book, which takes a total of 48 hours over a minimum of 6 days, she gains an inherent bonus of +1 to her strength score. Once the book is read, the magic disappears from the pages and it becomes a normal book.",
+      bonus: 1,
+      price: null,
+    ),
+    WonderousItemsModel(
+      type: "Slotless",
+      name: "Manual of gainful exercise +2",
+      availability: 18,
+      exclusiveClasses: [],
+      description:
+          "This thick tome contains exercise descriptions and diet suggestions, but entwined within the words is a powerful magical effect. If anyone reads this book, which takes a total of 48 hours over a minimum of 6 days, she gains an inherent bonus of +2 to her strength score. Once the book is read, the magic disappears from the pages and it becomes a normal book.",
+      bonus: 2,
+      price: null,
+    ),
+    WonderousItemsModel(
+      type: "Slotless",
+      name: "Manual of gainful exercise +3",
+      availability: 20,
+      exclusiveClasses: [],
+      description:
+          "This thick tome contains exercise descriptions and diet suggestions, but entwined within the words is a powerful magical effect. If anyone reads this book, which takes a total of 48 hours over a minimum of 6 days, she gains an inherent bonus of +3 to her strength score. Once the book is read, the magic disappears from the pages and it becomes a normal book.",
+      bonus: 3,
+      price: null,
+    ),
+    WonderousItemsModel(
+      type: "Slotless",
+      name: "Manual of gainful exercise +4",
+      availability: 21,
+      exclusiveClasses: [],
+      description:
+          "This thick tome contains exercise descriptions and diet suggestions, but entwined within the words is a powerful magical effect. If anyone reads this book, which takes a total of 48 hours over a minimum of 6 days, she gains an inherent bonus of +4 to her strength score. Once the book is read, the magic disappears from the pages and it becomes a normal book.",
+      bonus: 4,
+      price: null,
+    ),
+    WonderousItemsModel(
+      type: "Slotless",
+      name: "Manual of gainful exercise +5",
+      availability: 23,
+      exclusiveClasses: [],
+      description:
+          "This thick tome contains exercise descriptions and diet suggestions, but entwined within the words is a powerful magical effect. If anyone reads this book, which takes a total of 48 hours over a minimum of 6 days, she gains an inherent bonus of +5 to her strength score. Once the book is read, the magic disappears from the pages and it becomes a normal book.",
+      bonus: 5,
+      price: null,
+    ),
+    WonderousItemsModel(
+      type: "Slotless",
+      name: "Manual of quickness of action +1",
+      availability: 15,
+      exclusiveClasses: [],
+      description:
+          "This thick tome contains exercise descriptions and diet suggestions, but entwined within the words is a powerful magical effect. If anyone reads this book, which takes a total of 48 hours over a minimum of 6 days, she gains an inherent bonus of +1 to her dexterity score. Once the book is read, the magic disappears from the pages and it becomes a normal book.",
+      bonus: 1,
+      price: null,
+    ),
+    WonderousItemsModel(
+      type: "Slotless",
+      name: "Manual of quickness of action +2",
+      availability: 18,
+      exclusiveClasses: [],
+      description:
+          "This thick tome contains exercise descriptions and diet suggestions, but entwined within the words is a powerful magical effect. If anyone reads this book, which takes a total of 48 hours over a minimum of 6 days, she gains an inherent bonus of +2 to her dexterity score. Once the book is read, the magic disappears from the pages and it becomes a normal book.",
+      bonus: 2,
+      price: null,
+    ),
+    WonderousItemsModel(
+      type: "Slotless",
+      name: "Manual of quickness of action +3",
+      availability: 20,
+      exclusiveClasses: [],
+      description:
+          "This thick tome contains exercise descriptions and diet suggestions, but entwined within the words is a powerful magical effect. If anyone reads this book, which takes a total of 48 hours over a minimum of 6 days, she gains an inherent bonus of +3 to her dexterity score. Once the book is read, the magic disappears from the pages and it becomes a normal book.",
+      bonus: 3,
+      price: null,
+    ),
+    WonderousItemsModel(
+      type: "Slotless",
+      name: "Manual of quickness of action +4",
+      availability: 21,
+      exclusiveClasses: [],
+      description:
+          "This thick tome contains exercise descriptions and diet suggestions, but entwined within the words is a powerful magical effect. If anyone reads this book, which takes a total of 48 hours over a minimum of 6 days, she gains an inherent bonus of +4 to her dexterity score. Once the book is read, the magic disappears from the pages and it becomes a normal book.",
+      bonus: 4,
+      price: null,
+    ),
+    WonderousItemsModel(
+      type: "Slotless",
+      name: "Manual of quickness of action +5",
+      availability: 23,
+      exclusiveClasses: [],
+      description:
+          "This thick tome contains exercise descriptions and diet suggestions, but entwined within the words is a powerful magical effect. If anyone reads this book, which takes a total of 48 hours over a minimum of 6 days, she gains an inherent bonus of +5 to her dexterity score. Once the book is read, the magic disappears from the pages and it becomes a normal book.",
+      bonus: 5,
+      price: null,
+    ),
+  ];
+
+  final List<WonderousItemsModel> tomes = [
+    WonderousItemsModel(
+      type: "Slotless",
+      name: "Tome of clear thought +1",
+      availability: 15,
+      exclusiveClasses: [],
+      description:
+          "This thick tome contains exercise descriptions and diet suggestions, but entwined within the words is a powerful magical effect. If anyone reads this book, which takes a total of 48 hours over a minimum of 6 days, she gains an inherent bonus of +1 to her intelligence score. Once the book is read, the magic disappears from the pages and it becomes a normal book.",
+      bonus: 1,
+      price: null,
+    ),
+    WonderousItemsModel(
+      type: "Slotless",
+      name: "Tome of clear thought +2",
+      availability: 18,
+      exclusiveClasses: [],
+      description:
+          "This thick tome contains exercise descriptions and diet suggestions, but entwined within the words is a powerful magical effect. If anyone reads this book, which takes a total of 48 hours over a minimum of 6 days, she gains an inherent bonus of +2 to her intelligence score. Once the book is read, the magic disappears from the pages and it becomes a normal book.",
+      bonus: 2,
+      price: null,
+    ),
+    WonderousItemsModel(
+      type: "Slotless",
+      name: "Tome of clear thought +3",
+      availability: 20,
+      exclusiveClasses: [],
+      description:
+          "This thick tome contains exercise descriptions and diet suggestions, but entwined within the words is a powerful magical effect. If anyone reads this book, which takes a total of 48 hours over a minimum of 6 days, she gains an inherent bonus of +3 to her intelligence score. Once the book is read, the magic disappears from the pages and it becomes a normal book.",
+      bonus: 3,
+      price: null,
+    ),
+    WonderousItemsModel(
+      type: "Slotless",
+      name: "Tome of clear thought +4",
+      availability: 21,
+      exclusiveClasses: [],
+      description:
+          "This thick tome contains exercise descriptions and diet suggestions, but entwined within the words is a powerful magical effect. If anyone reads this book, which takes a total of 48 hours over a minimum of 6 days, she gains an inherent bonus of +4 to her intelligence score. Once the book is read, the magic disappears from the pages and it becomes a normal book.",
+      bonus: 4,
+      price: null,
+    ),
+    WonderousItemsModel(
+      type: "Slotless",
+      name: "Tome of clear thought +5",
+      availability: 23,
+      exclusiveClasses: [],
+      description:
+          "This thick tome contains exercise descriptions and diet suggestions, but entwined within the words is a powerful magical effect. If anyone reads this book, which takes a total of 48 hours over a minimum of 6 days, she gains an inherent bonus of +5 to her intelligence score. Once the book is read, the magic disappears from the pages and it becomes a normal book.",
+      bonus: 5,
+      price: null,
+    ),
+    WonderousItemsModel(
+      type: "Slotless",
+      name: "Tome of leadership and influence +1",
+      availability: 15,
+      exclusiveClasses: [],
+      description:
+          "This thick tome contains exercise descriptions and diet suggestions, but entwined within the words is a powerful magical effect. If anyone reads this book, which takes a total of 48 hours over a minimum of 6 days, she gains an inherent bonus of +1 to her charisma score. Once the book is read, the magic disappears from the pages and it becomes a normal book.",
+      bonus: 1,
+      price: null,
+    ),
+    WonderousItemsModel(
+      type: "Slotless",
+      name: "Tome of leadership and influence +2",
+      availability: 18,
+      exclusiveClasses: [],
+      description:
+          "This thick tome contains exercise descriptions and diet suggestions, but entwined within the words is a powerful magical effect. If anyone reads this book, which takes a total of 48 hours over a minimum of 6 days, she gains an inherent bonus of +2 to her charisma score. Once the book is read, the magic disappears from the pages and it becomes a normal book.",
+      bonus: 2,
+      price: null,
+    ),
+    WonderousItemsModel(
+      type: "Slotless",
+      name: "Tome of leadership and influence +3",
+      availability: 20,
+      exclusiveClasses: [],
+      description:
+          "This thick tome contains exercise descriptions and diet suggestions, but entwined within the words is a powerful magical effect. If anyone reads this book, which takes a total of 48 hours over a minimum of 6 days, she gains an inherent bonus of +3 to her charisma score. Once the book is read, the magic disappears from the pages and it becomes a normal book.",
+      bonus: 3,
+      price: null,
+    ),
+    WonderousItemsModel(
+      type: "Slotless",
+      name: "Tome of leadership and influence +4",
+      availability: 21,
+      exclusiveClasses: [],
+      description:
+          "This thick tome contains exercise descriptions and diet suggestions, but entwined within the words is a powerful magical effect. If anyone reads this book, which takes a total of 48 hours over a minimum of 6 days, she gains an inherent bonus of +4 to her charisma score. Once the book is read, the magic disappears from the pages and it becomes a normal book.",
+      bonus: 4,
+      price: null,
+    ),
+    WonderousItemsModel(
+      type: "Slotless",
+      name: "Tome of leadership and influence +5",
+      availability: 23,
+      exclusiveClasses: [],
+      description:
+          "This thick tome contains exercise descriptions and diet suggestions, but entwined within the words is a powerful magical effect. If anyone reads this book, which takes a total of 48 hours over a minimum of 6 days, she gains an inherent bonus of +5 to her charisma score. Once the book is read, the magic disappears from the pages and it becomes a normal book.",
+      bonus: 5,
+      price: null,
+    ),
+    WonderousItemsModel(
+      type: "Slotless",
+      name: "Tome of understanding +1",
+      availability: 15,
+      exclusiveClasses: [],
+      description:
+          "This thick tome contains exercise descriptions and diet suggestions, but entwined within the words is a powerful magical effect. If anyone reads this book, which takes a total of 48 hours over a minimum of 6 days, she gains an inherent bonus of +1 to her wisdom score. Once the book is read, the magic disappears from the pages and it becomes a normal book.",
+      bonus: 1,
+      price: null,
+    ),
+    WonderousItemsModel(
+      type: "Slotless",
+      name: "Tome of understanding +2",
+      availability: 18,
+      exclusiveClasses: [],
+      description:
+          "This thick tome contains exercise descriptions and diet suggestions, but entwined within the words is a powerful magical effect. If anyone reads this book, which takes a total of 48 hours over a minimum of 6 days, she gains an inherent bonus of +2 to her wisdom score. Once the book is read, the magic disappears from the pages and it becomes a normal book.",
+      bonus: 2,
+      price: null,
+    ),
+    WonderousItemsModel(
+      type: "Slotless",
+      name: "Tome of understanding +3",
+      availability: 20,
+      exclusiveClasses: [],
+      description:
+          "This thick tome contains exercise descriptions and diet suggestions, but entwined within the words is a powerful magical effect. If anyone reads this book, which takes a total of 48 hours over a minimum of 6 days, she gains an inherent bonus of +3 to her wisdom score. Once the book is read, the magic disappears from the pages and it becomes a normal book.",
+      bonus: 3,
+      price: null,
+    ),
+    WonderousItemsModel(
+      type: "Slotless",
+      name: "Tome of understanding +4",
+      availability: 21,
+      exclusiveClasses: [],
+      description:
+          "This thick tome contains exercise descriptions and diet suggestions, but entwined within the words is a powerful magical effect. If anyone reads this book, which takes a total of 48 hours over a minimum of 6 days, she gains an inherent bonus of +4 to her wisdom score. Once the book is read, the magic disappears from the pages and it becomes a normal book.",
+      bonus: 4,
+      price: null,
+    ),
+    WonderousItemsModel(
+      type: "Slotless",
+      name: "Tome of understanding +5",
+      availability: 23,
+      exclusiveClasses: [],
+      description:
+          "This thick tome contains exercise descriptions and diet suggestions, but entwined within the words is a powerful magical effect. If anyone reads this book, which takes a total of 48 hours over a minimum of 6 days, she gains an inherent bonus of +5 to her wisdom score. Once the book is read, the magic disappears from the pages and it becomes a normal book.",
+      bonus: 5,
+      price: null,
+    ),
+  ];
+
   final List<WonderousItemsModel> allItems = [
     WonderousItemsModel(
       type: "Belt",
@@ -1129,6 +1435,26 @@ class WonderousItemsData {
     ),
     WonderousItemsModel(
       type: "Body",
+      name: "Robe of the mountebank",
+      availability: 12,
+      exclusiveClasses: [],
+      description:
+          "Once per day on command, this bright red and gold robe allows the wearer to use the magic of the dimension door spell. When he disappears, he leaves behind a cloud of harmless gray smoke, appearing in a similar dramatic fashion at his destination.",
+      bonus: null,
+      price: 10800,
+    ),
+    WonderousItemsModel(
+      type: "Body",
+      name: "Robe of treeform",
+      availability: 9,
+      exclusiveClasses: [],
+      description:
+          "This long green robe's back features an embroidered image of an ancient oak. Three times a day on command, the wearer can assume the shape of a tree, as the tree shape spell, but can only take the form of a living tree. Furthermore, each hour the wear spends in tree form while in direct sunlight, he heals 1d6 hit points.",
+      bonus: null,
+      price: 16000,
+    ),
+    WonderousItemsModel(
+      type: "Body",
       name: "Smuggler's collapsible robe",
       availability: 14,
       exclusiveClasses: ["Rogue"],
@@ -1136,6 +1462,26 @@ class WonderousItemsData {
           "Appearing to be nothing more than a ratty wool robe with a hood, this garment is an invaluable tool for spies, thieves, and smugglers. On command, the wearer and non-living objects up to her maximum load are sucked into an extradimensional space within the robe, leaving the robe to collapse where the wearer was standing. The robe appears to be merely a pile of discarded clothes, and does not detect as magical or function so long as the wearer is within the extradimensional space. While inside the extradimensional space, the wearer cannot take most actions, but can breathe comfortably for up to 24 hours. The wearer can see the area around the robe, though special senses such as darkvision or blindsense do not function. The wearer may leave the extradimensional space with a thought as a free action—the only action he can make while inside the extradimensional space. He reappears wearing the robe once more. However, if there is not enough room for the wearer to reappear (for example, if the robe was placed inside a small box) then the wearer cannot leave the extradimensional space. If the robe is destroyed or its magic suppressed while the wearer is within the extradimensional space, or if he spends 24 hours within it, he and all objects inside reappear instantaneously in the robe's space, and the wearer is dazed for one round.",
       bonus: null,
       price: 48000,
+    ),
+    WonderousItemsModel(
+      type: "Body",
+      name: "Wings of flying",
+      availability: 14,
+      exclusiveClasses: [],
+      description:
+          "A pair of these wings might appear to be nothing more than a plain robe of old, black cloth, or they could be as elegant as a long robe of blue feathers. When the wearer speaks the command word, the robe turns into a pair of bat or bird wings that empower her to fly with a speed of 60 feet (average maneuverability), also granting a +5 competence bonus on Fly skill checks.",
+      bonus: null,
+      price: 54000,
+    ),
+    WonderousItemsModel(
+      type: "Body",
+      name: "Robe of etherealness",
+      availability: 15,
+      exclusiveClasses: [],
+      description:
+          "This silvery gray robe seems to absorb light rather than be illuminated by it. On command, the robe makes its wearer ethereal (as the ethereal jaunt spell). The effect is dismissible. The robe works for a total of up to 10 minutes per day. This duration need not be continuous, but it must be used in 1 minute increments.",
+      bonus: null,
+      price: 56000,
     ),
     WonderousItemsModel(
       type: "Body",
@@ -1162,22 +1508,6 @@ class WonderousItemsData {
           "Silver circles and conjuring runes decorate this black robe. Three times per day when the wearer uses a summoning spell or spell-like ability to summon a variable number of creatures, he can choose to summon the maximum number of creatures possible. Creatures summoned in this way step from the shadowy folds of the robe, and appear adjacent to the wearer. If there isn't sufficient room for all the creatures to appear, the extra creatures are wasted and do not appear. If the wearer is a summoner, he can call upon the robe to summon his eidolon as a standard action once per day. It must appear adjacent to the summoner when called this way.",
       bonus: null,
       price: 64000,
-    ),
-    WonderousItemsModel(
-      type: "Body",
-      name: "Resplendent robe of the thespian",
-      availability: 15,
-      exclusiveClasses: [
-        "Wizard",
-        "Arcanist",
-        "Cleric",
-        "Sorcerer",
-        "Summoner"
-      ],
-      description:
-          "These magnificent vestments disguise the presence of armor as normal clothing (as the glamered armor property). When worn by a bard, the robe grants the wearer the following powers: Spell resistance 18; +4 resistance bonus on all saving throws; +2 enhancement bonus on caster level checks made to overcome spell resistance;",
-      bonus: null,
-      price: 75000,
     ),
     WonderousItemsModel(
       type: "Body",
@@ -1383,7 +1713,7 @@ class WonderousItemsData {
     ),
     WonderousItemsModel(
       type: "Eyes",
-      name: "Eyes of the dragon	110,000 gp",
+      name: "Eyes of the dragon",
       availability: 16,
       exclusiveClasses: [],
       description:
@@ -2437,306 +2767,6 @@ class WonderousItemsData {
           "This seemingly normal pearl of average size and luster is a potent aid to all spellcasters who prepare spells. Once per day on command, a pearl of power enables the possessor to recall any one spell of ninth level that she had prepared and then cast that day. The spell is then prepared again, just as if it had not been cast.",
       bonus: null,
       price: 81000,
-    ),
-    WonderousItemsModel(
-      type: "Slotless",
-      name: "Manual of bodily health +1",
-      availability: 15,
-      exclusiveClasses: [],
-      description:
-          "This thick tome contains exercise descriptions and diet suggestions, but entwined within the words is a powerful magical effect. If anyone reads this book, which takes a total of 48 hours over a minimum of 6 days, she gains an inherent bonus of +1 to her constitution score. Once the book is read, the magic disappears from the pages and it becomes a normal book.",
-      bonus: 1,
-      price: null,
-    ),
-    WonderousItemsModel(
-      type: "Slotless",
-      name: "Manual of bodily health +2",
-      availability: 18,
-      exclusiveClasses: [],
-      description:
-          "This thick tome contains exercise descriptions and diet suggestions, but entwined within the words is a powerful magical effect. If anyone reads this book, which takes a total of 48 hours over a minimum of 6 days, she gains an inherent bonus of +2 to her constitution score. Once the book is read, the magic disappears from the pages and it becomes a normal book.",
-      bonus: 2,
-      price: null,
-    ),
-    WonderousItemsModel(
-      type: "Slotless",
-      name: "Manual of bodily health +3",
-      availability: 20,
-      exclusiveClasses: [],
-      description:
-          "This thick tome contains exercise descriptions and diet suggestions, but entwined within the words is a powerful magical effect. If anyone reads this book, which takes a total of 48 hours over a minimum of 6 days, she gains an inherent bonus of +3 to her constitution score. Once the book is read, the magic disappears from the pages and it becomes a normal book.",
-      bonus: 3,
-      price: null,
-    ),
-    WonderousItemsModel(
-      type: "Slotless",
-      name: "Manual of bodily health +4",
-      availability: 21,
-      exclusiveClasses: [],
-      description:
-          "This thick tome contains exercise descriptions and diet suggestions, but entwined within the words is a powerful magical effect. If anyone reads this book, which takes a total of 48 hours over a minimum of 6 days, she gains an inherent bonus of +4 to her constitution score. Once the book is read, the magic disappears from the pages and it becomes a normal book.",
-      bonus: 4,
-      price: null,
-    ),
-    WonderousItemsModel(
-      type: "Slotless",
-      name: "Manual of bodily health +5",
-      availability: 23,
-      exclusiveClasses: [],
-      description:
-          "This thick tome contains exercise descriptions and diet suggestions, but entwined within the words is a powerful magical effect. If anyone reads this book, which takes a total of 48 hours over a minimum of 6 days, she gains an inherent bonus of +5 to her constitution score. Once the book is read, the magic disappears from the pages and it becomes a normal book.",
-      bonus: 5,
-      price: null,
-    ),
-    WonderousItemsModel(
-      type: "Slotless",
-      name: "Manual of gainful exercise +1",
-      availability: 15,
-      exclusiveClasses: [],
-      description:
-          "This thick tome contains exercise descriptions and diet suggestions, but entwined within the words is a powerful magical effect. If anyone reads this book, which takes a total of 48 hours over a minimum of 6 days, she gains an inherent bonus of +1 to her strength score. Once the book is read, the magic disappears from the pages and it becomes a normal book.",
-      bonus: 1,
-      price: null,
-    ),
-    WonderousItemsModel(
-      type: "Slotless",
-      name: "Manual of gainful exercise +2",
-      availability: 18,
-      exclusiveClasses: [],
-      description:
-          "This thick tome contains exercise descriptions and diet suggestions, but entwined within the words is a powerful magical effect. If anyone reads this book, which takes a total of 48 hours over a minimum of 6 days, she gains an inherent bonus of +2 to her strength score. Once the book is read, the magic disappears from the pages and it becomes a normal book.",
-      bonus: 2,
-      price: null,
-    ),
-    WonderousItemsModel(
-      type: "Slotless",
-      name: "Manual of gainful exercise +3",
-      availability: 20,
-      exclusiveClasses: [],
-      description:
-          "This thick tome contains exercise descriptions and diet suggestions, but entwined within the words is a powerful magical effect. If anyone reads this book, which takes a total of 48 hours over a minimum of 6 days, she gains an inherent bonus of +3 to her strength score. Once the book is read, the magic disappears from the pages and it becomes a normal book.",
-      bonus: 3,
-      price: null,
-    ),
-    WonderousItemsModel(
-      type: "Slotless",
-      name: "Manual of gainful exercise +4",
-      availability: 21,
-      exclusiveClasses: [],
-      description:
-          "This thick tome contains exercise descriptions and diet suggestions, but entwined within the words is a powerful magical effect. If anyone reads this book, which takes a total of 48 hours over a minimum of 6 days, she gains an inherent bonus of +4 to her strength score. Once the book is read, the magic disappears from the pages and it becomes a normal book.",
-      bonus: 4,
-      price: null,
-    ),
-    WonderousItemsModel(
-      type: "Slotless",
-      name: "Manual of gainful exercise +5",
-      availability: 23,
-      exclusiveClasses: [],
-      description:
-          "This thick tome contains exercise descriptions and diet suggestions, but entwined within the words is a powerful magical effect. If anyone reads this book, which takes a total of 48 hours over a minimum of 6 days, she gains an inherent bonus of +5 to her strength score. Once the book is read, the magic disappears from the pages and it becomes a normal book.",
-      bonus: 5,
-      price: null,
-    ),
-    WonderousItemsModel(
-      type: "Slotless",
-      name: "Manual of quickness of action +1",
-      availability: 15,
-      exclusiveClasses: [],
-      description:
-          "This thick tome contains exercise descriptions and diet suggestions, but entwined within the words is a powerful magical effect. If anyone reads this book, which takes a total of 48 hours over a minimum of 6 days, she gains an inherent bonus of +1 to her dexterity score. Once the book is read, the magic disappears from the pages and it becomes a normal book.",
-      bonus: 1,
-      price: null,
-    ),
-    WonderousItemsModel(
-      type: "Slotless",
-      name: "Manual of quickness of action +2",
-      availability: 18,
-      exclusiveClasses: [],
-      description:
-          "This thick tome contains exercise descriptions and diet suggestions, but entwined within the words is a powerful magical effect. If anyone reads this book, which takes a total of 48 hours over a minimum of 6 days, she gains an inherent bonus of +2 to her dexterity score. Once the book is read, the magic disappears from the pages and it becomes a normal book.",
-      bonus: 2,
-      price: null,
-    ),
-    WonderousItemsModel(
-      type: "Slotless",
-      name: "Manual of quickness of action +3",
-      availability: 20,
-      exclusiveClasses: [],
-      description:
-          "This thick tome contains exercise descriptions and diet suggestions, but entwined within the words is a powerful magical effect. If anyone reads this book, which takes a total of 48 hours over a minimum of 6 days, she gains an inherent bonus of +3 to her dexterity score. Once the book is read, the magic disappears from the pages and it becomes a normal book.",
-      bonus: 3,
-      price: null,
-    ),
-    WonderousItemsModel(
-      type: "Slotless",
-      name: "Manual of quickness of action +4",
-      availability: 21,
-      exclusiveClasses: [],
-      description:
-          "This thick tome contains exercise descriptions and diet suggestions, but entwined within the words is a powerful magical effect. If anyone reads this book, which takes a total of 48 hours over a minimum of 6 days, she gains an inherent bonus of +4 to her dexterity score. Once the book is read, the magic disappears from the pages and it becomes a normal book.",
-      bonus: 4,
-      price: null,
-    ),
-    WonderousItemsModel(
-      type: "Slotless",
-      name: "Manual of quickness of action +5",
-      availability: 23,
-      exclusiveClasses: [],
-      description:
-          "This thick tome contains exercise descriptions and diet suggestions, but entwined within the words is a powerful magical effect. If anyone reads this book, which takes a total of 48 hours over a minimum of 6 days, she gains an inherent bonus of +5 to her dexterity score. Once the book is read, the magic disappears from the pages and it becomes a normal book.",
-      bonus: 5,
-      price: null,
-    ),
-    WonderousItemsModel(
-      type: "Slotless",
-      name: "Tome of clear thought +1",
-      availability: 15,
-      exclusiveClasses: [],
-      description:
-          "This thick tome contains exercise descriptions and diet suggestions, but entwined within the words is a powerful magical effect. If anyone reads this book, which takes a total of 48 hours over a minimum of 6 days, she gains an inherent bonus of +1 to her intelligence score. Once the book is read, the magic disappears from the pages and it becomes a normal book.",
-      bonus: 1,
-      price: null,
-    ),
-    WonderousItemsModel(
-      type: "Slotless",
-      name: "Tome of clear thought +2",
-      availability: 18,
-      exclusiveClasses: [],
-      description:
-          "This thick tome contains exercise descriptions and diet suggestions, but entwined within the words is a powerful magical effect. If anyone reads this book, which takes a total of 48 hours over a minimum of 6 days, she gains an inherent bonus of +2 to her intelligence score. Once the book is read, the magic disappears from the pages and it becomes a normal book.",
-      bonus: 2,
-      price: null,
-    ),
-    WonderousItemsModel(
-      type: "Slotless",
-      name: "Tome of clear thought +3",
-      availability: 20,
-      exclusiveClasses: [],
-      description:
-          "This thick tome contains exercise descriptions and diet suggestions, but entwined within the words is a powerful magical effect. If anyone reads this book, which takes a total of 48 hours over a minimum of 6 days, she gains an inherent bonus of +3 to her intelligence score. Once the book is read, the magic disappears from the pages and it becomes a normal book.",
-      bonus: 3,
-      price: null,
-    ),
-    WonderousItemsModel(
-      type: "Slotless",
-      name: "Tome of clear thought +4",
-      availability: 21,
-      exclusiveClasses: [],
-      description:
-          "This thick tome contains exercise descriptions and diet suggestions, but entwined within the words is a powerful magical effect. If anyone reads this book, which takes a total of 48 hours over a minimum of 6 days, she gains an inherent bonus of +4 to her intelligence score. Once the book is read, the magic disappears from the pages and it becomes a normal book.",
-      bonus: 4,
-      price: null,
-    ),
-    WonderousItemsModel(
-      type: "Slotless",
-      name: "Tome of clear thought +5",
-      availability: 23,
-      exclusiveClasses: [],
-      description:
-          "This thick tome contains exercise descriptions and diet suggestions, but entwined within the words is a powerful magical effect. If anyone reads this book, which takes a total of 48 hours over a minimum of 6 days, she gains an inherent bonus of +5 to her intelligence score. Once the book is read, the magic disappears from the pages and it becomes a normal book.",
-      bonus: 5,
-      price: null,
-    ),
-    WonderousItemsModel(
-      type: "Slotless",
-      name: "Tome of leadership and influence +1",
-      availability: 15,
-      exclusiveClasses: [],
-      description:
-          "This thick tome contains exercise descriptions and diet suggestions, but entwined within the words is a powerful magical effect. If anyone reads this book, which takes a total of 48 hours over a minimum of 6 days, she gains an inherent bonus of +1 to her charisma score. Once the book is read, the magic disappears from the pages and it becomes a normal book.",
-      bonus: 1,
-      price: null,
-    ),
-    WonderousItemsModel(
-      type: "Slotless",
-      name: "Tome of leadership and influence +2",
-      availability: 18,
-      exclusiveClasses: [],
-      description:
-          "This thick tome contains exercise descriptions and diet suggestions, but entwined within the words is a powerful magical effect. If anyone reads this book, which takes a total of 48 hours over a minimum of 6 days, she gains an inherent bonus of +2 to her charisma score. Once the book is read, the magic disappears from the pages and it becomes a normal book.",
-      bonus: 2,
-      price: null,
-    ),
-    WonderousItemsModel(
-      type: "Slotless",
-      name: "Tome of leadership and influence +3",
-      availability: 20,
-      exclusiveClasses: [],
-      description:
-          "This thick tome contains exercise descriptions and diet suggestions, but entwined within the words is a powerful magical effect. If anyone reads this book, which takes a total of 48 hours over a minimum of 6 days, she gains an inherent bonus of +3 to her charisma score. Once the book is read, the magic disappears from the pages and it becomes a normal book.",
-      bonus: 3,
-      price: null,
-    ),
-    WonderousItemsModel(
-      type: "Slotless",
-      name: "Tome of leadership and influence +4",
-      availability: 21,
-      exclusiveClasses: [],
-      description:
-          "This thick tome contains exercise descriptions and diet suggestions, but entwined within the words is a powerful magical effect. If anyone reads this book, which takes a total of 48 hours over a minimum of 6 days, she gains an inherent bonus of +4 to her charisma score. Once the book is read, the magic disappears from the pages and it becomes a normal book.",
-      bonus: 4,
-      price: null,
-    ),
-    WonderousItemsModel(
-      type: "Slotless",
-      name: "Tome of leadership and influence +5",
-      availability: 23,
-      exclusiveClasses: [],
-      description:
-          "This thick tome contains exercise descriptions and diet suggestions, but entwined within the words is a powerful magical effect. If anyone reads this book, which takes a total of 48 hours over a minimum of 6 days, she gains an inherent bonus of +5 to her charisma score. Once the book is read, the magic disappears from the pages and it becomes a normal book.",
-      bonus: 5,
-      price: null,
-    ),
-    WonderousItemsModel(
-      type: "Slotless",
-      name: "Tome of understanding +1",
-      availability: 15,
-      exclusiveClasses: [],
-      description:
-          "This thick tome contains exercise descriptions and diet suggestions, but entwined within the words is a powerful magical effect. If anyone reads this book, which takes a total of 48 hours over a minimum of 6 days, she gains an inherent bonus of +1 to her wisdom score. Once the book is read, the magic disappears from the pages and it becomes a normal book.",
-      bonus: 1,
-      price: null,
-    ),
-    WonderousItemsModel(
-      type: "Slotless",
-      name: "Tome of understanding +2",
-      availability: 18,
-      exclusiveClasses: [],
-      description:
-          "This thick tome contains exercise descriptions and diet suggestions, but entwined within the words is a powerful magical effect. If anyone reads this book, which takes a total of 48 hours over a minimum of 6 days, she gains an inherent bonus of +2 to her wisdom score. Once the book is read, the magic disappears from the pages and it becomes a normal book.",
-      bonus: 2,
-      price: null,
-    ),
-    WonderousItemsModel(
-      type: "Slotless",
-      name: "Tome of understanding +3",
-      availability: 20,
-      exclusiveClasses: [],
-      description:
-          "This thick tome contains exercise descriptions and diet suggestions, but entwined within the words is a powerful magical effect. If anyone reads this book, which takes a total of 48 hours over a minimum of 6 days, she gains an inherent bonus of +3 to her wisdom score. Once the book is read, the magic disappears from the pages and it becomes a normal book.",
-      bonus: 3,
-      price: null,
-    ),
-    WonderousItemsModel(
-      type: "Slotless",
-      name: "Tome of understanding +4",
-      availability: 21,
-      exclusiveClasses: [],
-      description:
-          "This thick tome contains exercise descriptions and diet suggestions, but entwined within the words is a powerful magical effect. If anyone reads this book, which takes a total of 48 hours over a minimum of 6 days, she gains an inherent bonus of +4 to her wisdom score. Once the book is read, the magic disappears from the pages and it becomes a normal book.",
-      bonus: 4,
-      price: null,
-    ),
-    WonderousItemsModel(
-      type: "Slotless",
-      name: "Tome of understanding +5",
-      availability: 23,
-      exclusiveClasses: [],
-      description:
-          "This thick tome contains exercise descriptions and diet suggestions, but entwined within the words is a powerful magical effect. If anyone reads this book, which takes a total of 48 hours over a minimum of 6 days, she gains an inherent bonus of +5 to her wisdom score. Once the book is read, the magic disappears from the pages and it becomes a normal book.",
-      bonus: 5,
-      price: null,
     ),
     WonderousItemsModel(
       type: "Slotless",

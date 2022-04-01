@@ -48,6 +48,7 @@ class EquipController extends ChangeNotifier {
   bool cantChooseTwoHandedAnymore = false;
   bool readyToChoseShield = false;
   bool equipGenerated = false;
+  bool magicEquipGenerated = false;
   bool penaltyToDexApplied = false;
   bool showDescriptionOfMagicItems = false;
 
@@ -176,6 +177,7 @@ class EquipController extends ChangeNotifier {
     cantChooseTwoHandedAnymore = false;
     readyToChoseShield = false;
     equipGenerated = false;
+    char.charEquip.shield = null;
     for (var select in filteredOffHandTypes) {
       select.isSelected = false;
     }
@@ -322,7 +324,7 @@ class EquipController extends ChangeNotifier {
   generateEquip() {
     calculatingAC();
     generateWeapon();
-    generateEmercengyWeapon();
+    channelEmercengyWeaponToClass();
     calculateAttackAndDamage(chosenPrimaryWeaponType!, true, false, false);
     if (chosenSecondaryWeaponType != null) {
       calculateAttackAndDamage(chosenSecondaryWeaponType!, false, true, false);
@@ -370,34 +372,31 @@ class EquipController extends ChangeNotifier {
     notifyListeners();
   }
 
-  generateEmercengyWeapon() {
+  generateRandomEmergencyWeapon(
+      String option1, String option2, String option3) {
+    var randomWeapon = randomIndex.nextInt(10);
+    List<WeaponModel> weapon = listOfEquip.allWeapons
+        .where((element) =>
+            element.name == option1 ||
+            element.name == option2 ||
+            element.name == option3)
+        .toList();
+    weapon.shuffle();
+    randomWeapon < 4
+        ? char.charEquip.emergencyWeapon = weapon[0]
+        : randomWeapon > 3 && randomWeapon < 8
+            ? char.charEquip.emergencyWeapon = weapon[1]
+            : char.charEquip.emergencyWeapon = weapon[2];
+    notifyListeners();
+  }
+
+  channelEmercengyWeaponToClass() {
     if (listOfEquip.distanceTypes
         .any((element) => element == chosenPrimaryWeaponType)) {
-      WeaponModel weapon;
-      List<WeaponModel> list = listOfEquip.allWeapons
-          .where((element) =>
-              element.type!.wielding == "One-handed" &&
-              !element.forbiddenTo.contains(char.charClass.name))
-          .toList();
-      var randomWeapon = randomIndex.nextInt(list.length);
-      while (randomWeapon == list.length) {
-        randomWeapon = randomIndex.nextInt(list.length);
-      }
-      weapon = list[randomWeapon];
-      char.charEquip.emergencyWeapon = weapon;
+      generateRandomEmergencyWeapon("Shortsword", "Dagger", "Club");
     } else {
-      WeaponModel weapon;
-      List<WeaponModel> list = listOfEquip.allWeapons
-          .where((element) =>
-              element.type!.wielding == "Range" &&
-              !element.forbiddenTo.contains(char.charClass.name))
-          .toList();
-      var randomWeapon = randomIndex.nextInt(list.length);
-      while (randomWeapon == list.length) {
-        randomWeapon = randomIndex.nextInt(list.length);
-      }
-      weapon = list[randomWeapon];
-      char.charEquip.emergencyWeapon = weapon;
+      generateRandomEmergencyWeapon(
+          "Composite longbow", "Light crossbow", "Javelin");
     }
     char.combatStats.emergencyAttack = "";
     char.combatStats.emergencyDamage = "";
@@ -533,6 +532,11 @@ class EquipController extends ChangeNotifier {
     }
   }
 
+  updateMagicEquipGenerated() {
+    magicEquipGenerated = !magicEquipGenerated;
+    notifyListeners();
+  }
+
   // Move on with the selections ===========================================================
 
   advanceCreationStage() {
@@ -548,7 +552,6 @@ class EquipController extends ChangeNotifier {
   String? activateNextButton() {
     if (creationStage == 7) {
       populateListsOfWeaponFamily();
-      // populateListsOfArmorFamily();
       filterArmorToClass();
       advanceCreationStage();
       return null;
@@ -558,8 +561,8 @@ class EquipController extends ChangeNotifier {
       }
       advanceCreationStage();
     } else if (creationStage == 9) {
-      if (!equipGenerated) {
-        return "You need to have basic combat gear selected to advance";
+      if (!magicEquipGenerated) {
+        return "You need to have magic gear selected before advancing";
       } else {
         advanceCreationStage();
         return null;

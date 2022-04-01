@@ -116,24 +116,25 @@ class _EquipDevelopMentPageState extends State<EquipDevelopMentPage> {
                           ? const Icon(Icons.delete_forever, size: 40)
                           : null,
                       onGenerate: state.equipGenerated
-                          ? () {
-                              state.resetEquipStats();
-                            }
-                          : () {
-                              state.generateEquip();
-                            },
+                          ? () => state.resetEquipStats()
+                          : () => state.generateEquip(),
                     ),
                   if (state.creationStage == 9)
                     Consumer<MagicItemController>(
                         builder: (context, ctrl, child) {
                       return AppGenerateButton(
-                        icon: ctrl.magicItemsGenerated
-                            ? const Icon(Icons.delete_forever, size: 35)
-                            : null,
-                        onGenerate: ctrl.magicItemsGenerated
-                            ? () => ctrl.resetItems()
-                            : () => ctrl.generateMagicEquip(),
-                      );
+                          icon: ctrl.magicItemsGenerated
+                              ? const Icon(Icons.delete_forever, size: 35)
+                              : null,
+                          onGenerate: ctrl.magicItemsGenerated
+                              ? () {
+                                  ctrl.resetItems();
+                                  state.updateMagicEquipGenerated();
+                                }
+                              : () {
+                                  ctrl.generateMagicEquip();
+                                  state.updateMagicEquipGenerated();
+                                });
                     }),
                   AppAnimatedButton(
                       onTap: () => buttonFunction(state, context)),

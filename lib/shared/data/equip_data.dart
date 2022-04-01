@@ -61,7 +61,7 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "x2",
-        forbiddenTo: [],
+        forbiddenTo: ["Monk"],
         damage: "1d8",
         damageType: "Bludgeoning and piercing",
         type: WeaponFamilyModel(
@@ -162,7 +162,7 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "x4",
-        forbiddenTo: [],
+        forbiddenTo: ["Monk"],
         damage: "1d6",
         damageType: "Piercing",
         type: WeaponFamilyModel(
@@ -188,7 +188,7 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "x2",
-        forbiddenTo: [],
+        forbiddenTo: ["Monk"],
         damage: "1d8",
         damageType: "Bludgeoning",
         type: WeaponFamilyModel(
@@ -228,6 +228,7 @@ class EquipData {
           "Arcanist",
           "Sorcerer",
           "Aristocrat",
+          "Monk",
           "Noble",
           "Commoner",
           "Druid"
@@ -247,6 +248,7 @@ class EquipData {
         forbiddenTo: [
           "Wizard",
           "Arcanist",
+          "Monk",
           "Sorcerer",
           "Aristocrat",
           "Noble",
@@ -268,6 +270,7 @@ class EquipData {
           "Wizard",
           "Arcanist",
           "Sorcerer",
+          "Monk",
           "Aristocrat",
           "Noble",
           "Commoner",
@@ -319,6 +322,7 @@ class EquipData {
           "Sorcerer",
           "Aristocrat",
           "Noble",
+          "Monk",
           "Commoner",
           "Druid",
           "Bard",
@@ -378,6 +382,7 @@ class EquipData {
           "Sorcerer",
           "Aristocrat",
           "Noble",
+          "Monk",
           "Commoner",
           "Druid",
           "Rogue"
@@ -457,7 +462,9 @@ class EquipData {
     WeaponModel(
         isSelected: false,
         critical: "19-20 x2",
-        forbiddenTo: [],
+        forbiddenTo: [
+          "Monk",
+        ],
         damage: "1d6",
         damageType: "Piercing",
         type: WeaponFamilyModel(
@@ -995,6 +1002,7 @@ class EquipData {
         forbiddenTo: [
           "Wizard",
           "Arcanist",
+          "Monk",
           "Sorcerer",
           "Aristocrat",
           "Commoner",
@@ -1057,6 +1065,8 @@ class EquipData {
           "Noble",
           "Commoner",
           "Bard",
+          "Cleric",
+          "Monk",
           "Druid",
           "Rogue",
           "Summoner"
@@ -1084,7 +1094,9 @@ class EquipData {
           "Sorcerer",
           "Aristocrat",
           "Noble",
+          "Cleric",
           "Commoner",
+          "Monk",
           "Bard",
           "Druid",
           "Rogue",
@@ -1104,7 +1116,8 @@ class EquipData {
           "Commoner",
           "Bard",
           "Rogue",
-          "Summoner"
+          "Summoner",
+          "Monk",
         ],
         wielding: "Two-handed",
         picture: "assets/images/weapon_types/mace.svg"),
@@ -1133,6 +1146,7 @@ class EquipData {
           "Aristocrat",
           "Noble",
           "Commoner",
+          "Cleric",
           "Bard",
           "Rogue",
           "Summoner",
@@ -1152,7 +1166,8 @@ class EquipData {
           "Sorcerer",
           "Aristocrat",
           "Noble",
-          "Commoner"
+          "Commoner",
+          "Monk",
         ],
         wielding: "Range",
         picture: "assets/images/weapon_types/bow.svg"),

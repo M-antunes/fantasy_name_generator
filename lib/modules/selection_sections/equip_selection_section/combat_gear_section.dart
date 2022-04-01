@@ -273,60 +273,69 @@ class CombatGearSection extends StatelessWidget {
                       ],
                     ),
                   SizedBox(height: deviceHeight! * 0.01),
-                  const EquipSectionModal(label: "Armor"),
-                  SizedBox(height: deviceHeight! * 0.01),
-                  Row(
-                    children: [
-                      const SizedBox(width: 6),
-                      Text(state.char.charEquip.armour!.name!,
-                          style: AppTextStyle.subTextWhite),
-                      const SizedBox(width: 6),
-                      Text("AC bonus: ", style: AppTextStyle.statsLabel),
-                      Text("(${state.char.charEquip.armour!.defenseBonus!})",
-                          style: AppTextStyle.subTextWhite),
-                    ],
-                  ),
-                  SizedBox(height: deviceHeight! * 0.01),
-                  Row(
-                    children: [
-                      const SizedBox(width: 6),
-                      Text("Max Dex ", style: AppTextStyle.statsLabel),
-                      const SizedBox(width: 3),
-                      Text("(${state.char.charEquip.armour!.maxDexAllowed!})",
-                          style: AppTextStyle.subTextWhite),
-                      const SizedBox(width: 16),
-                      if (state.penaltyToDexApplied)
+                  if (state.chosenArmorType!.name != "No armor")
+                    Column(
+                      children: [
+                        const EquipSectionModal(label: "Armor"),
+                        SizedBox(height: deviceHeight! * 0.01),
                         Row(
                           children: [
-                            Text("Dex ", style: AppTextStyle.statsLabel),
-                            Text("${state.char.baseAtributes.dexterity!}  ",
-                                style: AppTextStyle.subTextWhite),
-                            Text(
-                              "(${state.char.modAtributes.dexterity!})",
-                              style: state.penaltyToDexApplied
-                                  ? AppTextStyle.penaltyStyle
-                                  : null,
-                            ),
                             const SizedBox(width: 6),
-                            Text("Penalty applied",
-                                style: AppTextStyle.penaltyStyleText),
+                            Text(state.char.charEquip.armour!.name!,
+                                style: AppTextStyle.subTextWhite),
+                            const SizedBox(width: 6),
+                            Text("AC bonus: ", style: AppTextStyle.statsLabel),
+                            Text(
+                                "(${state.char.charEquip.armour!.defenseBonus!})",
+                                style: AppTextStyle.subTextWhite),
                           ],
                         ),
-                    ],
-                  ),
-                  SizedBox(height: deviceHeight! * 0.01),
-                  Row(
-                    children: [
-                      const SizedBox(width: 6),
-                      Text("Check penalty: ", style: AppTextStyle.statsLabel),
-                      const SizedBox(width: 6),
-                      Text(
-                          state.char.charEquip.armour!.checkPenalty! == 0
-                              ? "(0)"
-                              : "(-${state.char.charEquip.armour!.checkPenalty!})",
-                          style: AppTextStyle.subTextWhite),
-                    ],
-                  ),
+                        SizedBox(height: deviceHeight! * 0.01),
+                        Row(
+                          children: [
+                            const SizedBox(width: 6),
+                            Text("Max Dex ", style: AppTextStyle.statsLabel),
+                            const SizedBox(width: 3),
+                            Text(
+                                "(${state.char.charEquip.armour!.maxDexAllowed!})",
+                                style: AppTextStyle.subTextWhite),
+                            const SizedBox(width: 16),
+                            if (state.penaltyToDexApplied)
+                              Row(
+                                children: [
+                                  Text("Dex ", style: AppTextStyle.statsLabel),
+                                  Text(
+                                      "${state.char.baseAtributes.dexterity!}  ",
+                                      style: AppTextStyle.subTextWhite),
+                                  Text(
+                                    "(${state.char.modAtributes.dexterity!})",
+                                    style: state.penaltyToDexApplied
+                                        ? AppTextStyle.penaltyStyle
+                                        : null,
+                                  ),
+                                  const SizedBox(width: 6),
+                                  Text("Penalty applied",
+                                      style: AppTextStyle.penaltyStyleText),
+                                ],
+                              ),
+                          ],
+                        ),
+                        SizedBox(height: deviceHeight! * 0.01),
+                        Row(
+                          children: [
+                            const SizedBox(width: 6),
+                            Text("Check penalty: ",
+                                style: AppTextStyle.statsLabel),
+                            const SizedBox(width: 6),
+                            Text(
+                                state.char.charEquip.armour!.checkPenalty! == 0
+                                    ? "(0)"
+                                    : "(-${state.char.charEquip.armour!.checkPenalty!})",
+                                style: AppTextStyle.subTextWhite),
+                          ],
+                        ),
+                      ],
+                    ),
                 ],
               ),
             ),

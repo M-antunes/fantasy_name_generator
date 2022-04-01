@@ -318,8 +318,8 @@ class ClassData {
     LevelModel(level: 25, good: 15, bad: 9),
     LevelModel(level: 26, good: 16, bad: 10),
     LevelModel(level: 27, good: 17, bad: 10),
-    LevelModel(level: 28, good: 17, bad: 10),
-    LevelModel(level: 29, good: 18, bad: 10),
-    LevelModel(level: 30, good: 19, bad: 11),
+    LevelModel(level: 28, good: 17, bad: 11),
+    LevelModel(level: 29, good: 18, bad: 11),
+    LevelModel(level: 30, good: 19, bad: 12),
   ];
 }
