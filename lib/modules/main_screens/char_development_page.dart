@@ -12,11 +12,14 @@ import 'package:fantasy_name_generator/shared/widgets/call_message_snackbar.dart
 import '../../shared/widgets/app_generate_button.dart';
 import '../selection_sections/char_selection_sections/alignment_section.dart';
 import '../selection_sections/char_selection_sections/class_section.dart';
+import '../selection_sections/char_selection_sections/combat_equip_section.dart';
+import '../selection_sections/char_selection_sections/combat_style_section.dart';
 import '../selection_sections/char_selection_sections/gender_section.dart';
 import '../selection_sections/char_selection_sections/level_section.dart';
 import '../selection_sections/char_selection_sections/name_section.dart';
 import '../selection_sections/char_selection_sections/race_section.dart';
 import '../selection_sections/char_selection_sections/stats_section.dart';
+import '../selection_sections/char_selection_sections/widgets/character_info_bar.dart';
 
 class CharDevelopmentPage extends StatefulWidget {
   const CharDevelopmentPage({Key? key}) : super(key: key);
@@ -33,6 +36,7 @@ class _CharDevelopmentPageState extends State<CharDevelopmentPage>
   void initState() {
     namesController = context.read<CharController>();
     namesController.getInitialRace();
+    namesController.getInitialCombatStyle();
     namesController.getInitialClass();
     namesController.getInitialAlignment();
     super.initState();
@@ -50,22 +54,31 @@ class _CharDevelopmentPageState extends State<CharDevelopmentPage>
               CharSelectionLabel(
                   size: size,
                   label: state.creationStage == 1
-                      ? "Character - Race"
+                      ? "Race"
                       : state.creationStage == 2
-                          ? "Character - Gender & Name"
+                          ? "Gender & Name"
                           : state.creationStage == 3
-                              ? "Character - Class"
+                              ? "${state.newName} ${state.newLastName} - Combat Style"
                               : state.creationStage == 4
-                                  ? "Character - Alignment"
+                                  ? "${state.newName} ${state.newLastName} - Class"
                                   : state.creationStage == 5
-                                      ? "Character - Level"
-                                      : state.creationStage == 6 &&
-                                              state.isCharGeneratorCleared
-                                          ? "Character - Basic features generator"
-                                          : 'Character - Basic features complete'),
+                                      ? "${state.newName} ${state.newLastName} - Combat Equip"
+                                      : state.creationStage == 6
+                                          ? "${state.newName} ${state.newLastName} - Aligment"
+                                          : state.creationStage == 7
+                                              ? "${state.newName} ${state.newLastName} - Level"
+                                              : state.creationStage == 8 &&
+                                                      state
+                                                          .isCharGeneratorCleared
+                                                  ? "${state.newName} ${state.newLastName} - Basic features generator"
+                                                  : '${state.newName} ${state.newLastName} - Basic features complete'),
               ProgressionBar(
                 controller: state,
               ),
+              CharacterInfoBar(
+                  race: state.chosenRace.name,
+                  className:
+                      state.creationStage == 5 ? state.chosenClass.name : ""),
               SizedBox(height: size.height * 0.01),
               if (state.creationStage == 1) const RaceSelection(),
               if (state.creationStage == 2)
@@ -85,10 +98,12 @@ class _CharDevelopmentPageState extends State<CharDevelopmentPage>
                     ),
                   ],
                 ),
-              if (state.creationStage == 3) const ClassSelection(),
-              if (state.creationStage == 4) const AlignmentSelection(),
-              if (state.creationStage == 5) const LevelSelection(),
-              if (state.creationStage == 6) const StatsSection(),
+              if (state.creationStage == 3) const CombatStyleSection(),
+              if (state.creationStage == 4) const ClassSelection(),
+              if (state.creationStage == 5) const CombatEquipSection(),
+              if (state.creationStage == 6) const AlignmentSelection(),
+              if (state.creationStage == 7) const LevelSelection(),
+              if (state.creationStage == 8) const StatsSection(),
             ],
           );
         }),
@@ -105,7 +120,7 @@ class _CharDevelopmentPageState extends State<CharDevelopmentPage>
                   onTap: () {
                     if (state.creationStage == 1) {
                       Navigator.of(context).pop();
-                    } else if (state.creationStage == 6) {
+                    } else if (state.creationStage == 8) {
                       state.resetLevel();
                       state.retreatCreationStage();
                     } else {
@@ -116,7 +131,7 @@ class _CharDevelopmentPageState extends State<CharDevelopmentPage>
                 AppGenerateButton(
                   onGenerate: () => state.newNameGenerator(),
                 ),
-              if (state.creationStage == 6)
+              if (state.creationStage == 8)
                 AppGenerateButton(
                   icon: state.isCharGeneratorCleared
                       ? null
@@ -131,7 +146,7 @@ class _CharDevelopmentPageState extends State<CharDevelopmentPage>
                           state.updateCharModel();
                         },
                 ),
-              state.creationStage == 6
+              state.creationStage == 8
                   ? AppAnimatedButton(
                       onTap: () => Navigator.pushNamed(
                           context, AppRoutes.equipPage,
@@ -139,21 +154,21 @@ class _CharDevelopmentPageState extends State<CharDevelopmentPage>
                     )
                   : AppAnimatedButton(
                       color: state.isCharGeneratorCleared &&
-                              state.creationStage == 6
+                              state.creationStage == 8
                           ? Colors.white10
                           : null,
                       onTap: !state.isCharGeneratorCleared &&
-                              state.creationStage != 6
+                              state.creationStage != 8
                           ? () => buttonFunction(state, context)
                           : !state.isCharGeneratorCleared &&
-                                  state.creationStage == 6
+                                  state.creationStage == 8
                               ? () => buttonFunction(state, context)
                               : state.isCharGeneratorCleared &&
-                                      state.creationStage != 6
+                                      state.creationStage != 8
                                   ? () => buttonFunction(state, context)
                                   : () {},
                       style: state.isCharGeneratorCleared &&
-                              state.creationStage == 6
+                              state.creationStage == 8
                           ? const TextStyle(color: Colors.white24, fontSize: 22)
                           : null,
                     ),

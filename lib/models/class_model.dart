@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
+
 class ClassModel {
   final String name;
   bool isSelected;
@@ -8,6 +10,8 @@ class ClassModel {
   final String? resistUpgrade;
   final String? description;
   final String? classIcon;
+  final String combatStyle;
+  final List<String> forbidenArmorType;
   ClassModel({
     required this.name,
     required this.isSelected,
@@ -16,6 +20,8 @@ class ClassModel {
     this.resistUpgrade,
     this.description,
     this.classIcon,
+    required this.combatStyle,
+    required this.forbidenArmorType,
   });
 
   ClassModel copyWith({
@@ -26,6 +32,8 @@ class ClassModel {
     String? resistUpgrade,
     String? description,
     String? classIcon,
+    String? combatStyle,
+    List<String>? forbidenArmorType,
   }) {
     return ClassModel(
       name: name ?? this.name,
@@ -35,6 +43,8 @@ class ClassModel {
       resistUpgrade: resistUpgrade ?? this.resistUpgrade,
       description: description ?? this.description,
       classIcon: classIcon ?? this.classIcon,
+      combatStyle: combatStyle ?? this.combatStyle,
+      forbidenArmorType: forbidenArmorType ?? this.forbidenArmorType,
     );
   }
 
@@ -47,6 +57,8 @@ class ClassModel {
       'resistUpgrade': resistUpgrade,
       'description': description,
       'classIcon': classIcon,
+      'combatStyle': combatStyle,
+      'forbidenArmorType': forbidenArmorType,
     };
   }
 
@@ -59,6 +71,8 @@ class ClassModel {
       resistUpgrade: map['resistUpgrade'],
       description: map['description'],
       classIcon: map['classIcon'],
+      combatStyle: map['combatStyle'] ?? '',
+      forbidenArmorType: List<String>.from(map['forbidenArmorType']),
     );
   }
 
@@ -69,7 +83,7 @@ class ClassModel {
 
   @override
   String toString() {
-    return 'ClassModel(name: $name, isSelected: $isSelected, mainAtrb: $mainAtrb, hitDice: $hitDice, resistUpgrade: $resistUpgrade, description: $description, classIcon: $classIcon)';
+    return 'ClassModel(name: $name, isSelected: $isSelected, mainAtrb: $mainAtrb, hitDice: $hitDice, resistUpgrade: $resistUpgrade, description: $description, classIcon: $classIcon, combatStyle: $combatStyle, forbidenArmorType: $forbidenArmorType)';
   }
 
   @override
@@ -83,7 +97,9 @@ class ClassModel {
         other.hitDice == hitDice &&
         other.resistUpgrade == resistUpgrade &&
         other.description == description &&
-        other.classIcon == classIcon;
+        other.classIcon == classIcon &&
+        other.combatStyle == combatStyle &&
+        listEquals(other.forbidenArmorType, forbidenArmorType);
   }
 
   @override
@@ -94,6 +110,8 @@ class ClassModel {
         hitDice.hashCode ^
         resistUpgrade.hashCode ^
         description.hashCode ^
-        classIcon.hashCode;
+        classIcon.hashCode ^
+        combatStyle.hashCode ^
+        forbidenArmorType.hashCode;
   }
 }

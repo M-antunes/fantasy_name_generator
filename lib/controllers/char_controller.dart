@@ -7,6 +7,7 @@ import 'package:fantasy_name_generator/models/base_atribute_model.dart';
 import 'package:fantasy_name_generator/models/char_model.dart';
 import 'package:fantasy_name_generator/models/class_model.dart';
 import 'package:fantasy_name_generator/models/combat_model.dart';
+import 'package:fantasy_name_generator/models/combat_style_choice_model.dart';
 import 'package:fantasy_name_generator/models/equip_models/equip_model.dart';
 import 'package:fantasy_name_generator/models/equip_models/loot_model.dart';
 import 'package:fantasy_name_generator/models/key_value.model.dart';
@@ -37,6 +38,8 @@ class CharController extends ChangeNotifier {
   late RaceModel tempRaceForSwitching;
   late ClassModel tempoClassForSwitching;
   late AlignmentModel tempAlignmentForSwitching;
+  late CombatStyleChoiceModel tempStyleForSwitching;
+  late CombatStyleChoiceModel chosenStyle;
   late CharModel generatedChar;
   var letters = LettersData();
   var listOfRaces = RaceData();
@@ -53,6 +56,7 @@ class CharController extends ChangeNotifier {
   String newLastName = ' - ? - ';
   List<SavedNameModel> savedNames = [];
   List<AlignmentModel> filteredAlignments = [];
+  List<ClassModel> filteredClasses = [];
   List<String> fullName = [];
   List<String> tempFullName = [];
   bool isMale = true;
@@ -156,7 +160,42 @@ class CharController extends ChangeNotifier {
 
 // ====================================================================================
 
+// Functions related to the combat style choice
+
+  getInitialCombatStyle() {
+    tempStyleForSwitching = listOfClasses.combatStyles[0];
+    chosenStyle = tempStyleForSwitching;
+  }
+
+  updateChosenCombatStyle() {
+    chosenStyle = tempStyleForSwitching;
+    notifyListeners();
+  }
+
+  switchCombatStyle(CombatStyleChoiceModel style) {
+    style.isSelected = !style.isSelected;
+    for (var select in listOfClasses.combatStyles) {
+      select.isSelected = false;
+    }
+    style.isSelected = !style.isSelected;
+    tempStyleForSwitching = style;
+    notifyListeners();
+  }
+// ====================================================================================
+
 // Functions related to the Character Class
+
+  filterClasses() {
+    filteredClasses = listOfClasses.allClasses
+        .where((element) => element.combatStyle == chosenStyle.name)
+        .toList();
+    for (var i in filteredClasses) {
+      i.isSelected = false;
+    }
+    tempoClassForSwitching = filteredClasses.first;
+    tempoClassForSwitching.isSelected = true;
+    notifyListeners();
+  }
 
   getInitialClass() {
     initialClass = listOfClasses.allClasses[0];
@@ -374,8 +413,8 @@ class CharController extends ChangeNotifier {
     double baseAge = 0;
     var ageIncrement = 0;
     int dif = 0;
-    bool containsPhys = listOfClasses.physicalClasses
-        .any((element) => element.name == char.charClass.name);
+    bool containsPhys = listOfClasses.allClasses
+        .any((element) => element.combatStyle == "Physical");
     if (containsPhys) {
       if (char.charClass.name == "Barbarian" ||
           char.charClass.name == "Rogue") {
@@ -388,8 +427,8 @@ class CharController extends ChangeNotifier {
         baseAge = baseAge + ageIncrement;
       }
     }
-    bool containsMent = listOfClasses.mentalClasses
-        .any((element) => element.name == char.charClass.name);
+    bool containsMent = listOfClasses.allClasses.any((element) =>
+        element.combatStyle == "Hybrid" || element.combatStyle == "Spellcater");
     if (containsMent) {
       ageIncrement = randomIndex.nextInt(mentClassDif);
       baseAge = baseAge + ageIncrement;
@@ -1205,6 +1244,10 @@ class CharController extends ChangeNotifier {
         sortAtributesToClass(atrbValues[0], atrbValues[2], atrbValues[1],
             atrbValues[4], atrbValues[3], atrbValues[5]);
         break;
+      case "Arcanist":
+        sortAtributesToClass(atrbValues[5], atrbValues[2], atrbValues[4],
+            atrbValues[0], atrbValues[3], atrbValues[1]);
+        break;
       case "Alchemist":
         sortAtributesToClass(atrbValues[5], atrbValues[2], atrbValues[3],
             atrbValues[0], atrbValues[1], atrbValues[4]);
@@ -1303,8 +1346,14 @@ class CharController extends ChangeNotifier {
   }
 
   ajustStatsToLevel() {
-    var physicalChars = listOfClasses.physicalClasses;
-    var mentalChars = listOfClasses.mentalClasses;
+    var physicalChars = listOfClasses.allClasses
+        .where((element) => element.combatStyle == "Physical")
+        .toList();
+    var mentalChars = listOfClasses.allClasses
+        .where((element) =>
+            element.combatStyle == "Hybrid" ||
+            element.combatStyle == "Spellcaster")
+        .toList();
     int level = levelSelected + 1;
     int mainAtributeIncrement = 0;
     ClassModel? classGotten =
@@ -1652,7 +1701,6 @@ class CharController extends ChangeNotifier {
   }
 
 //=======================================================================================
-  //
 
   String? activateNextButton() {
     if (creationStage == 1) {
@@ -1667,15 +1715,23 @@ class CharController extends ChangeNotifier {
         return null;
       }
     } else if (creationStage == 3) {
+      updateChosenCombatStyle();
+      filterClasses();
+      advanceCreationStage();
+      return null;
+    } else if (creationStage == 4) {
       updateChosenClass();
       filterAlignmentsToClass();
       advanceCreationStage();
       return null;
-    } else if (creationStage == 4) {
+    } else if (creationStage == 5) {
+      advanceCreationStage();
+      return null;
+    } else if (creationStage == 6) {
       updateChosenAlignment();
       advanceCreationStage();
       return null;
-    } else if (creationStage == 5) {
+    } else if (creationStage == 7) {
       if (levelSelected == -1) {
         return "You need to select a level befor advancing";
       } else {
@@ -1686,7 +1742,7 @@ class CharController extends ChangeNotifier {
         advanceCreationStage();
       }
       return null;
-    } else if (creationStage == 6) {
+    } else if (creationStage == 8) {
       advanceCreationStage();
       return null;
     }

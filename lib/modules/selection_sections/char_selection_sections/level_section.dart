@@ -1,3 +1,4 @@
+import 'package:fantasy_name_generator/shared/themes/app_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -33,7 +34,8 @@ class LevelSelection extends StatelessWidget {
                                   : state.chosenClass.name == "Noble"
                                       ? "Nobles CANNOT be Epic and go no further than lv:15"
                                       : "",
-                          textAlign: TextAlign.center),
+                          textAlign: TextAlign.center,
+                          style: AppTextStyle.subTextGrey),
                     ),
                     SizedBox(height: size.height * 0.01),
                     Container(

@@ -4,6 +4,9 @@ import 'package:provider/provider.dart';
 
 import 'package:fantasy_name_generator/controllers/char_controller.dart';
 
+import '../../../shared/constants/phone_sizes.dart';
+import 'widgets/long_description_widget.dart';
+
 class AlignmentSelection extends StatelessWidget {
   const AlignmentSelection({
     Key? key,
@@ -11,8 +14,6 @@ class AlignmentSelection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-
     return Consumer<CharController>(builder: (context, state, child) {
       return Column(
         children: [
@@ -40,20 +41,20 @@ class AlignmentSelection extends StatelessWidget {
               style: AppTextStyle.alignmentLabel,
             ),
           ),
-          SizedBox(height: size.height * 0.01),
+          SizedBox(height: deviceHeight! * 0.01),
           Container(
-            width: size.width * 0.92,
-            height: size.height * 0.003,
+            width: deviceWidth! * 0.92,
+            height: deviceHeight! * 0.003,
             color: Colors.grey,
           ),
-          SizedBox(height: size.height * 0.01),
+          SizedBox(height: deviceHeight! * 0.01),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 6),
             child: GridView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                    maxCrossAxisExtent: size.width * 0.4,
+                    maxCrossAxisExtent: deviceWidth! * 0.4,
                     childAspectRatio: 5 / 2.5,
                     crossAxisSpacing: 1,
                     mainAxisSpacing: 1),
@@ -82,19 +83,11 @@ class AlignmentSelection extends StatelessWidget {
                       });
                 }),
           ),
-          // SizedBox(height: size.height * 0.03),
-          // Row(
-          //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          //   children: [
-          //     AppAnimatedButton(
-          //       label: "Previous",
-          //       onGenerate: () => state.retreatCreationStage(),
-          //     ),
-          //     AppAnimatedButton(
-          //       onGenerate: onTap,
-          //     ),
-          //   ],
-          // )
+          SizedBox(height: deviceHeight! * 0.05),
+          LongDescriptionWidget(
+            label: state.tempAlignmentForSwitching.name,
+            description: state.tempAlignmentForSwitching.description,
+          )
         ],
       );
     });

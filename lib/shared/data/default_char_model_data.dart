@@ -3,6 +3,7 @@ import 'package:fantasy_name_generator/models/base_atribute_model.dart';
 import 'package:fantasy_name_generator/models/char_model.dart';
 import 'package:fantasy_name_generator/models/class_model.dart';
 import 'package:fantasy_name_generator/models/combat_model.dart';
+import 'package:fantasy_name_generator/models/combat_style_choice_model.dart';
 import 'package:fantasy_name_generator/models/equip_models/equip_model.dart';
 import 'package:fantasy_name_generator/models/equip_models/loot_model.dart';
 import 'package:fantasy_name_generator/models/equip_models/weapon_model.dart';
@@ -25,8 +26,15 @@ class DefaultCharModelData {
     ),
     baseAtributes: AtributeModel(),
     modAtributes: AtributeModel(),
-    charClass: ClassModel(name: "Commoner", isSelected: false, mainAtrb: "Str"),
-    alignment: AlignmentModel(name: "Neutral", isSelected: false),
+    charClass: ClassModel(
+      forbidenArmorType: [],
+      name: "Commoner",
+      isSelected: false,
+      mainAtrb: "Str",
+      combatStyle: "Spellcaster",
+    ),
+    alignment:
+        AlignmentModel(name: "Neutral", isSelected: false, description: ""),
     hitPoints: 10,
     resistances: ResistanceModel(),
     combatStats: CombatModel(),

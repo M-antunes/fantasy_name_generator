@@ -215,6 +215,16 @@ class AppTextStyle {
             ? 17
             : 19,
   );
+  static final subTextRed = TextStyle(
+    fontWeight: FontWeight.w600,
+    color: AppColors.primary,
+    fontFamily: "David",
+    fontSize: deviceWidth! < 350
+        ? 16
+        : deviceWidth! > 350 && deviceWidth! < 400
+            ? 17
+            : 19,
+  );
   static final subTextWhitePlusSize = TextStyle(
     fontWeight: FontWeight.w400,
     color: Colors.white,

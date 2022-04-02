@@ -7,6 +7,8 @@ import 'package:provider/provider.dart';
 import 'package:fantasy_name_generator/controllers/char_controller.dart';
 import 'package:fantasy_name_generator/shared/themes/app_text_styles.dart';
 
+import 'widgets/long_description_widget.dart';
+
 class ClassSelection extends StatelessWidget {
   const ClassSelection({
     Key? key,
@@ -30,9 +32,9 @@ class ClassSelection extends StatelessWidget {
                       crossAxisSpacing: 0,
                       mainAxisSpacing: 8),
                   physics: const NeverScrollableScrollPhysics(),
-                  itemCount: state.listOfClasses.allClasses.length,
+                  itemCount: state.filteredClasses.length,
                   itemBuilder: (context, index) {
-                    var charClass = state.listOfClasses.allClasses[index];
+                    var charClass = state.filteredClasses[index];
                     return Column(
                       children: [
                         InkWell(
@@ -60,36 +62,10 @@ class ClassSelection extends StatelessWidget {
                     );
                   }),
               SizedBox(height: size.height * 0.02),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15),
-                  child: Text(state.tempoClassForSwitching.name,
-                      style: AppTextStyle.traitValue),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 3),
-                child: Container(
-                  width: size.width * 0.93,
-                  height: size.height * 0.003,
-                  color: Colors.grey,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
-                child: RichText(
-                  textAlign: TextAlign.justify,
-                  text: TextSpan(
-                    children: [
-                      TextSpan(
-                        text: state.tempoClassForSwitching.description,
-                        style: AppTextStyle.longDescription,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+              LongDescriptionWidget(
+                label: state.tempoClassForSwitching.name,
+                description: state.tempoClassForSwitching.description!,
+              )
             ],
           );
         },
