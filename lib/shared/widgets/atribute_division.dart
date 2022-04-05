@@ -19,10 +19,10 @@ class AtributeDivision extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(height: deviceHeight! * 0.005),
+        SizedBox(height: deviceHeight! * 0.01),
         const AppHorizontalLine(),
         Padding(
-            padding: const EdgeInsets.only(top: 3),
+            padding: const EdgeInsets.only(top: 3, left: 6),
             child: Text(
               label,
               style: AppTextStyle.atributeDivisionText,

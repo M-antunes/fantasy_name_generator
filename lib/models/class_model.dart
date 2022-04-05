@@ -12,6 +12,7 @@ class ClassModel {
   final String? classIcon;
   final String combatStyle;
   final List<String> forbidenArmorType;
+  final List<String> permittedAligments;
   ClassModel({
     required this.name,
     required this.isSelected,
@@ -22,6 +23,7 @@ class ClassModel {
     this.classIcon,
     required this.combatStyle,
     required this.forbidenArmorType,
+    required this.permittedAligments,
   });
 
   ClassModel copyWith({
@@ -34,6 +36,7 @@ class ClassModel {
     String? classIcon,
     String? combatStyle,
     List<String>? forbidenArmorType,
+    List<String>? forbidenAligments,
   }) {
     return ClassModel(
       name: name ?? this.name,
@@ -45,6 +48,7 @@ class ClassModel {
       classIcon: classIcon ?? this.classIcon,
       combatStyle: combatStyle ?? this.combatStyle,
       forbidenArmorType: forbidenArmorType ?? this.forbidenArmorType,
+      permittedAligments: forbidenAligments ?? this.permittedAligments,
     );
   }
 
@@ -59,6 +63,7 @@ class ClassModel {
       'classIcon': classIcon,
       'combatStyle': combatStyle,
       'forbidenArmorType': forbidenArmorType,
+      'forbidenAligments': permittedAligments,
     };
   }
 
@@ -73,6 +78,7 @@ class ClassModel {
       classIcon: map['classIcon'],
       combatStyle: map['combatStyle'] ?? '',
       forbidenArmorType: List<String>.from(map['forbidenArmorType']),
+      permittedAligments: List<String>.from(map['forbidenAligments']),
     );
   }
 
@@ -83,7 +89,7 @@ class ClassModel {
 
   @override
   String toString() {
-    return 'ClassModel(name: $name, isSelected: $isSelected, mainAtrb: $mainAtrb, hitDice: $hitDice, resistUpgrade: $resistUpgrade, description: $description, classIcon: $classIcon, combatStyle: $combatStyle, forbidenArmorType: $forbidenArmorType)';
+    return 'ClassModel(name: $name, isSelected: $isSelected, mainAtrb: $mainAtrb, hitDice: $hitDice, resistUpgrade: $resistUpgrade, description: $description, classIcon: $classIcon, combatStyle: $combatStyle, forbidenArmorType: $forbidenArmorType, forbidenAligments: $permittedAligments)';
   }
 
   @override
@@ -99,7 +105,8 @@ class ClassModel {
         other.description == description &&
         other.classIcon == classIcon &&
         other.combatStyle == combatStyle &&
-        listEquals(other.forbidenArmorType, forbidenArmorType);
+        listEquals(other.forbidenArmorType, forbidenArmorType) &&
+        listEquals(other.permittedAligments, permittedAligments);
   }
 
   @override
@@ -112,6 +119,7 @@ class ClassModel {
         description.hashCode ^
         classIcon.hashCode ^
         combatStyle.hashCode ^
-        forbidenArmorType.hashCode;
+        forbidenArmorType.hashCode ^
+        permittedAligments.hashCode;
   }
 }

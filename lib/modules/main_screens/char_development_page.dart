@@ -35,10 +35,10 @@ class _CharDevelopmentPageState extends State<CharDevelopmentPage>
   @override
   void initState() {
     namesController = context.read<CharController>();
-    namesController.getInitialRace();
+    namesController.starttempRace();
     namesController.getInitialCombatStyle();
-    namesController.getInitialClass();
-    namesController.getInitialAlignment();
+    namesController.startTempClass();
+    // namesController.startTempAlignment();
     super.initState();
   }
 
@@ -75,10 +75,16 @@ class _CharDevelopmentPageState extends State<CharDevelopmentPage>
               ProgressionBar(
                 controller: state,
               ),
-              CharacterInfoBar(
-                  race: state.chosenRace.name,
-                  className:
-                      state.creationStage == 5 ? state.chosenClass.name : ""),
+              if (state.creationStage != 8)
+                CharacterInfoBar(
+                    race: state.creationStage > 1 ? state.chosenRace.name : "",
+                    gender: state.creationStage == 1 || state.creationStage == 2
+                        ? ""
+                        : state.isMale
+                            ? "Male"
+                            : "Female",
+                    className:
+                        state.creationStage > 4 ? state.chosenClass.name : ""),
               SizedBox(height: size.height * 0.01),
               if (state.creationStage == 1) const RaceSelection(),
               if (state.creationStage == 2)
@@ -150,7 +156,7 @@ class _CharDevelopmentPageState extends State<CharDevelopmentPage>
                   ? AppAnimatedButton(
                       onTap: () => Navigator.pushNamed(
                           context, AppRoutes.equipPage,
-                          arguments: state.generatedChar),
+                          arguments: state.cha),
                     )
                   : AppAnimatedButton(
                       color: state.isCharGeneratorCleared &&

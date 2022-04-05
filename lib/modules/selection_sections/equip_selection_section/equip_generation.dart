@@ -264,20 +264,23 @@ class EquipSectionModal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: deviceHeight! * 0.03,
-      width: double.infinity,
-      decoration: const BoxDecoration(
-          gradient: LinearGradient(colors: [
-        AppColors.primaryText0,
-        Colors.transparent,
-      ], begin: Alignment.centerLeft, end: Alignment.bottomRight)),
-      child: Align(
-          alignment: Alignment.centerLeft,
-          child: Padding(
-            padding: const EdgeInsets.only(left: 4),
-            child: Text(label, style: AppTextStyle.subTextWhite),
-          )),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 6),
+      child: Container(
+        height: deviceHeight! * 0.03,
+        width: double.infinity,
+        decoration: const BoxDecoration(
+            gradient: LinearGradient(colors: [
+          AppColors.primaryText0,
+          Colors.transparent,
+        ], begin: Alignment.centerLeft, end: Alignment.bottomRight)),
+        child: Align(
+            alignment: Alignment.centerLeft,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 4),
+              child: Text(label, style: AppTextStyle.subTextWhite),
+            )),
+      ),
     );
   }
 }

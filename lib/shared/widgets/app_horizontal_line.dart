@@ -4,9 +4,11 @@ import 'package:fantasy_name_generator/shared/constants/phone_sizes.dart';
 
 class AppHorizontalLine extends StatelessWidget {
   final double? defineWidth;
+  final Color? color;
   const AppHorizontalLine({
     Key? key,
     this.defineWidth,
+    this.color,
   }) : super(key: key);
 
   @override
@@ -14,7 +16,7 @@ class AppHorizontalLine extends StatelessWidget {
     return Container(
       width: defineWidth ?? deviceWidth! * 0.92,
       height: deviceHeight! * 0.002,
-      color: Colors.grey,
+      color: color ?? Colors.grey,
     );
   }
 }

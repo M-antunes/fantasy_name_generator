@@ -13,6 +13,7 @@ import 'package:fantasy_name_generator/models/equip_models/loot_model.dart';
 import 'package:fantasy_name_generator/models/key_value.model.dart';
 import 'package:fantasy_name_generator/models/letter_model.dart';
 import 'package:fantasy_name_generator/models/name_model.dart';
+import 'package:fantasy_name_generator/models/physical_style_model.dart';
 import 'package:fantasy_name_generator/models/resistance_model.dart';
 import 'package:fantasy_name_generator/models/saved_name_model.dart';
 import 'package:fantasy_name_generator/shared/data/alignment_data.dart';
@@ -30,17 +31,15 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class CharController extends ChangeNotifier {
   late RaceModel chosenRace;
-  late RaceModel initialRace;
   late ClassModel chosenClass;
-  late ClassModel initialClass;
   late AlignmentModel chosenAlignment;
-  late AlignmentModel initialAlignment;
   late RaceModel tempRaceForSwitching;
-  late ClassModel tempoClassForSwitching;
+  late ClassModel tempClassForSwitching;
   late AlignmentModel tempAlignmentForSwitching;
   late CombatStyleChoiceModel tempStyleForSwitching;
   late CombatStyleChoiceModel chosenStyle;
-  late CharModel generatedChar;
+  late PhysicalStyleModel physicalStyleChoice;
+  late CharModel cha;
   var letters = LettersData();
   var listOfRaces = RaceData();
   var listOfClasses = ClassData();
@@ -135,10 +134,8 @@ class CharController extends ChangeNotifier {
 
 // Functions related to the Character Race
 
-  getInitialRace() {
-    initialRace = listOfRaces.races[0];
-    chosenRace = initialRace;
-    tempRaceForSwitching = chosenRace;
+  starttempRace() {
+    tempRaceForSwitching = listOfRaces.races[0];
   }
 
   updateChosenRace() {
@@ -164,7 +161,6 @@ class CharController extends ChangeNotifier {
 
   getInitialCombatStyle() {
     tempStyleForSwitching = listOfClasses.combatStyles[0];
-    chosenStyle = tempStyleForSwitching;
   }
 
   updateChosenCombatStyle() {
@@ -173,7 +169,6 @@ class CharController extends ChangeNotifier {
   }
 
   switchCombatStyle(CombatStyleChoiceModel style) {
-    style.isSelected = !style.isSelected;
     for (var select in listOfClasses.combatStyles) {
       select.isSelected = false;
     }
@@ -181,6 +176,16 @@ class CharController extends ChangeNotifier {
     tempStyleForSwitching = style;
     notifyListeners();
   }
+
+  switchPhysicalStyle(PhysicalStyleModel style) {
+    for (var select in listOfClasses.physicalStyles) {
+      select.isSelected = false;
+    }
+    style.isSelected = !style.isSelected;
+    physicalStyleChoice = style;
+    notifyListeners();
+  }
+
 // ====================================================================================
 
 // Functions related to the Character Class
@@ -192,19 +197,17 @@ class CharController extends ChangeNotifier {
     for (var i in filteredClasses) {
       i.isSelected = false;
     }
-    tempoClassForSwitching = filteredClasses.first;
-    tempoClassForSwitching.isSelected = true;
+    tempClassForSwitching = filteredClasses.first;
+    tempClassForSwitching.isSelected = true;
     notifyListeners();
   }
 
-  getInitialClass() {
-    initialClass = listOfClasses.allClasses[0];
-    chosenClass = initialClass;
-    tempoClassForSwitching = initialClass;
+  startTempClass() {
+    tempClassForSwitching = listOfClasses.allClasses[0];
   }
 
   updateChosenClass() {
-    chosenClass = tempoClassForSwitching;
+    chosenClass = tempClassForSwitching;
     notifyListeners();
   }
 
@@ -214,18 +217,12 @@ class CharController extends ChangeNotifier {
       select.isSelected = false;
     }
     charClass.isSelected = !charClass.isSelected;
-    tempoClassForSwitching = charClass;
+    tempClassForSwitching = charClass;
     notifyListeners();
   }
 // ====================================================================================
 
 // Functions related to the Character Alignment
-
-  getInitialAlignment() {
-    filteredAlignments = listOfAlignments.allAlignments;
-    initialAlignment = listOfAlignments.allAlignments[0];
-    chosenAlignment = initialAlignment;
-  }
 
   updateChosenAlignment() {
     chosenAlignment = tempAlignmentForSwitching;
@@ -242,64 +239,12 @@ class CharController extends ChangeNotifier {
     notifyListeners();
   }
 
-  filterAlignments(String permited1, String permited2, String permited3,
-      String permited4, String permited5, String permited6) {
-    return listOfAlignments.allAlignments
-        .where((type) =>
-            type.name == permited1 ||
-            type.name == permited2 ||
-            type.name == permited3 ||
-            type.name == permited4 ||
-            type.name == permited5 ||
-            type.name == permited6)
-        .toList();
-  }
-
   filterAlignmentsToClass() {
-    switch (chosenClass.name) {
-      case "Barbarian":
-        filteredAlignments = filterAlignments("Neutral Good", "Neutral",
-            "Neutral Evil", "Chaotic Good", "Chaotic Neutral", "Chaotic Evil");
-        notifyListeners();
-        break;
-      case "Bandit":
-        filteredAlignments = filterAlignments("", "Neutral", "Neutral Evil", "",
-            "Chaotic Neutral", "Chaotic Evil");
-        notifyListeners();
-        break;
-      case "Cleric":
-        filteredAlignments = filterAlignments("Lawful Good", "Lawful Evil",
-            "Chaotic Good", "Chaotic Evil", "", "");
-        notifyListeners();
-        break;
-      case "Druid":
-        filteredAlignments = filterAlignments(
-            "Neutral Good", "Neutral", "Neutral Evil", "", "", "");
-        notifyListeners();
-        break;
-      case "Monk":
-        filteredAlignments = filterAlignments(
-            "Lawful Good", "Lawful Neutral", "Lawful Evil", "", "", "");
-        notifyListeners();
-        break;
-      case "Paladin":
-        filteredAlignments =
-            filterAlignments("Lawful Good", "", "", "", "", "");
-        notifyListeners();
-        break;
-      case "Antipaladin":
-        filteredAlignments =
-            filterAlignments("Chaotic Evil", "", "", "", "", "");
-        notifyListeners();
-        break;
-      case "Rogue":
-        filteredAlignments = filterAlignments("Neutral Good", "Neutral",
-            "Neutral Evil", "Chaotic Good", "Chaotic Neutral", "Chaotic Evil");
-        notifyListeners();
-        break;
-      default:
-        filteredAlignments = listOfAlignments.allAlignments;
-        notifyListeners();
+    filteredAlignments.clear();
+    for (var i = 0; i < chosenClass.permittedAligments.length; i++) {
+      filteredAlignments.addAll(listOfAlignments.allAlignments
+          .where((element) => element.name == chosenClass.permittedAligments[i])
+          .toList());
     }
     for (var i in filteredAlignments) {
       i.isSelected = false;
@@ -334,7 +279,7 @@ class CharController extends ChangeNotifier {
 
   /// calculates height and weight for all character
   applyHeightAndWeight() {
-    var char = generatedChar;
+    var char = cha;
     var increment = 0;
     var raceGotten = listOfRaces.races
         .firstWhere((element) => element.name == char.charRace.name);
@@ -374,9 +319,9 @@ class CharController extends ChangeNotifier {
     char.charRace.height!.key = baseFeet;
     char.charRace.weight = baseWeight;
     transformInchToFoot(char);
-    generatedChar.charRace.height!.value = char.charRace.height!.value;
-    generatedChar.charRace.height!.key = char.charRace.height!.key;
-    generatedChar.charRace.weight = char.charRace.weight;
+    cha.charRace.height!.value = char.charRace.height!.value;
+    cha.charRace.height!.key = char.charRace.height!.key;
+    cha.charRace.weight = char.charRace.weight;
     notifyListeners();
   }
 
@@ -392,7 +337,7 @@ class CharController extends ChangeNotifier {
 
   ///calculate characters speed
   calculateSpeed() {
-    var char = generatedChar;
+    var char = cha;
     var raceGotten = listOfRaces.races
         .firstWhere((element) => element.name == char.charRace.name);
     var baseSpeed = raceGotten.speed!;
@@ -404,7 +349,7 @@ class CharController extends ChangeNotifier {
         baseSpeed = baseSpeed + 10;
       }
     }
-    generatedChar.charRace.speed = baseSpeed;
+    cha.charRace.speed = baseSpeed;
     notifyListeners();
   }
 
@@ -443,39 +388,39 @@ class CharController extends ChangeNotifier {
 
   ///calculate character's Age
   claculateAge() {
-    var char = generatedChar;
+    var character = cha;
     var raceGotten = listOfRaces.races
-        .firstWhere((element) => element.name == char.charRace.name);
+        .firstWhere((element) => element.name == character.charRace.name);
     var baseAge = raceGotten.age;
     var tempRaceAge = 0;
-    switch (char.charRace.name) {
+    switch (character.charRace.name) {
       case "Dwarf":
-        tempRaceAge = ajustAgeAccordingtoRace(char, 30, 60);
+        tempRaceAge = ajustAgeAccordingtoRace(character, 30, 60);
         break;
       case "Elf":
-        tempRaceAge = ajustAgeAccordingtoRace(char, 30, 60);
+        tempRaceAge = ajustAgeAccordingtoRace(character, 30, 60);
         break;
       case "Gnome":
-        tempRaceAge = ajustAgeAccordingtoRace(char, 20, 40);
+        tempRaceAge = ajustAgeAccordingtoRace(character, 20, 40);
         break;
       case "Hafling":
-        tempRaceAge = ajustAgeAccordingtoRace(char, 10, 20);
+        tempRaceAge = ajustAgeAccordingtoRace(character, 10, 20);
         break;
       case "Half-elf":
-        tempRaceAge = ajustAgeAccordingtoRace(char, 10, 20);
+        tempRaceAge = ajustAgeAccordingtoRace(character, 10, 20);
         break;
       case "Half-orc":
-        tempRaceAge = ajustAgeAccordingtoRace(char, 7, 14);
+        tempRaceAge = ajustAgeAccordingtoRace(character, 7, 14);
         break;
       case "Human":
-        tempRaceAge = ajustAgeAccordingtoRace(char, 8, 16);
+        tempRaceAge = ajustAgeAccordingtoRace(character, 8, 16);
         break;
       case "Orc":
-        tempRaceAge = ajustAgeAccordingtoRace(char, 4, 12);
+        tempRaceAge = ajustAgeAccordingtoRace(character, 4, 12);
         break;
       default:
     }
-    generatedChar.charRace.age = baseAge! + tempRaceAge;
+    cha.charRace.age = baseAge! + tempRaceAge;
     notifyListeners();
   }
 
@@ -1170,7 +1115,7 @@ class CharController extends ChangeNotifier {
 // ======================================================================================
 
   updateCharModel() {
-    generatedChar = CharModel(
+    cha = CharModel(
         charRace: RaceModel(
           name: chosenRace.name,
           isSelected: chosenRace.isSelected,
@@ -1207,12 +1152,12 @@ class CharController extends ChangeNotifier {
 // Section for generation Status
 
   sortAtributesToClass(int v0, int v1, int v2, int v3, int v4, int v5) {
-    generatedChar.baseAtributes.strength = v0;
-    generatedChar.baseAtributes.dexterity = v1;
-    generatedChar.baseAtributes.constitution = v2;
-    generatedChar.baseAtributes.intelligence = v3;
-    generatedChar.baseAtributes.wisdom = v4;
-    generatedChar.baseAtributes.charisma = v5;
+    cha.baseAtributes.strength = v0;
+    cha.baseAtributes.dexterity = v1;
+    cha.baseAtributes.constitution = v2;
+    cha.baseAtributes.intelligence = v3;
+    cha.baseAtributes.wisdom = v4;
+    cha.baseAtributes.charisma = v5;
     notifyListeners();
   }
 
@@ -1220,11 +1165,11 @@ class CharController extends ChangeNotifier {
     List<int> atrbValues = [];
     for (var i = 0; i < 6; i++) {
       var atrbValue = randomIndex.nextInt(19);
-      if (generatedChar.charLevel <= 20) {
+      if (cha.charLevel <= 20) {
         while (atrbValue < 6) {
           atrbValue = randomIndex.nextInt(19);
         }
-      } else if (generatedChar.charLevel > 20 && generatedChar.charLevel < 26) {
+      } else if (cha.charLevel > 20 && cha.charLevel < 26) {
         while (atrbValue < 8) {
           atrbValue = randomIndex.nextInt(19);
         }
@@ -1235,7 +1180,7 @@ class CharController extends ChangeNotifier {
     }
     atrbValues.sort((b, a) => a.compareTo(b));
 
-    switch (generatedChar.charClass.name) {
+    switch (cha.charClass.name) {
       case "Barbarian":
         sortAtributesToClass(atrbValues[0], atrbValues[2], atrbValues[1],
             atrbValues[4], atrbValues[3], atrbValues[5]);
@@ -1331,14 +1276,14 @@ class CharController extends ChangeNotifier {
 
   ClassModel? findIfClassIsPhysicalOrMental(
       List<ClassModel> mentalChars, List<ClassModel> physicalChars) {
-    ClassModel classGotten = initialClass;
+    ClassModel classGotten = chosenClass;
     for (var i in mentalChars) {
-      if (generatedChar.charClass.name == i.name) {
+      if (cha.charClass.name == i.name) {
         classGotten = i;
       }
     }
     for (var i in physicalChars) {
-      if (generatedChar.charClass.name == i.name) {
+      if (cha.charClass.name == i.name) {
         classGotten = i;
       }
     }
@@ -1359,23 +1304,22 @@ class CharController extends ChangeNotifier {
     ClassModel? classGotten =
         findIfClassIsPhysicalOrMental(mentalChars, physicalChars);
     double secondaryAtributeIncrement = 0.0;
-    var atrbValues = generatedChar.baseAtributes;
+    var atrbValues = cha.baseAtributes;
     if (physicalChars.contains(classGotten)) {
       for (var i = 0; i < level; i = i + 4) {
         mainAtributeIncrement++;
         secondaryAtributeIncrement = secondaryAtributeIncrement + 0.5;
       }
-      generatedChar.baseAtributes.strength =
-          atrbValues.strength! + mainAtributeIncrement;
-      generatedChar.baseAtributes.dexterity =
+      cha.baseAtributes.strength = atrbValues.strength! + mainAtributeIncrement;
+      cha.baseAtributes.dexterity =
           atrbValues.dexterity! + mainAtributeIncrement;
-      generatedChar.baseAtributes.constitution =
+      cha.baseAtributes.constitution =
           atrbValues.constitution! + mainAtributeIncrement;
-      generatedChar.baseAtributes.intelligence =
+      cha.baseAtributes.intelligence =
           atrbValues.intelligence! + secondaryAtributeIncrement.floor();
-      generatedChar.baseAtributes.wisdom =
+      cha.baseAtributes.wisdom =
           atrbValues.wisdom! + secondaryAtributeIncrement.floor();
-      generatedChar.baseAtributes.charisma =
+      cha.baseAtributes.charisma =
           atrbValues.charisma! + secondaryAtributeIncrement.floor();
     }
     if (mentalChars.contains(classGotten)) {
@@ -1383,35 +1327,33 @@ class CharController extends ChangeNotifier {
         mainAtributeIncrement++;
         secondaryAtributeIncrement = secondaryAtributeIncrement + 0.5;
       }
-      generatedChar.baseAtributes.strength =
+      cha.baseAtributes.strength =
           atrbValues.strength! + secondaryAtributeIncrement.floor();
-      generatedChar.baseAtributes.dexterity =
+      cha.baseAtributes.dexterity =
           atrbValues.dexterity! + secondaryAtributeIncrement.floor();
-      generatedChar.baseAtributes.constitution =
+      cha.baseAtributes.constitution =
           atrbValues.constitution! + secondaryAtributeIncrement.floor();
-      generatedChar.baseAtributes.intelligence =
+      cha.baseAtributes.intelligence =
           atrbValues.intelligence! + mainAtributeIncrement;
-      generatedChar.baseAtributes.wisdom =
-          atrbValues.wisdom! + mainAtributeIncrement;
-      generatedChar.baseAtributes.charisma =
-          atrbValues.charisma! + mainAtributeIncrement;
+      cha.baseAtributes.wisdom = atrbValues.wisdom! + mainAtributeIncrement;
+      cha.baseAtributes.charisma = atrbValues.charisma! + mainAtributeIncrement;
     }
     notifyListeners();
   }
 
   calculateAllModifiers() {
-    var atributes = generatedChar.baseAtributes;
-    generatedChar.modAtributes.strength =
+    var atributes = cha.baseAtributes;
+    cha.modAtributes.strength =
         calculateModifier(atributes.strength!, atributes.strength!);
-    generatedChar.modAtributes.dexterity =
+    cha.modAtributes.dexterity =
         calculateModifier(atributes.dexterity!, atributes.dexterity!);
-    generatedChar.modAtributes.constitution =
+    cha.modAtributes.constitution =
         calculateModifier(atributes.constitution!, atributes.constitution!);
-    generatedChar.modAtributes.intelligence =
+    cha.modAtributes.intelligence =
         calculateModifier(atributes.intelligence!, atributes.intelligence!);
-    generatedChar.modAtributes.wisdom =
+    cha.modAtributes.wisdom =
         calculateModifier(atributes.wisdom!, atributes.wisdom!);
-    generatedChar.modAtributes.charisma =
+    cha.modAtributes.charisma =
         calculateModifier(atributes.charisma!, atributes.charisma!);
     notifyListeners();
   }
@@ -1429,7 +1371,7 @@ class CharController extends ChangeNotifier {
   }
 
   ajustStatsToRace() {
-    var char = generatedChar;
+    var char = cha;
     if (char.charRace.name == "Human" ||
         char.charRace.name == "Half-elf" ||
         char.charRace.name == "Half-orc") {
@@ -1480,15 +1422,13 @@ class CharController extends ChangeNotifier {
     int ajustWis,
     int ajustCha,
   ) {
-    var ajustedAtrb = generatedChar.baseAtributes;
-    generatedChar.baseAtributes.strength = ajustedAtrb.strength! + adjutStr;
-    generatedChar.baseAtributes.dexterity = ajustedAtrb.dexterity! + ajustDex;
-    generatedChar.baseAtributes.constitution =
-        ajustedAtrb.constitution! + ajustCon;
-    generatedChar.baseAtributes.intelligence =
-        ajustedAtrb.intelligence! + adjustInt;
-    generatedChar.baseAtributes.wisdom = ajustedAtrb.wisdom! + ajustWis;
-    generatedChar.baseAtributes.charisma = ajustedAtrb.charisma! + ajustCha;
+    var ajustedAtrb = cha.baseAtributes;
+    cha.baseAtributes.strength = ajustedAtrb.strength! + adjutStr;
+    cha.baseAtributes.dexterity = ajustedAtrb.dexterity! + ajustDex;
+    cha.baseAtributes.constitution = ajustedAtrb.constitution! + ajustCon;
+    cha.baseAtributes.intelligence = ajustedAtrb.intelligence! + adjustInt;
+    cha.baseAtributes.wisdom = ajustedAtrb.wisdom! + ajustWis;
+    cha.baseAtributes.charisma = ajustedAtrb.charisma! + ajustCha;
     notifyListeners();
   }
 
@@ -1497,12 +1437,12 @@ class CharController extends ChangeNotifier {
 // section for hit points generation
 
   generateHitPoints() {
-    var changeCharInfo = generatedChar;
+    var changeCharInfo = cha;
     var hitPoints =
         changeCharInfo.charLevel * changeCharInfo.modAtributes.constitution!;
     var diceHitPoints = calculateHipPointsDicePerClass();
     hitPoints = hitPoints + diceHitPoints;
-    generatedChar.hitPoints = hitPoints;
+    cha.hitPoints = hitPoints;
     notifyListeners();
   }
 
@@ -1515,8 +1455,8 @@ class CharController extends ChangeNotifier {
   }
 
   int calculateHipPointsDicePerClass() {
-    var dice = generatedChar.charClass.hitDice;
-    var rollTimes = generatedChar.charLevel - 1;
+    var dice = cha.charClass.hitDice;
+    var rollTimes = cha.charLevel - 1;
     var hitpoints = dice;
     if (levelSelected > 20 && levelSelected < 26) {
       dice = dice! - 3;
@@ -1543,7 +1483,7 @@ class CharController extends ChangeNotifier {
 // section to generate Ac defense
 
   claculatingHitDefense() {
-    var char = generatedChar;
+    var char = cha;
     int armorAc = 0;
     int touch = 0;
     int surprise = 0;
@@ -1558,14 +1498,14 @@ class CharController extends ChangeNotifier {
       armorAc += char.modAtributes.wisdom!;
       touch += char.modAtributes.wisdom!;
     }
-    generatedChar.combatStats.armourClass = armorAc;
-    generatedChar.combatStats.armourTouch = touch;
-    generatedChar.combatStats.armourSurprise = surprise;
+    cha.combatStats.armourClass = armorAc;
+    cha.combatStats.armourTouch = touch;
+    cha.combatStats.armourSurprise = surprise;
     notifyListeners();
   }
 
   calculateResistances() {
-    var char = generatedChar;
+    var char = cha;
     int partialFort = 0;
     int partialRef = 0;
     int partialWill = 0;
@@ -1626,7 +1566,7 @@ class CharController extends ChangeNotifier {
     char.resistances.reflex = partialRef + char.modAtributes.dexterity!;
     char.resistances.will = partialWill + char.modAtributes.wisdom!;
 
-    generatedChar.resistances = char.resistances;
+    cha.resistances = char.resistances;
     notifyListeners();
   }
 
@@ -1635,7 +1575,7 @@ class CharController extends ChangeNotifier {
 // section to generate Some combat modifiers
 
   calculateBaseAttackBonus() {
-    var char = generatedChar;
+    var char = cha;
     var baseAttackBonus = 0;
     var magicClasses = listOfClasses.allClasses
         .where((element) => element.hitDice! < 7)
@@ -1679,12 +1619,12 @@ class CharController extends ChangeNotifier {
         baseAttackBonus = level - 7;
       }
     }
-    generatedChar.combatStats.baseAttackBonus = baseAttackBonus;
+    cha.combatStats.baseAttackBonus = baseAttackBonus;
     notifyListeners();
   }
 
   calculateCombatManeuvers() {
-    var char = generatedChar;
+    var char = cha;
     var bAttackBonus = char.combatStats.baseAttackBonus;
     var atributes = char.modAtributes;
     var cmb = 0;
@@ -1695,8 +1635,8 @@ class CharController extends ChangeNotifier {
       cmb -= 1;
       cmd -= 1;
     }
-    generatedChar.combatStats.combatManeuverBonus = cmb;
-    generatedChar.combatStats.combatManeuverDefense = cmd;
+    cha.combatStats.combatManeuverBonus = cmb;
+    cha.combatStats.combatManeuverDefense = cmd;
     notifyListeners();
   }
 
@@ -1721,10 +1661,10 @@ class CharController extends ChangeNotifier {
       return null;
     } else if (creationStage == 4) {
       updateChosenClass();
-      filterAlignmentsToClass();
       advanceCreationStage();
       return null;
     } else if (creationStage == 5) {
+      filterAlignmentsToClass();
       advanceCreationStage();
       return null;
     } else if (creationStage == 6) {
@@ -1753,11 +1693,11 @@ class CharController extends ChangeNotifier {
     newName = ' - ? - ';
     newLastName = ' - ? - ';
     levelSelected = -1;
-    getInitialRace();
-    getInitialClass();
+    starttempRace();
+    startTempClass();
     tempRaceForSwitching.isSelected = true;
-    tempoClassForSwitching.isSelected = true;
-    getInitialAlignment();
+    tempClassForSwitching.isSelected = true;
+    // startTempAlignment();
     creationStage = 1;
     notifyListeners();
   }

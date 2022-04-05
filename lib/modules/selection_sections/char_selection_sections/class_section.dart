@@ -63,8 +63,8 @@ class ClassSelection extends StatelessWidget {
                   }),
               SizedBox(height: size.height * 0.02),
               LongDescriptionWidget(
-                label: state.tempoClassForSwitching.name,
-                description: state.tempoClassForSwitching.description!,
+                label: state.tempClassForSwitching.name,
+                description: state.tempClassForSwitching.description!,
               )
             ],
           );

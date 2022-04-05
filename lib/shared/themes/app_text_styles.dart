@@ -143,7 +143,7 @@ class AppTextStyle {
         ? 13
         : deviceWidth! > 350 && deviceWidth! < 400
             ? 15
-            : 18,
+            : 17,
   );
   static final modefier = TextStyle(
     fontWeight: FontWeight.w400,
@@ -153,7 +153,7 @@ class AppTextStyle {
         ? 14
         : deviceWidth! > 350 && deviceWidth! < 400
             ? 16
-            : 19,
+            : 18,
   );
   static final raceDescriptionLabel = TextStyle(
     fontWeight: FontWeight.w400,
@@ -208,6 +208,16 @@ class AppTextStyle {
   static final subTextWhite = TextStyle(
     fontWeight: FontWeight.w400,
     color: Colors.white,
+    fontFamily: "David",
+    fontSize: deviceWidth! < 350
+        ? 16
+        : deviceWidth! > 350 && deviceWidth! < 400
+            ? 17
+            : 19,
+  );
+  static final tabLabel = TextStyle(
+    fontWeight: FontWeight.w600,
+    color: AppColors.primaryOrange,
     fontFamily: "David",
     fontSize: deviceWidth! < 350
         ? 16
@@ -278,7 +288,7 @@ class AppTextStyle {
   static final atributeDivisionText = TextStyle(
     fontWeight: FontWeight.w400,
     fontFamily: "David",
-    color: Colors.white,
+    color: AppColors.primaryText0,
     fontSize: deviceWidth! < 350
         ? 14
         : deviceWidth! > 350 && deviceWidth! < 400

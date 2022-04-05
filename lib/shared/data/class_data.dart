@@ -1,6 +1,7 @@
 import 'package:fantasy_name_generator/models/class_model.dart';
 import 'package:fantasy_name_generator/models/combat_style_choice_model.dart';
 import 'package:fantasy_name_generator/models/level_model.dart';
+import 'package:fantasy_name_generator/models/physical_style_model.dart';
 
 class ClassData {
   final List<CombatStyleChoiceModel> combatStyles = [
@@ -38,6 +39,93 @@ class ClassData {
     ),
   ];
 
+  final List<PhysicalStyleModel> physicalStyles = [
+    PhysicalStyleModel(
+        name: "Berserker",
+        svg: "assets/images/weapon_types/great-sword.svg",
+        forbiddenClasses: [
+          "Rogue",
+          "Wizard",
+          "Arcanist",
+          "Sorcerer",
+          "Aristocrat",
+          "Noble",
+          "Commoner"
+        ],
+        isSelected: false),
+    PhysicalStyleModel(
+        name: "Soldier",
+        svg: "assets/images/weapon_types/soldier.svg",
+        forbiddenClasses: [
+          "Rogue",
+          "Monk"
+              "Wizard",
+          "Arcanist",
+          "Sorcerer",
+          "Aristocrat",
+          "Noble",
+          "Commoner"
+        ],
+        isSelected: false),
+    PhysicalStyleModel(
+        name: "Dual-weilder",
+        svg: "assets/images/weapon_types/axe-sword.svg",
+        forbiddenClasses: [
+          "Wizard",
+          "Arcanist",
+          "Sorcerer",
+          "Aristocrat",
+          "Noble",
+          "Commoner"
+        ],
+        isSelected: false),
+    PhysicalStyleModel(
+        name: "Swordsman",
+        svg: "assets/images/weapon_types/sword.svg",
+        forbiddenClasses: [],
+        isSelected: false),
+    PhysicalStyleModel(
+        name: "Knifeman",
+        svg: "assets/images/weapon_types/knife.svg",
+        forbiddenClasses: [],
+        isSelected: false),
+    PhysicalStyleModel(
+        name: "Martial",
+        svg: "assets/images/weapon_types/punch.svg",
+        forbiddenClasses: [],
+        isSelected: false),
+    PhysicalStyleModel(
+        name: "Bowman",
+        svg: "assets/images/weapon_types/bow.svg",
+        forbiddenClasses: [
+          "Monk",
+          "Wizard",
+          "Arcanist",
+          "Sorcerer",
+          "Aristocrat",
+          "Noble",
+          "Commoner"
+        ],
+        isSelected: false),
+    PhysicalStyleModel(
+        name: "Marksman",
+        svg: "assets/images/weapon_types/crossbow.svg",
+        forbiddenClasses: [],
+        isSelected: false),
+    PhysicalStyleModel(
+        name: "Thrower",
+        svg: "assets/images/weapon_types/throwing.svg",
+        forbiddenClasses: [
+          "Wizard",
+          "Arcanist",
+          "Sorcerer",
+          "Aristocrat",
+          "Noble",
+          "Commoner"
+        ],
+        isSelected: false),
+  ];
+
   final List<ClassModel> allClasses = [
     ClassModel(
         isSelected: true,
@@ -47,6 +135,17 @@ class ClassData {
         classIcon: "assets/images/classes/alchemist.svg",
         resistUpgrade: "fort, ref",
         forbidenArmorType: ["Heavy"],
+        permittedAligments: [
+          "Lawful Good",
+          "Lawful Neutral",
+          "Lawful Evil",
+          "Neutral Good",
+          "Neutral",
+          "Neutral Evil",
+          "Chaotic Good",
+          "Chaotic Neutral",
+          "Chaotic Evil"
+        ],
         description:
             "Whether secreted away in a smoky basement laboratory or gleefully experimenting in a well-respected school of magic, the alchemist is often regarded as being just as unstable, unpredictable, and dangerous as the concoctions he brews. While some creators of alchemical items content themselves with sedentary lives as merchants, providing tindertwigs and smokesticks, the true alchemist answers a deeper calling. Rather than cast magic like a spellcaster, the alchemist captures his own magic potential within liquids and extracts he creates, infusing his chemicals with virulent power to grant him impressive skill with poisons, explosives, and all manner of self-transformative magic.",
         name: "Alchemist"),
@@ -58,6 +157,7 @@ class ClassData {
         classIcon: "assets/images/classes/antipaladin.svg",
         resistUpgrade: "fort, will",
         forbidenArmorType: [],
+        permittedAligments: ["Chaotic Evil"],
         description:
             "Although it is a rare occurrence, paladins do sometimes stray from the path of righteousness. Most of these wayward holy warriors seek out redemption and forgiveness for their misdeeds, regaining their powers through piety, charity, and powerful magic. Yet there are others, the dark and disturbed few, who turn actively to evil, courting the dark powers they once railed against in order to take vengeance on their former brothers. It's said that those who climb the farthest have the farthest to fall, and antipaladins are living proof of this fact, their pride and hatred blinding them to the glory of their forsaken patrons. Antipaladins become the antithesis of their former selves. They make pacts with fiends, take the lives of the innocent, and put nothing ahead of their personal power and wealth. Champions of evil, they often lead armies of evil creatures and work with other villains to bring ruin to the holy and tyranny to the weak. Not surprisingly, paladins stop at nothing to put an end to such nefarious antiheroes.",
         name: "Antipaladin"),
@@ -66,6 +166,17 @@ class ClassData {
         classIcon: "assets/images/classes/arcanist.svg",
         resistUpgrade: "will",
         forbidenArmorType: ["Light", "Medium", "Heavy"],
+        permittedAligments: [
+          "Lawful Good",
+          "Lawful Neutral",
+          "Lawful Evil",
+          "Neutral Good",
+          "Neutral",
+          "Neutral Evil",
+          "Chaotic Good",
+          "Chaotic Neutral",
+          "Chaotic Evil"
+        ],
         hitDice: 6,
         combatStyle: "Spellcaster",
         mainAtrb: "Int",
@@ -77,6 +188,17 @@ class ClassData {
         classIcon: "assets/images/classes/aristocrat.svg",
         resistUpgrade: "will",
         forbidenArmorType: ["Light", "Medium", "Heavy"],
+        permittedAligments: [
+          "Lawful Good",
+          "Lawful Neutral",
+          "Lawful Evil",
+          "Neutral Good",
+          "Neutral",
+          "Neutral Evil",
+          "Chaotic Good",
+          "Chaotic Neutral",
+          "Chaotic Evil"
+        ],
         hitDice: 4,
         combatStyle: "Diplomat",
         mainAtrb: "Int",
@@ -88,6 +210,12 @@ class ClassData {
         classIcon: "assets/images/classes/bandit.svg",
         resistUpgrade: "fort, ref",
         forbidenArmorType: [],
+        permittedAligments: [
+          "Neutral",
+          "Neutral Evil",
+          "Chaotic Neutral",
+          "Chaotic Evil"
+        ],
         hitDice: 8,
         combatStyle: "Physical",
         mainAtrb: "Str",
@@ -99,6 +227,14 @@ class ClassData {
         classIcon: "assets/images/classes/barbarian.svg",
         resistUpgrade: "fort",
         forbidenArmorType: [],
+        permittedAligments: [
+          "Neutral Good",
+          "Neutral",
+          "Neutral Evil",
+          "Chaotic Good",
+          "Chaotic Neutral",
+          "Chaotic Evil"
+        ],
         hitDice: 12,
         combatStyle: "Physical",
         mainAtrb: "Str",
@@ -110,6 +246,17 @@ class ClassData {
         classIcon: "assets/images/classes/bard.svg",
         resistUpgrade: "ref, will",
         forbidenArmorType: ["Light", "Medium"],
+        permittedAligments: [
+          "Lawful Good",
+          "Lawful Neutral",
+          "Lawful Evil",
+          "Neutral Good",
+          "Neutral",
+          "Neutral Evil",
+          "Chaotic Good",
+          "Chaotic Neutral",
+          "Chaotic Evil"
+        ],
         hitDice: 8,
         combatStyle: "Hybrid",
         mainAtrb: "Wis",
@@ -121,6 +268,12 @@ class ClassData {
         classIcon: "assets/images/classes/cleric.svg",
         resistUpgrade: "fort, will",
         forbidenArmorType: [],
+        permittedAligments: [
+          "Lawful Good",
+          "Lawful Evil",
+          "Chaotic Good",
+          "Chaotic Evil"
+        ],
         hitDice: 8,
         combatStyle: "Hybrid",
         mainAtrb: "Wis",
@@ -132,6 +285,17 @@ class ClassData {
         classIcon: "assets/images/classes/commoner.svg",
         resistUpgrade: "ref",
         forbidenArmorType: ["Light", "Medium", "Heavy"],
+        permittedAligments: [
+          "Lawful Good",
+          "Lawful Neutral",
+          "Lawful Evil",
+          "Neutral Good",
+          "Neutral",
+          "Neutral Evil",
+          "Chaotic Good",
+          "Chaotic Neutral",
+          "Chaotic Evil"
+        ],
         hitDice: 4,
         combatStyle: "Physical",
         mainAtrb: "Dex",
@@ -143,6 +307,7 @@ class ClassData {
         classIcon: "assets/images/classes/druid.svg",
         resistUpgrade: "fort, will",
         forbidenArmorType: [],
+        permittedAligments: ["Neutral Good", "Neutral", "Neutral Evil"],
         hitDice: 8,
         combatStyle: "Hybrid",
         mainAtrb: "Wis",
@@ -154,6 +319,7 @@ class ClassData {
         classIcon: "assets/images/classes/monk.svg",
         resistUpgrade: "all",
         forbidenArmorType: ["Light", "Medium", "Heavy"],
+        permittedAligments: ["Lawful Good", "Lawful Neutral", "Lawful Evil"],
         hitDice: 8,
         combatStyle: "Physical",
         mainAtrb: "Dex",
@@ -165,6 +331,17 @@ class ClassData {
         classIcon: "assets/images/classes/noble.svg",
         resistUpgrade: "will",
         forbidenArmorType: ["Light", "Medium", "Heavy"],
+        permittedAligments: [
+          "Lawful Good",
+          "Lawful Neutral",
+          "Lawful Evil",
+          "Neutral Good",
+          "Neutral",
+          "Neutral Evil",
+          "Chaotic Good",
+          "Chaotic Neutral",
+          "Chaotic Evil"
+        ],
         hitDice: 4,
         combatStyle: "Diplomat",
         mainAtrb: "Cha",
@@ -176,6 +353,7 @@ class ClassData {
         classIcon: "assets/images/classes/paladin.svg",
         resistUpgrade: "fort, will",
         forbidenArmorType: [],
+        permittedAligments: ["Lawful Good"],
         hitDice: 10,
         combatStyle: "Physical",
         mainAtrb: "Str",
@@ -187,6 +365,17 @@ class ClassData {
         classIcon: "assets/images/classes/ranger.svg",
         resistUpgrade: "fort, ref",
         forbidenArmorType: [],
+        permittedAligments: [
+          "Lawful Good",
+          "Lawful Neutral",
+          "Lawful Evil",
+          "Neutral Good",
+          "Neutral",
+          "Neutral Evil",
+          "Chaotic Good",
+          "Chaotic Neutral",
+          "Chaotic Evil"
+        ],
         hitDice: 10,
         combatStyle: "Physical",
         mainAtrb: "Dex",
@@ -198,6 +387,14 @@ class ClassData {
         classIcon: "assets/images/classes/rogue.svg",
         resistUpgrade: "ref",
         forbidenArmorType: ["Light"],
+        permittedAligments: [
+          "Neutral Good",
+          "Neutral",
+          "Neutral Evil",
+          "Chaotic Good",
+          "Chaotic Neutral",
+          "Chaotic Evil"
+        ],
         hitDice: 8,
         combatStyle: "Physical",
         mainAtrb: "Dex",
@@ -209,6 +406,17 @@ class ClassData {
         classIcon: "assets/images/classes/samurai.svg",
         resistUpgrade: "fort",
         forbidenArmorType: [],
+        permittedAligments: [
+          "Lawful Good",
+          "Lawful Neutral",
+          "Lawful Evil",
+          "Neutral Good",
+          "Neutral",
+          "Neutral Evil",
+          "Chaotic Good",
+          "Chaotic Neutral",
+          "Chaotic Evil"
+        ],
         hitDice: 10,
         combatStyle: "Physical",
         mainAtrb: "Str",
@@ -220,6 +428,17 @@ class ClassData {
         classIcon: "assets/images/classes/sorcerer.svg",
         resistUpgrade: "will",
         forbidenArmorType: ["Light", "Medium", "Heavy"],
+        permittedAligments: [
+          "Lawful Good",
+          "Lawful Neutral",
+          "Lawful Evil",
+          "Neutral Good",
+          "Neutral",
+          "Neutral Evil",
+          "Chaotic Good",
+          "Chaotic Neutral",
+          "Chaotic Evil"
+        ],
         hitDice: 6,
         combatStyle: "Spellcaster",
         mainAtrb: "Cha",
@@ -231,6 +450,17 @@ class ClassData {
         classIcon: "assets/images/classes/summoner.svg",
         resistUpgrade: "will",
         forbidenArmorType: ["Light", "Medium"],
+        permittedAligments: [
+          "Lawful Good",
+          "Lawful Neutral",
+          "Lawful Evil",
+          "Neutral Good",
+          "Neutral",
+          "Neutral Evil",
+          "Chaotic Good",
+          "Chaotic Neutral",
+          "Chaotic Evil"
+        ],
         hitDice: 8,
         combatStyle: "Hybrid",
         mainAtrb: "Cha",
@@ -242,6 +472,17 @@ class ClassData {
         classIcon: "assets/images/classes/warrior.svg",
         resistUpgrade: "fort",
         forbidenArmorType: [],
+        permittedAligments: [
+          "Lawful Good",
+          "Lawful Neutral",
+          "Lawful Evil",
+          "Neutral Good",
+          "Neutral",
+          "Neutral Evil",
+          "Chaotic Good",
+          "Chaotic Neutral",
+          "Chaotic Evil"
+        ],
         hitDice: 10,
         combatStyle: "Physical",
         mainAtrb: "Str",
@@ -253,6 +494,17 @@ class ClassData {
         classIcon: "assets/images/classes/wizard.svg",
         resistUpgrade: "will",
         forbidenArmorType: ["Light", "Medium", "Heavy"],
+        permittedAligments: [
+          "Lawful Good",
+          "Lawful Neutral",
+          "Lawful Evil",
+          "Neutral Good",
+          "Neutral",
+          "Neutral Evil",
+          "Chaotic Good",
+          "Chaotic Neutral",
+          "Chaotic Evil"
+        ],
         hitDice: 6,
         combatStyle: "Spellcaster",
         mainAtrb: "Int",

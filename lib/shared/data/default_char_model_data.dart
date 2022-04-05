@@ -27,6 +27,7 @@ class DefaultCharModelData {
     baseAtributes: AtributeModel(),
     modAtributes: AtributeModel(),
     charClass: ClassModel(
+      permittedAligments: [],
       forbidenArmorType: [],
       name: "Commoner",
       isSelected: false,
