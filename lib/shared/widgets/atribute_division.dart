@@ -1,3 +1,4 @@
+import 'package:fantasy_name_generator/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 
 import 'package:fantasy_name_generator/shared/constants/phone_sizes.dart';
@@ -25,7 +26,8 @@ class AtributeDivision extends StatelessWidget {
             padding: const EdgeInsets.only(top: 3, left: 6),
             child: Text(
               label,
-              style: AppTextStyle.atributeDivisionText,
+              style: AppTextStyle.atributeDivisionText
+                  .copyWith(color: Colors.white),
             )),
         const AppHorizontalLine(),
         if (label2 != null)

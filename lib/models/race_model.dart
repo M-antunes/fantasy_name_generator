@@ -13,6 +13,7 @@ class RaceModel {
   int? age;
   int? speed;
   final String? size;
+  final String? vision;
   RaceModel({
     required this.name,
     required this.isSelected,
@@ -22,6 +23,7 @@ class RaceModel {
     this.age,
     this.speed,
     this.size,
+    this.vision,
   });
 
   RaceModel copyWith({
@@ -33,6 +35,7 @@ class RaceModel {
     int? age,
     int? speed,
     String? size,
+    String? vision,
   }) {
     return RaceModel(
       name: name ?? this.name,
@@ -43,6 +46,7 @@ class RaceModel {
       age: age ?? this.age,
       speed: speed ?? this.speed,
       size: size ?? this.size,
+      vision: vision ?? this.vision,
     );
   }
 
@@ -56,6 +60,7 @@ class RaceModel {
       'age': age,
       'speed': speed,
       'size': size,
+      'vision': vision,
     };
   }
 
@@ -73,6 +78,7 @@ class RaceModel {
       age: map['age']?.toInt(),
       speed: map['speed']?.toInt(),
       size: map['size'],
+      vision: map['vision'],
     );
   }
 
@@ -83,7 +89,7 @@ class RaceModel {
 
   @override
   String toString() {
-    return 'RaceModel(name: $name, isSelected: $isSelected, traits: $traits, height: $height, weight: $weight, age: $age, speed: $speed, size: $size)';
+    return 'RaceModel(name: $name, isSelected: $isSelected, traits: $traits, height: $height, weight: $weight, age: $age, speed: $speed, size: $size, vision: $vision)';
   }
 
   @override
@@ -98,7 +104,8 @@ class RaceModel {
         other.weight == weight &&
         other.age == age &&
         other.speed == speed &&
-        other.size == size;
+        other.size == size &&
+        other.vision == vision;
   }
 
   @override
@@ -110,6 +117,7 @@ class RaceModel {
         weight.hashCode ^
         age.hashCode ^
         speed.hashCode ^
-        size.hashCode;
+        size.hashCode ^
+        vision.hashCode;
   }
 }

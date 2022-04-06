@@ -311,10 +311,6 @@ class CharController extends ChangeNotifier {
       baseInches += rollingDice(4);
       baseWeight += rollingDice(20) + rollingDice(20);
     }
-    if (char.baseAtributes.constitution! > 13 &&
-        char.charRace.size != "Small") {
-      baseWeight += rollingDice(20);
-    }
     char.charRace.height!.value = baseInches;
     char.charRace.height!.key = baseFeet;
     char.charRace.weight = baseWeight;
@@ -1124,6 +1120,8 @@ class CharController extends ChangeNotifier {
           age: 0,
           speed: 0,
         ),
+        physicalStyle: physicalStyleChoice,
+        battleStyle: chosenStyle,
         charName: NameModel(
           gender: isMale ? "Male" : "Female",
           name: newName,
@@ -1678,12 +1676,15 @@ class CharController extends ChangeNotifier {
         updateLevelSelectedIfEpic();
         updateLevelSelectedIfLegendary();
         updateCharModel();
+        applyHeightAndWeight();
+        claculateAge();
+        calculateSpeed();
         isCharGeneratorCleared = true;
         advanceCreationStage();
       }
       return null;
     } else if (creationStage == 8) {
-      advanceCreationStage();
+      // advanceCreationStage();
       return null;
     }
     return null;

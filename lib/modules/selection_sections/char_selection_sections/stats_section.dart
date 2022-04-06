@@ -1,4 +1,5 @@
-import 'package:fantasy_name_generator/modules/selection_sections/char_selection_sections/stats_sections/gear_stats.dart';
+import 'package:fantasy_name_generator/controllers/stats_controller.dart';
+import 'package:fantasy_name_generator/modules/selection_sections/char_selection_sections/stats_sections/magic_gear_stats.dart';
 import 'package:fantasy_name_generator/shared/widgets/app_horizontal_line.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -9,13 +10,12 @@ import 'package:fantasy_name_generator/shared/themes/app_text_styles.dart';
 import 'package:fantasy_name_generator/shared/widgets/expanded_section.dart';
 
 import '../../../shared/themes/app_colors.dart';
-import '../../../shared/widgets/atribute_division.dart';
 import 'stats_sections/ability_scores.dart';
 import 'stats_sections/combat_stats.dart';
 import 'stats_sections/features_stats.dart';
+import 'stats_sections/loot_section.dart';
+import 'stats_sections/spell_stats.dart';
 import 'widgets/char_description_column.dart';
-import 'widgets/defense_info.dart';
-import 'widgets/stats_description_column.dart';
 
 class StatsSection extends StatefulWidget {
   const StatsSection({
@@ -31,7 +31,7 @@ class _StatsSectionState extends State<StatsSection>
   late TabController _controller;
   @override
   void initState() {
-    _controller = TabController(length: 4, vsync: this);
+    _controller = TabController(length: 6, vsync: this);
     super.initState();
   }
 
@@ -78,318 +78,119 @@ class _StatsSectionState extends State<StatsSection>
                     )
                   ],
                 ),
-                SizedBox(height: deviceHeight! * 0.01),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
-                      width: deviceWidth! * 0.4,
-                      child: CharDescriptionColumn(
-                        labeltop: "Race:",
-                        labelBottom: "Class:",
-                        textValueTop: state.cha.charRace.name,
-                        textValueBottom: state.cha.charClass.name,
-                      ),
-                    ),
-                    SizedBox(
-                      width: deviceWidth! * 0.5,
-                      child: CharDescriptionColumn(
-                        labeltop: "Gender:",
-                        labelBottom: "Alignment:",
-                        textValueTop: state.cha.charName.gender,
-                        textValueBottom: state.cha.alignment.abreviation!,
-                      ),
-                    ),
+                        width: deviceWidth! * 0.5,
+                        child: CharDescriptionText(
+                          label: "Race:",
+                          textValue: state.cha.charRace.name,
+                        )),
+                    CharDescriptionText(
+                        label: "Class:", textValue: state.cha.charClass.name),
                   ],
                 ),
+                const SizedBox(height: 2),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
-                      width: deviceWidth! * 0.4,
-                      child: CharDescriptionColumn(
-                        labeltop: "Height:",
-                        labelBottom: "Weight:",
-                        textValueTop:
-                            "${state.cha.charRace.height!.key} ft. ${state.cha.charRace.height!.value} in.",
-                        textValueBottom:
-                            "${state.cha.charRace.weight!.toInt()} lbs.",
-                      ),
-                    ),
-                    SizedBox(
-                      width: deviceWidth! * 0.5,
-                      child: CharDescriptionColumn(
-                          labeltop: "Age:",
-                          labelBottom: "Size:",
-                          textValueTop: "${state.cha.charRace.age}",
-                          textValueBottom: "${state.chosenRace.size}"),
-                    ),
+                        width: deviceWidth! * 0.5,
+                        child: CharDescriptionText(
+                            label: "Gender:",
+                            textValue: state.cha.charName.gender)),
+                    CharDescriptionText(
+                        label: "Alignment:",
+                        textValue: state.cha.alignment.abreviation!),
                   ],
                 ),
-
+                const SizedBox(height: 2),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                        width: deviceWidth! * 0.5,
+                        child: CharDescriptionText(
+                            label: "Height:",
+                            textValue:
+                                "${state.cha.charRace.height!.key} ft. ${state.cha.charRace.height!.value} in.")),
+                    CharDescriptionText(
+                        label: "Weight:",
+                        textValue:
+                            "${state.cha.charRace.weight!.toInt()} lbs."),
+                  ],
+                ),
+                const SizedBox(height: 2),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                        width: deviceWidth! * 0.5,
+                        child: CharDescriptionText(
+                            label: "Age:",
+                            textValue: "${state.cha.charRace.age}")),
+                    CharDescriptionText(
+                        label: "Size:", textValue: "${state.chosenRace.size}"),
+                  ],
+                ),
+                const SizedBox(height: 2),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                        width: deviceWidth! * 0.5,
+                        child: CharDescriptionText(
+                            label: "Vision:",
+                            textValue: state.chosenRace.vision!)),
+                    const CharDescriptionText(
+                        label: "Perception:", textValue: "0"),
+                  ],
+                ),
+                const SizedBox(height: 3),
                 const AppHorizontalLine(),
                 SizedBox(height: deviceHeight! * 0.01),
-                TabBar(
-                  padding: EdgeInsets.zero,
-                  indicatorColor: AppColors.primaryOrange,
-                  labelStyle: AppTextStyle.tabLabel,
-                  unselectedLabelColor: AppColors.primaryText0,
-                  unselectedLabelStyle: AppTextStyle.subTextGrey,
-                  labelColor: AppColors.primaryOrange,
-                  labelPadding: EdgeInsets.zero,
-                  controller: _controller,
-                  tabs: const [
-                    Text("ATRIBUTES"),
-                    Text("COMBAT"),
-                    Text("FEATURES"),
-                    Text("GEAR"),
-                  ],
-                ),
-                SizedBox(
-                  height: deviceHeight! * 0.55,
-                  width: double.infinity,
-                  child: TabBarView(
-                    controller: _controller,
-                    children: const [
-                      AbilityScoreSection(),
-                      CombatStats(),
-                      FeatureStats(),
-                      GearStats(),
+                Consumer<StatsController>(builder: (context, ctrl, child) {
+                  ctrl.char = state.cha;
+                  return Column(
+                    children: [
+                      TabBar(
+                        isScrollable: true,
+                        indicatorColor: AppColors.primaryOrange,
+                        labelStyle: AppTextStyle.tabLabel,
+                        unselectedLabelColor: AppColors.primaryText0,
+                        unselectedLabelStyle: AppTextStyle.tabLabel
+                            .copyWith(fontWeight: FontWeight.w300),
+                        labelColor: AppColors.primaryOrange,
+                        labelPadding: const EdgeInsets.symmetric(horizontal: 6),
+                        controller: _controller,
+                        tabs: const [
+                          Text("ATRIBUTES"),
+                          Text("COMBAT"),
+                          Text("FEATURES"),
+                          Text("MAGIC GEAR"),
+                          Text("SPELLS"),
+                          Text("LOOT"),
+                        ],
+                      ),
+                      SizedBox(
+                        height: deviceHeight! * 0.55,
+                        width: double.infinity,
+                        child: TabBarView(
+                          controller: _controller,
+                          children: const [
+                            AbilityScoreSection(),
+                            CombatStats(),
+                            FeatureStats(),
+                            MagicGearStats(),
+                            SpellStats(),
+                            LootSection(),
+                          ],
+                        ),
+                      )
                     ],
-                  ),
-                )
-
-                // WeaponLabelSection(
-                //   label: "Ability Scores",
-                //   onTap: () {
-                //     setState(() {
-                //       showAbilityScore = !showAbilityScore;
-                //     });
-                //   },
-                // ),
-                // const AtributeDivision(
-                //   label: "ABILITY SCORES  (base / modifier)",
-                //   label2:
-                //       "These values might be altered depending on equipment",
-                // ),
-
-                // ExpandedSection(
-                //   expand: showAbilityScore,
-                //   child: Row(
-                //     children: [
-                //       Column(
-                //         crossAxisAlignment: CrossAxisAlignment.start,
-                //         children: [
-                //           SizedBox(
-                //             width: size.width * 0.44,
-                //             child: StatsDescriptionColumn(
-                //               labeltop: "Strength:",
-                //               labelBottom: "Dexterity:",
-                //               textValueTop: state.cha.baseAtributes.strength!,
-                //               textValueBottom:
-                //                   state.cha.baseAtributes.dexterity!,
-                //               modTop: state.cha.modAtributes.strength!,
-                //               modBottom: state.cha.modAtributes.dexterity!,
-                //             ),
-                //           ),
-                //           SizedBox(
-                //             width: size.width * 0.44,
-                //             child: StatsDescriptionText(
-                //               label: "Constitution:",
-                //               textValue: state.cha.baseAtributes.constitution!,
-                //               modValue: state.cha.modAtributes.constitution!,
-                //             ),
-                //           )
-                //         ],
-                //       ),
-                //       SizedBox(width: size.width * 0.02),
-                //       Column(
-                //         crossAxisAlignment: CrossAxisAlignment.start,
-                //         children: [
-                //           SizedBox(
-                //             width: size.width * 0.44,
-                //             child: StatsDescriptionColumn(
-                //               labeltop: "Intelligence:",
-                //               labelBottom: "Wisdom:",
-                //               textValueTop:
-                //                   state.cha.baseAtributes.intelligence!,
-                //               textValueBottom: state.cha.baseAtributes.wisdom!,
-                //               modTop: state.cha.modAtributes.intelligence!,
-                //               modBottom: state.cha.modAtributes.wisdom!,
-                //             ),
-                //           ),
-                //           SizedBox(
-                //             width: size.width * 0.44,
-                //             child: StatsDescriptionText(
-                //               label: "Charisma:",
-                //               textValue: state.cha.baseAtributes.charisma!,
-                //               modValue: state.cha.modAtributes.charisma!,
-                //             ),
-                //           ),
-                //           SizedBox(height: deviceHeight! * 0.006),
-                //         ],
-                //       ),
-                //     ],
-                //   ),
-                // ),
-                // WeaponLabelSection(
-                //   label: "Defense",
-                //   onTap: () {
-                //     setState(() {
-                //       showDefense = !showDefense;
-                //     });
-                //   },
-                // ),
-                // ExpandedSection(
-                //   expand: showDefense,
-                //   child: Column(
-                //     crossAxisAlignment: CrossAxisAlignment.start,
-                //     children: [
-                //       Row(
-                //         children: [
-                //           DefenseInfo(
-                //             length: deviceWidth! * 0.59,
-                //             label: "Hit Points:",
-                //             value: "${state.cha.hitPoints}",
-                //           ),
-                //         ],
-                //       ),
-                //       Row(
-                //         children: [
-                //           DefenseInfo(
-                //             label: "Fort:",
-                //             value: "${state.cha.resistances.fortitude!}",
-                //           ),
-                //           SizedBox(width: size.width * 0.03),
-                //           DefenseInfo(
-                //             label: "Ref:",
-                //             value: "${state.cha.resistances.reflex!}",
-                //           ),
-                //           SizedBox(width: size.width * 0.03),
-                //           DefenseInfo(
-                //             label: "Will:",
-                //             value: "${state.cha.resistances.will!}",
-                //           ),
-                //         ],
-                //       ),
-                //       DefenseInfo(
-                //         length: deviceWidth! * 0.9,
-                //         label: "Armor:",
-                //         value: "",
-                //       ),
-                //       Row(
-                //         children: [
-                //           DefenseInfo(
-                //             label: "Touch:",
-                //             value: "${state.cha.combatStats.armourTouch!}",
-                //           ),
-                //           SizedBox(width: size.width * 0.03),
-                //           DefenseInfo(
-                //             label: "Surp:",
-                //             value: "${state.cha.combatStats.armourSurprise!}",
-                //           ),
-                //         ],
-                //       ),
-                //     ],
-                //   ),
-                // ),
-                // WeaponLabelSection(
-                //   label: "Offense",
-                //   onTap: () {
-                //     setState(() {
-                //       showOffense = !showOffense;
-                //     });
-                //   },
-                // ),
-                // ExpandedSection(
-                //   expand: showOffense,
-                //   child: Column(
-                //     crossAxisAlignment: CrossAxisAlignment.start,
-                //     children: [
-                //       DefenseInfo(
-                //         length: deviceWidth! * 0.59,
-                //         label: "Base attack bonus:",
-                //         value: "${state.cha.combatStats.baseAttackBonus!}",
-                //       ),
-                //       DefenseInfo(
-                //         length: deviceWidth! * 0.9,
-                //         label: "Melee:",
-                //         value: "",
-                //       ),
-                //       DefenseInfo(
-                //         length: deviceWidth! * 0.59,
-                //         label: "Damage:",
-                //         value: "",
-                //       ),
-                //     ],
-                //   ),
-                // ),
-                // WeaponLabelSection(
-                //   label: "Combat Manouvers",
-                //   onTap: () {
-                //     setState(() {
-                //       showManouvers = !showManouvers;
-                //     });
-                //   },
-                // ),
-
-                // ExpandedSection(
-                //   expand: showManouvers,
-                //   child: Row(
-                //     children: [
-                //       DefenseInfo(
-                //         label: "CMB:",
-                //         value: "${state.cha.combatStats.combatManeuverBonus!}",
-                //       ),
-                //       SizedBox(width: size.width * 0.03),
-                //       DefenseInfo(
-                //         label: "CMD:",
-                //         value:
-                //             "${state.cha.combatStats.combatManeuverDefense!}",
-                //       ),
-                //     ],
-                //   ),
-                // ),
-                // SizedBox(height: size.height * 0.02),
-
-                // if (!state.isCharGeneratorCleared)
-                //   Column(
-                //     crossAxisAlignment: CrossAxisAlignment.start,
-                //     children: [
-                //       RichText(
-                //         textAlign: TextAlign.center,
-                //         text: TextSpan(
-                //           style: AppTextStyle.subTextGrey,
-                //           children: [
-                //             TextSpan(
-                //                 text: state.cha.charName.fullName,
-                //                 style: AppTextStyle.subTextWhite),
-                //             const TextSpan(
-                //               text: "  has no equipment so far.",
-                //             ),
-                //           ],
-                //         ),
-                //       ),
-                //       Row(
-                //         children: [
-                //           Text("Click", style: AppTextStyle.subTextGrey),
-                //           TextButton(
-                //               child: const Text(
-                //                 "HERE",
-                //                 style: TextStyle(color: AppColors.primaryGold),
-                //               ),
-                //               onPressed: () {
-                //                 showStartingOverConfirmation(context, state);
-                //               }),
-                //           Text("to start over",
-                //               style: AppTextStyle.subTextGrey),
-                //         ],
-                //       ),
-                //       Text("Or click next to start equipment generation",
-                //           style: AppTextStyle.subTextGrey),
-                //     ],
-                //   ),
-                // SizedBox(height: deviceHeight! * 0.01),
+                  );
+                }),
               ],
             );
           }),

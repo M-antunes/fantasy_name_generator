@@ -3,9 +3,11 @@ import 'dart:convert';
 import 'package:fantasy_name_generator/models/alignment_model.dart';
 import 'package:fantasy_name_generator/models/class_model.dart';
 import 'package:fantasy_name_generator/models/combat_model.dart';
+import 'package:fantasy_name_generator/models/combat_style_choice_model.dart';
 import 'package:fantasy_name_generator/models/equip_models/equip_model.dart';
 import 'package:fantasy_name_generator/models/equip_models/loot_model.dart';
 import 'package:fantasy_name_generator/models/name_model.dart';
+import 'package:fantasy_name_generator/models/physical_style_model.dart';
 import 'package:fantasy_name_generator/models/race_model.dart';
 import 'package:fantasy_name_generator/models/resistance_model.dart';
 
@@ -14,6 +16,8 @@ import 'base_atribute_model.dart';
 class CharModel {
   RaceModel charRace;
   NameModel charName;
+  PhysicalStyleModel physicalStyle;
+  CombatStyleChoiceModel battleStyle;
   AtributeModel baseAtributes;
   AtributeModel modAtributes;
   ClassModel charClass;
@@ -28,6 +32,8 @@ class CharModel {
   CharModel({
     required this.charRace,
     required this.charName,
+    required this.physicalStyle,
+    required this.battleStyle,
     required this.baseAtributes,
     required this.modAtributes,
     required this.charClass,
@@ -43,6 +49,8 @@ class CharModel {
   CharModel copyWith({
     RaceModel? charRace,
     NameModel? charName,
+    PhysicalStyleModel? physicalStyle,
+    CombatStyleChoiceModel? battleStyle,
     AtributeModel? baseAtributes,
     AtributeModel? modAtributes,
     ClassModel? charClass,
@@ -57,6 +65,8 @@ class CharModel {
     return CharModel(
       charRace: charRace ?? this.charRace,
       charName: charName ?? this.charName,
+      physicalStyle: physicalStyle ?? this.physicalStyle,
+      battleStyle: battleStyle ?? this.battleStyle,
       baseAtributes: baseAtributes ?? this.baseAtributes,
       modAtributes: modAtributes ?? this.modAtributes,
       charClass: charClass ?? this.charClass,
@@ -74,6 +84,8 @@ class CharModel {
     return {
       'charRace': charRace.toMap(),
       'charName': charName.toMap(),
+      'physicalStyle': physicalStyle.toMap(),
+      'battleStyle': battleStyle.toMap(),
       'baseAtributes': baseAtributes.toMap(),
       'modAtributes': modAtributes.toMap(),
       'charClass': charClass.toMap(),
@@ -91,6 +103,8 @@ class CharModel {
     return CharModel(
       charRace: RaceModel.fromMap(map['charRace']),
       charName: NameModel.fromMap(map['charName']),
+      physicalStyle: PhysicalStyleModel.fromMap(map['physicalStyle']),
+      battleStyle: CombatStyleChoiceModel.fromMap(map['battleStyle']),
       baseAtributes: AtributeModel.fromMap(map['baseAtributes']),
       modAtributes: AtributeModel.fromMap(map['modAtributes']),
       charClass: ClassModel.fromMap(map['charClass']),
@@ -111,7 +125,7 @@ class CharModel {
 
   @override
   String toString() {
-    return 'CharModel(charRace: $charRace, charName: $charName, baseAtributes: $baseAtributes, modAtributes: $modAtributes, charClass: $charClass, alignment: $alignment, hitPoints: $hitPoints, resistances: $resistances, combatStats: $combatStats, charEquip: $charEquip, loot: $loot, charLevel: $charLevel)';
+    return 'CharModel(charRace: $charRace, charName: $charName, physicalStyle: $physicalStyle, battleStyle: $battleStyle, baseAtributes: $baseAtributes, modAtributes: $modAtributes, charClass: $charClass, alignment: $alignment, hitPoints: $hitPoints, resistances: $resistances, combatStats: $combatStats, charEquip: $charEquip, loot: $loot, charLevel: $charLevel)';
   }
 
   @override
@@ -121,6 +135,8 @@ class CharModel {
     return other is CharModel &&
         other.charRace == charRace &&
         other.charName == charName &&
+        other.physicalStyle == physicalStyle &&
+        other.battleStyle == battleStyle &&
         other.baseAtributes == baseAtributes &&
         other.modAtributes == modAtributes &&
         other.charClass == charClass &&
@@ -137,6 +153,8 @@ class CharModel {
   int get hashCode {
     return charRace.hashCode ^
         charName.hashCode ^
+        physicalStyle.hashCode ^
+        battleStyle.hashCode ^
         baseAtributes.hashCode ^
         modAtributes.hashCode ^
         charClass.hashCode ^

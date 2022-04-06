@@ -13,11 +13,11 @@ abstract class RouteGenerator {
           settings: routeSettings,
         );
 
-      case AppRoutes.equipPage:
-        return MaterialPageRoute(
-          builder: (_) => const EquipDevelopMentPage(),
-          settings: routeSettings,
-        );
+      // case AppRoutes.equipPage:
+      //   return MaterialPageRoute(
+      //     builder: (_) => const EquipDevelopMentPage(),
+      //     settings: routeSettings,
+      //   );
       case AppRoutes.createOrCheck:
         return MaterialPageRoute(
           builder: (_) => const CreateOrCheckSavedPage(),

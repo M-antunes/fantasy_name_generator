@@ -34,31 +34,31 @@ class ProgressionBar extends StatelessWidget {
   }
 }
 
-class EquipProgressionBar extends StatelessWidget {
-  final EquipController controller;
+// class EquipProgressionBar extends StatelessWidget {
+//   final EquipController controller;
 
-  const EquipProgressionBar({
-    Key? key,
-    required this.controller,
-  }) : super(key: key);
+//   const EquipProgressionBar({
+//     Key? key,
+//     required this.controller,
+//   }) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        // Text("Character Creation Progress", style: AppTextStyle.changeRace),
-        Padding(
-          padding: const EdgeInsets.only(left: 8, right: 8),
-          child: StepProgressIndicator(
-            roundedEdges: const Radius.circular(10),
-            totalSteps: 12,
-            currentStep: controller.creationStage,
-            selectedColor: AppColors.primary,
-            selectedSize: 8,
-          ),
-        ),
-      ],
-      // ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Column(
+//       children: [
+//         // Text("Character Creation Progress", style: AppTextStyle.changeRace),
+//         Padding(
+//           padding: const EdgeInsets.only(left: 8, right: 8),
+//           child: StepProgressIndicator(
+//             roundedEdges: const Radius.circular(10),
+//             totalSteps: 12,
+//             currentStep: controller.creationStage,
+//             selectedColor: AppColors.primary,
+//             selectedSize: 8,
+//           ),
+//         ),
+//       ],
+//       // ),
+//     );
+//   }
+// }

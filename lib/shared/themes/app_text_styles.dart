@@ -220,10 +220,10 @@ class AppTextStyle {
     color: AppColors.primaryOrange,
     fontFamily: "David",
     fontSize: deviceWidth! < 350
-        ? 16
+        ? 14
         : deviceWidth! > 350 && deviceWidth! < 400
-            ? 17
-            : 19,
+            ? 15
+            : 17,
   );
   static final subTextRed = TextStyle(
     fontWeight: FontWeight.w600,

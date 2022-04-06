@@ -43,10 +43,13 @@ class ClassData {
     PhysicalStyleModel(
         name: "Berserker",
         svg: "assets/images/weapon_types/great-sword.svg",
+        weaponType: "Two-handed",
         forbiddenClasses: [
           "Rogue",
           "Wizard",
           "Arcanist",
+          "Alchemist",
+          "Bard",
           "Sorcerer",
           "Aristocrat",
           "Noble",
@@ -56,10 +59,11 @@ class ClassData {
     PhysicalStyleModel(
         name: "Soldier",
         svg: "assets/images/weapon_types/soldier.svg",
+        weaponType: "One-handed",
         forbiddenClasses: [
           "Rogue",
-          "Monk"
-              "Wizard",
+          "Monk",
+          "Wizard",
           "Arcanist",
           "Sorcerer",
           "Aristocrat",
@@ -70,11 +74,14 @@ class ClassData {
     PhysicalStyleModel(
         name: "Dual-weilder",
         svg: "assets/images/weapon_types/axe-sword.svg",
+        weaponType: "One-handed",
         forbiddenClasses: [
           "Wizard",
+          "Bard",
           "Arcanist",
           "Sorcerer",
           "Aristocrat",
+          "Alchemist",
           "Noble",
           "Commoner"
         ],
@@ -82,21 +89,38 @@ class ClassData {
     PhysicalStyleModel(
         name: "Swordsman",
         svg: "assets/images/weapon_types/sword.svg",
+        weaponType: "sword",
         forbiddenClasses: [],
         isSelected: false),
     PhysicalStyleModel(
         name: "Knifeman",
         svg: "assets/images/weapon_types/knife.svg",
+        weaponType: "Knife",
         forbiddenClasses: [],
         isSelected: false),
     PhysicalStyleModel(
         name: "Martial",
         svg: "assets/images/weapon_types/punch.svg",
-        forbiddenClasses: [],
+        weaponType: "Fist",
+        forbiddenClasses: [
+          "Bard",
+          "Samurai",
+          "Antipaladin",
+          "Paladin",
+          "Rogue",
+          "Alchemist",
+          "Wizard",
+          "Arcanist",
+          "Sorcerer",
+          "Aristocrat",
+          "Noble",
+          "Commoner",
+        ],
         isSelected: false),
     PhysicalStyleModel(
         name: "Bowman",
         svg: "assets/images/weapon_types/bow.svg",
+        weaponType: "Bow",
         forbiddenClasses: [
           "Monk",
           "Wizard",
@@ -110,11 +134,13 @@ class ClassData {
     PhysicalStyleModel(
         name: "Marksman",
         svg: "assets/images/weapon_types/crossbow.svg",
+        weaponType: "Crossbow",
         forbiddenClasses: [],
         isSelected: false),
     PhysicalStyleModel(
         name: "Thrower",
         svg: "assets/images/weapon_types/throwing.svg",
+        weaponType: "Throwing",
         forbiddenClasses: [
           "Wizard",
           "Arcanist",

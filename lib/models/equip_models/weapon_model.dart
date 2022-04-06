@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
-import 'package:fantasy_name_generator/models/equip_models/weapon_type_model.dart';
+import 'package:fantasy_name_generator/models/equip_models/weapon_family_model.dart';
 
 import 'enchant_model.dart';
 
@@ -19,7 +19,7 @@ class WeaponModel {
     this.type,
     this.isSelected,
     this.name,
-    this.enchantment,
+    this.enchantment = const [],
     this.damage,
     this.damageType,
     this.critical,

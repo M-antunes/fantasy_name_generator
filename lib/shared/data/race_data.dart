@@ -11,6 +11,7 @@ class RaceData {
       weight: 160,
       speed: 20,
       size: "Medium",
+      vision: "Darkvision 60 ft",
       traits: [
         KeyValueModel(
             key: '+2 Constitution, +2 Wisdom, –2 Charisma:',
@@ -56,6 +57,7 @@ class RaceData {
       weight: 130,
       speed: 30,
       size: "Medium",
+      vision: "Low-Light Vision",
       traits: [
         KeyValueModel(
             key: "+2 Dexterity, +2 Intelligence, –2 Constitution:",
@@ -93,6 +95,7 @@ class RaceData {
       weight: 50,
       speed: 20,
       size: "Small",
+      vision: "Low-Light Vision",
       traits: [
         KeyValueModel(
             key: "+2 Constitution, +2 Charisma, –2 Strength:",
@@ -138,6 +141,7 @@ class RaceData {
       weight: 45,
       speed: 20,
       size: "Small",
+      vision: "Standard",
       traits: [
         KeyValueModel(
             key: "+2 Dexterity, +2 Charisma, –2 Strength:",
@@ -175,6 +179,7 @@ class RaceData {
       weight: 150,
       speed: 30,
       size: "Medium",
+      vision: "Low-Light Vision",
       traits: [
         KeyValueModel(
             key: "+2 to One Ability Score:",
@@ -217,6 +222,7 @@ class RaceData {
       weight: 160,
       speed: 30,
       size: "Medium",
+      vision: "Darkvision 60 ft.",
       traits: [
         KeyValueModel(
             key: "+2 to One Ability Score:",
@@ -254,6 +260,7 @@ class RaceData {
       weight: 130,
       speed: 30,
       size: "Medium",
+      vision: "Standard",
       traits: [
         KeyValueModel(
             key: "+2 to One Ability Score:",
@@ -284,6 +291,7 @@ class RaceData {
       weight: 190,
       speed: 30,
       size: "Medium",
+      vision: "Darkvision 60 ft.",
       traits: [
         KeyValueModel(
             key: "+4 to Strength:",

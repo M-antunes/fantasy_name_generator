@@ -7,10 +7,12 @@ import 'package:fantasy_name_generator/models/combat_style_choice_model.dart';
 import 'package:fantasy_name_generator/models/equip_models/equip_model.dart';
 import 'package:fantasy_name_generator/models/equip_models/loot_model.dart';
 import 'package:fantasy_name_generator/models/equip_models/weapon_model.dart';
-import 'package:fantasy_name_generator/models/equip_models/weapon_type_model.dart';
+import 'package:fantasy_name_generator/models/equip_models/weapon_family_model.dart';
 import 'package:fantasy_name_generator/models/name_model.dart';
 import 'package:fantasy_name_generator/models/race_model.dart';
 import 'package:fantasy_name_generator/models/resistance_model.dart';
+
+import '../../models/physical_style_model.dart';
 
 class DefaultCharModelData {
   final defaultCharModel = CharModel(
@@ -24,6 +26,18 @@ class DefaultCharModelData {
       personalPronoun: "",
       possessiveAdjective: "",
     ),
+    battleStyle: CombatStyleChoiceModel(
+        isSelected: false,
+        description: "",
+        descriptionTitle: "",
+        name: "",
+        svg: ""),
+    physicalStyle: PhysicalStyleModel(
+        weaponType: "",
+        name: "",
+        forbiddenClasses: [],
+        isSelected: false,
+        svg: ""),
     baseAtributes: AtributeModel(),
     modAtributes: AtributeModel(),
     charClass: ClassModel(
@@ -40,15 +54,14 @@ class DefaultCharModelData {
     resistances: ResistanceModel(),
     combatStats: CombatModel(),
     charEquip: EquipModel(
-        primaryWeapon: WeaponModel(
+        meleeWeapon: WeaponModel(
             forbiddenTo: [],
             name: "Dagger",
             type: WeaponFamilyModel(
-                forbiddenTo: [],
-                name: "Knife",
-                wielding: "One-handed",
-                isSelected: false,
-                picture: "assets/images/weapon_types/knife.svg"))),
+              forbiddenTo: [],
+              name: "Knife",
+              wielding: "One-handed",
+            ))),
     loot: LootModel(items: [], gold: 0),
     charLevel: 1,
   );

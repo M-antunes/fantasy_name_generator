@@ -1,3 +1,4 @@
+import 'package:fantasy_name_generator/controllers/stats_controller.dart';
 import 'package:fantasy_name_generator/shared/routes/app_roues.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -138,46 +139,26 @@ class _CharDevelopmentPageState extends State<CharDevelopmentPage>
                   onGenerate: () => state.newNameGenerator(),
                 ),
               if (state.creationStage == 8)
-                AppGenerateButton(
-                  icon: state.isCharGeneratorCleared
-                      ? null
-                      : const Icon(Icons.delete_forever, size: 35),
-                  onGenerate: state.isCharGeneratorCleared
-                      ? () {
-                          state.generateAllAtributs();
-                          state.isCharGeneratorCleared =
-                              !state.isCharGeneratorCleared;
-                        }
-                      : () {
-                          state.updateCharModel();
-                        },
-                ),
-              state.creationStage == 8
-                  ? AppAnimatedButton(
-                      onTap: () => Navigator.pushNamed(
-                          context, AppRoutes.equipPage,
-                          arguments: state.cha),
-                    )
-                  : AppAnimatedButton(
-                      color: state.isCharGeneratorCleared &&
-                              state.creationStage == 8
-                          ? Colors.white10
-                          : null,
-                      onTap: !state.isCharGeneratorCleared &&
-                              state.creationStage != 8
-                          ? () => buttonFunction(state, context)
-                          : !state.isCharGeneratorCleared &&
-                                  state.creationStage == 8
-                              ? () => buttonFunction(state, context)
-                              : state.isCharGeneratorCleared &&
-                                      state.creationStage != 8
-                                  ? () => buttonFunction(state, context)
-                                  : () {},
-                      style: state.isCharGeneratorCleared &&
-                              state.creationStage == 8
-                          ? const TextStyle(color: Colors.white24, fontSize: 22)
-                          : null,
-                    ),
+                Consumer<StatsController>(builder: (context, ctrl, child) {
+                  return AppGenerateButton(
+                    icon: !ctrl.statsGenerated
+                        ? null
+                        : const Icon(Icons.delete_forever, size: 35),
+                    onGenerate: !ctrl.statsGenerated
+                        ? () {
+                            ctrl.generateAll();
+                            ctrl.updateStats();
+                          }
+                        : () {
+                            ctrl.char = state.cha;
+                            ctrl.resetEquipAndStats();
+                            ctrl.updateStats();
+                          },
+                  );
+                }),
+              AppAnimatedButton(
+                onTap: () => buttonFunction(state, context),
+              ),
             ],
           ),
         );

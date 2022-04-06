@@ -8,16 +8,14 @@ import 'weapon_model.dart';
 import 'wonderous_items_model.dart';
 
 class EquipModel {
-  WeaponModel? primaryWeapon;
-  WeaponModel? secondaryWeapon;
-  WeaponModel? emergencyWeapon;
+  WeaponModel? meleeWeapon;
+  WeaponModel? rangeWeapon;
   ArmorModel? armour;
   ArmorModel? shield;
   List<WonderousItemsModel>? wonderousItems;
   EquipModel({
-    this.primaryWeapon,
-    this.secondaryWeapon,
-    this.emergencyWeapon,
+    this.meleeWeapon,
+    this.rangeWeapon,
     this.armour,
     this.shield,
     this.wonderousItems,
@@ -25,16 +23,14 @@ class EquipModel {
 
   EquipModel copyWith({
     WeaponModel? primaryWeapon,
-    WeaponModel? secondaryWeapon,
     WeaponModel? emergencyWeapon,
     ArmorModel? armour,
     ArmorModel? shield,
     List<WonderousItemsModel>? wonderousItems,
   }) {
     return EquipModel(
-      primaryWeapon: primaryWeapon ?? this.primaryWeapon,
-      secondaryWeapon: secondaryWeapon ?? this.secondaryWeapon,
-      emergencyWeapon: emergencyWeapon ?? this.emergencyWeapon,
+      meleeWeapon: primaryWeapon ?? meleeWeapon,
+      rangeWeapon: emergencyWeapon ?? rangeWeapon,
       armour: armour ?? this.armour,
       shield: shield ?? this.shield,
       wonderousItems: wonderousItems ?? this.wonderousItems,
@@ -43,9 +39,8 @@ class EquipModel {
 
   Map<String, dynamic> toMap() {
     return {
-      'primaryWeapon': primaryWeapon?.toMap(),
-      'secondaryWeapon': secondaryWeapon?.toMap(),
-      'emergencyWeapon': emergencyWeapon?.toMap(),
+      'primaryWeapon': meleeWeapon?.toMap(),
+      'emergencyWeapon': rangeWeapon?.toMap(),
       'armour': armour?.toMap(),
       'shield': shield?.toMap(),
       'wonderousItems': wonderousItems?.map((x) => x.toMap()).toList(),
@@ -54,13 +49,10 @@ class EquipModel {
 
   factory EquipModel.fromMap(Map<String, dynamic> map) {
     return EquipModel(
-      primaryWeapon: map['primaryWeapon'] != null
+      meleeWeapon: map['primaryWeapon'] != null
           ? WeaponModel.fromMap(map['primaryWeapon'])
           : null,
-      secondaryWeapon: map['secondaryWeapon'] != null
-          ? WeaponModel.fromMap(map['secondaryWeapon'])
-          : null,
-      emergencyWeapon: map['emergencyWeapon'] != null
+      rangeWeapon: map['emergencyWeapon'] != null
           ? WeaponModel.fromMap(map['emergencyWeapon'])
           : null,
       armour: map['armour'] != null ? ArmorModel.fromMap(map['armour']) : null,
@@ -79,7 +71,7 @@ class EquipModel {
 
   @override
   String toString() {
-    return 'EquipModel(primaryWeapon: $primaryWeapon, secondaryWeapon: $secondaryWeapon, emergencyWeapon: $emergencyWeapon, armour: $armour, shield: $shield, wonderousItems: $wonderousItems)';
+    return 'EquipModel(primaryWeapon: $meleeWeapon, emergencyWeapon: $rangeWeapon, armour: $armour, shield: $shield, wonderousItems: $wonderousItems)';
   }
 
   @override
@@ -87,9 +79,8 @@ class EquipModel {
     if (identical(this, other)) return true;
 
     return other is EquipModel &&
-        other.primaryWeapon == primaryWeapon &&
-        other.secondaryWeapon == secondaryWeapon &&
-        other.emergencyWeapon == emergencyWeapon &&
+        other.meleeWeapon == meleeWeapon &&
+        other.rangeWeapon == rangeWeapon &&
         other.armour == armour &&
         other.shield == shield &&
         listEquals(other.wonderousItems, wonderousItems);
@@ -97,9 +88,8 @@ class EquipModel {
 
   @override
   int get hashCode {
-    return primaryWeapon.hashCode ^
-        secondaryWeapon.hashCode ^
-        emergencyWeapon.hashCode ^
+    return meleeWeapon.hashCode ^
+        rangeWeapon.hashCode ^
         armour.hashCode ^
         shield.hashCode ^
         wonderousItems.hashCode;

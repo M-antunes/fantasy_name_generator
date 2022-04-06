@@ -1,6 +1,7 @@
 // This widget is the root of your application.
 import 'package:fantasy_name_generator/controllers/char_controller.dart';
 import 'package:fantasy_name_generator/controllers/magic_item_controller.dart';
+import 'package:fantasy_name_generator/controllers/stats_controller.dart';
 import 'package:fantasy_name_generator/modules/splash/splash_page.dart';
 import 'package:fantasy_name_generator/shared/core/route_generator.dart';
 import 'package:flutter/material.dart';
@@ -22,8 +23,9 @@ class _MyAppState extends State<MyApp> {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => CharController()),
-        ChangeNotifierProvider(create: (_) => EquipController()),
-        ChangeNotifierProvider(create: (_) => MagicItemController()),
+        ChangeNotifierProvider(create: (_) => StatsController()),
+        // ChangeNotifierProvider(create: (_) => EquipController()),
+        // ChangeNotifierProvider(create: (_) => MagicItemController()),
       ],
       child: MaterialApp(
         title: 'Fantasy Character Generator',
