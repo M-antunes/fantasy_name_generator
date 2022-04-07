@@ -1,5 +1,4 @@
 import 'package:fantasy_name_generator/controllers/stats_controller.dart';
-import 'package:fantasy_name_generator/shared/routes/app_roues.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

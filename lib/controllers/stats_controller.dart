@@ -10,6 +10,9 @@ import 'package:flutter/cupertino.dart';
 
 import '../models/equip_models/enchant_model.dart';
 import '../models/equip_models/wonderous_items_model.dart';
+import '../models/specials_model.dart';
+import '../models/traits_model.dart';
+import '../shared/data/class_traits_data/barbarian/barbarian_traits_data.dart';
 import '../shared/data/enchant_data.dart';
 import '../shared/data/wonderous_items_data.dart';
 
@@ -49,6 +52,8 @@ class StatsController with ChangeNotifier {
     char.charEquip.meleeWeapon = null;
     char.charEquip.rangeWeapon = null;
     char.charEquip.wonderousItems = null;
+    traits = [];
+    specials = [];
     notifyListeners();
   }
 
@@ -67,8 +72,14 @@ class StatsController with ChangeNotifier {
         char.charEquip.meleeWeapon = gettingMainWeapon();
         char.charEquip.rangeWeapon = generatingAlternativeWeapon();
       }
+      generateShield();
+      char.charEquip.armour = generateArmor();
+      applyMagicToArmorAndShield();
     }
+    calculateBaseAttackBonus();
     applyMagicToWeapon();
+    gettingClassTraits();
+    gettingClassSpecials();
     notifyListeners();
   }
 
@@ -208,7 +219,7 @@ class StatsController with ChangeNotifier {
     if (char.charLevel < 9) {
       return;
     } else {
-      var newIounStone = listOfWonderousItems.allItems
+      var newIounStone = listOfWonderousItems.basicIounStones
           .where((element) => element.name == "Ioun Stone (dusty rose)")
           .toList();
       char.charEquip.wonderousItems!.addAll(newIounStone);
@@ -449,15 +460,34 @@ class StatsController with ChangeNotifier {
     var enchants = listOfEnchants.allWeaponEnchants
         .where((element) => element.availability <= checkAvailability)
         .toList();
-    char.charEquip.meleeWeapon!.enchantment = [enchantPowerLvs.last];
-    char.charEquip.meleeWeapon!.enchantment = addOtherEnchantByChance(
-        char.charEquip.meleeWeapon!.enchantment!, enchants, enchantPowerLvs);
-
-    char.charEquip.rangeWeapon!.enchantment = [enchantPowerLvs.first];
-    if (char.charEquip.rangeWeapon!.enchantment != []) {
+    if (char.physicalStyle.name == "Bowman" ||
+        char.physicalStyle.name == "Marksman" ||
+        char.physicalStyle.name == "Thrower") {
+      char.charEquip.rangeWeapon!.enchantment = [enchantPowerLvs.last];
       char.charEquip.rangeWeapon!.enchantment = addOtherEnchantByChance(
           char.charEquip.rangeWeapon!.enchantment!, enchants, enchantPowerLvs);
+
+      char.charEquip.meleeWeapon!.enchantment = [enchantPowerLvs.first];
+      if (char.charEquip.meleeWeapon!.enchantment != []) {
+        char.charEquip.meleeWeapon!.enchantment = addOtherEnchantByChance(
+            char.charEquip.meleeWeapon!.enchantment!,
+            enchants,
+            enchantPowerLvs);
+      }
+    } else {
+      char.charEquip.meleeWeapon!.enchantment = [enchantPowerLvs.last];
+      char.charEquip.meleeWeapon!.enchantment = addOtherEnchantByChance(
+          char.charEquip.meleeWeapon!.enchantment!, enchants, enchantPowerLvs);
+
+      char.charEquip.rangeWeapon!.enchantment = [enchantPowerLvs.first];
+      if (char.charEquip.rangeWeapon!.enchantment != []) {
+        char.charEquip.rangeWeapon!.enchantment = addOtherEnchantByChance(
+            char.charEquip.rangeWeapon!.enchantment!,
+            enchants,
+            enchantPowerLvs);
+      }
     }
+
     notifyListeners();
   }
 
@@ -500,5 +530,190 @@ class StatsController with ChangeNotifier {
       char.charEquip.shield = shield;
       notifyListeners();
     }
+  }
+
+  ArmorModel generateArmor() {
+    ArmorModel armor;
+    List<ArmorModel> armors;
+    if (char.charClass.name == "Druid") {
+      armors = equip.allArmors
+          .where((element) => element.fitForDruid == true)
+          .toList();
+    } else if (char.charClass.mainAtrb == "Dex") {
+      armors = equip.allArmors
+          .where((element) => element.type!.name == "Light")
+          .toList();
+    } else {
+      armors = equip.allArmors
+          .where((element) =>
+              !char.charClass.forbidenArmorType.contains(element.type!.name))
+          .toList();
+    }
+    armors.sort(((a, b) => a.defenseBonus!.compareTo(b.defenseBonus!)));
+    var random = randomIndex.nextInt(armors.length);
+    if (random == armors.length) {
+      random--;
+    }
+    random > (armors.length / 3).floor()
+        ? armor = armors[random]
+        : armor = armors.last;
+
+    return armor;
+  }
+
+  // ===================================================================================
+  //Apply magic to Armor and shield
+
+  applyMagicToArmorAndShield() {
+    if (char.charLevel < 5) {
+      return;
+    }
+    var minAvail = discoverMinAvailability(char.charLevel);
+    var enchantPowerLvs = listOfEnchants.magicEnchants
+        .where((element) =>
+            element.availability < char.charLevel &&
+            element.availability > minAvail)
+        .toList();
+    char.charEquip.armour!.enchantment = enchantPowerLvs.last;
+    char.charEquip.shield!.enchantment = enchantPowerLvs.last;
+    notifyListeners();
+  }
+
+  //====================================================================================
+  //Base Attack Bonus
+  var listOfClasses = ClassData();
+
+  calculateBaseAttackBonus() {
+    var baseAttackBonus = 0;
+    var magicClasses = listOfClasses.allClasses
+        .where((element) => element.hitDice! < 7)
+        .toList();
+    var physicalClasses = listOfClasses.allClasses
+        .where((element) => element.hitDice! > 9)
+        .toList();
+    var mixedClasses = listOfClasses.allClasses
+        .where((element) => element.hitDice! == 8)
+        .toList();
+    var isMagicCl =
+        magicClasses.any((element) => element.name == char.charClass.name);
+    var isMixCl =
+        mixedClasses.any((element) => element.name == char.charClass.name);
+    var isPhysCl =
+        physicalClasses.any((element) => element.name == char.charClass.name);
+    if (isPhysCl) {
+      baseAttackBonus = char.charLevel;
+    }
+    if (isMagicCl) {
+      baseAttackBonus = char.charLevel;
+      baseAttackBonus = (baseAttackBonus / 2).floor();
+    }
+    if (isMixCl) {
+      baseAttackBonus = 0;
+      var level = char.charLevel;
+
+      if (level <= 4) {
+        baseAttackBonus = level - 1;
+      } else if (level >= 5 && level <= 8) {
+        baseAttackBonus = level - 2;
+      } else if (level >= 9 && level <= 12) {
+        baseAttackBonus = level - 3;
+      } else if (level >= 13 && level <= 16) {
+        baseAttackBonus = level - 4;
+      } else if (level >= 17 && level <= 20) {
+        baseAttackBonus = level - 5;
+      } else if (level >= 21 && level <= 25) {
+        baseAttackBonus = level - 6;
+      } else {
+        baseAttackBonus = level - 7;
+      }
+    }
+    char.combatStats.baseAttackBonus = baseAttackBonus;
+    notifyListeners();
+  }
+
+  // ===================================================================================
+  //Traits part
+
+  var barbarian = BarbarianTraitsData();
+  List<SpecialsModel> specials = [];
+  List<TraitModel> traits = [];
+
+  gettingClassTraits() {
+    List<TraitModel> newList = [];
+    var valueList = [];
+    List<TraitModel> replacementList = [];
+    List<TraitModel> list = barbarian.barbarianTraits
+        .where((element) => element.levelAcquired <= char.charLevel)
+        .toList();
+    var onlyVariableTraits =
+        list.where((element) => element.multiplier != null).toList();
+    list.removeWhere((element) => element.multiplier != null);
+    for (var i in onlyVariableTraits) {
+      var changableValue = char.charLevel - i.levelAcquired;
+      if (i.levelAcquired == char.charLevel) {
+        changableValue++;
+      }
+      changableValue = (changableValue / i.multiplier!).floor();
+      valueList.add(changableValue);
+    }
+    var index = 0;
+    for (var i in onlyVariableTraits) {
+      var newString = "${i.traiName} ${valueList[index] + 1}";
+      var newTrait = TraitModel(
+          traiName: newString,
+          levelAcquired: i.levelAcquired,
+          traiDescription: i.traiDescription,
+          isSelected: i.isSelected);
+      newList.add(newTrait);
+      index++;
+    }
+    replacementList.addAll(list);
+    replacementList.addAll(newList);
+    traits = replacementList;
+    notifyListeners();
+  }
+
+  gettingClassSpecials() {
+    var numberOfSpecial = (char.charLevel / 2).floor();
+    List<SpecialsModel> cloneList = barbarian.ragePowers
+        .where((element) => element.levelAcquired <= char.charLevel)
+        .toList();
+    List<SpecialsModel> specialList = [];
+    for (var i = 0; i < numberOfSpecial; i++) {
+      var random = randomIndex.nextInt(cloneList.length);
+      if (random == cloneList.length) {
+        random--;
+      }
+      specialList.add(cloneList[random]);
+      cloneList.remove(cloneList[random]);
+    }
+    specials = specialList;
+    notifyListeners();
+  }
+
+  showFeatureDescription(int index) {
+    if (traits[index].isSelected == true) {
+      traits[index].isSelected = false;
+      notifyListeners();
+      return;
+    }
+    for (var i in traits) {
+      i.isSelected = false;
+    }
+    traits[index].isSelected = true;
+    notifyListeners();
+  }
+
+  showSpecialDescription(int index) {
+    if (specials[index].isSelected == true) {
+      specials[index].isSelected = false;
+      notifyListeners();
+      return;
+    }
+    for (var i in specials) {
+      i.isSelected = false;
+    }
+    specials[index].isSelected = true;
+    notifyListeners();
   }
 }

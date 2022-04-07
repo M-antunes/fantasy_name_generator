@@ -12,8 +12,10 @@ import 'package:fantasy_name_generator/shared/widgets/expanded_section.dart';
 import '../../../shared/themes/app_colors.dart';
 import 'stats_sections/ability_scores.dart';
 import 'stats_sections/combat_stats.dart';
+import 'stats_sections/feats_stats.dart';
 import 'stats_sections/features_stats.dart';
 import 'stats_sections/loot_section.dart';
+import 'stats_sections/skill_stats.dart';
 import 'stats_sections/spell_stats.dart';
 import 'widgets/char_description_column.dart';
 
@@ -31,7 +33,7 @@ class _StatsSectionState extends State<StatsSection>
   late TabController _controller;
   @override
   void initState() {
-    _controller = TabController(length: 6, vsync: this);
+    _controller = TabController(length: 8, vsync: this);
     super.initState();
   }
 
@@ -167,8 +169,10 @@ class _StatsSectionState extends State<StatsSection>
                         tabs: const [
                           Text("ATRIBUTES"),
                           Text("COMBAT"),
-                          Text("FEATURES"),
                           Text("MAGIC GEAR"),
+                          Text("FEATURES"),
+                          Text("FEATS"),
+                          Text("SKILLS"),
                           Text("SPELLS"),
                           Text("LOOT"),
                         ],
@@ -181,8 +185,10 @@ class _StatsSectionState extends State<StatsSection>
                           children: const [
                             AbilityScoreSection(),
                             CombatStats(),
-                            FeatureStats(),
                             MagicGearStats(),
+                            FeatureStats(),
+                            FeatStats(),
+                            SkillStats(),
                             SpellStats(),
                             LootSection(),
                           ],

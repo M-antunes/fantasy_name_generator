@@ -16,6 +16,7 @@ import 'package:fantasy_name_generator/models/name_model.dart';
 import 'package:fantasy_name_generator/models/physical_style_model.dart';
 import 'package:fantasy_name_generator/models/resistance_model.dart';
 import 'package:fantasy_name_generator/models/saved_name_model.dart';
+import 'package:fantasy_name_generator/models/traits_model.dart';
 import 'package:fantasy_name_generator/shared/data/alignment_data.dart';
 import 'package:fantasy_name_generator/shared/data/class_data.dart';
 import 'package:fantasy_name_generator/shared/data/equip_data.dart';
@@ -1268,7 +1269,6 @@ class CharController extends ChangeNotifier {
     claculateAge();
     claculatingHitDefense();
     calculateResistances();
-    calculateBaseAttackBonus();
     calculateCombatManeuvers();
   }
 
@@ -1571,55 +1571,6 @@ class CharController extends ChangeNotifier {
 // ====================================================================================
 
 // section to generate Some combat modifiers
-
-  calculateBaseAttackBonus() {
-    var char = cha;
-    var baseAttackBonus = 0;
-    var magicClasses = listOfClasses.allClasses
-        .where((element) => element.hitDice! < 7)
-        .toList();
-    var physicalClasses = listOfClasses.allClasses
-        .where((element) => element.hitDice! > 9)
-        .toList();
-    var mixedClasses = listOfClasses.allClasses
-        .where((element) => element.hitDice! == 8)
-        .toList();
-    var isMagicCl =
-        magicClasses.any((element) => element.name == char.charClass.name);
-    var isMixCl =
-        mixedClasses.any((element) => element.name == char.charClass.name);
-    var isPhysCl =
-        physicalClasses.any((element) => element.name == char.charClass.name);
-    if (isPhysCl) {
-      baseAttackBonus = char.charLevel;
-    }
-    if (isMagicCl) {
-      baseAttackBonus = char.charLevel;
-      baseAttackBonus = (baseAttackBonus / 2).floor();
-    }
-    if (isMixCl) {
-      baseAttackBonus = 0;
-      var level = char.charLevel;
-
-      if (level <= 4) {
-        baseAttackBonus = level - 1;
-      } else if (level >= 5 && level <= 8) {
-        baseAttackBonus = level - 2;
-      } else if (level >= 9 && level <= 12) {
-        baseAttackBonus = level - 3;
-      } else if (level >= 13 && level <= 16) {
-        baseAttackBonus = level - 4;
-      } else if (level >= 17 && level <= 20) {
-        baseAttackBonus = level - 5;
-      } else if (level >= 21 && level <= 25) {
-        baseAttackBonus = level - 6;
-      } else {
-        baseAttackBonus = level - 7;
-      }
-    }
-    cha.combatStats.baseAttackBonus = baseAttackBonus;
-    notifyListeners();
-  }
 
   calculateCombatManeuvers() {
     var char = cha;

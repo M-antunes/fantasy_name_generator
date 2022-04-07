@@ -25,22 +25,22 @@ class GeneralMagicalEquipRow extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          children: [
-            RichText(
-                text: TextSpan(children: [
-              TextSpan(text: "$label:  ", style: AppTextStyle.statsLabel),
-              TextSpan(text: item, style: AppTextStyle.statsValue),
-            ])),
-            InkWell(
-                child: selected
+        InkWell(
+            child: Row(
+              children: [
+                RichText(
+                    text: TextSpan(children: [
+                  TextSpan(text: "$label:  ", style: AppTextStyle.statsLabel),
+                  TextSpan(text: item, style: AppTextStyle.statsValue),
+                ])),
+                selected
                     ? const Icon(Icons.arrow_drop_down,
-                        size: 30, color: Colors.blueGrey)
+                        size: 25, color: Colors.blueGrey)
                     : const Icon(Icons.arrow_right,
-                        size: 30, color: Colors.blueGrey),
-                onTap: onTap),
-          ],
-        ),
+                        size: 25, color: Colors.blueGrey),
+              ],
+            ),
+            onTap: onTap),
         ExpandedSection(
           expand: selected,
           child: Card(

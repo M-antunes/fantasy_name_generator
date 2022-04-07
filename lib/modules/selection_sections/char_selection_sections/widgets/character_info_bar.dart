@@ -21,6 +21,7 @@ class CharacterInfoBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Text(gender, style: AppTextStyle.subTextGrey),
               const SizedBox(width: 8),

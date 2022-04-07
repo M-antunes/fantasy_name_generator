@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
+
 import 'package:fantasy_name_generator/models/alignment_model.dart';
 import 'package:fantasy_name_generator/models/class_model.dart';
 import 'package:fantasy_name_generator/models/combat_model.dart';

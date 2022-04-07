@@ -1469,42 +1469,4 @@ class EquipData {
         fitForDruid: false,
         name: "Broad shield"),
   ];
-
-  List<ArmorFamilyModel> armorTypes = [
-    ArmorFamilyModel(
-        name: "No armor",
-        isSelected: false,
-        picture: "assets/images/armors/none.svg"),
-    ArmorFamilyModel(
-        name: "Light",
-        isSelected: false,
-        picture: "assets/images/armors/light.svg"),
-    ArmorFamilyModel(
-        name: "Medium",
-        isSelected: false,
-        picture: "assets/images/armors/medium.svg"),
-    ArmorFamilyModel(
-        name: "Heavy",
-        isSelected: false,
-        picture: "assets/images/armors/heavy.svg"),
-  ];
-
-  List<ArmorFamilyModel> shieldTypes = [
-    ArmorFamilyModel(
-        name: "No shield",
-        isSelected: false,
-        picture: "assets/images/shields/no-shield.svg"),
-    ArmorFamilyModel(
-        name: "Buckler",
-        isSelected: false,
-        picture: "assets/images/shields/buckler.svg"),
-    ArmorFamilyModel(
-        name: "Light",
-        isSelected: false,
-        picture: "assets/images/shields/light.svg"),
-    ArmorFamilyModel(
-        name: "Heavy",
-        isSelected: false,
-        picture: "assets/images/shields/heavy.svg"),
-  ];
 }

@@ -2,6 +2,9 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
+import 'package:fantasy_name_generator/models/specials_model.dart';
+import 'package:fantasy_name_generator/models/traits_model.dart';
+
 class ClassModel {
   final String name;
   bool isSelected;
@@ -13,6 +16,9 @@ class ClassModel {
   final String combatStyle;
   final List<String> forbidenArmorType;
   final List<String> permittedAligments;
+  final List<TraitModel>? traits;
+  final List<SpecialsModel>? speacials;
+  final String specialName;
   ClassModel({
     required this.name,
     required this.isSelected,
@@ -24,6 +30,9 @@ class ClassModel {
     required this.combatStyle,
     required this.forbidenArmorType,
     required this.permittedAligments,
+    this.traits = const [],
+    this.speacials = const [],
+    this.specialName = "",
   });
 
   ClassModel copyWith({
@@ -36,7 +45,10 @@ class ClassModel {
     String? classIcon,
     String? combatStyle,
     List<String>? forbidenArmorType,
-    List<String>? forbidenAligments,
+    List<String>? permittedAligments,
+    List<TraitModel>? traits,
+    List<SpecialsModel>? speacials,
+    String? specialName,
   }) {
     return ClassModel(
       name: name ?? this.name,
@@ -48,7 +60,10 @@ class ClassModel {
       classIcon: classIcon ?? this.classIcon,
       combatStyle: combatStyle ?? this.combatStyle,
       forbidenArmorType: forbidenArmorType ?? this.forbidenArmorType,
-      permittedAligments: forbidenAligments ?? this.permittedAligments,
+      permittedAligments: permittedAligments ?? this.permittedAligments,
+      traits: traits ?? this.traits,
+      speacials: speacials ?? this.speacials,
+      specialName: specialName ?? this.specialName,
     );
   }
 
@@ -63,7 +78,10 @@ class ClassModel {
       'classIcon': classIcon,
       'combatStyle': combatStyle,
       'forbidenArmorType': forbidenArmorType,
-      'forbidenAligments': permittedAligments,
+      'permittedAligments': permittedAligments,
+      'traits': traits?.map((x) => x.toMap()).toList(),
+      'speacials': speacials?.map((x) => x.toMap()).toList(),
+      'specialName': specialName,
     };
   }
 
@@ -78,7 +96,16 @@ class ClassModel {
       classIcon: map['classIcon'],
       combatStyle: map['combatStyle'] ?? '',
       forbidenArmorType: List<String>.from(map['forbidenArmorType']),
-      permittedAligments: List<String>.from(map['forbidenAligments']),
+      permittedAligments: List<String>.from(map['permittedAligments']),
+      traits: map['traits'] != null
+          ? List<TraitModel>.from(
+              map['traits']?.map((x) => TraitModel.fromMap(x)))
+          : null,
+      speacials: map['speacials'] != null
+          ? List<SpecialsModel>.from(
+              map['speacials']?.map((x) => SpecialsModel.fromMap(x)))
+          : null,
+      specialName: map['specialName'] ?? '',
     );
   }
 
@@ -89,7 +116,7 @@ class ClassModel {
 
   @override
   String toString() {
-    return 'ClassModel(name: $name, isSelected: $isSelected, mainAtrb: $mainAtrb, hitDice: $hitDice, resistUpgrade: $resistUpgrade, description: $description, classIcon: $classIcon, combatStyle: $combatStyle, forbidenArmorType: $forbidenArmorType, forbidenAligments: $permittedAligments)';
+    return 'ClassModel(name: $name, isSelected: $isSelected, mainAtrb: $mainAtrb, hitDice: $hitDice, resistUpgrade: $resistUpgrade, description: $description, classIcon: $classIcon, combatStyle: $combatStyle, forbidenArmorType: $forbidenArmorType, permittedAligments: $permittedAligments, traits: $traits, speacials: $speacials, specialName: $specialName)';
   }
 
   @override
@@ -106,7 +133,10 @@ class ClassModel {
         other.classIcon == classIcon &&
         other.combatStyle == combatStyle &&
         listEquals(other.forbidenArmorType, forbidenArmorType) &&
-        listEquals(other.permittedAligments, permittedAligments);
+        listEquals(other.permittedAligments, permittedAligments) &&
+        listEquals(other.traits, traits) &&
+        listEquals(other.speacials, speacials) &&
+        other.specialName == specialName;
   }
 
   @override
@@ -120,6 +150,9 @@ class ClassModel {
         classIcon.hashCode ^
         combatStyle.hashCode ^
         forbidenArmorType.hashCode ^
-        permittedAligments.hashCode;
+        permittedAligments.hashCode ^
+        traits.hashCode ^
+        speacials.hashCode ^
+        specialName.hashCode;
   }
 }

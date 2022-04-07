@@ -7,7 +7,6 @@ import 'package:fantasy_name_generator/shared/widgets/atribute_division.dart';
 import '../../../../shared/constants/phone_sizes.dart';
 import '../../../../shared/themes/app_text_styles.dart';
 import '../widgets/char_description_column.dart';
-import '../widgets/defense_info.dart';
 
 class CombatStats extends StatelessWidget {
   const CombatStats({Key? key}) : super(key: key);
@@ -19,44 +18,66 @@ class CombatStats extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const AtributeDivision(label: "Defense"),
-          DefenseInfo(
-            length: deviceWidth! * 0.35,
-            label: "Hit Points:",
-            value: "${state.char.hitPoints}",
-          ),
-          const SizedBox(height: 3),
           Row(
-            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              Column(
-                children: [
-                  if (state.char.physicalStyle.name == "Soldier")
-                    Column(
-                      children: [
-                        DefenseEquipTile(name: "Shield name", magic: ""),
-                        const SizedBox(height: 3),
-                      ],
+              SizedBox(
+                width: deviceWidth! * 0.6,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    DefenseInfo(
+                      label: "Hit Points:",
+                      value: "${state.char.hitPoints}",
                     ),
-                  if (state.char.battleStyle.name != "Spellcaster" ||
-                      state.char.battleStyle.name != "Diplomat")
-                    DefenseEquipTile(name: "Armor name", magic: ""),
+                    const SizedBox(height: 3),
+                    state.char.physicalStyle.name == "Soldier"
+                        ? Column(
+                            children: [
+                              DefenseEquipTile(
+                                label: "Shield",
+                                name: state.char.charEquip.shield != null
+                                    ? state.char.charEquip.shield!.name!
+                                    : "Shield",
+                                magic:
+                                    state.char.charEquip.shield?.enchantment !=
+                                            null
+                                        ? state.char.charEquip.shield!
+                                            .enchantment!.enchant
+                                        : "",
+                              ),
+                              const SizedBox(height: 3),
+                            ],
+                          )
+                        : SizedBox(height: deviceHeight! * 0.025),
+                    if (state.char.battleStyle.name != "Spellcaster" ||
+                        state.char.battleStyle.name != "Diplomat")
+                      DefenseEquipTile(
+                        label: "Armor",
+                        name: state.char.charEquip.armour != null
+                            ? state.char.charEquip.armour!.name!
+                            : "Armour",
+                        magic: state.char.charEquip.armour?.enchantment != null
+                            ? state.char.charEquip.armour!.enchantment!.enchant
+                            : "",
+                      ),
+                  ],
+                ),
+              ),
+              Column(
+                children: const [
+                  DefenseInfo(
+                    label: "Armor Class:",
+                    value: "0",
+                  ),
+                  SizedBox(height: 3),
+                  DefenseInfo(label: "Surprise:", value: "0"),
+                  SizedBox(height: 3),
+                  DefenseInfo(label: "Touch:", value: "0"),
                 ],
               ),
-              DefenseInfo(
-                label: "Armor Class:",
-                value: "0",
-                length: deviceWidth! * 0.3,
-              ),
             ],
           ),
           const SizedBox(height: 3),
-          Row(
-            children: const [
-              DefenseInfo(label: "Touch:", value: "0"),
-              SizedBox(width: 15),
-              DefenseInfo(label: "Surprise:", value: "0"),
-            ],
-          ),
           const GradientLabel(label: "Resistances"),
           Row(
             children: [
@@ -93,8 +114,9 @@ class CombatStats extends StatelessWidget {
           const SizedBox(height: 3),
           Row(
             children: [
-              const CharDescriptionText(
-                  label: "Base attack bonus:", textValue: "0"),
+              CharDescriptionText(
+                  label: "Base attack bonus:",
+                  textValue: "${state.char.combatStats.baseAttackBonus}"),
               SizedBox(width: deviceWidth! * 0.05),
               DefenseInfo(
                 length: deviceWidth! * 0.2,
@@ -113,6 +135,8 @@ class CombatStats extends StatelessWidget {
               children: [
                 WeaponTile(
                   type: "Melee",
+                  specificType:
+                      state.char.charEquip.meleeWeapon!.type!.wielding,
                   name: state.char.charEquip.meleeWeapon!.name!,
                   magic: state.char.charEquip.meleeWeapon!.enchantment != null
                       ? state.char.charEquip.meleeWeapon!.enchantment!.first
@@ -195,10 +219,12 @@ class CombatStats extends StatelessWidget {
 }
 
 class DefenseEquipTile extends StatelessWidget {
+  final String label;
   final String name;
   final String? magic;
   const DefenseEquipTile({
     Key? key,
+    required this.label,
     required this.name,
     this.magic,
   }) : super(key: key);
@@ -207,6 +233,8 @@ class DefenseEquipTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
+        Text(label, style: AppTextStyle.statsLabel),
+        const SizedBox(width: 4),
         Text(name,
             style: AppTextStyle.subTextWhite.copyWith(color: Colors.grey[300])),
         const SizedBox(width: 4),
@@ -249,6 +277,7 @@ class DefenseInfo extends StatelessWidget {
 
 class WeaponTile extends StatelessWidget {
   final String type;
+  final String? specificType;
   final String name;
   final String magic;
   final String effect;
@@ -259,6 +288,7 @@ class WeaponTile extends StatelessWidget {
   const WeaponTile({
     Key? key,
     required this.type,
+    this.specificType,
     required this.name,
     required this.magic,
     required this.effect,
@@ -271,31 +301,25 @@ class WeaponTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        GradientLabel(label: type),
-        Row(
-          children: [
-            Text(effect,
-                style: AppTextStyle.subTextWhite.copyWith(
-                    color: Colors.grey[300], fontStyle: FontStyle.italic)),
-            effect != "" ? const SizedBox(width: 6) : const SizedBox(),
-            Text(name,
-                style: AppTextStyle.subTextWhite
-                    .copyWith(color: Colors.grey[300])),
-            magic != "" ? const SizedBox(width: 6) : const SizedBox(),
-            Text(magic,
-                style: AppTextStyle.subTextWhite
-                    .copyWith(color: Colors.grey[300])),
-            const SizedBox(width: 10),
-            Text(attack,
-                style: AppTextStyle.subTextWhite
-                    .copyWith(color: Colors.grey[300])),
-          ],
-        ),
+        GradientLabel(label: type, label2: specificType),
+        RichText(
+            text: TextSpan(
+                style:
+                    AppTextStyle.subTextWhite.copyWith(color: Colors.grey[300]),
+                children: [
+              TextSpan(
+                  text: effect != "" ? "$effect  " : "",
+                  style: const TextStyle(fontStyle: FontStyle.italic)),
+              TextSpan(text: "$name  "),
+              TextSpan(text: magic != "" ? "$magic  " : ""),
+              TextSpan(text: attack),
+            ])),
         const SizedBox(height: 3),
         Row(
           children: [
-            Text("Damage:", style: AppTextStyle.subTextGrey),
+            Text("Damage:", style: AppTextStyle.statsLabel),
             const SizedBox(width: 4),
             Text(damageValue,
                 style: AppTextStyle.subTextWhite
@@ -317,9 +341,11 @@ class WeaponTile extends StatelessWidget {
 
 class GradientLabel extends StatelessWidget {
   final String label;
+  final String? label2;
   const GradientLabel({
     Key? key,
     required this.label,
+    this.label2,
   }) : super(key: key);
 
   @override
@@ -336,7 +362,15 @@ class GradientLabel extends StatelessWidget {
           ),
         ),
         padding: const EdgeInsets.all(2),
-        child: Text(" $label",
-            style: AppTextStyle.selectRace.copyWith(color: Colors.grey[400])));
+        child: Row(
+          children: [
+            Text(" $label",
+                style:
+                    AppTextStyle.selectRace.copyWith(color: Colors.grey[400])),
+            Text(label2 != null ? "  ($label2)" : "",
+                style:
+                    AppTextStyle.statsLabel.copyWith(color: Colors.grey[400])),
+          ],
+        ));
   }
 }

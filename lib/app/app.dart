@@ -24,7 +24,6 @@ class _MyAppState extends State<MyApp> {
       providers: [
         ChangeNotifierProvider(create: (_) => CharController()),
         ChangeNotifierProvider(create: (_) => StatsController()),
-        // ChangeNotifierProvider(create: (_) => EquipController()),
         // ChangeNotifierProvider(create: (_) => MagicItemController()),
       ],
       child: MaterialApp(
