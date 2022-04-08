@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:fantasy_name_generator/shared/widgets/atribute_division.dart';
 import 'package:provider/provider.dart';
 
-import '../../equip_selection_section/widgets/general_magical_equip_row.dart';
+import 'widgets/general_magical_equip_row.dart';
 
 class MagicGearStats extends StatelessWidget {
   const MagicGearStats({Key? key}) : super(key: key);
@@ -26,7 +26,8 @@ class MagicGearStats extends StatelessWidget {
                         label: item.type!,
                         item: item.name!,
                         description: item.description!,
-                        onTap: () => state.showItemDescription(index),
+                        onTap: () => state.showDescriptions(
+                            index, state.char.charEquip.wonderousItems!),
                         selected: item.isSelected);
                   })
               : const Center(

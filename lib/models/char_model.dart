@@ -12,6 +12,7 @@ import 'package:fantasy_name_generator/models/name_model.dart';
 import 'package:fantasy_name_generator/models/physical_style_model.dart';
 import 'package:fantasy_name_generator/models/race_model.dart';
 import 'package:fantasy_name_generator/models/resistance_model.dart';
+import 'package:fantasy_name_generator/models/traits_model.dart';
 
 import 'base_atribute_model.dart';
 
@@ -30,6 +31,7 @@ class CharModel {
   EquipModel charEquip;
   LootModel loot;
   int charLevel;
+  List<TraitModel> feats;
 
   CharModel({
     required this.charRace,
@@ -46,6 +48,7 @@ class CharModel {
     required this.charEquip,
     required this.loot,
     required this.charLevel,
+    required this.feats,
   });
 
   CharModel copyWith({
@@ -63,6 +66,7 @@ class CharModel {
     EquipModel? charEquip,
     LootModel? loot,
     int? charLevel,
+    List<TraitModel>? feats,
   }) {
     return CharModel(
       charRace: charRace ?? this.charRace,
@@ -79,6 +83,7 @@ class CharModel {
       charEquip: charEquip ?? this.charEquip,
       loot: loot ?? this.loot,
       charLevel: charLevel ?? this.charLevel,
+      feats: feats ?? this.feats,
     );
   }
 
@@ -98,6 +103,7 @@ class CharModel {
       'charEquip': charEquip.toMap(),
       'loot': loot.toMap(),
       'charLevel': charLevel,
+      'feats': feats.map((x) => x.toMap()).toList(),
     };
   }
 
@@ -117,6 +123,8 @@ class CharModel {
       charEquip: EquipModel.fromMap(map['charEquip']),
       loot: LootModel.fromMap(map['loot']),
       charLevel: map['charLevel']?.toInt() ?? 0,
+      feats: List<TraitModel>.from(
+          map['feats']?.map((x) => TraitModel.fromMap(x))),
     );
   }
 
@@ -127,7 +135,7 @@ class CharModel {
 
   @override
   String toString() {
-    return 'CharModel(charRace: $charRace, charName: $charName, physicalStyle: $physicalStyle, battleStyle: $battleStyle, baseAtributes: $baseAtributes, modAtributes: $modAtributes, charClass: $charClass, alignment: $alignment, hitPoints: $hitPoints, resistances: $resistances, combatStats: $combatStats, charEquip: $charEquip, loot: $loot, charLevel: $charLevel)';
+    return 'CharModel(charRace: $charRace, charName: $charName, physicalStyle: $physicalStyle, battleStyle: $battleStyle, baseAtributes: $baseAtributes, modAtributes: $modAtributes, charClass: $charClass, alignment: $alignment, hitPoints: $hitPoints, resistances: $resistances, combatStats: $combatStats, charEquip: $charEquip, loot: $loot, charLevel: $charLevel, feats: $feats)';
   }
 
   @override
@@ -148,7 +156,8 @@ class CharModel {
         other.combatStats == combatStats &&
         other.charEquip == charEquip &&
         other.loot == loot &&
-        other.charLevel == charLevel;
+        other.charLevel == charLevel &&
+        listEquals(other.feats, feats);
   }
 
   @override
@@ -166,6 +175,7 @@ class CharModel {
         combatStats.hashCode ^
         charEquip.hashCode ^
         loot.hashCode ^
-        charLevel.hashCode;
+        charLevel.hashCode ^
+        feats.hashCode;
   }
 }

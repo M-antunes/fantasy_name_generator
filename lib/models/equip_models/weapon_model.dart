@@ -15,6 +15,7 @@ class WeaponModel {
   String? damageType;
   String? critical;
   List<String> forbiddenTo;
+  int price;
   WeaponModel({
     this.type,
     this.isSelected,
@@ -24,6 +25,7 @@ class WeaponModel {
     this.damageType,
     this.critical,
     required this.forbiddenTo,
+    required this.price,
   });
 
   WeaponModel copyWith({
@@ -35,6 +37,7 @@ class WeaponModel {
     String? damageType,
     String? critical,
     List<String>? forbiddenTo,
+    int? price,
   }) {
     return WeaponModel(
       type: type ?? this.type,
@@ -45,6 +48,7 @@ class WeaponModel {
       damageType: damageType ?? this.damageType,
       critical: critical ?? this.critical,
       forbiddenTo: forbiddenTo ?? this.forbiddenTo,
+      price: price ?? this.price,
     );
   }
 
@@ -58,6 +62,7 @@ class WeaponModel {
       'damageType': damageType,
       'critical': critical,
       'forbiddenTo': forbiddenTo,
+      'price': price,
     };
   }
 
@@ -74,6 +79,7 @@ class WeaponModel {
       damageType: map['damageType'],
       critical: map['critical'],
       forbiddenTo: List<String>.from(map['forbiddenTo']),
+      price: map['price']?.toInt() ?? 0,
     );
   }
 
@@ -84,7 +90,7 @@ class WeaponModel {
 
   @override
   String toString() {
-    return 'WeaponModel(type: $type, isSelected: $isSelected, name: $name, enchantment: $enchantment, damage: $damage, damageType: $damageType, critical: $critical, forbiddenTo: $forbiddenTo)';
+    return 'WeaponModel(type: $type, isSelected: $isSelected, name: $name, enchantment: $enchantment, damage: $damage, damageType: $damageType, critical: $critical, forbiddenTo: $forbiddenTo, price: $price)';
   }
 
   @override
@@ -99,7 +105,8 @@ class WeaponModel {
         other.damage == damage &&
         other.damageType == damageType &&
         other.critical == critical &&
-        listEquals(other.forbiddenTo, forbiddenTo);
+        listEquals(other.forbiddenTo, forbiddenTo) &&
+        other.price == price;
   }
 
   @override
@@ -111,6 +118,7 @@ class WeaponModel {
         damage.hashCode ^
         damageType.hashCode ^
         critical.hashCode ^
-        forbiddenTo.hashCode;
+        forbiddenTo.hashCode ^
+        price.hashCode;
   }
 }

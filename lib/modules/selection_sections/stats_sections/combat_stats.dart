@@ -109,6 +109,13 @@ class CombatStats extends StatelessWidget {
                 label: "Speed:",
                 value: "${state.char.charRace.speed} ft.",
               ),
+              // if (state.char.charEquip.armour != null)
+              //   SizedBox(
+              //     child: state.char.charEquip.armour!.speedPenalty! > 0
+              //         ? Text("armor penalty",
+              //             style: AppTextStyle.penaltyStyleText)
+              //         : SizedBox(),
+              //   )
             ],
           ),
           const SizedBox(height: 3),

@@ -1,5 +1,4 @@
 import 'package:fantasy_name_generator/controllers/stats_controller.dart';
-import 'package:fantasy_name_generator/modules/selection_sections/char_selection_sections/stats_sections/magic_gear_stats.dart';
 import 'package:fantasy_name_generator/shared/widgets/app_horizontal_line.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -7,7 +6,6 @@ import 'package:provider/provider.dart';
 import 'package:fantasy_name_generator/controllers/char_controller.dart';
 import 'package:fantasy_name_generator/shared/constants/phone_sizes.dart';
 import 'package:fantasy_name_generator/shared/themes/app_text_styles.dart';
-import 'package:fantasy_name_generator/shared/widgets/expanded_section.dart';
 
 import '../../../shared/themes/app_colors.dart';
 import 'stats_sections/ability_scores.dart';
@@ -15,6 +13,7 @@ import 'stats_sections/combat_stats.dart';
 import 'stats_sections/feats_stats.dart';
 import 'stats_sections/features_stats.dart';
 import 'stats_sections/loot_section.dart';
+import 'stats_sections/magic_gear_stats.dart';
 import 'stats_sections/skill_stats.dart';
 import 'stats_sections/spell_stats.dart';
 import 'widgets/char_description_column.dart';

@@ -10,16 +10,16 @@ import 'package:fantasy_name_generator/shared/widgets/app_animated_button.dart';
 import 'package:fantasy_name_generator/shared/widgets/call_message_snackbar.dart';
 
 import '../../shared/widgets/app_generate_button.dart';
-import '../selection_sections/char_selection_sections/alignment_section.dart';
-import '../selection_sections/char_selection_sections/class_section.dart';
-import '../selection_sections/char_selection_sections/combat_equip_section.dart';
-import '../selection_sections/char_selection_sections/combat_style_section.dart';
-import '../selection_sections/char_selection_sections/gender_section.dart';
-import '../selection_sections/char_selection_sections/level_section.dart';
-import '../selection_sections/char_selection_sections/name_section.dart';
-import '../selection_sections/char_selection_sections/race_section.dart';
-import '../selection_sections/char_selection_sections/stats_section.dart';
-import '../selection_sections/char_selection_sections/widgets/character_info_bar.dart';
+import '../selection_sections/alignment_section.dart';
+import '../selection_sections/class_section.dart';
+import '../selection_sections/combat_equip_section.dart';
+import '../selection_sections/combat_style_section.dart';
+import '../selection_sections/gender_section.dart';
+import '../selection_sections/level_section.dart';
+import '../selection_sections/name_section.dart';
+import '../selection_sections/race_section.dart';
+import '../selection_sections/stats_section.dart';
+import '../selection_sections/widgets/character_info_bar.dart';
 
 class CharDevelopmentPage extends StatefulWidget {
   const CharDevelopmentPage({Key? key}) : super(key: key);

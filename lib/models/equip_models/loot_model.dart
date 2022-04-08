@@ -5,12 +5,12 @@ import 'package:flutter/foundation.dart';
 import 'package:fantasy_name_generator/models/key_value.model.dart';
 
 class LootModel {
-  final List<KeyValueModel>? items;
-  final List<KeyValueModel>? jwels;
-  final int? gold;
+  List<KeyValueModel>? items;
+  List<KeyValueModel>? jwels;
+  int? gold;
   LootModel({
-    this.items,
-    this.jwels,
+    this.items = const [],
+    this.jwels = const [],
     this.gold = 0,
   });
 

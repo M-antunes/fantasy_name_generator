@@ -26,6 +26,7 @@ class DefaultCharModelData {
       personalPronoun: "",
       possessiveAdjective: "",
     ),
+    feats: [],
     battleStyle: CombatStyleChoiceModel(
         isSelected: false,
         description: "",
@@ -53,15 +54,7 @@ class DefaultCharModelData {
     hitPoints: 10,
     resistances: ResistanceModel(),
     combatStats: CombatModel(),
-    charEquip: EquipModel(
-        meleeWeapon: WeaponModel(
-            forbiddenTo: [],
-            name: "Dagger",
-            type: WeaponFamilyModel(
-              forbiddenTo: [],
-              name: "Knife",
-              wielding: "One-handed",
-            ))),
+    charEquip: EquipModel(),
     loot: LootModel(items: [], gold: 0),
     charLevel: 1,
   );

@@ -16,7 +16,6 @@ import 'package:fantasy_name_generator/models/name_model.dart';
 import 'package:fantasy_name_generator/models/physical_style_model.dart';
 import 'package:fantasy_name_generator/models/resistance_model.dart';
 import 'package:fantasy_name_generator/models/saved_name_model.dart';
-import 'package:fantasy_name_generator/models/traits_model.dart';
 import 'package:fantasy_name_generator/shared/data/alignment_data.dart';
 import 'package:fantasy_name_generator/shared/data/class_data.dart';
 import 'package:fantasy_name_generator/shared/data/equip_data.dart';
@@ -330,24 +329,6 @@ class CharController extends ChangeNotifier {
         char.charRace.height!.key += 1;
       }
     }
-  }
-
-  ///calculate characters speed
-  calculateSpeed() {
-    var char = cha;
-    var raceGotten = listOfRaces.races
-        .firstWhere((element) => element.name == char.charRace.name);
-    var baseSpeed = raceGotten.speed!;
-    if (char.charClass.name == "Barbarian") {
-      baseSpeed = baseSpeed + 10;
-    }
-    if (char.charClass.name == "Monk" && char.charLevel > 2) {
-      for (var i = 3; i <= char.charLevel; i = i + 3) {
-        baseSpeed = baseSpeed + 10;
-      }
-    }
-    cha.charRace.speed = baseSpeed;
-    notifyListeners();
   }
 
   int ajustAgeAccordingtoRace(
@@ -1121,6 +1102,7 @@ class CharController extends ChangeNotifier {
           age: 0,
           speed: 0,
         ),
+        feats: [],
         physicalStyle: physicalStyleChoice,
         battleStyle: chosenStyle,
         charName: NameModel(
@@ -1265,7 +1247,6 @@ class CharController extends ChangeNotifier {
     ajustStatsToLevel();
     calculateAllModifiers();
     generateHitPoints();
-    calculateSpeed();
     claculateAge();
     claculatingHitDefense();
     calculateResistances();
@@ -1629,7 +1610,6 @@ class CharController extends ChangeNotifier {
         updateCharModel();
         applyHeightAndWeight();
         claculateAge();
-        calculateSpeed();
         isCharGeneratorCleared = true;
         advanceCreationStage();
       }

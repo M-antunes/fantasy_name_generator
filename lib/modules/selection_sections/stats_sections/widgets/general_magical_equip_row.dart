@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../../shared/constants/phone_sizes.dart';
-import '../../../../shared/themes/app_text_styles.dart';
-import '../../../../shared/widgets/expanded_section.dart';
+import '../../../../../shared/constants/phone_sizes.dart';
+import '../../../../../shared/themes/app_text_styles.dart';
+import '../../../../../shared/widgets/expanded_section.dart';
 
 // ignore: must_be_immutable
 class GeneralMagicalEquipRow extends StatelessWidget {

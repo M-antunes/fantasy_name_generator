@@ -16,7 +16,7 @@ class FeatureStats extends StatelessWidget {
     return Consumer<StatsController>(builder: (context, state, child) {
       return ListView(
         children: [
-          const AtributeDivision(label: "Class Features"),
+          AtributeDivision(label: "${state.char.charClass.name} Features"),
           SizedBox(height: deviceHeight! * 0.005),
           ListView.builder(
               shrinkWrap: true,
@@ -28,11 +28,13 @@ class FeatureStats extends StatelessWidget {
                   name: trait.traiName,
                   selected: trait.isSelected,
                   description: trait.traiDescription,
-                  onTap: () => state.showFeatureDescription(index),
+                  onTap: () => state.showDescriptions(index, state.traits),
                 );
               }),
           SizedBox(height: deviceHeight! * 0.005),
-          AtributeDivision(label: "${state.char.charClass.name} Specials"),
+          AtributeDivision(
+              label:
+                  "${state.char.charClass.name}  ${state.char.charClass.specialName}"),
           SizedBox(height: deviceHeight! * 0.005),
           ListView.builder(
               shrinkWrap: true,
@@ -44,7 +46,7 @@ class FeatureStats extends StatelessWidget {
                   name: special.name,
                   selected: special.isSelected,
                   description: special.description,
-                  onTap: () => state.showSpecialDescription(index),
+                  onTap: () => state.showDescriptions(index, state.specials),
                 );
               }),
         ],
@@ -56,12 +58,14 @@ class FeatureStats extends StatelessWidget {
 // ignore: must_be_immutable
 class FeatureList extends StatelessWidget {
   final String name;
+  final String? focusOrSpecialization;
   bool selected;
   final VoidCallback onTap;
   final String description;
   FeatureList({
     Key? key,
     required this.name,
+    this.focusOrSpecialization,
     required this.selected,
     required this.onTap,
     required this.description,
@@ -76,6 +80,9 @@ class FeatureList extends StatelessWidget {
             child: Row(
               children: [
                 Text(name,
+                    style: AppTextStyle.statsLabel
+                        .copyWith(color: Colors.grey[400])),
+                Text("  ${focusOrSpecialization}",
                     style: AppTextStyle.statsLabel
                         .copyWith(color: Colors.grey[400])),
                 selected
