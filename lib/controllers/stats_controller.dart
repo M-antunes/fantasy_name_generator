@@ -1,13 +1,13 @@
-import 'dart:math';
-
 import 'package:fantasy_name_generator/models/char_model.dart';
 import 'package:fantasy_name_generator/models/equip_models/armor_model.dart';
+import 'package:fantasy_name_generator/models/equip_models/gem_model.dart';
 import 'package:fantasy_name_generator/models/equip_models/loot_model.dart';
+import 'package:fantasy_name_generator/models/equip_models/treasure_model.dart';
 import 'package:fantasy_name_generator/models/equip_models/weapon_model.dart';
-import 'package:fantasy_name_generator/models/key_value.model.dart';
 import 'package:fantasy_name_generator/models/physical_style_model.dart';
 import 'package:fantasy_name_generator/shared/data/class_data.dart';
 import 'package:fantasy_name_generator/shared/data/equip_data.dart';
+import 'package:fantasy_name_generator/shared/data/jwels_data.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../models/equip_models/enchant_model.dart';
@@ -26,11 +26,14 @@ class StatsController with ChangeNotifier {
   late CharModel char;
   var listOfWonderousItems = WonderousItemsData();
   var listOfEnchants = EnchantData();
-  var equip = EquipData();
+  final _equip = EquipData();
   var classData = ClassData();
   var listOfRaces = RaceData();
-  WeaponModel meleeWeapon = WeaponModel(forbiddenTo: [], price: 0);
-  WeaponModel rangeWeapon = WeaponModel(forbiddenTo: [], price: 0);
+
+  int armorPrice = 0;
+  int shieldPrice = 0;
+  int meleePrice = 0;
+  int rangePrice = 0;
 
   final List<String> itemsLabel = [
     "Body",
@@ -71,6 +74,10 @@ class StatsController with ChangeNotifier {
     char.charEquip.meleeWeapon = null;
     char.charEquip.rangeWeapon = null;
     char.charEquip.wonderousItems = null;
+    armorPrice = 0;
+    shieldPrice = 0;
+    meleePrice = 0;
+    rangePrice = 0;
     traits = [];
     specials = [];
     charFeats = [];
@@ -93,7 +100,7 @@ class StatsController with ChangeNotifier {
         char.charEquip.meleeWeapon = gettingMainWeapon();
         char.charEquip.rangeWeapon = generatingAlternativeWeapon();
       }
-      generateShield();
+      char.charEquip.shield = generateShield();
       char.charEquip.armour = generateArmor();
       applyMagicToArmorAndShield();
     }
@@ -101,9 +108,9 @@ class StatsController with ChangeNotifier {
     applyMagicToWeapon();
     gettingClassTraits();
     gettingClassSpecials();
-    calculateSpeed();
     getFeats();
     calculateLoot();
+    calculateSpeed();
     notifyListeners();
   }
 
@@ -159,7 +166,7 @@ class StatsController with ChangeNotifier {
   }
 
   generateMagicItems() {
-    if (char.charLevel < 4 && char.charLevel > 1) {
+    if (char.charLevel < 5 && char.charLevel > 1) {
       var random = generateRandom(11);
       random < 5
           ? addIndispensableItem(listOfWonderousItems.protRings)
@@ -312,8 +319,10 @@ class StatsController with ChangeNotifier {
 
   addIndispensableItem(List<WonderousItemsModel> list) {
     var random = generateRandom(11);
-    var itemList = [];
-    if (char.charLevel > 1 && char.charLevel < 5) {
+    List<WonderousItemsModel> itemList = [];
+    if (char.charLevel == 1) {
+      itemList = [];
+    } else if (char.charLevel > 1 && char.charLevel < 5) {
       itemList.add(list[0]);
     } else if (char.charLevel > 4 && char.charLevel < 9) {
       random < 6 ? itemList.add(list[0]) : itemList.add(list[1]);
@@ -324,7 +333,7 @@ class StatsController with ChangeNotifier {
     } else {
       random < 6 ? itemList.add(list[3]) : itemList.add(list[4]);
     }
-    char.charEquip.wonderousItems!.add(itemList.single);
+    char.charEquip.wonderousItems = itemList;
     notifyListeners();
   }
 
@@ -332,7 +341,7 @@ class StatsController with ChangeNotifier {
   // Weapon Section
 
   sortingWeapons(PhysicalStyleModel style) {
-    return equip.allWeapons
+    List<WeaponModel> list = _equip.allWeapons
         .where((element) =>
             (element.type!.wielding == style.weaponType ||
                 element.type!.name == style.weaponType) &&
@@ -341,6 +350,7 @@ class StatsController with ChangeNotifier {
             element.type!.name != "Exotic" &&
             !element.forbiddenTo.contains(char.charClass.name))
         .toList();
+    return list;
   }
 
   WeaponModel gettingMainWeapon() {
@@ -352,53 +362,52 @@ class StatsController with ChangeNotifier {
     } else if (char.physicalStyle.name == "Soldier") {
       possibleWeapons = sortingWeapons(style[1]);
     } else if (char.physicalStyle.name == "Knifeman") {
-      possibleWeapons = equip.allWeapons
+      possibleWeapons = _equip.allWeapons
           .where((element) =>
               element.type!.name == style[4].weaponType &&
               !element.forbiddenTo.contains(char.charClass.name))
           .toList();
     } else if (char.physicalStyle.name == "Dual-weilder") {
-      possibleWeapons = equip.allWeapons
+      possibleWeapons = _equip.allWeapons
           .where((element) =>
               (element.type!.name == "Sword" || element.type!.name == "Axe") &&
               element.type!.wielding == "One-handed" &&
               !element.forbiddenTo.contains(char.charClass.name))
           .toList();
     } else if (char.physicalStyle.name == "Swordsman") {
-      possibleWeapons = equip.allWeapons
+      possibleWeapons = _equip.allWeapons
           .where((element) =>
               element.type!.name == "Sword" &&
               element.type!.wielding == "One-handed" &&
               !element.forbiddenTo.contains(char.charClass.name))
           .toList();
     } else if (char.physicalStyle.name == "Martial") {
-      possibleWeapons = equip.allWeapons
+      possibleWeapons = _equip.allWeapons
           .where((element) =>
               element.type!.wielding == "One-handed" &&
               element.type!.name == "Fist" &&
               !element.forbiddenTo.contains(char.charClass.name))
           .toList();
     } else if (char.physicalStyle.name == "Bowman") {
-      possibleWeapons = equip.allWeapons
+      possibleWeapons = _equip.allWeapons
           .where((element) =>
               element.name == "Composite longbow" &&
               !element.forbiddenTo.contains(char.charClass.name))
           .toList();
     } else if (char.physicalStyle.name == "Marksman") {
-      possibleWeapons = equip.allWeapons
+      possibleWeapons = _equip.allWeapons
           .where((element) =>
               element.type!.name == "Crossbow" &&
               !element.forbiddenTo.contains(char.charClass.name))
           .toList();
     } else if (char.physicalStyle.name == "Thrower") {
-      possibleWeapons = equip.allWeapons
+      possibleWeapons = _equip.allWeapons
           .where((element) =>
               element.type!.name == "Throwing" &&
               !element.forbiddenTo.contains(char.charClass.name))
           .toList();
     }
     var random = generateRandom(possibleWeapons.length);
-
     if ((char.charClass.name == "Barbarian" ||
             char.charClass.name == "Warrior" ||
             char.charClass.name == "Paladin" ||
@@ -416,6 +425,7 @@ class StatsController with ChangeNotifier {
     } else {
       weapon = possibleWeapons[random];
     }
+    notifyListeners();
     return weapon;
   }
 
@@ -424,7 +434,7 @@ class StatsController with ChangeNotifier {
     if (char.physicalStyle.name == "Bowman" ||
         char.physicalStyle.name == "Marksman" ||
         char.physicalStyle.name == "Thrower") {
-      List<WeaponModel> weapons = equip.allWeapons
+      List<WeaponModel> weapons = _equip.allWeapons
           .where((element) =>
               element.type!.name == "Sword" &&
               !element.forbiddenTo.contains(char.charClass.name))
@@ -432,7 +442,7 @@ class StatsController with ChangeNotifier {
       var random = generateRandom(weapons.length);
       alternatiWeapon = weapons[random];
     } else {
-      List<WeaponModel> weapons = equip.allWeapons
+      List<WeaponModel> weapons = _equip.allWeapons
           .where((element) =>
               ((element.type!.name == "Bow" ||
                   element.type!.name == "Crossbow" ||
@@ -442,29 +452,50 @@ class StatsController with ChangeNotifier {
       var random = generateRandom(weapons.length);
       alternatiWeapon = weapons[random];
     }
+    notifyListeners();
     return alternatiWeapon;
   }
 
   generateGearForNonPhysicalStyleChars() {
     WeaponModel meleeWeapon;
     meleeWeapon =
-        equip.allWeapons.firstWhere((element) => element.name == "Dagger");
+        _equip.allWeapons.firstWhere((element) => element.name == "Dagger");
     char.charEquip.meleeWeapon = meleeWeapon;
     WeaponModel rangeWeapon;
-    rangeWeapon =
-        equip.allWeapons.firstWhere((element) => element.name == "Crossbow");
+    rangeWeapon = _equip.allWeapons
+        .firstWhere((element) => element.type!.name == "Crossbow");
     char.charEquip.meleeWeapon = rangeWeapon;
     char.charEquip.armour = null;
     char.charEquip.shield = null;
     notifyListeners();
   }
 
+//====================================================================================
+  // Calculate price
+  int claculateMagicEquipPrice(dynamic weapon) {
+    int valueLabel = 0;
+    if (weapon.enchantment != null) {
+      if (weapon.enchantment!.length > 1) {
+        valueLabel = weapon.price +
+            weapon.enchantment![0].enchantPrice +
+            weapon.enchantment![1].enchantPrice;
+      } else {
+        valueLabel = weapon.price + weapon.enchantment![0].enchantPrice;
+      }
+    } else {
+      valueLabel = weapon.price;
+    }
+    return valueLabel;
+  }
   // ===================================================================================
 
   //Apply magic to weapon
 
   applyMagicToWeapon() {
     if (char.charLevel < 5) {
+      meleePrice = char.charEquip.meleeWeapon!.price;
+      rangePrice = char.charEquip.rangeWeapon!.price;
+      notifyListeners();
       return;
     }
     var minAvail = discoverMinAvailability(char.charLevel);
@@ -504,20 +535,9 @@ class StatsController with ChangeNotifier {
             enchantPowerLvs);
       }
     }
-    claculateWeaponPrice(char.charEquip.meleeWeapon!);
-    claculateWeaponPrice(char.charEquip.rangeWeapon!);
+    meleePrice = claculateMagicEquipPrice(char.charEquip.meleeWeapon!) + 300;
+    rangePrice = claculateMagicEquipPrice(char.charEquip.rangeWeapon!) + 300;
     notifyListeners();
-  }
-
-  claculateWeaponPrice(WeaponModel weapon) {
-    if (weapon.enchantment != null) {
-      if (weapon.enchantment!.length > 1) {
-        weapon.price += weapon.enchantment![0].enchantPrice +
-            weapon.enchantment![1].enchantPrice;
-      } else {
-        weapon.price += weapon.enchantment![0].enchantPrice;
-      }
-    }
   }
 
   List<EnchantModel> addOtherEnchantByChance(List<EnchantModel> weaponEnchants,
@@ -537,24 +557,23 @@ class StatsController with ChangeNotifier {
   // ===================================================================================
   // Armor section
 
-  generateShield() {
-    if (char.battleStyle.name != "Physical" &&
-        char.physicalStyle.name != "Soldier") {
-      return;
+  ArmorModel? generateShield() {
+    if (char.physicalStyle.name != "Soldier") {
+      return null;
     } else {
       ArmorModel shield;
       List<ArmorModel> shields;
       if (char.charClass.name == "Druid") {
-        shields = equip.allShields
+        shields = _equip.allShields
             .where((element) => element.fitForDruid == true)
             .toList();
       } else {
-        shields = equip.allShields;
+        shields = _equip.allShields;
       }
       var random = generateRandom(shields.length);
       shield = shields[random];
-      char.charEquip.shield = shield;
       notifyListeners();
+      return shield;
     }
   }
 
@@ -562,15 +581,15 @@ class StatsController with ChangeNotifier {
     ArmorModel armor;
     List<ArmorModel> armors;
     if (char.charClass.name == "Druid") {
-      armors = equip.allArmors
+      armors = _equip.allArmors
           .where((element) => element.fitForDruid == true)
           .toList();
     } else if (char.charClass.mainAtrb == "Dex") {
-      armors = equip.allArmors
+      armors = _equip.allArmors
           .where((element) => element.type!.name == "Light")
           .toList();
     } else {
-      armors = equip.allArmors
+      armors = _equip.allArmors
           .where((element) =>
               !char.charClass.forbidenArmorType.contains(element.type!.name))
           .toList();
@@ -584,7 +603,7 @@ class StatsController with ChangeNotifier {
     // if(armor.maxDexAllowed! < char.modAtributes.dexterity!){
     //   armor = equip.noArmor;
     // }
-
+    notifyListeners();
     return armor;
   }
 
@@ -593,6 +612,11 @@ class StatsController with ChangeNotifier {
 
   applyMagicToArmorAndShield() {
     if (char.charLevel < 5) {
+      armorPrice =
+          char.charEquip.armour != null ? char.charEquip.armour!.price : 0;
+      shieldPrice =
+          char.charEquip.shield != null ? char.charEquip.shield!.price : 0;
+      notifyListeners();
       return;
     }
     var minAvail = discoverMinAvailability(char.charLevel);
@@ -601,14 +625,14 @@ class StatsController with ChangeNotifier {
             element.availability < char.charLevel &&
             element.availability > minAvail)
         .toList();
-    char.charEquip.armour!.enchantment = enchantPowerLvs.last;
-    char.charEquip.shield!.enchantment = enchantPowerLvs.last;
-
-    char.charEquip.armour!.price +=
-        char.charEquip.armour!.enchantment!.enchantPrice;
-    char.charEquip.shield!.price +=
-        char.charEquip.armour!.enchantment!.enchantPrice;
-
+    if (char.charEquip.armour != null) {
+      char.charEquip.armour!.enchantment = [enchantPowerLvs.last];
+      armorPrice = claculateMagicEquipPrice(char.charEquip.armour!) + 150;
+    } else {}
+    if (char.charEquip.shield != null) {
+      char.charEquip.shield!.enchantment = [enchantPowerLvs.last];
+      shieldPrice = claculateMagicEquipPrice(char.charEquip.shield!) + 150;
+    }
     notifyListeners();
   }
 
@@ -757,8 +781,8 @@ class StatsController with ChangeNotifier {
   calculateFeats(List<TraitModel> list, List<TraitModel> allFeats) {
     List<TraitModel> feats = list;
     var numberOfFeats = char.charLevel % 2 != 0
-        ? ((char.charLevel + 1) / 2).floor() + 1
-        : (char.charLevel / 2).floor() + 1;
+        ? ((char.charLevel + 1) / 2).floor()
+        : (char.charLevel / 2).floor();
     if (char.charClass.name == "Warrior") {
       numberOfFeats = char.charLevel;
     }
@@ -788,30 +812,129 @@ class StatsController with ChangeNotifier {
 
   // ====================================================================================
   // Loot part
-  late LootModel charLoot;
+  LootModel charLoot = LootModel(items: [], jwels: []);
+  var listOfGems = JwelsData();
+
+  String getEquipFullName(dynamic equip) {
+    if (equip.enchantment != null) {
+      if (equip.enchantment.isEmpty) {
+        return equip.name!;
+      } else {
+        return equip.enchantment!.length > 1
+            ? "${equip.enchantment![1].enchant} ${equip.name} ${equip.enchantment![0].enchant}"
+            : "${equip.name} ${equip.enchantment![0].enchant}";
+      }
+    }
+    return equip.name!;
+  }
 
   calculateLoot() {
     LootModel loot = LootModel(items: [], jwels: []);
     if (char.charEquip.wonderousItems != null) {
       for (var i in char.charEquip.wonderousItems!) {
-        loot.items!.add(KeyValueModel(key: i.name, value: i.price));
-      }
-      loot.items!.add(KeyValueModel(
-          key: char.charEquip.meleeWeapon!.name,
-          value: char.charEquip.meleeWeapon!.price));
-      loot.items!.add(KeyValueModel(
-          key: char.charEquip.rangeWeapon!.name,
-          value: char.charEquip.rangeWeapon!.price));
-      if (char.charEquip.armour != null) {
-        loot.items!.add(KeyValueModel(
-            key: char.charEquip.armour!.name,
-            value: char.charEquip.armour!.price));
-      }
-      if (char.charEquip.shield != null) {
-        loot.items!.add(KeyValueModel(
-            key: char.charEquip.shield!.name,
-            value: char.charEquip.shield!.price));
+        loot.items!.add(TreasureModel(
+            name: i.name!, qnt: 1, price: i.price!, finalPrice: i.price!));
       }
     }
+    String mW =
+        char.charLevel > 2 && char.charLevel < 5 ? " (master work)" : "";
+    int mwPrice = char.charLevel > 2 && char.charLevel < 5 ? 150 : 0;
+    loot.items!.add(TreasureModel(
+        name: getEquipFullName(char.charEquip.meleeWeapon!) + mW,
+        qnt: 1,
+        price: meleePrice + mwPrice + mwPrice,
+        finalPrice: meleePrice));
+    if (char.physicalStyle.name == "Dual-weilder") {
+      loot.items!.add(TreasureModel(
+          name: getEquipFullName(char.charEquip.meleeWeapon!) + mW,
+          qnt: 1,
+          price: meleePrice + mwPrice + mwPrice,
+          finalPrice: meleePrice));
+    }
+    loot.items!.add(TreasureModel(
+        name: getEquipFullName(char.charEquip.rangeWeapon!) + mW,
+        qnt: 1,
+        price: rangePrice + mwPrice + mwPrice,
+        finalPrice: rangePrice));
+    if (char.charEquip.armour != null) {
+      loot.items!.add(TreasureModel(
+          name: getEquipFullName(char.charEquip.armour!) + mW,
+          qnt: 1,
+          price: armorPrice + mwPrice,
+          finalPrice: armorPrice));
+    }
+    if (char.charEquip.shield != null) {
+      loot.items!.add(TreasureModel(
+          name: getEquipFullName(char.charEquip.shield!) + mW,
+          qnt: 1,
+          price: shieldPrice + mwPrice,
+          finalPrice: shieldPrice));
+    }
+    var value = 0;
+    var valuePerClass = char.battleStyle.name == "Physical"
+        ? 150 * char.charLevel
+        : char.battleStyle.name == "Spellcaster"
+            ? 800 * char.charLevel
+            : char.battleStyle.name == "Hybrid"
+                ? 400 * char.charLevel
+                : 1400 * char.charLevel;
+    List<GemModel> availableGems = listOfGems.gems
+        .where((element) =>
+            element.availabelAfterLevel <= char.charLevel &&
+            element.price < valuePerClass)
+        .toList();
+    if (availableGems.isNotEmpty && char.charLevel > 5) {
+      var quantity = char.charLevel > 5 ? (char.charLevel / 3).floor() : 1;
+      var tries = 0;
+      var possibleTries = (valuePerClass / 1000).ceil();
+      possibleTries = possibleTries < 0 ? 1 : possibleTries;
+      while (tries < possibleTries) {
+        var random = generateRandom(availableGems.length);
+        var randomQnt = rollingDice(quantity);
+        var totalPrice = 0;
+        var itemPrice = availableGems[random].price;
+        if ((itemPrice * randomQnt) < (valuePerClass - value)) {
+          var newRandom = generateRandom(availableGems.length);
+          loot.jwels!.add(
+            TreasureModel(
+              name: availableGems[newRandom].name,
+              price: itemPrice,
+              qnt: randomQnt,
+              finalPrice: randomQnt * itemPrice,
+            ),
+          );
+          availableGems.removeWhere(
+              (element) => element.name == availableGems[random].name);
+          for (var i in loot.jwels!) {
+            totalPrice += i.finalPrice;
+          }
+        }
+        value = totalPrice;
+        value > valuePerClass ? tries = 50 : tries++;
+      }
+    }
+    var coin = char.battleStyle.name == "Physical"
+        ? (rollingDice(20) * char.charLevel) * 100
+        : char.battleStyle.name == "Spellcaster"
+            ? (rollingDice(20) * char.charLevel) * 200
+            : char.battleStyle.name == "Hybrid"
+                ? (rollingDice(20) * char.charLevel) * 150
+                : (rollingDice(20) * char.charLevel) * 300;
+    coin = char.charLevel < 5
+        ? (coin / 100).floor()
+        : char.charLevel > 5 && char.charLevel < 11
+            ? (coin / 50).floor()
+            : char.charLevel > 10 && char.charLevel < 16
+                ? (coin / 10).floor()
+                : char.charLevel > 15 && char.charLevel < 21
+                    ? (coin / 2).floor()
+                    : char.charLevel > 20 && char.charLevel < 26
+                        ? coin * 2
+                        : coin * char.charLevel;
+
+    charLoot.jwels = loot.jwels;
+    charLoot.items = loot.items;
+    charLoot.gold = coin;
+    notifyListeners();
   }
 }

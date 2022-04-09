@@ -15,6 +15,7 @@ class FeatureStats extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<StatsController>(builder: (context, state, child) {
       return ListView(
+        physics: const BouncingScrollPhysics(),
         children: [
           AtributeDivision(label: "${state.char.charClass.name} Features"),
           SizedBox(height: deviceHeight! * 0.005),
@@ -26,6 +27,7 @@ class FeatureStats extends StatelessWidget {
                 var trait = state.traits[index];
                 return FeatureList(
                   name: trait.traiName,
+                  focusOrSpecialization: "",
                   selected: trait.isSelected,
                   description: trait.traiDescription,
                   onTap: () => state.showDescriptions(index, state.traits),
@@ -44,6 +46,7 @@ class FeatureStats extends StatelessWidget {
                 var special = state.specials[index];
                 return FeatureList(
                   name: special.name,
+                  focusOrSpecialization: "",
                   selected: special.isSelected,
                   description: special.description,
                   onTap: () => state.showDescriptions(index, state.specials),
@@ -82,8 +85,8 @@ class FeatureList extends StatelessWidget {
                 Text(name,
                     style: AppTextStyle.statsLabel
                         .copyWith(color: Colors.grey[400])),
-                Text("  ${focusOrSpecialization}",
-                    style: AppTextStyle.statsLabel
+                Text(" $focusOrSpecialization",
+                    style: AppTextStyle.longDescription
                         .copyWith(color: Colors.grey[400])),
                 selected
                     ? const Icon(Icons.arrow_drop_down,

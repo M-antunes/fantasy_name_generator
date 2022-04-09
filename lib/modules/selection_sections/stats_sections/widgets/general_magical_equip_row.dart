@@ -30,7 +30,8 @@ class GeneralMagicalEquipRow extends StatelessWidget {
               children: [
                 RichText(
                     text: TextSpan(children: [
-                  TextSpan(text: "$label:  ", style: AppTextStyle.statsLabel),
+                  TextSpan(
+                      text: "$label:  ", style: AppTextStyle.traitDescription),
                   TextSpan(text: item, style: AppTextStyle.statsValue),
                 ])),
                 selected

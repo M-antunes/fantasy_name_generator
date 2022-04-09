@@ -1,13 +1,10 @@
 // This widget is the root of your application.
 import 'package:fantasy_name_generator/controllers/char_controller.dart';
-import 'package:fantasy_name_generator/controllers/magic_item_controller.dart';
 import 'package:fantasy_name_generator/controllers/stats_controller.dart';
 import 'package:fantasy_name_generator/modules/splash/splash_page.dart';
 import 'package:fantasy_name_generator/shared/core/route_generator.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import '../controllers/equip_controller.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);

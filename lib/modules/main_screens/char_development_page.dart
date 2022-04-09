@@ -67,11 +67,7 @@ class _CharDevelopmentPageState extends State<CharDevelopmentPage>
                                           ? "${state.newName} ${state.newLastName} - Aligment"
                                           : state.creationStage == 7
                                               ? "${state.newName} ${state.newLastName} - Level"
-                                              : state.creationStage == 8 &&
-                                                      state
-                                                          .isCharGeneratorCleared
-                                                  ? "${state.newName} ${state.newLastName} - Basic features generator"
-                                                  : '${state.newName} ${state.newLastName} - Basic features complete'),
+                                              : "Stats generator"),
               ProgressionBar(
                 controller: state,
               ),

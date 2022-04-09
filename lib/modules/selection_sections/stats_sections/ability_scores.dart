@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 
 import '../../../../shared/widgets/atribute_division.dart';
 import '../widgets/stats_description_column.dart';
+import 'combat_stats.dart';
 
 class AbilityScoreSection extends StatelessWidget {
   const AbilityScoreSection({Key? key}) : super(key: key);
@@ -74,6 +75,8 @@ class AbilityScoreSection extends StatelessWidget {
                 ),
               ],
             ),
+            SizedBox(height: deviceHeight! * 0.03),
+            const GradientLabel(label: "Boosts"),
           ],
         ),
       );

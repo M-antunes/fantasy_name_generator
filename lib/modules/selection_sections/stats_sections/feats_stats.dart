@@ -14,11 +14,12 @@ class FeatStats extends StatelessWidget {
     return Consumer<StatsController>(
       builder: (context, state, child) {
         return ListView(
+          physics: const BouncingScrollPhysics(),
           children: [
             const AtributeDivision(label: "Feats"),
             SizedBox(height: deviceHeight! * 0.005),
             state.charFeats.isEmpty
-                ? Text("Nothing")
+                ? const Text("Nothing")
                 : ListView.builder(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),

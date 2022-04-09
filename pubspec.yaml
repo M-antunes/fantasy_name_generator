@@ -38,7 +38,6 @@ dependencies:
   step_progress_indicator: ^1.0.2
   animated_button: ^0.2.0
   flutter_svg: ^1.0.3
-  float_column: ^1.2.1
 
 dev_dependencies:
   flutter_test:

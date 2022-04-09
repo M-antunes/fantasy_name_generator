@@ -29,6 +29,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../shared/utils/utils.dart';
+
 class CharController extends ChangeNotifier {
   late RaceModel chosenRace;
   late ClassModel chosenClass;
@@ -46,7 +48,6 @@ class CharController extends ChangeNotifier {
   var listOfAlignments = AlignmentData();
   var listOfEquip = EquipData();
   var humanNames = HumanNamesData();
-  var loot = LootModel(items: []);
   Random randomIndex = Random();
   int creationStage = 1;
   int nameLength = 0;
@@ -65,7 +66,6 @@ class CharController extends ChangeNotifier {
   bool isRegularLevelSelected = true;
   bool isEpicLevelSelected = false;
   bool isLegendaryLevelSelected = false;
-  bool isCharGeneratorCleared = true;
 
 // Functions related to the level Section
 
@@ -212,7 +212,6 @@ class CharController extends ChangeNotifier {
   }
 
   switchClass(ClassModel charClass) {
-    charClass.isSelected = !charClass.isSelected;
     for (var select in listOfClasses.allClasses) {
       select.isSelected = false;
     }
@@ -418,54 +417,6 @@ class CharController extends ChangeNotifier {
 
 //=======================================================================================
 
-// Section to get random letters and syllabus
-
-  getVowel() {
-    List<LetterModel> vowelList = [];
-    for (var n in letters.alphabet) {
-      if (n.type == "vowel") {
-        vowelList.add(n);
-      }
-    }
-    var chance = randomIndex.nextInt(vowelList.length);
-    return vowelList[chance].value;
-  }
-
-  getSyllabus() {
-    List<LetterModel> syllabusList = [];
-    for (var n in letters.syllabus) {
-      if (n.type == "twoLetterSyllabus") {
-        syllabusList.add(n);
-      }
-    }
-    var chance = randomIndex.nextInt(syllabusList.length);
-    return syllabusList[chance].value;
-  }
-
-  getThreeLetterSyllabous() {
-    List<LetterModel> threeSyllabusList = [];
-    for (var n in letters.syllabus) {
-      if (n.type == "threeLetterSyllabus") {
-        threeSyllabusList.add(n);
-      }
-    }
-    var chance = randomIndex.nextInt(threeSyllabusList.length);
-    return threeSyllabusList[chance].value;
-  }
-
-  getFourLetterSyllabous() {
-    List<LetterModel> fourSyllabusList = [];
-    for (var n in letters.syllabus) {
-      if (n.type == "fourLetterSyllabus") {
-        fourSyllabusList.add(n);
-      }
-    }
-    var chance = randomIndex.nextInt(fourSyllabusList.length);
-    return fourSyllabusList[chance].value;
-  }
-
-  //=======================================================================================
-
 // Section to generate names
 
   /// makes the first letter of a name a capital letter
@@ -491,11 +442,10 @@ class CharController extends ChangeNotifier {
     List<String> temporaryFullName = [];
     for (var i = 0; i < desiredLength; i++) {
       List<dynamic> letterPicker = [
-        getVowel(),
-        getSyllabus(),
-        getSyllabus(),
-        getThreeLetterSyllabous(),
-        getFourLetterSyllabous(),
+        getAllLetters(letters.alphabet, "vowel"),
+        getAllLetters(letters.syllabus, "twoLetterSyllabus"),
+        getAllLetters(letters.syllabus, "threeLetterSyllabus"),
+        getAllLetters(letters.syllabus, "fourLetterSyllabus"),
       ];
       letterPicker.shuffle();
       var changableIndexName = randomIndex.nextInt(4);
@@ -511,6 +461,18 @@ class CharController extends ChangeNotifier {
     return temporaryFullName;
   }
 
+  ///Gets all letters according to parameters
+  getAllLetters(List<LetterModel> letterKind, String type) {
+    List<LetterModel> list = [];
+    for (var n in letterKind) {
+      if (n.type == type) {
+        list.add(n);
+      }
+    }
+    var chance = randomIndex.nextInt(list.length);
+    return list[chance].value;
+  }
+
   /// alter names according to the common race name length
   List<String> alterNameLength(int maxLength, int randomChance,
       String temporaryName, String temporaryLastName) {
@@ -518,19 +480,22 @@ class CharController extends ChangeNotifier {
       chosenRace.name == "Elf" ||
               chosenRace.name == "Hafling" ||
               chosenRace.name == "Gnome"
-          ? temporaryName = temporaryName + getSyllabus()
+          ? temporaryName = temporaryName +
+              getAllLetters(letters.syllabus, "twoLetterSyllabus")
           : temporaryName = temporaryName;
     }
     if (temporaryName.length <= 2) {
       chosenRace.name == "Elf" || chosenRace.name == "Hafling"
           ? temporaryName = temporaryName +
-              getSyllabus() +
-              getVowel() +
-              getFourLetterSyllabous()
-          : temporaryName = temporaryName + getFourLetterSyllabous();
+              getAllLetters(letters.syllabus, "twoLetterSyllabus") +
+              getAllLetters(letters.alphabet, "vowel") +
+              getAllLetters(letters.syllabus, "fourLetterSyllabus")
+          : temporaryName = temporaryName +
+              getAllLetters(letters.syllabus, "fourLetterSyllabus");
     }
     if (temporaryLastName.length < 3) {
-      temporaryLastName = temporaryLastName + getFourLetterSyllabous();
+      temporaryLastName = temporaryLastName +
+          getAllLetters(letters.syllabus, "fourLetterSyllabus");
     }
     if (temporaryName.length > maxLength) {
       temporaryName = temporaryName.substring(1, maxLength);
@@ -1122,9 +1087,8 @@ class CharController extends ChangeNotifier {
         charEquip: EquipModel(),
         hitPoints: 0,
         resistances: ResistanceModel(),
-        loot: loot,
+        loot: LootModel(),
         charLevel: levelSelected + 1);
-    isCharGeneratorCleared = !isCharGeneratorCleared;
     notifyListeners();
   }
 
@@ -1425,14 +1389,6 @@ class CharController extends ChangeNotifier {
     notifyListeners();
   }
 
-  int rollingDice(int dice) {
-    var randomRoll = randomIndex.nextInt(dice);
-    while (randomRoll < 1) {
-      randomRoll = randomIndex.nextInt(dice);
-    }
-    return randomRoll;
-  }
-
   int calculateHipPointsDicePerClass() {
     var dice = cha.charClass.hitDice;
     var rollTimes = cha.charLevel - 1;
@@ -1488,8 +1444,7 @@ class CharController extends ChangeNotifier {
     int partialFort = 0;
     int partialRef = 0;
     int partialWill = 0;
-    int level = char.charLevel;
-    var bonusAtLevel = listOfClasses.goodOrBad[level - 1];
+    var bonusAtLevel = listOfClasses.goodOrBad[char.charLevel - 1];
     switch (char.charClass.resistUpgrade) {
       case "fort":
         partialFort = bonusAtLevel.good;
@@ -1610,12 +1565,10 @@ class CharController extends ChangeNotifier {
         updateCharModel();
         applyHeightAndWeight();
         claculateAge();
-        isCharGeneratorCleared = true;
         advanceCreationStage();
       }
       return null;
     } else if (creationStage == 8) {
-      // advanceCreationStage();
       return null;
     }
     return null;
@@ -1629,7 +1582,6 @@ class CharController extends ChangeNotifier {
     startTempClass();
     tempRaceForSwitching.isSelected = true;
     tempClassForSwitching.isSelected = true;
-    // startTempAlignment();
     creationStage = 1;
     notifyListeners();
   }

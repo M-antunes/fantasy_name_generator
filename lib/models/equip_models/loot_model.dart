@@ -2,11 +2,11 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
-import 'package:fantasy_name_generator/models/key_value.model.dart';
+import 'treasure_model.dart';
 
 class LootModel {
-  List<KeyValueModel>? items;
-  List<KeyValueModel>? jwels;
+  List<TreasureModel>? items;
+  List<TreasureModel>? jwels;
   int? gold;
   LootModel({
     this.items = const [],
@@ -15,8 +15,8 @@ class LootModel {
   });
 
   LootModel copyWith({
-    List<KeyValueModel>? items,
-    List<KeyValueModel>? jwels,
+    List<TreasureModel>? items,
+    List<TreasureModel>? jwels,
     int? gold,
   }) {
     return LootModel(
@@ -37,12 +37,12 @@ class LootModel {
   factory LootModel.fromMap(Map<String, dynamic> map) {
     return LootModel(
       items: map['items'] != null
-          ? List<KeyValueModel>.from(
-              map['items']?.map((x) => KeyValueModel.fromMap(x)))
+          ? List<TreasureModel>.from(
+              map['items']?.map((x) => TreasureModel.fromMap(x)))
           : null,
       jwels: map['jwels'] != null
-          ? List<KeyValueModel>.from(
-              map['jwels']?.map((x) => KeyValueModel.fromMap(x)))
+          ? List<TreasureModel>.from(
+              map['jwels']?.map((x) => TreasureModel.fromMap(x)))
           : null,
       gold: map['gold']?.toInt(),
     );

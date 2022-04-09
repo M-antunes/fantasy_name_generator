@@ -13,6 +13,7 @@ class MagicGearStats extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<StatsController>(builder: (context, state, child) {
       return ListView(
+        physics: const BouncingScrollPhysics(),
         children: [
           const AtributeDivision(label: "Wonderous Items"),
           state.statsGenerated

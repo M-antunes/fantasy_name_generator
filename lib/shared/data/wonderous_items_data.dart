@@ -75,7 +75,7 @@ class WonderousItemsData {
       exclusiveClasses: [],
       description:
           "Flecks of silver or steel are often sown amid the fabric of these magical cloaks. This garment offers magical protection in the form of a +1 resistance bonus on all saving throws (Fortitude, Reflex, and Will).",
-      bonus: null,
+      bonus: 1,
       price: 1000,
     ),
     WonderousItemsModel(
@@ -85,7 +85,7 @@ class WonderousItemsData {
       exclusiveClasses: [],
       description:
           "Flecks of silver or steel are often sown amid the fabric of these magical cloaks. This garment offers magical protection in the form of a +2 resistance bonus on all saving throws (Fortitude, Reflex, and Will).",
-      bonus: null,
+      bonus: 2,
       price: 4000,
     ),
     WonderousItemsModel(
@@ -95,7 +95,7 @@ class WonderousItemsData {
       exclusiveClasses: [],
       description:
           "Flecks of silver or steel are often sown amid the fabric of these magical cloaks. This garment offers magical protection in the form of a +3 resistance bonus on all saving throws (Fortitude, Reflex, and Will).",
-      bonus: null,
+      bonus: 3,
       price: 9000,
     ),
     WonderousItemsModel(
@@ -105,7 +105,7 @@ class WonderousItemsData {
       exclusiveClasses: [],
       description:
           "Flecks of silver or steel are often sown amid the fabric of these magical cloaks. This garment offers magical protection in the form of a +4 resistance bonus on all saving throws (Fortitude, Reflex, and Will).",
-      bonus: null,
+      bonus: 4,
       price: 16000,
     ),
     WonderousItemsModel(
@@ -115,7 +115,7 @@ class WonderousItemsData {
       exclusiveClasses: [],
       description:
           "Flecks of silver or steel are often sown amid the fabric of these magical cloaks. This garment offers magical protection in the form of a +5 resistance bonus on all saving throws (Fortitude, Reflex, and Will).",
-      bonus: null,
+      bonus: 5,
       price: 25000,
     ),
   ];

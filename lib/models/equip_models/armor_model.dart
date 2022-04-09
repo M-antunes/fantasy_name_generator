@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
+
 import 'package:fantasy_name_generator/models/equip_models/armor_type_model.dart';
 
 import 'enchant_model.dart';
@@ -9,7 +11,7 @@ class ArmorModel {
   String? material;
   ArmorFamilyModel? type;
   bool? isSelected;
-  EnchantModel? enchantment;
+  List<EnchantModel>? enchantment;
   bool fitForDruid;
   int? defenseBonus;
   int? checkPenalty;
@@ -35,7 +37,7 @@ class ArmorModel {
     String? material,
     ArmorFamilyModel? type,
     bool? isSelected,
-    EnchantModel? enchantment,
+    List<EnchantModel>? enchantment,
     bool? fitForDruid,
     int? defenseBonus,
     int? checkPenalty,
@@ -64,7 +66,7 @@ class ArmorModel {
       'material': material,
       'type': type?.toMap(),
       'isSelected': isSelected,
-      'enchantment': enchantment?.toMap(),
+      'enchantment': enchantment?.map((x) => x.toMap()).toList(),
       'fitForDruid': fitForDruid,
       'defenseBonus': defenseBonus,
       'checkPenalty': checkPenalty,
@@ -81,7 +83,8 @@ class ArmorModel {
       type: map['type'] != null ? ArmorFamilyModel.fromMap(map['type']) : null,
       isSelected: map['isSelected'],
       enchantment: map['enchantment'] != null
-          ? EnchantModel.fromMap(map['enchantment'])
+          ? List<EnchantModel>.from(
+              map['enchantment']?.map((x) => EnchantModel.fromMap(x)))
           : null,
       fitForDruid: map['fitForDruid'] ?? false,
       defenseBonus: map['defenseBonus']?.toInt(),
@@ -111,7 +114,7 @@ class ArmorModel {
         other.material == material &&
         other.type == type &&
         other.isSelected == isSelected &&
-        other.enchantment == enchantment &&
+        listEquals(other.enchantment, enchantment) &&
         other.fitForDruid == fitForDruid &&
         other.defenseBonus == defenseBonus &&
         other.checkPenalty == checkPenalty &&

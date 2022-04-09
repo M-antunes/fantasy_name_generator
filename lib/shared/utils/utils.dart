@@ -8,3 +8,31 @@ int generateRandom(int number) {
   }
   return newNumber;
 }
+
+int rollingDice(int dice) {
+  Random i = Random();
+  var randomRoll = i.nextInt(dice);
+  while (randomRoll < 1) {
+    randomRoll = i.nextInt(dice);
+  }
+  return randomRoll;
+}
+
+formatGoldPiece(int price) {
+  var f = price.toString();
+  if (f.length == 4) {
+    String first = f.substring(0, 1);
+    String second = f.substring(1);
+    return "$first,$second gp";
+  } else if (f.length == 5) {
+    String first = f.substring(0, 2);
+    String second = f.substring(2);
+    return "$first,$second gp";
+  } else if (f.length == 6) {
+    String first = f.substring(0, 3);
+    String second = f.substring(4);
+    return "$first,$second gp";
+  } else {
+    return "$f gp";
+  }
+}

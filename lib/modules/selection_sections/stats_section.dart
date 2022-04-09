@@ -155,26 +155,30 @@ class _StatsSectionState extends State<StatsSection>
                   ctrl.char = state.cha;
                   return Column(
                     children: [
-                      TabBar(
-                        isScrollable: true,
-                        indicatorColor: AppColors.primaryOrange,
-                        labelStyle: AppTextStyle.tabLabel,
-                        unselectedLabelColor: AppColors.primaryText0,
-                        unselectedLabelStyle: AppTextStyle.tabLabel
-                            .copyWith(fontWeight: FontWeight.w300),
-                        labelColor: AppColors.primaryOrange,
-                        labelPadding: const EdgeInsets.symmetric(horizontal: 6),
-                        controller: _controller,
-                        tabs: const [
-                          Text("ATRIBUTES"),
-                          Text("COMBAT"),
-                          Text("MAGIC GEAR"),
-                          Text("FEATURES"),
-                          Text("FEATS"),
-                          Text("SKILLS"),
-                          Text("SPELLS"),
-                          Text("LOOT"),
-                        ],
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 6),
+                        child: TabBar(
+                          isScrollable: true,
+                          indicatorColor: AppColors.primaryOrange,
+                          labelStyle: AppTextStyle.tabLabel,
+                          unselectedLabelColor: AppColors.primaryText0,
+                          unselectedLabelStyle: AppTextStyle.tabLabel
+                              .copyWith(fontWeight: FontWeight.w300),
+                          labelColor: AppColors.primaryOrange,
+                          labelPadding:
+                              const EdgeInsets.symmetric(horizontal: 6),
+                          controller: _controller,
+                          tabs: const [
+                            Text("ATRIBUTES"),
+                            Text("COMBAT"),
+                            Text("MAGIC GEAR"),
+                            Text("FEATURES"),
+                            Text("FEATS"),
+                            Text("SKILLS"),
+                            Text("SPELLS"),
+                            Text("LOOT"),
+                          ],
+                        ),
                       ),
                       SizedBox(
                         height: deviceHeight! * 0.55,
