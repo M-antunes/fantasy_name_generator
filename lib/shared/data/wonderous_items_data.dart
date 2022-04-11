@@ -375,7 +375,7 @@ class WonderousItemsData {
     ),
   ];
 
-  final List<WonderousItemsModel> manuals = [
+  final List<WonderousItemsModel> manualsAndTomes = [
     WonderousItemsModel(
       type: "Slotless",
       name: "Manual of bodily health +1",
@@ -526,9 +526,6 @@ class WonderousItemsData {
       bonus: 5,
       price: null,
     ),
-  ];
-
-  final List<WonderousItemsModel> tomes = [
     WonderousItemsModel(
       type: "Slotless",
       name: "Tome of clear thought +1",

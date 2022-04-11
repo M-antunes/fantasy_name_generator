@@ -46,7 +46,7 @@ class DefaultCharModelData {
       forbidenArmorType: [],
       name: "Commoner",
       isSelected: false,
-      mainAtrb: "Str",
+      mainAtrb: "strength",
       combatStyle: "Spellcaster",
     ),
     alignment:

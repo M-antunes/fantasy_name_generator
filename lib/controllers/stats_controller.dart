@@ -123,6 +123,7 @@ class StatsController with ChangeNotifier {
     calculateSpeed();
     generateAllAtributs();
     getAtrbBoostFromWonderousItem();
+    boostWithTomeOrManual();
     calculateAllModifiers();
     claculatingHitDefense();
     calculateResistances();
@@ -130,6 +131,7 @@ class StatsController with ChangeNotifier {
     gettingInitiative();
     calculateCombatManeuvers();
     calculatingPhysicalAttackAndDamage();
+
     notifyListeners();
   }
 
@@ -195,19 +197,19 @@ class StatsController with ChangeNotifier {
             char.charLevel > 6) ||
         (char.charClass.combatStyle == "Spellcaster" && char.charLevel > 9)) {
       switch (char.charClass.mainAtrb) {
-        case "Str":
+        case "strength":
           adjustingItemForMainAtrbBoost("Belt", "Belt of giant strength",
               "Belt of physical might", "Belt of physical perfection");
           break;
-        case "Dex":
+        case "dexterity":
           adjustingItemForMainAtrbBoost("Belt", "Belt of incredible dexterity",
               "Belt of physical might", "Belt of physical perfection");
           break;
-        case "Int":
+        case "intelligence":
           adjustingItemForMainAtrbBoost("Belt", "Belt of mighty constitution",
               "Belt of physical might", "Belt of physical perfection");
           break;
-        case "Wis":
+        case "wisdom":
           adjustingItemForMainAtrbBoost("Belt", "Belt of mighty constitution",
               "Belt of physical might", "Belt of physical perfection");
           break;
@@ -221,28 +223,28 @@ class StatsController with ChangeNotifier {
             char.charLevel > 9) ||
         (char.charClass.combatStyle == "Spellcaster" && char.charLevel > 6)) {
       switch (char.charClass.mainAtrb) {
-        case "Str":
+        case "strength":
           adjustingItemForMainAtrbBoost(
               "Headband",
               "Headband of inspired wisdom",
               "Headband of mental prowess",
               "Headband of mental superiority");
           break;
-        case "Dex":
+        case "dexterity":
           adjustingItemForMainAtrbBoost(
               "Headband",
               "Headband of inspired wisdom",
               "Headband of mental prowess",
               "Headband of mental superiority");
           break;
-        case "Int":
+        case "intelligence":
           adjustingItemForMainAtrbBoost(
               "Headband",
               "Headband of vast intelligence",
               "Headband of mental prowess",
               "Headband of mental superiority");
           break;
-        case "Wis":
+        case "wisdom":
           adjustingItemForMainAtrbBoost(
               "Headband",
               "Headband of inspired wisdom",
@@ -290,19 +292,19 @@ class StatsController with ChangeNotifier {
       return;
     } else {
       switch (char.charClass.mainAtrb) {
-        case "Str":
+        case "strength":
           char.charEquip.wonderousItems!
               .addAll(findingRightIounStone("Ioun Stone (Pale blue)"));
           break;
-        case "Dex":
+        case "dexterity":
           char.charEquip.wonderousItems!
               .addAll(findingRightIounStone("Ioun Stone (Deep red)"));
           break;
-        case "Int":
+        case "intelligence":
           char.charEquip.wonderousItems!
               .addAll(findingRightIounStone("Ioun Stone (Scarlet and blue)"));
           break;
-        case "Wis":
+        case "wisdom":
           char.charEquip.wonderousItems!
               .addAll(findingRightIounStone("Ioun Stone (Incandescent blue)"));
           break;
@@ -623,7 +625,7 @@ class StatsController with ChangeNotifier {
       armors = _equip.allArmors
           .where((element) => element.fitForDruid == true)
           .toList();
-    } else if (char.charClass.mainAtrb == "Dex") {
+    } else if (char.charClass.mainAtrb == "dexterity") {
       armors = _equip.allArmors
           .where((element) => element.type!.name == "Light")
           .toList();
@@ -860,21 +862,24 @@ class StatsController with ChangeNotifier {
       numberOfFeats++;
     }
     List<TraitModel> filteredFeats = [];
-    filteredFeats.insert(0, AllFeatsData().allFeats.first);
-    for (var i = 0; i < numberOfFeats; i++) {
-      filteredFeats.add(feats[i]);
-    }
-    if (filteredFeats.length <= numberOfFeats) {
+    filteredFeats.insert(0, AllFeatsData().reactionary);
+    if (feats.length > numberOfFeats) {
+      for (var i = 0; i < numberOfFeats; i++) {
+        filteredFeats.add(feats[i]);
+      }
+    } else if (feats.length == numberOfFeats) {
       charFeats = filteredFeats;
     } else {
-      var featsLeft = numberOfFeats - filteredFeats.length;
+      filteredFeats.addAll(feats);
+      var featsLeft = numberOfFeats - feats.length;
       for (var i = 0; i < featsLeft; i++) {
-        var random = generateRandom(featsLeft);
-        filteredFeats.add(allFeats[random]);
-        while (filteredFeats.contains(allFeats[random])) {
-          var random = generateRandom(featsLeft);
-          filteredFeats.add(allFeats[random]);
+        var random = generateRandom(allFeats.length);
+        var newItem = allFeats[random];
+        while (filteredFeats.contains(newItem)) {
+          var newRandom = generateRandom(allFeats.length);
+          newItem = (allFeats[newRandom]);
         }
+        filteredFeats.add(newItem);
       }
       charFeats = filteredFeats;
     }
@@ -964,10 +969,9 @@ class StatsController with ChangeNotifier {
         var totalPrice = 0;
         var itemPrice = availableGems[random].price;
         if ((itemPrice * randomQnt) < (valuePerClass - value)) {
-          var newRandom = generateRandom(availableGems.length);
           loot.jwels!.add(
             TreasureModel(
-              name: availableGems[newRandom].name,
+              name: availableGems[random].name,
               price: itemPrice,
               qnt: randomQnt,
               finalPrice: randomQnt * itemPrice,
@@ -1197,22 +1201,20 @@ class StatsController with ChangeNotifier {
         char.charRace.name == "Half-elf" ||
         char.charRace.name == "Half-orc") {
       switch (char.charClass.mainAtrb) {
-        case "Str":
+        case "strength":
           calculateAjustToRace(2, 0, 0, 0, 0, 0);
           break;
-        case "Dex":
+        case "dexterity":
           calculateAjustToRace(0, 2, 0, 0, 0, 0);
           break;
-        case "Int":
+        case "intelligence":
           calculateAjustToRace(0, 0, 0, 2, 0, 0);
           break;
-        case "Wis":
+        case "wisdom":
           calculateAjustToRace(0, 0, 0, 0, 2, 0);
           break;
-        case "Cha":
-          calculateAjustToRace(0, 0, 0, 0, 0, 2);
-          break;
         default:
+          calculateAjustToRace(0, 0, 0, 0, 0, 2);
       }
     }
     switch (char.charRace.name) {
@@ -1266,16 +1268,16 @@ class StatsController with ChangeNotifier {
     //Boost from atribute iounstone (mandatory)
     if (char.charLevel > 11) {
       switch (char.charClass.mainAtrb) {
-        case "Str":
+        case "strength":
           char.baseAtributes.strength += 2;
           break;
-        case "Dex":
+        case "dexterity":
           char.baseAtributes.dexterity += 2;
           break;
-        case "Int":
+        case "intelligence":
           char.baseAtributes.intelligence += 2;
           break;
-        case "Wis":
+        case "wisdom":
           char.baseAtributes.wisdom += 2;
           break;
         default:
@@ -1287,7 +1289,7 @@ class StatsController with ChangeNotifier {
     AtributeModel physicalAtr = AtributeModel();
     List<int> boosts = [];
     if (list.any((element) => element.type == "Belt")) {
-      if (char.charClass.mainAtrb == "Str") {
+      if (char.charClass.mainAtrb == "strength") {
         boosts = identifyBoost(list, "might", "perfection", "Belt");
         if (boosts.length == 3) {
           physicalAtr.strength = boosts.first;
@@ -1299,7 +1301,7 @@ class StatsController with ChangeNotifier {
         } else if (boosts.length == 1) {
           physicalAtr.strength = boosts.first;
         }
-      } else if (char.charClass.mainAtrb == "Dex") {
+      } else if (char.charClass.mainAtrb == "dexterity") {
         boosts = identifyBoost(list, "might", "perfection", "Belt");
         if (boosts.length == 3) {
           physicalAtr.strength = boosts.first;
@@ -1326,7 +1328,7 @@ class StatsController with ChangeNotifier {
       }
     }
     if (list.any((element) => element.type == "Headband")) {
-      if (char.charClass.mainAtrb == "Int") {
+      if (char.charClass.mainAtrb == "intelligence") {
         boosts = identifyBoost(list, "prowess", "superiority", "Headband");
         if (boosts.length == 3) {
           mentalAtr.intelligence = boosts.first;
@@ -1338,7 +1340,7 @@ class StatsController with ChangeNotifier {
         } else if (boosts.length == 1) {
           mentalAtr.intelligence = boosts.first;
         }
-      } else if (char.charClass.mainAtrb == "Wis") {
+      } else if (char.charClass.mainAtrb == "wisdom") {
         boosts = identifyBoost(list, "prowess", "superiority", "Headband");
         if (boosts.length == 3) {
           mentalAtr.intelligence = boosts.first;
@@ -1350,7 +1352,7 @@ class StatsController with ChangeNotifier {
         } else if (boosts.length == 1) {
           mentalAtr.wisdom = boosts.first;
         }
-      } else if (char.charClass.mainAtrb == "Cha") {
+      } else if (char.charClass.mainAtrb == "charisma") {
         boosts = identifyBoost(list, "prowess", "superiority", "Headband");
         if (boosts.length == 3) {
           mentalAtr.intelligence = boosts.first;
@@ -1407,14 +1409,40 @@ class StatsController with ChangeNotifier {
     }
   }
 
+  List<WonderousItemsModel> findTomeOrManual(String atrb) {
+    return listOfWonderousItems.manualsAndTomes
+        .where((element) =>
+            element.availability < char.charLevel &&
+            element.description!.contains(atrb))
+        .toList();
+  }
+
+  List<WonderousItemsModel> tomesAndManuals = [];
   boostWithTomeOrManual() {
     if (char.charLevel < 15) {
       return;
     }
-    List<WonderousItemsModel> tomesAndManuals = [];
+    List<WonderousItemsModel> boostBooks = [];
+
     if (char.charLevel > 15 && char.charLevel < 18) {
+      boostBooks.addAll(findTomeOrManual(char.charClass.mainAtrb));
+      tomesAndManuals.addAll(boostBooks);
     } else if (char.charLevel > 15 && char.charLevel < 18) {
-    } else if (char.charLevel > 15 && char.charLevel < 18) {}
+      boostBooks.addAll(findTomeOrManual(char.charClass.mainAtrb));
+      boostBooks.addAll(findTomeOrManual("constitution"));
+
+      tomesAndManuals.addAll(boostBooks);
+    } else if (char.charLevel > 17 && char.charLevel < 21) {
+      boostBooks.addAll(findTomeOrManual(char.charClass.mainAtrb));
+      boostBooks.addAll(findTomeOrManual("constitution"));
+      if (char.battleStyle.name == "Hybrid" ||
+          char.battleStyle.name == "Spellcaster") {
+        boostBooks.addAll(findTomeOrManual("dexterity"));
+      } else {
+        boostBooks.addAll(findTomeOrManual("wisdom"));
+      }
+    }
+    notifyListeners();
   }
 
   //=====================================================================================
@@ -1672,7 +1700,7 @@ class StatsController with ChangeNotifier {
     int meleeAtkNum = 0;
     String rangeAtk = "";
     int rangeAtkNum = 0;
-    int strOrWis = char.charClass.mainAtrb == "Wis"
+    int strOrWis = char.charClass.mainAtrb == "wisdom"
         ? char.modAtributes.wisdom
         : char.modAtributes.strength;
     int bba = char.combatStats.baseAttackBonus!;

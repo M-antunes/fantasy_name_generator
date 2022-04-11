@@ -60,22 +60,26 @@ class CombatStats extends StatelessWidget {
                             : SizedBox(height: deviceHeight! * 0.025),
                         if (state.char.battleStyle.name != "Spellcaster" ||
                             state.char.battleStyle.name != "Diplomat")
-                          DefenseEquipTile(
-                            isMasterWork: state.char.charLevel > 2 &&
-                                    state.char.charLevel < 5 &&
-                                    state.char.charEquip.armour != null
-                                ? true
-                                : false,
-                            label: "Armor",
-                            name: state.char.charEquip.armour!.name != null
-                                ? state.char.charEquip.armour!.name!
-                                : "Armour",
-                            magic:
-                                state.char.charEquip.armour!.enchantment != null
-                                    ? state.char.charEquip.armour!
-                                        .enchantment![0].enchant
-                                    : "",
-                          ),
+                          state.char.charEquip.armour != null
+                              ? DefenseEquipTile(
+                                  isMasterWork: state.char.charLevel > 2 &&
+                                          state.char.charLevel < 5
+                                      ? true
+                                      : false,
+                                  label: "Armor",
+                                  name:
+                                      state.char.charEquip.armour!.name != null
+                                          ? state.char.charEquip.armour!.name!
+                                          : "Armour",
+                                  magic: state.char.charEquip.armour!
+                                              .enchantment !=
+                                          null
+                                      ? state.char.charEquip.armour!
+                                          .enchantment![0].enchant
+                                      : "",
+                                )
+                              : const DefenseEquipTile(
+                                  label: "Armor", name: "armor"),
                       ],
                     ),
                   ),

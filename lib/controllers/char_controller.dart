@@ -306,7 +306,8 @@ class CharController extends ChangeNotifier {
       baseInches += increment;
       baseWeight += (increment * 9);
     }
-    if (char.charClass.mainAtrb == "Str" && char.charRace.size != "Small") {
+    if (char.charClass.mainAtrb == "strength" &&
+        char.charRace.size != "Small") {
       baseInches += rollingDice(4);
       baseWeight += rollingDice(20) + rollingDice(20);
     }
