@@ -3,6 +3,12 @@ import 'package:fantasy_name_generator/models/traits_model.dart';
 class AllFeatsData {
   List<TraitModel> allFeats = [
     TraitModel(
+      traiName: "Reactionary (trait)",
+      levelAcquired: 100,
+      traiDescription: "You gain a +2 trait bonus on initiative checks.",
+      isSelected: false,
+    ),
+    TraitModel(
       traiName: "Improved Initiative",
       levelAcquired: 1,
       traiDescription: "You get a +4 bonus on initiative checks.",
@@ -77,6 +83,18 @@ class AllFeatsData {
       traiName: "Iron Will",
       levelAcquired: 1,
       traiDescription: "+2 bonus on Will saves",
+      isSelected: false,
+    ),
+    TraitModel(
+      traiName: "Great Fortitude",
+      levelAcquired: 1,
+      traiDescription: "+2 bonus on fortitude saves",
+      isSelected: false,
+    ),
+    TraitModel(
+      traiName: "Lightning Reflexes",
+      levelAcquired: 1,
+      traiDescription: "+2 bonus on reflex saves",
       isSelected: false,
     ),
     TraitModel(

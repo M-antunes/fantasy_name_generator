@@ -13,10 +13,10 @@ class ArmorModel {
   bool? isSelected;
   List<EnchantModel>? enchantment;
   bool fitForDruid;
-  int? defenseBonus;
-  int? checkPenalty;
-  int? maxDexAllowed;
-  int? speedPenalty;
+  int defenseBonus;
+  int checkPenalty;
+  int maxDexAllowed;
+  int speedPenalty;
   int price;
   ArmorModel({
     this.name,
@@ -25,10 +25,10 @@ class ArmorModel {
     this.isSelected,
     this.enchantment,
     this.fitForDruid = true,
-    this.defenseBonus,
-    this.checkPenalty,
-    this.maxDexAllowed,
-    this.speedPenalty,
+    this.defenseBonus = 0,
+    this.checkPenalty = 0,
+    this.maxDexAllowed = 0,
+    this.speedPenalty = 0,
     required this.price,
   });
 

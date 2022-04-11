@@ -31,18 +31,18 @@ class AbilityScoreSection extends StatelessWidget {
                       child: StatsDescriptionColumn(
                         labeltop: "Strength:",
                         labelBottom: "Dexterity:",
-                        textValueTop: state.char.baseAtributes.strength!,
-                        textValueBottom: state.char.baseAtributes.dexterity!,
-                        modTop: state.char.modAtributes.strength!,
-                        modBottom: state.char.modAtributes.dexterity!,
+                        textValueTop: state.char.baseAtributes.strength,
+                        textValueBottom: state.char.baseAtributes.dexterity,
+                        modTop: state.char.modAtributes.strength,
+                        modBottom: state.char.modAtributes.dexterity,
                       ),
                     ),
                     SizedBox(
                       width: deviceWidth! * 0.44,
                       child: StatsDescriptionText(
                         label: "Constitution:",
-                        textValue: state.char.baseAtributes.constitution!,
-                        modValue: state.char.modAtributes.constitution!,
+                        textValue: state.char.baseAtributes.constitution,
+                        modValue: state.char.modAtributes.constitution,
                       ),
                     )
                   ],
@@ -56,18 +56,18 @@ class AbilityScoreSection extends StatelessWidget {
                       child: StatsDescriptionColumn(
                         labeltop: "Intelligence:",
                         labelBottom: "Wisdom:",
-                        textValueTop: state.char.baseAtributes.intelligence!,
-                        textValueBottom: state.char.baseAtributes.wisdom!,
-                        modTop: state.char.modAtributes.intelligence!,
-                        modBottom: state.char.modAtributes.wisdom!,
+                        textValueTop: state.char.baseAtributes.intelligence,
+                        textValueBottom: state.char.baseAtributes.wisdom,
+                        modTop: state.char.modAtributes.intelligence,
+                        modBottom: state.char.modAtributes.wisdom,
                       ),
                     ),
                     SizedBox(
                       width: deviceWidth! * 0.44,
                       child: StatsDescriptionText(
                         label: "Charisma:",
-                        textValue: state.char.baseAtributes.charisma!,
-                        modValue: state.char.modAtributes.charisma!,
+                        textValue: state.char.baseAtributes.charisma,
+                        modValue: state.char.modAtributes.charisma,
                       ),
                     ),
                     SizedBox(height: deviceHeight! * 0.006),
@@ -76,7 +76,13 @@ class AbilityScoreSection extends StatelessWidget {
               ],
             ),
             SizedBox(height: deviceHeight! * 0.03),
-            const GradientLabel(label: "Boosts"),
+            state.statsGenerated
+                ? Column(
+                    children: [
+                      const GradientLabel(label: "Special Boosts"),
+                    ],
+                  )
+                : SizedBox(),
           ],
         ),
       );

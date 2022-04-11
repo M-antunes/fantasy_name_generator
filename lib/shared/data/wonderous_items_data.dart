@@ -71,7 +71,7 @@ class WonderousItemsData {
     WonderousItemsModel(
       type: "Cloak",
       name: "Cloak of resistance +1",
-      availability: 2,
+      availability: 3,
       exclusiveClasses: [],
       description:
           "Flecks of silver or steel are often sown amid the fabric of these magical cloaks. This garment offers magical protection in the form of a +1 resistance bonus on all saving throws (Fortitude, Reflex, and Will).",
@@ -117,6 +117,112 @@ class WonderousItemsData {
           "Flecks of silver or steel are often sown amid the fabric of these magical cloaks. This garment offers magical protection in the form of a +5 resistance bonus on all saving throws (Fortitude, Reflex, and Will).",
       bonus: 5,
       price: 25000,
+    ),
+  ];
+
+  final List<WonderousItemsModel> amuletOfArmor = [
+    WonderousItemsModel(
+      type: "Neck",
+      name: "Amulet of natural armor +1",
+      availability: 4,
+      exclusiveClasses: [],
+      description:
+          "This amulet, usually containing some type of magically preserved monster hide or other natural armor—such as bone, horn, carapace, or beast scales—toughens the wearer's body and flesh, giving him an +1 bonus to his natural armor",
+      bonus: 1,
+      price: 2000,
+    ),
+    WonderousItemsModel(
+      type: "Neck",
+      name: "Amulet of natural armor +2",
+      availability: 7,
+      exclusiveClasses: [],
+      description:
+          "This amulet, usually containing some type of magically preserved monster hide or other natural armor—such as bone, horn, carapace, or beast scales—toughens the wearer's body and flesh, giving him an +2 bonus to his natural armor",
+      bonus: 2,
+      price: 8000,
+    ),
+    WonderousItemsModel(
+      type: "Neck",
+      name: "Amulet of natural armor +3",
+      availability: 10,
+      exclusiveClasses: [],
+      description:
+          "This amulet, usually containing some type of magically preserved monster hide or other natural armor—such as bone, horn, carapace, or beast scales—toughens the wearer's body and flesh, giving him an +3 bonus to his natural armor",
+      bonus: 3,
+      price: 18000,
+    ),
+    WonderousItemsModel(
+      type: "Neck",
+      name: "Amulet of natural armor +4",
+      availability: 13,
+      exclusiveClasses: [],
+      description:
+          "This amulet, usually containing some type of magically preserved monster hide or other natural armor—such as bone, horn, carapace, or beast scales—toughens the wearer's body and flesh, giving him an +4 bonus to his natural armor",
+      bonus: 4,
+      price: 32000,
+    ),
+    WonderousItemsModel(
+      type: "Neck",
+      name: "Amulet of natural armor +5",
+      availability: 16,
+      exclusiveClasses: [],
+      description:
+          "This amulet, usually containing some type of magically preserved monster hide or other natural armor—such as bone, horn, carapace, or beast scales—toughens the wearer's body and flesh, giving him an +5 bonus to his natural armor",
+      bonus: 5,
+      price: 50000,
+    ),
+  ];
+
+  final List<WonderousItemsModel> amuletMightyFists = [
+    WonderousItemsModel(
+      type: "Neck",
+      name: "Amulet of mighty fists +1",
+      availability: 4,
+      exclusiveClasses: ["Monk"],
+      description:
+          "This amulet grants an enhancement bonus of +1 on attack and damage rolls with unarmed attacks and natural weapons.",
+      bonus: 1,
+      price: 5000,
+    ),
+    WonderousItemsModel(
+      type: "Neck",
+      name: "Amulet of mighty fists +2",
+      availability: 8,
+      exclusiveClasses: ["Monk"],
+      description:
+          "This amulet grants an enhancement bonus of +2 on attack and damage rolls with unarmed attacks and natural weapons.",
+      bonus: 2,
+      price: 20000,
+    ),
+    WonderousItemsModel(
+      type: "Neck",
+      name: "Amulet of mighty fists +3",
+      availability: 12,
+      exclusiveClasses: ["Monk"],
+      description:
+          "This amulet grants an enhancement bonus of +3 on attack and damage rolls with unarmed attacks and natural weapons.",
+      bonus: 3,
+      price: 45000,
+    ),
+    WonderousItemsModel(
+      type: "Neck",
+      name: "Amulet of mighty fists +4",
+      availability: 15,
+      exclusiveClasses: ["Monk"],
+      description:
+          "This amulet grants an enhancement bonus of +4 on attack and damage rolls with unarmed attacks and natural weapons.",
+      bonus: 4,
+      price: 80000,
+    ),
+    WonderousItemsModel(
+      type: "Neck",
+      name: "Amulet of mighty fists +5",
+      availability: 18,
+      exclusiveClasses: ["Monk"],
+      description:
+          "This amulet grants an enhancement bonus of +5 on attack and damage rolls with unarmed attacks and natural weapons.",
+      bonus: 5,
+      price: 125000,
     ),
   ];
 
@@ -669,7 +775,7 @@ class WonderousItemsData {
     WonderousItemsModel(
       type: "Belt",
       name: "Belt of physical might +2",
-      availability: 7,
+      availability: 11,
       exclusiveClasses: [],
       description:
           "(+2) bonus in two of the physical ability scores. Valid only 24 hours after the belt is first worn.",
@@ -679,7 +785,7 @@ class WonderousItemsData {
     WonderousItemsModel(
       type: "Belt",
       name: "Belt of physical might +4",
-      availability: 11,
+      availability: 13,
       exclusiveClasses: [],
       description:
           "(+4) bonus in two of the physical ability scores. Valid only 24 hours after the belt is first worn.",
@@ -689,7 +795,7 @@ class WonderousItemsData {
     WonderousItemsModel(
       type: "Belt",
       name: "Belt of physical might +6",
-      availability: 14,
+      availability: 15,
       exclusiveClasses: [],
       description:
           "(+6) bonus in two of the physical ability scores. Valid only 24 hours after the belt is first worn.",
@@ -699,7 +805,7 @@ class WonderousItemsData {
     WonderousItemsModel(
       type: "Belt",
       name: "Belt of physical perfection +2",
-      availability: 9,
+      availability: 11,
       exclusiveClasses: [],
       description:
           "(+2) bonus in all physical ability scores. Valid only 24 hours after the belt is first worn.",
@@ -819,7 +925,7 @@ class WonderousItemsData {
     WonderousItemsModel(
       type: "Headband",
       name: "Headband of mental prowess +2",
-      availability: 7,
+      availability: 9,
       exclusiveClasses: [],
       description:
           "(+2) bonus in two of the mental ability scores. Valid only 24 hours after the Headband is first worn.",
@@ -829,7 +935,7 @@ class WonderousItemsData {
     WonderousItemsModel(
       type: "Headband",
       name: "Headband of mental prowess +4",
-      availability: 11,
+      availability: 13,
       exclusiveClasses: [],
       description:
           "(+4) bonus in two of the mental ability scores. Valid only 24 hours after the Headband is first worn.",
@@ -1138,56 +1244,6 @@ class WonderousItemsData {
     ),
     WonderousItemsModel(
       type: "Neck",
-      name: "Amulet of natural armor +1",
-      availability: 4,
-      exclusiveClasses: [],
-      description:
-          "This amulet, usually containing some type of magically preserved monster hide or other natural armor—such as bone, horn, carapace, or beast scales—toughens the wearer's body and flesh, giving him an +1 bonus to his natural armor",
-      bonus: null,
-      price: 2000,
-    ),
-    WonderousItemsModel(
-      type: "Neck",
-      name: "Amulet of natural armor +2",
-      availability: 7,
-      exclusiveClasses: [],
-      description:
-          "This amulet, usually containing some type of magically preserved monster hide or other natural armor—such as bone, horn, carapace, or beast scales—toughens the wearer's body and flesh, giving him an +2 bonus to his natural armor",
-      bonus: null,
-      price: 8000,
-    ),
-    WonderousItemsModel(
-      type: "Neck",
-      name: "Amulet of natural armor +3",
-      availability: 10,
-      exclusiveClasses: [],
-      description:
-          "This amulet, usually containing some type of magically preserved monster hide or other natural armor—such as bone, horn, carapace, or beast scales—toughens the wearer's body and flesh, giving him an +3 bonus to his natural armor",
-      bonus: null,
-      price: 18000,
-    ),
-    WonderousItemsModel(
-      type: "Neck",
-      name: "Amulet of natural armor +4",
-      availability: 13,
-      exclusiveClasses: [],
-      description:
-          "This amulet, usually containing some type of magically preserved monster hide or other natural armor—such as bone, horn, carapace, or beast scales—toughens the wearer's body and flesh, giving him an +4 bonus to his natural armor",
-      bonus: null,
-      price: 32000,
-    ),
-    WonderousItemsModel(
-      type: "Neck",
-      name: "Amulet of natural armor +5",
-      availability: 16,
-      exclusiveClasses: [],
-      description:
-          "This amulet, usually containing some type of magically preserved monster hide or other natural armor—such as bone, horn, carapace, or beast scales—toughens the wearer's body and flesh, giving him an +5 bonus to his natural armor",
-      bonus: null,
-      price: 50000,
-    ),
-    WonderousItemsModel(
-      type: "Neck",
       name: "Golembane scarab",
       availability: 5,
       exclusiveClasses: [],
@@ -1215,56 +1271,6 @@ class WonderousItemsData {
           "This amulet shines brightly when brought within 60 feet of an outsider with the elemental subtype, shedding light as a torch. The amulet glows a different color depending on the subtype of the elemental or elementals present (white for air, yellow for earth, red for fire, and blue for water). If more than one subtype is present, the gem flickers back and forth between the appropriate colors. The wearer gains resistance 5 against a single energy type determined by the subtype of the closest elemental present (air grants electricity resistance, earth grants acid resistance, fire grants fire resistance, and water grants cold resistance). If the closest elemental possesses multiple subtypes, the wearer may choose which type of resistance she gains. This energy resistance only applies against attacks from elementals. The amulet also allows any attacks made by the wearer to bypass the damage reduction of such creatures.",
       bonus: null,
       price: 4000,
-    ),
-    WonderousItemsModel(
-      type: "Neck",
-      name: "Amulet of mighty fists +1",
-      availability: 4,
-      exclusiveClasses: ["Monk"],
-      description:
-          "This amulet grants an enhancement bonus of +1 on attack and damage rolls with unarmed attacks and natural weapons.",
-      bonus: null,
-      price: 5000,
-    ),
-    WonderousItemsModel(
-      type: "Neck",
-      name: "Amulet of mighty fists +2",
-      availability: 8,
-      exclusiveClasses: ["Monk"],
-      description:
-          "This amulet grants an enhancement bonus of +2 on attack and damage rolls with unarmed attacks and natural weapons.",
-      bonus: null,
-      price: 20000,
-    ),
-    WonderousItemsModel(
-      type: "Neck",
-      name: "Amulet of mighty fists +3",
-      availability: 12,
-      exclusiveClasses: ["Monk"],
-      description:
-          "This amulet grants an enhancement bonus of +3 on attack and damage rolls with unarmed attacks and natural weapons.",
-      bonus: null,
-      price: 45000,
-    ),
-    WonderousItemsModel(
-      type: "Neck",
-      name: "Amulet of mighty fists +4",
-      availability: 15,
-      exclusiveClasses: ["Monk"],
-      description:
-          "This amulet grants an enhancement bonus of +4 on attack and damage rolls with unarmed attacks and natural weapons.",
-      bonus: null,
-      price: 80000,
-    ),
-    WonderousItemsModel(
-      type: "Neck",
-      name: "Amulet of mighty fists +5",
-      availability: 18,
-      exclusiveClasses: ["Monk"],
-      description:
-          "This amulet grants an enhancement bonus of +5 on attack and damage rolls with unarmed attacks and natural weapons.",
-      bonus: null,
-      price: 125000,
     ),
     WonderousItemsModel(
       type: "Neck",
@@ -2150,7 +2156,7 @@ class WonderousItemsData {
       exclusiveClasses: [],
       description:
           "These polished steel vambraces grant a +1 deflection bonus to AC. Once per day, as an immediate action, if the wearer has at least one hand free, when he would normally be hit with an attack from a ranged weapon, he may deflect it with the bracers, taking no damage from it, as if he had the Deflect Arrows feat.",
-      bonus: null,
+      bonus: 1,
       price: 6000,
     ),
     WonderousItemsModel(

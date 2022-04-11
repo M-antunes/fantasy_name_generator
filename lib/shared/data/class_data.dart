@@ -46,7 +46,9 @@ class ClassData {
         weaponType: "Two-handed",
         forbiddenClasses: [
           "Rogue",
+          "Monk",
           "Wizard",
+          "Ranger",
           "Arcanist",
           "Alchemist",
           "Bard",
@@ -65,6 +67,7 @@ class ClassData {
           "Monk",
           "Wizard",
           "Arcanist",
+          "Ranger",
           "Sorcerer",
           "Aristocrat",
           "Noble",
@@ -83,20 +86,21 @@ class ClassData {
           "Aristocrat",
           "Alchemist",
           "Noble",
-          "Commoner"
+          "Commoner",
+          "Monk",
         ],
         isSelected: false),
     PhysicalStyleModel(
         name: "Swordsman",
         svg: "assets/images/weapon_types/sword.svg",
         weaponType: "sword",
-        forbiddenClasses: [],
+        forbiddenClasses: ["Barbarian", "Commoner", "Monk"],
         isSelected: false),
     PhysicalStyleModel(
         name: "Knifeman",
         svg: "assets/images/weapon_types/knife.svg",
         weaponType: "Knife",
-        forbiddenClasses: [],
+        forbiddenClasses: ["Barbarian", "Monk"],
         isSelected: false),
     PhysicalStyleModel(
         name: "Martial",
@@ -104,11 +108,13 @@ class ClassData {
         weaponType: "Fist",
         forbiddenClasses: [
           "Bard",
+          "Barbarian",
           "Samurai",
           "Antipaladin",
           "Paladin",
           "Rogue",
           "Alchemist",
+          "Ranger",
           "Wizard",
           "Arcanist",
           "Sorcerer",
@@ -135,7 +141,7 @@ class ClassData {
         name: "Marksman",
         svg: "assets/images/weapon_types/crossbow.svg",
         weaponType: "Crossbow",
-        forbiddenClasses: [],
+        forbiddenClasses: ["Barbarian", "Commoner", "Monk"],
         isSelected: false),
     PhysicalStyleModel(
         name: "Thrower",
@@ -147,7 +153,9 @@ class ClassData {
           "Sorcerer",
           "Aristocrat",
           "Noble",
-          "Commoner"
+          "Commoner",
+          "Antipaladin",
+          "Paladin",
         ],
         isSelected: false),
   ];

@@ -37,13 +37,6 @@ class ReariedFeatsData {
       isSelected: false,
     ),
     TraitModel(
-      traiName: "Cleave",
-      levelAcquired: 1,
-      traiDescription:
-          "As a standard action, you can make a single attack at your full base attack bonus against a foe within reach. If you hit, you deal damage normally and can make an additional attack (using your full base attack bonus) against a foe that is adjacent to the first and also within reach. You can only make one additional attack per round with this feat. When you use this feat, you take a –2 penalty to your Armor Class until your next turn.",
-      isSelected: false,
-    ),
-    TraitModel(
       traiName: "Greater Weapon Specialization",
       levelAcquired: 12,
       traiDescription:
@@ -138,7 +131,7 @@ class ReariedFeatsData {
       isSelected: false,
     ),
     TraitModel(
-      traiName: "Two-Weapon Defense*",
+      traiName: "Two-Weapon Defense",
       levelAcquired: 1,
       traiDescription: "Gain +1 shield bonus when fighting with two weapons",
       isSelected: false,
@@ -187,9 +180,10 @@ class ReariedFeatsData {
       isSelected: false,
     ),
     TraitModel(
-      traiName: "Penetrating Strike",
-      levelAcquired: 1,
-      traiDescription: "Your attacks ignore 5 points of damage reduction",
+      traiName: "Weapon Specialization",
+      levelAcquired: 12,
+      traiDescription:
+          "You gain a +2 bonus on all damage rolls you make using the selected weapon.",
       isSelected: false,
     ),
     TraitModel(

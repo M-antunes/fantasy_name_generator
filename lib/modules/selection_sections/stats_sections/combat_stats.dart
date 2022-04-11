@@ -43,7 +43,8 @@ class CombatStats extends StatelessWidget {
                                         ? true
                                         : false,
                                     label: "Shield",
-                                    name: state.char.charEquip.shield != null
+                                    name: state.char.charEquip.shield!.name !=
+                                            null
                                         ? state.char.charEquip.shield!.name!
                                         : "Shield",
                                     magic: state.char.charEquip.shield
@@ -66,11 +67,11 @@ class CombatStats extends StatelessWidget {
                                 ? true
                                 : false,
                             label: "Armor",
-                            name: state.char.charEquip.armour != null
+                            name: state.char.charEquip.armour!.name != null
                                 ? state.char.charEquip.armour!.name!
                                 : "Armour",
                             magic:
-                                state.char.charEquip.armour?.enchantment != null
+                                state.char.charEquip.armour!.enchantment != null
                                     ? state.char.charEquip.armour!
                                         .enchantment![0].enchant
                                     : "",
@@ -79,15 +80,21 @@ class CombatStats extends StatelessWidget {
                     ),
                   ),
                   Column(
-                    children: const [
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
                       DefenseInfo(
+                        length: deviceWidth! * 0.3,
                         label: "Armor Class:",
-                        value: "0",
+                        value: "${state.char.combatStats.armourClass}",
                       ),
-                      SizedBox(height: 3),
-                      DefenseInfo(label: "Surprise:", value: "0"),
-                      SizedBox(height: 3),
-                      DefenseInfo(label: "Touch:", value: "0"),
+                      const SizedBox(height: 3),
+                      DefenseInfo(
+                          label: "Surprise:",
+                          value: "${state.char.combatStats.armourSurprise}"),
+                      const SizedBox(height: 3),
+                      DefenseInfo(
+                          label: "Touch:",
+                          value: "${state.char.combatStats.armourTouch}"),
                     ],
                   ),
                 ],
@@ -143,12 +150,12 @@ class CombatStats extends StatelessWidget {
                   DefenseInfo(
                     length: deviceWidth! * 0.2,
                     label: "CMB:",
-                    value: "0",
+                    value: "${state.char.combatStats.combatManeuverBonus}",
                   ),
                   DefenseInfo(
                     length: deviceWidth! * 0.2,
                     label: "CMD",
-                    value: "0",
+                    value: "${state.char.combatStats.combatManeuverDefense}",
                   ),
                 ],
               ),
@@ -166,32 +173,35 @@ class CombatStats extends StatelessWidget {
                       specificType:
                           state.char.charEquip.meleeWeapon!.type!.wielding,
                       name: state.char.charEquip.meleeWeapon!.name!,
-                      magic: state.char.charLevel > 5
+                      magic: state.char.charLevel >= 5
                           ? state.char.charEquip.meleeWeapon!.enchantment!.first
                               .enchant
                           : "",
                       effect: state.char.charEquip.meleeWeapon!.enchantment !=
                                   null &&
-                              state.char.charLevel > 5 &&
+                              state.char.charLevel >= 5 &&
                               state.char.charEquip.meleeWeapon!.enchantment!
                                       .length >
                                   1
                           ? state.char.charEquip.meleeWeapon!.enchantment!.last
                               .enchant
                           : "",
-                      attack: "(Attack value)",
+                      attack: state.char.charEquip.meleeWeapon != null
+                          ? "(${state.char.combatStats.meleeAttack!})"
+                          : "",
                       damageValue: state.char.charEquip.meleeWeapon!.damage!,
-                      damageBonus: "+bonus",
-                      extraDamage:
-                          state.char.charEquip.meleeWeapon!.enchantment !=
-                                      null &&
-                                  state.char.charLevel > 5 &&
-                                  state.char.charEquip.meleeWeapon!.enchantment!
-                                          .length >
-                                      1
-                              ? state.char.charEquip.meleeWeapon!.enchantment!
-                                  .last.additionalDiceDamage
-                              : "",
+                      damageBonus: state.char.charEquip.meleeWeapon != null
+                          ? "+${state.char.combatStats.meleeDamage!}"
+                          : "",
+                      extraDamage: state.char.charEquip.meleeWeapon!
+                                      .enchantment !=
+                                  null &&
+                              state.char.charLevel >= 5 &&
+                              state.char.charEquip.meleeWeapon!.enchantment!
+                                      .length >
+                                  1
+                          ? "(${state.char.charEquip.meleeWeapon!.enchantment!.last.additionalDiceDamage})"
+                          : "",
                     ),
                     if (state.char.physicalStyle.name == "Dual-weilder")
                       WeaponTile(
@@ -205,32 +215,35 @@ class CombatStats extends StatelessWidget {
                         specificType:
                             state.char.charEquip.meleeWeapon!.type!.wielding,
                         name: state.char.charEquip.meleeWeapon!.name!,
-                        magic: state.char.charLevel > 5
+                        magic: state.char.charLevel >= 5
                             ? state.char.charEquip.meleeWeapon!.enchantment!
                                 .first.enchant
                             : "",
                         effect: state.char.charEquip.meleeWeapon!.enchantment !=
                                     null &&
-                                state.char.charLevel > 5 &&
+                                state.char.charLevel >= 5 &&
                                 state.char.charEquip.meleeWeapon!.enchantment!
                                         .length >
                                     1
                             ? state.char.charEquip.meleeWeapon!.enchantment!
                                 .last.enchant
                             : "",
-                        attack: "(Attack value)",
+                        attack: state.char.charEquip.meleeWeapon != null
+                            ? "(${state.char.combatStats.meleeAttack!})"
+                            : "",
                         damageValue: state.char.charEquip.meleeWeapon!.damage!,
-                        damageBonus: "+bonus",
-                        extraDamage:
-                            state.char.charEquip.meleeWeapon!.enchantment !=
-                                        null &&
-                                    state.char.charLevel > 5 &&
-                                    state.char.charEquip.meleeWeapon!
-                                            .enchantment!.length >
-                                        1
-                                ? state.char.charEquip.meleeWeapon!.enchantment!
-                                    .last.additionalDiceDamage
-                                : "",
+                        damageBonus: state.char.charEquip.meleeWeapon != null
+                            ? "+${state.char.combatStats.meleeDamage!}"
+                            : "",
+                        extraDamage: state.char.charEquip.meleeWeapon!
+                                        .enchantment !=
+                                    null &&
+                                state.char.charLevel >= 5 &&
+                                state.char.charEquip.meleeWeapon!.enchantment!
+                                        .length >
+                                    1
+                            ? "(${state.char.charEquip.meleeWeapon!.enchantment!.last.additionalDiceDamage})"
+                            : "",
                       ),
                     WeaponTile(
                       isMasterWork:
@@ -239,32 +252,35 @@ class CombatStats extends StatelessWidget {
                               : false,
                       type: "Range",
                       name: state.char.charEquip.rangeWeapon!.name!,
-                      magic: state.char.charLevel > 5
+                      magic: state.char.charLevel >= 5
                           ? state.char.charEquip.rangeWeapon!.enchantment!.first
                               .enchant
                           : "",
                       effect: state.char.charEquip.rangeWeapon!.enchantment !=
                                   null &&
-                              state.char.charLevel > 5 &&
+                              state.char.charLevel >= 5 &&
                               state.char.charEquip.rangeWeapon!.enchantment!
                                       .length >
                                   1
                           ? state.char.charEquip.rangeWeapon!.enchantment!.last
                               .enchant
                           : "",
-                      attack: "(Attack value)",
+                      attack: state.char.charEquip.rangeWeapon != null
+                          ? "(${state.char.combatStats.rangeAttack!})"
+                          : "",
                       damageValue: state.char.charEquip.rangeWeapon!.damage!,
-                      damageBonus: "+bonus",
-                      extraDamage:
-                          state.char.charEquip.rangeWeapon!.enchantment !=
-                                      null &&
-                                  state.char.charLevel > 5 &&
-                                  state.char.charEquip.rangeWeapon!.enchantment!
-                                          .length >
-                                      1
-                              ? state.char.charEquip.rangeWeapon!.enchantment!
-                                  .last.additionalDiceDamage
-                              : "",
+                      damageBonus: state.char.charEquip.rangeWeapon != null
+                          ? "+${state.char.combatStats.rangeDamage!}"
+                          : "",
+                      extraDamage: state.char.charEquip.rangeWeapon!
+                                      .enchantment !=
+                                  null &&
+                              state.char.charLevel >= 5 &&
+                              state.char.charEquip.rangeWeapon!.enchantment!
+                                      .length >
+                                  1
+                          ? "(${state.char.charEquip.rangeWeapon!.enchantment!.last.additionalDiceDamage})"
+                          : "",
                     ),
                   ],
                 ),

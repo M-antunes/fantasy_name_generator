@@ -57,7 +57,7 @@ class RaceData {
       weight: 130,
       speed: 30,
       size: "Medium",
-      vision: "Low-Light Vision",
+      vision: "Low-light Vision",
       traits: [
         KeyValueModel(
             key: "+2 Dexterity, +2 Intelligence, –2 Constitution:",
@@ -70,7 +70,7 @@ class RaceData {
         KeyValueModel(
             key: "Normal Speed:", value: "Elves have a base speed of 30 feet."),
         KeyValueModel(
-            key: "Low-Light Vision:",
+            key: "Low-light Vision:",
             value:
                 "Elves can see twice as far as humans in conditions of dim light. See Additional Rules."),
         KeyValueModel(
@@ -95,7 +95,7 @@ class RaceData {
       weight: 50,
       speed: 20,
       size: "Small",
-      vision: "Low-Light Vision",
+      vision: "Low-light Vision",
       traits: [
         KeyValueModel(
             key: "+2 Constitution, +2 Charisma, –2 Strength:",
@@ -108,7 +108,7 @@ class RaceData {
         KeyValueModel(
             key: "Slow Speed:", value: "Gnomes have a base speed of 20 feet."),
         KeyValueModel(
-            key: "Low-Light Vision:",
+            key: "Low-light Vision:",
             value:
                 "Gnomes can see twice as far as humans in conditions of dim light. See Additional Rules."),
         KeyValueModel(
@@ -179,7 +179,7 @@ class RaceData {
       weight: 150,
       speed: 30,
       size: "Medium",
-      vision: "Low-Light Vision",
+      vision: "Low-light Vision",
       traits: [
         KeyValueModel(
             key: "+2 to One Ability Score:",
@@ -193,7 +193,7 @@ class RaceData {
             key: "Normal Speed:",
             value: "Half-elves have a base speed of 30 feet."),
         KeyValueModel(
-            key: "Low-Light Vision:",
+            key: "Low-light Vision:",
             value:
                 " Half-elves can see twice as far as humans in conditions of dim light. See Additional Rules."),
         KeyValueModel(

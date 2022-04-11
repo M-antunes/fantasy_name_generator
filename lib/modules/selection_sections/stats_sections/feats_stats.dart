@@ -18,35 +18,30 @@ class FeatStats extends StatelessWidget {
           children: [
             const AtributeDivision(label: "Feats"),
             SizedBox(height: deviceHeight! * 0.005),
-            state.charFeats.isEmpty
-                ? const Text("Nothing")
-                : ListView.builder(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: state.charFeats.length,
-                    itemBuilder: (context, index) {
-                      var feat = state.charFeats[index];
-                      return FeatureList(
-                        name: feat.traiName,
-                        focusOrSpecialization: (feat.traiName != "Weapon Focus" &&
-                                feat.traiName != "Weapon Specialization" &&
-                                feat.traiName != "Greater Weapon Focus" &&
-                                feat.traiName !=
-                                    "Greater Weapon Specialization" &&
-                                feat.traiName != "Weapon Finesse")
-                            ? ""
-                            : state.char.physicalStyle.name == "Bowman" ||
-                                    state.char.physicalStyle.name ==
-                                        "Marksman" ||
-                                    state.char.physicalStyle.name == "Thrower"
-                                ? "(${state.char.charEquip.rangeWeapon!.name})"
-                                : "(${state.char.charEquip.meleeWeapon!.name})",
-                        selected: feat.isSelected,
-                        description: feat.traiDescription,
-                        onTap: () =>
-                            state.showDescriptions(index, state.charFeats),
-                      );
-                    }),
+            ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: state.charFeats.length,
+                itemBuilder: (context, index) {
+                  var feat = state.charFeats[index];
+                  return FeatureList(
+                    name: feat.traiName,
+                    focusOrSpecialization: (feat.traiName != "Weapon Focus" &&
+                            feat.traiName != "Weapon Specialization" &&
+                            feat.traiName != "Greater Weapon Focus" &&
+                            feat.traiName != "Greater Weapon Specialization" &&
+                            feat.traiName != "Weapon Finesse")
+                        ? ""
+                        : state.char.physicalStyle.name == "Bowman" ||
+                                state.char.physicalStyle.name == "Marksman" ||
+                                state.char.physicalStyle.name == "Thrower"
+                            ? "(${state.char.charEquip.rangeWeapon!.name})"
+                            : "(${state.char.charEquip.meleeWeapon!.name})",
+                    selected: feat.isSelected,
+                    description: feat.traiDescription,
+                    onTap: () => state.showDescriptions(index, state.charFeats),
+                  );
+                }),
           ],
         );
       },

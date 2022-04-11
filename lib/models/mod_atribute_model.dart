@@ -1,12 +1,12 @@
 import 'dart:convert';
 
 class ModAtributeModel {
-  int? strength;
-  int? dexterity;
-  int? constitution;
-  int? intelligence;
-  int? wisdom;
-  int? charisma;
+  int strength;
+  int dexterity;
+  int constitution;
+  int intelligence;
+  int wisdom;
+  int charisma;
   ModAtributeModel({
     this.strength = 0,
     this.dexterity = 0,

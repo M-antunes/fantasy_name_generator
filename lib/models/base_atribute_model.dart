@@ -1,12 +1,12 @@
 import 'dart:convert';
 
 class AtributeModel {
-  int? strength;
-  int? dexterity;
-  int? constitution;
-  int? intelligence;
-  int? wisdom;
-  int? charisma;
+  int strength;
+  int dexterity;
+  int constitution;
+  int intelligence;
+  int wisdom;
+  int charisma;
   AtributeModel({
     this.strength = 0,
     this.dexterity = 0,

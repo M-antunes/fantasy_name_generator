@@ -6,10 +6,10 @@ class CombatModel {
   int? armourSurprise;
   int? baseAttackBonus;
   int? initiative;
-  String? primaryAttack;
-  String? secundaryAttack;
-  String? primaryDamage;
-  String? secundaryDamage;
+  String? meleeAttack;
+  String? rangeAttack;
+  String? meleeDamage;
+  String? rangeDamage;
   int? combatManeuverBonus;
   int? combatManeuverDefense;
   CombatModel({
@@ -18,10 +18,10 @@ class CombatModel {
     this.armourSurprise = 0,
     this.baseAttackBonus = 0,
     this.initiative = 0,
-    this.primaryAttack = "0",
-    this.secundaryAttack = "0",
-    this.primaryDamage = "0",
-    this.secundaryDamage = "0",
+    this.meleeAttack = "0",
+    this.rangeAttack = "0",
+    this.meleeDamage = "0",
+    this.rangeDamage = "0",
     this.combatManeuverBonus = 0,
     this.combatManeuverDefense = 0,
   });
@@ -32,10 +32,10 @@ class CombatModel {
     int? armourSurprise,
     int? baseAttackBonus,
     int? initiative,
-    String? primaryAttack,
-    String? secundaryAttack,
-    String? primaryDamage,
-    String? secundaryDamage,
+    String? meleeAttack,
+    String? rangeAttack,
+    String? meleeDamage,
+    String? rangeDamage,
     int? combatManeuverBonus,
     int? combatManeuverDefense,
   }) {
@@ -45,10 +45,10 @@ class CombatModel {
       armourSurprise: armourSurprise ?? this.armourSurprise,
       baseAttackBonus: baseAttackBonus ?? this.baseAttackBonus,
       initiative: initiative ?? this.initiative,
-      primaryAttack: primaryAttack ?? this.primaryAttack,
-      secundaryAttack: secundaryAttack ?? this.secundaryAttack,
-      primaryDamage: primaryDamage ?? this.primaryDamage,
-      secundaryDamage: secundaryDamage ?? this.secundaryDamage,
+      meleeAttack: meleeAttack ?? this.meleeAttack,
+      rangeAttack: rangeAttack ?? this.rangeAttack,
+      meleeDamage: meleeDamage ?? this.meleeDamage,
+      rangeDamage: rangeDamage ?? this.rangeDamage,
       combatManeuverBonus: combatManeuverBonus ?? this.combatManeuverBonus,
       combatManeuverDefense:
           combatManeuverDefense ?? this.combatManeuverDefense,
@@ -62,10 +62,10 @@ class CombatModel {
       'armourSurprise': armourSurprise,
       'baseAttackBonus': baseAttackBonus,
       'initiative': initiative,
-      'primaryAttack': primaryAttack,
-      'secundaryAttack': secundaryAttack,
-      'primaryDamage': primaryDamage,
-      'secundaryDamage': secundaryDamage,
+      'meleeAttack': meleeAttack,
+      'rangeAttack': rangeAttack,
+      'meleeDamage': meleeDamage,
+      'rangeDamage': rangeDamage,
       'combatManeuverBonus': combatManeuverBonus,
       'combatManeuverDefense': combatManeuverDefense,
     };
@@ -78,10 +78,10 @@ class CombatModel {
       armourSurprise: map['armourSurprise']?.toInt(),
       baseAttackBonus: map['baseAttackBonus']?.toInt(),
       initiative: map['initiative']?.toInt(),
-      primaryAttack: map['primaryAttack'],
-      secundaryAttack: map['secundaryAttack'],
-      primaryDamage: map['primaryDamage'],
-      secundaryDamage: map['secundaryDamage'],
+      meleeAttack: map['meleeAttack'],
+      rangeAttack: map['rangeAttack'],
+      meleeDamage: map['meleeDamage'],
+      rangeDamage: map['rangeDamage'],
       combatManeuverBonus: map['combatManeuverBonus']?.toInt(),
       combatManeuverDefense: map['combatManeuverDefense']?.toInt(),
     );
@@ -94,7 +94,7 @@ class CombatModel {
 
   @override
   String toString() {
-    return 'CombatModel(armourClass: $armourClass, armourTouch: $armourTouch, armourSurprise: $armourSurprise, baseAttackBonus: $baseAttackBonus, initiative: $initiative, primaryAttack: $primaryAttack, secundaryAttack: $secundaryAttack, primaryDamage: $primaryDamage, secundaryDamage: $secundaryDamage, combatManeuverBonus: $combatManeuverBonus, combatManeuverDefense: $combatManeuverDefense)';
+    return 'CombatModel(armourClass: $armourClass, armourTouch: $armourTouch, armourSurprise: $armourSurprise, baseAttackBonus: $baseAttackBonus, initiative: $initiative, meleeAttack: $meleeAttack, rangeAttack: $rangeAttack, meleeDamage: $meleeDamage, rangeDamage: $rangeDamage, combatManeuverBonus: $combatManeuverBonus, combatManeuverDefense: $combatManeuverDefense)';
   }
 
   @override
@@ -107,10 +107,10 @@ class CombatModel {
         other.armourSurprise == armourSurprise &&
         other.baseAttackBonus == baseAttackBonus &&
         other.initiative == initiative &&
-        other.primaryAttack == primaryAttack &&
-        other.secundaryAttack == secundaryAttack &&
-        other.primaryDamage == primaryDamage &&
-        other.secundaryDamage == secundaryDamage &&
+        other.meleeAttack == meleeAttack &&
+        other.rangeAttack == rangeAttack &&
+        other.meleeDamage == meleeDamage &&
+        other.rangeDamage == rangeDamage &&
         other.combatManeuverBonus == combatManeuverBonus &&
         other.combatManeuverDefense == combatManeuverDefense;
   }
@@ -122,10 +122,10 @@ class CombatModel {
         armourSurprise.hashCode ^
         baseAttackBonus.hashCode ^
         initiative.hashCode ^
-        primaryAttack.hashCode ^
-        secundaryAttack.hashCode ^
-        primaryDamage.hashCode ^
-        secundaryDamage.hashCode ^
+        meleeAttack.hashCode ^
+        rangeAttack.hashCode ^
+        meleeDamage.hashCode ^
+        rangeDamage.hashCode ^
         combatManeuverBonus.hashCode ^
         combatManeuverDefense.hashCode;
   }

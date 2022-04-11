@@ -32,6 +32,11 @@ formatGoldPiece(int price) {
     String first = f.substring(0, 3);
     String second = f.substring(4);
     return "$first,$second gp";
+  } else if (f.length == 7) {
+    String first = f.substring(0, 1);
+    String second = f.substring(2, 4);
+    String third = f.substring(5);
+    return "$first,$second,$third gp";
   } else {
     return "$f gp";
   }
