@@ -1,10 +1,11 @@
 import 'package:fantasy_name_generator/controllers/stats_controller.dart';
 import 'package:flutter/material.dart';
 
-import 'package:fantasy_name_generator/shared/widgets/atribute_division.dart';
+import 'package:fantasy_name_generator/modules/selection_sections/stats_sections/widgets/atribute_division.dart';
 import 'package:provider/provider.dart';
 
-import 'widgets/general_magical_equip_row.dart';
+import '../../widgets/atribute_division.dart';
+import '../../widgets/general_magical_equip_row.dart';
 
 class MagicGearStats extends StatelessWidget {
   const MagicGearStats({Key? key}) : super(key: key);

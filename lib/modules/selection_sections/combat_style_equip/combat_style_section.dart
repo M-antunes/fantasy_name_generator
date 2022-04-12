@@ -7,7 +7,7 @@ import 'package:fantasy_name_generator/controllers/char_controller.dart';
 import 'package:fantasy_name_generator/shared/constants/phone_sizes.dart';
 import 'package:fantasy_name_generator/shared/themes/app_text_styles.dart';
 
-import 'widgets/long_description_widget.dart';
+import '../widgets/long_description_widget.dart';
 
 class CombatStyleSection extends StatelessWidget {
   const CombatStyleSection({Key? key}) : super(key: key);

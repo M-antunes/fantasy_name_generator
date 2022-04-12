@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-import 'package:fantasy_name_generator/shared/constants/phone_sizes.dart';
-import 'package:fantasy_name_generator/shared/themes/app_text_styles.dart';
+import '../../../../../../shared/constants/phone_sizes.dart';
+import '../../../../../../shared/themes/app_text_styles.dart';
 
-class DefenseInfo extends StatelessWidget {
+class CombatInfo extends StatelessWidget {
   final String label;
   final String value;
   final double? length;
-  const DefenseInfo({
+  const CombatInfo({
     Key? key,
     required this.label,
     required this.value,

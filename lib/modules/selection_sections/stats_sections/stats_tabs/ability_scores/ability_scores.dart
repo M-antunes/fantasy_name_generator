@@ -3,10 +3,11 @@ import 'package:fantasy_name_generator/shared/constants/phone_sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../shared/widgets/atribute_division.dart';
-import '../widgets/stats_description_column.dart';
-import 'combat_stats.dart';
-import 'widgets/general_magical_equip_row.dart';
+import '../../widgets/atribute_division.dart';
+import 'widgets/stats_description_column.dart';
+import '../../widgets/general_magical_equip_row.dart';
+import '../combat/combat_stats.dart';
+import 'widgets/stats_description_text.dart';
 
 class AbilityScoreSection extends StatelessWidget {
   const AbilityScoreSection({Key? key}) : super(key: key);

@@ -4,8 +4,8 @@ import 'package:provider/provider.dart';
 
 import 'package:fantasy_name_generator/controllers/char_controller.dart';
 
-import '../../../shared/constants/phone_sizes.dart';
-import 'widgets/long_description_widget.dart';
+import '../../../../shared/constants/phone_sizes.dart';
+import '../widgets/long_description_widget.dart';
 
 class AlignmentSelection extends StatelessWidget {
   const AlignmentSelection({

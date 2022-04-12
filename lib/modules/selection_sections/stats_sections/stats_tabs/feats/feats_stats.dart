@@ -1,10 +1,10 @@
+import 'package:fantasy_name_generator/modules/selection_sections/stats_sections/stats_tabs/feats/widgets/feat_list_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../controllers/stats_controller.dart';
-import '../../../shared/constants/phone_sizes.dart';
-import '../../../shared/widgets/atribute_division.dart';
-import 'features_stats.dart';
+import '../../../../../controllers/stats_controller.dart';
+import '../../../../../shared/constants/phone_sizes.dart';
+import '../../widgets/atribute_division.dart';
 
 class FeatStats extends StatelessWidget {
   const FeatStats({Key? key}) : super(key: key);
@@ -24,7 +24,7 @@ class FeatStats extends StatelessWidget {
                 itemCount: state.charFeats.length,
                 itemBuilder: (context, index) {
                   var feat = state.charFeats[index];
-                  return FeatureList(
+                  return FeatListWidget(
                     name: feat.traiName,
                     focusOrSpecialization: (feat.traiName != "Weapon Focus" &&
                             feat.traiName != "Weapon Specialization" &&

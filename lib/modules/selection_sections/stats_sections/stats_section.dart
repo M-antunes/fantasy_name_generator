@@ -7,16 +7,16 @@ import 'package:fantasy_name_generator/controllers/char_controller.dart';
 import 'package:fantasy_name_generator/shared/constants/phone_sizes.dart';
 import 'package:fantasy_name_generator/shared/themes/app_text_styles.dart';
 
-import '../../../shared/themes/app_colors.dart';
-import 'stats_sections/ability_scores.dart';
-import 'stats_sections/combat_stats.dart';
-import 'stats_sections/feats_stats.dart';
-import 'stats_sections/features_stats.dart';
-import 'stats_sections/loot_section.dart';
-import 'stats_sections/magic_gear_stats.dart';
-import 'stats_sections/skill_stats.dart';
-import 'stats_sections/spell_stats.dart';
-import 'widgets/char_description_column.dart';
+import '../../../../shared/themes/app_colors.dart';
+import 'widgets/char_description_text.dart';
+import 'stats_tabs/ability_scores/ability_scores.dart';
+import 'stats_tabs/combat/combat_stats.dart';
+import 'stats_tabs/feats/feats_stats.dart';
+import 'stats_tabs/features/features_stats.dart';
+import 'stats_tabs/loot/loot_section.dart';
+import 'stats_tabs/magic_gear/magic_gear_stats.dart';
+import 'stats_tabs/skill/skill_stats.dart';
+import 'stats_tabs/spell/spell_stats.dart';
 
 class StatsSection extends StatefulWidget {
   const StatsSection({
