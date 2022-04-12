@@ -1,6 +1,5 @@
 import 'package:fantasy_name_generator/controllers/stats_controller.dart';
 import 'package:fantasy_name_generator/shared/constants/phone_sizes.dart';
-import 'package:fantasy_name_generator/shared/themes/app_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -104,7 +103,7 @@ class AbilityScoreSection extends StatelessWidget {
                         )
                       ],
                     )
-                  : SizedBox(),
+                  : const SizedBox(),
             ],
           ),
         ],

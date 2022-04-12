@@ -1,5 +1,4 @@
 import 'package:fantasy_name_generator/shared/constants/phone_sizes.dart';
-import 'package:fantasy_name_generator/shared/widgets/app_generate_button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

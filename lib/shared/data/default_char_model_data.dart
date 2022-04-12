@@ -6,8 +6,6 @@ import 'package:fantasy_name_generator/models/combat_model.dart';
 import 'package:fantasy_name_generator/models/combat_style_choice_model.dart';
 import 'package:fantasy_name_generator/models/equip_models/equip_model.dart';
 import 'package:fantasy_name_generator/models/equip_models/loot_model.dart';
-import 'package:fantasy_name_generator/models/equip_models/weapon_model.dart';
-import 'package:fantasy_name_generator/models/equip_models/weapon_family_model.dart';
 import 'package:fantasy_name_generator/models/name_model.dart';
 import 'package:fantasy_name_generator/models/race_model.dart';
 import 'package:fantasy_name_generator/models/resistance_model.dart';
