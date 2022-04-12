@@ -41,3 +41,11 @@ formatGoldPiece(int price) {
     return "$f gp";
   }
 }
+
+int discoverMinAvailability(int lvAvailable) {
+  var minLvAvailable = 0;
+  if (lvAvailable > 8) {
+    minLvAvailable = lvAvailable - 8;
+  }
+  return minLvAvailable;
+}

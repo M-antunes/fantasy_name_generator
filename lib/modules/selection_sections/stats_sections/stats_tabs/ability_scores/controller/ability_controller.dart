@@ -1,5 +1,7 @@
 import 'package:fantasy_name_generator/models/base_atribute_model.dart';
 
+import '../../../../../../shared/utils/utils.dart';
+
 class AbilityController {
   AtributeModel atribute = AtributeModel();
 
@@ -89,6 +91,194 @@ class AbilityController {
     atrb.intelligence = ajustedAtrb.intelligence + adjustInt;
     atrb.wisdom = ajustedAtrb.wisdom + ajustWis;
     atrb.charisma = ajustedAtrb.charisma + ajustCha;
+    return atrb;
+  }
+
+  bool findIfItIsRangeCombatDistribution(String physicalStyle) {
+    if (physicalStyle == "Bowman" ||
+        physicalStyle == "Marksman" ||
+        physicalStyle == "Thrower") {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  AtributeModel generateAllAtributes(
+      int level, String className, String physicalStyle, AtributeModel atrb) {
+    List<int> atrbValues = [];
+    for (var i = 0; i < 6; i++) {
+      var atrbValue = rollingDice(10) + rollingDice(10) + rollingDice(10);
+      if (level <= 20) {
+        while (atrbValue < 6) {
+          atrbValue = rollingDice(10) + rollingDice(10) + rollingDice(10);
+        }
+        atrbValue = atrbValue > 18 ? 18 : atrbValue;
+      } else if (level > 20 && level < 26) {
+        while (atrbValue < 10) {
+          atrbValue = rollingDice(10) + rollingDice(10) + rollingDice(10);
+        }
+        atrbValue = atrbValue > 18 ? 18 : atrbValue;
+      } else {
+        atrbValue = 18;
+      }
+      atrbValues.add(atrbValue);
+    }
+    atrbValues.sort((b, a) => a.compareTo(b));
+    bool isRange = findIfItIsRangeCombatDistribution(physicalStyle);
+    AtributeModel diceAtrb = AtributeModel();
+    switch (className) {
+      case "Barbarian":
+        isRange
+            ? diceAtrb = sortAtributesToClass(
+                atrb,
+                atrbValues[2],
+                atrbValues[0],
+                atrbValues[1],
+                atrbValues[4],
+                atrbValues[3],
+                atrbValues[5])
+            : diceAtrb = sortAtributesToClass(
+                atrb,
+                atrbValues[0],
+                atrbValues[2],
+                atrbValues[1],
+                atrbValues[4],
+                atrbValues[3],
+                atrbValues[5]);
+        break;
+      case "Warrior":
+        isRange
+            ? diceAtrb = sortAtributesToClass(
+                atrb,
+                atrbValues[2],
+                atrbValues[0],
+                atrbValues[1],
+                atrbValues[4],
+                atrbValues[3],
+                atrbValues[5])
+            : diceAtrb = sortAtributesToClass(
+                atrb,
+                atrbValues[0],
+                atrbValues[2],
+                atrbValues[1],
+                atrbValues[4],
+                atrbValues[3],
+                atrbValues[5]);
+        break;
+      case "Arcanist":
+        diceAtrb = sortAtributesToClass(atrb, atrbValues[5], atrbValues[2],
+            atrbValues[4], atrbValues[0], atrbValues[3], atrbValues[1]);
+        break;
+      case "Alchemist":
+        diceAtrb = sortAtributesToClass(atrb, atrbValues[5], atrbValues[2],
+            atrbValues[3], atrbValues[0], atrbValues[1], atrbValues[4]);
+        break;
+      case "Wizard":
+        diceAtrb = sortAtributesToClass(atrb, atrbValues[5], atrbValues[3],
+            atrbValues[2], atrbValues[0], atrbValues[1], atrbValues[4]);
+        break;
+      case "Cleric":
+        diceAtrb = sortAtributesToClass(atrb, atrbValues[2], atrbValues[3],
+            atrbValues[1], atrbValues[4], atrbValues[0], atrbValues[5]);
+        break;
+      case "Druid":
+        isRange
+            ? diceAtrb = sortAtributesToClass(
+                atrb,
+                atrbValues[3],
+                atrbValues[2],
+                atrbValues[1],
+                atrbValues[5],
+                atrbValues[0],
+                atrbValues[4])
+            : diceAtrb = sortAtributesToClass(
+                atrb,
+                atrbValues[2],
+                atrbValues[3],
+                atrbValues[1],
+                atrbValues[5],
+                atrbValues[0],
+                atrbValues[4]);
+        break;
+      case "Rogue":
+        diceAtrb = sortAtributesToClass(atrb, atrbValues[3], atrbValues[0],
+            atrbValues[5], atrbValues[2], atrbValues[4], atrbValues[1]);
+        break;
+      case "Ranger":
+        diceAtrb = sortAtributesToClass(atrb, atrbValues[1], atrbValues[0],
+            atrbValues[3], atrbValues[5], atrbValues[2], atrbValues[4]);
+        break;
+      case "Paladin":
+        diceAtrb = sortAtributesToClass(atrb, atrbValues[0], atrbValues[4],
+            atrbValues[2], atrbValues[5], atrbValues[3], atrbValues[1]);
+        break;
+      case "Bard":
+        diceAtrb = sortAtributesToClass(atrb, atrbValues[5], atrbValues[3],
+            atrbValues[4], atrbValues[2], atrbValues[1], atrbValues[0]);
+        break;
+      case "Sorcerer":
+        diceAtrb = sortAtributesToClass(atrb, atrbValues[5], atrbValues[4],
+            atrbValues[2], atrbValues[3], atrbValues[1], atrbValues[0]);
+        break;
+      case "Monk":
+        diceAtrb = sortAtributesToClass(atrb, atrbValues[2], atrbValues[0],
+            atrbValues[3], atrbValues[4], atrbValues[1], atrbValues[5]);
+        break;
+      case "Noble":
+        diceAtrb = sortAtributesToClass(atrb, atrbValues[4], atrbValues[4],
+            atrbValues[4], atrbValues[2], atrbValues[2], atrbValues[1]);
+        break;
+      case "Aristocrat":
+        diceAtrb = sortAtributesToClass(atrb, atrbValues[4], atrbValues[4],
+            atrbValues[4], atrbValues[0], atrbValues[1], atrbValues[3]);
+        break;
+      case "Bandit":
+        isRange
+            ? diceAtrb = sortAtributesToClass(
+                atrb,
+                atrbValues[0],
+                atrbValues[1],
+                atrbValues[2],
+                atrbValues[5],
+                atrbValues[3],
+                atrbValues[4])
+            : diceAtrb = sortAtributesToClass(
+                atrb,
+                atrbValues[1],
+                atrbValues[0],
+                atrbValues[2],
+                atrbValues[5],
+                atrbValues[3],
+                atrbValues[4]);
+        break;
+      case "Samurai":
+        diceAtrb = sortAtributesToClass(atrb, atrbValues[0], atrbValues[1],
+            atrbValues[2], atrbValues[5], atrbValues[3], atrbValues[4]);
+        break;
+      case "Summoner":
+        diceAtrb = sortAtributesToClass(atrb, atrbValues[1], atrbValues[2],
+            atrbValues[3], atrbValues[5], atrbValues[4], atrbValues[0]);
+        break;
+      case "Antipaladin":
+        diceAtrb = sortAtributesToClass(atrb, atrbValues[0], atrbValues[4],
+            atrbValues[2], atrbValues[5], atrbValues[3], atrbValues[1]);
+        break;
+      default:
+        diceAtrb = sortAtributesToClass(atrb, atrbValues[3], atrbValues[3],
+            atrbValues[3], atrbValues[3], atrbValues[3], atrbValues[3]);
+    }
+    return diceAtrb;
+  }
+
+  AtributeModel sortAtributesToClass(
+      AtributeModel atrb, int v0, int v1, int v2, int v3, int v4, int v5) {
+    atrb.strength = v0;
+    atrb.dexterity = v1;
+    atrb.constitution = v2;
+    atrb.intelligence = v3;
+    atrb.wisdom = v4;
+    atrb.charisma = v5;
     return atrb;
   }
 }

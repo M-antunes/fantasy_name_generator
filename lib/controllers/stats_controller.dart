@@ -19,6 +19,7 @@ import '../models/equip_models/wonderous_items_model.dart';
 import '../models/specials_model.dart';
 import '../models/traits_model.dart';
 import '../modules/selection_sections/stats_sections/stats_tabs/ability_scores/controller/ability_controller.dart';
+import '../modules/selection_sections/stats_sections/stats_tabs/magic_gear/controller/magic_gear_controller.dart';
 import '../shared/data/class_traits_data/barbarian/barbarian_traits_data.dart';
 import '../shared/data/combat_style_feats_data/all_feats_data.dart';
 import '../shared/data/combat_style_feats_data/readied_feats_data.dart';
@@ -35,24 +36,25 @@ class StatsController with ChangeNotifier {
   var classData = ClassData();
   var listOfRaces = RaceData();
   var abilityCtrl = AbilityController();
+  var magicGearCtrl = MagicGearController();
 
   int armorPrice = 0;
   int shieldPrice = 0;
   int meleePrice = 0;
   int rangePrice = 0;
 
-  final List<String> itemsLabel = [
-    "Body",
-    "Chest",
-    "Eyes",
-    "Feet",
-    "Feet",
-    "Hands",
-    "Head",
-    "Wrist",
-    "Ring",
-    "Slotless",
-  ];
+  // final List<String> itemsLabel = [
+  //   "Body",
+  //   "Chest",
+  //   "Eyes",
+  //   "Feet",
+  //   "Feet",
+  //   "Hands",
+  //   "Head",
+  //   "Wrist",
+  //   "Ring",
+  //   "Slotless",
+  // ];
 
   bool statsGenerated = false;
   updateStats() {
@@ -124,7 +126,7 @@ class StatsController with ChangeNotifier {
     getFeats();
     calculateLoot();
     calculateSpeed();
-    generateAllAtributs();
+    generateAllAtributes();
     getAtrbBoostFromWonderousItem();
     boostWithTomeOrManual();
     calculateAllModifiers();
@@ -138,249 +140,261 @@ class StatsController with ChangeNotifier {
     notifyListeners();
   }
 
-  List<String> findItemForBodyParts(int qnt) {
-    List<String> listOfItemsForChar = [];
-    List<String> listOfItemsLeft = [];
-    listOfItemsLeft.addAll(itemsLabel);
-    for (var i = 0; i < qnt; i++) {
-      listOfItemsLeft.shuffle();
-      var random = generateRandom(listOfItemsLeft.length);
-      listOfItemsForChar.add(listOfItemsLeft[random]);
-      if (listOfItemsLeft[random] != "Slotless") {
-        listOfItemsLeft
-            .removeWhere((element) => element == listOfItemsLeft[random]);
-      }
-    }
-    return listOfItemsForChar;
-  }
+  // List<String> findItemForBodyParts(int qnt) {
+  //   List<String> listOfItemsForChar = [];
+  //   List<String> listOfItemsLeft = [];
+  //   listOfItemsLeft.addAll(itemsLabel);
+  //   for (var i = 0; i < qnt; i++) {
+  //     listOfItemsLeft.shuffle();
+  //     var random = generateRandom(listOfItemsLeft.length);
+  //     listOfItemsForChar.add(listOfItemsLeft[random]);
+  //     if (listOfItemsLeft[random] != "Slotless") {
+  //       listOfItemsLeft
+  //           .removeWhere((element) => element == listOfItemsLeft[random]);
+  //     }
+  //   }
+  //   return listOfItemsForChar;
+  // }
 
-  int discoverMinAvailability(int lvAvailable) {
-    var minLvAvailable = 0;
-    if (lvAvailable > 8) {
-      minLvAvailable = lvAvailable - 8;
-    }
-    return minLvAvailable;
-  }
-
-  List<WonderousItemsModel> findMagicItem(int lvAvailable) {
-    var list = listOfWonderousItems.allItems
-        .where((element) =>
-            element.availability <= lvAvailable &&
-            (element.exclusiveClasses.isEmpty ||
-                // ignore: iterable_contains_unrelated_type
-                element.exclusiveClasses
-                    .contains((element) => element == char.charClass.name)))
-        .toList();
-    return list;
-  }
+  // List<WonderousItemsModel> findMagicItem(int lvAvailable) {
+  //   var list = listOfWonderousItems.allItems
+  //       .where((element) =>
+  //           element.availability <= lvAvailable &&
+  //           (element.exclusiveClasses.isEmpty ||
+  //               // ignore: iterable_contains_unrelated_type
+  //               element.exclusiveClasses
+  //                   .contains((element) => element == char.charClass.name)))
+  //       .toList();
+  //   return list;
+  // }
 
   generateMagicItems() {
+    char.charEquip.wonderousItems = [];
     if (char.charLevel < 5 && char.charLevel > 1) {
       var random = generateRandom(11);
       random < 5
-          ? addIndispensableItem(listOfWonderousItems.protRings)
-          : addIndispensableItem(listOfWonderousItems.resistCloaks);
+          ? char.charEquip.wonderousItems!.addAll(
+              magicGearCtrl.addIndispensableItem(
+                  listOfWonderousItems.protRings, char.charLevel))
+          : char.charEquip.wonderousItems!.addAll(
+              magicGearCtrl.addIndispensableItem(
+                  listOfWonderousItems.resistCloaks, char.charLevel));
       return;
     }
-    var availableItems = findMagicItem(char.charLevel);
-    var numberOfItems = (char.charLevel / 5).floor();
-    var itemsPerBodyParts = findItemForBodyParts(numberOfItems);
-    List<WonderousItemsModel> charMagicItems = [];
-    for (var i = 0; i < numberOfItems; i++) {
-      List<WonderousItemsModel> items = availableItems
-          .where((element) => element.type == itemsPerBodyParts[i])
-          .toList();
-      var random = generateRandom(items.length);
-      var newItem = items[random];
-      while (charMagicItems.any((element) => element == items[random])) {
-        var newRandom = generateRandom(items.length);
-        newItem = items[newRandom];
-      }
-      charMagicItems.add(newItem);
-    }
-    char.charEquip.wonderousItems = charMagicItems;
-    if (((char.charClass.combatStyle == "Physical" ||
-                char.charClass.combatStyle == "Hybrid") &&
-            char.charLevel > 6) ||
-        (char.charClass.combatStyle == "Spellcaster" && char.charLevel > 9)) {
-      switch (char.charClass.mainAtrb) {
-        case "strength":
-          adjustingItemForMainAtrbBoost("Belt", "Belt of giant strength",
-              "Belt of physical might", "Belt of physical perfection");
-          break;
-        case "dexterity":
-          adjustingItemForMainAtrbBoost("Belt", "Belt of incredible dexterity",
-              "Belt of physical might", "Belt of physical perfection");
-          break;
-        case "intelligence":
-          adjustingItemForMainAtrbBoost("Belt", "Belt of mighty constitution",
-              "Belt of physical might", "Belt of physical perfection");
-          break;
-        case "wisdom":
-          adjustingItemForMainAtrbBoost("Belt", "Belt of mighty constitution",
-              "Belt of physical might", "Belt of physical perfection");
-          break;
-        default:
-          adjustingItemForMainAtrbBoost("Belt", "Belt of mighty constitution",
-              "Belt of physical might", "Belt of physical perfection");
-      }
-    }
-    if (((char.charClass.combatStyle == "Physical" ||
-                char.charClass.combatStyle == "Hybrid") &&
-            char.charLevel > 9) ||
-        (char.charClass.combatStyle == "Spellcaster" && char.charLevel > 6)) {
-      switch (char.charClass.mainAtrb) {
-        case "strength":
-          adjustingItemForMainAtrbBoost(
-              "Headband",
-              "Headband of inspired wisdom",
-              "Headband of mental prowess",
-              "Headband of mental superiority");
-          break;
-        case "dexterity":
-          adjustingItemForMainAtrbBoost(
-              "Headband",
-              "Headband of inspired wisdom",
-              "Headband of mental prowess",
-              "Headband of mental superiority");
-          break;
-        case "intelligence":
-          adjustingItemForMainAtrbBoost(
-              "Headband",
-              "Headband of vast intelligence",
-              "Headband of mental prowess",
-              "Headband of mental superiority");
-          break;
-        case "wisdom":
-          adjustingItemForMainAtrbBoost(
-              "Headband",
-              "Headband of inspired wisdom",
-              "Headband of mental prowess",
-              "Headband of mental superiority");
-          break;
-        default:
-          adjustingItemForMainAtrbBoost(
-              "Headband",
-              "Headband of alluring charisma",
-              "Headband of mental prowess",
-              "Headband of mental superiority");
-      }
-    }
-    addIndispensableItem(listOfWonderousItems.protRings);
-    addIndispensableItem(listOfWonderousItems.resistCloaks);
+    char.charEquip.wonderousItems!.addAll(magicGearCtrl.getWonderousItems(
+        char.charLevel,
+        char.charClass.combatStyle,
+        char.charClass.mainAtrb,
+        listOfWonderousItems.allItems,
+        char.charClass.name));
+
+    // var availableItems = findMagicItem(char.charLevel);
+    // var numberOfItems = (char.charLevel / 5).floor();
+    // var itemsPerBodyParts = findItemForBodyParts(numberOfItems);
+    // List<WonderousItemsModel> charMagicItems = [];
+    // for (var i = 0; i < numberOfItems; i++) {
+    //   List<WonderousItemsModel> items = availableItems
+    //       .where((element) => element.type == itemsPerBodyParts[i])
+    //       .toList();
+    //   var random = generateRandom(items.length);
+    //   var newItem = items[random];
+    //   while (charMagicItems.any((element) => element == items[random])) {
+    //     var newRandom = generateRandom(items.length);
+    //     newItem = items[newRandom];
+    //   }
+    //   charMagicItems.add(newItem);
+    // }
+    // char.charEquip.wonderousItems = charMagicItems;
+    // if (((char.charClass.combatStyle == "Physical" ||
+    //             char.charClass.combatStyle == "Hybrid") &&
+    //         char.charLevel > 6) ||
+    //     (char.charClass.combatStyle == "Spellcaster" && char.charLevel > 9)) {
+    //   switch (char.charClass.mainAtrb) {
+    //     case "strength":
+    //       adjustingItemForMainAtrbBoost("Belt", "Belt of giant strength",
+    //           "Belt of physical might", "Belt of physical perfection");
+    //       break;
+    //     case "dexterity":
+    //       adjustingItemForMainAtrbBoost("Belt", "Belt of incredible dexterity",
+    //           "Belt of physical might", "Belt of physical perfection");
+    //       break;
+    //     case "intelligence":
+    //       adjustingItemForMainAtrbBoost("Belt", "Belt of mighty constitution",
+    //           "Belt of physical might", "Belt of physical perfection");
+    //       break;
+    //     case "wisdom":
+    //       adjustingItemForMainAtrbBoost("Belt", "Belt of mighty constitution",
+    //           "Belt of physical might", "Belt of physical perfection");
+    //       break;
+    //     default:
+    //       adjustingItemForMainAtrbBoost("Belt", "Belt of mighty constitution",
+    //           "Belt of physical might", "Belt of physical perfection");
+    //   }
+    // }
+    // if (((char.charClass.combatStyle == "Physical" ||
+    //             char.charClass.combatStyle == "Hybrid") &&
+    //         char.charLevel > 9) ||
+    //     (char.charClass.combatStyle == "Spellcaster" && char.charLevel > 6)) {
+    //   switch (char.charClass.mainAtrb) {
+    //     case "strength":
+    //       adjustingItemForMainAtrbBoost(
+    //           "Headband",
+    //           "Headband of inspired wisdom",
+    //           "Headband of mental prowess",
+    //           "Headband of mental superiority");
+    //       break;
+    //     case "dexterity":
+    //       adjustingItemForMainAtrbBoost(
+    //           "Headband",
+    //           "Headband of inspired wisdom",
+    //           "Headband of mental prowess",
+    //           "Headband of mental superiority");
+    //       break;
+    //     case "intelligence":
+    //       adjustingItemForMainAtrbBoost(
+    //           "Headband",
+    //           "Headband of vast intelligence",
+    //           "Headband of mental prowess",
+    //           "Headband of mental superiority");
+    //       break;
+    //     case "wisdom":
+    //       adjustingItemForMainAtrbBoost(
+    //           "Headband",
+    //           "Headband of inspired wisdom",
+    //           "Headband of mental prowess",
+    //           "Headband of mental superiority");
+    //       break;
+    //     default:
+    //       adjustingItemForMainAtrbBoost(
+    //           "Headband",
+    //           "Headband of alluring charisma",
+    //           "Headband of mental prowess",
+    //           "Headband of mental superiority");
+    //   }
+    // }
+    char.charEquip.wonderousItems!.addAll(magicGearCtrl.addIndispensableItem(
+        listOfWonderousItems.protRings, char.charLevel));
+    char.charEquip.wonderousItems!.addAll(magicGearCtrl.addIndispensableItem(
+        listOfWonderousItems.resistCloaks, char.charLevel));
     if (char.battleStyle.name == "Physical" &&
         char.physicalStyle.name == "Martial") {
-      addIndispensableItem(listOfWonderousItems.amuletMightyFists);
+      char.charEquip.wonderousItems!.addAll(magicGearCtrl.addIndispensableItem(
+          listOfWonderousItems.amuletMightyFists, char.charLevel));
     } else if (char.battleStyle.name == "Physical" &&
         char.physicalStyle.name != "Martial") {
-      addIndispensableItem(listOfWonderousItems.amuletOfArmor);
+      char.charEquip.wonderousItems!.addAll(magicGearCtrl.addIndispensableItem(
+          listOfWonderousItems.amuletOfArmor, char.charLevel));
     } else if (char.battleStyle.name == "Spellcaster" ||
         char.battleStyle.name == "Diplomat") {
       List<WonderousItemsModel> posibleAmulets = listOfWonderousItems.allItems
           .where((element) => element.availability < char.charLevel)
           .toList();
-      addIndispensableItem(posibleAmulets);
+      char.charEquip.wonderousItems!.addAll(
+          magicGearCtrl.addIndispensableItem(posibleAmulets, char.charLevel));
     }
-    addExtraIounStones();
+    char.charEquip.wonderousItems!.addAll(magicGearCtrl.addExtraIounStones(
+        char.charLevel,
+        listOfWonderousItems.basicIounStones,
+        char.charClass.mainAtrb));
     char.charEquip.wonderousItems!.shuffle();
     notifyListeners();
   }
 
-  addExtraIounStones() {
-    if (char.charLevel < 9) {
-      return;
-    } else {
-      var newIounStone = listOfWonderousItems.basicIounStones
-          .where((element) => element.name == "Ioun Stone (dusty rose)")
-          .toList();
-      char.charEquip.wonderousItems!.addAll(newIounStone);
-    }
-    if (char.charLevel < 11) {
-      return;
-    } else {
-      switch (char.charClass.mainAtrb) {
-        case "strength":
-          char.charEquip.wonderousItems!
-              .addAll(findingRightIounStone("Ioun Stone (Pale blue)"));
-          break;
-        case "dexterity":
-          char.charEquip.wonderousItems!
-              .addAll(findingRightIounStone("Ioun Stone (Deep red)"));
-          break;
-        case "intelligence":
-          char.charEquip.wonderousItems!
-              .addAll(findingRightIounStone("Ioun Stone (Scarlet and blue)"));
-          break;
-        case "wisdom":
-          char.charEquip.wonderousItems!
-              .addAll(findingRightIounStone("Ioun Stone (Incandescent blue)"));
-          break;
-        default:
-          char.charEquip.wonderousItems!
-              .addAll(findingRightIounStone("Ioun Stone (Pink and green)"));
-      }
-    }
-    notifyListeners();
-  }
+  // addExtraIounStones() {
+  //   if (char.charLevel < 9) {
+  //     return;
+  //   } else {
+  //     var newIounStone = listOfWonderousItems.basicIounStones
+  //         .where((element) => element.name == "Ioun Stone (dusty rose)")
+  //         .toList();
+  //     char.charEquip.wonderousItems!.addAll(newIounStone);
+  //   }
+  //   if (char.charLevel < 11) {
+  //     return;
+  //   } else {
+  //     switch (char.charClass.mainAtrb) {
+  //       case "strength":
+  //         char.charEquip.wonderousItems!
+  //             .addAll(findingRightIounStone("Ioun Stone (Pale blue)"));
+  //         break;
+  //       case "dexterity":
+  //         char.charEquip.wonderousItems!
+  //             .addAll(findingRightIounStone("Ioun Stone (Deep red)"));
+  //         break;
+  //       case "intelligence":
+  //         char.charEquip.wonderousItems!
+  //             .addAll(findingRightIounStone("Ioun Stone (Scarlet and blue)"));
+  //         break;
+  //       case "wisdom":
+  //         char.charEquip.wonderousItems!
+  //             .addAll(findingRightIounStone("Ioun Stone (Incandescent blue)"));
+  //         break;
+  //       default:
+  //         char.charEquip.wonderousItems!
+  //             .addAll(findingRightIounStone("Ioun Stone (Pink and green)"));
+  //     }
+  //   }
+  //   notifyListeners();
+  // }
 
-  List<WonderousItemsModel> findingRightIounStone(String iounStone) {
-    return listOfWonderousItems.basicIounStones
-        .where((element) => element.name == iounStone)
-        .toList();
-  }
+  // List<WonderousItemsModel> findingRightIounStone(String iounStone) {
+  //   return listOfWonderousItems.basicIounStones
+  //       .where((element) => element.name == iounStone)
+  //       .toList();
+  // }
 
-  adjustingItemForMainAtrbBoost(
-      String item, String lesser, String medium, String greater) {
-    var randomChance = generateRandom(11);
-    if (char.charLevel > 4 && char.charLevel < 11) {
-      adjustingBeltOrHeadband(item, lesser);
-    } else if (char.charLevel > 10 && char.charLevel < 15) {
-      randomChance < 4
-          ? adjustingBeltOrHeadband(item, lesser)
-          : adjustingBeltOrHeadband(item, medium);
-    } else if (char.charLevel > 14 && char.charLevel < 21) {
-      randomChance < 4
-          ? adjustingBeltOrHeadband(item, medium)
-          : adjustingBeltOrHeadband(item, greater);
-    }
-  }
+  // adjustingItemForMainAtrbBoost(
+  //     String item, String lesser, String medium, String greater) {
+  //   var randomChance = generateRandom(11);
+  //   if (char.charLevel > 4 && char.charLevel < 11) {
+  //     adjustingBeltOrHeadband(item, lesser);
+  //   } else if (char.charLevel > 10 && char.charLevel < 15) {
+  //     randomChance < 4
+  //         ? adjustingBeltOrHeadband(item, lesser)
+  //         : adjustingBeltOrHeadband(item, medium);
+  //   } else if (char.charLevel > 14 && char.charLevel < 21) {
+  //     randomChance < 4
+  //         ? adjustingBeltOrHeadband(item, medium)
+  //         : adjustingBeltOrHeadband(item, greater);
+  //   }
+  // }
 
-  adjustingBeltOrHeadband(String item, String itemName) {
-    var min = discoverMinAvailability(char.charLevel);
-    var list = listOfWonderousItems.allItems
-        .where((element) =>
-            element.name!.contains(itemName) &&
-            element.availability <= char.charLevel &&
-            element.availability >= min)
-        .toList();
-    char.charEquip.wonderousItems!
-        .removeWhere((element) => element.type == item);
-    var random = generateRandom(11);
-    random > 6
-        ? char.charEquip.wonderousItems!.add(list.last)
-        : char.charEquip.wonderousItems!.add(list.first);
-    notifyListeners();
-  }
+  // adjustingBeltOrHeadband(String item, String itemName) {
+  //   var min = discoverMinAvailability(char.charLevel);
+  //   var list = listOfWonderousItems.allItems
+  //       .where((element) =>
+  //           element.name!.contains(itemName) &&
+  //           element.availability <= char.charLevel &&
+  //           element.availability >= min)
+  //       .toList();
+  //   char.charEquip.wonderousItems!
+  //       .removeWhere((element) => element.type == item);
+  //   var random = generateRandom(11);
+  //   random > 6
+  //       ? char.charEquip.wonderousItems!.add(list.last)
+  //       : char.charEquip.wonderousItems!.add(list.first);
+  //   notifyListeners();
+  // }
 
-  addIndispensableItem(List<WonderousItemsModel> list) {
-    var random = generateRandom(13);
-    List<WonderousItemsModel> itemList = [];
-    if (char.charLevel == 1) {
-      itemList = [];
-    } else if (char.charLevel > 2 && char.charLevel < 8) {
-      itemList.isEmpty ? itemList = [] : itemList.add(list[0]);
-    } else if (char.charLevel > 7 && char.charLevel < 11) {
-      random < 6 ? itemList.add(list[0]) : itemList.add(list[1]);
-    } else if (char.charLevel > 10 && char.charLevel < 14) {
-      random < 6 ? itemList.add(list[1]) : itemList.add(list[2]);
-    } else if (char.charLevel > 13 && char.charLevel < 17) {
-      random < 6 ? itemList.add(list[2]) : itemList.add(list[3]);
-    } else {
-      random < 5 ? itemList.add(list[3]) : itemList.add(list[4]);
-    }
-    char.charEquip.wonderousItems!.addAll(itemList);
-    notifyListeners();
-  }
+  // addIndispensableItem(List<WonderousItemsModel> list) {
+  //   var random = generateRandom(13);
+  //   List<WonderousItemsModel> itemList = [];
+  //   if (char.charLevel == 1) {
+  //     itemList = [];
+  //   } else if (char.charLevel > 2 && char.charLevel < 8) {
+  //     itemList.isEmpty ? itemList = [] : itemList.add(list[0]);
+  //   } else if (char.charLevel > 7 && char.charLevel < 11) {
+  //     random < 6 ? itemList.add(list[0]) : itemList.add(list[1]);
+  //   } else if (char.charLevel > 10 && char.charLevel < 14) {
+  //     random < 6 ? itemList.add(list[1]) : itemList.add(list[2]);
+  //   } else if (char.charLevel > 13 && char.charLevel < 17) {
+  //     random < 6 ? itemList.add(list[2]) : itemList.add(list[3]);
+  //   } else {
+  //     random < 5 ? itemList.add(list[3]) : itemList.add(list[4]);
+  //   }
+  //   char.charEquip.wonderousItems!.addAll(itemList);
+  //   notifyListeners();
+  // }
 
   // ===================================================================================
   // Weapon Section
@@ -1038,244 +1052,32 @@ class StatsController with ChangeNotifier {
 //=======================================================================================
 // Section for generation of basic atributes
 
-  sortAtributesToClass(int v0, int v1, int v2, int v3, int v4, int v5) {
-    char.baseAtributes.strength = v0;
-    char.baseAtributes.dexterity = v1;
-    char.baseAtributes.constitution = v2;
-    char.baseAtributes.intelligence = v3;
-    char.baseAtributes.wisdom = v4;
-    char.baseAtributes.charisma = v5;
-    notifyListeners();
-  }
-
-  bool findIfItIsRangeCombatDistribution() {
-    if (char.physicalStyle.name == "Bowman" ||
-        char.physicalStyle.name == "Marksman" ||
-        char.physicalStyle.name == "Thrower") {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  generateAllAtributs() {
-    List<int> atrbValues = [];
-    for (var i = 0; i < 6; i++) {
-      var atrbValue = rollingDice(10) + rollingDice(10) + rollingDice(10);
-      if (char.charLevel <= 20) {
-        while (atrbValue < 6) {
-          atrbValue = rollingDice(10) + rollingDice(10) + rollingDice(10);
-        }
-        atrbValue = atrbValue > 18 ? 18 : atrbValue;
-      } else if (char.charLevel > 20 && char.charLevel < 26) {
-        while (atrbValue < 10) {
-          atrbValue = rollingDice(10) + rollingDice(10) + rollingDice(10);
-        }
-        atrbValue = atrbValue > 18 ? 18 : atrbValue;
-      } else {
-        atrbValue = 18;
-      }
-      atrbValues.add(atrbValue);
-    }
-    atrbValues.sort((b, a) => a.compareTo(b));
-    bool isRange = findIfItIsRangeCombatDistribution();
-    switch (char.charClass.name) {
-      case "Barbarian":
-        isRange
-            ? sortAtributesToClass(atrbValues[2], atrbValues[0], atrbValues[1],
-                atrbValues[4], atrbValues[3], atrbValues[5])
-            : sortAtributesToClass(atrbValues[0], atrbValues[2], atrbValues[1],
-                atrbValues[4], atrbValues[3], atrbValues[5]);
-        break;
-      case "Warrior":
-        isRange
-            ? sortAtributesToClass(atrbValues[2], atrbValues[0], atrbValues[1],
-                atrbValues[4], atrbValues[3], atrbValues[5])
-            : sortAtributesToClass(atrbValues[0], atrbValues[2], atrbValues[1],
-                atrbValues[4], atrbValues[3], atrbValues[5]);
-        break;
-      case "Arcanist":
-        sortAtributesToClass(atrbValues[5], atrbValues[2], atrbValues[4],
-            atrbValues[0], atrbValues[3], atrbValues[1]);
-        break;
-      case "Alchemist":
-        sortAtributesToClass(atrbValues[5], atrbValues[2], atrbValues[3],
-            atrbValues[0], atrbValues[1], atrbValues[4]);
-        break;
-      case "Wizard":
-        sortAtributesToClass(atrbValues[5], atrbValues[3], atrbValues[2],
-            atrbValues[0], atrbValues[1], atrbValues[4]);
-        break;
-      case "Cleric":
-        sortAtributesToClass(atrbValues[2], atrbValues[3], atrbValues[1],
-            atrbValues[4], atrbValues[0], atrbValues[5]);
-        break;
-      case "Druid":
-        isRange
-            ? sortAtributesToClass(atrbValues[3], atrbValues[2], atrbValues[1],
-                atrbValues[5], atrbValues[0], atrbValues[4])
-            : sortAtributesToClass(atrbValues[2], atrbValues[3], atrbValues[1],
-                atrbValues[5], atrbValues[0], atrbValues[4]);
-        break;
-      case "Rogue":
-        sortAtributesToClass(atrbValues[3], atrbValues[0], atrbValues[5],
-            atrbValues[2], atrbValues[4], atrbValues[1]);
-        break;
-      case "Ranger":
-        sortAtributesToClass(atrbValues[1], atrbValues[0], atrbValues[3],
-            atrbValues[5], atrbValues[2], atrbValues[4]);
-        break;
-      case "Paladin":
-        sortAtributesToClass(atrbValues[0], atrbValues[4], atrbValues[2],
-            atrbValues[5], atrbValues[3], atrbValues[1]);
-        break;
-      case "Bard":
-        sortAtributesToClass(atrbValues[5], atrbValues[3], atrbValues[4],
-            atrbValues[2], atrbValues[1], atrbValues[0]);
-        break;
-      case "Sorcerer":
-        sortAtributesToClass(atrbValues[5], atrbValues[4], atrbValues[2],
-            atrbValues[3], atrbValues[1], atrbValues[0]);
-        break;
-      case "Monk":
-        sortAtributesToClass(atrbValues[2], atrbValues[0], atrbValues[3],
-            atrbValues[4], atrbValues[1], atrbValues[5]);
-        break;
-      case "Noble":
-        sortAtributesToClass(atrbValues[4], atrbValues[4], atrbValues[4],
-            atrbValues[2], atrbValues[2], atrbValues[1]);
-        break;
-      case "Aristocrat":
-        sortAtributesToClass(atrbValues[4], atrbValues[4], atrbValues[4],
-            atrbValues[0], atrbValues[1], atrbValues[3]);
-        break;
-      case "Bandit":
-        isRange
-            ? sortAtributesToClass(atrbValues[0], atrbValues[1], atrbValues[2],
-                atrbValues[5], atrbValues[3], atrbValues[4])
-            : sortAtributesToClass(atrbValues[1], atrbValues[0], atrbValues[2],
-                atrbValues[5], atrbValues[3], atrbValues[4]);
-        break;
-      case "Samurai":
-        sortAtributesToClass(atrbValues[0], atrbValues[1], atrbValues[2],
-            atrbValues[5], atrbValues[3], atrbValues[4]);
-        break;
-      case "Summoner":
-        sortAtributesToClass(atrbValues[1], atrbValues[2], atrbValues[3],
-            atrbValues[5], atrbValues[4], atrbValues[0]);
-        break;
-      case "Antipaladin":
-        sortAtributesToClass(atrbValues[0], atrbValues[4], atrbValues[2],
-            atrbValues[5], atrbValues[3], atrbValues[1]);
-        break;
-      default:
-        sortAtributesToClass(atrbValues[3], atrbValues[3], atrbValues[3],
-            atrbValues[3], atrbValues[3], atrbValues[3]);
-    }
+  generateAllAtributes() {
+    AtributeModel atrbByDice = AtributeModel();
     AtributeModel atrbByRace = AtributeModel();
     AtributeModel atrbByLevel = AtributeModel();
+    atrbByDice = abilityCtrl.generateAllAtributes(char.charLevel,
+        char.charClass.name, char.charClass.combatStyle, atrbByDice);
     atrbByRace = abilityCtrl.ajustStatsToRace(
         char.charRace.name, char.charClass.mainAtrb, atrbByRace);
     atrbByLevel = abilityCtrl.ajustStatsToLevel(
         atrbByLevel, char.charLevel, char.charClass.mainAtrb);
-    char.baseAtributes.strength += atrbByLevel.strength + atrbByRace.strength;
+    char.baseAtributes.strength +=
+        atrbByLevel.strength + atrbByRace.strength + atrbByDice.strength;
     char.baseAtributes.dexterity +=
-        atrbByLevel.dexterity + atrbByRace.dexterity;
-    char.baseAtributes.constitution +=
-        atrbByLevel.constitution + atrbByRace.constitution;
-    char.baseAtributes.intelligence +=
-        atrbByLevel.intelligence + atrbByRace.intelligence;
-    char.baseAtributes.wisdom += atrbByLevel.wisdom + atrbByRace.wisdom;
-    char.baseAtributes.charisma += atrbByLevel.charisma + atrbByRace.charisma;
+        atrbByLevel.dexterity + atrbByRace.dexterity + atrbByDice.dexterity;
+    char.baseAtributes.constitution += atrbByLevel.constitution +
+        atrbByRace.constitution +
+        atrbByDice.constitution;
+    char.baseAtributes.intelligence += atrbByLevel.intelligence +
+        atrbByRace.intelligence +
+        atrbByDice.intelligence;
+    char.baseAtributes.wisdom +=
+        atrbByLevel.wisdom + atrbByRace.wisdom + atrbByDice.wisdom;
+    char.baseAtributes.charisma +=
+        atrbByLevel.charisma + atrbByRace.charisma + atrbByDice.charisma;
     notifyListeners();
   }
-
-  // ajustStatsToLevel() {
-  //   int mainAtributeIncrement = 0;
-  //   double secondaryAtributeIncrement = 0.0;
-  //   var atrbValues = char.baseAtributes;
-  //   for (var i = 0; i <= char.charLevel; i = i + 4) {
-  //     mainAtributeIncrement++;
-  //     secondaryAtributeIncrement = secondaryAtributeIncrement + 0.5;
-  //   }
-  //   char.baseAtributes.strength = char.charClass.mainAtrb == "strength"
-  //       ? atrbValues.strength + mainAtributeIncrement
-  //       : atrbValues.strength + secondaryAtributeIncrement.floor();
-  //   char.baseAtributes.dexterity = char.charClass.mainAtrb == "dexterity"
-  //       ? atrbValues.dexterity + mainAtributeIncrement
-  //       : atrbValues.dexterity + secondaryAtributeIncrement.floor();
-  //   char.baseAtributes.constitution =
-  //       atrbValues.constitution + secondaryAtributeIncrement.floor();
-  //   char.baseAtributes.intelligence = char.charClass.mainAtrb == "intelligence"
-  //       ? atrbValues.intelligence + mainAtributeIncrement
-  //       : atrbValues.intelligence + secondaryAtributeIncrement.floor();
-  //   char.baseAtributes.wisdom = char.charClass.mainAtrb == "wisdom"
-  //       ? atrbValues.wisdom + mainAtributeIncrement
-  //       : atrbValues.wisdom + secondaryAtributeIncrement.floor();
-  //   char.baseAtributes.charisma = char.charClass.mainAtrb == "charisma"
-  //       ? atrbValues.charisma + mainAtributeIncrement
-  //       : atrbValues.charisma + secondaryAtributeIncrement.floor();
-  //   notifyListeners();
-  // }
-
-  // ajustStatsToRace() {
-  //   if (char.charRace.name == "Human" ||
-  //       char.charRace.name == "Half-elf" ||
-  //       char.charRace.name == "Half-orc") {
-  //     switch (char.charClass.mainAtrb) {
-  //       case "strength":
-  //         calculateAjustToRace(2, 0, 0, 0, 0, 0);
-  //         break;
-  //       case "dexterity":
-  //         calculateAjustToRace(0, 2, 0, 0, 0, 0);
-  //         break;
-  //       case "intelligence":
-  //         calculateAjustToRace(0, 0, 0, 2, 0, 0);
-  //         break;
-  //       case "wisdom":
-  //         calculateAjustToRace(0, 0, 0, 0, 2, 0);
-  //         break;
-  //       default:
-  //         calculateAjustToRace(0, 0, 0, 0, 0, 2);
-  //     }
-  //   }
-  //   switch (char.charRace.name) {
-  //     case "Orc":
-  //       calculateAjustToRace(4, 0, 2, -2, -2, -2);
-  //       break;
-  //     case "Elf":
-  //       calculateAjustToRace(0, 2, -2, 2, 0, 0);
-  //       break;
-  //     case "Dwarf":
-  //       calculateAjustToRace(0, 0, 2, 0, 2, -2);
-  //       break;
-  //     case "Gnome":
-  //       calculateAjustToRace(-2, 0, 2, 0, 0, 2);
-  //       break;
-  //     case "Hafling":
-  //       calculateAjustToRace(-2, 2, 0, 0, 0, 2);
-  //       break;
-  //     default:
-  //   }
-  // }
-
-  // calculateAjustToRace(
-  //   int adjutStr,
-  //   int ajustDex,
-  //   int ajustCon,
-  //   int adjustInt,
-  //   int ajustWis,
-  //   int ajustCha,
-  // ) {
-  //   var ajustedAtrb = char.baseAtributes;
-  //   char.baseAtributes.strength = ajustedAtrb.strength + adjutStr;
-  //   char.baseAtributes.dexterity = ajustedAtrb.dexterity + ajustDex;
-  //   char.baseAtributes.constitution = ajustedAtrb.constitution + ajustCon;
-  //   char.baseAtributes.intelligence = ajustedAtrb.intelligence + adjustInt;
-  //   char.baseAtributes.wisdom = ajustedAtrb.wisdom + ajustWis;
-  //   char.baseAtributes.charisma = ajustedAtrb.charisma + ajustCha;
-  //   notifyListeners();
-  // }
 
   //====================================================================================
   // Calculate boost to atributes by magic items
