@@ -59,6 +59,7 @@ class EnchantData {
       availability: 8,
       power: 2,
       enchantPrice: 14000,
+      additionalDiceDamage: "",
       magicalPorperty:
           "A dueling weapon (which must be a weapon that can be used with the Weapon Finesse feat) gives the wielder a +4 enhancement bonus on initiative checks, provided the weapon is drawn and in hand when the Initiative check is made. It provides a +2 bonus on disarm checks and feint checks, a +2 bonus to CMD to resist disarm attempts, and a +2 to the DC to perform a feint against the wielder.",
     ),
@@ -76,6 +77,7 @@ class EnchantData {
       availability: 5,
       power: 1,
       enchantPrice: 2000,
+      additionalDiceDamage: "",
       magicalPorperty:
           "A called weapon can be teleported to the wielder's hand as a swift action that does not provoke attacks of opportunity, even if the weapon is in the possession of another creature. This ability has a maximum range of 100 feet, and effects that block teleportation prevent the return of a called weapon. A called weapon must be in a creature's possession for at least 24 hours for this ability to function.",
     ),
@@ -102,6 +104,7 @@ class EnchantData {
       availability: 6,
       power: 1,
       enchantPrice: 2000,
+      additionalDiceDamage: "",
       magicalPorperty:
           "A ghost touch weapon deals damage normally against incorporeal creatures, regardless of its bonus. An incorporeal creature's 50% reduction in damage from corporeal sources does not apply to attacks made against it with ghost touch weapons. The weapon can be picked up and moved by an incorporeal creature at any time. A manifesting ghost can wield the weapon against corporeal foes. Essentially, a ghost touch weapon counts as both corporeal or incorporeal.",
     ),
@@ -110,6 +113,7 @@ class EnchantData {
       availability: 6,
       power: 1,
       enchantPrice: 2000,
+      additionalDiceDamage: "",
       magicalPorperty:
           "A planar weapon is effective against all types of extradimensional beings, able to pierce their resistance to physical harm. When used to attack outsiders, a planar weapon ignores 5 points of their damage reduction.",
     ),
@@ -190,6 +194,7 @@ class EnchantData {
       availability: 8,
       power: 2,
       enchantPrice: 8000,
+      additionalDiceDamage: "",
       magicalPorperty:
           "A phase locking weapon interferes with dimensional travel. A creature damaged by a phase locking weapon is affected as though by the dimensional anchor spell for 1 round.",
     ),
@@ -206,6 +211,7 @@ class EnchantData {
       availability: 8,
       power: 2,
       enchantPrice: 8000,
+      additionalDiceDamage: "",
       magicalPorperty:
           "The longer the wielder of a stalking weapon studies a target, the more effective her strike. As a standard action, a character wielding a stalking weapon can command it to study a creature within 60 feet. The wielder must have line of effect and line of sight to that target. When the wielder attacks the studied creature, on a successful hit the stalking weapon deals +1d6 points of bonus damage per consecutive round spent studying a target, up to a number of bonus dice equal to the stalking weapon's enhancement bonus. This bonus damage is precision damage and only applies to the first successful hit against that creature. If the wielder attacks a creature other than the studied creature, commands the weapon to study a different creature, or ends her turn more than 60 feet from the studied creature, the weapon loses all bonus damage dice against the previously studied creature.",
     ),
@@ -222,6 +228,7 @@ class EnchantData {
       availability: 8,
       power: 2,
       enchantPrice: 8000,
+      additionalDiceDamage: "",
       magicalPorperty:
           "A wounding weapon deals 1 point of bleed damage when it hits a creature. Multiple hits from a wounding weapon increase the bleed damage. Bleeding creatures take the bleed damage at the start of their turns. Bleeding can be stopped by a successful DC 15 Heal check or through the application of any spell that cures hit point damage. A critical hit does not multiply the bleed damage. Creatures immune to critical hits are immune to the bleed damage dealt by this weapon.",
     ),
@@ -230,6 +237,7 @@ class EnchantData {
       availability: 9,
       power: 2,
       enchantPrice: 8000,
+      additionalDiceDamage: "",
       magicalPorperty:
           "A nullifying weapon suppresses a creature's spell resistance for a short amount of time. Anytime the weapon strikes a creature with spell resistance and the creature takes damage from the weapon, the target's spell resistance is reduced by 1 for 1 minute. On a confirmed critical hit, its spell resistance is instead reduced by an amount equal to the weapon's critical multiplier. Multiple hits from a nullification weapon stack.",
     ),
@@ -238,6 +246,7 @@ class EnchantData {
       availability: 12,
       power: 3,
       enchantPrice: 18000,
+      additionalDiceDamage: "",
       magicalPorperty:
           "When making a full-attack action, the wielder of a speed weapon may make one extra attack with it. The attack uses the wielder's full base attack bonus, plus any modifiers appropriate to the situation. (This benefit is not cumulative with similar effects, such as a haste spell.)",
     ),
@@ -246,6 +255,7 @@ class EnchantData {
       availability: 17,
       power: 4,
       enchantPrice: 32000,
+      additionalDiceDamage: "",
       magicalPorperty:
           "A brilliant energy weapon has its significant portion transformed into light, although this does not modify the item's weight. It always gives off light as a torch (20-foot radius). A brilliant energy weapon ignores nonliving matter. Armor and shield bonuses to AC (including any enhancement bonuses to that armor) do not count against it because the weapon passes through armor. (Dexterity, deflection, dodge, natural armor, and other such bonuses still apply.) A brilliant energy weapon cannot harm undead, constructs, or objects.",
     ),
@@ -254,6 +264,7 @@ class EnchantData {
       availability: 18,
       power: 5,
       enchantPrice: 50000,
+      additionalDiceDamage: "",
       magicalPorperty:
           "This potent and feared ability allows the weapon to sever the heads of those it strikes. Upon a roll of natural 20 (followed by a successful roll to confirm the critical hit), the weapon severs the opponent's head (if it has one) from its body. Some creatures, such as many aberrations and all oozes, have no heads. Others, such as golems and undead creatures other than vampires, are not affected by the loss of their heads. Most other creatures, however, die when their heads are cut off. A vorpal weapon must be a slashing melee weapon. If you roll this special ability randomly for an inappropriate weapon, reroll.",
     ),

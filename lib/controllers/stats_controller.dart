@@ -92,6 +92,7 @@ class StatsController with ChangeNotifier {
     specials = [];
     charFeats = [];
     charLoot = LootModel();
+    tomesAndManuals = [];
     notifyListeners();
   }
 
@@ -188,8 +189,12 @@ class StatsController with ChangeNotifier {
           .where((element) => element.type == itemsPerBodyParts[i])
           .toList();
       var random = generateRandom(items.length);
-
-      charMagicItems.add(items[random]);
+      var newItem = items[random];
+      while (charMagicItems.any((element) => element == items[random])) {
+        var newRandom = generateRandom(items.length);
+        newItem = items[newRandom];
+      }
+      charMagicItems.add(newItem);
     }
     char.charEquip.wonderousItems = charMagicItems;
     if (((char.charClass.combatStyle == "Physical" ||
@@ -356,7 +361,7 @@ class StatsController with ChangeNotifier {
   }
 
   addIndispensableItem(List<WonderousItemsModel> list) {
-    var random = generateRandom(11);
+    var random = generateRandom(13);
     List<WonderousItemsModel> itemList = [];
     if (char.charLevel == 1) {
       itemList = [];
@@ -369,7 +374,7 @@ class StatsController with ChangeNotifier {
     } else if (char.charLevel > 13 && char.charLevel < 17) {
       random < 6 ? itemList.add(list[2]) : itemList.add(list[3]);
     } else {
-      random < 6 ? itemList.add(list[3]) : itemList.add(list[4]);
+      random < 5 ? itemList.add(list[3]) : itemList.add(list[4]);
     }
     char.charEquip.wonderousItems!.addAll(itemList);
     notifyListeners();
@@ -638,8 +643,24 @@ class StatsController with ChangeNotifier {
     armors.sort(((a, b) => a.defenseBonus.compareTo(b.defenseBonus)));
     var random = generateRandom(armors.length);
     random > (armors.length / 3).floor()
-        ? armor = armors[random]
-        : armor = armors.last;
+        ? armor = ArmorModel(
+            name: armors[random].name,
+            defenseBonus: armors[random].defenseBonus,
+            checkPenalty: armors[random].checkPenalty,
+            maxDexAllowed: armors[random].maxDexAllowed,
+            speedPenalty: armors[random].speedPenalty,
+            price: armors[random].price,
+            type: armors[random].type,
+          )
+        : armor = ArmorModel(
+            name: armors.last.name,
+            defenseBonus: armors.last.defenseBonus,
+            checkPenalty: armors.last.checkPenalty,
+            maxDexAllowed: armors.last.maxDexAllowed,
+            speedPenalty: armors.last.speedPenalty,
+            price: armors.last.price,
+            type: armors.last.type,
+          );
     notifyListeners();
     return armor;
   }
@@ -1409,12 +1430,13 @@ class StatsController with ChangeNotifier {
     }
   }
 
-  List<WonderousItemsModel> findTomeOrManual(String atrb) {
-    return listOfWonderousItems.manualsAndTomes
+  WonderousItemsModel findTomeOrManual(String atrb) {
+    List<WonderousItemsModel> list = listOfWonderousItems.manualsAndTomes
         .where((element) =>
-            element.availability < char.charLevel &&
+            element.availability <= char.charLevel &&
             element.description!.contains(atrb))
         .toList();
+    return list.last;
   }
 
   List<WonderousItemsModel> tomesAndManuals = [];
@@ -1423,26 +1445,57 @@ class StatsController with ChangeNotifier {
       return;
     }
     List<WonderousItemsModel> boostBooks = [];
-
+    AtributeModel atribute = AtributeModel();
     if (char.charLevel > 15 && char.charLevel < 18) {
-      boostBooks.addAll(findTomeOrManual(char.charClass.mainAtrb));
-      tomesAndManuals.addAll(boostBooks);
+      boostBooks.add(findTomeOrManual(char.charClass.mainAtrb));
+      tomesAndManuals.add(boostBooks.last);
+      atribute = bosstRightAtributeWithTomeOrManual(
+          [char.charClass.mainAtrb], boostBooks.last.bonus!, 0);
     } else if (char.charLevel > 15 && char.charLevel < 18) {
-      boostBooks.addAll(findTomeOrManual(char.charClass.mainAtrb));
-      boostBooks.addAll(findTomeOrManual("constitution"));
-
-      tomesAndManuals.addAll(boostBooks);
+      boostBooks.add(findTomeOrManual(char.charClass.mainAtrb));
+      boostBooks.add(findTomeOrManual("constitution"));
+      tomesAndManuals.add(boostBooks.last);
+      atribute = bosstRightAtributeWithTomeOrManual(
+          [char.charClass.mainAtrb, "constitution"], boostBooks.last.bonus!, 0);
     } else if (char.charLevel > 17 && char.charLevel < 21) {
-      boostBooks.addAll(findTomeOrManual(char.charClass.mainAtrb));
-      boostBooks.addAll(findTomeOrManual("constitution"));
+      boostBooks.add(findTomeOrManual(char.charClass.mainAtrb));
+      boostBooks.add(findTomeOrManual("constitution"));
       if (char.battleStyle.name == "Hybrid" ||
           char.battleStyle.name == "Spellcaster") {
-        boostBooks.addAll(findTomeOrManual("dexterity"));
+        boostBooks.add(findTomeOrManual("dexterity"));
+        atribute = bosstRightAtributeWithTomeOrManual(
+            [char.charClass.mainAtrb, "constitution", "dexterity"],
+            boostBooks.last.bonus!,
+            0);
+        tomesAndManuals.add(boostBooks.last);
       } else {
-        boostBooks.addAll(findTomeOrManual("wisdom"));
+        boostBooks.add(findTomeOrManual("wisdom"));
+        atribute = bosstRightAtributeWithTomeOrManual(
+            [char.charClass.mainAtrb, "constitution", "wisdom"],
+            boostBooks.last.bonus!,
+            0);
+        tomesAndManuals.addAll(boostBooks);
       }
     }
+    char.baseAtributes.strength += atribute.strength;
+    char.baseAtributes.dexterity += atribute.dexterity;
+    char.baseAtributes.constitution += atribute.constitution;
+    char.baseAtributes.intelligence += atribute.intelligence;
+    char.baseAtributes.wisdom += atribute.wisdom;
+    char.baseAtributes.charisma += atribute.charisma;
     notifyListeners();
+  }
+
+  AtributeModel bosstRightAtributeWithTomeOrManual(
+      List<String> atrb, int boost, int noBoost) {
+    AtributeModel atribute = AtributeModel();
+    atribute.strength = atrb.contains("strength") ? boost : noBoost;
+    atribute.dexterity = atrb.contains("dexterity") ? boost : noBoost;
+    atribute.constitution = atrb.contains("constitution") ? boost : noBoost;
+    atribute.intelligence = atrb.contains("intelligence") ? boost : noBoost;
+    atribute.wisdom = atrb.contains("wisdom") ? boost : noBoost;
+    atribute.charisma = atrb.contains("charisma") ? boost : noBoost;
+    return atribute;
   }
 
   //=====================================================================================
@@ -1527,6 +1580,12 @@ class StatsController with ChangeNotifier {
         char.charEquip.armour != null ? char.charEquip.armour!.defenseBonus : 0;
     int shieldDefense =
         char.charEquip.shield != null ? char.charEquip.shield!.defenseBonus : 0;
+    int maxDex = char.charEquip.armour != null
+        ? char.charEquip.armour!.maxDexAllowed
+        : 0;
+    if (maxDex < char.modAtributes.dexterity) {
+      char.modAtributes.dexterity = maxDex;
+    }
     int armorAc = 0;
     int touch = 0;
     int surprise = 0;
