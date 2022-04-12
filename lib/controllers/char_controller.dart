@@ -343,22 +343,22 @@ class CharController extends ChangeNotifier {
           char.charClass.name == "Rogue") {
         double youngClassDif = physClassDif * 0.6;
         dif = youngClassDif.toInt();
-        ageIncrement = randomIndex.nextInt(dif);
+        ageIncrement = generateRandom(dif);
         baseAge = baseAge + ageIncrement;
       } else {
-        ageIncrement = randomIndex.nextInt(physClassDif);
+        ageIncrement = generateRandom(physClassDif);
         baseAge = baseAge + ageIncrement;
       }
     }
     bool containsMent = listOfClasses.allClasses.any((element) =>
         element.combatStyle == "Hybrid" || element.combatStyle == "Spellcater");
     if (containsMent) {
-      ageIncrement = randomIndex.nextInt(mentClassDif);
+      ageIncrement = generateRandom(mentClassDif);
       baseAge = baseAge + ageIncrement;
     }
     if (char.charLevel > 4) {
       for (var i = 4; i < char.charLevel; i = i + 4) {
-        baseAge = baseAge + 1.5;
+        baseAge = baseAge + 1;
       }
     }
     return baseAge.toInt();

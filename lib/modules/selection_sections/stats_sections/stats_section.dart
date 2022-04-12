@@ -89,7 +89,7 @@ class _StatsSectionState extends State<StatsSection>
                           textValue: state.cha.charRace.name,
                         )),
                     CharDescriptionText(
-                        label: "Class:", textValue: state.cha.charClass.name),
+                        label: "Gender:", textValue: state.cha.charName.gender),
                   ],
                 ),
                 const SizedBox(height: 2),
@@ -99,8 +99,22 @@ class _StatsSectionState extends State<StatsSection>
                     SizedBox(
                         width: deviceWidth! * 0.5,
                         child: CharDescriptionText(
-                            label: "Gender:",
-                            textValue: state.cha.charName.gender)),
+                            label: "Combat:",
+                            textValue: state.cha.battleStyle.name)),
+                    CharDescriptionText(
+                        label: "Style:",
+                        textValue: state.cha.physicalStyle.name),
+                  ],
+                ),
+                const SizedBox(height: 2),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                        width: deviceWidth! * 0.5,
+                        child: CharDescriptionText(
+                            label: "Class:",
+                            textValue: state.cha.charClass.name)),
                     CharDescriptionText(
                         label: "Alignment:",
                         textValue: state.cha.alignment.abreviation!),
@@ -153,51 +167,54 @@ class _StatsSectionState extends State<StatsSection>
                 SizedBox(height: deviceHeight! * 0.01),
                 Consumer<StatsController>(builder: (context, ctrl, child) {
                   ctrl.char = state.cha;
-                  return Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 6),
-                        child: TabBar(
-                          isScrollable: true,
-                          indicatorColor: AppColors.primaryOrange,
-                          labelStyle: AppTextStyle.tabLabel,
-                          unselectedLabelColor: AppColors.primaryText0,
-                          unselectedLabelStyle: AppTextStyle.tabLabel
-                              .copyWith(fontWeight: FontWeight.w300),
-                          labelColor: AppColors.primaryOrange,
-                          labelPadding:
-                              const EdgeInsets.symmetric(horizontal: 6),
-                          controller: _controller,
-                          tabs: const [
-                            Text("ATRIBUTES"),
-                            Text("COMBAT"),
-                            Text("MAGIC GEAR"),
-                            Text("FEATURES"),
-                            Text("FEATS"),
-                            Text("SKILLS"),
-                            Text("SPELLS"),
-                            Text("LOOT"),
-                          ],
+                  return SingleChildScrollView(
+                    physics: NeverScrollableScrollPhysics(),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 6),
+                          child: TabBar(
+                            isScrollable: true,
+                            indicatorColor: AppColors.primaryOrange,
+                            labelStyle: AppTextStyle.tabLabel,
+                            unselectedLabelColor: AppColors.primaryText0,
+                            unselectedLabelStyle: AppTextStyle.tabLabel
+                                .copyWith(fontWeight: FontWeight.w300),
+                            labelColor: AppColors.primaryOrange,
+                            labelPadding:
+                                const EdgeInsets.symmetric(horizontal: 6),
+                            controller: _controller,
+                            tabs: const [
+                              Text("ATRIBUTES"),
+                              Text("COMBAT"),
+                              Text("MAGIC GEAR"),
+                              Text("FEATURES"),
+                              Text("FEATS"),
+                              Text("SKILLS"),
+                              Text("SPELLS"),
+                              Text("LOOT"),
+                            ],
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        height: deviceHeight! * 0.55,
-                        width: double.infinity,
-                        child: TabBarView(
-                          controller: _controller,
-                          children: const [
-                            AbilityScoreSection(),
-                            CombatStats(),
-                            MagicGearStats(),
-                            FeatureStats(),
-                            FeatStats(),
-                            SkillStats(),
-                            SpellStats(),
-                            LootSection(),
-                          ],
-                        ),
-                      )
-                    ],
+                        SizedBox(
+                          height: deviceHeight! * 0.51,
+                          width: double.infinity,
+                          child: TabBarView(
+                            controller: _controller,
+                            children: const [
+                              AbilityScoreSection(),
+                              CombatStats(),
+                              MagicGearStats(),
+                              FeatureStats(),
+                              FeatStats(),
+                              SkillStats(),
+                              SpellStats(),
+                              LootSection(),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
                   );
                 }),
               ],

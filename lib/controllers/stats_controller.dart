@@ -18,6 +18,7 @@ import '../models/equip_models/enchant_model.dart';
 import '../models/equip_models/wonderous_items_model.dart';
 import '../models/specials_model.dart';
 import '../models/traits_model.dart';
+import '../modules/selection_sections/stats_sections/stats_tabs/ability_scores/controller/ability_controller.dart';
 import '../shared/data/class_traits_data/barbarian/barbarian_traits_data.dart';
 import '../shared/data/combat_style_feats_data/all_feats_data.dart';
 import '../shared/data/combat_style_feats_data/readied_feats_data.dart';
@@ -33,6 +34,7 @@ class StatsController with ChangeNotifier {
   final _equip = EquipData();
   var classData = ClassData();
   var listOfRaces = RaceData();
+  var abilityCtrl = AbilityController();
 
   int armorPrice = 0;
   int shieldPrice = 0;
@@ -888,6 +890,7 @@ class StatsController with ChangeNotifier {
       for (var i = 0; i < numberOfFeats; i++) {
         filteredFeats.add(feats[i]);
       }
+      charFeats = filteredFeats;
     } else if (feats.length == numberOfFeats) {
       charFeats = filteredFeats;
     } else {
@@ -1169,112 +1172,110 @@ class StatsController with ChangeNotifier {
         sortAtributesToClass(atrbValues[3], atrbValues[3], atrbValues[3],
             atrbValues[3], atrbValues[3], atrbValues[3]);
     }
-    ajustStatsToRace();
-    ajustStatsToLevel();
-  }
-
-  ajustStatsToLevel() {
-    var physicalChars = listOfClasses.allClasses
-        .where((element) => element.combatStyle == "Physical")
-        .toList();
-    int level = char.charLevel + 1;
-    int mainAtributeIncrement = 0;
-    double secondaryAtributeIncrement = 0.0;
-    var atrbValues = char.baseAtributes;
-    if (physicalChars
-        .any((element) => element.combatStyle == char.battleStyle.name)) {
-      for (var i = 0; i < level; i = i + 4) {
-        mainAtributeIncrement++;
-        secondaryAtributeIncrement = secondaryAtributeIncrement + 0.5;
-      }
-      char.baseAtributes.strength = atrbValues.strength + mainAtributeIncrement;
-      char.baseAtributes.dexterity =
-          atrbValues.dexterity + mainAtributeIncrement;
-      char.baseAtributes.constitution =
-          atrbValues.constitution + mainAtributeIncrement;
-      char.baseAtributes.intelligence =
-          atrbValues.intelligence + secondaryAtributeIncrement.floor();
-      char.baseAtributes.wisdom =
-          atrbValues.wisdom + secondaryAtributeIncrement.floor();
-      char.baseAtributes.charisma =
-          atrbValues.charisma + secondaryAtributeIncrement.floor();
-    } else {
-      for (var i = 0; i < level; i = i + 4) {
-        mainAtributeIncrement++;
-        secondaryAtributeIncrement = secondaryAtributeIncrement + 0.5;
-      }
-      char.baseAtributes.strength =
-          atrbValues.strength + secondaryAtributeIncrement.floor();
-      char.baseAtributes.dexterity =
-          atrbValues.dexterity + secondaryAtributeIncrement.floor();
-      char.baseAtributes.constitution =
-          atrbValues.constitution + secondaryAtributeIncrement.floor();
-      char.baseAtributes.intelligence =
-          atrbValues.intelligence + mainAtributeIncrement;
-      char.baseAtributes.wisdom = atrbValues.wisdom + mainAtributeIncrement;
-      char.baseAtributes.charisma = atrbValues.charisma + mainAtributeIncrement;
-    }
+    AtributeModel atrbByRace = AtributeModel();
+    AtributeModel atrbByLevel = AtributeModel();
+    atrbByRace = abilityCtrl.ajustStatsToRace(
+        char.charRace.name, char.charClass.mainAtrb, atrbByRace);
+    atrbByLevel = abilityCtrl.ajustStatsToLevel(
+        atrbByLevel, char.charLevel, char.charClass.mainAtrb);
+    char.baseAtributes.strength += atrbByLevel.strength + atrbByRace.strength;
+    char.baseAtributes.dexterity +=
+        atrbByLevel.dexterity + atrbByRace.dexterity;
+    char.baseAtributes.constitution +=
+        atrbByLevel.constitution + atrbByRace.constitution;
+    char.baseAtributes.intelligence +=
+        atrbByLevel.intelligence + atrbByRace.intelligence;
+    char.baseAtributes.wisdom += atrbByLevel.wisdom + atrbByRace.wisdom;
+    char.baseAtributes.charisma += atrbByLevel.charisma + atrbByRace.charisma;
     notifyListeners();
   }
 
-  ajustStatsToRace() {
-    if (char.charRace.name == "Human" ||
-        char.charRace.name == "Half-elf" ||
-        char.charRace.name == "Half-orc") {
-      switch (char.charClass.mainAtrb) {
-        case "strength":
-          calculateAjustToRace(2, 0, 0, 0, 0, 0);
-          break;
-        case "dexterity":
-          calculateAjustToRace(0, 2, 0, 0, 0, 0);
-          break;
-        case "intelligence":
-          calculateAjustToRace(0, 0, 0, 2, 0, 0);
-          break;
-        case "wisdom":
-          calculateAjustToRace(0, 0, 0, 0, 2, 0);
-          break;
-        default:
-          calculateAjustToRace(0, 0, 0, 0, 0, 2);
-      }
-    }
-    switch (char.charRace.name) {
-      case "Orc":
-        calculateAjustToRace(4, 0, 2, -2, -2, -2);
-        break;
-      case "Elf":
-        calculateAjustToRace(0, 2, -2, 2, 0, 0);
-        break;
-      case "Dwarf":
-        calculateAjustToRace(0, 0, 2, 0, 2, -2);
-        break;
-      case "Gnome":
-        calculateAjustToRace(-2, 0, 2, 0, 0, 2);
-        break;
-      case "Hafling":
-        calculateAjustToRace(-2, 2, 0, 0, 0, 2);
-        break;
-      default:
-    }
-  }
+  // ajustStatsToLevel() {
+  //   int mainAtributeIncrement = 0;
+  //   double secondaryAtributeIncrement = 0.0;
+  //   var atrbValues = char.baseAtributes;
+  //   for (var i = 0; i <= char.charLevel; i = i + 4) {
+  //     mainAtributeIncrement++;
+  //     secondaryAtributeIncrement = secondaryAtributeIncrement + 0.5;
+  //   }
+  //   char.baseAtributes.strength = char.charClass.mainAtrb == "strength"
+  //       ? atrbValues.strength + mainAtributeIncrement
+  //       : atrbValues.strength + secondaryAtributeIncrement.floor();
+  //   char.baseAtributes.dexterity = char.charClass.mainAtrb == "dexterity"
+  //       ? atrbValues.dexterity + mainAtributeIncrement
+  //       : atrbValues.dexterity + secondaryAtributeIncrement.floor();
+  //   char.baseAtributes.constitution =
+  //       atrbValues.constitution + secondaryAtributeIncrement.floor();
+  //   char.baseAtributes.intelligence = char.charClass.mainAtrb == "intelligence"
+  //       ? atrbValues.intelligence + mainAtributeIncrement
+  //       : atrbValues.intelligence + secondaryAtributeIncrement.floor();
+  //   char.baseAtributes.wisdom = char.charClass.mainAtrb == "wisdom"
+  //       ? atrbValues.wisdom + mainAtributeIncrement
+  //       : atrbValues.wisdom + secondaryAtributeIncrement.floor();
+  //   char.baseAtributes.charisma = char.charClass.mainAtrb == "charisma"
+  //       ? atrbValues.charisma + mainAtributeIncrement
+  //       : atrbValues.charisma + secondaryAtributeIncrement.floor();
+  //   notifyListeners();
+  // }
 
-  calculateAjustToRace(
-    int adjutStr,
-    int ajustDex,
-    int ajustCon,
-    int adjustInt,
-    int ajustWis,
-    int ajustCha,
-  ) {
-    var ajustedAtrb = char.baseAtributes;
-    char.baseAtributes.strength = ajustedAtrb.strength + adjutStr;
-    char.baseAtributes.dexterity = ajustedAtrb.dexterity + ajustDex;
-    char.baseAtributes.constitution = ajustedAtrb.constitution + ajustCon;
-    char.baseAtributes.intelligence = ajustedAtrb.intelligence + adjustInt;
-    char.baseAtributes.wisdom = ajustedAtrb.wisdom + ajustWis;
-    char.baseAtributes.charisma = ajustedAtrb.charisma + ajustCha;
-    notifyListeners();
-  }
+  // ajustStatsToRace() {
+  //   if (char.charRace.name == "Human" ||
+  //       char.charRace.name == "Half-elf" ||
+  //       char.charRace.name == "Half-orc") {
+  //     switch (char.charClass.mainAtrb) {
+  //       case "strength":
+  //         calculateAjustToRace(2, 0, 0, 0, 0, 0);
+  //         break;
+  //       case "dexterity":
+  //         calculateAjustToRace(0, 2, 0, 0, 0, 0);
+  //         break;
+  //       case "intelligence":
+  //         calculateAjustToRace(0, 0, 0, 2, 0, 0);
+  //         break;
+  //       case "wisdom":
+  //         calculateAjustToRace(0, 0, 0, 0, 2, 0);
+  //         break;
+  //       default:
+  //         calculateAjustToRace(0, 0, 0, 0, 0, 2);
+  //     }
+  //   }
+  //   switch (char.charRace.name) {
+  //     case "Orc":
+  //       calculateAjustToRace(4, 0, 2, -2, -2, -2);
+  //       break;
+  //     case "Elf":
+  //       calculateAjustToRace(0, 2, -2, 2, 0, 0);
+  //       break;
+  //     case "Dwarf":
+  //       calculateAjustToRace(0, 0, 2, 0, 2, -2);
+  //       break;
+  //     case "Gnome":
+  //       calculateAjustToRace(-2, 0, 2, 0, 0, 2);
+  //       break;
+  //     case "Hafling":
+  //       calculateAjustToRace(-2, 2, 0, 0, 0, 2);
+  //       break;
+  //     default:
+  //   }
+  // }
+
+  // calculateAjustToRace(
+  //   int adjutStr,
+  //   int ajustDex,
+  //   int ajustCon,
+  //   int adjustInt,
+  //   int ajustWis,
+  //   int ajustCha,
+  // ) {
+  //   var ajustedAtrb = char.baseAtributes;
+  //   char.baseAtributes.strength = ajustedAtrb.strength + adjutStr;
+  //   char.baseAtributes.dexterity = ajustedAtrb.dexterity + ajustDex;
+  //   char.baseAtributes.constitution = ajustedAtrb.constitution + ajustCon;
+  //   char.baseAtributes.intelligence = ajustedAtrb.intelligence + adjustInt;
+  //   char.baseAtributes.wisdom = ajustedAtrb.wisdom + ajustWis;
+  //   char.baseAtributes.charisma = ajustedAtrb.charisma + ajustCha;
+  //   notifyListeners();
+  // }
 
   //====================================================================================
   // Calculate boost to atributes by magic items
@@ -1286,7 +1287,7 @@ class StatsController with ChangeNotifier {
     if (char.charEquip.wonderousItems!.isEmpty) {
       return;
     }
-    //Boost from atribute iounstone (mandatory)
+    //Boost in atribute from iounstone (mandatory)
     if (char.charLevel > 11) {
       switch (char.charClass.mainAtrb) {
         case "strength":
@@ -1446,12 +1447,7 @@ class StatsController with ChangeNotifier {
     }
     List<WonderousItemsModel> boostBooks = [];
     AtributeModel atribute = AtributeModel();
-    if (char.charLevel > 15 && char.charLevel < 18) {
-      boostBooks.add(findTomeOrManual(char.charClass.mainAtrb));
-      tomesAndManuals.add(boostBooks.last);
-      atribute = bosstRightAtributeWithTomeOrManual(
-          [char.charClass.mainAtrb], boostBooks.last.bonus!, 0);
-    } else if (char.charLevel > 15 && char.charLevel < 18) {
+    if (char.charLevel > 14 && char.charLevel < 18) {
       boostBooks.add(findTomeOrManual(char.charClass.mainAtrb));
       boostBooks.add(findTomeOrManual("constitution"));
       tomesAndManuals.add(boostBooks.last);
@@ -1460,8 +1456,9 @@ class StatsController with ChangeNotifier {
     } else if (char.charLevel > 17 && char.charLevel < 21) {
       boostBooks.add(findTomeOrManual(char.charClass.mainAtrb));
       boostBooks.add(findTomeOrManual("constitution"));
-      if (char.battleStyle.name == "Hybrid" ||
-          char.battleStyle.name == "Spellcaster") {
+      if ((char.battleStyle.name == "Hybrid" ||
+              char.battleStyle.name == "Spellcaster") &&
+          char.charClass.mainAtrb != "dexterity") {
         boostBooks.add(findTomeOrManual("dexterity"));
         atribute = bosstRightAtributeWithTomeOrManual(
             [char.charClass.mainAtrb, "constitution", "dexterity"],
