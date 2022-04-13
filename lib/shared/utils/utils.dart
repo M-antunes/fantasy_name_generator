@@ -1,5 +1,8 @@
 import 'dart:math';
 
+import '../../models/key_value.model.dart';
+import '../data/enchant_data.dart';
+
 int generateRandom(int number) {
   Random i = Random();
   var newNumber = i.nextInt(number);
@@ -48,4 +51,22 @@ int discoverMinAvailability(int lvAvailable) {
     minLvAvailable = lvAvailable - 8;
   }
   return minLvAvailable;
+}
+
+int claculateMagicEquipPrice(dynamic weapon) {
+  int valueLabel = 0;
+  if (weapon.enchantment != null) {
+    if (weapon.enchantment!.length > 1) {
+      var magicPrices = EnchantData();
+      int price = (weapon.enchantment![0].power + weapon.enchantment![1].power);
+      KeyValueModel priceAdded = magicPrices.pricingForMagicWeapons
+          .firstWhere((element) => element.key == price);
+      valueLabel = weapon.price + priceAdded.value + 300;
+    } else {
+      valueLabel = weapon.price + weapon.enchantment![0].enchantPrice + 300;
+    }
+  } else {
+    valueLabel = weapon.price;
+  }
+  return valueLabel;
 }

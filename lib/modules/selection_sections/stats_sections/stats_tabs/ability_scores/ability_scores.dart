@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../widgets/atribute_division.dart';
+import '../../widgets/gradient_label.dart';
 import 'widgets/stats_description_column.dart';
 import '../../widgets/general_magical_equip_row.dart';
-import '../combat/combat_stats.dart';
 import 'widgets/stats_description_text.dart';
 
 class AbilityScoreSection extends StatelessWidget {

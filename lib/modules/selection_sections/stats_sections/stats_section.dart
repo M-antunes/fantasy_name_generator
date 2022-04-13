@@ -8,9 +8,9 @@ import 'package:fantasy_name_generator/shared/constants/phone_sizes.dart';
 import 'package:fantasy_name_generator/shared/themes/app_text_styles.dart';
 
 import '../../../../shared/themes/app_colors.dart';
+import 'stats_tabs/combat/combat_stats.dart';
 import 'widgets/char_description_text.dart';
 import 'stats_tabs/ability_scores/ability_scores.dart';
-import 'stats_tabs/combat/combat_stats.dart';
 import 'stats_tabs/feats/feats_stats.dart';
 import 'stats_tabs/features/features_stats.dart';
 import 'stats_tabs/loot/loot_section.dart';
@@ -93,20 +93,20 @@ class _StatsSectionState extends State<StatsSection>
                   ],
                 ),
                 const SizedBox(height: 2),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                        width: deviceWidth! * 0.5,
-                        child: CharDescriptionText(
-                            label: "Combat:",
-                            textValue: state.cha.battleStyle.name)),
-                    CharDescriptionText(
-                        label: "Style:",
-                        textValue: state.cha.physicalStyle.name),
-                  ],
-                ),
-                const SizedBox(height: 2),
+                // Row(
+                //   crossAxisAlignment: CrossAxisAlignment.start,
+                //   children: [
+                //     SizedBox(
+                //         width: deviceWidth! * 0.5,
+                //         child: CharDescriptionText(
+                //             label: "Combat:",
+                //             textValue: state.cha.battleStyle.name)),
+                //     CharDescriptionText(
+                //         label: "Style:",
+                //         textValue: state.cha.physicalStyle.name),
+                //   ],
+                // ),
+                // const SizedBox(height: 2),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -168,7 +168,7 @@ class _StatsSectionState extends State<StatsSection>
                 Consumer<StatsController>(builder: (context, ctrl, child) {
                   ctrl.char = state.cha;
                   return SingleChildScrollView(
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     child: Column(
                       children: [
                         Padding(
@@ -273,66 +273,4 @@ Future<dynamic> showStartingOverConfirmation(
           ],
         );
       });
-}
-
-class WeaponLabelSection extends StatelessWidget {
-  final String label;
-  final VoidCallback onTap;
-  const WeaponLabelSection({
-    Key? key,
-    required this.label,
-    required this.onTap,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-        child: Stack(
-          alignment: Alignment.centerLeft,
-          children: [
-            Container(
-              width: deviceWidth! * 0.93,
-              height: 2,
-              decoration: BoxDecoration(
-                color: Colors.grey[700],
-                borderRadius: BorderRadius.circular(50),
-              ),
-            ),
-            Chip(
-              label: Text(label, style: AppTextStyle.weaponCategoryText),
-            ),
-          ],
-        ),
-        onTap: onTap);
-  }
-}
-
-class EquipSectionModal extends StatelessWidget {
-  final String label;
-  const EquipSectionModal({
-    Key? key,
-    required this.label,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 6),
-      child: Container(
-        height: deviceHeight! * 0.03,
-        width: double.infinity,
-        decoration: const BoxDecoration(
-            gradient: LinearGradient(colors: [
-          AppColors.primaryText0,
-          Colors.transparent,
-        ], begin: Alignment.centerLeft, end: Alignment.bottomRight)),
-        child: Align(
-            alignment: Alignment.centerLeft,
-            child: Padding(
-              padding: const EdgeInsets.only(left: 4),
-              child: Text(label, style: AppTextStyle.subTextWhite),
-            )),
-      ),
-    );
-  }
 }

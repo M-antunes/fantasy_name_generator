@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../../shared/themes/app_text_styles.dart';
-import '../combat_stats.dart';
+import '../../../widgets/gradient_label.dart';
 
 class WeaponTile extends StatelessWidget {
   final String type;
