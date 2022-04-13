@@ -281,4 +281,28 @@ class AbilityController {
     atrb.charisma = v5;
     return atrb;
   }
+
+  AtributeModel calculateAllModifiers(AtributeModel baseAtrb) {
+    var atributes = baseAtrb;
+    AtributeModel modAtrb = AtributeModel();
+    modAtrb.strength = calculateModifier(atributes.strength);
+    modAtrb.dexterity = calculateModifier(atributes.dexterity);
+    modAtrb.constitution = calculateModifier(atributes.constitution);
+    modAtrb.intelligence = calculateModifier(atributes.intelligence);
+    modAtrb.wisdom = calculateModifier(atributes.wisdom);
+    modAtrb.charisma = calculateModifier(atributes.charisma);
+    return modAtrb;
+  }
+
+  int calculateModifier(int baseValue) {
+    double doubleValue = baseValue.toDouble();
+    doubleValue = (doubleValue - 10) / 2;
+    if (baseValue <= 9 && baseValue >= 8) {
+      doubleValue = -1;
+    }
+    if (baseValue <= 7 && baseValue >= 6) {
+      doubleValue = -2;
+    }
+    return doubleValue.toInt();
+  }
 }

@@ -30,13 +30,14 @@ class StatsController with ChangeNotifier {
   var listOfWonderousItems = WonderousItemsData();
   var listOfEnchants = EnchantData();
   final _equip = EquipData();
-  var classData = ClassData();
+  var listOfClasses = ClassData();
   var listOfRaces = RaceData();
   var abilityCtrl = AbilityController();
   var magicGearCtrl = MagicGearController();
   var loot = LootController();
   var offense = OffenseController();
   var defense = DefenseController();
+  List<WonderousItemsModel> tomesAndManuals = [];
 
   int armorPrice = 0;
   int shieldPrice = 0;
@@ -101,7 +102,7 @@ class StatsController with ChangeNotifier {
           char.physicalStyle.name == "Marksman" ||
           char.physicalStyle.name == "Thrower") {
         char.charEquip.rangeWeapon = offense.gettingMainWeapon(
-            classData.physicalStyles,
+            listOfClasses.physicalStyles,
             char.physicalStyle.name,
             _equip.allWeapons,
             char.charClass.name);
@@ -109,7 +110,7 @@ class StatsController with ChangeNotifier {
             char.physicalStyle.name, _equip.allWeapons, char.charClass.name);
       } else {
         char.charEquip.meleeWeapon = offense.gettingMainWeapon(
-            classData.physicalStyles,
+            listOfClasses.physicalStyles,
             char.physicalStyle.name,
             _equip.allWeapons,
             char.charClass.name);
@@ -135,6 +136,7 @@ class StatsController with ChangeNotifier {
     calculateSpeed();
     generateAllAtributes();
     getAtrbBoostFromWonderousItem();
+    getTomesAndAMnuals();
     boostWithTomeOrManual();
     calculateAllModifiers();
     claculatingHitDefense();
@@ -245,19 +247,17 @@ class StatsController with ChangeNotifier {
   getCombatEquipPrices() {
     meleePrice = claculateMagicEquipPrice(char.charEquip.meleeWeapon!);
     rangePrice = claculateMagicEquipPrice(char.charEquip.rangeWeapon!);
-    armorPrice = shieldPrice = char.charEquip.shield != null
+    armorPrice = char.charEquip.armour != null
         ? ((claculateMagicEquipPrice(char.charEquip.armour!) +
-                        char.charEquip.armour!.price) /
-                    2)
-                .floor() +
-            150
+                    char.charEquip.armour!.price) /
+                2)
+            .floor()
         : 0;
     shieldPrice = char.charEquip.shield != null
         ? ((claculateMagicEquipPrice(char.charEquip.shield!) +
-                        char.charEquip.shield!.price) /
-                    2)
-                .floor() +
-            150
+                    char.charEquip.shield!.price) /
+                2)
+            .floor()
         : 0;
     notifyListeners();
   }
@@ -445,75 +445,87 @@ class StatsController with ChangeNotifier {
 
   //====================================================================================
   //Base Attack Bonus
-  var listOfClasses = ClassData();
 
   calculateBaseAttackBonus() {
-    var baseAttackBonus = 0;
-    var magicClasses = listOfClasses.allClasses
-        .where((element) => element.hitDice! < 7)
-        .toList();
-    var physicalClasses = listOfClasses.allClasses
-        .where((element) => element.hitDice! > 9)
-        .toList();
-    var mixedClasses = listOfClasses.allClasses
-        .where((element) => element.hitDice! == 8)
-        .toList();
-    var isMagicCl =
-        magicClasses.any((element) => element.name == char.charClass.name);
-    var isMixCl =
-        mixedClasses.any((element) => element.name == char.charClass.name);
-    var isPhysCl =
-        physicalClasses.any((element) => element.name == char.charClass.name);
-    if (isPhysCl) {
-      baseAttackBonus = char.charLevel;
-    }
-    if (isMagicCl) {
-      baseAttackBonus = char.charLevel;
-      baseAttackBonus = (baseAttackBonus / 2).floor();
-    }
-    if (isMixCl) {
-      baseAttackBonus = 0;
-      var level = char.charLevel;
-
-      if (level <= 4) {
-        baseAttackBonus = level - 1;
-      } else if (level >= 5 && level <= 8) {
-        baseAttackBonus = level - 2;
-      } else if (level >= 9 && level <= 12) {
-        baseAttackBonus = level - 3;
-      } else if (level >= 13 && level <= 16) {
-        baseAttackBonus = level - 4;
-      } else if (level >= 17 && level <= 20) {
-        baseAttackBonus = level - 5;
-      } else if (level >= 21 && level <= 25) {
-        baseAttackBonus = level - 6;
-      } else {
-        baseAttackBonus = level - 7;
-      }
-    }
-    char.combatStats.baseAttackBonus = baseAttackBonus;
+    char.combatStats.baseAttackBonus = offense.calculateBaseAttackBonus(
+        listOfClasses.allClasses, char.charClass.name, char.charLevel);
     notifyListeners();
   }
+  //   var baseAttackBonus = 0;
+  //   var magicClasses = listOfClasses.allClasses
+  //       .where((element) => element.hitDice! < 7)
+  //       .toList();
+  //   var physicalClasses = listOfClasses.allClasses
+  //       .where((element) => element.hitDice! > 9)
+  //       .toList();
+  //   var mixedClasses = listOfClasses.allClasses
+  //       .where((element) => element.hitDice! == 8)
+  //       .toList();
+  //   var isMagicCl =
+  //       magicClasses.any((element) => element.name == char.charClass.name);
+  //   var isMixCl =
+  //       mixedClasses.any((element) => element.name == char.charClass.name);
+  //   var isPhysCl =
+  //       physicalClasses.any((element) => element.name == char.charClass.name);
+  //   if (isPhysCl) {
+  //     baseAttackBonus = char.charLevel;
+  //   }
+  //   if (isMagicCl) {
+  //     baseAttackBonus = char.charLevel;
+  //     baseAttackBonus = (baseAttackBonus / 2).floor();
+  //   }
+  //   if (isMixCl) {
+  //     baseAttackBonus = 0;
+  //     var level = char.charLevel;
+
+  //     if (level <= 4) {
+  //       baseAttackBonus = level - 1;
+  //     } else if (level >= 5 && level <= 8) {
+  //       baseAttackBonus = level - 2;
+  //     } else if (level >= 9 && level <= 12) {
+  //       baseAttackBonus = level - 3;
+  //     } else if (level >= 13 && level <= 16) {
+  //       baseAttackBonus = level - 4;
+  //     } else if (level >= 17 && level <= 20) {
+  //       baseAttackBonus = level - 5;
+  //     } else if (level >= 21 && level <= 25) {
+  //       baseAttackBonus = level - 6;
+  //     } else {
+  //       baseAttackBonus = level - 7;
+  //     }
+  //   }
+  //   char.combatStats.baseAttackBonus = baseAttackBonus;
+  //   notifyListeners();
+  // }
 
 // ======================================================================================
   ///calculate characters speed
   calculateSpeed() {
-    var raceGotten = listOfRaces.races
-        .firstWhere((element) => element.name == char.charRace.name);
-    var baseSpeed = raceGotten.speed!;
-    if (char.charClass.name == "Barbarian" &&
-        (char.charEquip.armour!.type!.name == "Light" ||
-            char.charEquip.armour == null)) {
-      baseSpeed = baseSpeed + 10;
-    }
-    if (char.charClass.name == "Monk" && char.charLevel > 2) {
-      for (var i = 3; i <= char.charLevel; i = i + 3) {
-        baseSpeed = baseSpeed + 10;
-      }
-    }
-    char.charRace.speed = baseSpeed - char.charEquip.armour!.speedPenalty;
+    char.charRace.speed = offense.calculateSpeed(
+        listOfRaces.races,
+        char.charLevel,
+        char.charRace.name,
+        char.charClass.name,
+        char.charRace.speed!,
+        char.charEquip.armour!);
     notifyListeners();
   }
+  //   var raceGotten = listOfRaces.races
+  //       .firstWhere((element) => element.name == char.charRace.name);
+  //   var baseSpeed = raceGotten.speed!;
+  //   if (char.charClass.name == "Barbarian" &&
+  //       (char.charEquip.armour!.type!.name == "Light" ||
+  //           char.charEquip.armour == null)) {
+  //     baseSpeed = baseSpeed + 10;
+  //   }
+  //   if (char.charClass.name == "Monk" && char.charLevel > 2) {
+  //     for (var i = 3; i <= char.charLevel; i = i + 3) {
+  //       baseSpeed = baseSpeed + 10;
+  //     }
+  //   }
+  //   char.charRace.speed = baseSpeed - char.charEquip.armour!.speedPenalty;
+  //   notifyListeners();
+  // }
 
   // ===================================================================================
   //Traits part
@@ -618,7 +630,7 @@ class StatsController with ChangeNotifier {
       }
       charFeats = filteredFeats;
     } else if (feats.length == numberOfFeats) {
-      charFeats = filteredFeats;
+      charFeats.addAll(feats);
     } else {
       filteredFeats.addAll(feats);
       var featsLeft = numberOfFeats - feats.length;
@@ -631,7 +643,7 @@ class StatsController with ChangeNotifier {
         }
         filteredFeats.add(newItem);
       }
-      charFeats = filteredFeats;
+      charFeats.addAll(filteredFeats);
     }
     notifyListeners();
   }
@@ -690,428 +702,523 @@ class StatsController with ChangeNotifier {
   // Calculate boost to atributes by magic items
 
   getAtrbBoostFromWonderousItem() {
-    if (char.charEquip.wonderousItems == null) {
-      return;
-    }
-    if (char.charEquip.wonderousItems!.isEmpty) {
-      return;
-    }
-    //Boost in atribute from iounstone (mandatory)
-    if (char.charLevel > 11) {
-      switch (char.charClass.mainAtrb) {
-        case "strength":
-          char.baseAtributes.strength += 2;
-          break;
-        case "dexterity":
-          char.baseAtributes.dexterity += 2;
-          break;
-        case "intelligence":
-          char.baseAtributes.intelligence += 2;
-          break;
-        case "wisdom":
-          char.baseAtributes.wisdom += 2;
-          break;
-        default:
-          char.baseAtributes.charisma += 2;
-      }
-    }
-    List<WonderousItemsModel> list = char.charEquip.wonderousItems!;
-    AtributeModel mentalAtr = AtributeModel();
-    AtributeModel physicalAtr = AtributeModel();
-    List<int> boosts = [];
-    if (list.any((element) => element.type == "Belt")) {
-      if (char.charClass.mainAtrb == "strength") {
-        boosts = identifyBoost(list, "might", "perfection", "Belt");
-        if (boosts.length == 3) {
-          physicalAtr.strength = boosts.first;
-          physicalAtr.dexterity = boosts.first;
-          physicalAtr.constitution = boosts.first;
-        } else if (boosts.length == 2) {
-          physicalAtr.strength = boosts.first;
-          physicalAtr.constitution = boosts.first;
-        } else if (boosts.length == 1) {
-          physicalAtr.strength = boosts.first;
-        }
-      } else if (char.charClass.mainAtrb == "dexterity") {
-        boosts = identifyBoost(list, "might", "perfection", "Belt");
-        if (boosts.length == 3) {
-          physicalAtr.strength = boosts.first;
-          physicalAtr.dexterity = boosts.first;
-          physicalAtr.constitution = boosts.first;
-        } else if (boosts.length == 2) {
-          physicalAtr.dexterity = boosts.first;
-          physicalAtr.constitution = boosts.first;
-        } else if (boosts.length == 1) {
-          physicalAtr.dexterity = boosts.first;
-        }
-      } else {
-        boosts = identifyBoost(list, "might", "perfection", "Belt");
-        if (boosts.length == 3) {
-          physicalAtr.strength = boosts.first;
-          physicalAtr.dexterity = boosts.first;
-          physicalAtr.constitution = boosts.first;
-        } else if (boosts.length == 2) {
-          physicalAtr.dexterity = boosts.first;
-          physicalAtr.constitution = boosts.first;
-        } else if (boosts.length == 1) {
-          physicalAtr.constitution = boosts.first;
-        }
-      }
-    }
-    if (list.any((element) => element.type == "Headband")) {
-      if (char.charClass.mainAtrb == "intelligence") {
-        boosts = identifyBoost(list, "prowess", "superiority", "Headband");
-        if (boosts.length == 3) {
-          mentalAtr.intelligence = boosts.first;
-          mentalAtr.wisdom = boosts.first;
-          mentalAtr.charisma = boosts.first;
-        } else if (boosts.length == 2) {
-          mentalAtr.intelligence = boosts.first;
-          mentalAtr.charisma = boosts.first;
-        } else if (boosts.length == 1) {
-          mentalAtr.intelligence = boosts.first;
-        }
-      } else if (char.charClass.mainAtrb == "wisdom") {
-        boosts = identifyBoost(list, "prowess", "superiority", "Headband");
-        if (boosts.length == 3) {
-          mentalAtr.intelligence = boosts.first;
-          mentalAtr.wisdom = boosts.first;
-          mentalAtr.charisma = boosts.first;
-        } else if (boosts.length == 2) {
-          mentalAtr.intelligence = boosts.first;
-          mentalAtr.wisdom = boosts.first;
-        } else if (boosts.length == 1) {
-          mentalAtr.wisdom = boosts.first;
-        }
-      } else if (char.charClass.mainAtrb == "charisma") {
-        boosts = identifyBoost(list, "prowess", "superiority", "Headband");
-        if (boosts.length == 3) {
-          mentalAtr.intelligence = boosts.first;
-          mentalAtr.wisdom = boosts.first;
-          mentalAtr.charisma = boosts.first;
-        } else if (boosts.length == 2) {
-          mentalAtr.charisma = boosts.first;
-          mentalAtr.wisdom = boosts.first;
-        } else if (boosts.length == 1) {
-          mentalAtr.charisma = boosts.first;
-        }
-      } else {
-        boosts = identifyBoost(list, "prowess", "superiority", "Headband");
-        if (boosts.length == 3) {
-          mentalAtr.intelligence = boosts.first;
-          mentalAtr.wisdom = boosts.first;
-          mentalAtr.charisma = boosts.first;
-        } else if (boosts.length == 2) {
-          mentalAtr.intelligence = boosts.first;
-          mentalAtr.wisdom = boosts.first;
-        } else if (boosts.length == 1) {
-          mentalAtr.wisdom = boosts.first;
-        }
-      }
-    }
-    char.baseAtributes.strength += physicalAtr.strength;
-    char.baseAtributes.dexterity += physicalAtr.dexterity;
-    char.baseAtributes.constitution += physicalAtr.constitution;
-    char.baseAtributes.intelligence += mentalAtr.intelligence;
-    char.baseAtributes.wisdom += mentalAtr.wisdom;
-    char.baseAtributes.charisma += mentalAtr.charisma;
+    AtributeModel? boosts = magicGearCtrl.getAtrbBoostFromWonderousItem(
+        char.charEquip.wonderousItems!,
+        char.charLevel,
+        char.charClass.mainAtrb);
+    char.baseAtributes.strength += boosts!.strength;
+    char.baseAtributes.dexterity += boosts.dexterity;
+    char.baseAtributes.constitution += boosts.constitution;
+    char.baseAtributes.intelligence += boosts.intelligence;
+    char.baseAtributes.wisdom += boosts.wisdom;
+    char.baseAtributes.charisma += boosts.charisma;
     notifyListeners();
   }
 
-  identifyBoost(
-      List<WonderousItemsModel> list, String dual, String all, String type) {
-    WonderousItemsModel? boostyItem;
-    List<int> boosts = [];
-    for (var i = 0; i < list.length; i++) {
-      if (list[i].name!.contains(type)) {
-        boostyItem = list[i];
-        if (boostyItem.name!.contains(dual)) {
-          boosts.add(boostyItem.bonus!);
-          boosts.add(boostyItem.bonus!);
-        } else if (boostyItem.name!.contains(all)) {
-          boosts.add(boostyItem.bonus!);
-          boosts.add(boostyItem.bonus!);
-          boosts.add(boostyItem.bonus!);
-        } else {
-          boosts.add(boostyItem.bonus!);
-        }
-        return boosts;
-      }
-    }
+  getTomesAndAMnuals() {
+    tomesAndManuals = magicGearCtrl.getTomesOrManuals(
+        char.charLevel,
+        char.charClass.mainAtrb,
+        listOfWonderousItems.manualsAndTomes,
+        char.battleStyle.name);
+    notifyListeners();
   }
 
-  WonderousItemsModel findTomeOrManual(String atrb) {
-    List<WonderousItemsModel> list = listOfWonderousItems.manualsAndTomes
-        .where((element) =>
-            element.availability <= char.charLevel &&
-            element.description!.contains(atrb))
-        .toList();
-    return list.last;
-  }
-
-  List<WonderousItemsModel> tomesAndManuals = [];
   boostWithTomeOrManual() {
-    if (char.charLevel < 15) {
-      return;
-    }
-    List<WonderousItemsModel> boostBooks = [];
-    AtributeModel atribute = AtributeModel();
-    if (char.charLevel > 14 && char.charLevel < 18) {
-      boostBooks.add(findTomeOrManual(char.charClass.mainAtrb));
-      boostBooks.add(findTomeOrManual("constitution"));
-      tomesAndManuals.add(boostBooks.last);
-      atribute = bosstRightAtributeWithTomeOrManual(
-          [char.charClass.mainAtrb, "constitution"], boostBooks.last.bonus!, 0);
-    } else if (char.charLevel > 17 && char.charLevel < 21) {
-      boostBooks.add(findTomeOrManual(char.charClass.mainAtrb));
-      boostBooks.add(findTomeOrManual("constitution"));
-      if ((char.battleStyle.name == "Hybrid" ||
-              char.battleStyle.name == "Spellcaster") &&
-          char.charClass.mainAtrb != "dexterity") {
-        boostBooks.add(findTomeOrManual("dexterity"));
-        atribute = bosstRightAtributeWithTomeOrManual(
-            [char.charClass.mainAtrb, "constitution", "dexterity"],
-            boostBooks.last.bonus!,
-            0);
-        tomesAndManuals.add(boostBooks.last);
-      } else {
-        boostBooks.add(findTomeOrManual("wisdom"));
-        atribute = bosstRightAtributeWithTomeOrManual(
-            [char.charClass.mainAtrb, "constitution", "wisdom"],
-            boostBooks.last.bonus!,
-            0);
-        tomesAndManuals.addAll(boostBooks);
-      }
-    }
-    char.baseAtributes.strength += atribute.strength;
-    char.baseAtributes.dexterity += atribute.dexterity;
-    char.baseAtributes.constitution += atribute.constitution;
-    char.baseAtributes.intelligence += atribute.intelligence;
-    char.baseAtributes.wisdom += atribute.wisdom;
-    char.baseAtributes.charisma += atribute.charisma;
+    AtributeModel boosts = magicGearCtrl.boostWithTomeOrManual(
+        char.charLevel,
+        char.charClass.mainAtrb,
+        listOfWonderousItems.manualsAndTomes,
+        tomesAndManuals,
+        char.battleStyle.name);
+    char.baseAtributes.strength += boosts.strength;
+    char.baseAtributes.dexterity += boosts.dexterity;
+    char.baseAtributes.constitution += boosts.constitution;
+    char.baseAtributes.intelligence += boosts.intelligence;
+    char.baseAtributes.wisdom += boosts.wisdom;
+    char.baseAtributes.charisma += boosts.charisma;
     notifyListeners();
   }
+  //   if (char.charEquip.wonderousItems == null) {
+  //     return;
+  //   }
+  //   if (char.charEquip.wonderousItems!.isEmpty) {
+  //     return;
+  //   }
+  //   //Boost in atribute from iounstone (mandatory)
+  //   if (char.charLevel > 11) {
+  //     switch (char.charClass.mainAtrb) {
+  //       case "strength":
+  //         char.baseAtributes.strength += 2;
+  //         break;
+  //       case "dexterity":
+  //         char.baseAtributes.dexterity += 2;
+  //         break;
+  //       case "intelligence":
+  //         char.baseAtributes.intelligence += 2;
+  //         break;
+  //       case "wisdom":
+  //         char.baseAtributes.wisdom += 2;
+  //         break;
+  //       default:
+  //         char.baseAtributes.charisma += 2;
+  //     }
+  //   }
+  //   List<WonderousItemsModel> list = char.charEquip.wonderousItems!;
+  //   AtributeModel mentalAtr = AtributeModel();
+  //   AtributeModel physicalAtr = AtributeModel();
+  //   List<int> boosts = [];
+  //   if (list.any((element) => element.type == "Belt")) {
+  //     if (char.charClass.mainAtrb == "strength") {
+  //       boosts = identifyBoost(list, "might", "perfection", "Belt");
+  //       if (boosts.length == 3) {
+  //         physicalAtr.strength = boosts.first;
+  //         physicalAtr.dexterity = boosts.first;
+  //         physicalAtr.constitution = boosts.first;
+  //       } else if (boosts.length == 2) {
+  //         physicalAtr.strength = boosts.first;
+  //         physicalAtr.constitution = boosts.first;
+  //       } else if (boosts.length == 1) {
+  //         physicalAtr.strength = boosts.first;
+  //       }
+  //     } else if (char.charClass.mainAtrb == "dexterity") {
+  //       boosts = identifyBoost(list, "might", "perfection", "Belt");
+  //       if (boosts.length == 3) {
+  //         physicalAtr.strength = boosts.first;
+  //         physicalAtr.dexterity = boosts.first;
+  //         physicalAtr.constitution = boosts.first;
+  //       } else if (boosts.length == 2) {
+  //         physicalAtr.dexterity = boosts.first;
+  //         physicalAtr.constitution = boosts.first;
+  //       } else if (boosts.length == 1) {
+  //         physicalAtr.dexterity = boosts.first;
+  //       }
+  //     } else {
+  //       boosts = identifyBoost(list, "might", "perfection", "Belt");
+  //       if (boosts.length == 3) {
+  //         physicalAtr.strength = boosts.first;
+  //         physicalAtr.dexterity = boosts.first;
+  //         physicalAtr.constitution = boosts.first;
+  //       } else if (boosts.length == 2) {
+  //         physicalAtr.dexterity = boosts.first;
+  //         physicalAtr.constitution = boosts.first;
+  //       } else if (boosts.length == 1) {
+  //         physicalAtr.constitution = boosts.first;
+  //       }
+  //     }
+  //   }
+  //   if (list.any((element) => element.type == "Headband")) {
+  //     if (char.charClass.mainAtrb == "intelligence") {
+  //       boosts = identifyBoost(list, "prowess", "superiority", "Headband");
+  //       if (boosts.length == 3) {
+  //         mentalAtr.intelligence = boosts.first;
+  //         mentalAtr.wisdom = boosts.first;
+  //         mentalAtr.charisma = boosts.first;
+  //       } else if (boosts.length == 2) {
+  //         mentalAtr.intelligence = boosts.first;
+  //         mentalAtr.charisma = boosts.first;
+  //       } else if (boosts.length == 1) {
+  //         mentalAtr.intelligence = boosts.first;
+  //       }
+  //     } else if (char.charClass.mainAtrb == "wisdom") {
+  //       boosts = identifyBoost(list, "prowess", "superiority", "Headband");
+  //       if (boosts.length == 3) {
+  //         mentalAtr.intelligence = boosts.first;
+  //         mentalAtr.wisdom = boosts.first;
+  //         mentalAtr.charisma = boosts.first;
+  //       } else if (boosts.length == 2) {
+  //         mentalAtr.intelligence = boosts.first;
+  //         mentalAtr.wisdom = boosts.first;
+  //       } else if (boosts.length == 1) {
+  //         mentalAtr.wisdom = boosts.first;
+  //       }
+  //     } else if (char.charClass.mainAtrb == "charisma") {
+  //       boosts = identifyBoost(list, "prowess", "superiority", "Headband");
+  //       if (boosts.length == 3) {
+  //         mentalAtr.intelligence = boosts.first;
+  //         mentalAtr.wisdom = boosts.first;
+  //         mentalAtr.charisma = boosts.first;
+  //       } else if (boosts.length == 2) {
+  //         mentalAtr.charisma = boosts.first;
+  //         mentalAtr.wisdom = boosts.first;
+  //       } else if (boosts.length == 1) {
+  //         mentalAtr.charisma = boosts.first;
+  //       }
+  //     } else {
+  //       boosts = identifyBoost(list, "prowess", "superiority", "Headband");
+  //       if (boosts.length == 3) {
+  //         mentalAtr.intelligence = boosts.first;
+  //         mentalAtr.wisdom = boosts.first;
+  //         mentalAtr.charisma = boosts.first;
+  //       } else if (boosts.length == 2) {
+  //         mentalAtr.intelligence = boosts.first;
+  //         mentalAtr.wisdom = boosts.first;
+  //       } else if (boosts.length == 1) {
+  //         mentalAtr.wisdom = boosts.first;
+  //       }
+  //     }
+  //   }
+  //   char.baseAtributes.strength += physicalAtr.strength;
+  //   char.baseAtributes.dexterity += physicalAtr.dexterity;
+  //   char.baseAtributes.constitution += physicalAtr.constitution;
+  //   char.baseAtributes.intelligence += mentalAtr.intelligence;
+  //   char.baseAtributes.wisdom += mentalAtr.wisdom;
+  //   char.baseAtributes.charisma += mentalAtr.charisma;
+  //   notifyListeners();
+  // }
 
-  AtributeModel bosstRightAtributeWithTomeOrManual(
-      List<String> atrb, int boost, int noBoost) {
-    AtributeModel atribute = AtributeModel();
-    atribute.strength = atrb.contains("strength") ? boost : noBoost;
-    atribute.dexterity = atrb.contains("dexterity") ? boost : noBoost;
-    atribute.constitution = atrb.contains("constitution") ? boost : noBoost;
-    atribute.intelligence = atrb.contains("intelligence") ? boost : noBoost;
-    atribute.wisdom = atrb.contains("wisdom") ? boost : noBoost;
-    atribute.charisma = atrb.contains("charisma") ? boost : noBoost;
-    return atribute;
-  }
+  // identifyBoost(
+  //     List<WonderousItemsModel> list, String dual, String all, String type) {
+  //   WonderousItemsModel? boostyItem;
+  //   List<int> boosts = [];
+  //   for (var i = 0; i < list.length; i++) {
+  //     if (list[i].name!.contains(type)) {
+  //       boostyItem = list[i];
+  //       if (boostyItem.name!.contains(dual)) {
+  //         boosts.add(boostyItem.bonus!);
+  //         boosts.add(boostyItem.bonus!);
+  //       } else if (boostyItem.name!.contains(all)) {
+  //         boosts.add(boostyItem.bonus!);
+  //         boosts.add(boostyItem.bonus!);
+  //         boosts.add(boostyItem.bonus!);
+  //       } else {
+  //         boosts.add(boostyItem.bonus!);
+  //       }
+  //       return boosts;
+  //     }
+  //   }
+  // }
+
+  // WonderousItemsModel findTomeOrManual(String atrb) {
+  //   List<WonderousItemsModel> list = listOfWonderousItems.manualsAndTomes
+  //       .where((element) =>
+  //           element.availability <= char.charLevel &&
+  //           element.description!.contains(atrb))
+  //       .toList();
+  //   return list.last;
+  // }
+
+  // List<WonderousItemsModel> tomesAndManuals = [];
+  // boostWithTomeOrManual() {
+  //   if (char.charLevel < 15) {
+  //     return;
+  //   }
+  //   List<WonderousItemsModel> boostBooks = [];
+  //   AtributeModel atribute = AtributeModel();
+  //   if (char.charLevel > 14 && char.charLevel < 18) {
+  //     boostBooks.add(findTomeOrManual(char.charClass.mainAtrb));
+  //     boostBooks.add(findTomeOrManual("constitution"));
+  //     tomesAndManuals.add(boostBooks.last);
+  //     atribute = bosstRightAtributeWithTomeOrManual(
+  //         [char.charClass.mainAtrb, "constitution"], boostBooks.last.bonus!, 0);
+  //   } else if (char.charLevel > 17 && char.charLevel < 21) {
+  //     boostBooks.add(findTomeOrManual(char.charClass.mainAtrb));
+  //     boostBooks.add(findTomeOrManual("constitution"));
+  //     if ((char.battleStyle.name == "Hybrid" ||
+  //             char.battleStyle.name == "Spellcaster") &&
+  //         char.charClass.mainAtrb != "dexterity") {
+  //       boostBooks.add(findTomeOrManual("dexterity"));
+  //       atribute = bosstRightAtributeWithTomeOrManual(
+  //           [char.charClass.mainAtrb, "constitution", "dexterity"],
+  //           boostBooks.last.bonus!,
+  //           0);
+  //       tomesAndManuals.add(boostBooks.last);
+  //     } else {
+  //       boostBooks.add(findTomeOrManual("wisdom"));
+  //       atribute = bosstRightAtributeWithTomeOrManual(
+  //           [char.charClass.mainAtrb, "constitution", "wisdom"],
+  //           boostBooks.last.bonus!,
+  //           0);
+  //       tomesAndManuals.addAll(boostBooks);
+  //     }
+  //   }
+  //   char.baseAtributes.strength += atribute.strength;
+  //   char.baseAtributes.dexterity += atribute.dexterity;
+  //   char.baseAtributes.constitution += atribute.constitution;
+  //   char.baseAtributes.intelligence += atribute.intelligence;
+  //   char.baseAtributes.wisdom += atribute.wisdom;
+  //   char.baseAtributes.charisma += atribute.charisma;
+  //   notifyListeners();
+  // }
+
+  // AtributeModel bosstRightAtributeWithTomeOrManual(
+  //     List<String> atrb, int boost, int noBoost) {
+  //   AtributeModel atribute = AtributeModel();
+  //   atribute.strength = atrb.contains("strength") ? boost : noBoost;
+  //   atribute.dexterity = atrb.contains("dexterity") ? boost : noBoost;
+  //   atribute.constitution = atrb.contains("constitution") ? boost : noBoost;
+  //   atribute.intelligence = atrb.contains("intelligence") ? boost : noBoost;
+  //   atribute.wisdom = atrb.contains("wisdom") ? boost : noBoost;
+  //   atribute.charisma = atrb.contains("charisma") ? boost : noBoost;
+  //   return atribute;
+  // }
 
   //=====================================================================================
   // Modifier part
   calculateAllModifiers() {
-    var atributes = char.baseAtributes;
-    char.modAtributes.strength = calculateModifier(atributes.strength);
-    char.modAtributes.dexterity = calculateModifier(atributes.dexterity);
-    char.modAtributes.constitution = calculateModifier(atributes.constitution);
-    char.modAtributes.intelligence = calculateModifier(atributes.intelligence);
-    char.modAtributes.wisdom = calculateModifier(atributes.wisdom);
-    char.modAtributes.charisma = calculateModifier(atributes.charisma);
+    char.modAtributes = abilityCtrl.calculateAllModifiers(char.baseAtributes);
     notifyListeners();
   }
+  //   var atributes = char.baseAtributes;
+  //   char.modAtributes.strength = calculateModifier(atributes.strength);
+  //   char.modAtributes.dexterity = calculateModifier(atributes.dexterity);
+  //   char.modAtributes.constitution = calculateModifier(atributes.constitution);
+  //   char.modAtributes.intelligence = calculateModifier(atributes.intelligence);
+  //   char.modAtributes.wisdom = calculateModifier(atributes.wisdom);
+  //   char.modAtributes.charisma = calculateModifier(atributes.charisma);
+  //   notifyListeners();
+  // }
 
-  int calculateModifier(int baseValue) {
-    double doubleValue = baseValue.toDouble();
-    doubleValue = (doubleValue - 10) / 2;
-    if (baseValue <= 9 && baseValue >= 8) {
-      doubleValue = -1;
-    }
-    if (baseValue <= 7 && baseValue >= 6) {
-      doubleValue = -2;
-    }
-    return doubleValue.toInt();
-  }
+  // int calculateModifier(int baseValue) {
+  //   double doubleValue = baseValue.toDouble();
+  //   doubleValue = (doubleValue - 10) / 2;
+  //   if (baseValue <= 9 && baseValue >= 8) {
+  //     doubleValue = -1;
+  //   }
+  //   if (baseValue <= 7 && baseValue >= 6) {
+  //     doubleValue = -2;
+  //   }
+  //   return doubleValue.toInt();
+  // }
   //=====================================================================================
   // section for hit points generation
 
   generateHitPoints() {
-    var changeCharInfo = char;
-    var hitPoints =
-        changeCharInfo.charLevel * changeCharInfo.modAtributes.constitution;
-    var diceHitPoints = calculateHipPointsDicePerClass();
-    var toughness = charFeats.any((element) => element.traiName == "Toughness")
-        ? char.charLevel
-        : 0;
-    hitPoints += diceHitPoints + toughness;
-    char.hitPoints = hitPoints;
+    char.hitPoints = defense.generateHitPoints(char.charLevel,
+        char.modAtributes.constitution, charFeats, char.charClass.hitDice!);
     notifyListeners();
   }
 
-  int calculateHipPointsDicePerClass() {
-    var dice = char.charClass.hitDice;
-    var rollTimes = char.charLevel - 1;
-    var hitpoints = dice;
-    if (char.charLevel > 20 && char.charLevel < 26) {
-      dice = dice! - 3;
-      for (var i = 0; i < rollTimes; i++) {
-        var sum = rollingDice(dice) + 3;
-        hitpoints = hitpoints! + sum;
-      }
-    } else if (char.charLevel > 25) {
-      dice = dice! - 5;
-      for (var i = 0; i < rollTimes; i++) {
-        var sum = rollingDice(dice) + 5;
-        hitpoints = hitpoints! + sum;
-      }
-    } else {
-      for (var i = 0; i < rollTimes; i++) {
-        hitpoints = hitpoints! + rollingDice(dice!);
-      }
-    }
-    return hitpoints!;
-  }
+  //   var changeCharInfo = char;
+  //   var hitPoints =
+  //       changeCharInfo.charLevel * changeCharInfo.modAtributes.constitution;
+  //   var diceHitPoints = calculateHipPointsDicePerClass();
+  //   var toughness = charFeats.any((element) => element.traiName == "Toughness")
+  //       ? char.charLevel
+  //       : 0;
+  //   hitPoints += diceHitPoints + toughness;
+  //   char.hitPoints = hitPoints;
+  //   notifyListeners();
+  // }
+
+  // int calculateHipPointsDicePerClass() {
+  //   var dice = char.charClass.hitDice;
+  //   var rollTimes = char.charLevel - 1;
+  //   var hitpoints = dice;
+  //   if (char.charLevel > 20 && char.charLevel < 26) {
+  //     dice = dice! - 3;
+  //     for (var i = 0; i < rollTimes; i++) {
+  //       var sum = rollingDice(dice) + 3;
+  //       hitpoints = hitpoints! + sum;
+  //     }
+  //   } else if (char.charLevel > 25) {
+  //     dice = dice! - 5;
+  //     for (var i = 0; i < rollTimes; i++) {
+  //       var sum = rollingDice(dice) + 5;
+  //       hitpoints = hitpoints! + sum;
+  //     }
+  //   } else {
+  //     for (var i = 0; i < rollTimes; i++) {
+  //       hitpoints = hitpoints! + rollingDice(dice!);
+  //     }
+  //   }
+  //   return hitpoints!;
+  // }
 
 //=======================================================================================
 
 // section to generate Ac defense
-  int findBoostyItem(int level, List<WonderousItemsModel> list, String name) {
-    WonderousItemsModel itemBoost;
-    var boost = 0;
-    if (level > 2) {
-      itemBoost = list.firstWhere((element) => element.name!.contains(name));
-      boost = itemBoost.bonus!;
-    }
-    return boost;
-  }
+  // int findBoostyItem(int level, List<WonderousItemsModel> list, String name) {
+  //   WonderousItemsModel itemBoost;
+  //   var boost = 0;
+  //   if (level > 2) {
+  //     itemBoost = list.firstWhere((element) => element.name!.contains(name));
+  //     boost = itemBoost.bonus!;
+  //   }
+  //   return boost;
+  // }
 
   claculatingHitDefense() {
-    int armorDefense =
-        char.charEquip.armour != null ? char.charEquip.armour!.defenseBonus : 0;
-    int shieldDefense =
-        char.charEquip.shield != null ? char.charEquip.shield!.defenseBonus : 0;
-    int maxDex = char.charEquip.armour != null
-        ? char.charEquip.armour!.maxDexAllowed
-        : 0;
-    if (maxDex < char.modAtributes.dexterity) {
-      char.modAtributes.dexterity = maxDex;
-    }
-    int armorAc = 0;
-    int touch = 0;
-    int surprise = 0;
-    armorAc = 10 + armorDefense + shieldDefense + char.modAtributes.dexterity;
-    touch = 10 + char.modAtributes.dexterity;
-    surprise = 10 + armorDefense + shieldDefense;
-    if (char.charRace.size == "Small") {
-      armorAc++;
-      touch++;
-      surprise++;
-    }
-    if (char.charRace.name == "Monk") {
-      armorAc += char.modAtributes.wisdom;
-      touch += char.modAtributes.wisdom;
-      surprise += char.modAtributes.wisdom;
-    }
-    var ringBoost = findBoostyItem(
-        char.charLevel, char.charEquip.wonderousItems!, "Ring of protection");
-    armorAc += ringBoost;
-    touch += ringBoost;
-    surprise += ringBoost;
-    var amuletBoost = findBoostyItem(char.charLevel,
-        char.charEquip.wonderousItems!, "Amulet of natural armor");
-    armorAc += amuletBoost;
-    touch += amuletBoost;
-    surprise += amuletBoost;
-    if (char.charEquip.wonderousItems!
-        .any((element) => element.name == "Vambraces of defense")) {
-      armorAc++;
-      surprise++;
-    }
-
-    //boost from mandatory iounstone for AC
-    armorAc += char.charLevel > 9 ? 1 : 0;
-    surprise += char.charLevel > 9 ? 1 : 0;
-    touch += char.charLevel > 9 ? 1 : 0;
-
-    char.combatStats.armourClass = armorAc;
-    char.combatStats.armourTouch = touch;
-    char.combatStats.armourSurprise = surprise;
+    char.combatStats.armourClass = defense.claculatingHitDefense(
+        char.charEquip,
+        char.charLevel,
+        char.modAtributes.dexterity,
+        char.charRace,
+        char.charClass.name,
+        char.modAtributes.wisdom,
+        char.charEquip.wonderousItems!,
+        true,
+        false,
+        false);
+    char.combatStats.armourSurprise = defense.claculatingHitDefense(
+        char.charEquip,
+        char.charLevel,
+        char.modAtributes.dexterity,
+        char.charRace,
+        char.charClass.name,
+        char.modAtributes.wisdom,
+        char.charEquip.wonderousItems!,
+        false,
+        true,
+        false);
+    char.combatStats.armourTouch = defense.claculatingHitDefense(
+      char.charEquip,
+      char.charLevel,
+      char.modAtributes.dexterity,
+      char.charRace,
+      char.charClass.name,
+      char.modAtributes.wisdom,
+      char.charEquip.wonderousItems!,
+      false,
+      false,
+      true,
+    );
     notifyListeners();
   }
+
+  //   int armorDefense =
+  //       char.charEquip.armour != null ? char.charEquip.armour!.defenseBonus : 0;
+  //   int shieldDefense =
+  //       char.charEquip.shield != null ? char.charEquip.shield!.defenseBonus : 0;
+  //   int maxDex = char.charEquip.armour != null
+  //       ? char.charEquip.armour!.maxDexAllowed
+  //       : 0;
+  //   if (maxDex < char.modAtributes.dexterity) {
+  //     char.modAtributes.dexterity = maxDex;
+  //   }
+  //   int armorAc = 0;
+  //   int touch = 0;
+  //   int surprise = 0;
+  //   armorAc = 10 + armorDefense + shieldDefense + char.modAtributes.dexterity;
+  //   touch = 10 + char.modAtributes.dexterity;
+  //   surprise = 10 + armorDefense + shieldDefense;
+  //   if (char.charRace.size == "Small") {
+  //     armorAc++;
+  //     touch++;
+  //     surprise++;
+  //   }
+  //   if (char.charRace.name == "Monk") {
+  //     armorAc += char.modAtributes.wisdom;
+  //     touch += char.modAtributes.wisdom;
+  //     surprise += char.modAtributes.wisdom;
+  //   }
+  //   var ringBoost = findBoostyItem(
+  //       char.charLevel, char.charEquip.wonderousItems!, "Ring of protection");
+  //   armorAc += ringBoost;
+  //   touch += ringBoost;
+  //   surprise += ringBoost;
+  //   var amuletBoost = findBoostyItem(char.charLevel,
+  //       char.charEquip.wonderousItems!, "Amulet of natural armor");
+  //   armorAc += amuletBoost;
+  //   touch += amuletBoost;
+  //   surprise += amuletBoost;
+  //   if (char.charEquip.wonderousItems!
+  //       .any((element) => element.name == "Vambraces of defense")) {
+  //     armorAc++;
+  //     surprise++;
+  //   }
+
+  //   //boost from mandatory iounstone for AC
+  //   armorAc += char.charLevel > 9 ? 1 : 0;
+  //   surprise += char.charLevel > 9 ? 1 : 0;
+  //   touch += char.charLevel > 9 ? 1 : 0;
+
+  //   char.combatStats.armourClass = armorAc;
+  //   char.combatStats.armourTouch = touch;
+  //   char.combatStats.armourSurprise = surprise;
+  //   notifyListeners();
+  // }
 //======================================================================================
 // section to generate Ac defense
 
   calculateResistances() {
-    ResistanceModel resists = ResistanceModel();
-    int partialFort = 0;
-    int partialRef = 0;
-    int partialWill = 0;
-    var bonusAtLevel = listOfClasses.goodOrBad[char.charLevel - 1];
-    switch (char.charClass.resistUpgrade) {
-      case "fort":
-        partialFort = bonusAtLevel.good;
-        partialRef = bonusAtLevel.bad;
-        partialWill = bonusAtLevel.bad;
-        break;
-      case "ref":
-        partialFort = bonusAtLevel.bad;
-        partialRef = bonusAtLevel.good;
-        partialWill = bonusAtLevel.bad;
-        break;
-      case "will":
-        partialFort = bonusAtLevel.bad;
-        partialRef = bonusAtLevel.bad;
-        partialWill = bonusAtLevel.good;
-        break;
-      case "fort, will":
-        partialFort = bonusAtLevel.good;
-        partialRef = bonusAtLevel.bad;
-        partialWill = bonusAtLevel.good;
-        break;
-      case "fort, ref":
-        partialFort = bonusAtLevel.good;
-        partialRef = bonusAtLevel.good;
-        partialWill = bonusAtLevel.bad;
-        break;
-      case "ref, will":
-        partialFort = bonusAtLevel.bad;
-        partialRef = bonusAtLevel.good;
-        partialWill = bonusAtLevel.good;
-        break;
-      case "all":
-        partialFort = bonusAtLevel.good;
-        partialRef = bonusAtLevel.good;
-        partialWill = bonusAtLevel.good;
-        break;
-      default:
-    }
-    if (char.charRace.name == "Hafling") {
-      partialFort += 1;
-      partialRef += 1;
-      partialWill += 1;
-    }
-    if (char.charClass.name == "Paladin" ||
-        char.charClass.name == "Antipaladin") {
-      var caris = char.modAtributes.charisma;
-      partialFort += caris;
-      partialWill += caris;
-      partialRef += caris;
-    }
-    if (charFeats.any((element) => element.traiName == "Iron Will")) {
-      partialWill += 2;
-    }
-    if (charFeats.any((element) => element.traiName == "Great Fortitude")) {
-      partialFort += 2;
-    }
-    if (charFeats.any((element) => element.traiName == "Lightning Reflexes")) {
-      partialRef += 2;
-    }
-
-    var boost = findBoostyItem(
-        char.charLevel, char.charEquip.wonderousItems!, "Cloak of resistance");
-    resists.fortitude = partialFort + char.modAtributes.constitution + boost;
-    resists.reflex = partialRef + char.modAtributes.dexterity + boost;
-    resists.will = partialWill + char.modAtributes.wisdom + boost;
-
+    ResistanceModel resists = defense.calculateResistances(
+        listOfClasses.goodOrBad,
+        char.charLevel,
+        char.charClass.resistUpgrade!,
+        char.charRace.name,
+        char.charClass.name,
+        charFeats,
+        char.modAtributes,
+        char.charEquip.wonderousItems!);
     char.resistances = resists;
     notifyListeners();
   }
+
+  //   ResistanceModel resists = ResistanceModel();
+  //   int partialFort = 0;
+  //   int partialRef = 0;
+  //   int partialWill = 0;
+  //   var bonusAtLevel = listOfClasses.goodOrBad[char.charLevel - 1];
+  //   switch (char.charClass.resistUpgrade) {
+  //     case "fort":
+  //       partialFort = bonusAtLevel.good;
+  //       partialRef = bonusAtLevel.bad;
+  //       partialWill = bonusAtLevel.bad;
+  //       break;
+  //     case "ref":
+  //       partialFort = bonusAtLevel.bad;
+  //       partialRef = bonusAtLevel.good;
+  //       partialWill = bonusAtLevel.bad;
+  //       break;
+  //     case "will":
+  //       partialFort = bonusAtLevel.bad;
+  //       partialRef = bonusAtLevel.bad;
+  //       partialWill = bonusAtLevel.good;
+  //       break;
+  //     case "fort, will":
+  //       partialFort = bonusAtLevel.good;
+  //       partialRef = bonusAtLevel.bad;
+  //       partialWill = bonusAtLevel.good;
+  //       break;
+  //     case "fort, ref":
+  //       partialFort = bonusAtLevel.good;
+  //       partialRef = bonusAtLevel.good;
+  //       partialWill = bonusAtLevel.bad;
+  //       break;
+  //     case "ref, will":
+  //       partialFort = bonusAtLevel.bad;
+  //       partialRef = bonusAtLevel.good;
+  //       partialWill = bonusAtLevel.good;
+  //       break;
+  //     case "all":
+  //       partialFort = bonusAtLevel.good;
+  //       partialRef = bonusAtLevel.good;
+  //       partialWill = bonusAtLevel.good;
+  //       break;
+  //     default:
+  //   }
+  //   if (char.charRace.name == "Hafling") {
+  //     partialFort += 1;
+  //     partialRef += 1;
+  //     partialWill += 1;
+  //   }
+  //   if (char.charClass.name == "Paladin" ||
+  //       char.charClass.name == "Antipaladin") {
+  //     var caris = char.modAtributes.charisma;
+  //     partialFort += caris;
+  //     partialWill += caris;
+  //     partialRef += caris;
+  //   }
+  //   if (charFeats.any((element) => element.traiName == "Iron Will")) {
+  //     partialWill += 2;
+  //   }
+  //   if (charFeats.any((element) => element.traiName == "Great Fortitude")) {
+  //     partialFort += 2;
+  //   }
+  //   if (charFeats.any((element) => element.traiName == "Lightning Reflexes")) {
+  //     partialRef += 2;
+  //   }
+
+  //   var boost = findBoostyItem(
+  //       char.charLevel, char.charEquip.wonderousItems!, "Cloak of resistance");
+  //   resists.fortitude = partialFort + char.modAtributes.constitution + boost;
+  //   resists.reflex = partialRef + char.modAtributes.dexterity + boost;
+  //   resists.will = partialWill + char.modAtributes.wisdom + boost;
+
+  //   char.resistances = resists;
+  //   notifyListeners();
+  // }
 
 // ====================================================================================
 

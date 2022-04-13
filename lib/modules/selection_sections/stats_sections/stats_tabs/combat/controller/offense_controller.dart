@@ -1,10 +1,10 @@
 import 'package:fantasy_name_generator/models/equip_models/armor_model.dart';
 
+import '../../../../../../models/class_model.dart';
 import '../../../../../../models/equip_models/enchant_model.dart';
 import '../../../../../../models/equip_models/weapon_model.dart';
-import '../../../../../../models/key_value.model.dart';
 import '../../../../../../models/physical_style_model.dart';
-import '../../../../../../shared/data/enchant_data.dart';
+import '../../../../../../models/race_model.dart';
 import '../../../../../../shared/utils/utils.dart';
 
 class OffenseController {
@@ -185,13 +185,14 @@ class OffenseController {
       } else {
         rangeWeapon.enchantment = [enchantPowerLvs.first];
         if (rangeWeapon.enchantment != [] && level > 7) {
+          return rangeWeapon;
+        } else {
           rangeWeapon.enchantment = addOtherEnchantByChance(
               rangeWeapon.enchantment!, enchants, enchantPowerLvs);
           return rangeWeapon;
         }
       }
     }
-    return null;
   }
 
   List<EnchantModel> addOtherEnchantByChance(List<EnchantModel> weaponEnchants,
@@ -206,5 +207,60 @@ class OffenseController {
     } else {
       return weaponEnchants;
     }
+  }
+
+  int calculateSpeed(List<RaceModel> races, int level, String charRace,
+      String charClass, int speed, ArmorModel? armor) {
+    var raceGotten = races.firstWhere((element) => element.name == charRace);
+    var baseSpeed = raceGotten.speed!;
+    if (charClass == "Barbarian" && (armor!.type!.name == "Light")) {
+      baseSpeed = baseSpeed + 10;
+    }
+    if (charClass == "Monk" && level > 2) {
+      for (var i = 3; i <= level; i = i + 3) {
+        baseSpeed = baseSpeed + 10;
+      }
+    }
+    return speed = baseSpeed - armor!.speedPenalty;
+  }
+
+  int calculateBaseAttackBonus(
+      List<ClassModel> classes, String className, int charLevel) {
+    var baseAttackBonus = 0;
+    var magicClasses =
+        classes.where((element) => element.hitDice! < 7).toList();
+    var physicalClasses =
+        classes.where((element) => element.hitDice! > 9).toList();
+    var mixedClasses =
+        classes.where((element) => element.hitDice! == 8).toList();
+    var isMagicCl = magicClasses.any((element) => element.name == className);
+    var isMixCl = mixedClasses.any((element) => element.name == className);
+    var isPhysCl = physicalClasses.any((element) => element.name == className);
+    if (isPhysCl) {
+      baseAttackBonus = charLevel;
+    }
+    if (isMagicCl) {
+      baseAttackBonus = charLevel;
+      baseAttackBonus = (baseAttackBonus / 2).floor();
+    }
+    if (isMixCl) {
+      baseAttackBonus = 0;
+      if (charLevel <= 4) {
+        baseAttackBonus = charLevel - 1;
+      } else if (charLevel >= 5 && charLevel <= 8) {
+        baseAttackBonus = charLevel - 2;
+      } else if (charLevel >= 9 && charLevel <= 12) {
+        baseAttackBonus = charLevel - 3;
+      } else if (charLevel >= 13 && charLevel <= 16) {
+        baseAttackBonus = charLevel - 4;
+      } else if (charLevel >= 17 && charLevel <= 20) {
+        baseAttackBonus = charLevel - 5;
+      } else if (charLevel >= 21 && charLevel <= 25) {
+        baseAttackBonus = charLevel - 6;
+      } else {
+        baseAttackBonus = charLevel - 7;
+      }
+    }
+    return baseAttackBonus;
   }
 }

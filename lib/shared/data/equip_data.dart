@@ -1189,20 +1189,20 @@ class EquipData {
       wielding: "Range",
     ),
   ];
-  final noArmor = ArmorModel(
-      type: ArmorFamilyModel(
-          name: "Light",
-          isSelected: false,
-          picture: "assets/images/armors/none.svg"),
-      defenseBonus: 0,
-      maxDexAllowed: 99,
-      checkPenalty: 0,
-      speedPenalty: 0,
-      price: 0,
-      isSelected: false,
-      name: "No armor");
 
   final List<ArmorModel> allArmors = [
+    ArmorModel(
+        type: ArmorFamilyModel(
+            name: "Light",
+            isSelected: false,
+            picture: "assets/images/armors/none.svg"),
+        defenseBonus: 0,
+        maxDexAllowed: 99,
+        checkPenalty: 0,
+        speedPenalty: 0,
+        price: 0,
+        isSelected: false,
+        name: "No armor"),
     ArmorModel(
         type: ArmorFamilyModel(
             name: "Light",

@@ -1,3 +1,5 @@
+import 'package:fantasy_name_generator/models/base_atribute_model.dart';
+
 import '../../../../../../models/equip_models/wonderous_items_model.dart';
 import '../../../../../../shared/utils/utils.dart';
 
@@ -54,18 +56,27 @@ class MagicGearController {
       List<WonderousItemsModel> list, int level) {
     var random = generateRandom(13);
     List<WonderousItemsModel> itemList = [];
+    List<WonderousItemsModel> possibleItems = list;
     if (level == 1) {
       itemList = [];
     } else if (level > 2 && level < 8) {
-      itemList.isEmpty ? itemList = [] : itemList.add(list[0]);
+      itemList = [possibleItems[0]];
     } else if (level > 7 && level < 11) {
-      random < 6 ? itemList.add(list[0]) : itemList.add(list[1]);
+      random < 6
+          ? itemList = [possibleItems[0]]
+          : itemList = [possibleItems[1]];
     } else if (level > 10 && level < 14) {
-      random < 6 ? itemList.add(list[1]) : itemList.add(list[2]);
+      random < 6
+          ? itemList = [possibleItems[1]]
+          : itemList = [possibleItems[2]];
     } else if (level > 13 && level < 17) {
-      random < 6 ? itemList.add(list[2]) : itemList.add(list[3]);
+      random < 6
+          ? itemList = [possibleItems[2]]
+          : itemList = [possibleItems[3]];
     } else {
-      random < 5 ? itemList.add(list[3]) : itemList.add(list[4]);
+      random < 5
+          ? itemList = [possibleItems[3]]
+          : itemList = [possibleItems[4]];
     }
     return itemList;
   }
@@ -265,5 +276,233 @@ class MagicGearController {
     var random = generateRandom(11);
     random > 6 ? wonderousItems.add(list.last) : wonderousItems.add(list.first);
     return wonderousItems;
+  }
+
+  AtributeModel? getAtrbBoostFromWonderousItem(
+      List<WonderousItemsModel>? charItems, int level, String mainAtrb) {
+    AtributeModel atrbBoost = AtributeModel();
+    if (charItems == null) {
+      return atrbBoost;
+    }
+    if (charItems.isEmpty) {
+      return atrbBoost;
+    }
+    //Boost in atribute from iounstone (mandatory)
+    if (level > 11) {
+      switch (mainAtrb) {
+        case "strength":
+          atrbBoost.strength += 2;
+          break;
+        case "dexterity":
+          atrbBoost.dexterity += 2;
+          break;
+        case "intelligence":
+          atrbBoost.intelligence += 2;
+          break;
+        case "wisdom":
+          atrbBoost.wisdom += 2;
+          break;
+        default:
+          atrbBoost.charisma += 2;
+      }
+    }
+    List<WonderousItemsModel> list = charItems;
+    AtributeModel mentalAtr = AtributeModel();
+    AtributeModel physicalAtr = AtributeModel();
+    List<int> boosts = [];
+    if (list.any((element) => element.type == "Belt")) {
+      if (mainAtrb == "strength") {
+        boosts = identifyBoost(list, "might", "perfection", "Belt");
+        if (boosts.length == 3) {
+          physicalAtr.strength = boosts.first;
+          physicalAtr.dexterity = boosts.first;
+          physicalAtr.constitution = boosts.first;
+        } else if (boosts.length == 2) {
+          physicalAtr.strength = boosts.first;
+          physicalAtr.constitution = boosts.first;
+        } else if (boosts.length == 1) {
+          physicalAtr.strength = boosts.first;
+        }
+      } else if (mainAtrb == "dexterity") {
+        boosts = identifyBoost(list, "might", "perfection", "Belt");
+        if (boosts.length == 3) {
+          physicalAtr.strength = boosts.first;
+          physicalAtr.dexterity = boosts.first;
+          physicalAtr.constitution = boosts.first;
+        } else if (boosts.length == 2) {
+          physicalAtr.dexterity = boosts.first;
+          physicalAtr.constitution = boosts.first;
+        } else if (boosts.length == 1) {
+          physicalAtr.dexterity = boosts.first;
+        }
+      } else {
+        boosts = identifyBoost(list, "might", "perfection", "Belt");
+        if (boosts.length == 3) {
+          physicalAtr.strength = boosts.first;
+          physicalAtr.dexterity = boosts.first;
+          physicalAtr.constitution = boosts.first;
+        } else if (boosts.length == 2) {
+          physicalAtr.dexterity = boosts.first;
+          physicalAtr.constitution = boosts.first;
+        } else if (boosts.length == 1) {
+          physicalAtr.constitution = boosts.first;
+        }
+      }
+    }
+    if (list.any((element) => element.type == "Headband")) {
+      if (mainAtrb == "intelligence") {
+        boosts = identifyBoost(list, "prowess", "superiority", "Headband");
+        if (boosts.length == 3) {
+          mentalAtr.intelligence = boosts.first;
+          mentalAtr.wisdom = boosts.first;
+          mentalAtr.charisma = boosts.first;
+        } else if (boosts.length == 2) {
+          mentalAtr.intelligence = boosts.first;
+          mentalAtr.charisma = boosts.first;
+        } else if (boosts.length == 1) {
+          mentalAtr.intelligence = boosts.first;
+        }
+      } else if (mainAtrb == "wisdom") {
+        boosts = identifyBoost(list, "prowess", "superiority", "Headband");
+        if (boosts.length == 3) {
+          mentalAtr.intelligence = boosts.first;
+          mentalAtr.wisdom = boosts.first;
+          mentalAtr.charisma = boosts.first;
+        } else if (boosts.length == 2) {
+          mentalAtr.intelligence = boosts.first;
+          mentalAtr.wisdom = boosts.first;
+        } else if (boosts.length == 1) {
+          mentalAtr.wisdom = boosts.first;
+        }
+      } else if (mainAtrb == "charisma") {
+        boosts = identifyBoost(list, "prowess", "superiority", "Headband");
+        if (boosts.length == 3) {
+          mentalAtr.intelligence = boosts.first;
+          mentalAtr.wisdom = boosts.first;
+          mentalAtr.charisma = boosts.first;
+        } else if (boosts.length == 2) {
+          mentalAtr.charisma = boosts.first;
+          mentalAtr.wisdom = boosts.first;
+        } else if (boosts.length == 1) {
+          mentalAtr.charisma = boosts.first;
+        }
+      } else {
+        boosts = identifyBoost(list, "prowess", "superiority", "Headband");
+        if (boosts.length == 3) {
+          mentalAtr.intelligence = boosts.first;
+          mentalAtr.wisdom = boosts.first;
+          mentalAtr.charisma = boosts.first;
+        } else if (boosts.length == 2) {
+          mentalAtr.intelligence = boosts.first;
+          mentalAtr.wisdom = boosts.first;
+        } else if (boosts.length == 1) {
+          mentalAtr.wisdom = boosts.first;
+        }
+      }
+    }
+    atrbBoost.strength += physicalAtr.strength;
+    atrbBoost.dexterity += physicalAtr.dexterity;
+    atrbBoost.constitution += physicalAtr.constitution;
+    atrbBoost.intelligence += mentalAtr.intelligence;
+    atrbBoost.wisdom += mentalAtr.wisdom;
+    atrbBoost.charisma += mentalAtr.charisma;
+    return atrbBoost;
+  }
+
+  identifyBoost(
+      List<WonderousItemsModel> list, String dual, String all, String type) {
+    WonderousItemsModel? boostyItem;
+    List<int> boosts = [];
+    for (var i = 0; i < list.length; i++) {
+      if (list[i].name!.contains(type)) {
+        boostyItem = list[i];
+        if (boostyItem.name!.contains(dual)) {
+          boosts.add(boostyItem.bonus!);
+          boosts.add(boostyItem.bonus!);
+        } else if (boostyItem.name!.contains(all)) {
+          boosts.add(boostyItem.bonus!);
+          boosts.add(boostyItem.bonus!);
+          boosts.add(boostyItem.bonus!);
+        } else {
+          boosts.add(boostyItem.bonus!);
+        }
+        return boosts;
+      }
+    }
+  }
+
+  WonderousItemsModel findTomeOrManual(
+      String atrb, List<WonderousItemsModel> books, int level) {
+    List<WonderousItemsModel> list = books
+        .where((element) =>
+            element.availability <= level &&
+            element.description!.contains(atrb))
+        .toList();
+    return list.last;
+  }
+
+  List<WonderousItemsModel> getTomesOrManuals(int level, String mainAtrb,
+      List<WonderousItemsModel> books, String battleStyle) {
+    List<WonderousItemsModel> tomesAndManuals = [];
+    if (level < 15) {
+      return [];
+    }
+    List<WonderousItemsModel> boostBooks = [];
+    if (level > 14 && level < 18) {
+      boostBooks.add(findTomeOrManual(mainAtrb, books, level));
+      boostBooks.add(findTomeOrManual("constitution", books, level));
+      tomesAndManuals.addAll(boostBooks);
+    } else if (level > 17 && level < 21) {
+      boostBooks.add(findTomeOrManual(mainAtrb, books, level));
+      boostBooks.add(findTomeOrManual("constitution", books, level));
+      if ((battleStyle == "Hybrid" || battleStyle == "Spellcaster") &&
+          mainAtrb != "dexterity") {
+        boostBooks.add(findTomeOrManual("dexterity", books, level));
+        tomesAndManuals.add(boostBooks.last);
+      } else {
+        boostBooks.add(findTomeOrManual("wisdom", books, level));
+        tomesAndManuals.addAll(boostBooks);
+      }
+    }
+    return tomesAndManuals;
+  }
+
+  AtributeModel boostWithTomeOrManual(
+      int level,
+      String mainAtrb,
+      List<WonderousItemsModel> books,
+      List<WonderousItemsModel> charBooks,
+      String battleStyle) {
+    AtributeModel atribute = AtributeModel();
+    if (level < 15) {
+      return atribute;
+    }
+    List<WonderousItemsModel> boostBooks = charBooks;
+    if (level > 14 && level < 18) {
+      atribute = bosstRightAtributeWithTomeOrManual(
+          [mainAtrb, "constitution"], boostBooks.last.bonus!, 0);
+    } else if (level > 17 && level < 21) {
+      if ((battleStyle == "Hybrid" || battleStyle == "Spellcaster") &&
+          mainAtrb != "dexterity") {
+        atribute = bosstRightAtributeWithTomeOrManual(
+            [mainAtrb, "constitution", "dexterity"], boostBooks.last.bonus!, 0);
+      } else {
+        atribute = bosstRightAtributeWithTomeOrManual(
+            [mainAtrb, "constitution", "wisdom"], boostBooks.last.bonus!, 0);
+      }
+    }
+    return atribute;
+  }
+
+  AtributeModel bosstRightAtributeWithTomeOrManual(
+      List<String> atrb, int boost, int noBoost) {
+    AtributeModel atribute = AtributeModel();
+    atribute.strength = atrb.contains("strength") ? boost : noBoost;
+    atribute.dexterity = atrb.contains("dexterity") ? boost : noBoost;
+    atribute.constitution = atrb.contains("constitution") ? boost : noBoost;
+    atribute.intelligence = atrb.contains("intelligence") ? boost : noBoost;
+    atribute.wisdom = atrb.contains("wisdom") ? boost : noBoost;
+    atribute.charisma = atrb.contains("charisma") ? boost : noBoost;
+    return atribute;
   }
 }
