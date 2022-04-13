@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:fantasy_name_generator/controllers/stats_controller.dart';
-import 'package:fantasy_name_generator/modules/selection_sections/stats_sections/widgets/atribute_division.dart';
 import 'package:fantasy_name_generator/shared/constants/phone_sizes.dart';
 
+import 'widget/skill_row_label_widget.dart';
 import 'widget/skill_row_widget.dart';
 
 class SkillStats extends StatelessWidget {
@@ -14,14 +14,14 @@ class SkillStats extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<StatsController>(builder: (context, state, child) {
-      return ListView(
-        physics: const BouncingScrollPhysics(),
+      return Column(
         children: [
-          const AtributeDivision(label: "Skills"),
+          SizedBox(height: deviceHeight! * 0.005),
+          const AppHorizontalLine(),
+          SizedBox(height: deviceHeight! * 0.004),
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 8.0),
-            child: SkillRowWidget(
-              isNotLabel: false,
+            child: SkillRowLabelWidget(
               bonus: "Bonus",
               skillName: "Skill name",
               atrb: "Atrbt",
@@ -31,19 +31,32 @@ class SkillStats extends StatelessWidget {
           ),
           const AppHorizontalLine(),
           SizedBox(height: deviceHeight! * 0.004),
-          ListView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: 8,
-              itemBuilder: (context, index) {
-                return SkillRowWidget(
-                  bonus: "0",
-                  skillName: "Example of skill",
-                  atrb: "dex",
-                  pointAdded: "0",
-                  armorPenalty: "0",
-                );
-              })
+          SizedBox(
+            height: deviceHeight! * 0.48,
+            child: ListView(
+              physics: const BouncingScrollPhysics(),
+              children: [
+                ListView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: state.charSkills.length,
+                    itemBuilder: (context, index) {
+                      var skill = state.charSkills[index];
+                      return SkillRowWidget(
+                        bonus: "${skill.finalValue}",
+                        skillName: skill.name,
+                        atrb: skill.atributeUsed,
+                        atrbValue: skill.atrbValue,
+                        pointAdded: "${skill.pointsAdded}",
+                        armorPenalty: skill.checkPenalty > 0
+                            ? "-${skill.checkPenalty}"
+                            : "  0",
+                        classSkill: skill.initialClassSkill,
+                      );
+                    }),
+              ],
+            ),
+          ),
         ],
       );
     });

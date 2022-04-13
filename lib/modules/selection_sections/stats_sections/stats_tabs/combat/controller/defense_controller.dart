@@ -144,6 +144,7 @@ class DefenseController {
       String className,
       int wis,
       List<WonderousItemsModel> list,
+      List<TraitModel> charFeats,
       bool isAc,
       isSur,
       isTch) {
@@ -172,6 +173,10 @@ class DefenseController {
       touch += wis;
       surprise += wis;
     }
+    var dodge = charFeats.any((element) => element.traiName == "Dodge") ? 1 : 0;
+    armorAc += dodge;
+    touch += dodge;
+    surprise += dodge;
     var ringBoost = findBoostyItem(level, list, "Ring of protection");
     armorAc += ringBoost;
     touch += ringBoost;

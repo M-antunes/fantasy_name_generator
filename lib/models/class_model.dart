@@ -19,6 +19,7 @@ class ClassModel {
   final List<TraitModel>? traits;
   final List<SpecialsModel>? speacials;
   final String specialName;
+  final int skillRankPerLevel;
   ClassModel({
     required this.name,
     required this.isSelected,
@@ -33,6 +34,7 @@ class ClassModel {
     this.traits = const [],
     this.speacials = const [],
     this.specialName = "",
+    required this.skillRankPerLevel,
   });
 
   ClassModel copyWith({
@@ -49,6 +51,7 @@ class ClassModel {
     List<TraitModel>? traits,
     List<SpecialsModel>? speacials,
     String? specialName,
+    int? skillRankPerLevel,
   }) {
     return ClassModel(
       name: name ?? this.name,
@@ -64,6 +67,7 @@ class ClassModel {
       traits: traits ?? this.traits,
       speacials: speacials ?? this.speacials,
       specialName: specialName ?? this.specialName,
+      skillRankPerLevel: skillRankPerLevel ?? this.skillRankPerLevel,
     );
   }
 
@@ -82,6 +86,7 @@ class ClassModel {
       'traits': traits?.map((x) => x.toMap()).toList(),
       'speacials': speacials?.map((x) => x.toMap()).toList(),
       'specialName': specialName,
+      'skillRankPerLevel': skillRankPerLevel,
     };
   }
 
@@ -106,6 +111,7 @@ class ClassModel {
               map['speacials']?.map((x) => SpecialsModel.fromMap(x)))
           : null,
       specialName: map['specialName'] ?? '',
+      skillRankPerLevel: map['skillRankPerLevel']?.toInt() ?? 0,
     );
   }
 
@@ -116,7 +122,7 @@ class ClassModel {
 
   @override
   String toString() {
-    return 'ClassModel(name: $name, isSelected: $isSelected, mainAtrb: $mainAtrb, hitDice: $hitDice, resistUpgrade: $resistUpgrade, description: $description, classIcon: $classIcon, combatStyle: $combatStyle, forbidenArmorType: $forbidenArmorType, permittedAligments: $permittedAligments, traits: $traits, speacials: $speacials, specialName: $specialName)';
+    return 'ClassModel(name: $name, isSelected: $isSelected, mainAtrb: $mainAtrb, hitDice: $hitDice, resistUpgrade: $resistUpgrade, description: $description, classIcon: $classIcon, combatStyle: $combatStyle, forbidenArmorType: $forbidenArmorType, permittedAligments: $permittedAligments, traits: $traits, speacials: $speacials, specialName: $specialName, skillRankPerLevel: $skillRankPerLevel)';
   }
 
   @override
@@ -136,7 +142,8 @@ class ClassModel {
         listEquals(other.permittedAligments, permittedAligments) &&
         listEquals(other.traits, traits) &&
         listEquals(other.speacials, speacials) &&
-        other.specialName == specialName;
+        other.specialName == specialName &&
+        other.skillRankPerLevel == skillRankPerLevel;
   }
 
   @override
@@ -153,6 +160,7 @@ class ClassModel {
         permittedAligments.hashCode ^
         traits.hashCode ^
         speacials.hashCode ^
-        specialName.hashCode;
+        specialName.hashCode ^
+        skillRankPerLevel.hashCode;
   }
 }

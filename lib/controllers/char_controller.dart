@@ -219,6 +219,7 @@ class CharController extends ChangeNotifier {
     tempClassForSwitching = charClass;
     notifyListeners();
   }
+
 // ====================================================================================
 
 // Functions related to the Character Alignment

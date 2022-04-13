@@ -1,3 +1,4 @@
+import 'package:fantasy_name_generator/models/base_atribute_model.dart';
 import 'package:fantasy_name_generator/models/equip_models/armor_model.dart';
 
 import '../../../../../../models/class_model.dart';
@@ -5,12 +6,11 @@ import '../../../../../../models/equip_models/enchant_model.dart';
 import '../../../../../../models/equip_models/weapon_model.dart';
 import '../../../../../../models/physical_style_model.dart';
 import '../../../../../../models/race_model.dart';
+import '../../../../../../models/traits_model.dart';
+import '../../../../../../shared/data/race_data.dart';
 import '../../../../../../shared/utils/utils.dart';
 
 class OffenseController {
-  int meleePrice = 0;
-  int rangePrice = 0;
-
   sortingWeapons(PhysicalStyleModel style, List<WeaponModel> allWeapons,
       String className) {
     List<WeaponModel> list = allWeapons
@@ -262,5 +262,149 @@ class OffenseController {
       }
     }
     return baseAttackBonus;
+  }
+
+  int calculateCombatManeuvers(int bba, AtributeModel atrb, String race,
+      List<TraitModel> charFeats, int level, bool isCmb) {
+    var bAttackBonus = bba;
+    var atributes = atrb;
+    var cmb = 0;
+    var cmd = 0;
+    charFeats.any((element) => element.traiName == "Agile Maneuvers")
+        ? cmb = bAttackBonus + atributes.dexterity
+        : cmb = bAttackBonus + atributes.strength;
+    charFeats.any((element) => element.traiName == "Defensive Combat Training")
+        ? cmd = bAttackBonus + level + atributes.dexterity + 10
+        : cmd = bAttackBonus + atributes.strength + atributes.dexterity + 10;
+    RaceModel? charRace;
+    var races = RaceData();
+    charRace = races.races.firstWhere((element) => element.name == race);
+    if (charRace.size == "Small") {
+      cmb -= 1;
+      cmd -= 1;
+    }
+    if (isCmb) {
+      return cmb;
+    } else {
+      return cmd;
+    }
+  }
+
+  int gettingInitiative(List<TraitModel> charFeats, int dex) {
+    //Reactionary points
+    int init = 2;
+    init = charFeats.any((element) => element.traiName == "Initiative")
+        ? init += 4
+        : init;
+    init += dex;
+    return init;
+  }
+
+  int boostWeaponWithFeat(int melee, int range, String physical) {
+    if (physical != "Bowman" ||
+        physical != "Marksman" ||
+        physical != "Thrower") {
+      return melee;
+    } else {
+      return range;
+    }
+  }
+
+  calculatingPhysicalAttack(
+      String mainAtrb,
+      AtributeModel atrb,
+      int charBba,
+      List<TraitModel> charFeats,
+      String physical,
+      int level,
+      int enchantPowerMelee,
+      int enchantPowerRange,
+      bool isMelee) {
+    String meleeAtk = "";
+    int meleeAtkNum = 0;
+    String rangeAtk = "";
+    int rangeAtkNum = 0;
+    int strOrWis = mainAtrb == "wisdom" ? atrb.wisdom : atrb.strength;
+    int bba = charBba;
+    if (charFeats.any((element) => element.traiName == "Weapon Finesse")) {
+      meleeAtkNum += atrb.dexterity + bba;
+    } else {
+      meleeAtkNum += strOrWis + bba;
+    }
+    rangeAtkNum += atrb.dexterity + bba;
+    if (level == 3 || level == 4) {
+      meleeAtkNum++;
+      rangeAtkNum++;
+    } else if (level > 4) {
+      meleeAtkNum += enchantPowerMelee;
+      rangeAtkNum += enchantPowerRange;
+    }
+    if (charFeats.any((element) => element.traiName == "Weapon Focus")) {
+      meleeAtkNum += boostWeaponWithFeat(1, 0, physical);
+      rangeAtkNum += boostWeaponWithFeat(0, 1, physical);
+    }
+    if (charFeats
+        .any((element) => element.traiName == "Greater Weapon Focus")) {
+      meleeAtkNum += boostWeaponWithFeat(1, 0, physical);
+      rangeAtkNum += boostWeaponWithFeat(0, 1, physical);
+    }
+    if (bba < 6) {
+      meleeAtk = "+$meleeAtkNum";
+      rangeAtk = "+$rangeAtkNum";
+    } else if (bba > 5 && bba < 11) {
+      meleeAtk = "+$meleeAtkNum / +${meleeAtkNum - 5}";
+      rangeAtk = "+$rangeAtkNum / +${rangeAtkNum - 5}";
+    } else if (bba > 10 && bba < 16) {
+      meleeAtk = "+$meleeAtkNum / +${meleeAtkNum - 5} / +${meleeAtkNum - 10}";
+      rangeAtk = "+$rangeAtkNum / +${rangeAtkNum - 5} / +${rangeAtkNum - 10}";
+    } else {
+      meleeAtk =
+          "+$meleeAtkNum / +${meleeAtkNum - 5} / +${meleeAtkNum - 10} / +${meleeAtkNum - 15}";
+      rangeAtk =
+          "+$rangeAtkNum / +${rangeAtkNum - 5} / +${rangeAtkNum - 10} / +${rangeAtkNum - 15}";
+    }
+    if (isMelee) {
+      return meleeAtk;
+    } else {
+      return rangeAtk;
+    }
+  }
+
+  calculatingPhysicalDamage(
+      String mainAtrb,
+      AtributeModel atrb,
+      List<TraitModel> charFeats,
+      String physical,
+      int level,
+      int enchantPowerMelee,
+      int enchantPowerRange,
+      bool isMelee) {
+    int meleeDamage = 0;
+    int rangeDamage = 0;
+    if (level > 4) {
+      meleeDamage += atrb.strength + enchantPowerMelee;
+      rangeDamage += atrb.strength + enchantPowerRange;
+    } else {
+      meleeDamage += atrb.strength;
+      rangeDamage += atrb.strength;
+    }
+    if (physical == "Berserker") {
+      meleeDamage = (meleeDamage * 1.5).floor();
+    }
+    if (charFeats
+        .any((element) => element.traiName == "Weapon Specialization")) {
+      meleeDamage += boostWeaponWithFeat(2, 0, physical);
+      rangeDamage += boostWeaponWithFeat(0, 2, physical);
+    }
+    if (charFeats.any(
+        (element) => element.traiName == "Greater Weapon Specialization")) {
+      meleeDamage += boostWeaponWithFeat(2, 0, physical);
+      rangeDamage += boostWeaponWithFeat(0, 2, physical);
+    }
+    if (isMelee) {
+      return "$meleeDamage";
+    } else {
+      return "$rangeDamage";
+    }
   }
 }

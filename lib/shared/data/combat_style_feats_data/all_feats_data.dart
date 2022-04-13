@@ -198,5 +198,19 @@ class AllFeatsData {
       traiDescription: "+1 dodge bonus to AC",
       isSelected: false,
     ),
+    TraitModel(
+      traiName: "Agile Maneuvers",
+      levelAcquired: 1,
+      traiDescription:
+          "You add your Dexterity bonus to your base attack bonus and size bonus when determining your Combat Maneuver Bonus instead of your Strength bonus.",
+      isSelected: false,
+    ),
+    TraitModel(
+      traiName: "Defensive Combat Training",
+      levelAcquired: 1,
+      traiDescription:
+          "You treat your total Hit Dice as your base attack bonus when calculating your Combat Maneuver Defense.",
+      isSelected: false,
+    ),
   ];
 }

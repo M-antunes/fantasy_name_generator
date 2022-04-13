@@ -278,8 +278,11 @@ class MagicGearController {
     return wonderousItems;
   }
 
-  AtributeModel? getAtrbBoostFromWonderousItem(
-      List<WonderousItemsModel>? charItems, int level, String mainAtrb) {
+  AtributeModel getAtrbBoostFromWonderousItem(
+      List<WonderousItemsModel>? charItems,
+      int level,
+      String mainAtrb,
+      AtributeModel charAtrb) {
     AtributeModel atrbBoost = AtributeModel();
     if (charItems == null) {
       return atrbBoost;
@@ -400,13 +403,13 @@ class MagicGearController {
         }
       }
     }
-    atrbBoost.strength += physicalAtr.strength;
-    atrbBoost.dexterity += physicalAtr.dexterity;
-    atrbBoost.constitution += physicalAtr.constitution;
-    atrbBoost.intelligence += mentalAtr.intelligence;
-    atrbBoost.wisdom += mentalAtr.wisdom;
-    atrbBoost.charisma += mentalAtr.charisma;
-    return atrbBoost;
+    charAtrb.strength += physicalAtr.strength;
+    charAtrb.dexterity += physicalAtr.dexterity;
+    charAtrb.constitution += physicalAtr.constitution;
+    charAtrb.intelligence += mentalAtr.intelligence;
+    charAtrb.wisdom += mentalAtr.wisdom;
+    charAtrb.charisma += mentalAtr.charisma;
+    return charAtrb;
   }
 
   identifyBoost(
@@ -472,10 +475,11 @@ class MagicGearController {
       String mainAtrb,
       List<WonderousItemsModel> books,
       List<WonderousItemsModel> charBooks,
-      String battleStyle) {
+      String battleStyle,
+      AtributeModel charAtrb) {
     AtributeModel atribute = AtributeModel();
     if (level < 15) {
-      return atribute;
+      return charAtrb;
     }
     List<WonderousItemsModel> boostBooks = charBooks;
     if (level > 14 && level < 18) {
@@ -491,7 +495,13 @@ class MagicGearController {
             [mainAtrb, "constitution", "wisdom"], boostBooks.last.bonus!, 0);
       }
     }
-    return atribute;
+    charAtrb.strength += atribute.strength;
+    charAtrb.dexterity += atribute.dexterity;
+    charAtrb.constitution += atribute.constitution;
+    charAtrb.intelligence += atribute.intelligence;
+    charAtrb.wisdom += atribute.wisdom;
+    charAtrb.charisma += atribute.charisma;
+    return charAtrb;
   }
 
   AtributeModel bosstRightAtributeWithTomeOrManual(

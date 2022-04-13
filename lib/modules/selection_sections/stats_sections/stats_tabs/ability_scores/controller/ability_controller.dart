@@ -305,4 +305,32 @@ class AbilityController {
     }
     return doubleValue.toInt();
   }
+
+  AtributeModel addUpAtributeValues(int level, String className, String race,
+      String mainAtrb, String physicalStyle) {
+    AtributeModel atrbByDice = AtributeModel();
+    AtributeModel atrbByRace = AtributeModel();
+    AtributeModel atrbByLevel = AtributeModel();
+    AtributeModel charAtrb = AtributeModel();
+    atrbByDice =
+        generateAllAtributes(level, className, physicalStyle, atrbByDice);
+    atrbByRace = ajustStatsToRace(race, mainAtrb, atrbByRace);
+    atrbByLevel = ajustStatsToLevel(atrbByLevel, level, mainAtrb);
+    charAtrb.strength =
+        atrbByDice.strength + atrbByRace.strength + atrbByLevel.strength;
+    charAtrb.dexterity =
+        atrbByDice.dexterity + atrbByRace.dexterity + atrbByLevel.dexterity;
+    charAtrb.constitution = atrbByDice.constitution +
+        atrbByRace.constitution +
+        atrbByLevel.constitution;
+    charAtrb.intelligence = atrbByDice.intelligence +
+        atrbByRace.intelligence +
+        atrbByLevel.intelligence;
+    charAtrb.wisdom =
+        atrbByDice.wisdom + atrbByRace.wisdom + atrbByLevel.wisdom;
+    charAtrb.charisma =
+        atrbByDice.charisma + atrbByRace.charisma + atrbByLevel.charisma;
+
+    return charAtrb;
+  }
 }

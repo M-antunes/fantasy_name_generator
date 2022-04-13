@@ -3,6 +3,7 @@ import 'package:fantasy_name_generator/models/combat_model.dart';
 import 'package:fantasy_name_generator/models/equip_models/armor_model.dart';
 import 'package:fantasy_name_generator/models/equip_models/loot_model.dart';
 import 'package:fantasy_name_generator/models/resistance_model.dart';
+import 'package:fantasy_name_generator/models/skill_model.dart';
 import 'package:fantasy_name_generator/modules/selection_sections/stats_sections/stats_tabs/loot/controller/loot_controller.dart';
 import 'package:fantasy_name_generator/shared/data/class_data.dart';
 import 'package:fantasy_name_generator/shared/data/equip_data.dart';
@@ -22,6 +23,7 @@ import '../shared/data/combat_style_feats_data/all_feats_data.dart';
 import '../shared/data/combat_style_feats_data/readied_feats_data.dart';
 import '../shared/data/enchant_data.dart';
 import '../shared/data/race_data.dart';
+import '../shared/data/skill_data.dart';
 import '../shared/data/wonderous_items_data.dart';
 import '../shared/utils/utils.dart';
 
@@ -32,12 +34,14 @@ class StatsController with ChangeNotifier {
   final _equip = EquipData();
   var listOfClasses = ClassData();
   var listOfRaces = RaceData();
+  var skillData = SkillData();
   var abilityCtrl = AbilityController();
   var magicGearCtrl = MagicGearController();
   var loot = LootController();
   var offense = OffenseController();
   var defense = DefenseController();
   List<WonderousItemsModel> tomesAndManuals = [];
+  List<SkillModel> charSkills = [];
 
   int armorPrice = 0;
   int shieldPrice = 0;
@@ -86,6 +90,8 @@ class StatsController with ChangeNotifier {
     charFeats = [];
     charLoot = LootModel();
     tomesAndManuals = [];
+    charSkills = [];
+
     notifyListeners();
   }
 
@@ -145,7 +151,7 @@ class StatsController with ChangeNotifier {
     gettingInitiative();
     calculateCombatManeuvers();
     calculatingPhysicalAttackAndDamage();
-
+    calculateClassSkills();
     notifyListeners();
   }
 
@@ -672,29 +678,12 @@ class StatsController with ChangeNotifier {
 // Section for generation of basic atributes
 
   generateAllAtributes() {
-    AtributeModel atrbByDice = AtributeModel();
-    AtributeModel atrbByRace = AtributeModel();
-    AtributeModel atrbByLevel = AtributeModel();
-    atrbByDice = abilityCtrl.generateAllAtributes(char.charLevel,
-        char.charClass.name, char.charClass.combatStyle, atrbByDice);
-    atrbByRace = abilityCtrl.ajustStatsToRace(
-        char.charRace.name, char.charClass.mainAtrb, atrbByRace);
-    atrbByLevel = abilityCtrl.ajustStatsToLevel(
-        atrbByLevel, char.charLevel, char.charClass.mainAtrb);
-    char.baseAtributes.strength +=
-        atrbByLevel.strength + atrbByRace.strength + atrbByDice.strength;
-    char.baseAtributes.dexterity +=
-        atrbByLevel.dexterity + atrbByRace.dexterity + atrbByDice.dexterity;
-    char.baseAtributes.constitution += atrbByLevel.constitution +
-        atrbByRace.constitution +
-        atrbByDice.constitution;
-    char.baseAtributes.intelligence += atrbByLevel.intelligence +
-        atrbByRace.intelligence +
-        atrbByDice.intelligence;
-    char.baseAtributes.wisdom +=
-        atrbByLevel.wisdom + atrbByRace.wisdom + atrbByDice.wisdom;
-    char.baseAtributes.charisma +=
-        atrbByLevel.charisma + atrbByRace.charisma + atrbByDice.charisma;
+    char.baseAtributes = abilityCtrl.addUpAtributeValues(
+        char.charLevel,
+        char.charClass.name,
+        char.charRace.name,
+        char.charClass.mainAtrb,
+        char.charClass.combatStyle);
     notifyListeners();
   }
 
@@ -702,16 +691,12 @@ class StatsController with ChangeNotifier {
   // Calculate boost to atributes by magic items
 
   getAtrbBoostFromWonderousItem() {
-    AtributeModel? boosts = magicGearCtrl.getAtrbBoostFromWonderousItem(
-        char.charEquip.wonderousItems!,
-        char.charLevel,
-        char.charClass.mainAtrb);
-    char.baseAtributes.strength += boosts!.strength;
-    char.baseAtributes.dexterity += boosts.dexterity;
-    char.baseAtributes.constitution += boosts.constitution;
-    char.baseAtributes.intelligence += boosts.intelligence;
-    char.baseAtributes.wisdom += boosts.wisdom;
-    char.baseAtributes.charisma += boosts.charisma;
+    char.baseAtributes = magicGearCtrl.getAtrbBoostFromWonderousItem(
+      char.charEquip.wonderousItems!,
+      char.charLevel,
+      char.charClass.mainAtrb,
+      char.baseAtributes,
+    );
     notifyListeners();
   }
 
@@ -725,18 +710,13 @@ class StatsController with ChangeNotifier {
   }
 
   boostWithTomeOrManual() {
-    AtributeModel boosts = magicGearCtrl.boostWithTomeOrManual(
+    char.baseAtributes = magicGearCtrl.boostWithTomeOrManual(
         char.charLevel,
         char.charClass.mainAtrb,
         listOfWonderousItems.manualsAndTomes,
         tomesAndManuals,
-        char.battleStyle.name);
-    char.baseAtributes.strength += boosts.strength;
-    char.baseAtributes.dexterity += boosts.dexterity;
-    char.baseAtributes.constitution += boosts.constitution;
-    char.baseAtributes.intelligence += boosts.intelligence;
-    char.baseAtributes.wisdom += boosts.wisdom;
-    char.baseAtributes.charisma += boosts.charisma;
+        char.battleStyle.name,
+        char.baseAtributes);
     notifyListeners();
   }
   //   if (char.charEquip.wonderousItems == null) {
@@ -1047,6 +1027,7 @@ class StatsController with ChangeNotifier {
         char.charClass.name,
         char.modAtributes.wisdom,
         char.charEquip.wonderousItems!,
+        charFeats,
         true,
         false,
         false);
@@ -1058,6 +1039,7 @@ class StatsController with ChangeNotifier {
         char.charClass.name,
         char.modAtributes.wisdom,
         char.charEquip.wonderousItems!,
+        charFeats,
         false,
         true,
         false);
@@ -1069,6 +1051,7 @@ class StatsController with ChangeNotifier {
       char.charClass.name,
       char.modAtributes.wisdom,
       char.charEquip.wonderousItems!,
+      charFeats,
       false,
       false,
       true,
@@ -1225,123 +1208,267 @@ class StatsController with ChangeNotifier {
 // section to generate combat manouver modifiers
 
   calculateCombatManeuvers() {
-    var bAttackBonus = char.combatStats.baseAttackBonus;
-    var atributes = char.modAtributes;
-    var cmb = 0;
-    var cmd = 0;
-    cmb = bAttackBonus! + atributes.strength;
-    cmd = bAttackBonus + atributes.strength + atributes.dexterity + 10;
-    if (char.charRace.size == "Small") {
-      cmb -= 1;
-      cmd -= 1;
-    }
-    char.combatStats.combatManeuverBonus = cmb;
-    char.combatStats.combatManeuverDefense = cmd;
+    char.combatStats.combatManeuverBonus = offense.calculateCombatManeuvers(
+        char.combatStats.baseAttackBonus!,
+        char.modAtributes,
+        char.charRace.name,
+        charFeats,
+        char.charLevel,
+        true);
+    char.combatStats.combatManeuverDefense = offense.calculateCombatManeuvers(
+        char.combatStats.baseAttackBonus!,
+        char.modAtributes,
+        char.charRace.name,
+        charFeats,
+        char.charLevel,
+        false);
     notifyListeners();
   }
+  //   var bAttackBonus = char.combatStats.baseAttackBonus;
+  //   var atributes = char.modAtributes;
+  //   var cmb = 0;
+  //   var cmd = 0;
+  //   cmb = bAttackBonus! + atributes.strength;
+  //   cmd = bAttackBonus + atributes.strength + atributes.dexterity + 10;
+  //   if (char.charRace.size == "Small") {
+  //     cmb -= 1;
+  //     cmd -= 1;
+  //   }
+  //   char.combatStats.combatManeuverBonus = cmb;
+  //   char.combatStats.combatManeuverDefense = cmd;
+  //   notifyListeners();
+  // }
 // ====================================================================================
 
 // section to generate Initiative
 
   gettingInitiative() {
-    //Reactionary points
-    int init = 2;
-    init = char.feats.any((element) => element.traiName == "Initiative")
-        ? init += 4
-        : init;
-    init += char.modAtributes.dexterity;
-    char.combatStats.initiative = init;
+    char.combatStats.initiative =
+        offense.gettingInitiative(charFeats, char.modAtributes.dexterity);
     notifyListeners();
   }
+  //   //Reactionary points
+  //   int init = 2;
+  //   init = char.feats.any((element) => element.traiName == "Initiative")
+  //       ? init += 4
+  //       : init;
+  //   init += char.modAtributes.dexterity;
+  //   char.combatStats.initiative = init;
+  //   notifyListeners();
+  // }
 
   //=====================================================================================
   // Section for calculating Attack and Damage
 
-  int boostWeaponWithFeat(int melee, int range) {
-    if (char.physicalStyle.name != "Bowman" ||
-        char.physicalStyle.name != "Marksman" ||
-        char.physicalStyle.name != "Thrower") {
-      return melee;
-    } else {
-      return range;
-    }
-  }
+  // int boostWeaponWithFeat(int melee, int range) {
+  //   if (char.physicalStyle.name != "Bowman" ||
+  //       char.physicalStyle.name != "Marksman" ||
+  //       char.physicalStyle.name != "Thrower") {
+  //     return melee;
+  //   } else {
+  //     return range;
+  //   }
+  // }
 
   calculatingPhysicalAttackAndDamage() {
-    String meleeAtk = "";
-    int meleeAtkNum = 0;
-    String rangeAtk = "";
-    int rangeAtkNum = 0;
-    int strOrWis = char.charClass.mainAtrb == "wisdom"
-        ? char.modAtributes.wisdom
-        : char.modAtributes.strength;
-    int bba = char.combatStats.baseAttackBonus!;
-    if (charFeats.any((element) => element.traiName == "Weapon Finesse")) {
-      meleeAtkNum += char.modAtributes.dexterity + bba;
-    } else {
-      meleeAtkNum += strOrWis + bba;
+    char.combatStats.meleeAttack = offense.calculatingPhysicalAttack(
+        char.charClass.mainAtrb,
+        char.modAtributes,
+        char.combatStats.baseAttackBonus!,
+        charFeats,
+        char.physicalStyle.name,
+        char.charLevel,
+        char.charEquip.meleeWeapon!.enchantment![0].power,
+        char.charEquip.rangeWeapon!.enchantment![0].power,
+        true);
+    char.combatStats.rangeAttack = offense.calculatingPhysicalAttack(
+        char.charClass.mainAtrb,
+        char.modAtributes,
+        char.combatStats.baseAttackBonus!,
+        charFeats,
+        char.physicalStyle.name,
+        char.charLevel,
+        char.charEquip.meleeWeapon!.enchantment![0].power,
+        char.charEquip.rangeWeapon!.enchantment![0].power,
+        false);
+    char.combatStats.meleeDamage = offense.calculatingPhysicalDamage(
+        char.charClass.mainAtrb,
+        char.modAtributes,
+        charFeats,
+        char.physicalStyle.name,
+        char.charLevel,
+        char.charEquip.meleeWeapon!.enchantment![0].power,
+        char.charEquip.rangeWeapon!.enchantment![0].power,
+        true);
+    char.combatStats.rangeDamage = offense.calculatingPhysicalDamage(
+        char.charClass.mainAtrb,
+        char.modAtributes,
+        charFeats,
+        char.physicalStyle.name,
+        char.charLevel,
+        char.charEquip.meleeWeapon!.enchantment![0].power,
+        char.charEquip.rangeWeapon!.enchantment![0].power,
+        false);
+  }
+  //   String meleeAtk = "";
+  //   int meleeAtkNum = 0;
+  //   String rangeAtk = "";
+  //   int rangeAtkNum = 0;
+  //   int strOrWis = char.charClass.mainAtrb == "wisdom"
+  //       ? char.modAtributes.wisdom
+  //       : char.modAtributes.strength;
+  //   int bba = char.combatStats.baseAttackBonus!;
+  //   if (charFeats.any((element) => element.traiName == "Weapon Finesse")) {
+  //     meleeAtkNum += char.modAtributes.dexterity + bba;
+  //   } else {
+  //     meleeAtkNum += strOrWis + bba;
+  //   }
+  //   rangeAtkNum += char.modAtributes.dexterity + bba;
+  //   if (char.charLevel == 3 || char.charLevel == 4) {
+  //     meleeAtkNum++;
+  //     rangeAtkNum++;
+  //   } else if (char.charLevel > 4) {
+  //     meleeAtkNum += char.charEquip.meleeWeapon!.enchantment![0].power;
+  //     rangeAtkNum += char.charEquip.rangeWeapon!.enchantment![0].power;
+  //   }
+  //   if (charFeats.any((element) => element.traiName == "Weapon Focus")) {
+  //     meleeAtkNum += boostWeaponWithFeat(1, 0);
+  //     rangeAtkNum += boostWeaponWithFeat(0, 1);
+  //   }
+  //   if (charFeats
+  //       .any((element) => element.traiName == "Greater Weapon Focus")) {
+  //     meleeAtkNum += boostWeaponWithFeat(1, 0);
+  //     rangeAtkNum += boostWeaponWithFeat(0, 1);
+  //   }
+
+  //   if (bba < 6) {
+  //     meleeAtk = "+$meleeAtkNum";
+  //     rangeAtk = "+$rangeAtkNum";
+  //   } else if (bba > 5 && bba < 11) {
+  //     meleeAtk = "+$meleeAtkNum / +${meleeAtkNum - 5}";
+  //     rangeAtk = "+$rangeAtkNum / +${rangeAtkNum - 5}";
+  //   } else if (bba > 10 && bba < 16) {
+  //     meleeAtk = "+$meleeAtkNum / +${meleeAtkNum - 5} / +${meleeAtkNum - 10}";
+  //     rangeAtk = "+$rangeAtkNum / +${rangeAtkNum - 5} / +${rangeAtkNum - 10}";
+  //   } else {
+  //     meleeAtk =
+  //         "+$meleeAtkNum / +${meleeAtkNum - 5} / +${meleeAtkNum - 10} / +${meleeAtkNum - 15}";
+  //     rangeAtk =
+  //         "+$rangeAtkNum / +${rangeAtkNum - 5} / +${rangeAtkNum - 10} / +${rangeAtkNum - 15}";
+  //   }
+  //   int meleeDamage = 0;
+  //   int rangeDamage = 0;
+  //   if (char.charLevel > 4) {
+  //     meleeDamage += char.modAtributes.strength +
+  //         char.charEquip.meleeWeapon!.enchantment![0].power;
+  //     rangeDamage += char.modAtributes.strength +
+  //         char.charEquip.rangeWeapon!.enchantment![0].power;
+  //   } else {
+  //     meleeDamage += char.modAtributes.strength;
+  //     rangeDamage += char.modAtributes.strength;
+  //   }
+  //   if (char.physicalStyle.name == "Berserker") {
+  //     meleeDamage = (meleeDamage * 1.5).floor();
+  //   }
+  //   if (charFeats
+  //       .any((element) => element.traiName == "Weapon Specialization")) {
+  //     meleeDamage += boostWeaponWithFeat(2, 0);
+  //     rangeDamage += boostWeaponWithFeat(0, 2);
+  //   }
+  //   if (charFeats.any(
+  //       (element) => element.traiName == "Greater Weapon Specialization")) {
+  //     meleeDamage += boostWeaponWithFeat(2, 0);
+  //     rangeDamage += boostWeaponWithFeat(0, 2);
+  //   }
+  //   char.combatStats.meleeAttack = meleeAtk;
+  //   char.combatStats.rangeAttack = rangeAtk;
+  //   char.combatStats.meleeDamage = "$meleeDamage";
+  //   char.combatStats.rangeDamage = "$rangeDamage";
+  //   notifyListeners();
+  // }
+
+  calculateClassSkills() {
+    List<SkillModel> charSkillList = skillData.skills;
+    for (var i in charSkillList) {
+      i.finalValue = 0;
+      i.atrbValue = 0;
+      i.checkPenalty = 0;
+      i.pointsAdded = 0;
     }
-    rangeAtkNum += char.modAtributes.dexterity + bba;
-    if (char.charLevel == 3 || char.charLevel == 4) {
-      meleeAtkNum++;
-      rangeAtkNum++;
-    } else if (char.charLevel > 4) {
-      meleeAtkNum += char.charEquip.meleeWeapon!.enchantment![0].power;
-      rangeAtkNum += char.charEquip.rangeWeapon!.enchantment![0].power;
+    List<SkillModel> classSkills = charSkillList
+        .where(
+            (element) => element.skillOfClasses.contains(char.charClass.name))
+        .toList();
+    for (var i in classSkills) {
+      i.initialClassSkill = true;
     }
-    if (charFeats.any((element) => element.traiName == "Weapon Focus")) {
-      meleeAtkNum += boostWeaponWithFeat(1, 0);
-      rangeAtkNum += boostWeaponWithFeat(0, 1);
+    int skillRankPerLevel =
+        char.charClass.skillRankPerLevel + char.modAtributes.intelligence;
+    int maxSkills = skillRankPerLevel * char.charLevel;
+    int unUsedRankPoints = 0;
+    for (var i = 0; i < maxSkills; i++) {
+      var random = generateRandom(classSkills.length);
+      classSkills[random].pointsAdded++;
     }
-    if (charFeats
-        .any((element) => element.traiName == "Greater Weapon Focus")) {
-      meleeAtkNum += boostWeaponWithFeat(1, 0);
-      rangeAtkNum += boostWeaponWithFeat(0, 1);
+    for (var i = 0; i < classSkills.length; i++) {
+      if (classSkills[i].pointsAdded > char.charLevel) {
+        unUsedRankPoints += classSkills[i].pointsAdded - char.charLevel;
+      }
     }
 
-    if (bba < 6) {
-      meleeAtk = "+$meleeAtkNum";
-      rangeAtk = "+$rangeAtkNum";
-    } else if (bba > 5 && bba < 11) {
-      meleeAtk = "+$meleeAtkNum / +${meleeAtkNum - 5}";
-      rangeAtk = "+$rangeAtkNum / +${rangeAtkNum - 5}";
-    } else if (bba > 10 && bba < 16) {
-      meleeAtk = "+$meleeAtkNum / +${meleeAtkNum - 5} / +${meleeAtkNum - 10}";
-      rangeAtk = "+$rangeAtkNum / +${rangeAtkNum - 5} / +${rangeAtkNum - 10}";
-    } else {
-      meleeAtk =
-          "+$meleeAtkNum / +${meleeAtkNum - 5} / +${meleeAtkNum - 10} / +${meleeAtkNum - 15}";
-      rangeAtk =
-          "+$rangeAtkNum / +${rangeAtkNum - 5} / +${rangeAtkNum - 10} / +${rangeAtkNum - 15}";
+    charSkillList.removeWhere(
+        (element) => element.skillOfClasses.contains(char.charClass.name));
+    if (unUsedRankPoints > 0) {
+      for (var j = 0; j < maxSkills; j++) {
+        var random = generateRandom(charSkillList.length);
+        if (charSkillList[random].pointsAdded >= char.charLevel) {
+          charSkillList[random].pointsAdded = char.charLevel;
+          maxSkills++;
+        }
+        charSkillList[random].pointsAdded++;
+        maxSkills <= 0 ? 0 : maxSkills--;
+      }
     }
-    int meleeDamage = 0;
-    int rangeDamage = 0;
-    if (char.charLevel > 4) {
-      meleeDamage += char.modAtributes.strength +
-          char.charEquip.meleeWeapon!.enchantment![0].power;
-      rangeDamage += char.modAtributes.strength +
-          char.charEquip.rangeWeapon!.enchantment![0].power;
-    } else {
-      meleeDamage += char.modAtributes.strength;
-      rangeDamage += char.modAtributes.strength;
+    for (var j = 0; j < classSkills.length; j++) {
+      classSkills[j].pointsAdded + 3;
     }
-    if (char.physicalStyle.name == "Berserker") {
-      meleeDamage = (meleeDamage * 1.5).floor();
+    charSkillList.addAll(classSkills);
+    charSkillList.sort((a, b) => a.name.compareTo(b.name));
+
+    for (var i in charSkillList) {
+      switch (i.atributeUsed) {
+        case "strength":
+          i.finalValue += i.pointsAdded + char.modAtributes.strength;
+          i.atrbValue += char.modAtributes.strength;
+          break;
+        case "dexterity":
+          i.finalValue += i.pointsAdded + char.modAtributes.dexterity;
+          i.atrbValue += char.modAtributes.dexterity;
+          break;
+        case "intelligence":
+          i.finalValue += i.pointsAdded + char.modAtributes.intelligence;
+          i.atrbValue += char.modAtributes.intelligence;
+          break;
+        case "wisdom":
+          i.finalValue += i.pointsAdded + char.modAtributes.wisdom;
+          i.atrbValue += char.modAtributes.wisdom;
+          break;
+        default:
+          i.finalValue += i.pointsAdded + char.modAtributes.charisma;
+          i.atrbValue += char.modAtributes.charisma;
+      }
     }
-    if (charFeats
-        .any((element) => element.traiName == "Weapon Specialization")) {
-      meleeDamage += boostWeaponWithFeat(2, 0);
-      rangeDamage += boostWeaponWithFeat(0, 2);
+    int penalty =
+        char.charEquip.armour != null ? char.charEquip.armour!.checkPenalty : 0;
+    penalty +=
+        char.charEquip.shield != null ? char.charEquip.shield!.checkPenalty : 0;
+
+    for (var i
+        in charSkillList.where((element) => element.hasPenalty == true)) {
+      i.checkPenalty = penalty;
+      i.finalValue - penalty;
     }
-    if (charFeats.any(
-        (element) => element.traiName == "Greater Weapon Specialization")) {
-      meleeDamage += boostWeaponWithFeat(2, 0);
-      rangeDamage += boostWeaponWithFeat(0, 2);
-    }
-    char.combatStats.meleeAttack = meleeAtk;
-    char.combatStats.rangeAttack = rangeAtk;
-    char.combatStats.meleeDamage = "$meleeDamage";
-    char.combatStats.rangeDamage = "$rangeDamage";
+    charSkills = charSkillList;
     notifyListeners();
   }
 }

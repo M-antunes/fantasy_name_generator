@@ -40,6 +40,7 @@ class DefaultCharModelData {
     baseAtributes: AtributeModel(),
     modAtributes: AtributeModel(),
     charClass: ClassModel(
+      skillRankPerLevel: 0,
       permittedAligments: [],
       forbidenArmorType: [],
       name: "Commoner",

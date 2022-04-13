@@ -6,29 +6,45 @@ class SkillModel {
   final String name;
   final String atributeUsed;
   final List<String> skillOfClasses;
-  final bool checkPenalty;
-  final int value;
+  final bool hasPenalty;
+  bool initialClassSkill;
+  int checkPenalty;
+  int finalValue;
+  int pointsAdded;
+  int atrbValue;
   SkillModel({
     this.name = '',
     this.atributeUsed = '',
     this.skillOfClasses = const [],
-    this.checkPenalty = false,
-    this.value = 0,
+    required this.hasPenalty,
+    this.initialClassSkill = false,
+    this.checkPenalty = 0,
+    this.finalValue = 0,
+    this.pointsAdded = 0,
+    this.atrbValue = 0,
   });
 
   SkillModel copyWith({
     String? name,
     String? atributeUsed,
     List<String>? skillOfClasses,
-    bool? checkPenalty,
-    int? value,
+    bool? hasPenalty,
+    bool? initialClassSkill,
+    int? checkPenalty,
+    int? finalValue,
+    int? pointsAdded,
+    int? atrbValue,
   }) {
     return SkillModel(
       name: name ?? this.name,
       atributeUsed: atributeUsed ?? this.atributeUsed,
       skillOfClasses: skillOfClasses ?? this.skillOfClasses,
+      hasPenalty: hasPenalty ?? this.hasPenalty,
+      initialClassSkill: initialClassSkill ?? this.initialClassSkill,
       checkPenalty: checkPenalty ?? this.checkPenalty,
-      value: value ?? this.value,
+      finalValue: finalValue ?? this.finalValue,
+      pointsAdded: pointsAdded ?? this.pointsAdded,
+      atrbValue: atrbValue ?? this.atrbValue,
     );
   }
 
@@ -37,8 +53,12 @@ class SkillModel {
       'name': name,
       'atributeUsed': atributeUsed,
       'skillOfClasses': skillOfClasses,
+      'hasPenalty': hasPenalty,
+      'initialClassSkill': initialClassSkill,
       'checkPenalty': checkPenalty,
-      'value': value,
+      'finalValue': finalValue,
+      'pointsAdded': pointsAdded,
+      'atrbValue': atrbValue,
     };
   }
 
@@ -47,8 +67,12 @@ class SkillModel {
       name: map['name'] ?? '',
       atributeUsed: map['atributeUsed'] ?? '',
       skillOfClasses: List<String>.from(map['skillOfClasses']),
-      checkPenalty: map['checkPenalty'] ?? false,
-      value: map['value']?.toInt() ?? 0,
+      hasPenalty: map['hasPenalty'] ?? false,
+      initialClassSkill: map['initialClassSkill'] ?? false,
+      checkPenalty: map['checkPenalty']?.toInt() ?? 0,
+      finalValue: map['finalValue']?.toInt() ?? 0,
+      pointsAdded: map['pointsAdded']?.toInt() ?? 0,
+      atrbValue: map['atrbValue']?.toInt() ?? 0,
     );
   }
 
@@ -59,7 +83,7 @@ class SkillModel {
 
   @override
   String toString() {
-    return 'SkillModel(name: $name, atributeUsed: $atributeUsed, skillOfClasses: $skillOfClasses, checkPenalty: $checkPenalty, value: $value)';
+    return 'SkillModel(name: $name, atributeUsed: $atributeUsed, skillOfClasses: $skillOfClasses, hasPenalty: $hasPenalty, initialClassSkill: $initialClassSkill, checkPenalty: $checkPenalty, finalValue: $finalValue, pointsAdded: $pointsAdded, atrbValue: $atrbValue)';
   }
 
   @override
@@ -70,8 +94,12 @@ class SkillModel {
         other.name == name &&
         other.atributeUsed == atributeUsed &&
         listEquals(other.skillOfClasses, skillOfClasses) &&
+        other.hasPenalty == hasPenalty &&
+        other.initialClassSkill == initialClassSkill &&
         other.checkPenalty == checkPenalty &&
-        other.value == value;
+        other.finalValue == finalValue &&
+        other.pointsAdded == pointsAdded &&
+        other.atrbValue == atrbValue;
   }
 
   @override
@@ -79,7 +107,11 @@ class SkillModel {
     return name.hashCode ^
         atributeUsed.hashCode ^
         skillOfClasses.hashCode ^
+        hasPenalty.hashCode ^
+        initialClassSkill.hashCode ^
         checkPenalty.hashCode ^
-        value.hashCode;
+        finalValue.hashCode ^
+        pointsAdded.hashCode ^
+        atrbValue.hashCode;
   }
 }

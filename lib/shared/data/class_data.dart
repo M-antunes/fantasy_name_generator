@@ -168,6 +168,7 @@ class ClassData {
       combatStyle: "Hybrid",
       mainAtrb: "intelligence",
       classIcon: "assets/images/classes/alchemist.svg",
+      skillRankPerLevel: 4,
       resistUpgrade: "fort, ref",
       forbidenArmorType: ["Heavy"],
       permittedAligments: [
@@ -191,6 +192,7 @@ class ClassData {
       combatStyle: "Physical",
       mainAtrb: "strength",
       classIcon: "assets/images/classes/antipaladin.svg",
+      skillRankPerLevel: 2,
       resistUpgrade: "fort, will",
       forbidenArmorType: [],
       permittedAligments: ["Chaotic Evil"],
@@ -203,6 +205,7 @@ class ClassData {
       classIcon: "assets/images/classes/arcanist.svg",
       resistUpgrade: "will",
       forbidenArmorType: ["Light", "Medium", "Heavy"],
+      skillRankPerLevel: 2,
       permittedAligments: [
         "Lawful Good",
         "Lawful Neutral",
@@ -226,6 +229,7 @@ class ClassData {
       classIcon: "assets/images/classes/aristocrat.svg",
       resistUpgrade: "will",
       forbidenArmorType: ["Light", "Medium", "Heavy"],
+      skillRankPerLevel: 4,
       permittedAligments: [
         "Lawful Good",
         "Lawful Neutral",
@@ -249,6 +253,7 @@ class ClassData {
       classIcon: "assets/images/classes/bandit.svg",
       resistUpgrade: "fort, ref",
       forbidenArmorType: [],
+      skillRankPerLevel: 4,
       permittedAligments: [
         "Neutral",
         "Neutral Evil",
@@ -267,6 +272,7 @@ class ClassData {
       classIcon: "assets/images/classes/barbarian.svg",
       resistUpgrade: "fort",
       forbidenArmorType: ["Heavy"],
+      skillRankPerLevel: 4,
       permittedAligments: [
         "Neutral Good",
         "Neutral",
@@ -288,6 +294,7 @@ class ClassData {
       classIcon: "assets/images/classes/bard.svg",
       resistUpgrade: "ref, will",
       forbidenArmorType: ["Light", "Medium"],
+      skillRankPerLevel: 6,
       permittedAligments: [
         "Lawful Good",
         "Lawful Neutral",
@@ -312,6 +319,7 @@ class ClassData {
       classIcon: "assets/images/classes/cleric.svg",
       resistUpgrade: "fort, will",
       forbidenArmorType: [],
+      skillRankPerLevel: 2,
       permittedAligments: [
         "Lawful Good",
         "Lawful Evil",
@@ -330,6 +338,7 @@ class ClassData {
       classIcon: "assets/images/classes/commoner.svg",
       resistUpgrade: "ref",
       forbidenArmorType: ["Light", "Medium", "Heavy"],
+      skillRankPerLevel: 2,
       permittedAligments: [
         "Lawful Good",
         "Lawful Neutral",
@@ -354,6 +363,7 @@ class ClassData {
       resistUpgrade: "fort, will",
       forbidenArmorType: [],
       permittedAligments: ["Neutral Good", "Neutral", "Neutral Evil"],
+      skillRankPerLevel: 4,
       hitDice: 8,
       combatStyle: "Hybrid",
       mainAtrb: "wisdom",
@@ -368,6 +378,7 @@ class ClassData {
       resistUpgrade: "all",
       forbidenArmorType: ["Light", "Medium", "Heavy"],
       permittedAligments: ["Lawful Good", "Lawful Neutral", "Lawful Evil"],
+      skillRankPerLevel: 4,
       hitDice: 8,
       combatStyle: "Physical",
       mainAtrb: "dexterity",
@@ -380,6 +391,7 @@ class ClassData {
       classIcon: "assets/images/classes/noble.svg",
       resistUpgrade: "will",
       forbidenArmorType: ["Light", "Medium", "Heavy"],
+      skillRankPerLevel: 4,
       permittedAligments: [
         "Lawful Good",
         "Lawful Neutral",
@@ -404,6 +416,7 @@ class ClassData {
       resistUpgrade: "fort, will",
       forbidenArmorType: [],
       permittedAligments: ["Lawful Good"],
+      skillRankPerLevel: 2,
       hitDice: 10,
       combatStyle: "Physical",
       mainAtrb: "strength",
@@ -417,6 +430,7 @@ class ClassData {
       classIcon: "assets/images/classes/ranger.svg",
       resistUpgrade: "fort, ref",
       forbidenArmorType: [],
+      skillRankPerLevel: 6,
       permittedAligments: [
         "Lawful Good",
         "Lawful Neutral",
@@ -440,6 +454,7 @@ class ClassData {
       classIcon: "assets/images/classes/rogue.svg",
       resistUpgrade: "ref",
       forbidenArmorType: ["Light"],
+      skillRankPerLevel: 8,
       permittedAligments: [
         "Neutral Good",
         "Neutral",
@@ -461,6 +476,7 @@ class ClassData {
       classIcon: "assets/images/classes/samurai.svg",
       resistUpgrade: "fort",
       forbidenArmorType: [],
+      skillRankPerLevel: 4,
       permittedAligments: [
         "Lawful Good",
         "Lawful Neutral",
@@ -485,6 +501,7 @@ class ClassData {
       classIcon: "assets/images/classes/sorcerer.svg",
       resistUpgrade: "will",
       forbidenArmorType: ["Light", "Medium", "Heavy"],
+      skillRankPerLevel: 2,
       permittedAligments: [
         "Lawful Good",
         "Lawful Neutral",
@@ -509,6 +526,7 @@ class ClassData {
       classIcon: "assets/images/classes/summoner.svg",
       resistUpgrade: "will",
       forbidenArmorType: ["Light", "Medium"],
+      skillRankPerLevel: 2,
       permittedAligments: [
         "Lawful Good",
         "Lawful Neutral",
@@ -533,6 +551,7 @@ class ClassData {
       classIcon: "assets/images/classes/warrior.svg",
       resistUpgrade: "fort",
       forbidenArmorType: [],
+      skillRankPerLevel: 2,
       permittedAligments: [
         "Lawful Good",
         "Lawful Neutral",
@@ -556,6 +575,7 @@ class ClassData {
       classIcon: "assets/images/classes/wizard.svg",
       resistUpgrade: "will",
       forbidenArmorType: ["Light", "Medium", "Heavy"],
+      skillRankPerLevel: 2,
       permittedAligments: [
         "Lawful Good",
         "Lawful Neutral",

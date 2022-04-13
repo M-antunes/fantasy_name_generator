@@ -5,7 +5,8 @@ class SkillData {
     SkillModel(
       name: "Acobatics",
       atributeUsed: "dexterity",
-      checkPenalty: true,
+      hasPenalty: true,
+      checkPenalty: 0,
       skillOfClasses: [
         "Barbarian",
         "Bard",
@@ -20,7 +21,8 @@ class SkillData {
     SkillModel(
       name: "Appraise",
       atributeUsed: "intelligence",
-      checkPenalty: false,
+      hasPenalty: false,
+      checkPenalty: 0,
       skillOfClasses: [
         "Bard",
         "Cleric",
@@ -37,7 +39,8 @@ class SkillData {
     SkillModel(
       name: "Bluff",
       atributeUsed: "charisma",
-      checkPenalty: false,
+      hasPenalty: false,
+      checkPenalty: 0,
       skillOfClasses: [
         "Bard",
         "Alchemist",
@@ -53,7 +56,8 @@ class SkillData {
     SkillModel(
       name: "Climb",
       atributeUsed: "strength",
-      checkPenalty: true,
+      hasPenalty: false,
+      checkPenalty: 0,
       skillOfClasses: [
         "Barbarian",
         "Bard",
@@ -69,13 +73,15 @@ class SkillData {
     SkillModel(
       name: "Craft",
       atributeUsed: "intelligence",
-      checkPenalty: false,
+      hasPenalty: false,
+      checkPenalty: 0,
       skillOfClasses: ["all"],
     ),
     SkillModel(
       name: "Diplomacy",
-      atributeUsed: "",
-      checkPenalty: false,
+      atributeUsed: "charisma",
+      hasPenalty: false,
+      checkPenalty: 0,
       skillOfClasses: [
         "Bard",
         "Cleric",
@@ -90,25 +96,29 @@ class SkillData {
     SkillModel(
       name: "Disable device",
       atributeUsed: "dexterity",
-      checkPenalty: true,
+      hasPenalty: true,
+      checkPenalty: 0,
       skillOfClasses: ["Rogue", "Bandit"],
     ),
     SkillModel(
       name: "Disguise",
       atributeUsed: "charisma",
-      checkPenalty: false,
+      hasPenalty: false,
+      checkPenalty: 0,
       skillOfClasses: ["Bard", "Rogue"],
     ),
     SkillModel(
       name: "Escape Artist",
       atributeUsed: "dexterity",
-      checkPenalty: true,
+      hasPenalty: true,
+      checkPenalty: 0,
       skillOfClasses: ["Bard", "Rogue", "Bandit", "Alchemist", "Monk"],
     ),
     SkillModel(
       name: "Fly",
       atributeUsed: "dexterity",
-      checkPenalty: true,
+      hasPenalty: true,
+      checkPenalty: 0,
       skillOfClasses: [
         "Druid",
         "Sorcerer",
@@ -121,7 +131,8 @@ class SkillData {
     SkillModel(
       name: "Handle animal",
       atributeUsed: "charisma",
-      checkPenalty: false,
+      hasPenalty: false,
+      checkPenalty: 0,
       skillOfClasses: [
         "Druid",
         "Barbarian",
@@ -134,13 +145,15 @@ class SkillData {
     SkillModel(
       name: "Heal",
       atributeUsed: "wisdom",
-      checkPenalty: false,
+      hasPenalty: false,
+      checkPenalty: 0,
       skillOfClasses: ["Cleric", "Druid", "Paladin"],
     ),
     SkillModel(
       name: "Intimidate",
       atributeUsed: "charisma",
-      checkPenalty: false,
+      hasPenalty: false,
+      checkPenalty: 0,
       skillOfClasses: [
         "Barbarian",
         "Bard",
@@ -158,13 +171,15 @@ class SkillData {
     SkillModel(
       name: "Knowledge (arcane)",
       atributeUsed: "intelligence",
-      checkPenalty: false,
+      hasPenalty: false,
+      checkPenalty: 0,
       skillOfClasses: ["Cleric", "Sorcerer", "Wizard", "Arcanist", "Alchemist"],
     ),
     SkillModel(
       name: "Knowledge (dungeoneering)",
       atributeUsed: "intelligence",
-      checkPenalty: false,
+      hasPenalty: false,
+      checkPenalty: 0,
       skillOfClasses: [
         "Bard",
         "Wizard",
@@ -178,7 +193,8 @@ class SkillData {
     SkillModel(
       name: "Knowledge (engineering)",
       atributeUsed: "intelligence",
-      checkPenalty: false,
+      hasPenalty: false,
+      checkPenalty: 0,
       skillOfClasses: [
         "Bard",
         "Warrior",
@@ -192,7 +208,8 @@ class SkillData {
     SkillModel(
       name: "Knowledge (geography)",
       atributeUsed: "intelligence",
-      checkPenalty: false,
+      hasPenalty: false,
+      checkPenalty: 0,
       skillOfClasses: [
         "Bard",
         "Wizard",
@@ -208,7 +225,8 @@ class SkillData {
     SkillModel(
       name: "Knowledge (history)",
       atributeUsed: "intelligence",
-      checkPenalty: false,
+      hasPenalty: false,
+      checkPenalty: 0,
       skillOfClasses: [
         "Bard",
         "Wizard",
@@ -223,7 +241,8 @@ class SkillData {
     SkillModel(
       name: "Knowledge (local)",
       atributeUsed: "intelligence",
-      checkPenalty: false,
+      hasPenalty: false,
+      checkPenalty: 0,
       skillOfClasses: [
         "Bard",
         "Wizard",
@@ -237,7 +256,8 @@ class SkillData {
     SkillModel(
       name: "Knowledge (nature)",
       atributeUsed: "intelligence",
-      checkPenalty: false,
+      hasPenalty: false,
+      checkPenalty: 0,
       skillOfClasses: [
         "Bard",
         "Wizard",
@@ -255,7 +275,8 @@ class SkillData {
     SkillModel(
       name: "Knowledge (nobility)",
       atributeUsed: "intelligence",
-      checkPenalty: false,
+      hasPenalty: false,
+      checkPenalty: 0,
       skillOfClasses: [
         "Bard",
         "Wizard",
@@ -270,7 +291,8 @@ class SkillData {
     SkillModel(
       name: "Knowledge (planes)",
       atributeUsed: "intelligence",
-      checkPenalty: false,
+      hasPenalty: false,
+      checkPenalty: 0,
       skillOfClasses: [
         "Bard",
         "Wizard",
@@ -287,7 +309,8 @@ class SkillData {
     SkillModel(
       name: "Knowledge (religion)",
       atributeUsed: "intelligence",
-      checkPenalty: false,
+      hasPenalty: false,
+      checkPenalty: 0,
       skillOfClasses: [
         "Bard",
         "Wizard",
@@ -303,7 +326,8 @@ class SkillData {
     SkillModel(
       name: "Linguistics",
       atributeUsed: "intelligence",
-      checkPenalty: false,
+      hasPenalty: false,
+      checkPenalty: 0,
       skillOfClasses: [
         "Bard",
         "Wizard",
@@ -317,7 +341,8 @@ class SkillData {
     SkillModel(
       name: "Perception",
       atributeUsed: "wisdom",
-      checkPenalty: false,
+      hasPenalty: false,
+      checkPenalty: 0,
       skillOfClasses: [
         "Barbarian",
         "Bard",
@@ -333,19 +358,22 @@ class SkillData {
     SkillModel(
       name: "Perform",
       atributeUsed: "charisma",
-      checkPenalty: false,
+      hasPenalty: false,
+      checkPenalty: 0,
       skillOfClasses: ["Bard", "Monk", "Rogue", "Aristocrat", "Noble"],
     ),
     SkillModel(
       name: "Profession",
       atributeUsed: "wis",
-      checkPenalty: false,
+      hasPenalty: false,
+      checkPenalty: 0,
       skillOfClasses: ["all"],
     ),
     SkillModel(
       name: "Ride",
       atributeUsed: "dexterity",
-      checkPenalty: true,
+      hasPenalty: true,
+      checkPenalty: 0,
       skillOfClasses: [
         "Barbarian",
         "Druid",
@@ -360,7 +388,8 @@ class SkillData {
     SkillModel(
       name: "Sense Motive",
       atributeUsed: "wisdom",
-      checkPenalty: false,
+      hasPenalty: false,
+      checkPenalty: 0,
       skillOfClasses: [
         "Bard",
         "Cleric",
@@ -375,13 +404,15 @@ class SkillData {
     SkillModel(
       name: "Sleight of Hand",
       atributeUsed: "dexterity",
-      checkPenalty: true,
+      hasPenalty: true,
+      checkPenalty: 0,
       skillOfClasses: ["Bard", "Rogue", "Bandit"],
     ),
     SkillModel(
       name: "Spellcraft",
       atributeUsed: "intelligence",
-      checkPenalty: false,
+      hasPenalty: false,
+      checkPenalty: 0,
       skillOfClasses: [
         "Bard",
         "Cleric",
@@ -399,7 +430,8 @@ class SkillData {
     SkillModel(
       name: "Stealth",
       atributeUsed: "dexterity",
-      checkPenalty: true,
+      hasPenalty: true,
+      checkPenalty: 0,
       skillOfClasses: [
         "Bard",
         "Rogue",
@@ -412,7 +444,8 @@ class SkillData {
     SkillModel(
       name: "Survival",
       atributeUsed: "wisdom",
-      checkPenalty: false,
+      hasPenalty: false,
+      checkPenalty: 0,
       skillOfClasses: [
         "Barbarian",
         "Druid",
@@ -425,7 +458,8 @@ class SkillData {
     SkillModel(
       name: "Swim",
       atributeUsed: "strength",
-      checkPenalty: true,
+      hasPenalty: true,
+      checkPenalty: 0,
       skillOfClasses: [
         "Barbarian",
         "Warrior",
@@ -439,7 +473,8 @@ class SkillData {
     SkillModel(
       name: "Use Magic Device",
       atributeUsed: "charisma",
-      checkPenalty: false,
+      hasPenalty: false,
+      checkPenalty: 0,
       skillOfClasses: ["Bard", "Rogue", "Sorcerer", "Alchemist"],
     ),
   ];

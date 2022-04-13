@@ -145,6 +145,28 @@ class AppTextStyle {
             ? 15
             : 17,
   );
+  static final skillClassLabel = TextStyle(
+    fontWeight: FontWeight.w500,
+    color: Colors.grey,
+    fontFamily: "David",
+    fontSize: deviceWidth! < 350
+        ? 11
+        : deviceWidth! > 350 && deviceWidth! < 400
+            ? 13
+            : 15,
+  );
+
+  static final statsLabelBrighter = TextStyle(
+    fontWeight: FontWeight.w500,
+    color: Colors.grey[300],
+    fontFamily: "David",
+    fontSize: deviceWidth! < 350
+        ? 13
+        : deviceWidth! > 350 && deviceWidth! < 400
+            ? 15
+            : 17,
+  );
+
   static final modefier = TextStyle(
     fontWeight: FontWeight.w400,
     fontFamily: "David",

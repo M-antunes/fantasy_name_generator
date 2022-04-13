@@ -1,22 +1,23 @@
-import 'package:fantasy_name_generator/controllers/stats_controller.dart';
-import 'package:fantasy_name_generator/shared/widgets/app_horizontal_line.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:fantasy_name_generator/controllers/char_controller.dart';
+import 'package:fantasy_name_generator/controllers/stats_controller.dart';
+import 'package:fantasy_name_generator/models/key_value.model.dart';
 import 'package:fantasy_name_generator/shared/constants/phone_sizes.dart';
 import 'package:fantasy_name_generator/shared/themes/app_text_styles.dart';
+import 'package:fantasy_name_generator/shared/widgets/app_horizontal_line.dart';
 
 import '../../../../shared/themes/app_colors.dart';
-import 'stats_tabs/combat/combat_stats.dart';
-import 'widgets/char_description_text.dart';
 import 'stats_tabs/ability_scores/ability_scores.dart';
+import 'stats_tabs/combat/combat_stats.dart';
 import 'stats_tabs/feats/feats_stats.dart';
 import 'stats_tabs/features/features_stats.dart';
 import 'stats_tabs/loot/loot_section.dart';
 import 'stats_tabs/magic_gear/magic_gear_stats.dart';
 import 'stats_tabs/skill/skill_stats.dart';
 import 'stats_tabs/spell/spell_stats.dart';
+import 'widgets/char_description_text.dart';
 
 class StatsSection extends StatefulWidget {
   const StatsSection({
@@ -171,33 +172,31 @@ class _StatsSectionState extends State<StatsSection>
                     physics: const NeverScrollableScrollPhysics(),
                     child: Column(
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 6),
-                          child: TabBar(
-                            isScrollable: true,
-                            indicatorColor: AppColors.primaryOrange,
-                            labelStyle: AppTextStyle.tabLabel,
-                            unselectedLabelColor: AppColors.primaryText0,
-                            unselectedLabelStyle: AppTextStyle.tabLabel
-                                .copyWith(fontWeight: FontWeight.w300),
-                            labelColor: AppColors.primaryOrange,
-                            labelPadding:
-                                const EdgeInsets.symmetric(horizontal: 6),
-                            controller: _controller,
-                            tabs: const [
-                              Text("ATRIBUTES"),
-                              Text("COMBAT"),
-                              Text("MAGIC GEAR"),
-                              Text("FEATURES"),
-                              Text("FEATS"),
-                              Text("SKILLS"),
-                              Text("SPELLS"),
-                              Text("LOOT"),
-                            ],
-                          ),
+                        TabBar(
+                          automaticIndicatorColorAdjustment: true,
+                          isScrollable: true,
+                          indicatorColor: AppColors.primaryOrange,
+                          labelStyle: AppTextStyle.tabLabel,
+                          unselectedLabelColor: AppColors.primaryText0,
+                          unselectedLabelStyle: AppTextStyle.tabLabel
+                              .copyWith(fontWeight: FontWeight.w300),
+                          labelColor: AppColors.primaryOrange,
+                          labelPadding:
+                              const EdgeInsets.symmetric(horizontal: 6),
+                          controller: _controller,
+                          tabs: const [
+                            Text("ATRIBUTES"),
+                            Text("COMBAT"),
+                            Text("MAGIC GEAR"),
+                            Text("FEATURES"),
+                            Text("FEATS"),
+                            Text("SKILLS"),
+                            Text("SPELLS"),
+                            Text("LOOT"),
+                          ],
                         ),
                         SizedBox(
-                          height: deviceHeight! * 0.51,
+                          height: deviceHeight! * 0.55,
                           width: double.infinity,
                           child: TabBarView(
                             controller: _controller,
