@@ -32,12 +32,7 @@ class MagicGearStats extends StatelessWidget {
                             index, state.char.charEquip.wonderousItems!),
                         selected: item.isSelected);
                   })
-              : const Center(
-                  child: Text(
-                    "No item has been generated",
-                    style: TextStyle(fontSize: 30, color: Colors.grey),
-                  ),
-                ),
+              : const Center(),
         ],
       );
     });

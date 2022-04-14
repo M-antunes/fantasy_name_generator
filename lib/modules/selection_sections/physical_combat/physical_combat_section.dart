@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import '../../../shared/constants/phone_sizes.dart';
 import '../../../shared/themes/app_colors.dart';
 import '../../../shared/themes/app_text_styles.dart';
+import '../widgets/long_description_widget.dart';
 
 class CombatEquipSection extends StatelessWidget {
   const CombatEquipSection({Key? key}) : super(key: key);
@@ -13,10 +14,6 @@ class CombatEquipSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<CharController>(builder: (context, state, child) {
-      var possibleWeapons = state.listOfClasses.physicalStyles
-          .where((element) =>
-              !element.forbiddenClasses.contains(state.chosenClass.name))
-          .toList();
       return Padding(
         padding: const EdgeInsets.all(12),
         child: Column(
@@ -36,11 +33,11 @@ class CombatEquipSection extends StatelessWidget {
                   crossAxisCount: 3,
                   childAspectRatio: 1 / 1,
                 ),
-                itemCount: possibleWeapons.length,
+                itemCount: state.possibleStyles.length,
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
-                  var style = possibleWeapons[index];
+                  var style = state.possibleStyles[index];
                   return Column(
                     children: [
                       Text(style.name,
@@ -67,6 +64,11 @@ class CombatEquipSection extends StatelessWidget {
                     ],
                   );
                 }),
+            SizedBox(height: deviceHeight! * 0.05),
+            LongDescriptionWidget(
+              label: state.physicalStyleChoice.name,
+              description: state.physicalStyleChoice.description,
+            )
           ],
         ),
       );

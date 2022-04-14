@@ -17,8 +17,11 @@ class RaceTraits extends StatelessWidget {
       child: Consumer<CharController>(builder: (context, state, child) {
         return Column(
           children: [
-            Text("${state.tempRaceForSwitching.name} Traits",
-                style: AppTextStyle.raceDescriptionLabel),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text("${state.tempRaceForSwitching.name} Traits",
+                  style: AppTextStyle.raceDescriptionLabel),
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 3),
               child: Container(
@@ -40,7 +43,7 @@ class RaceTraits extends StatelessWidget {
                         children: [
                           TextSpan(
                               text: "${trait![index].key}  ",
-                              style: AppTextStyle.traitValue),
+                              style: AppTextStyle.statsValue),
                           TextSpan(
                             text: trait[index].value,
                             style: AppTextStyle.longDescription,

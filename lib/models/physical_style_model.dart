@@ -8,12 +8,14 @@ class PhysicalStyleModel {
   final String weaponType;
   bool isSelected;
   final List<String> forbiddenClasses;
+  final String description;
   PhysicalStyleModel({
     required this.name,
     required this.svg,
     required this.weaponType,
     required this.isSelected,
     required this.forbiddenClasses,
+    required this.description,
   });
 
   PhysicalStyleModel copyWith({
@@ -22,6 +24,7 @@ class PhysicalStyleModel {
     String? weaponType,
     bool? isSelected,
     List<String>? forbiddenClasses,
+    String? description,
   }) {
     return PhysicalStyleModel(
       name: name ?? this.name,
@@ -29,6 +32,7 @@ class PhysicalStyleModel {
       weaponType: weaponType ?? this.weaponType,
       isSelected: isSelected ?? this.isSelected,
       forbiddenClasses: forbiddenClasses ?? this.forbiddenClasses,
+      description: description ?? this.description,
     );
   }
 
@@ -39,6 +43,7 @@ class PhysicalStyleModel {
       'weaponType': weaponType,
       'isSelected': isSelected,
       'forbiddenClasses': forbiddenClasses,
+      'description': description,
     };
   }
 
@@ -49,6 +54,7 @@ class PhysicalStyleModel {
       weaponType: map['weaponType'] ?? '',
       isSelected: map['isSelected'] ?? false,
       forbiddenClasses: List<String>.from(map['forbiddenClasses']),
+      description: map['description'] ?? '',
     );
   }
 
@@ -59,7 +65,7 @@ class PhysicalStyleModel {
 
   @override
   String toString() {
-    return 'PhysicalStyleModel(name: $name, svg: $svg, weaponType: $weaponType, isSelected: $isSelected, forbiddenClasses: $forbiddenClasses)';
+    return 'PhysicalStyleModel(name: $name, svg: $svg, weaponType: $weaponType, isSelected: $isSelected, forbiddenClasses: $forbiddenClasses, description: $description)';
   }
 
   @override
@@ -71,7 +77,8 @@ class PhysicalStyleModel {
         other.svg == svg &&
         other.weaponType == weaponType &&
         other.isSelected == isSelected &&
-        listEquals(other.forbiddenClasses, forbiddenClasses);
+        listEquals(other.forbiddenClasses, forbiddenClasses) &&
+        other.description == description;
   }
 
   @override
@@ -80,6 +87,7 @@ class PhysicalStyleModel {
         svg.hashCode ^
         weaponType.hashCode ^
         isSelected.hashCode ^
-        forbiddenClasses.hashCode;
+        forbiddenClasses.hashCode ^
+        description.hashCode;
   }
 }

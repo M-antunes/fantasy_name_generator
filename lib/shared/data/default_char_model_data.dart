@@ -32,6 +32,7 @@ class DefaultCharModelData {
         name: "",
         svg: ""),
     physicalStyle: PhysicalStyleModel(
+        description: "",
         weaponType: "",
         name: "",
         forbiddenClasses: [],

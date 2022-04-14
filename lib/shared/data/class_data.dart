@@ -42,6 +42,8 @@ class ClassData {
   final List<PhysicalStyleModel> physicalStyles = [
     PhysicalStyleModel(
         name: "Berserker",
+        description:
+            "Berserkers are tall and fearless fighters that focus primarily on two-handed devastating attacks and blows, therefore, they are slightly careless regarding their defense. They never use shields and wear light armor or no armor at all. Best fit: Barbarian.",
         svg: "assets/images/weapon_types/great-sword.svg",
         weaponType: "Two-handed",
         forbiddenClasses: [
@@ -60,6 +62,8 @@ class ClassData {
         isSelected: false),
     PhysicalStyleModel(
         name: "Soldier",
+        description:
+            "Soldier are versatile in combat, they are attentive to their defense, always using shields and possibly medium to heavy armors, they control the battle field and are hard to take down. They attack with practically any one-handed weapon. Best fit: Warrior",
         svg: "assets/images/weapon_types/soldier.svg",
         weaponType: "One-handed",
         forbiddenClasses: [
@@ -75,7 +79,9 @@ class ClassData {
         ],
         isSelected: false),
     PhysicalStyleModel(
-        name: "Dual-weilder",
+        name: "Dual-wielder",
+        description:
+            "Dual-wielder is a master of using two weapons, one in each hand for melee combat in order to delivery more possibilities of attack and therefore more damage Giving their need for strength and agility, those weapons tend not to be heavy (swords or axes) and his defenses tend to be light or no armor. Needless to say they don't use any shield. Best fit: Ranger and Warrior.",
         svg: "assets/images/weapon_types/axe-sword.svg",
         weaponType: "One-handed",
         forbiddenClasses: [
@@ -92,18 +98,24 @@ class ClassData {
         isSelected: false),
     PhysicalStyleModel(
         name: "Swordsman",
+        description:
+            "Swordmen are masters of swords. They wield one-handed swords and mainly have their other free for tricks and other purposes. They fight with agility and speed. They wear none to medium armor and no shield at all. Best fit: Bandit.",
         svg: "assets/images/weapon_types/sword.svg",
         weaponType: "sword",
         forbiddenClasses: ["Barbarian", "Commoner", "Monk"],
         isSelected: false),
     PhysicalStyleModel(
         name: "Knifeman",
+        description:
+            "Knifemen are known by their capability of working well and damaging plenty with small blades, such as daggers, kukris and other. Knifemen are good for surprises and ambushes, but they are not made for direct physical confront. They wear none to light armor and no shield at all. Best fit: Rogue.",
         svg: "assets/images/weapon_types/knife.svg",
         weaponType: "Knife",
         forbiddenClasses: ["Barbarian", "Monk"],
         isSelected: false),
     PhysicalStyleModel(
         name: "Martial",
+        description:
+            "Martial fighters are known for using their own bodies to deliver physical punishment to opponents. They usually do not use any weapon other than his own fists, feet, elbows and knees. Giving their training focus on dodging physical strikes, they hardly wear armors once those could slow them down and they never use shields. Best fit: Monk.",
         svg: "assets/images/weapon_types/punch.svg",
         weaponType: "Fist",
         forbiddenClasses: [
@@ -125,6 +137,8 @@ class ClassData {
         isSelected: false),
     PhysicalStyleModel(
         name: "Bowman",
+        description:
+            "Bowmen base their main physical combat on striking foes from distance. They prefer to use bows and arrows to punish those who oppose them. Once they need great amount of agility to draw fast and evade strikes, they wear none to light armor and no shield at all. Best fit: Ranger.",
         svg: "assets/images/weapon_types/bow.svg",
         weaponType: "Bow",
         forbiddenClasses: [
@@ -139,12 +153,16 @@ class ClassData {
         isSelected: false),
     PhysicalStyleModel(
         name: "Marksman",
+        description:
+            "Marksmen base their main physical combat on striking foes from distance. In particular, they prefer to use crossbows instead of bows and arrows to punish those who oppose them. They usually can wear more protection, light to medium armor, but never shields. Best fit: Ranger and Warrior",
         svg: "assets/images/weapon_types/crossbow.svg",
         weaponType: "Crossbow",
         forbiddenClasses: ["Barbarian", "Commoner", "Monk"],
         isSelected: false),
     PhysicalStyleModel(
         name: "Thrower",
+        description:
+            "Throwers base their main physical combat on striking foes from distance. They use all their agility, aiming and dexterity to punish those who oppose them. Throwers, may or may not use shields, depending on the class chosen, but they always wear none to light armor, favoring agility over protection. Best fit: Rogue.",
         svg: "assets/images/weapon_types/throwing.svg",
         weaponType: "Throwing",
         forbiddenClasses: [

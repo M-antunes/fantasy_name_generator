@@ -57,6 +57,7 @@ class CharController extends ChangeNotifier {
   List<SavedNameModel> savedNames = [];
   List<AlignmentModel> filteredAlignments = [];
   List<ClassModel> filteredClasses = [];
+  List<PhysicalStyleModel> possibleStyles = [];
   List<String> fullName = [];
   List<String> tempFullName = [];
   bool isMale = true;
@@ -174,6 +175,16 @@ class CharController extends ChangeNotifier {
     }
     style.isSelected = !style.isSelected;
     tempStyleForSwitching = style;
+    notifyListeners();
+  }
+
+  filterPhysicalStyle() {
+    possibleStyles = listOfClasses.physicalStyles
+        .where(
+            (element) => !element.forbiddenClasses.contains(chosenClass.name))
+        .toList();
+    physicalStyleChoice = possibleStyles.first;
+    physicalStyleChoice.isSelected = true;
     notifyListeners();
   }
 
@@ -1115,6 +1126,7 @@ class CharController extends ChangeNotifier {
       return null;
     } else if (creationStage == 4) {
       updateChosenClass();
+      filterPhysicalStyle();
       advanceCreationStage();
       return null;
     } else if (creationStage == 5) {

@@ -12,11 +12,11 @@ import 'package:fantasy_name_generator/shared/widgets/call_message_snackbar.dart
 import '../../shared/widgets/app_generate_button.dart';
 import '../selection_sections/alignment/alignment_section.dart';
 import '../selection_sections/class_section/class_section.dart';
-import '../selection_sections/combat_style_equip/combat_equip_section.dart';
 import '../selection_sections/combat_style_equip/combat_style_section.dart';
 import '../selection_sections/name_and_gender/gender_section.dart';
 import '../selection_sections/level/level_section.dart';
 import '../selection_sections/name_and_gender/name_section.dart';
+import '../selection_sections/physical_combat/physical_combat_section.dart';
 import '../selection_sections/race/race_section.dart';
 import '../selection_sections/stats_sections/stats_section.dart';
 import 'widgets/character_info_bar.dart';

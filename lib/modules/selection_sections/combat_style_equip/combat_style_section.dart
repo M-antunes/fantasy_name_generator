@@ -18,7 +18,7 @@ class CombatStyleSection extends StatelessWidget {
       return Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SizedBox(height: deviceHeight! * 0.1),
+          SizedBox(height: deviceHeight! * 0.06),
           Text(
             "Select a combat style for",
             style: AppTextStyle.subTextGrey,

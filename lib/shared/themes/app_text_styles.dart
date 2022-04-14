@@ -133,7 +133,7 @@ class AppTextStyle {
         ? 14
         : deviceWidth! > 350 && deviceWidth! < 400
             ? 16
-            : 19,
+            : 18,
   );
   static final statsLabel = TextStyle(
     fontWeight: FontWeight.w500,
@@ -182,10 +182,10 @@ class AppTextStyle {
     color: Colors.white,
     fontFamily: "David",
     fontSize: deviceWidth! < 350
-        ? 18
+        ? 16
         : deviceWidth! > 350 && deviceWidth! < 400
-            ? 20
-            : 23,
+            ? 18
+            : 20,
   );
   static final alignmentLabel = TextStyle(
     fontWeight: FontWeight.w400,

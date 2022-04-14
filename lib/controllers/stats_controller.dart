@@ -1466,7 +1466,7 @@ class StatsController with ChangeNotifier {
     for (var i
         in charSkillList.where((element) => element.hasPenalty == true)) {
       i.checkPenalty = penalty;
-      i.finalValue - penalty;
+      i.finalValue -= penalty;
     }
     charSkills = charSkillList;
     notifyListeners();
