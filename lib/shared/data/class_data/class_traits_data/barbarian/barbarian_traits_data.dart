@@ -1,5 +1,5 @@
-import '../../../../models/specials_model.dart';
-import '../../../../models/traits_model.dart';
+import '../../../../../models/class_models/specials_model.dart';
+import '../../../../../models/class_models/traits_model.dart';
 
 class BarbarianTraitsData {
   final List<TraitModel> barbarianTraits = [

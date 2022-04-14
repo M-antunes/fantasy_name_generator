@@ -1,4 +1,4 @@
-import '../../models/equip_models/gem_model.dart';
+import '../../../models/equip_models/loot_models/gem_model.dart';
 
 class JwelsData {
   List<GemModel> gems = [

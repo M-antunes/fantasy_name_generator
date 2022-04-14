@@ -1,4 +1,4 @@
-import 'package:fantasy_name_generator/models/alignment_model.dart';
+import 'package:fantasy_name_generator/models/class_models/alignment_model.dart';
 
 class AlignmentData {
   List<AlignmentModel> allAlignments = [

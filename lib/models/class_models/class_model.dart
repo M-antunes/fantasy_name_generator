@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
-import 'package:fantasy_name_generator/models/specials_model.dart';
-import 'package:fantasy_name_generator/models/traits_model.dart';
+import 'package:fantasy_name_generator/models/class_models/specials_model.dart';
+import 'package:fantasy_name_generator/models/class_models/traits_model.dart';
 
 class ClassModel {
   final String name;

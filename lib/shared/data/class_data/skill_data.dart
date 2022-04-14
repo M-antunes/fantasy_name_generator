@@ -1,4 +1,4 @@
-import 'package:fantasy_name_generator/models/skill_model.dart';
+import 'package:fantasy_name_generator/models/class_models/skill_model.dart';
 
 class SkillData {
   List<SkillModel> skills = [

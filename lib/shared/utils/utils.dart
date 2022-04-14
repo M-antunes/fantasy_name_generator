@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import '../../models/key_value.model.dart';
-import '../data/enchant_data.dart';
+import '../data/equip_data/enchant_data.dart';
 
 int generateRandom(int number) {
   Random i = Random();

@@ -2,10 +2,9 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
-import 'package:fantasy_name_generator/models/equip_models/armor_model.dart';
-
-import 'weapon_model.dart';
-import 'wonderous_items_model.dart';
+import 'armor_models/armor_model.dart';
+import 'weapon_models/weapon_model.dart';
+import 'magic_equip_models/wonderous_items_model.dart';
 
 class EquipModel {
   WeaponModel? meleeWeapon;

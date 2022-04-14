@@ -1,4 +1,4 @@
-import 'package:fantasy_name_generator/models/equip_models/wonderous_items_model.dart';
+import 'package:fantasy_name_generator/models/equip_models/magic_equip_models/wonderous_items_model.dart';
 
 class WonderousItemsData {
   List<String> itemQuality = [

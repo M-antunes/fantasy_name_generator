@@ -1,6 +1,6 @@
-import 'package:fantasy_name_generator/models/base_atribute_model.dart';
+import 'package:fantasy_name_generator/models/combat_models/base_atribute_model.dart';
 
-import '../../../../../../models/equip_models/wonderous_items_model.dart';
+import '../../../../../../models/equip_models/magic_equip_models/wonderous_items_model.dart';
 import '../../../../../../shared/utils/utils.dart';
 
 class MagicGearController {

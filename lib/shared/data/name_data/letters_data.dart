@@ -1,4 +1,4 @@
-import 'package:fantasy_name_generator/models/letter_model.dart';
+import 'package:fantasy_name_generator/models/char_personal_models/letter_model.dart';
 
 class LettersData {
   List<LetterModel> alphabet = [

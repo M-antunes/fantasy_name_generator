@@ -1,9 +1,9 @@
 import 'package:fantasy_name_generator/models/equip_models/equip_model.dart';
 
-import '../../../../../../models/equip_models/gem_model.dart';
-import '../../../../../../models/equip_models/loot_model.dart';
-import '../../../../../../models/equip_models/treasure_model.dart';
-import '../../../../../../models/equip_models/wonderous_items_model.dart';
+import '../../../../../../models/equip_models/loot_models/gem_model.dart';
+import '../../../../../../models/equip_models/loot_models/loot_model.dart';
+import '../../../../../../models/equip_models/loot_models/treasure_model.dart';
+import '../../../../../../models/equip_models/magic_equip_models/wonderous_items_model.dart';
 import '../../../../../../shared/utils/utils.dart';
 
 class LootController {

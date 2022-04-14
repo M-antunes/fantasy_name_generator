@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:fantasy_name_generator/models/char_model.dart';
+import 'package:fantasy_name_generator/models/char_personal_models/char_model.dart';
 import 'package:fantasy_name_generator/shared/themes/app_text_styles.dart';
 
 class EquipSelectionLabel extends StatelessWidget {

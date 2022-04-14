@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'race_model.dart';
+import 'race_models/race_model.dart';
 
 class SavedNameModel {
   /// 0 = female ;;; 1 = male

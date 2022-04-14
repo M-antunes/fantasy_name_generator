@@ -1,5 +1,5 @@
 import 'package:fantasy_name_generator/models/key_value.model.dart';
-import 'package:fantasy_name_generator/models/race_model.dart';
+import 'package:fantasy_name_generator/models/race_models/race_model.dart';
 
 class RaceData {
   List<RaceModel> races = [

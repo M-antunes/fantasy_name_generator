@@ -1,4 +1,4 @@
-import '../../../models/traits_model.dart';
+import '../../../models/class_models/traits_model.dart';
 
 class ReariedFeatsData {
   List<TraitModel> berserkerFeats = [

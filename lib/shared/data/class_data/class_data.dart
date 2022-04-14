@@ -1,7 +1,7 @@
-import 'package:fantasy_name_generator/models/class_model.dart';
-import 'package:fantasy_name_generator/models/combat_style_choice_model.dart';
-import 'package:fantasy_name_generator/models/level_model.dart';
-import 'package:fantasy_name_generator/models/physical_style_model.dart';
+import 'package:fantasy_name_generator/models/class_models/class_model.dart';
+import 'package:fantasy_name_generator/models/combat_models/combat_style_choice_model.dart';
+import 'package:fantasy_name_generator/models/class_models/level_model.dart';
+import 'package:fantasy_name_generator/models/combat_models/physical_style_model.dart';
 
 class ClassData {
   final List<CombatStyleChoiceModel> combatStyles = [

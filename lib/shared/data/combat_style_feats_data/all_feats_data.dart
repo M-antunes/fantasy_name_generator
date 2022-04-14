@@ -1,4 +1,4 @@
-import 'package:fantasy_name_generator/models/traits_model.dart';
+import 'package:fantasy_name_generator/models/class_models/traits_model.dart';
 
 class AllFeatsData {
   TraitModel reactionary = TraitModel(

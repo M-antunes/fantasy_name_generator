@@ -1,4 +1,4 @@
-import 'package:fantasy_name_generator/models/base_atribute_model.dart';
+import 'package:fantasy_name_generator/models/combat_models/base_atribute_model.dart';
 
 import '../../../../../../shared/utils/utils.dart';
 

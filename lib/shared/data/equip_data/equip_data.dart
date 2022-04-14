@@ -1,7 +1,8 @@
-import 'package:fantasy_name_generator/models/equip_models/armor_model.dart';
-import 'package:fantasy_name_generator/models/equip_models/armor_type_model.dart';
-import 'package:fantasy_name_generator/models/equip_models/weapon_model.dart';
-import 'package:fantasy_name_generator/models/equip_models/weapon_family_model.dart';
+import 'package:fantasy_name_generator/models/equip_models/weapon_models/weapon_model.dart';
+import 'package:fantasy_name_generator/models/equip_models/weapon_models/weapon_family_model.dart';
+
+import '../../../models/equip_models/armor_models/armor_model.dart';
+import '../../../models/equip_models/armor_models/armor_type_model.dart';
 
 class EquipData {
   final List<WeaponModel> allWeapons = [

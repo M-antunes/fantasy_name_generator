@@ -2,19 +2,19 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
-import 'package:fantasy_name_generator/models/alignment_model.dart';
-import 'package:fantasy_name_generator/models/class_model.dart';
-import 'package:fantasy_name_generator/models/combat_model.dart';
-import 'package:fantasy_name_generator/models/combat_style_choice_model.dart';
+import 'package:fantasy_name_generator/models/class_models/alignment_model.dart';
+import 'package:fantasy_name_generator/models/class_models/class_model.dart';
+import 'package:fantasy_name_generator/models/combat_models/combat_model.dart';
+import 'package:fantasy_name_generator/models/combat_models/combat_style_choice_model.dart';
 import 'package:fantasy_name_generator/models/equip_models/equip_model.dart';
-import 'package:fantasy_name_generator/models/equip_models/loot_model.dart';
-import 'package:fantasy_name_generator/models/name_model.dart';
-import 'package:fantasy_name_generator/models/physical_style_model.dart';
-import 'package:fantasy_name_generator/models/race_model.dart';
-import 'package:fantasy_name_generator/models/resistance_model.dart';
-import 'package:fantasy_name_generator/models/traits_model.dart';
+import 'package:fantasy_name_generator/models/equip_models/loot_models/loot_model.dart';
+import 'package:fantasy_name_generator/models/char_personal_models/name_model.dart';
+import 'package:fantasy_name_generator/models/combat_models/physical_style_model.dart';
+import 'package:fantasy_name_generator/models/race_models/race_model.dart';
+import 'package:fantasy_name_generator/models/combat_models/resistance_model.dart';
+import 'package:fantasy_name_generator/models/class_models/traits_model.dart';
 
-import 'base_atribute_model.dart';
+import '../combat_models/base_atribute_model.dart';
 
 class CharModel {
   RaceModel charRace;

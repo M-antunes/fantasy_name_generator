@@ -1,13 +1,13 @@
-import 'package:fantasy_name_generator/models/base_atribute_model.dart';
-import 'package:fantasy_name_generator/models/equip_models/armor_model.dart';
+import 'package:fantasy_name_generator/models/combat_models/base_atribute_model.dart';
 
-import '../../../../../../models/class_model.dart';
-import '../../../../../../models/equip_models/enchant_model.dart';
-import '../../../../../../models/equip_models/weapon_model.dart';
-import '../../../../../../models/physical_style_model.dart';
-import '../../../../../../models/race_model.dart';
-import '../../../../../../models/traits_model.dart';
-import '../../../../../../shared/data/race_data.dart';
+import '../../../../../../models/class_models/class_model.dart';
+import '../../../../../../models/equip_models/armor_models/armor_model.dart';
+import '../../../../../../models/equip_models/magic_equip_models/enchant_model.dart';
+import '../../../../../../models/equip_models/weapon_models/weapon_model.dart';
+import '../../../../../../models/combat_models/physical_style_model.dart';
+import '../../../../../../models/race_models/race_model.dart';
+import '../../../../../../models/class_models/traits_model.dart';
+import '../../../../../../shared/data/race_data/race_data.dart';
 import '../../../../../../shared/utils/utils.dart';
 
 class OffenseController {

@@ -2,9 +2,9 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
-import 'package:fantasy_name_generator/models/equip_models/weapon_family_model.dart';
+import 'package:fantasy_name_generator/models/equip_models/weapon_models/weapon_family_model.dart';
 
-import 'enchant_model.dart';
+import '../magic_equip_models/enchant_model.dart';
 
 class WeaponModel {
   WeaponFamilyModel? type;
