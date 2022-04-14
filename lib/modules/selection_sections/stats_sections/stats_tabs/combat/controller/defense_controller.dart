@@ -6,9 +6,11 @@ import '../../../../../../models/equip_models/armor_models/armor_model.dart';
 import '../../../../../../models/equip_models/magic_equip_models/enchant_model.dart';
 import '../../../../../../models/equip_models/magic_equip_models/wonderous_items_model.dart';
 import '../../../../../../models/class_models/level_model.dart';
+import '../../../../../../models/key_value.model.dart';
 import '../../../../../../models/race_models/race_model.dart';
 import '../../../../../../models/combat_models/resistance_model.dart';
 import '../../../../../../models/class_models/traits_model.dart';
+import '../../../../../../shared/data/equip_data/enchant_data.dart';
 import '../../../../../../shared/utils/utils.dart';
 
 class DefenseController {
@@ -72,6 +74,9 @@ class DefenseController {
 
   ArmorModel applyMagicToArmorAndShield(
       int level, List<EnchantModel> list, ArmorModel equip) {
+    if (level < 5) {
+      return equip;
+    }
     var minAvail = discoverMinAvailability(level);
     var enchantPowerLvs = list
         .where((element) =>
@@ -126,10 +131,10 @@ class DefenseController {
     return hitpoints;
   }
 
-  int findBoostyItem(int level, List<WonderousItemsModel> list, String name) {
+  int findBoostyItem(List<WonderousItemsModel> list, String name) {
     WonderousItemsModel itemBoost;
     var boost = 0;
-    if (level > 2) {
+    if (list.any((element) => element.name!.contains(name))) {
       itemBoost = list.firstWhere((element) => element.name!.contains(name));
       boost = itemBoost.bonus!;
     }
@@ -177,11 +182,11 @@ class DefenseController {
     armorAc += dodge;
     touch += dodge;
     surprise += dodge;
-    var ringBoost = findBoostyItem(level, list, "Ring of protection");
+    var ringBoost = findBoostyItem(list, "Ring of protection");
     armorAc += ringBoost;
     touch += ringBoost;
     surprise += ringBoost;
-    var amuletBoost = findBoostyItem(level, list, "Amulet of natural armor");
+    var amuletBoost = findBoostyItem(list, "Amulet of natural armor");
     armorAc += amuletBoost;
     touch += amuletBoost;
     surprise += amuletBoost;
@@ -275,10 +280,33 @@ class DefenseController {
       partialRef += 2;
     }
 
-    var boost = findBoostyItem(level, items, "Cloak of resistance");
+    var boost = findBoostyItem(items, "Cloak of resistance");
     resists.fortitude = partialFort + atrb.constitution + boost;
     resists.reflex = partialRef + atrb.dexterity + boost;
     resists.will = partialWill + atrb.wisdom + boost;
     return resists;
+  }
+
+  int claculateMagicEquipPrice(ArmorModel defenseEquip, int level) {
+    int valueLabel = 0;
+    if (level < 3) {
+      return 0;
+    } else if (level == 3 || level == 4) {
+      return valueLabel = defenseEquip.price + 150;
+    } else if (defenseEquip.enchantment!.isEmpty) {
+      valueLabel = defenseEquip.price;
+    } else if (defenseEquip.enchantment!.length > 1) {
+      var magicPrices = EnchantData();
+      int price = (defenseEquip.enchantment![0].power +
+          defenseEquip.enchantment![1].power);
+      KeyValueModel priceAdded = magicPrices.pricingForMagicWeapons
+          .firstWhere((element) => element.key == price);
+      valueLabel = (defenseEquip.price + (priceAdded.value / 2) + 150).toInt();
+    } else {
+      valueLabel = defenseEquip.price +
+          (defenseEquip.enchantment![0].enchantPrice / 2).floor() +
+          150;
+    }
+    return valueLabel;
   }
 }

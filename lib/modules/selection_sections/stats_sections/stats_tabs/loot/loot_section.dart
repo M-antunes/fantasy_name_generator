@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:fantasy_name_generator/controllers/stats_controller.dart';
+import 'package:fantasy_name_generator/controllers/stats_controller/stats_controller.dart';
 import 'package:fantasy_name_generator/shared/constants/phone_sizes.dart';
 import 'package:fantasy_name_generator/modules/selection_sections/stats_sections/widgets/atribute_division.dart';
 

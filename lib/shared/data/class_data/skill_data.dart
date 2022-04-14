@@ -56,7 +56,7 @@ class SkillData {
     SkillModel(
       name: "Climb",
       atributeUsed: "strength",
-      hasPenalty: false,
+      hasPenalty: true,
       checkPenalty: 0,
       skillOfClasses: [
         "Barbarian",

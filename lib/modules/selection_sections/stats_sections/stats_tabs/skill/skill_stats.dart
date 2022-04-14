@@ -2,7 +2,7 @@ import 'package:fantasy_name_generator/shared/widgets/app_horizontal_line.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:fantasy_name_generator/controllers/stats_controller.dart';
+import 'package:fantasy_name_generator/controllers/stats_controller/stats_controller.dart';
 import 'package:fantasy_name_generator/shared/constants/phone_sizes.dart';
 
 import 'widget/skill_row_label_widget.dart';

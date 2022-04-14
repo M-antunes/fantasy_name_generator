@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../../../controllers/stats_controller.dart';
+import '../../../../../../controllers/stats_controller/stats_controller.dart';
 import '../../../../../../shared/constants/phone_sizes.dart';
 import '../../../widgets/atribute_division.dart';
 import '../../../widgets/gradient_label.dart';

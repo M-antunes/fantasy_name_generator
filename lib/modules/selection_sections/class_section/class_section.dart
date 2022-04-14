@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
-import 'package:fantasy_name_generator/controllers/char_controller.dart';
+import 'package:fantasy_name_generator/controllers/stage_controller/char_controller.dart';
 import 'package:fantasy_name_generator/shared/themes/app_text_styles.dart';
 
 import '../widgets/long_description_widget.dart';

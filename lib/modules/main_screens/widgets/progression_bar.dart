@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
-import 'package:fantasy_name_generator/controllers/char_controller.dart';
+import 'package:fantasy_name_generator/controllers/stage_controller/char_controller.dart';
 import 'package:fantasy_name_generator/shared/themes/app_colors.dart';
 
 class ProgressionBar extends StatelessWidget {

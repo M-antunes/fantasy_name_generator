@@ -1,32 +1,4 @@
-import 'package:fantasy_name_generator/models/char_personal_models/char_model.dart';
-import 'package:fantasy_name_generator/models/combat_models/combat_model.dart';
-import 'package:fantasy_name_generator/models/equip_models/loot_models/loot_model.dart';
-import 'package:fantasy_name_generator/models/combat_models/resistance_model.dart';
-import 'package:fantasy_name_generator/models/class_models/skill_model.dart';
-import 'package:fantasy_name_generator/modules/selection_sections/stats_sections/stats_tabs/loot/controller/loot_controller.dart';
-import 'package:fantasy_name_generator/shared/data/class_data/class_data.dart';
-import 'package:fantasy_name_generator/shared/data/equip_data/equip_data.dart';
-import 'package:fantasy_name_generator/shared/data/equip_data/jwels_data.dart';
-import 'package:flutter/cupertino.dart';
-
-import '../models/combat_models/base_atribute_model.dart';
-import '../models/equip_models/armor_models/armor_model.dart';
-import '../models/equip_models/magic_equip_models/wonderous_items_model.dart';
-import '../models/class_models/specials_model.dart';
-import '../models/class_models/traits_model.dart';
-import '../modules/selection_sections/stats_sections/stats_tabs/ability_scores/controller/ability_controller.dart';
-import '../modules/selection_sections/stats_sections/stats_tabs/combat/controller/defense_controller.dart';
-import '../modules/selection_sections/stats_sections/stats_tabs/combat/controller/offense_controller.dart';
-import '../modules/selection_sections/stats_sections/stats_tabs/magic_gear/controller/magic_gear_controller.dart';
-import '../modules/selection_sections/stats_sections/stats_tabs/skill/controller/skill_controller.dart';
-import '../shared/data/class_data/class_traits_data/barbarian/barbarian_traits_data.dart';
-import '../shared/data/combat_style_feats_data/all_feats_data.dart';
-import '../shared/data/combat_style_feats_data/readied_feats_data.dart';
-import '../shared/data/equip_data/enchant_data.dart';
-import '../shared/data/race_data/race_data.dart';
-import '../shared/data/class_data/skill_data.dart';
-import '../shared/data/equip_data/wonderous_items_data.dart';
-import '../shared/utils/utils.dart';
+import '../stats_controller/exports.dart';
 
 class StatsController with ChangeNotifier {
   late CharModel char;
@@ -36,11 +8,12 @@ class StatsController with ChangeNotifier {
   var listOfClasses = ClassData();
   var listOfRaces = RaceData();
   var skillData = SkillData();
+  var appearanceCtrl = AppearanceController();
   var abilityCtrl = AbilityController();
   var magicGearCtrl = MagicGearController();
-  var loot = LootController();
-  var offense = OffenseController();
-  var defense = DefenseController();
+  var lootCtrl = LootController();
+  var offenseCtrl = OffenseController();
+  var defenseCtrl = DefenseController();
   var skillCtrl = SkillController();
   List<WonderousItemsModel> tomesAndManuals = [];
   List<SkillModel> charSkills = [];
@@ -82,6 +55,10 @@ class StatsController with ChangeNotifier {
     char.combatStats = CombatModel();
     char.resistances = ResistanceModel();
     char.charRace.speed = 0;
+    char.charRace.age = 0;
+    char.charRace.height!.value = 0;
+    char.charRace.height!.key = 0;
+    char.charRace.weight = 0;
     char.hitPoints = 0;
     armorPrice = 0;
     shieldPrice = 0;
@@ -101,39 +78,40 @@ class StatsController with ChangeNotifier {
     generateMagicItems();
     if (char.battleStyle.name == "Spellcaster" ||
         char.battleStyle.name == "Diplomat") {
-      char.charEquip.meleeWeapon =
-          offense.generateGearForNonPhysicalStyleChars(_equip.allWeapons, true);
-      char.charEquip.rangeWeapon = offense.generateGearForNonPhysicalStyleChars(
-          _equip.allWeapons, false);
+      char.charEquip.meleeWeapon = offenseCtrl
+          .generateGearForNonPhysicalStyleChars(_equip.allWeapons, true);
+      char.charEquip.rangeWeapon = offenseCtrl
+          .generateGearForNonPhysicalStyleChars(_equip.allWeapons, false);
     } else {
       if (char.physicalStyle.name == "Bowman" ||
           char.physicalStyle.name == "Marksman" ||
           char.physicalStyle.name == "Thrower") {
-        char.charEquip.rangeWeapon = offense.gettingMainWeapon(
+        char.charEquip.rangeWeapon = offenseCtrl.gettingMainWeapon(
             listOfClasses.physicalStyles,
             char.physicalStyle.name,
             _equip.allWeapons,
             char.charClass.name);
-        char.charEquip.meleeWeapon = offense.generatingAlternativeWeapon(
+        char.charEquip.meleeWeapon = offenseCtrl.generatingAlternativeWeapon(
             char.physicalStyle.name, _equip.allWeapons, char.charClass.name);
       } else {
-        char.charEquip.meleeWeapon = offense.gettingMainWeapon(
+        char.charEquip.meleeWeapon = offenseCtrl.gettingMainWeapon(
             listOfClasses.physicalStyles,
             char.physicalStyle.name,
             _equip.allWeapons,
             char.charClass.name);
-        char.charEquip.rangeWeapon = offense.generatingAlternativeWeapon(
+        char.charEquip.rangeWeapon = offenseCtrl.generatingAlternativeWeapon(
             char.physicalStyle.name, _equip.allWeapons, char.charClass.name);
       }
-      char.charEquip.shield = defense.generateShield(
+      char.charEquip.shield = defenseCtrl.generateShield(
           char.physicalStyle.name, char.charClass.name, _equip.allShields);
-      char.charEquip.armour = defense.generateArmor(
+      char.charEquip.armour = defenseCtrl.generateArmor(
           char.charClass.forbidenArmorType,
           char.charClass.mainAtrb,
           char.charClass.name,
           _equip.allArmors);
     }
     calculateBaseAttackBonus();
+    getCharPersonalAppearance();
     makeWeaponMagic();
     makeArmorOrShieldMagic();
     getCombatEquipPrices();
@@ -154,6 +132,18 @@ class StatsController with ChangeNotifier {
     calculateCombatManeuvers();
     calculatingPhysicalAttackAndDamage();
     calculateClassSkills();
+    notifyListeners();
+  }
+
+  getCharPersonalAppearance() {
+    char.charRace = appearanceCtrl.applyHeightAndWeight(
+        listOfRaces.races,
+        listOfClasses.allClasses,
+        char.charRace.name,
+        char.charClass.name,
+        char.charLevel,
+        char.charRace,
+        char.charClass.mainAtrb);
     notifyListeners();
   }
 
@@ -211,7 +201,7 @@ class StatsController with ChangeNotifier {
     if (char.charLevel < 5) {
       return;
     } else {
-      char.charEquip.meleeWeapon = offense.applyMagicToWeapon(
+      char.charEquip.meleeWeapon = offenseCtrl.applyMagicToWeapon(
           char.charLevel,
           listOfEnchants.magicEnchants,
           listOfEnchants.allWeaponEnchants,
@@ -219,7 +209,7 @@ class StatsController with ChangeNotifier {
           char.charEquip.rangeWeapon!,
           char.charEquip.meleeWeapon!,
           true);
-      char.charEquip.rangeWeapon = offense.applyMagicToWeapon(
+      char.charEquip.rangeWeapon = offenseCtrl.applyMagicToWeapon(
           char.charLevel,
           listOfEnchants.magicEnchants,
           listOfEnchants.allWeaponEnchants,
@@ -231,19 +221,17 @@ class StatsController with ChangeNotifier {
   }
 
   getCombatEquipPrices() {
-    meleePrice = claculateMagicEquipPrice(char.charEquip.meleeWeapon!);
-    rangePrice = claculateMagicEquipPrice(char.charEquip.rangeWeapon!);
+    meleePrice = offenseCtrl.claculateWeaponPrice(
+        char.charEquip.meleeWeapon!, char.charLevel);
+    rangePrice = offenseCtrl.claculateWeaponPrice(
+        char.charEquip.rangeWeapon!, char.charLevel);
     armorPrice = char.charEquip.armour != null
-        ? ((claculateMagicEquipPrice(char.charEquip.armour!) +
-                    char.charEquip.armour!.price) /
-                2)
-            .floor()
+        ? defenseCtrl.claculateMagicEquipPrice(
+            char.charEquip.armour!, char.charLevel)
         : 0;
     shieldPrice = char.charEquip.shield != null
-        ? ((claculateMagicEquipPrice(char.charEquip.shield!) +
-                    char.charEquip.shield!.price) /
-                2)
-            .floor()
+        ? defenseCtrl.claculateMagicEquipPrice(
+            char.charEquip.shield!, char.charLevel)
         : 0;
     notifyListeners();
   }
@@ -252,10 +240,10 @@ class StatsController with ChangeNotifier {
   //Apply magic to Armor and shield
 
   makeArmorOrShieldMagic() {
-    char.charEquip.armour = defense.applyMagicToArmorAndShield(
+    char.charEquip.armour = defenseCtrl.applyMagicToArmorAndShield(
         char.charLevel, listOfEnchants.magicEnchants, char.charEquip.armour!);
     char.charEquip.shield = char.charEquip.shield != null
-        ? defense.applyMagicToArmorAndShield(char.charLevel,
+        ? defenseCtrl.applyMagicToArmorAndShield(char.charLevel,
             listOfEnchants.magicEnchants, char.charEquip.shield!)
         : null;
     notifyListeners();
@@ -265,7 +253,7 @@ class StatsController with ChangeNotifier {
   //Base Attack Bonus
 
   calculateBaseAttackBonus() {
-    char.combatStats.baseAttackBonus = offense.calculateBaseAttackBonus(
+    char.combatStats.baseAttackBonus = offenseCtrl.calculateBaseAttackBonus(
         listOfClasses.allClasses, char.charClass.name, char.charLevel);
     notifyListeners();
   }
@@ -273,7 +261,7 @@ class StatsController with ChangeNotifier {
 // ======================================================================================
   ///calculate characters speed
   calculateSpeed() {
-    char.charRace.speed = offense.calculateSpeed(
+    char.charRace.speed = offenseCtrl.calculateSpeed(
         listOfRaces.races,
         char.charLevel,
         char.charRace.name,
@@ -410,7 +398,7 @@ class StatsController with ChangeNotifier {
   var listOfGems = JwelsData();
 
   generateLoot() {
-    charLoot = loot.calculateLoot(
+    charLoot = lootCtrl.calculateLoot(
         char.charEquip.wonderousItems!,
         char.charLevel,
         meleePrice,
@@ -481,13 +469,13 @@ class StatsController with ChangeNotifier {
   // section for hit points generation
 
   generateHitPoints() {
-    char.hitPoints = defense.generateHitPoints(char.charLevel,
+    char.hitPoints = defenseCtrl.generateHitPoints(char.charLevel,
         char.modAtributes.constitution, charFeats, char.charClass.hitDice!);
     notifyListeners();
   }
 
   claculatingHitDefense() {
-    char.combatStats.armourClass = defense.claculatingHitDefense(
+    char.combatStats.armourClass = defenseCtrl.claculatingHitDefense(
         char.charEquip,
         char.charLevel,
         char.modAtributes.dexterity,
@@ -499,7 +487,7 @@ class StatsController with ChangeNotifier {
         true,
         false,
         false);
-    char.combatStats.armourSurprise = defense.claculatingHitDefense(
+    char.combatStats.armourSurprise = defenseCtrl.claculatingHitDefense(
         char.charEquip,
         char.charLevel,
         char.modAtributes.dexterity,
@@ -511,7 +499,7 @@ class StatsController with ChangeNotifier {
         false,
         true,
         false);
-    char.combatStats.armourTouch = defense.claculatingHitDefense(
+    char.combatStats.armourTouch = defenseCtrl.claculatingHitDefense(
       char.charEquip,
       char.charLevel,
       char.modAtributes.dexterity,
@@ -531,7 +519,7 @@ class StatsController with ChangeNotifier {
 // section to generate Ac defense
 
   calculateResistances() {
-    ResistanceModel resists = defense.calculateResistances(
+    ResistanceModel resists = defenseCtrl.calculateResistances(
         listOfClasses.goodOrBad,
         char.charLevel,
         char.charClass.resistUpgrade!,
@@ -549,20 +537,21 @@ class StatsController with ChangeNotifier {
 // section to generate combat manouver modifiers
 
   calculateCombatManeuvers() {
-    char.combatStats.combatManeuverBonus = offense.calculateCombatManeuvers(
+    char.combatStats.combatManeuverBonus = offenseCtrl.calculateCombatManeuvers(
         char.combatStats.baseAttackBonus!,
         char.modAtributes,
         char.charRace.name,
         charFeats,
         char.charLevel,
         true);
-    char.combatStats.combatManeuverDefense = offense.calculateCombatManeuvers(
-        char.combatStats.baseAttackBonus!,
-        char.modAtributes,
-        char.charRace.name,
-        charFeats,
-        char.charLevel,
-        false);
+    char.combatStats.combatManeuverDefense =
+        offenseCtrl.calculateCombatManeuvers(
+            char.combatStats.baseAttackBonus!,
+            char.modAtributes,
+            char.charRace.name,
+            charFeats,
+            char.charLevel,
+            false);
     notifyListeners();
   }
 
@@ -572,7 +561,7 @@ class StatsController with ChangeNotifier {
 
   gettingInitiative() {
     char.combatStats.initiative =
-        offense.gettingInitiative(charFeats, char.modAtributes.dexterity);
+        offenseCtrl.gettingInitiative(charFeats, char.modAtributes.dexterity);
     notifyListeners();
   }
 
@@ -580,43 +569,53 @@ class StatsController with ChangeNotifier {
   // Section for calculating Attack and Damage
 
   calculatingPhysicalAttackAndDamage() {
-    char.combatStats.meleeAttack = offense.calculatingPhysicalAttack(
+    int meleeEnchant = char.charEquip.meleeWeapon!.enchantment == null
+        ? 0
+        : char.charEquip.meleeWeapon!.enchantment!.isNotEmpty
+            ? char.charEquip.meleeWeapon!.enchantment![0].power
+            : 0;
+    int rangeEnchant = char.charEquip.rangeWeapon!.enchantment == null
+        ? 0
+        : char.charEquip.rangeWeapon!.enchantment!.isNotEmpty
+            ? char.charEquip.rangeWeapon!.enchantment![0].power
+            : 0;
+    char.combatStats.meleeAttack = offenseCtrl.calculatingPhysicalAttack(
         char.charClass.mainAtrb,
         char.modAtributes,
         char.combatStats.baseAttackBonus!,
         charFeats,
         char.physicalStyle.name,
         char.charLevel,
-        char.charEquip.meleeWeapon!.enchantment![0].power,
-        char.charEquip.rangeWeapon!.enchantment![0].power,
+        meleeEnchant,
+        rangeEnchant,
         true);
-    char.combatStats.rangeAttack = offense.calculatingPhysicalAttack(
+    char.combatStats.rangeAttack = offenseCtrl.calculatingPhysicalAttack(
         char.charClass.mainAtrb,
         char.modAtributes,
         char.combatStats.baseAttackBonus!,
         charFeats,
         char.physicalStyle.name,
         char.charLevel,
-        char.charEquip.meleeWeapon!.enchantment![0].power,
-        char.charEquip.rangeWeapon!.enchantment![0].power,
+        meleeEnchant,
+        rangeEnchant,
         false);
-    char.combatStats.meleeDamage = offense.calculatingPhysicalDamage(
+    char.combatStats.meleeDamage = offenseCtrl.calculatingPhysicalDamage(
         char.charClass.mainAtrb,
         char.modAtributes,
         charFeats,
         char.physicalStyle.name,
         char.charLevel,
-        char.charEquip.meleeWeapon!.enchantment![0].power,
-        char.charEquip.rangeWeapon!.enchantment![0].power,
+        meleeEnchant,
+        rangeEnchant,
         true);
-    char.combatStats.rangeDamage = offense.calculatingPhysicalDamage(
+    char.combatStats.rangeDamage = offenseCtrl.calculatingPhysicalDamage(
         char.charClass.mainAtrb,
         char.modAtributes,
         charFeats,
         char.physicalStyle.name,
         char.charLevel,
-        char.charEquip.meleeWeapon!.enchantment![0].power,
-        char.charEquip.rangeWeapon!.enchantment![0].power,
+        meleeEnchant,
+        rangeEnchant,
         false);
   }
 

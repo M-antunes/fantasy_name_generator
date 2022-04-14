@@ -57,7 +57,7 @@ class MagicGearController {
     var random = generateRandom(13);
     List<WonderousItemsModel> itemList = [];
     List<WonderousItemsModel> possibleItems = list;
-    if (level == 1) {
+    if (level < 3) {
       itemList = [];
     } else if (level > 2 && level < 8) {
       itemList = [possibleItems[0]];
@@ -285,10 +285,10 @@ class MagicGearController {
       AtributeModel charAtrb) {
     AtributeModel atrbBoost = AtributeModel();
     if (charItems == null) {
-      return atrbBoost;
+      return charAtrb;
     }
     if (charItems.isEmpty) {
-      return atrbBoost;
+      return charAtrb;
     }
     //Boost in atribute from iounstone (mandatory)
     if (level > 11) {

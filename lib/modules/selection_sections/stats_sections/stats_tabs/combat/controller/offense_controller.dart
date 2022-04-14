@@ -5,8 +5,10 @@ import '../../../../../../models/equip_models/armor_models/armor_model.dart';
 import '../../../../../../models/equip_models/magic_equip_models/enchant_model.dart';
 import '../../../../../../models/equip_models/weapon_models/weapon_model.dart';
 import '../../../../../../models/combat_models/physical_style_model.dart';
+import '../../../../../../models/key_value.model.dart';
 import '../../../../../../models/race_models/race_model.dart';
 import '../../../../../../models/class_models/traits_model.dart';
+import '../../../../../../shared/data/equip_data/enchant_data.dart';
 import '../../../../../../shared/data/race_data/race_data.dart';
 import '../../../../../../shared/utils/utils.dart';
 
@@ -406,5 +408,25 @@ class OffenseController {
     } else {
       return "$rangeDamage";
     }
+  }
+
+  int claculateWeaponPrice(WeaponModel weapon, int level) {
+    int valueLabel = 0;
+    if (weapon.enchantment == null) {
+      return 0;
+    } else if (level == 3 || level == 4) {
+      return valueLabel = weapon.price;
+    } else if (weapon.enchantment!.isEmpty) {
+      valueLabel = weapon.price;
+    } else if (weapon.enchantment!.length > 1) {
+      var magicPrices = EnchantData();
+      int price = (weapon.enchantment![0].power + weapon.enchantment![1].power);
+      KeyValueModel priceAdded = magicPrices.pricingForMagicWeapons
+          .firstWhere((element) => element.key == price);
+      valueLabel = (weapon.price + priceAdded.value + 300).toInt();
+    } else {
+      valueLabel = weapon.price + weapon.enchantment![0].enchantPrice + 300;
+    }
+    return valueLabel;
   }
 }

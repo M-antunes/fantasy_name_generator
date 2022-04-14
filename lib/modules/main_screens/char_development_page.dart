@@ -1,8 +1,8 @@
-import 'package:fantasy_name_generator/controllers/stats_controller.dart';
+import 'package:fantasy_name_generator/controllers/stats_controller/stats_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:fantasy_name_generator/controllers/char_controller.dart';
+import 'package:fantasy_name_generator/controllers/stage_controller/char_controller.dart';
 import 'package:fantasy_name_generator/modules/main_screens/widgets/progression_bar.dart';
 import 'package:fantasy_name_generator/modules/main_screens/widgets/char_selection_label.dart';
 import 'package:fantasy_name_generator/shared/themes/app_colors.dart';
@@ -18,7 +18,7 @@ import '../selection_sections/level/level_section.dart';
 import '../selection_sections/name_and_gender/name_section.dart';
 import '../selection_sections/physical_combat/physical_combat_section.dart';
 import '../selection_sections/race/race_section.dart';
-import '../selection_sections/stats_sections/stats_section.dart';
+import '../selection_sections/stats_sections/stats_main/stats_section.dart';
 import 'widgets/character_info_bar.dart';
 
 class CharDevelopmentPage extends StatefulWidget {

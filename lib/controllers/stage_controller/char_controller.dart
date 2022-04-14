@@ -1,35 +1,6 @@
-import 'dart:async';
-import 'dart:convert';
-import 'dart:math';
+import 'package:fantasy_name_generator/controllers/stats_controller/exports.dart';
 
-import 'package:fantasy_name_generator/models/class_models/alignment_model.dart';
-import 'package:fantasy_name_generator/models/combat_models/base_atribute_model.dart';
-import 'package:fantasy_name_generator/models/char_personal_models/char_model.dart';
-import 'package:fantasy_name_generator/models/class_models/class_model.dart';
-import 'package:fantasy_name_generator/models/combat_models/combat_model.dart';
-import 'package:fantasy_name_generator/models/combat_models/combat_style_choice_model.dart';
-import 'package:fantasy_name_generator/models/equip_models/equip_model.dart';
-import 'package:fantasy_name_generator/models/equip_models/loot_models/loot_model.dart';
-import 'package:fantasy_name_generator/models/key_value.model.dart';
-import 'package:fantasy_name_generator/models/char_personal_models/letter_model.dart';
-import 'package:fantasy_name_generator/models/char_personal_models/name_model.dart';
-import 'package:fantasy_name_generator/models/combat_models/physical_style_model.dart';
-import 'package:fantasy_name_generator/models/combat_models/resistance_model.dart';
-import 'package:fantasy_name_generator/models/saved_name_model.dart';
-import 'package:fantasy_name_generator/shared/data/class_data/alignment_data.dart';
-import 'package:fantasy_name_generator/shared/data/class_data/class_data.dart';
-import 'package:fantasy_name_generator/shared/data/equip_data/equip_data.dart';
-import 'package:fantasy_name_generator/shared/widgets/call_message_snackbar.dart';
-import 'package:fantasy_name_generator/shared/data/name_data/human_names_data.dart';
-import 'package:fantasy_name_generator/shared/data/name_data/letters_data.dart';
-import 'package:fantasy_name_generator/shared/data/race_data/race_data.dart';
-import 'package:fantasy_name_generator/models/race_models/race_model.dart';
-import 'package:fantasy_name_generator/shared/widgets/call_undo_button.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-import '../shared/utils/utils.dart';
+import '../stage_controller/exports.dart';
 
 class CharController extends ChangeNotifier {
   late RaceModel chosenRace;
@@ -48,6 +19,7 @@ class CharController extends ChangeNotifier {
   var listOfAlignments = AlignmentData();
   var listOfEquip = EquipData();
   var humanNames = HumanNamesData();
+  var appearanceCtrl = AppearanceController();
   Random randomIndex = Random();
   int creationStage = 1;
   int nameLength = 0;
@@ -145,7 +117,6 @@ class CharController extends ChangeNotifier {
   }
 
   switchRace(RaceModel race) {
-    race.isSelected = !race.isSelected;
     for (var select in listOfRaces.races) {
       select.isSelected = false;
     }
@@ -252,11 +223,10 @@ class CharController extends ChangeNotifier {
 
   filterAlignmentsToClass() {
     filteredAlignments.clear();
-    for (var i = 0; i < chosenClass.permittedAligments.length; i++) {
-      filteredAlignments.addAll(listOfAlignments.allAlignments
-          .where((element) => element.name == chosenClass.permittedAligments[i])
-          .toList());
-    }
+    filteredAlignments.addAll(listOfAlignments.allAlignments
+        .where(
+            (element) => chosenClass.permittedAligments.contains(element.name))
+        .toList());
     for (var i in filteredAlignments) {
       i.isSelected = false;
     }
@@ -287,6 +257,11 @@ class CharController extends ChangeNotifier {
 // ====================================================================================
 
 // Physical characteristics based on race and atributes
+
+  getCharAge() {
+    appearanceCtrl.claculateAge(listOfClasses.allClasses, listOfRaces.races,
+        cha.charRace.name, cha.charClass.name, cha.charLevel);
+  }
 
   /// calculates height and weight for all character
   applyHeightAndWeight() {
@@ -403,7 +378,7 @@ class CharController extends ChangeNotifier {
         tempRaceAge = ajustAgeAccordingtoRace(character, 7, 14);
         break;
       case "Human":
-        tempRaceAge = ajustAgeAccordingtoRace(character, 8, 16);
+        tempRaceAge = ajustAgeAccordingtoRace(character, 8, 14);
         break;
       case "Orc":
         tempRaceAge = ajustAgeAccordingtoRace(character, 4, 12);
@@ -1145,7 +1120,7 @@ class CharController extends ChangeNotifier {
         updateLevelSelectedIfLegendary();
         updateCharModel();
         applyHeightAndWeight();
-        claculateAge();
+        // claculateAge();
         advanceCreationStage();
       }
       return null;
