@@ -31,26 +31,28 @@ class LootSection extends StatelessWidget {
               }),
           SizedBox(height: deviceHeight! * 0.01),
           const AtributeDivision(label: "Jwels"),
-          state.charLoot.jwels!.isNotEmpty
-              ? ListView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: state.charLoot.jwels!.length,
-                  itemBuilder: (context, index) {
-                    var jwel = state.charLoot.jwels![index];
-                    return LootTile(
-                        name: jwel.name,
-                        fullPrice: formatGoldPiece(jwel.finalPrice),
-                        price: jwel.price,
-                        qnt: jwel.qnt);
-                  })
-              : Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8),
-                  child: Text(
-                    "${state.char.charName.fullName} has no jwels",
-                    style: AppTextStyle.statsLabel,
-                  ),
-                ),
+          !state.statsGenerated
+              ? const Center()
+              : state.charLoot.jwels!.isNotEmpty
+                  ? ListView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: state.charLoot.jwels!.length,
+                      itemBuilder: (context, index) {
+                        var jwel = state.charLoot.jwels![index];
+                        return LootTile(
+                            name: jwel.name,
+                            fullPrice: formatGoldPiece(jwel.finalPrice),
+                            price: jwel.price,
+                            qnt: jwel.qnt);
+                      })
+                  : Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      child: Text(
+                        "${state.char.charName.fullName} has no jwels",
+                        style: AppTextStyle.statsLabel,
+                      ),
+                    ),
           const AtributeDivision(label: "Coin"),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),

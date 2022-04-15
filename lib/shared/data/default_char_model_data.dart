@@ -7,6 +7,7 @@ import 'package:fantasy_name_generator/models/combat_models/combat_style_choice_
 import 'package:fantasy_name_generator/models/equip_models/equip_model.dart';
 import 'package:fantasy_name_generator/models/equip_models/loot_models/loot_model.dart';
 import 'package:fantasy_name_generator/models/char_personal_models/name_model.dart';
+import 'package:fantasy_name_generator/models/key_value.model.dart';
 import 'package:fantasy_name_generator/models/race_models/race_model.dart';
 import 'package:fantasy_name_generator/models/combat_models/resistance_model.dart';
 
@@ -14,11 +15,12 @@ import '../../models/combat_models/physical_style_model.dart';
 
 class DefaultCharModelData {
   final defaultCharModel = CharModel(
-    charRace: RaceModel(name: "Human", isSelected: false),
+    charRace: RaceModel(
+        height: KeyValueModel(key: 0, value: 0), name: "", isSelected: false),
     charName: NameModel(
-      fullName: "",
-      name: "",
-      surname: "",
+      fullName: " - ? - ",
+      name: " - ? - ",
+      surname: " - ? - ",
       gender: "",
       objectPronoun: "",
       personalPronoun: "",
@@ -44,13 +46,12 @@ class DefaultCharModelData {
       skillRankPerLevel: 0,
       permittedAligments: [],
       forbidenArmorType: [],
-      name: "Commoner",
+      name: "",
       isSelected: false,
-      mainAtrb: "strength",
-      combatStyle: "Spellcaster",
+      mainAtrb: "",
+      combatStyle: "",
     ),
-    alignment:
-        AlignmentModel(name: "Neutral", isSelected: false, description: ""),
+    alignment: AlignmentModel(name: "", isSelected: false, description: ""),
     hitPoints: 10,
     resistances: ResistanceModel(),
     combatStats: CombatModel(),

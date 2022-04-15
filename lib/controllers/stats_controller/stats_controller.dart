@@ -1,7 +1,9 @@
-import '../stats_controller/exports.dart';
+import 'package:fantasy_name_generator/shared/data/default_char_model_data.dart';
+
+import 'imports.dart';
 
 class StatsController with ChangeNotifier {
-  late CharModel char;
+  CharModel char = DefaultCharModelData().defaultCharModel;
   var listOfWonderousItems = WonderousItemsData();
   var listOfEnchants = EnchantData();
   final _equip = EquipData();
@@ -24,11 +26,6 @@ class StatsController with ChangeNotifier {
   int rangePrice = 0;
 
   bool statsGenerated = false;
-
-  updateStats() {
-    statsGenerated = !statsGenerated;
-    notifyListeners();
-  }
 
   showDescriptions(int index, dynamic list) {
     if (list[index].isSelected == true) {
@@ -70,7 +67,7 @@ class StatsController with ChangeNotifier {
     charLoot = LootModel();
     tomesAndManuals = [];
     charSkills = [];
-
+    statsGenerated = false;
     notifyListeners();
   }
 
@@ -110,8 +107,8 @@ class StatsController with ChangeNotifier {
           char.charClass.name,
           _equip.allArmors);
     }
-    calculateBaseAttackBonus();
     getCharPersonalAppearance();
+    calculateBaseAttackBonus();
     makeWeaponMagic();
     makeArmorOrShieldMagic();
     getCombatEquipPrices();
@@ -132,6 +129,7 @@ class StatsController with ChangeNotifier {
     calculateCombatManeuvers();
     calculatingPhysicalAttackAndDamage();
     calculateClassSkills();
+    statsGenerated = true;
     notifyListeners();
   }
 

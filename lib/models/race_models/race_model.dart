@@ -12,18 +12,18 @@ class RaceModel {
   double? weight;
   int? age;
   int? speed;
-  final String? size;
-  final String? vision;
+  String? size;
+  String? vision;
   RaceModel({
     required this.name,
     required this.isSelected,
     this.traits,
     this.height,
-    this.weight,
-    this.age,
-    this.speed,
-    this.size,
-    this.vision,
+    this.weight = 0,
+    this.age = 0,
+    this.speed = 0,
+    this.size = "",
+    this.vision = "",
   });
 
   RaceModel copyWith({

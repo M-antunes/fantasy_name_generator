@@ -1,6 +1,8 @@
-import 'package:fantasy_name_generator/controllers/stats_controller/exports.dart';
+// ignore_for_file: avoid_function_literals_in_foreach_calls
 
-import '../stage_controller/exports.dart';
+import 'package:fantasy_name_generator/shared/data/default_char_model_data.dart';
+
+import 'imports.dart';
 
 class CharController extends ChangeNotifier {
   late RaceModel chosenRace;
@@ -255,140 +257,6 @@ class CharController extends ChangeNotifier {
     notifyListeners();
   }
 // ====================================================================================
-
-// Physical characteristics based on race and atributes
-
-  getCharAge() {
-    appearanceCtrl.claculateAge(listOfClasses.allClasses, listOfRaces.races,
-        cha.charRace.name, cha.charClass.name, cha.charLevel);
-  }
-
-  /// calculates height and weight for all character
-  applyHeightAndWeight() {
-    var char = cha;
-    var increment = 0;
-    var raceGotten = listOfRaces.races
-        .firstWhere((element) => element.name == char.charRace.name);
-    int baseInches = raceGotten.height!.value;
-    int baseFeet = raceGotten.height!.key;
-    var baseWeight = raceGotten.weight!;
-    if (raceGotten.name == "Dwarf" || raceGotten.size == "Small") {
-      increment = rollingDice(4) + rollingDice(4);
-      baseInches += increment;
-      if (raceGotten.name == "Dwarf") {
-        baseWeight += (increment * 7);
-      } else {
-        baseWeight += (increment * 1.5);
-      }
-    } else if (raceGotten.name == "Half-elf" || raceGotten.name == "Elf") {
-      increment = rollingDice(8) + rollingDice(8);
-      baseInches += increment;
-      baseWeight += (increment * 7);
-    } else if (raceGotten.name == "Half-orc" || raceGotten.name == "Human") {
-      increment = rollingDice(10) + rollingDice(10);
-      baseInches += increment;
-      baseWeight += (increment * 7);
-    } else {
-      increment = rollingDice(12) + rollingDice(12);
-      baseInches += increment;
-      baseWeight += (increment * 9);
-    }
-    if (char.charClass.mainAtrb == "strength" &&
-        char.charRace.size != "Small") {
-      baseInches += rollingDice(4);
-      baseWeight += rollingDice(20) + rollingDice(20);
-    }
-    char.charRace.height!.value = baseInches;
-    char.charRace.height!.key = baseFeet;
-    char.charRace.weight = baseWeight;
-    transformInchToFoot(char);
-    cha.charRace.height!.value = char.charRace.height!.value;
-    cha.charRace.height!.key = char.charRace.height!.key;
-    cha.charRace.weight = char.charRace.weight;
-    notifyListeners();
-  }
-
-  /// changes inches to foot
-  transformInchToFoot(CharModel char) {
-    if (char.charRace.height!.value > 10) {
-      while (char.charRace.height!.value > 10) {
-        char.charRace.height!.value -= 10;
-        char.charRace.height!.key += 1;
-      }
-    }
-  }
-
-  int ajustAgeAccordingtoRace(
-      CharModel char, int physClassDif, int mentClassDif) {
-    double baseAge = 0;
-    var ageIncrement = 0;
-    int dif = 0;
-    bool containsPhys = listOfClasses.allClasses
-        .any((element) => element.combatStyle == "Physical");
-    if (containsPhys) {
-      if (char.charClass.name == "Barbarian" ||
-          char.charClass.name == "Rogue") {
-        double youngClassDif = physClassDif * 0.6;
-        dif = youngClassDif.toInt();
-        ageIncrement = generateRandom(dif);
-        baseAge = baseAge + ageIncrement;
-      } else {
-        ageIncrement = generateRandom(physClassDif);
-        baseAge = baseAge + ageIncrement;
-      }
-    }
-    bool containsMent = listOfClasses.allClasses.any((element) =>
-        element.combatStyle == "Hybrid" || element.combatStyle == "Spellcater");
-    if (containsMent) {
-      ageIncrement = generateRandom(mentClassDif);
-      baseAge = baseAge + ageIncrement;
-    }
-    if (char.charLevel > 4) {
-      for (var i = 4; i < char.charLevel; i = i + 4) {
-        baseAge = baseAge + 1;
-      }
-    }
-    return baseAge.toInt();
-  }
-
-  ///calculate character's Age
-  claculateAge() {
-    var character = cha;
-    var raceGotten = listOfRaces.races
-        .firstWhere((element) => element.name == character.charRace.name);
-    var baseAge = raceGotten.age;
-    var tempRaceAge = 0;
-    switch (character.charRace.name) {
-      case "Dwarf":
-        tempRaceAge = ajustAgeAccordingtoRace(character, 30, 60);
-        break;
-      case "Elf":
-        tempRaceAge = ajustAgeAccordingtoRace(character, 30, 60);
-        break;
-      case "Gnome":
-        tempRaceAge = ajustAgeAccordingtoRace(character, 20, 40);
-        break;
-      case "Hafling":
-        tempRaceAge = ajustAgeAccordingtoRace(character, 10, 20);
-        break;
-      case "Half-elf":
-        tempRaceAge = ajustAgeAccordingtoRace(character, 10, 20);
-        break;
-      case "Half-orc":
-        tempRaceAge = ajustAgeAccordingtoRace(character, 7, 14);
-        break;
-      case "Human":
-        tempRaceAge = ajustAgeAccordingtoRace(character, 8, 14);
-        break;
-      case "Orc":
-        tempRaceAge = ajustAgeAccordingtoRace(character, 4, 12);
-        break;
-      default:
-    }
-    cha.charRace.age = baseAge! + tempRaceAge;
-    notifyListeners();
-  }
-
 // ====================================================================================
 
 // Creation Advance and retreat Functions
@@ -1119,8 +987,6 @@ class CharController extends ChangeNotifier {
         updateLevelSelectedIfEpic();
         updateLevelSelectedIfLegendary();
         updateCharModel();
-        applyHeightAndWeight();
-        // claculateAge();
         advanceCreationStage();
       }
       return null;
@@ -1131,11 +997,14 @@ class CharController extends ChangeNotifier {
   }
 
   startCharAllOver() {
+    cha = DefaultCharModelData().defaultCharModel;
     newName = ' - ? - ';
     newLastName = ' - ? - ';
     levelSelected = -1;
     starttempRace();
     startTempClass();
+    listOfRaces.races.forEach((element) => element.isSelected = false);
+    chosenRace = listOfRaces.races.first;
     tempRaceForSwitching.isSelected = true;
     tempClassForSwitching.isSelected = true;
     creationStage = 1;

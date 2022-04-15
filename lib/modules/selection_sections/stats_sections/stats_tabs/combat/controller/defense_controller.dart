@@ -288,24 +288,23 @@ class DefenseController {
   }
 
   int claculateMagicEquipPrice(ArmorModel defenseEquip, int level) {
-    int valueLabel = 0;
+    int valueLabel = defenseEquip.price;
     if (level < 3) {
-      return 0;
+      return valueLabel;
     } else if (level == 3 || level == 4) {
-      return valueLabel = defenseEquip.price + 150;
+      return valueLabel += 150;
     } else if (defenseEquip.enchantment!.isEmpty) {
-      valueLabel = defenseEquip.price;
+      return valueLabel;
     } else if (defenseEquip.enchantment!.length > 1) {
       var magicPrices = EnchantData();
       int price = (defenseEquip.enchantment![0].power +
           defenseEquip.enchantment![1].power);
       KeyValueModel priceAdded = magicPrices.pricingForMagicWeapons
           .firstWhere((element) => element.key == price);
-      valueLabel = (defenseEquip.price + (priceAdded.value / 2) + 150).toInt();
+      valueLabel += (150 + (priceAdded.value / 2)).toInt();
     } else {
-      valueLabel = defenseEquip.price +
-          (defenseEquip.enchantment![0].enchantPrice / 2).floor() +
-          150;
+      valueLabel +=
+          (defenseEquip.enchantment![0].enchantPrice / 2).floor() + 150;
     }
     return valueLabel;
   }

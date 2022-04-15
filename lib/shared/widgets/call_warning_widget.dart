@@ -1,31 +1,44 @@
+import 'package:fantasy_name_generator/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 
 import '../themes/app_text_styles.dart';
 
-Future<dynamic> callWarningWidget(BuildContext context, String text,
-    String? notWarning, VoidCallback? onConfirm) {
+Future<dynamic> callStartOverConfirmation(BuildContext context,
+    String className, String charName, VoidCallback? onConfirm) {
   return showDialog(
       context: context,
       builder: (context) {
         return AlertDialog(
           elevation: 6,
-          title: Text(
-            notWarning ?? "Warning",
-            strutStyle: const StrutStyle(fontSize: 20),
-            style: AppTextStyle.changeRace,
-          ),
-          content: Text(
-            text,
-            style: AppTextStyle.subTextGreyPlusSize,
-            textAlign: TextAlign.center,
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              RichText(
+                  strutStyle: const StrutStyle(height: 1.6),
+                  textAlign: TextAlign.center,
+                  text: TextSpan(style: AppTextStyle.subTextGrey, children: [
+                    const TextSpan(text: "If you confirm, the "),
+                    TextSpan(
+                        text: " $className ",
+                        style: AppTextStyle.subTextGreyPlusSize),
+                    const TextSpan(text: " named "),
+                    TextSpan(
+                        text: " $charName ",
+                        style: AppTextStyle.subTextGreyPlusSize),
+                    TextSpan(
+                        text: " will be lost forever.",
+                        style: AppTextStyle.subTextGreyPlusSize
+                            .copyWith(color: AppColors.primaryOrange)),
+                  ])),
+              const SizedBox(height: 6),
+              Text("Is that what you desire?",
+                  style: AppTextStyle.subTextGreyPlusSize),
+            ],
           ),
           actions: [
             TextButton(
                 onPressed: onConfirm,
-                child: Text(
-                  "Ok",
-                  style: AppTextStyle.warningButtonConfirm,
-                ))
+                child: Text("Yes", style: AppTextStyle.warningButtonDeny)),
           ],
         );
       });

@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 
 import 'package:fantasy_name_generator/controllers/stage_controller/char_controller.dart';
 import 'package:fantasy_name_generator/controllers/stats_controller/stats_controller.dart';
-import 'package:fantasy_name_generator/models/key_value.model.dart';
 import 'package:fantasy_name_generator/shared/constants/phone_sizes.dart';
 import 'package:fantasy_name_generator/shared/themes/app_text_styles.dart';
 import 'package:fantasy_name_generator/shared/widgets/app_horizontal_line.dart';
@@ -91,11 +90,11 @@ class _StatsSectionState extends State<StatsSection>
                               width: deviceWidth! * 0.5,
                               child: CharDescriptionText(
                                 label: "Race:",
-                                textValue: state.cha.charRace.name,
+                                textValue: ctrl.char.charRace.name,
                               )),
                           CharDescriptionText(
                               label: "Gender:",
-                              textValue: state.cha.charName.gender),
+                              textValue: ctrl.char.charName.gender),
                         ],
                       ),
                       const SizedBox(height: 2),
@@ -106,10 +105,10 @@ class _StatsSectionState extends State<StatsSection>
                       //         width: deviceWidth! * 0.5,
                       //         child: CharDescriptionText(
                       //             label: "Combat:",
-                      //             textValue: state.cha.battleStyle.name)),
+                      //             textValue: ctrl.char.battleStyle.name)),
                       //     CharDescriptionText(
                       //         label: "Style:",
-                      //         textValue: state.cha.physicalStyle.name),
+                      //         textValue: ctrl.char.physicalStyle.name),
                       //   ],
                       // ),
                       // const SizedBox(height: 2),
@@ -120,10 +119,10 @@ class _StatsSectionState extends State<StatsSection>
                               width: deviceWidth! * 0.5,
                               child: CharDescriptionText(
                                   label: "Class:",
-                                  textValue: state.cha.charClass.name)),
+                                  textValue: ctrl.char.charClass.name)),
                           CharDescriptionText(
                               label: "Alignment:",
-                              textValue: state.cha.alignment.abreviation!),
+                              textValue: ctrl.char.alignment.abreviation!),
                         ],
                       ),
                       const SizedBox(height: 2),
@@ -135,11 +134,11 @@ class _StatsSectionState extends State<StatsSection>
                               child: CharDescriptionText(
                                   label: "Height:",
                                   textValue:
-                                      "${state.cha.charRace.height!.key} ft. ${state.cha.charRace.height!.value} in.")),
+                                      "${ctrl.char.charRace.height!.key} ft. ${ctrl.char.charRace.height!.value} in.")),
                           CharDescriptionText(
                               label: "Weight:",
                               textValue:
-                                  "${state.cha.charRace.weight!.toInt()} lbs."),
+                                  "${ctrl.char.charRace.weight!.toInt()} lbs."),
                         ],
                       ),
                       const SizedBox(height: 2),
@@ -167,7 +166,7 @@ class _StatsSectionState extends State<StatsSection>
                                   textValue: state.chosenRace.vision!)),
                           CharDescriptionText(
                               label: "Perception:",
-                              textValue: ctrl.statsGenerated
+                              textValue: ctrl.charSkills.isNotEmpty
                                   ? "${ctrl.charSkills.firstWhere((element) => element.name == "Perception").finalValue}"
                                   : "0"),
                         ],
