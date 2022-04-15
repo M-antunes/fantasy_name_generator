@@ -202,7 +202,7 @@ class _StatsSectionState extends State<StatsSection>
                               ],
                             ),
                             SizedBox(
-                              height: deviceHeight! * 0.55,
+                              height: deviceHeight! * 0.56,
                               width: double.infinity,
                               child: TabBarView(
                                 controller: _controller,

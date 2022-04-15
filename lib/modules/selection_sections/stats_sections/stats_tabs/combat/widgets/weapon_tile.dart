@@ -14,6 +14,7 @@ class WeaponTile extends StatelessWidget {
   final String damageValue;
   final String damageBonus;
   final String? extraDamage;
+  final String critical;
   const WeaponTile({
     Key? key,
     required this.type,
@@ -26,6 +27,7 @@ class WeaponTile extends StatelessWidget {
     required this.damageValue,
     required this.damageBonus,
     this.extraDamage,
+    required this.critical,
   }) : super(key: key);
 
   @override
@@ -66,6 +68,13 @@ class WeaponTile extends StatelessWidget {
             Text(extraDamage ?? "",
                 style: AppTextStyle.subTextWhite
                     .copyWith(color: Colors.grey[300])),
+            const SizedBox(width: 10),
+            Text("Critical:", style: AppTextStyle.statsLabel),
+            const SizedBox(width: 4),
+            Text(critical,
+                style: AppTextStyle.subTextWhite
+                    .copyWith(color: Colors.grey[300])),
+            // const SizedBox(height: 3),
           ],
         ),
       ],

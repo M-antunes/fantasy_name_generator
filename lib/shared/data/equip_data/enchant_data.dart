@@ -70,7 +70,7 @@ class EnchantData {
       enchantPrice: 2000,
       magicalPorperty:
           "A bane weapon excels against certain foes. Against a designated foe, the weapon's enhancement bonus is +2 better than its actual bonus. It also deals an extra 2d6 points of damage against such foes. Choose a subtype.",
-      additionalDiceDamage: "+2d6 bane",
+      additionalDiceDamage: "(+2d6 bane)",
     ),
     EnchantModel(
       enchant: "Called",
@@ -88,7 +88,7 @@ class EnchantData {
       enchantPrice: 2000,
       magicalPorperty:
           "Upon command, a flaming weapon is sheathed in fire that deals an extra 1d6 points of fire damage on a successful hit. The fire does not harm the wielder. The effect remains until another command is given.",
-      additionalDiceDamage: "+1d6 fire",
+      additionalDiceDamage: "(+1d6 fire)",
     ),
     EnchantModel(
       enchant: "Frost",
@@ -97,7 +97,7 @@ class EnchantData {
       enchantPrice: 2000,
       magicalPorperty:
           "Upon command, a frost weapon is sheathed in a terrible, icy cold that deals an extra 1d6 points of cold damage on a successful hit. The cold does not harm the wielder. The effect remains until another command is given.",
-      additionalDiceDamage: "+1d6 cold",
+      additionalDiceDamage: "(+1d6 cold)",
     ),
     EnchantModel(
       enchant: "Ghost touch",
@@ -124,7 +124,7 @@ class EnchantData {
         enchantPrice: 2000,
         magicalPorperty:
             "Upon command, a shock weapon is sheathed in crackling electricity that deals an extra 1d6 points of electricity damage on a successful hit. The electricity does not harm the wielder. The effect remains until another command is given.",
-        additionalDiceDamage: "+1d6 shock"),
+        additionalDiceDamage: "(+1d6 shock)"),
     EnchantModel(
         enchant: "Thundering",
         availability: 5,
@@ -132,7 +132,7 @@ class EnchantData {
         enchantPrice: 2000,
         magicalPorperty:
             "A thundering weapon creates a cacophonous roar like thunder whenever it strikes a target with a successful critical hit. The sonic energy does not harm the wielder. A thundering weapon deals an extra 1d8 points of sonic damage on a successful critical hit. If the weapon's critical multiplier is ×3, add an extra 2d8 points of sonic damage instead, and if the multiplier is ×4, add an extra 3d8 points of sonic damage. Subjects dealt critical hits by a thundering weapon must make a successful DC 14 Fortitude save or be deafened permanently.",
-        additionalDiceDamage: "+1d6 shock"),
+        additionalDiceDamage: "(+1d6 shock)"),
     EnchantModel(
         enchant: "Corrosive",
         availability: 5,
@@ -140,7 +140,7 @@ class EnchantData {
         enchantPrice: 2000,
         magicalPorperty:
             "Upon command, a corrosive weapon becomes slick with acid that deals an extra 1d6 points of acid damage on a successful hit. The acid does not harm the wielder. The effect remains until another command is given.",
-        additionalDiceDamage: "+1d6 acid"),
+        additionalDiceDamage: "(+1d6 acid)"),
     EnchantModel(
         enchant: "Corrosive burst",
         availability: 8,
@@ -148,7 +148,7 @@ class EnchantData {
         enchantPrice: 8000,
         magicalPorperty:
             "A Corrosive burst weapon functions as a corrosive weapon that explodes with searing acid upon striking a successful critical hit. The acid does not harm the wielder. In addition to the extra acid damage from the corrosive special ability, a Corrosive burst weapon deals an extra 1d10 points of acid damage on a successful critical hit. If the weapon's critical modifier is ×3, add an extra 2d10 points of acid damage instead, and if the modifier is ×4, add an extra 3d10 points.",
-        additionalDiceDamage: "+1d6 acid"),
+        additionalDiceDamage: "(+1d6 acid)"),
     EnchantModel(
         enchant: "Flaming burst",
         availability: 8,
@@ -156,7 +156,7 @@ class EnchantData {
         enchantPrice: 8000,
         magicalPorperty:
             "A flaming burst weapon functions as a flaming weapon that also explodes with flame upon striking a successful critical hit. The fire does not harm the wielder. In addition to the extra fire damage from the flaming ability (see above), a flaming burst weapon deals an extra 1d10 points of fire damage on a successful critical hit. If the weapon's critical multiplier is ×3, add an extra 2d10 points of fire damage instead, and if the multiplier is ×4, add an extra 3d10 points of fire damage.",
-        additionalDiceDamage: "+1d6 fire"),
+        additionalDiceDamage: "(+1d6 fire)"),
     EnchantModel(
         enchant: "Holy",
         availability: 8,
@@ -164,7 +164,7 @@ class EnchantData {
         enchantPrice: 8000,
         magicalPorperty:
             "A holy weapon is imbued with holy power. This power makes the weapon good-aligned and thus bypasses the corresponding damage reduction. It deals an extra 2d6 points of damage against all creatures of evil alignment. It bestows one permanent negative level on any evil creature attempting to wield it. The negative level remains as long as the weapon is in hand and disappears when the weapon is no longer wielded. This negative level cannot be overcome in any way (including by restoration spells) while the weapon is wielded.",
-        additionalDiceDamage: "+2d6 against evil"),
+        additionalDiceDamage: "(+2d6 against evil)"),
     EnchantModel(
         enchant: "Icy burst",
         availability: 8,
@@ -172,7 +172,7 @@ class EnchantData {
         enchantPrice: 8000,
         magicalPorperty:
             "An icy burst weapon functions as a frost weapon that also explodes with frost upon striking a successful critical hit. The frost does not harm the wielder. In addition to the extra damage from the frost ability, an icy burst weapon deals an extra 1d10 points of cold damage on a successful critical hit. If the weapon's critical multiplier is ×3, add an extra 2d10 points of cold damage instead, and if the multiplier is ×4, add an extra 3d10 points.",
-        additionalDiceDamage: "+1d6 cold"),
+        additionalDiceDamage: "(+1d6 cold)"),
     EnchantModel(
         enchant: "Igniting",
         availability: 8,
@@ -180,7 +180,7 @@ class EnchantData {
         enchantPrice: 8000,
         magicalPorperty:
             "An igniting weapon functions as a flaming weapon that also causes the target to catch fire (Core Rulebook 444) upon striking it with a successful critical hit. The target does not get a saving throw to avoid catching fire, but can make a save each round on its turn to put out the fire. The flaming ability must be active for the weapon to set enemies on fire.",
-        additionalDiceDamage: "+1d6 fire"),
+        additionalDiceDamage: "(+1d6 fire)"),
     EnchantModel(
         enchant: "Invigorating",
         availability: 9,
@@ -188,7 +188,7 @@ class EnchantData {
         enchantPrice: 8000,
         magicalPorperty:
             "This special ability can only be placed on melee weapons. After an attack with this weapon drops a living foe (kills it or drops it to negative hit points), the weapon infuses its wielder with vigor. If its wielder is fatigued, the weapon removes the fatigue. If exhausted, the wielder becomes fatigued instead. If neither exhausted nor fatigued, the wielder gains a +2 morale bonus on attack rolls and a +10 foot enhancement bonus to all modes of movement possessed until the end of the wielder's next turn.",
-        additionalDiceDamage: "+1d6 fire"),
+        additionalDiceDamage: "(+1d6 fire)"),
     EnchantModel(
       enchant: "Phase locking",
       availability: 8,
@@ -205,7 +205,7 @@ class EnchantData {
         enchantPrice: 8000,
         magicalPorperty:
             "A shocking burst weapon functions as a shock weapon that explodes with electricity upon striking a successful critical hit. The electricity does not harm the wielder. In addition to the extra electricity damage from the shock ability, a shocking burst weapon deals an extra 1d10 points of electricity damage on a successful critical hit. If the weapon's critical multiplier is ×3, add an extra 2d10 points of electricity damage instead, and if the multiplier is ×4, add an extra 3d10 points.",
-        additionalDiceDamage: "+1d6 shock"),
+        additionalDiceDamage: "(+1d6 shock)"),
     EnchantModel(
       enchant: "Stalking",
       availability: 8,
@@ -222,7 +222,7 @@ class EnchantData {
         enchantPrice: 8000,
         magicalPorperty:
             "An unholy weapon is imbued with unholy power. This power makes the weapon evil-aligned and thus bypasses the corresponding damage reduction. It deals an extra 2d6 points of damage against all creatures of good alignment. It bestows one permanent negative level on any good creature attempting to wield it. The negative level remains as long as the weapon is in hand and disappears when the weapon is no longer wielded. This negative level cannot be overcome in any way (including restoration spells) while the weapon is wielded.",
-        additionalDiceDamage: "+2d6 against good"),
+        additionalDiceDamage: "(+2d6 against good)"),
     EnchantModel(
       enchant: "Wounding",
       availability: 8,

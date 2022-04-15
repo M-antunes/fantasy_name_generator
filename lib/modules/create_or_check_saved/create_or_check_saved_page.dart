@@ -48,7 +48,7 @@ class CreateOrCheckSavedPage extends StatelessWidget {
                     ),
                   ),
                   onTap: () {
-                    Navigator.pushNamed(context, AppRoutes.main);
+                    Navigator.pushNamed(context, AppRoutes.charSection);
                   },
                 ),
                 InkWell(
@@ -62,7 +62,9 @@ class CreateOrCheckSavedPage extends StatelessWidget {
                       child: Text("View Characters"),
                     ),
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushNamed(context, AppRoutes.savedCharSelection);
+                  },
                 ),
               ],
             ),

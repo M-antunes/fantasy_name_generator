@@ -66,7 +66,7 @@ class LootSection extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(height: deviceHeight! * 0.01),
+          SizedBox(height: deviceHeight! * 0.05),
         ],
       );
     });

@@ -17,7 +17,7 @@ Future<dynamic> callStartOverConfirmation(BuildContext context,
                   strutStyle: const StrutStyle(height: 1.6),
                   textAlign: TextAlign.center,
                   text: TextSpan(style: AppTextStyle.subTextGrey, children: [
-                    const TextSpan(text: "If you confirm, the "),
+                    const TextSpan(text: "Confirm this and the "),
                     TextSpan(
                         text: " $className ",
                         style: AppTextStyle.subTextGreyPlusSize),

@@ -31,13 +31,6 @@ class OffenseSegment extends StatelessWidget {
                 label: "Speed:",
                 value: "${state.char.charRace.speed} ft.",
               ),
-              // if (state.char.charEquip.armour != null)
-              //   SizedBox(
-              //     child: state.char.charEquip.armour!.speedPenalty! > 0
-              //         ? Text("armor penalty",
-              //             style: AppTextStyle.penaltyStyleText)
-              //         : SizedBox(),
-              //   )
             ],
           ),
           const SizedBox(height: 3),
@@ -100,8 +93,9 @@ class OffenseSegment extends StatelessWidget {
                           state.char.charEquip.meleeWeapon!.enchantment!
                                   .length >
                               1
-                      ? "(${state.char.charEquip.meleeWeapon!.enchantment!.last.additionalDiceDamage})"
+                      ? "${state.char.charEquip.meleeWeapon!.enchantment!.last.additionalDiceDamage}"
                       : "",
+                  critical: state.char.charEquip.meleeWeapon!.critical!,
                 ),
                 if (state.char.physicalStyle.name == "Dual-weilder")
                   WeaponTile(
@@ -142,8 +136,9 @@ class OffenseSegment extends StatelessWidget {
                             state.char.charEquip.meleeWeapon!.enchantment!
                                     .length >
                                 1
-                        ? "(${state.char.charEquip.meleeWeapon!.enchantment!.last.additionalDiceDamage})"
+                        ? "${state.char.charEquip.meleeWeapon!.enchantment!.last.additionalDiceDamage}"
                         : "",
+                    critical: state.char.charEquip.meleeWeapon!.critical!,
                   ),
                 WeaponTile(
                   isMasterWork:
@@ -180,6 +175,7 @@ class OffenseSegment extends StatelessWidget {
                               1
                       ? "(${state.char.charEquip.rangeWeapon!.enchantment!.last.additionalDiceDamage})"
                       : "",
+                  critical: state.char.charEquip.rangeWeapon!.critical!,
                 ),
               ],
             ),
@@ -193,7 +189,8 @@ class OffenseSegment extends StatelessWidget {
                     magic: "",
                     attack: "(Attack value)",
                     damageValue: "damage",
-                    damageBonus: "+bonus"),
+                    damageBonus: "+bonus",
+                    critical: "x"),
                 WeaponTile(
                     type: "Range",
                     name: "Weapon Name",
@@ -201,7 +198,8 @@ class OffenseSegment extends StatelessWidget {
                     magic: "",
                     attack: "(Attack value)",
                     damageValue: "damage",
-                    damageBonus: "+bonus"),
+                    damageBonus: "+bonus",
+                    critical: "x"),
               ],
             ),
         ],

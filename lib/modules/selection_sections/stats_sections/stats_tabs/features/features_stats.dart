@@ -50,6 +50,7 @@ class FeatureStats extends StatelessWidget {
                   onTap: () => state.showDescriptions(index, state.specials),
                 );
               }),
+          SizedBox(height: deviceHeight! * 0.05),
         ],
       );
     });

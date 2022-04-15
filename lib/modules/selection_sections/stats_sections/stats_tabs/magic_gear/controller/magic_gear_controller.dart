@@ -74,7 +74,7 @@ class MagicGearController {
           ? itemList = [possibleItems[2]]
           : itemList = [possibleItems[3]];
     } else {
-      random < 5
+      random < 3
           ? itemList = [possibleItems[3]]
           : itemList = [possibleItems[4]];
     }

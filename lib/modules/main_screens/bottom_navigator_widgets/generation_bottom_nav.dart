@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:fantasy_name_generator/controllers/stage_controller/char_controller.dart';
 import 'package:fantasy_name_generator/controllers/stats_controller/stats_controller.dart';
 
+import '../../../shared/routes/app_roues.dart';
 import '../../../shared/themes/app_colors.dart';
 import '../../../shared/widgets/app_animated_button.dart';
 import '../../../shared/widgets/app_generate_button.dart';
@@ -20,7 +21,7 @@ class GenerationBottomNav extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<CharController>(builder: (context, state, child) {
       return Padding(
-        padding: const EdgeInsets.only(left: 8.0, right: 8, bottom: 8),
+        padding: const EdgeInsets.only(left: 8.0, right: 8, bottom: 4),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -53,12 +54,10 @@ class GenerationBottomNav extends StatelessWidget {
                       ? null
                       : const Icon(Icons.delete_forever, size: 35),
                   onGenerate: !ctrl.statsGenerated
-                      ? () {
-                          ctrl.generateAll();
-                        }
-                      : () {
-                          ctrl.resetEquipAndStats();
-                        },
+                      ? () => Navigator.of(context)
+                          .pushNamed(AppRoutes.loading)
+                          .then((value) => ctrl.generateAll())
+                      : () => ctrl.resetEquipAndStats(),
                 );
               }),
             AppAnimatedButton(
