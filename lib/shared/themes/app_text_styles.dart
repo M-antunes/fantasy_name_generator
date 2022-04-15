@@ -86,14 +86,24 @@ class AppTextStyle {
             ? 21
             : 24,
   );
+  static final nameExhibitionSheet = TextStyle(
+    fontWeight: FontWeight.w500,
+    fontFamily: "Grantmouth",
+    color: AppColors.primaryText,
+    fontSize: deviceWidth! < 350
+        ? 19
+        : deviceWidth! > 350 && deviceWidth! < 400
+            ? 21
+            : 24,
+  );
   static final changeRace = TextStyle(
     fontWeight: FontWeight.w400,
     color: Colors.white,
     fontSize: deviceWidth! < 350
-        ? 17
+        ? 22
         : deviceWidth! > 350 && deviceWidth! < 400
-            ? 19
-            : 22,
+            ? 27
+            : 30,
   );
   static final mainPageLabel = TextStyle(
     fontWeight: FontWeight.w400,
