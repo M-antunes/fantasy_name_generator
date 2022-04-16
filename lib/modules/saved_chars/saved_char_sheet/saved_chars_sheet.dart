@@ -162,8 +162,7 @@ class SavedCharSheet extends StatelessWidget {
                                 ? deviceWidth! * 0.76
                                 : deviceWidth! * 0.8,
                             child: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 2),
+                              padding: const EdgeInsets.only(left: 6),
                               child: Column(
                                 children: [
                                   state.tempIcon.iconlabel == "Ability Scores"

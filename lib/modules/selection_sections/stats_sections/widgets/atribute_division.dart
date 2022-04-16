@@ -8,10 +8,12 @@ import '../../../../shared/widgets/app_horizontal_line.dart';
 class AtributeDivision extends StatelessWidget {
   final String label;
   final String? label2;
+  final double? defineWidth;
   const AtributeDivision({
     Key? key,
     required this.label,
     this.label2,
+    this.defineWidth,
   }) : super(key: key);
 
   @override
@@ -20,7 +22,7 @@ class AtributeDivision extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(height: deviceHeight! * 0.01),
-        const AppHorizontalLine(),
+        AppHorizontalLine(defineWidth: defineWidth),
         Padding(
             padding: const EdgeInsets.only(top: 3, left: 6),
             child: Text(
