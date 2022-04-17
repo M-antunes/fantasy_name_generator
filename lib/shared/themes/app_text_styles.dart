@@ -317,7 +317,7 @@ class AppTextStyle {
             ? 16
             : 19,
   );
-  static final atributeDivisionText = TextStyle(
+  static final attributeDivisionText = TextStyle(
     fontWeight: FontWeight.w400,
     fontFamily: "David",
     color: AppColors.primaryText0,

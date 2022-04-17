@@ -16,7 +16,7 @@ class FeatStats extends StatelessWidget {
         return ListView(
           physics: const BouncingScrollPhysics(),
           children: [
-            const AtributeDivision(label: "Feats"),
+            const AttributeDivision(label: "Feats"),
             SizedBox(height: deviceHeight! * 0.005),
             ListView.builder(
                 shrinkWrap: true,

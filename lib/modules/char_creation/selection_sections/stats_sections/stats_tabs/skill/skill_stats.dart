@@ -46,7 +46,7 @@ class SkillStats extends StatelessWidget {
                       return SkillRowWidget(
                         bonus: "${skill.finalValue}",
                         skillName: skill.name,
-                        atrb: skill.atributeUsed,
+                        atrb: skill.attributeUsed,
                         atrbValue: skill.atrbValue,
                         pointAdded: "${skill.pointsAdded}",
                         armorPenalty: skill.checkPenalty > 0

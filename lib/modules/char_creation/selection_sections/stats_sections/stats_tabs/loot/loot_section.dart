@@ -18,7 +18,7 @@ class LootSection extends StatelessWidget {
       return ListView(
         physics: const BouncingScrollPhysics(),
         children: [
-          const AtributeDivision(label: "Gear"),
+          const AttributeDivision(label: "Gear"),
           ListView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
@@ -29,7 +29,7 @@ class LootSection extends StatelessWidget {
                     name: item.name, fullPrice: formatGoldPiece(item.price));
               }),
           SizedBox(height: deviceHeight! * 0.01),
-          const AtributeDivision(label: "Jwels"),
+          const AttributeDivision(label: "Jwels"),
           !state.statsGenerated
               ? const Center()
               : state.charLoot.jwels!.isNotEmpty
@@ -52,7 +52,7 @@ class LootSection extends StatelessWidget {
                         style: AppTextStyle.statsLabel,
                       ),
                     ),
-          const AtributeDivision(label: "Coin"),
+          const AttributeDivision(label: "Coin"),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),
             child: Row(

@@ -4,7 +4,6 @@ export 'dart:math';
 export 'package:fantasy_name_generator/controllers/stats_controller/imports.dart';
 
 export 'package:fantasy_name_generator/models/class_models/alignment_model.dart';
-export 'package:fantasy_name_generator/models/combat_models/base_atribute_model.dart';
 export 'package:fantasy_name_generator/models/char_personal_models/char_model.dart';
 export 'package:fantasy_name_generator/models/class_models/class_model.dart';
 export 'package:fantasy_name_generator/models/combat_models/combat_model.dart';
@@ -27,5 +26,6 @@ export 'package:fantasy_name_generator/shared/data/race_data/race_data.dart';
 export 'package:fantasy_name_generator/models/race_models/race_model.dart';
 export 'package:fantasy_name_generator/shared/widgets/call_undo_button.dart';
 export 'package:shared_preferences/shared_preferences.dart';
+export '../../models/combat_models/base_atribute_model.dart';
 
 export '../../shared/utils/utils.dart';

@@ -1,4 +1,5 @@
 // ignore_for_file: avoid_function_literals_in_foreach_calls
+import '../../models/combat_models/base_atribute_model.dart';
 import 'imports.dart';
 
 class CharController extends ChangeNotifier {
@@ -911,6 +912,7 @@ class CharController extends ChangeNotifier {
 
   updateCharModel() {
     cha = CharModel(
+        languages: [],
         charRace: chosenRace,
         feats: [],
         physicalStyle: physicalStyleChoice,
@@ -928,8 +930,8 @@ class CharController extends ChangeNotifier {
         alignment: chosenAlignment,
         combatStats: CombatModel(),
         charClass: chosenClass,
-        baseAtributes: AtributeModel(),
-        modAtributes: AtributeModel(),
+        baseAttributes: AttributeModel(),
+        modAttributes: AttributeModel(),
         charEquip: EquipModel(),
         hitPoints: 0,
         resistances: ResistanceModel(),

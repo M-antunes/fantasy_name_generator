@@ -1,5 +1,4 @@
 import 'package:fantasy_name_generator/models/class_models/alignment_model.dart';
-import 'package:fantasy_name_generator/models/combat_models/base_atribute_model.dart';
 import 'package:fantasy_name_generator/models/char_personal_models/char_model.dart';
 import 'package:fantasy_name_generator/models/class_models/class_model.dart';
 import 'package:fantasy_name_generator/models/combat_models/combat_model.dart';
@@ -11,12 +10,17 @@ import 'package:fantasy_name_generator/models/key_value.model.dart';
 import 'package:fantasy_name_generator/models/race_models/race_model.dart';
 import 'package:fantasy_name_generator/models/combat_models/resistance_model.dart';
 
+import '../../models/combat_models/base_atribute_model.dart';
 import '../../models/combat_models/physical_style_model.dart';
 
 class DefaultCharModelData {
   final defaultCharModel = CharModel(
+    languages: [],
     charRace: RaceModel(
-        height: KeyValueModel(key: 0, value: 0), name: "", isSelected: false),
+        initialIdiom: "",
+        height: KeyValueModel(key: 0, value: 0),
+        name: "",
+        isSelected: false),
     charName: NameModel(
       fullName: " - ? - ",
       name: " - ? - ",
@@ -41,8 +45,8 @@ class DefaultCharModelData {
         forbiddenClasses: [],
         isSelected: false,
         svg: ""),
-    baseAtributes: AtributeModel(),
-    modAtributes: AtributeModel(),
+    baseAttributes: AttributeModel(),
+    modAttributes: AttributeModel(),
     charClass: ClassModel(
       skillRankPerLevel: 0,
       permittedAligments: [],

@@ -5,11 +5,11 @@ import 'package:fantasy_name_generator/shared/themes/app_text_styles.dart';
 
 import '../../../../../shared/widgets/app_horizontal_line.dart';
 
-class AtributeDivision extends StatelessWidget {
+class AttributeDivision extends StatelessWidget {
   final String label;
   final String? label2;
   final double? defineWidth;
-  const AtributeDivision({
+  const AttributeDivision({
     Key? key,
     required this.label,
     this.label2,
@@ -27,7 +27,7 @@ class AtributeDivision extends StatelessWidget {
             padding: const EdgeInsets.only(top: 3, left: 6),
             child: Text(
               label,
-              style: AppTextStyle.atributeDivisionText
+              style: AppTextStyle.attributeDivisionText
                   .copyWith(color: Colors.white),
             )),
         const AppHorizontalLine(),

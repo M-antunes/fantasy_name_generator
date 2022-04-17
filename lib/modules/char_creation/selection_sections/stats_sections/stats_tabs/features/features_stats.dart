@@ -16,7 +16,7 @@ class FeatureStats extends StatelessWidget {
       return ListView(
         physics: const BouncingScrollPhysics(),
         children: [
-          AtributeDivision(label: "${state.char.charClass.name} Features"),
+          AttributeDivision(label: "${state.char.charClass.name} Features"),
           SizedBox(height: deviceHeight! * 0.005),
           ListView.builder(
               shrinkWrap: true,
@@ -32,7 +32,7 @@ class FeatureStats extends StatelessWidget {
                 );
               }),
           SizedBox(height: deviceHeight! * 0.005),
-          AtributeDivision(
+          AttributeDivision(
               label:
                   "${state.char.charClass.name}  ${state.char.charClass.specialName}"),
           SizedBox(height: deviceHeight! * 0.005),

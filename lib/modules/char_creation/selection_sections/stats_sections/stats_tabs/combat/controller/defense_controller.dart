@@ -1,4 +1,4 @@
-import 'package:fantasy_name_generator/models/combat_models/base_atribute_model.dart';
+import 'package:fantasy_name_generator/controllers/stage_controller/imports.dart';
 import 'package:fantasy_name_generator/models/equip_models/equip_model.dart';
 import 'package:fantasy_name_generator/shared/data/race_data/race_data.dart';
 
@@ -215,7 +215,7 @@ class DefenseController {
       String race,
       String className,
       List<TraitModel> charFeats,
-      AtributeModel atrb,
+      AttributeModel atrb,
       List<WonderousItemsModel> items) {
     ResistanceModel resists = ResistanceModel();
     int partialFort = 0;

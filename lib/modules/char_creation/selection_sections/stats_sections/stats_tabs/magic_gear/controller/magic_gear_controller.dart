@@ -1,5 +1,4 @@
-import 'package:fantasy_name_generator/models/combat_models/base_atribute_model.dart';
-
+import '../../../../../../../models/combat_models/base_atribute_model.dart';
 import '../../../../../../../models/equip_models/magic_equip_models/wonderous_items_model.dart';
 import '../../../../../../../shared/utils/utils.dart';
 
@@ -278,19 +277,19 @@ class MagicGearController {
     return wonderousItems;
   }
 
-  AtributeModel getAtrbBoostFromWonderousItem(
+  AttributeModel getAtrbBoostFromWonderousItem(
       List<WonderousItemsModel>? charItems,
       int level,
       String mainAtrb,
-      AtributeModel charAtrb) {
-    AtributeModel atrbBoost = AtributeModel();
+      AttributeModel charAtrb) {
+    AttributeModel atrbBoost = AttributeModel();
     if (charItems == null) {
       return charAtrb;
     }
     if (charItems.isEmpty) {
       return charAtrb;
     }
-    //Boost in atribute from iounstone (mandatory)
+    //Boost in attribute from iounstone (mandatory)
     if (level > 11) {
       switch (mainAtrb) {
         case "strength":
@@ -310,8 +309,8 @@ class MagicGearController {
       }
     }
     List<WonderousItemsModel> list = charItems;
-    AtributeModel mentalAtr = AtributeModel();
-    AtributeModel physicalAtr = AtributeModel();
+    AttributeModel mentalAtr = AttributeModel();
+    AttributeModel physicalAtr = AttributeModel();
     List<int> boosts = [];
     if (list.any((element) => element.type == "Belt")) {
       if (mainAtrb == "strength") {
@@ -470,49 +469,49 @@ class MagicGearController {
     return tomesAndManuals;
   }
 
-  AtributeModel boostWithTomeOrManual(
+  AttributeModel boostWithTomeOrManual(
       int level,
       String mainAtrb,
       List<WonderousItemsModel> books,
       List<WonderousItemsModel> charBooks,
       String battleStyle,
-      AtributeModel charAtrb) {
-    AtributeModel atribute = AtributeModel();
+      AttributeModel charAtrb) {
+    AttributeModel attribute = AttributeModel();
     if (level < 15) {
       return charAtrb;
     }
     List<WonderousItemsModel> boostBooks = charBooks;
     if (level > 14 && level < 18) {
-      atribute = bosstRightAtributeWithTomeOrManual(
+      attribute = bosstRightAttributeWithTomeOrManual(
           [mainAtrb, "constitution"], boostBooks.last.bonus!, 0);
     } else if (level > 17 && level < 21) {
       if ((battleStyle == "Hybrid" || battleStyle == "Spellcaster") &&
           mainAtrb != "dexterity") {
-        atribute = bosstRightAtributeWithTomeOrManual(
+        attribute = bosstRightAttributeWithTomeOrManual(
             [mainAtrb, "constitution", "dexterity"], boostBooks.last.bonus!, 0);
       } else {
-        atribute = bosstRightAtributeWithTomeOrManual(
+        attribute = bosstRightAttributeWithTomeOrManual(
             [mainAtrb, "constitution", "wisdom"], boostBooks.last.bonus!, 0);
       }
     }
-    charAtrb.strength += atribute.strength;
-    charAtrb.dexterity += atribute.dexterity;
-    charAtrb.constitution += atribute.constitution;
-    charAtrb.intelligence += atribute.intelligence;
-    charAtrb.wisdom += atribute.wisdom;
-    charAtrb.charisma += atribute.charisma;
+    charAtrb.strength += attribute.strength;
+    charAtrb.dexterity += attribute.dexterity;
+    charAtrb.constitution += attribute.constitution;
+    charAtrb.intelligence += attribute.intelligence;
+    charAtrb.wisdom += attribute.wisdom;
+    charAtrb.charisma += attribute.charisma;
     return charAtrb;
   }
 
-  AtributeModel bosstRightAtributeWithTomeOrManual(
+  AttributeModel bosstRightAttributeWithTomeOrManual(
       List<String> atrb, int boost, int noBoost) {
-    AtributeModel atribute = AtributeModel();
-    atribute.strength = atrb.contains("strength") ? boost : noBoost;
-    atribute.dexterity = atrb.contains("dexterity") ? boost : noBoost;
-    atribute.constitution = atrb.contains("constitution") ? boost : noBoost;
-    atribute.intelligence = atrb.contains("intelligence") ? boost : noBoost;
-    atribute.wisdom = atrb.contains("wisdom") ? boost : noBoost;
-    atribute.charisma = atrb.contains("charisma") ? boost : noBoost;
-    return atribute;
+    AttributeModel attribute = AttributeModel();
+    attribute.strength = atrb.contains("strength") ? boost : noBoost;
+    attribute.dexterity = atrb.contains("dexterity") ? boost : noBoost;
+    attribute.constitution = atrb.contains("constitution") ? boost : noBoost;
+    attribute.intelligence = atrb.contains("intelligence") ? boost : noBoost;
+    attribute.wisdom = atrb.contains("wisdom") ? boost : noBoost;
+    attribute.charisma = atrb.contains("charisma") ? boost : noBoost;
+    return attribute;
   }
 }

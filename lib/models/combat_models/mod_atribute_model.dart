@@ -1,13 +1,13 @@
 import 'dart:convert';
 
-class ModAtributeModel {
+class ModAttributeModel {
   int strength;
   int dexterity;
   int constitution;
   int intelligence;
   int wisdom;
   int charisma;
-  ModAtributeModel({
+  ModAttributeModel({
     this.strength = 0,
     this.dexterity = 0,
     this.constitution = 0,
@@ -16,7 +16,7 @@ class ModAtributeModel {
     this.charisma = 0,
   });
 
-  ModAtributeModel copyWith({
+  ModAttributeModel copyWith({
     int? strength,
     int? dexterity,
     int? constitution,
@@ -24,7 +24,7 @@ class ModAtributeModel {
     int? wisdom,
     int? charisma,
   }) {
-    return ModAtributeModel(
+    return ModAttributeModel(
       strength: strength ?? this.strength,
       dexterity: dexterity ?? this.dexterity,
       constitution: constitution ?? this.constitution,
@@ -45,8 +45,8 @@ class ModAtributeModel {
     };
   }
 
-  factory ModAtributeModel.fromMap(Map<String, dynamic> map) {
-    return ModAtributeModel(
+  factory ModAttributeModel.fromMap(Map<String, dynamic> map) {
+    return ModAttributeModel(
       strength: map['strength']?.toInt(),
       dexterity: map['dexterity']?.toInt(),
       constitution: map['constitution']?.toInt(),
@@ -58,19 +58,19 @@ class ModAtributeModel {
 
   String toJson() => json.encode(toMap());
 
-  factory ModAtributeModel.fromJson(String source) =>
-      ModAtributeModel.fromMap(json.decode(source));
+  factory ModAttributeModel.fromJson(String source) =>
+      ModAttributeModel.fromMap(json.decode(source));
 
   @override
   String toString() {
-    return 'AtributeModel(strength: $strength, dexterity: $dexterity, constitution: $constitution, intelligence: $intelligence, wisdom: $wisdom, charisma: $charisma)';
+    return 'AttributeModel(strength: $strength, dexterity: $dexterity, constitution: $constitution, intelligence: $intelligence, wisdom: $wisdom, charisma: $charisma)';
   }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is ModAtributeModel &&
+    return other is ModAttributeModel &&
         other.strength == strength &&
         other.dexterity == dexterity &&
         other.constitution == constitution &&

@@ -20,7 +20,7 @@ class AbilityScoreSection extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const AtributeDivision(
+              const AttributeDivision(
                 label: "Ability Scores  (base / modifier)",
               ),
               Row(
@@ -33,18 +33,18 @@ class AbilityScoreSection extends StatelessWidget {
                         child: StatsDescriptionColumn(
                           labeltop: "Strength:",
                           labelBottom: "Dexterity:",
-                          textValueTop: state.char.baseAtributes.strength,
-                          textValueBottom: state.char.baseAtributes.dexterity,
-                          modTop: state.char.modAtributes.strength,
-                          modBottom: state.char.modAtributes.dexterity,
+                          textValueTop: state.char.baseAttributes.strength,
+                          textValueBottom: state.char.baseAttributes.dexterity,
+                          modTop: state.char.modAttributes.strength,
+                          modBottom: state.char.modAttributes.dexterity,
                         ),
                       ),
                       SizedBox(
                         width: deviceWidth! * 0.44,
                         child: StatsDescriptionText(
                           label: "Constitution:",
-                          textValue: state.char.baseAtributes.constitution,
-                          modValue: state.char.modAtributes.constitution,
+                          textValue: state.char.baseAttributes.constitution,
+                          modValue: state.char.modAttributes.constitution,
                         ),
                       )
                     ],
@@ -58,18 +58,18 @@ class AbilityScoreSection extends StatelessWidget {
                         child: StatsDescriptionColumn(
                           labeltop: "Intelligence:",
                           labelBottom: "Wisdom:",
-                          textValueTop: state.char.baseAtributes.intelligence,
-                          textValueBottom: state.char.baseAtributes.wisdom,
-                          modTop: state.char.modAtributes.intelligence,
-                          modBottom: state.char.modAtributes.wisdom,
+                          textValueTop: state.char.baseAttributes.intelligence,
+                          textValueBottom: state.char.baseAttributes.wisdom,
+                          modTop: state.char.modAttributes.intelligence,
+                          modBottom: state.char.modAttributes.wisdom,
                         ),
                       ),
                       SizedBox(
                         width: deviceWidth! * 0.44,
                         child: StatsDescriptionText(
                           label: "Charisma:",
-                          textValue: state.char.baseAtributes.charisma,
-                          modValue: state.char.modAtributes.charisma,
+                          textValue: state.char.baseAttributes.charisma,
+                          modValue: state.char.modAttributes.charisma,
                         ),
                       ),
                       SizedBox(height: deviceHeight! * 0.006),
@@ -78,17 +78,31 @@ class AbilityScoreSection extends StatelessWidget {
                 ],
               ),
               SizedBox(height: deviceHeight! * 0.02),
-              const AtributeDivision(label: "Languages known"),
+              AttributeDivision(
+                  label: "Languages known (${state.charLanguages.length})"),
               ListView.builder(
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
-                itemCount: 3,
+                itemCount: state.charLanguages.length,
                 itemBuilder: ((context, index) {
+                  var language = state.charLanguages[index];
                   return Padding(
                     padding:
                         const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                    child:
-                        Text('example', style: AppTextStyle.statsLabelBrighter),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        RichText(
+                            text: TextSpan(children: [
+                          TextSpan(
+                              text: "${language.name} ",
+                              style: AppTextStyle.statsLabelBrighter),
+                          TextSpan(
+                              text: " (Spoken by ${language.spokenBy})",
+                              style: AppTextStyle.longDescription)
+                        ])),
+                      ],
+                    ),
                   );
                 }),
               )

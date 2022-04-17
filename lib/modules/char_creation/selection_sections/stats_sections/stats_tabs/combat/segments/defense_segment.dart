@@ -19,7 +19,7 @@ class DefenseSegment extends StatelessWidget {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const AtributeDivision(label: "Defense"),
+          const AttributeDivision(label: "Defense"),
           Row(
             children: [
               SizedBox(

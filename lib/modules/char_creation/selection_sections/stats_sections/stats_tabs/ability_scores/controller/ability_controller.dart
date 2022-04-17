@@ -1,41 +1,44 @@
-import 'package:fantasy_name_generator/models/combat_models/base_atribute_model.dart';
+import 'package:fantasy_name_generator/shared/data/language_data.dart';
 
+import '../../../../../../../models/char_personal_models/language_model.dart';
+import '../../../../../../../models/class_models/skill_model.dart';
+import '../../../../../../../models/combat_models/base_atribute_model.dart';
 import '../../../../../../../shared/utils/utils.dart';
 
 class AbilityController {
-  AtributeModel atribute = AtributeModel();
+  AttributeModel attribute = AttributeModel();
 
-  AtributeModel ajustStatsToLevel(
-      AtributeModel atrb, int level, String atrbString) {
-    int mainAtributeIncrement = 0;
-    double secondaryAtributeIncrement = 0.0;
+  AttributeModel ajustStatsToLevel(
+      AttributeModel atrb, int level, String atrbString) {
+    int mainAttributeIncrement = 0;
+    double secondaryAttributeIncrement = 0.0;
     var atrbValues = atrb;
     for (var i = 4; i <= level; i = i + 4) {
-      mainAtributeIncrement++;
-      secondaryAtributeIncrement = secondaryAtributeIncrement + 0.5;
+      mainAttributeIncrement++;
+      secondaryAttributeIncrement = secondaryAttributeIncrement + 0.5;
     }
     atrb.strength = atrbString == "strength"
-        ? atrbValues.strength + mainAtributeIncrement
-        : atrbValues.strength + secondaryAtributeIncrement.floor();
+        ? atrbValues.strength + mainAttributeIncrement
+        : atrbValues.strength + secondaryAttributeIncrement.floor();
     atrb.dexterity = atrbString == "dexterity"
-        ? atrbValues.dexterity + mainAtributeIncrement
-        : atrbValues.dexterity + secondaryAtributeIncrement.floor();
+        ? atrbValues.dexterity + mainAttributeIncrement
+        : atrbValues.dexterity + secondaryAttributeIncrement.floor();
     atrb.constitution =
-        atrbValues.constitution + secondaryAtributeIncrement.floor();
+        atrbValues.constitution + secondaryAttributeIncrement.floor();
     atrb.intelligence = atrbString == "intelligence"
-        ? atrbValues.intelligence + mainAtributeIncrement
-        : atrbValues.intelligence + secondaryAtributeIncrement.floor();
+        ? atrbValues.intelligence + mainAttributeIncrement
+        : atrbValues.intelligence + secondaryAttributeIncrement.floor();
     atrb.wisdom = atrbString == "wisdom"
-        ? atrbValues.wisdom + mainAtributeIncrement
-        : atrbValues.wisdom + secondaryAtributeIncrement.floor();
+        ? atrbValues.wisdom + mainAttributeIncrement
+        : atrbValues.wisdom + secondaryAttributeIncrement.floor();
     atrb.charisma = atrbString == "charisma"
-        ? atrbValues.charisma + mainAtributeIncrement
-        : atrbValues.charisma + secondaryAtributeIncrement.floor();
+        ? atrbValues.charisma + mainAttributeIncrement
+        : atrbValues.charisma + secondaryAttributeIncrement.floor();
     return atrbValues;
   }
 
-  AtributeModel ajustStatsToRace(
-      String race, String mainAtrb, AtributeModel atrb) {
+  AttributeModel ajustStatsToRace(
+      String race, String mainAtrb, AttributeModel atrb) {
     if (race == "Human" || race == "Half-elf" || race == "Half-orc") {
       switch (mainAtrb) {
         case "strength":
@@ -75,8 +78,8 @@ class AbilityController {
     return atrb;
   }
 
-  AtributeModel calculateAjustToRace(
-    AtributeModel atrb,
+  AttributeModel calculateAjustToRace(
+    AttributeModel atrb,
     int adjutStr,
     int ajustDex,
     int ajustCon,
@@ -104,8 +107,8 @@ class AbilityController {
     }
   }
 
-  AtributeModel generateAllAtributes(
-      int level, String className, String physicalStyle, AtributeModel atrb) {
+  AttributeModel generateAllAttributes(
+      int level, String className, String physicalStyle, AttributeModel atrb) {
     List<int> atrbValues = [];
     for (var i = 0; i < 6; i++) {
       var atrbValue = rollingDice(10) + rollingDice(10) + rollingDice(10);
@@ -126,11 +129,11 @@ class AbilityController {
     }
     atrbValues.sort((b, a) => a.compareTo(b));
     bool isRange = findIfItIsRangeCombatDistribution(physicalStyle);
-    AtributeModel diceAtrb = AtributeModel();
+    AttributeModel diceAtrb = AttributeModel();
     switch (className) {
       case "Barbarian":
         isRange
-            ? diceAtrb = sortAtributesToClass(
+            ? diceAtrb = sortAttributesToClass(
                 atrb,
                 atrbValues[2],
                 atrbValues[0],
@@ -138,7 +141,7 @@ class AbilityController {
                 atrbValues[4],
                 atrbValues[3],
                 atrbValues[5])
-            : diceAtrb = sortAtributesToClass(
+            : diceAtrb = sortAttributesToClass(
                 atrb,
                 atrbValues[0],
                 atrbValues[2],
@@ -149,7 +152,7 @@ class AbilityController {
         break;
       case "Warrior":
         isRange
-            ? diceAtrb = sortAtributesToClass(
+            ? diceAtrb = sortAttributesToClass(
                 atrb,
                 atrbValues[2],
                 atrbValues[0],
@@ -157,7 +160,7 @@ class AbilityController {
                 atrbValues[4],
                 atrbValues[3],
                 atrbValues[5])
-            : diceAtrb = sortAtributesToClass(
+            : diceAtrb = sortAttributesToClass(
                 atrb,
                 atrbValues[0],
                 atrbValues[2],
@@ -167,24 +170,24 @@ class AbilityController {
                 atrbValues[5]);
         break;
       case "Arcanist":
-        diceAtrb = sortAtributesToClass(atrb, atrbValues[5], atrbValues[2],
+        diceAtrb = sortAttributesToClass(atrb, atrbValues[5], atrbValues[2],
             atrbValues[4], atrbValues[0], atrbValues[3], atrbValues[1]);
         break;
       case "Alchemist":
-        diceAtrb = sortAtributesToClass(atrb, atrbValues[5], atrbValues[2],
+        diceAtrb = sortAttributesToClass(atrb, atrbValues[5], atrbValues[2],
             atrbValues[3], atrbValues[0], atrbValues[1], atrbValues[4]);
         break;
       case "Wizard":
-        diceAtrb = sortAtributesToClass(atrb, atrbValues[5], atrbValues[3],
+        diceAtrb = sortAttributesToClass(atrb, atrbValues[5], atrbValues[3],
             atrbValues[2], atrbValues[0], atrbValues[1], atrbValues[4]);
         break;
       case "Cleric":
-        diceAtrb = sortAtributesToClass(atrb, atrbValues[2], atrbValues[3],
+        diceAtrb = sortAttributesToClass(atrb, atrbValues[2], atrbValues[3],
             atrbValues[1], atrbValues[4], atrbValues[0], atrbValues[5]);
         break;
       case "Druid":
         isRange
-            ? diceAtrb = sortAtributesToClass(
+            ? diceAtrb = sortAttributesToClass(
                 atrb,
                 atrbValues[3],
                 atrbValues[2],
@@ -192,7 +195,7 @@ class AbilityController {
                 atrbValues[5],
                 atrbValues[0],
                 atrbValues[4])
-            : diceAtrb = sortAtributesToClass(
+            : diceAtrb = sortAttributesToClass(
                 atrb,
                 atrbValues[2],
                 atrbValues[3],
@@ -202,40 +205,40 @@ class AbilityController {
                 atrbValues[4]);
         break;
       case "Rogue":
-        diceAtrb = sortAtributesToClass(atrb, atrbValues[3], atrbValues[0],
+        diceAtrb = sortAttributesToClass(atrb, atrbValues[3], atrbValues[0],
             atrbValues[5], atrbValues[2], atrbValues[4], atrbValues[1]);
         break;
       case "Ranger":
-        diceAtrb = sortAtributesToClass(atrb, atrbValues[1], atrbValues[0],
+        diceAtrb = sortAttributesToClass(atrb, atrbValues[1], atrbValues[0],
             atrbValues[3], atrbValues[5], atrbValues[2], atrbValues[4]);
         break;
       case "Paladin":
-        diceAtrb = sortAtributesToClass(atrb, atrbValues[0], atrbValues[4],
+        diceAtrb = sortAttributesToClass(atrb, atrbValues[0], atrbValues[4],
             atrbValues[2], atrbValues[5], atrbValues[3], atrbValues[1]);
         break;
       case "Bard":
-        diceAtrb = sortAtributesToClass(atrb, atrbValues[5], atrbValues[3],
+        diceAtrb = sortAttributesToClass(atrb, atrbValues[5], atrbValues[3],
             atrbValues[4], atrbValues[2], atrbValues[1], atrbValues[0]);
         break;
       case "Sorcerer":
-        diceAtrb = sortAtributesToClass(atrb, atrbValues[5], atrbValues[4],
+        diceAtrb = sortAttributesToClass(atrb, atrbValues[5], atrbValues[4],
             atrbValues[2], atrbValues[3], atrbValues[1], atrbValues[0]);
         break;
       case "Monk":
-        diceAtrb = sortAtributesToClass(atrb, atrbValues[2], atrbValues[0],
+        diceAtrb = sortAttributesToClass(atrb, atrbValues[2], atrbValues[0],
             atrbValues[3], atrbValues[4], atrbValues[1], atrbValues[5]);
         break;
       case "Noble":
-        diceAtrb = sortAtributesToClass(atrb, atrbValues[4], atrbValues[4],
+        diceAtrb = sortAttributesToClass(atrb, atrbValues[4], atrbValues[4],
             atrbValues[4], atrbValues[2], atrbValues[2], atrbValues[1]);
         break;
       case "Aristocrat":
-        diceAtrb = sortAtributesToClass(atrb, atrbValues[4], atrbValues[4],
+        diceAtrb = sortAttributesToClass(atrb, atrbValues[4], atrbValues[4],
             atrbValues[4], atrbValues[0], atrbValues[1], atrbValues[3]);
         break;
       case "Bandit":
         isRange
-            ? diceAtrb = sortAtributesToClass(
+            ? diceAtrb = sortAttributesToClass(
                 atrb,
                 atrbValues[0],
                 atrbValues[1],
@@ -243,7 +246,7 @@ class AbilityController {
                 atrbValues[5],
                 atrbValues[3],
                 atrbValues[4])
-            : diceAtrb = sortAtributesToClass(
+            : diceAtrb = sortAttributesToClass(
                 atrb,
                 atrbValues[1],
                 atrbValues[0],
@@ -253,26 +256,26 @@ class AbilityController {
                 atrbValues[4]);
         break;
       case "Samurai":
-        diceAtrb = sortAtributesToClass(atrb, atrbValues[0], atrbValues[1],
+        diceAtrb = sortAttributesToClass(atrb, atrbValues[0], atrbValues[1],
             atrbValues[2], atrbValues[5], atrbValues[3], atrbValues[4]);
         break;
       case "Summoner":
-        diceAtrb = sortAtributesToClass(atrb, atrbValues[1], atrbValues[2],
+        diceAtrb = sortAttributesToClass(atrb, atrbValues[1], atrbValues[2],
             atrbValues[3], atrbValues[5], atrbValues[4], atrbValues[0]);
         break;
       case "Antipaladin":
-        diceAtrb = sortAtributesToClass(atrb, atrbValues[0], atrbValues[4],
+        diceAtrb = sortAttributesToClass(atrb, atrbValues[0], atrbValues[4],
             atrbValues[2], atrbValues[5], atrbValues[3], atrbValues[1]);
         break;
       default:
-        diceAtrb = sortAtributesToClass(atrb, atrbValues[3], atrbValues[3],
+        diceAtrb = sortAttributesToClass(atrb, atrbValues[3], atrbValues[3],
             atrbValues[3], atrbValues[3], atrbValues[3], atrbValues[3]);
     }
     return diceAtrb;
   }
 
-  AtributeModel sortAtributesToClass(
-      AtributeModel atrb, int v0, int v1, int v2, int v3, int v4, int v5) {
+  AttributeModel sortAttributesToClass(
+      AttributeModel atrb, int v0, int v1, int v2, int v3, int v4, int v5) {
     atrb.strength = v0;
     atrb.dexterity = v1;
     atrb.constitution = v2;
@@ -282,15 +285,15 @@ class AbilityController {
     return atrb;
   }
 
-  AtributeModel calculateAllModifiers(AtributeModel baseAtrb) {
-    var atributes = baseAtrb;
-    AtributeModel modAtrb = AtributeModel();
-    modAtrb.strength = calculateModifier(atributes.strength);
-    modAtrb.dexterity = calculateModifier(atributes.dexterity);
-    modAtrb.constitution = calculateModifier(atributes.constitution);
-    modAtrb.intelligence = calculateModifier(atributes.intelligence);
-    modAtrb.wisdom = calculateModifier(atributes.wisdom);
-    modAtrb.charisma = calculateModifier(atributes.charisma);
+  AttributeModel calculateAllModifiers(AttributeModel baseAtrb) {
+    var attributes = baseAtrb;
+    AttributeModel modAtrb = AttributeModel();
+    modAtrb.strength = calculateModifier(attributes.strength);
+    modAtrb.dexterity = calculateModifier(attributes.dexterity);
+    modAtrb.constitution = calculateModifier(attributes.constitution);
+    modAtrb.intelligence = calculateModifier(attributes.intelligence);
+    modAtrb.wisdom = calculateModifier(attributes.wisdom);
+    modAtrb.charisma = calculateModifier(attributes.charisma);
     return modAtrb;
   }
 
@@ -306,14 +309,14 @@ class AbilityController {
     return doubleValue.toInt();
   }
 
-  AtributeModel addUpAtributeValues(int level, String className, String race,
+  AttributeModel addUpAttributeValues(int level, String className, String race,
       String mainAtrb, String physicalStyle) {
-    AtributeModel atrbByDice = AtributeModel();
-    AtributeModel atrbByRace = AtributeModel();
-    AtributeModel atrbByLevel = AtributeModel();
-    AtributeModel charAtrb = AtributeModel();
+    AttributeModel atrbByDice = AttributeModel();
+    AttributeModel atrbByRace = AttributeModel();
+    AttributeModel atrbByLevel = AttributeModel();
+    AttributeModel charAtrb = AttributeModel();
     atrbByDice =
-        generateAllAtributes(level, className, physicalStyle, atrbByDice);
+        generateAllAttributes(level, className, physicalStyle, atrbByDice);
     atrbByRace = ajustStatsToRace(race, mainAtrb, atrbByRace);
     atrbByLevel = ajustStatsToLevel(atrbByLevel, level, mainAtrb);
     charAtrb.strength =
@@ -332,5 +335,62 @@ class AbilityController {
         atrbByDice.charisma + atrbByRace.charisma + atrbByLevel.charisma;
 
     return charAtrb;
+  }
+
+  List<LanguageModel> calculatingLanguages(
+      List<SkillModel> skills, int intelligence, String initialIdiom) {
+    List<LanguageModel> allIdioms = [];
+    allIdioms = LanguageData().allLanguagues;
+    int idiomsQnt = intelligence +
+        skills
+            .firstWhere((element) => element.name == "Linguistics")
+            .pointsAdded;
+    List<LanguageModel> idioms = [];
+    idioms = allIdioms
+        .where((element) =>
+            element.name == initialIdiom || element.name == "Common")
+        .toList();
+
+    for (var i = 0; i < idiomsQnt; i++) {
+      var chance = rollingDice(100);
+      if (chance > 40) {
+        idioms.add(sortingOutIdiomsByProbability(allIdioms, 5, idioms));
+      } else if (chance < 41 && chance > 20) {
+        idioms.add(sortingOutIdiomsByProbability(allIdioms, 4, idioms));
+      } else if (chance < 21 && chance > 10) {
+        idioms.add(sortingOutIdiomsByProbability(allIdioms, 3, idioms));
+      } else if (chance < 9 && chance > 3) {
+        idioms.add(sortingOutIdiomsByProbability(allIdioms, 2, idioms));
+      } else {
+        idioms.add(sortingOutIdiomsByProbability(allIdioms, 1, idioms));
+      }
+    }
+    return idioms;
+  }
+
+  LanguageModel sortingOutIdiomsByProbability(List<LanguageModel> allIdioms,
+      int idiomDifficulty, List<LanguageModel> idioms) {
+    List<LanguageModel> newIdioms = allIdioms
+        .where((element) => element.probability == idiomDifficulty)
+        .toList();
+    LanguageModel newIdiom =
+        LanguageModel(name: "", spokenBy: "", probability: 0);
+    newIdioms.shuffle();
+    for (var i = 0; i < newIdioms.length; i++) {
+      if (!idioms.contains(newIdioms[i])) {
+        newIdiom = newIdioms[i];
+        return newIdiom;
+      }
+    }
+    if (newIdiom.name == "") {
+      allIdioms.shuffle();
+      for (var i = 0; i < allIdioms.length; i++) {
+        if (!idioms.contains(allIdioms[i])) {
+          newIdiom = allIdioms[i];
+          return newIdiom;
+        }
+      }
+    }
+    return newIdiom;
   }
 }

@@ -28,7 +28,7 @@ class SheetInfoCombat extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const AtributeDivision(
+              const AttributeDivision(
                 label: "Defense",
               ),
               Row(
@@ -117,9 +117,7 @@ class SheetInfoCombat extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 3),
-              const AtributeDivision(
-                label: "Offense",
-              ),
+              const AttributeDivision(label: "Offense"),
               Row(
                 children: [
                   CombatInfo(

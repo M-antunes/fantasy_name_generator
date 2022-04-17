@@ -28,7 +28,7 @@ class SheetInfoLoot extends StatelessWidget {
           children: [
             const LabelForCategoryIcon(label: "Loot"),
             SizedBox(height: deviceHeight! * 0.003),
-            AtributeDivision(defineWidth: deviceWidth! * 075, label: "Gear"),
+            AttributeDivision(defineWidth: deviceWidth! * 075, label: "Gear"),
             ListView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
@@ -39,7 +39,7 @@ class SheetInfoLoot extends StatelessWidget {
                       name: item.name,
                       fullPrice: formatGoldPiece(item.finalPrice));
                 }),
-            AtributeDivision(defineWidth: deviceWidth! * 075, label: "Jwels"),
+            AttributeDivision(defineWidth: deviceWidth! * 075, label: "Jwels"),
             ListView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
@@ -52,7 +52,7 @@ class SheetInfoLoot extends StatelessWidget {
                       price: jwel.price,
                       qnt: jwel.qnt);
                 }),
-            AtributeDivision(defineWidth: deviceWidth! * 075, label: "Coin"),
+            AttributeDivision(defineWidth: deviceWidth! * 075, label: "Coin"),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8),
               child: Row(

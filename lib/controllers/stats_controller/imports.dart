@@ -20,7 +20,6 @@ export '../../modules/char_creation/selection_sections/stats_sections/stats_tabs
 export '../../modules/char_creation/selection_sections/stats_sections/stats_tabs/magic_gear/controller/magic_gear_controller.dart';
 export '../../modules/char_creation/selection_sections/stats_sections/stats_tabs/skill/controller/skill_controller.dart';
 
-export '../../models/combat_models/base_atribute_model.dart';
 export '../../models/equip_models/armor_models/armor_model.dart';
 export '../../models/equip_models/magic_equip_models/wonderous_items_model.dart';
 export '../../models/class_models/specials_model.dart';

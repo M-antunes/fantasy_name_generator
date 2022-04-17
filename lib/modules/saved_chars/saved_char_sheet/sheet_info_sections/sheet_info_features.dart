@@ -28,7 +28,7 @@ class SheetInfoFeatures extends StatelessWidget {
           physics: const BouncingScrollPhysics(),
           children: [
             const LabelForCategoryIcon(label: "Features"),
-            AtributeDivision(label: "${char.charClass.name} Features"),
+            AttributeDivision(label: "${char.charClass.name} Features"),
             SizedBox(height: deviceHeight! * 0.003),
             ListView.builder(
                 shrinkWrap: true,
@@ -45,7 +45,7 @@ class SheetInfoFeatures extends StatelessWidget {
                   );
                 }),
             SizedBox(height: deviceHeight! * 0.005),
-            AtributeDivision(label: char.charClass.specialName),
+            AttributeDivision(label: char.charClass.specialName),
             SizedBox(height: deviceHeight! * 0.005),
             ListView.builder(
                 shrinkWrap: true,

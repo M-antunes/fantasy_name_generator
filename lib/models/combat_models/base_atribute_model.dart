@@ -1,13 +1,13 @@
 import 'dart:convert';
 
-class AtributeModel {
+class AttributeModel {
   int strength;
   int dexterity;
   int constitution;
   int intelligence;
   int wisdom;
   int charisma;
-  AtributeModel({
+  AttributeModel({
     this.strength = 0,
     this.dexterity = 0,
     this.constitution = 0,
@@ -16,7 +16,7 @@ class AtributeModel {
     this.charisma = 0,
   });
 
-  AtributeModel copyWith({
+  AttributeModel copyWith({
     int? strength,
     int? dexterity,
     int? constitution,
@@ -24,7 +24,7 @@ class AtributeModel {
     int? wisdom,
     int? charisma,
   }) {
-    return AtributeModel(
+    return AttributeModel(
       strength: strength ?? this.strength,
       dexterity: dexterity ?? this.dexterity,
       constitution: constitution ?? this.constitution,
@@ -45,8 +45,8 @@ class AtributeModel {
     };
   }
 
-  factory AtributeModel.fromMap(Map<String, dynamic> map) {
-    return AtributeModel(
+  factory AttributeModel.fromMap(Map<String, dynamic> map) {
+    return AttributeModel(
       strength: map['strength']?.toInt(),
       dexterity: map['dexterity']?.toInt(),
       constitution: map['constitution']?.toInt(),
@@ -58,19 +58,19 @@ class AtributeModel {
 
   String toJson() => json.encode(toMap());
 
-  factory AtributeModel.fromJson(String source) =>
-      AtributeModel.fromMap(json.decode(source));
+  factory AttributeModel.fromJson(String source) =>
+      AttributeModel.fromMap(json.decode(source));
 
   @override
   String toString() {
-    return 'AtributeModel(strength: $strength, dexterity: $dexterity, constitution: $constitution, intelligence: $intelligence, wisdom: $wisdom, charisma: $charisma)';
+    return 'AttributeModel(strength: $strength, dexterity: $dexterity, constitution: $constitution, intelligence: $intelligence, wisdom: $wisdom, charisma: $charisma)';
   }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is AtributeModel &&
+    return other is AttributeModel &&
         other.strength == strength &&
         other.dexterity == dexterity &&
         other.constitution == constitution &&

@@ -9,6 +9,7 @@ class RaceModel {
   bool isSelected;
   final List<KeyValueModel>? traits;
   KeyValueModel? height;
+  String initialIdiom;
   double? weight;
   int? age;
   int? speed;
@@ -19,6 +20,7 @@ class RaceModel {
     required this.isSelected,
     this.traits,
     this.height,
+    required this.initialIdiom,
     this.weight = 0,
     this.age = 0,
     this.speed = 0,
@@ -31,6 +33,7 @@ class RaceModel {
     bool? isSelected,
     List<KeyValueModel>? traits,
     KeyValueModel? height,
+    String? initialIdiom,
     double? weight,
     int? age,
     int? speed,
@@ -42,6 +45,7 @@ class RaceModel {
       isSelected: isSelected ?? this.isSelected,
       traits: traits ?? this.traits,
       height: height ?? this.height,
+      initialIdiom: initialIdiom ?? this.initialIdiom,
       weight: weight ?? this.weight,
       age: age ?? this.age,
       speed: speed ?? this.speed,
@@ -56,6 +60,7 @@ class RaceModel {
       'isSelected': isSelected,
       'traits': traits?.map((x) => x.toMap()).toList(),
       'height': height?.toMap(),
+      'initialIdiom': initialIdiom,
       'weight': weight,
       'age': age,
       'speed': speed,
@@ -74,6 +79,7 @@ class RaceModel {
           : null,
       height:
           map['height'] != null ? KeyValueModel.fromMap(map['height']) : null,
+      initialIdiom: map['initialIdiom'] ?? '',
       weight: map['weight']?.toDouble(),
       age: map['age']?.toInt(),
       speed: map['speed']?.toInt(),
@@ -89,7 +95,7 @@ class RaceModel {
 
   @override
   String toString() {
-    return 'RaceModel(name: $name, isSelected: $isSelected, traits: $traits, height: $height, weight: $weight, age: $age, speed: $speed, size: $size, vision: $vision)';
+    return 'RaceModel(name: $name, isSelected: $isSelected, traits: $traits, height: $height, initialIdiom: $initialIdiom, weight: $weight, age: $age, speed: $speed, size: $size, vision: $vision)';
   }
 
   @override
@@ -101,6 +107,7 @@ class RaceModel {
         other.isSelected == isSelected &&
         listEquals(other.traits, traits) &&
         other.height == height &&
+        other.initialIdiom == initialIdiom &&
         other.weight == weight &&
         other.age == age &&
         other.speed == speed &&
@@ -114,6 +121,7 @@ class RaceModel {
         isSelected.hashCode ^
         traits.hashCode ^
         height.hashCode ^
+        initialIdiom.hashCode ^
         weight.hashCode ^
         age.hashCode ^
         speed.hashCode ^

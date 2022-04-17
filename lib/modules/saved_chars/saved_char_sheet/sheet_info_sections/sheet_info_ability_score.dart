@@ -33,28 +33,28 @@ class SheetInfoAbilityScore extends StatelessWidget {
               children: [
                 AbilityRow(
                     label: "Strength:",
-                    modValue: char.modAtributes.strength,
-                    value: char.baseAtributes.strength),
+                    modValue: char.modAttributes.strength,
+                    value: char.baseAttributes.strength),
                 AbilityRow(
                     label: "Dexterity:",
-                    modValue: char.modAtributes.dexterity,
-                    value: char.baseAtributes.dexterity),
+                    modValue: char.modAttributes.dexterity,
+                    value: char.baseAttributes.dexterity),
                 AbilityRow(
                     label: "Constitution:",
-                    modValue: char.modAtributes.constitution,
-                    value: char.baseAtributes.constitution),
+                    modValue: char.modAttributes.constitution,
+                    value: char.baseAttributes.constitution),
                 AbilityRow(
                     label: "Intelligence:",
-                    modValue: char.modAtributes.intelligence,
-                    value: char.baseAtributes.intelligence),
+                    modValue: char.modAttributes.intelligence,
+                    value: char.baseAttributes.intelligence),
                 AbilityRow(
                     label: "Wisdom:",
-                    modValue: char.modAtributes.wisdom,
-                    value: char.baseAtributes.wisdom),
+                    modValue: char.modAttributes.wisdom,
+                    value: char.baseAttributes.wisdom),
                 AbilityRow(
                     label: "Charisma:",
-                    modValue: char.modAtributes.charisma,
-                    value: char.baseAtributes.charisma),
+                    modValue: char.modAttributes.charisma,
+                    value: char.baseAttributes.charisma),
               ],
             ),
           ),

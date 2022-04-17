@@ -1,16 +1,7 @@
-import 'dart:convert';
+import 'package:fantasy_name_generator/models/char_personal_models/language_model.dart';
 
-import 'package:fantasy_name_generator/shared/data/default_char_model_data.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-import '../../modules/char_creation/selection_sections/stats_sections/stats_main/controllers/appearance_controller.dart';
-import '../../modules/char_creation/selection_sections/stats_sections/stats_tabs/ability_scores/controller/ability_controller.dart';
-import '../../modules/char_creation/selection_sections/stats_sections/stats_tabs/combat/controller/defense_controller.dart';
-import '../../modules/char_creation/selection_sections/stats_sections/stats_tabs/combat/controller/offense_controller.dart';
-import '../../modules/char_creation/selection_sections/stats_sections/stats_tabs/loot/controller/loot_controller.dart';
-import '../../modules/char_creation/selection_sections/stats_sections/stats_tabs/magic_gear/controller/magic_gear_controller.dart';
-import '../../modules/char_creation/selection_sections/stats_sections/stats_tabs/skill/controller/skill_controller.dart';
-import 'imports.dart';
+import '../../shared/data/language_data.dart';
+import '../stage_controller/imports.dart';
 
 class StatsController with ChangeNotifier {
   CharModel char = DefaultCharModelData().defaultCharModel;
@@ -20,6 +11,7 @@ class StatsController with ChangeNotifier {
   var listOfClasses = ClassData();
   var listOfRaces = RaceData();
   var skillData = SkillData();
+  var languages = LanguageData();
   var appearanceCtrl = AppearanceController();
   var abilityCtrl = AbilityController();
   var magicGearCtrl = MagicGearController();
@@ -29,6 +21,7 @@ class StatsController with ChangeNotifier {
   var skillCtrl = SkillController();
   List<WonderousItemsModel> tomesAndManuals = [];
   List<SkillModel> charSkills = [];
+  List<LanguageModel> charLanguages = [];
 
   int armorPrice = 0;
   int shieldPrice = 0;
@@ -56,8 +49,8 @@ class StatsController with ChangeNotifier {
     char.charEquip.meleeWeapon = null;
     char.charEquip.rangeWeapon = null;
     char.charEquip.wonderousItems = null;
-    char.baseAtributes = AtributeModel();
-    char.modAtributes = AtributeModel();
+    char.baseAttributes = AttributeModel();
+    char.modAttributes = AttributeModel();
     char.combatStats = CombatModel();
     char.resistances = ResistanceModel();
     char.charRace.speed = 0;
@@ -77,6 +70,7 @@ class StatsController with ChangeNotifier {
     tomesAndManuals = [];
     charSkills = [];
     statsGenerated = false;
+    charLanguages = [];
     notifyListeners();
   }
 
@@ -126,7 +120,7 @@ class StatsController with ChangeNotifier {
     getFeats();
     generateLoot();
     calculateSpeed();
-    generateAllAtributes();
+    generateAllAttributes();
     getAtrbBoostFromWonderousItem();
     getTomesAndAMnuals();
     boostWithTomeOrManual();
@@ -138,6 +132,7 @@ class StatsController with ChangeNotifier {
     calculateCombatManeuvers();
     calculatingPhysicalAttackAndDamage();
     calculateClassSkills();
+    calculatingLanguages();
     statsGenerated = true;
     notifyListeners();
   }
@@ -420,10 +415,10 @@ class StatsController with ChangeNotifier {
   }
 
 //=======================================================================================
-// Section for generation of basic atributes
+// Section for generation of basic attributes
 
-  generateAllAtributes() {
-    char.baseAtributes = abilityCtrl.addUpAtributeValues(
+  generateAllAttributes() {
+    char.baseAttributes = abilityCtrl.addUpAttributeValues(
         char.charLevel,
         char.charClass.name,
         char.charRace.name,
@@ -433,14 +428,14 @@ class StatsController with ChangeNotifier {
   }
 
   //====================================================================================
-  // Calculate boost to atributes by magic items
+  // Calculate boost to attributes by magic items
 
   getAtrbBoostFromWonderousItem() {
-    char.baseAtributes = magicGearCtrl.getAtrbBoostFromWonderousItem(
+    char.baseAttributes = magicGearCtrl.getAtrbBoostFromWonderousItem(
       char.charEquip.wonderousItems!,
       char.charLevel,
       char.charClass.mainAtrb,
-      char.baseAtributes,
+      char.baseAttributes,
     );
     notifyListeners();
   }
@@ -455,20 +450,20 @@ class StatsController with ChangeNotifier {
   }
 
   boostWithTomeOrManual() {
-    char.baseAtributes = magicGearCtrl.boostWithTomeOrManual(
+    char.baseAttributes = magicGearCtrl.boostWithTomeOrManual(
         char.charLevel,
         char.charClass.mainAtrb,
         listOfWonderousItems.manualsAndTomes,
         tomesAndManuals,
         char.battleStyle.name,
-        char.baseAtributes);
+        char.baseAttributes);
     notifyListeners();
   }
 
   //=====================================================================================
   // Modifier part
   calculateAllModifiers() {
-    char.modAtributes = abilityCtrl.calculateAllModifiers(char.baseAtributes);
+    char.modAttributes = abilityCtrl.calculateAllModifiers(char.baseAttributes);
     notifyListeners();
   }
 
@@ -477,7 +472,7 @@ class StatsController with ChangeNotifier {
 
   generateHitPoints() {
     char.hitPoints = defenseCtrl.generateHitPoints(char.charLevel,
-        char.modAtributes.constitution, charFeats, char.charClass.hitDice!);
+        char.modAttributes.constitution, charFeats, char.charClass.hitDice!);
     notifyListeners();
   }
 
@@ -485,10 +480,10 @@ class StatsController with ChangeNotifier {
     char.combatStats.armourClass = defenseCtrl.claculatingHitDefense(
         char.charEquip,
         char.charLevel,
-        char.modAtributes.dexterity,
+        char.modAttributes.dexterity,
         char.charRace,
         char.charClass.name,
-        char.modAtributes.wisdom,
+        char.modAttributes.wisdom,
         char.charEquip.wonderousItems!,
         charFeats,
         true,
@@ -497,10 +492,10 @@ class StatsController with ChangeNotifier {
     char.combatStats.armourSurprise = defenseCtrl.claculatingHitDefense(
         char.charEquip,
         char.charLevel,
-        char.modAtributes.dexterity,
+        char.modAttributes.dexterity,
         char.charRace,
         char.charClass.name,
-        char.modAtributes.wisdom,
+        char.modAttributes.wisdom,
         char.charEquip.wonderousItems!,
         charFeats,
         false,
@@ -509,10 +504,10 @@ class StatsController with ChangeNotifier {
     char.combatStats.armourTouch = defenseCtrl.claculatingHitDefense(
       char.charEquip,
       char.charLevel,
-      char.modAtributes.dexterity,
+      char.modAttributes.dexterity,
       char.charRace,
       char.charClass.name,
-      char.modAtributes.wisdom,
+      char.modAttributes.wisdom,
       char.charEquip.wonderousItems!,
       charFeats,
       false,
@@ -533,7 +528,7 @@ class StatsController with ChangeNotifier {
         char.charRace.name,
         char.charClass.name,
         charFeats,
-        char.modAtributes,
+        char.modAttributes,
         char.charEquip.wonderousItems!);
     char.resistances = resists;
     notifyListeners();
@@ -546,7 +541,7 @@ class StatsController with ChangeNotifier {
   calculateCombatManeuvers() {
     char.combatStats.combatManeuverBonus = offenseCtrl.calculateCombatManeuvers(
         char.combatStats.baseAttackBonus!,
-        char.modAtributes,
+        char.modAttributes,
         char.charRace.name,
         charFeats,
         char.charLevel,
@@ -554,7 +549,7 @@ class StatsController with ChangeNotifier {
     char.combatStats.combatManeuverDefense =
         offenseCtrl.calculateCombatManeuvers(
             char.combatStats.baseAttackBonus!,
-            char.modAtributes,
+            char.modAttributes,
             char.charRace.name,
             charFeats,
             char.charLevel,
@@ -568,7 +563,7 @@ class StatsController with ChangeNotifier {
 
   gettingInitiative() {
     char.combatStats.initiative =
-        offenseCtrl.gettingInitiative(charFeats, char.modAtributes.dexterity);
+        offenseCtrl.gettingInitiative(charFeats, char.modAttributes.dexterity);
     notifyListeners();
   }
 
@@ -588,7 +583,7 @@ class StatsController with ChangeNotifier {
             : 0;
     char.combatStats.meleeAttack = offenseCtrl.calculatingPhysicalAttack(
         char.charClass.mainAtrb,
-        char.modAtributes,
+        char.modAttributes,
         char.combatStats.baseAttackBonus!,
         charFeats,
         char.physicalStyle.name,
@@ -598,7 +593,7 @@ class StatsController with ChangeNotifier {
         true);
     char.combatStats.rangeAttack = offenseCtrl.calculatingPhysicalAttack(
         char.charClass.mainAtrb,
-        char.modAtributes,
+        char.modAttributes,
         char.combatStats.baseAttackBonus!,
         charFeats,
         char.physicalStyle.name,
@@ -608,7 +603,7 @@ class StatsController with ChangeNotifier {
         false);
     char.combatStats.meleeDamage = offenseCtrl.calculatingPhysicalDamage(
         char.charClass.mainAtrb,
-        char.modAtributes,
+        char.modAttributes,
         charFeats,
         char.physicalStyle.name,
         char.charLevel,
@@ -617,7 +612,7 @@ class StatsController with ChangeNotifier {
         true);
     char.combatStats.rangeDamage = offenseCtrl.calculatingPhysicalDamage(
         char.charClass.mainAtrb,
-        char.modAtributes,
+        char.modAttributes,
         charFeats,
         char.physicalStyle.name,
         char.charLevel,
@@ -634,11 +629,21 @@ class StatsController with ChangeNotifier {
         skillData.skills,
         char.charClass.name,
         char.charClass.skillRankPerLevel,
-        char.modAtributes,
+        char.modAttributes,
         char.charLevel,
         char.charEquip);
     notifyListeners();
   }
+
+  //======================================================================================
+  // Langugages
+
+  calculatingLanguages() {
+    charLanguages = abilityCtrl.calculatingLanguages(charSkills,
+        char.modAttributes.intelligence, char.charRace.initialIdiom);
+    notifyListeners();
+  }
+  //======================================================================================
 
   updateCharModel() {
     char.charClass.description != '';
@@ -649,6 +654,7 @@ class StatsController with ChangeNotifier {
     char.feats = charFeats;
     char.skills = charSkills;
     char.charEquip.tomesAndManuals = tomesAndManuals;
+    char.languages = charLanguages;
     notifyListeners();
   }
 }

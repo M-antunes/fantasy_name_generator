@@ -11,6 +11,7 @@ class RaceData {
       weight: 160,
       speed: 20,
       size: "Medium",
+      initialIdiom: "Dwarven",
       vision: "Darkvision 60 ft",
       traits: [
         KeyValueModel(
@@ -57,6 +58,7 @@ class RaceData {
       weight: 130,
       speed: 30,
       size: "Medium",
+      initialIdiom: "Elven",
       vision: "Low-light Vision",
       traits: [
         KeyValueModel(
@@ -95,6 +97,7 @@ class RaceData {
       weight: 50,
       speed: 20,
       size: "Small",
+      initialIdiom: "Gnome",
       vision: "Low-light Vision",
       traits: [
         KeyValueModel(
@@ -141,6 +144,7 @@ class RaceData {
       weight: 45,
       speed: 20,
       size: "Small",
+      initialIdiom: "Halfling",
       vision: "Standard",
       traits: [
         KeyValueModel(
@@ -179,12 +183,13 @@ class RaceData {
       weight: 150,
       speed: 30,
       size: "Medium",
+      initialIdiom: "Elven",
       vision: "Low-light Vision",
       traits: [
         KeyValueModel(
             key: "+2 to One Ability Score:",
             value:
-                "A +2 bonus will be automatically applied to the main atribute used by the class you choose."),
+                "A +2 bonus will be automatically applied to the main attribute used by the class you choose."),
         KeyValueModel(
             key: "Medium:",
             value:
@@ -222,12 +227,13 @@ class RaceData {
       weight: 160,
       speed: 30,
       size: "Medium",
+      initialIdiom: "Orc",
       vision: "Darkvision 60 ft.",
       traits: [
         KeyValueModel(
             key: "+2 to One Ability Score:",
             value:
-                "A +2 bonus will be automatically applied to the main atribute used by the class you choose."),
+                "A +2 bonus will be automatically applied to the main attribute used by the class you choose."),
         KeyValueModel(
             key: "Medium:",
             value:
@@ -260,12 +266,13 @@ class RaceData {
       weight: 130,
       speed: 30,
       size: "Medium",
+      initialIdiom: "",
       vision: "Standard",
       traits: [
         KeyValueModel(
             key: "+2 to One Ability Score:",
             value:
-                "A +2 bonus will be automatically applied to the main atribute used by the class you choose."),
+                "A +2 bonus will be automatically applied to the main attribute used by the class you choose."),
         KeyValueModel(
             key: "Medium:",
             value:
@@ -291,6 +298,7 @@ class RaceData {
       weight: 190,
       speed: 30,
       size: "Medium",
+      initialIdiom: "Orc",
       vision: "Darkvision 60 ft.",
       traits: [
         KeyValueModel(

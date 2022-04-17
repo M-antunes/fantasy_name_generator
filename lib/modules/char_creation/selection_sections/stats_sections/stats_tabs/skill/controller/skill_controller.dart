@@ -9,7 +9,7 @@ class SkillController {
       List<SkillModel> skillData,
       String className,
       int rankLevel,
-      AtributeModel charAtrb,
+      AttributeModel charAtrb,
       int level,
       EquipModel equip) {
     List<SkillModel> charSkillList = skillData;
@@ -60,7 +60,7 @@ class SkillController {
     charSkillList.sort((a, b) => a.name.compareTo(b.name));
 
     for (var i in charSkillList) {
-      switch (i.atributeUsed) {
+      switch (i.attributeUsed) {
         case "strength":
           i.finalValue += i.pointsAdded + charAtrb.strength;
           i.atrbValue = charAtrb.strength;

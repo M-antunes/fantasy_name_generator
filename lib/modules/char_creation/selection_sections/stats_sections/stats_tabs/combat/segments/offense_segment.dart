@@ -19,7 +19,7 @@ class OffenseSegment extends StatelessWidget {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const AtributeDivision(label: "Offense"),
+          const AttributeDivision(label: "Offense"),
           Row(
             children: [
               CombatInfo(

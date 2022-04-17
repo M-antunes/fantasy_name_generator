@@ -1,14 +1,15 @@
 import 'package:flutter/foundation.dart';
 
 import 'package:fantasy_name_generator/controllers/stage_controller/imports.dart';
+import 'package:fantasy_name_generator/models/char_personal_models/language_model.dart';
 
 class CharModel {
   RaceModel charRace;
   NameModel charName;
   PhysicalStyleModel physicalStyle;
   CombatStyleChoiceModel battleStyle;
-  AtributeModel baseAtributes;
-  AtributeModel modAtributes;
+  AttributeModel baseAttributes;
+  AttributeModel modAttributes;
   ClassModel charClass;
   AlignmentModel alignment;
   int hitPoints;
@@ -19,14 +20,15 @@ class CharModel {
   int charLevel;
   List<TraitModel> feats;
   List<SkillModel> skills;
+  List<LanguageModel> languages;
 
   CharModel({
     required this.charRace,
     required this.charName,
     required this.physicalStyle,
     required this.battleStyle,
-    required this.baseAtributes,
-    required this.modAtributes,
+    required this.baseAttributes,
+    required this.modAttributes,
     required this.charClass,
     required this.alignment,
     required this.hitPoints,
@@ -37,6 +39,7 @@ class CharModel {
     required this.charLevel,
     required this.feats,
     required this.skills,
+    required this.languages,
   });
 
   CharModel copyWith({
@@ -44,8 +47,8 @@ class CharModel {
     NameModel? charName,
     PhysicalStyleModel? physicalStyle,
     CombatStyleChoiceModel? battleStyle,
-    AtributeModel? baseAtributes,
-    AtributeModel? modAtributes,
+    AttributeModel? baseAttributes,
+    AttributeModel? modAttributes,
     ClassModel? charClass,
     AlignmentModel? alignment,
     int? hitPoints,
@@ -56,14 +59,15 @@ class CharModel {
     int? charLevel,
     List<TraitModel>? feats,
     List<SkillModel>? skills,
+    List<LanguageModel>? languages,
   }) {
     return CharModel(
       charRace: charRace ?? this.charRace,
       charName: charName ?? this.charName,
       physicalStyle: physicalStyle ?? this.physicalStyle,
       battleStyle: battleStyle ?? this.battleStyle,
-      baseAtributes: baseAtributes ?? this.baseAtributes,
-      modAtributes: modAtributes ?? this.modAtributes,
+      baseAttributes: baseAttributes ?? this.baseAttributes,
+      modAttributes: modAttributes ?? this.modAttributes,
       charClass: charClass ?? this.charClass,
       alignment: alignment ?? this.alignment,
       hitPoints: hitPoints ?? this.hitPoints,
@@ -74,6 +78,7 @@ class CharModel {
       charLevel: charLevel ?? this.charLevel,
       feats: feats ?? this.feats,
       skills: skills ?? this.skills,
+      languages: languages ?? this.languages,
     );
   }
 
@@ -83,8 +88,8 @@ class CharModel {
       'charName': charName.toMap(),
       'physicalStyle': physicalStyle.toMap(),
       'battleStyle': battleStyle.toMap(),
-      'baseAtributes': baseAtributes.toMap(),
-      'modAtributes': modAtributes.toMap(),
+      'baseAttributes': baseAttributes.toMap(),
+      'modAttributes': modAttributes.toMap(),
       'charClass': charClass.toMap(),
       'alignment': alignment.toMap(),
       'hitPoints': hitPoints,
@@ -95,6 +100,7 @@ class CharModel {
       'charLevel': charLevel,
       'feats': feats.map((x) => x.toMap()).toList(),
       'skills': skills.map((x) => x.toMap()).toList(),
+      'languages': languages.map((x) => x.toMap()).toList(),
     };
   }
 
@@ -104,8 +110,8 @@ class CharModel {
       charName: NameModel.fromMap(map['charName']),
       physicalStyle: PhysicalStyleModel.fromMap(map['physicalStyle']),
       battleStyle: CombatStyleChoiceModel.fromMap(map['battleStyle']),
-      baseAtributes: AtributeModel.fromMap(map['baseAtributes']),
-      modAtributes: AtributeModel.fromMap(map['modAtributes']),
+      baseAttributes: AttributeModel.fromMap(map['baseAttributes']),
+      modAttributes: AttributeModel.fromMap(map['modAttributes']),
       charClass: ClassModel.fromMap(map['charClass']),
       alignment: AlignmentModel.fromMap(map['alignment']),
       hitPoints: map['hitPoints']?.toInt() ?? 0,
@@ -118,6 +124,8 @@ class CharModel {
           map['feats']?.map((x) => TraitModel.fromMap(x))),
       skills: List<SkillModel>.from(
           map['skills']?.map((x) => SkillModel.fromMap(x))),
+      languages: List<LanguageModel>.from(
+          map['languages']?.map((x) => LanguageModel.fromMap(x))),
     );
   }
 
@@ -128,7 +136,7 @@ class CharModel {
 
   @override
   String toString() {
-    return 'CharModel(charRace: $charRace, charName: $charName, physicalStyle: $physicalStyle, battleStyle: $battleStyle, baseAtributes: $baseAtributes, modAtributes: $modAtributes, charClass: $charClass, alignment: $alignment, hitPoints: $hitPoints, resistances: $resistances, combatStats: $combatStats, charEquip: $charEquip, loot: $loot, charLevel: $charLevel, feats: $feats, skills: $skills)';
+    return 'CharModel(charRace: $charRace, charName: $charName, physicalStyle: $physicalStyle, battleStyle: $battleStyle, baseAttributes: $baseAttributes, modAttributes: $modAttributes, charClass: $charClass, alignment: $alignment, hitPoints: $hitPoints, resistances: $resistances, combatStats: $combatStats, charEquip: $charEquip, loot: $loot, charLevel: $charLevel, feats: $feats, skills: $skills, languages: $languages)';
   }
 
   @override
@@ -140,8 +148,8 @@ class CharModel {
         other.charName == charName &&
         other.physicalStyle == physicalStyle &&
         other.battleStyle == battleStyle &&
-        other.baseAtributes == baseAtributes &&
-        other.modAtributes == modAtributes &&
+        other.baseAttributes == baseAttributes &&
+        other.modAttributes == modAttributes &&
         other.charClass == charClass &&
         other.alignment == alignment &&
         other.hitPoints == hitPoints &&
@@ -151,7 +159,8 @@ class CharModel {
         other.loot == loot &&
         other.charLevel == charLevel &&
         listEquals(other.feats, feats) &&
-        listEquals(other.skills, skills);
+        listEquals(other.skills, skills) &&
+        listEquals(other.languages, languages);
   }
 
   @override
@@ -160,8 +169,8 @@ class CharModel {
         charName.hashCode ^
         physicalStyle.hashCode ^
         battleStyle.hashCode ^
-        baseAtributes.hashCode ^
-        modAtributes.hashCode ^
+        baseAttributes.hashCode ^
+        modAttributes.hashCode ^
         charClass.hashCode ^
         alignment.hashCode ^
         hitPoints.hashCode ^
@@ -171,6 +180,7 @@ class CharModel {
         loot.hashCode ^
         charLevel.hashCode ^
         feats.hashCode ^
-        skills.hashCode;
+        skills.hashCode ^
+        languages.hashCode;
   }
 }

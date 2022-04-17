@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 
 class SkillModel {
   final String name;
-  final String atributeUsed;
+  final String attributeUsed;
   final List<String> skillOfClasses;
   final bool hasPenalty;
   bool initialClassSkill;
@@ -14,7 +14,7 @@ class SkillModel {
   int atrbValue;
   SkillModel({
     this.name = '',
-    this.atributeUsed = '',
+    this.attributeUsed = '',
     this.skillOfClasses = const [],
     required this.hasPenalty,
     this.initialClassSkill = false,
@@ -26,7 +26,7 @@ class SkillModel {
 
   SkillModel copyWith({
     String? name,
-    String? atributeUsed,
+    String? attributeUsed,
     List<String>? skillOfClasses,
     bool? hasPenalty,
     bool? initialClassSkill,
@@ -37,7 +37,7 @@ class SkillModel {
   }) {
     return SkillModel(
       name: name ?? this.name,
-      atributeUsed: atributeUsed ?? this.atributeUsed,
+      attributeUsed: attributeUsed ?? this.attributeUsed,
       skillOfClasses: skillOfClasses ?? this.skillOfClasses,
       hasPenalty: hasPenalty ?? this.hasPenalty,
       initialClassSkill: initialClassSkill ?? this.initialClassSkill,
@@ -51,7 +51,7 @@ class SkillModel {
   Map<String, dynamic> toMap() {
     return {
       'name': name,
-      'atributeUsed': atributeUsed,
+      'attributeUsed': attributeUsed,
       'skillOfClasses': skillOfClasses,
       'hasPenalty': hasPenalty,
       'initialClassSkill': initialClassSkill,
@@ -65,7 +65,7 @@ class SkillModel {
   factory SkillModel.fromMap(Map<String, dynamic> map) {
     return SkillModel(
       name: map['name'] ?? '',
-      atributeUsed: map['atributeUsed'] ?? '',
+      attributeUsed: map['attributeUsed'] ?? '',
       skillOfClasses: List<String>.from(map['skillOfClasses']),
       hasPenalty: map['hasPenalty'] ?? false,
       initialClassSkill: map['initialClassSkill'] ?? false,
@@ -83,7 +83,7 @@ class SkillModel {
 
   @override
   String toString() {
-    return 'SkillModel(name: $name, atributeUsed: $atributeUsed, skillOfClasses: $skillOfClasses, hasPenalty: $hasPenalty, initialClassSkill: $initialClassSkill, checkPenalty: $checkPenalty, finalValue: $finalValue, pointsAdded: $pointsAdded, atrbValue: $atrbValue)';
+    return 'SkillModel(name: $name, attributeUsed: $attributeUsed, skillOfClasses: $skillOfClasses, hasPenalty: $hasPenalty, initialClassSkill: $initialClassSkill, checkPenalty: $checkPenalty, finalValue: $finalValue, pointsAdded: $pointsAdded, atrbValue: $atrbValue)';
   }
 
   @override
@@ -92,7 +92,7 @@ class SkillModel {
 
     return other is SkillModel &&
         other.name == name &&
-        other.atributeUsed == atributeUsed &&
+        other.attributeUsed == attributeUsed &&
         listEquals(other.skillOfClasses, skillOfClasses) &&
         other.hasPenalty == hasPenalty &&
         other.initialClassSkill == initialClassSkill &&
@@ -105,7 +105,7 @@ class SkillModel {
   @override
   int get hashCode {
     return name.hashCode ^
-        atributeUsed.hashCode ^
+        attributeUsed.hashCode ^
         skillOfClasses.hashCode ^
         hasPenalty.hashCode ^
         initialClassSkill.hashCode ^

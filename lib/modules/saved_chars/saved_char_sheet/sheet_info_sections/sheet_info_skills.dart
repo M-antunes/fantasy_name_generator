@@ -118,7 +118,7 @@ class SheetInfoSkills extends StatelessWidget {
                                 width: deviceWidth! * 0.14,
                                 child: Center(
                                   child: Text(
-                                    "${skill.atributeUsed.substring(0, 3)} (${skill.atrbValue})",
+                                    "${skill.attributeUsed.substring(0, 3)} (${skill.atrbValue})",
                                     style: AppTextStyle.statsLabelBrighter,
                                     textAlign: TextAlign.center,
                                   ),

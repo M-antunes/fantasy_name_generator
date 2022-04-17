@@ -18,7 +18,7 @@ class MagicGearStats extends StatelessWidget {
       return ListView(
         physics: const BouncingScrollPhysics(),
         children: [
-          const AtributeDivision(label: "Wonderous Items"),
+          const AttributeDivision(label: "Wonderous Items"),
           !state.statsGenerated
               ? const Center()
               : state.char.charEquip.wonderousItems!.isEmpty

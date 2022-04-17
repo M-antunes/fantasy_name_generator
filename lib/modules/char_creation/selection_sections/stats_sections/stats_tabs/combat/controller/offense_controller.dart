@@ -266,18 +266,18 @@ class OffenseController {
     return baseAttackBonus;
   }
 
-  int calculateCombatManeuvers(int bba, AtributeModel atrb, String race,
+  int calculateCombatManeuvers(int bba, AttributeModel atrb, String race,
       List<TraitModel> charFeats, int level, bool isCmb) {
     var bAttackBonus = bba;
-    var atributes = atrb;
+    var attributes = atrb;
     var cmb = 0;
     var cmd = 0;
     charFeats.any((element) => element.traiName == "Agile Maneuvers")
-        ? cmb = bAttackBonus + atributes.dexterity
-        : cmb = bAttackBonus + atributes.strength;
+        ? cmb = bAttackBonus + attributes.dexterity
+        : cmb = bAttackBonus + attributes.strength;
     charFeats.any((element) => element.traiName == "Defensive Combat Training")
-        ? cmd = bAttackBonus + level + atributes.dexterity + 10
-        : cmd = bAttackBonus + atributes.strength + atributes.dexterity + 10;
+        ? cmd = bAttackBonus + level + attributes.dexterity + 10
+        : cmd = bAttackBonus + attributes.strength + attributes.dexterity + 10;
     RaceModel? charRace;
     var races = RaceData();
     charRace = races.races.firstWhere((element) => element.name == race);
@@ -314,7 +314,7 @@ class OffenseController {
 
   calculatingPhysicalAttack(
       String mainAtrb,
-      AtributeModel atrb,
+      AttributeModel atrb,
       int charBba,
       List<TraitModel> charFeats,
       String physical,
@@ -374,7 +374,7 @@ class OffenseController {
 
   calculatingPhysicalDamage(
       String mainAtrb,
-      AtributeModel atrb,
+      AttributeModel atrb,
       List<TraitModel> charFeats,
       String physical,
       int level,

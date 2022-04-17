@@ -29,7 +29,7 @@ class SheetInfoMagicEquip extends StatelessWidget {
           children: [
             const LabelForCategoryIcon(label: "Magic Equip"),
             SizedBox(height: deviceHeight! * 0.003),
-            const AtributeDivision(label: "Wonderous items"),
+            const AttributeDivision(label: "Wonderous items"),
             SizedBox(height: deviceHeight! * 0.003),
             ListView.builder(
                 itemCount: char.charEquip.wonderousItems!.length,
