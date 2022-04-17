@@ -60,12 +60,17 @@ class GenerationBottomNav extends StatelessWidget {
                       : () => ctrl.resetEquipAndStats(),
                 );
               }),
-            AppAnimatedButton(
-              label: state.creationStage == 8 ? "Save" : null,
-              onTap: state.creationStage == 8
-                  ? () {}
-                  : () => buttonFunction(state, context),
-            ),
+            Consumer<StatsController>(builder: (context, ctrl, child) {
+              return AppAnimatedButton(
+                label: state.creationStage == 8 ? "Save" : null,
+                onTap: state.creationStage == 8
+                    ? () => ctrl.saveChar(ctrl.char).then((value) => {
+                          callMessageSnackbar(context, "Character Saved",
+                              AppColors.successColor, 800)
+                        })
+                    : () => buttonFunction(state, context),
+              );
+            }),
           ],
         ),
       );

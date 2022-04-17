@@ -1,20 +1,6 @@
-import 'dart:convert';
-
 import 'package:flutter/foundation.dart';
 
-import 'package:fantasy_name_generator/models/class_models/alignment_model.dart';
-import 'package:fantasy_name_generator/models/class_models/class_model.dart';
-import 'package:fantasy_name_generator/models/combat_models/combat_model.dart';
-import 'package:fantasy_name_generator/models/combat_models/combat_style_choice_model.dart';
-import 'package:fantasy_name_generator/models/equip_models/equip_model.dart';
-import 'package:fantasy_name_generator/models/equip_models/loot_models/loot_model.dart';
-import 'package:fantasy_name_generator/models/char_personal_models/name_model.dart';
-import 'package:fantasy_name_generator/models/combat_models/physical_style_model.dart';
-import 'package:fantasy_name_generator/models/race_models/race_model.dart';
-import 'package:fantasy_name_generator/models/combat_models/resistance_model.dart';
-import 'package:fantasy_name_generator/models/class_models/traits_model.dart';
-
-import '../combat_models/base_atribute_model.dart';
+import 'package:fantasy_name_generator/controllers/stage_controller/imports.dart';
 
 class CharModel {
   RaceModel charRace;
@@ -32,6 +18,7 @@ class CharModel {
   LootModel loot;
   int charLevel;
   List<TraitModel> feats;
+  List<SkillModel> skills;
 
   CharModel({
     required this.charRace,
@@ -49,6 +36,7 @@ class CharModel {
     required this.loot,
     required this.charLevel,
     required this.feats,
+    required this.skills,
   });
 
   CharModel copyWith({
@@ -67,6 +55,7 @@ class CharModel {
     LootModel? loot,
     int? charLevel,
     List<TraitModel>? feats,
+    List<SkillModel>? skills,
   }) {
     return CharModel(
       charRace: charRace ?? this.charRace,
@@ -84,6 +73,7 @@ class CharModel {
       loot: loot ?? this.loot,
       charLevel: charLevel ?? this.charLevel,
       feats: feats ?? this.feats,
+      skills: skills ?? this.skills,
     );
   }
 
@@ -104,6 +94,7 @@ class CharModel {
       'loot': loot.toMap(),
       'charLevel': charLevel,
       'feats': feats.map((x) => x.toMap()).toList(),
+      'skills': skills.map((x) => x.toMap()).toList(),
     };
   }
 
@@ -125,6 +116,8 @@ class CharModel {
       charLevel: map['charLevel']?.toInt() ?? 0,
       feats: List<TraitModel>.from(
           map['feats']?.map((x) => TraitModel.fromMap(x))),
+      skills: List<SkillModel>.from(
+          map['skills']?.map((x) => SkillModel.fromMap(x))),
     );
   }
 
@@ -135,7 +128,7 @@ class CharModel {
 
   @override
   String toString() {
-    return 'CharModel(charRace: $charRace, charName: $charName, physicalStyle: $physicalStyle, battleStyle: $battleStyle, baseAtributes: $baseAtributes, modAtributes: $modAtributes, charClass: $charClass, alignment: $alignment, hitPoints: $hitPoints, resistances: $resistances, combatStats: $combatStats, charEquip: $charEquip, loot: $loot, charLevel: $charLevel, feats: $feats)';
+    return 'CharModel(charRace: $charRace, charName: $charName, physicalStyle: $physicalStyle, battleStyle: $battleStyle, baseAtributes: $baseAtributes, modAtributes: $modAtributes, charClass: $charClass, alignment: $alignment, hitPoints: $hitPoints, resistances: $resistances, combatStats: $combatStats, charEquip: $charEquip, loot: $loot, charLevel: $charLevel, feats: $feats, skills: $skills)';
   }
 
   @override
@@ -157,7 +150,8 @@ class CharModel {
         other.charEquip == charEquip &&
         other.loot == loot &&
         other.charLevel == charLevel &&
-        listEquals(other.feats, feats);
+        listEquals(other.feats, feats) &&
+        listEquals(other.skills, skills);
   }
 
   @override
@@ -176,6 +170,7 @@ class CharModel {
         charEquip.hashCode ^
         loot.hashCode ^
         charLevel.hashCode ^
-        feats.hashCode;
+        feats.hashCode ^
+        skills.hashCode;
   }
 }

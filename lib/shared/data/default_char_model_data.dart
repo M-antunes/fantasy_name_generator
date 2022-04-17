@@ -26,6 +26,7 @@ class DefaultCharModelData {
       personalPronoun: "",
       possessiveAdjective: "",
     ),
+    skills: [],
     feats: [],
     battleStyle: CombatStyleChoiceModel(
         isSelected: false,

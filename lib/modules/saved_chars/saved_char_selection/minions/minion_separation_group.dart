@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:fantasy_name_generator/controllers/stage_controller/imports.dart';
+
 import '../../../../shared/routes/app_roues.dart';
 import '../../../../shared/themes/app_colors.dart';
 import '../../../../shared/themes/app_text_styles.dart';
@@ -10,11 +12,13 @@ class MinionSeparationGroup extends StatelessWidget {
   final String className;
   final int numberOfChars;
   final bool isSelected;
+  final CharModel char;
   const MinionSeparationGroup({
     Key? key,
     required this.className,
     required this.numberOfChars,
     required this.isSelected,
+    required this.char,
   }) : super(key: key);
 
   @override
@@ -43,15 +47,15 @@ class MinionSeparationGroup extends StatelessWidget {
           ExpandedSection(
               expand: true,
               child: ListView.builder(
-                  itemCount: 4,
+                  itemCount: numberOfChars,
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {
                     return SavedMinionTile(
-                      level: 19,
-                      charName: "Example",
+                      level: char.charLevel,
+                      charName: char.charName.fullName,
                       onTap: () => Navigator.of(context)
-                          .pushNamed(AppRoutes.savedCharSheet),
+                          .pushNamed(AppRoutes.savedCharSheet, arguments: char),
                     );
                   }))
         ],

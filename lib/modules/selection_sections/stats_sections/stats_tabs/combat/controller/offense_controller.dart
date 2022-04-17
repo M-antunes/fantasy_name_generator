@@ -415,17 +415,18 @@ class OffenseController {
     if (weapon.enchantment == null) {
       return 0;
     } else if (level == 3 || level == 4) {
-      return valueLabel = weapon.price;
+      return valueLabel = weapon.mundanePrice;
     } else if (weapon.enchantment!.isEmpty) {
-      valueLabel = weapon.price;
+      valueLabel = weapon.mundanePrice;
     } else if (weapon.enchantment!.length > 1) {
       var magicPrices = EnchantData();
       int price = (weapon.enchantment![0].power + weapon.enchantment![1].power);
       KeyValueModel priceAdded = magicPrices.pricingForMagicWeapons
           .firstWhere((element) => element.key == price);
-      valueLabel = (weapon.price + priceAdded.value + 300).toInt();
+      valueLabel = (weapon.mundanePrice + priceAdded.value + 300).toInt();
     } else {
-      valueLabel = weapon.price + weapon.enchantment![0].enchantPrice + 300;
+      valueLabel =
+          weapon.mundanePrice + weapon.enchantment![0].enchantPrice + 300;
     }
     return valueLabel;
   }

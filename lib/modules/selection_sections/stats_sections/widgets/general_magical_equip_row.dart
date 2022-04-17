@@ -10,6 +10,7 @@ class GeneralMagicalEquipRow extends StatelessWidget {
   final String item;
   final String description;
   final VoidCallback onTap;
+  bool? isCharSheet;
   bool selected;
   GeneralMagicalEquipRow({
     Key? key,
@@ -17,6 +18,7 @@ class GeneralMagicalEquipRow extends StatelessWidget {
     required this.item,
     required this.description,
     required this.onTap,
+    this.isCharSheet = false,
     required this.selected,
   }) : super(key: key);
 
@@ -29,11 +31,13 @@ class GeneralMagicalEquipRow extends StatelessWidget {
             child: Row(
               children: [
                 RichText(
+                    textScaleFactor: isCharSheet! ? 0.9 : 0.95,
                     text: TextSpan(children: [
-                  TextSpan(
-                      text: "$label:  ", style: AppTextStyle.traitDescription),
-                  TextSpan(text: item, style: AppTextStyle.statsValue),
-                ])),
+                      TextSpan(
+                          text: "$label:  ",
+                          style: AppTextStyle.traitDescription),
+                      TextSpan(text: item, style: AppTextStyle.statsValue),
+                    ])),
                 selected
                     ? const Icon(Icons.arrow_drop_down,
                         size: 25, color: Colors.blueGrey)

@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 
 import 'armor_models/armor_model.dart';
-import 'weapon_models/weapon_model.dart';
 import 'magic_equip_models/wonderous_items_model.dart';
+import 'weapon_models/weapon_model.dart';
 
 class EquipModel {
   WeaponModel? meleeWeapon;
@@ -12,53 +12,62 @@ class EquipModel {
   ArmorModel? armour;
   ArmorModel? shield;
   List<WonderousItemsModel>? wonderousItems;
+  List<WonderousItemsModel>? tomesAndManuals;
   EquipModel({
     this.meleeWeapon,
     this.rangeWeapon,
     this.armour,
     this.shield,
     this.wonderousItems,
+    this.tomesAndManuals,
   });
 
   EquipModel copyWith({
-    WeaponModel? primaryWeapon,
-    WeaponModel? emergencyWeapon,
+    WeaponModel? meleeWeapon,
+    WeaponModel? rangeWeapon,
     ArmorModel? armour,
     ArmorModel? shield,
     List<WonderousItemsModel>? wonderousItems,
+    List<WonderousItemsModel>? tomesAndManuals,
   }) {
     return EquipModel(
-      meleeWeapon: primaryWeapon ?? meleeWeapon,
-      rangeWeapon: emergencyWeapon ?? rangeWeapon,
+      meleeWeapon: meleeWeapon ?? this.meleeWeapon,
+      rangeWeapon: rangeWeapon ?? this.rangeWeapon,
       armour: armour ?? this.armour,
       shield: shield ?? this.shield,
       wonderousItems: wonderousItems ?? this.wonderousItems,
+      tomesAndManuals: tomesAndManuals ?? this.tomesAndManuals,
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
-      'primaryWeapon': meleeWeapon?.toMap(),
-      'emergencyWeapon': rangeWeapon?.toMap(),
+      'meleeWeapon': meleeWeapon?.toMap(),
+      'rangeWeapon': rangeWeapon?.toMap(),
       'armour': armour?.toMap(),
       'shield': shield?.toMap(),
       'wonderousItems': wonderousItems?.map((x) => x.toMap()).toList(),
+      'tomesAndManuals': tomesAndManuals?.map((x) => x.toMap()).toList(),
     };
   }
 
   factory EquipModel.fromMap(Map<String, dynamic> map) {
     return EquipModel(
-      meleeWeapon: map['primaryWeapon'] != null
-          ? WeaponModel.fromMap(map['primaryWeapon'])
+      meleeWeapon: map['meleeWeapon'] != null
+          ? WeaponModel.fromMap(map['meleeWeapon'])
           : null,
-      rangeWeapon: map['emergencyWeapon'] != null
-          ? WeaponModel.fromMap(map['emergencyWeapon'])
+      rangeWeapon: map['rangeWeapon'] != null
+          ? WeaponModel.fromMap(map['rangeWeapon'])
           : null,
       armour: map['armour'] != null ? ArmorModel.fromMap(map['armour']) : null,
       shield: map['shield'] != null ? ArmorModel.fromMap(map['shield']) : null,
       wonderousItems: map['wonderousItems'] != null
           ? List<WonderousItemsModel>.from(
               map['wonderousItems']?.map((x) => WonderousItemsModel.fromMap(x)))
+          : null,
+      tomesAndManuals: map['tomesAndManuals'] != null
+          ? List<WonderousItemsModel>.from(map['tomesAndManuals']
+              ?.map((x) => WonderousItemsModel.fromMap(x)))
           : null,
     );
   }
@@ -70,7 +79,7 @@ class EquipModel {
 
   @override
   String toString() {
-    return 'EquipModel(primaryWeapon: $meleeWeapon, emergencyWeapon: $rangeWeapon, armour: $armour, shield: $shield, wonderousItems: $wonderousItems)';
+    return 'EquipModel(meleeWeapon: $meleeWeapon, rangeWeapon: $rangeWeapon, armour: $armour, shield: $shield, wonderousItems: $wonderousItems, tomesAndManuals: $tomesAndManuals)';
   }
 
   @override
@@ -82,7 +91,8 @@ class EquipModel {
         other.rangeWeapon == rangeWeapon &&
         other.armour == armour &&
         other.shield == shield &&
-        listEquals(other.wonderousItems, wonderousItems);
+        listEquals(other.wonderousItems, wonderousItems) &&
+        listEquals(other.tomesAndManuals, tomesAndManuals);
   }
 
   @override
@@ -91,6 +101,7 @@ class EquipModel {
         rangeWeapon.hashCode ^
         armour.hashCode ^
         shield.hashCode ^
-        wonderousItems.hashCode;
+        wonderousItems.hashCode ^
+        tomesAndManuals.hashCode;
   }
 }

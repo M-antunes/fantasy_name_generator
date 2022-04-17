@@ -1,62 +1,84 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'package:fantasy_name_generator/controllers/stage_controller/imports.dart';
 import 'package:fantasy_name_generator/modules/saved_chars/saved_char_sheet/controller/saved_char_controller.dart';
 import 'package:fantasy_name_generator/shared/themes/app_text_styles.dart';
 
 import '../../../../shared/constants/phone_sizes.dart';
 import '../../../../shared/widgets/expanded_section.dart';
 import '../../../selection_sections/stats_sections/widgets/general_magical_equip_row.dart';
-import 'widgets/gradient_label_sheet.dart';
+import 'widgets/label_for_category_icon.dart';
 
 class SheetInfoAbilityScore extends StatelessWidget {
+  final CharModel char;
   const SheetInfoAbilityScore({
     Key? key,
+    required this.char,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var ctrl = context.read<SavedCharController>();
     return ExpandedSection(
       expand: true,
-      child: Consumer<SavedCharController>(builder: (context, state, child) {
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            GradientLabelSheet(label: "Ability Scores"),
-            SizedBox(height: deviceHeight! * 0.003),
-            Padding(
-              padding: const EdgeInsets.only(left: 8),
-              child: Column(
-                children: [
-                  AbilityRow(label: "Strength:", modValue: 1, value: 1),
-                  AbilityRow(label: "Dexterity:", modValue: 1, value: 1),
-                  AbilityRow(label: "Constitution:", modValue: 1, value: 1),
-                  AbilityRow(label: "Intelligence:", modValue: 1, value: 1),
-                  AbilityRow(label: "Wisdom:", modValue: 1, value: 1),
-                  AbilityRow(label: "Charisma:", modValue: 1, value: 1),
-                ],
-              ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const LabelForCategoryIcon(label: "Ability Socores"),
+          SizedBox(height: deviceHeight! * 0.003),
+          Padding(
+            padding: const EdgeInsets.only(left: 8),
+            child: Column(
+              children: [
+                AbilityRow(
+                    label: "Strength:",
+                    modValue: char.modAtributes.strength,
+                    value: char.baseAtributes.strength),
+                AbilityRow(
+                    label: "Dexterity:",
+                    modValue: char.modAtributes.dexterity,
+                    value: char.baseAtributes.dexterity),
+                AbilityRow(
+                    label: "Constitution:",
+                    modValue: char.modAtributes.constitution,
+                    value: char.baseAtributes.constitution),
+                AbilityRow(
+                    label: "Intelligence:",
+                    modValue: char.modAtributes.intelligence,
+                    value: char.baseAtributes.intelligence),
+                AbilityRow(
+                    label: "Wisdom:",
+                    modValue: char.modAtributes.wisdom,
+                    value: char.baseAtributes.wisdom),
+                AbilityRow(
+                    label: "Charisma:",
+                    modValue: char.modAtributes.charisma,
+                    value: char.baseAtributes.charisma),
+              ],
             ),
-            SizedBox(height: deviceHeight! * 0.03),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              child: ListView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: 2,
-                  itemBuilder: (context, index) {
-                    return GeneralMagicalEquipRow(
-                      label: "Book read",
-                      item: "book.name",
-                      selected: true,
-                      description: "book.description",
-                      onTap: () {},
-                    );
-                  }),
-            )
-          ],
-        );
-      }),
+          ),
+          SizedBox(height: deviceHeight! * 0.03),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: char.charEquip.tomesAndManuals!.length,
+                itemBuilder: (context, index) {
+                  var book = char.charEquip.tomesAndManuals![index];
+                  return GeneralMagicalEquipRow(
+                    label: "Book read",
+                    item: book.name!,
+                    selected: book.isSelected,
+                    description: book.description!,
+                    onTap: () => ctrl.showDescriptions(
+                        index, char.charEquip.tomesAndManuals),
+                  );
+                }),
+          )
+        ],
+      ),
     );
   }
 }

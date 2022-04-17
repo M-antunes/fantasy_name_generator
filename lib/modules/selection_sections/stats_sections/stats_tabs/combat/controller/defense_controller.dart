@@ -57,7 +57,7 @@ class DefenseController {
             checkPenalty: armors[random].checkPenalty,
             maxDexAllowed: armors[random].maxDexAllowed,
             speedPenalty: armors[random].speedPenalty,
-            price: armors[random].price,
+            mundanePrice: armors[random].mundanePrice,
             type: armors[random].type,
           )
         : armor = ArmorModel(
@@ -66,7 +66,7 @@ class DefenseController {
             checkPenalty: armors.last.checkPenalty,
             maxDexAllowed: armors.last.maxDexAllowed,
             speedPenalty: armors.last.speedPenalty,
-            price: armors.last.price,
+            mundanePrice: armors.last.mundanePrice,
             type: armors.last.type,
           );
     return armor;
@@ -288,7 +288,7 @@ class DefenseController {
   }
 
   int claculateMagicEquipPrice(ArmorModel defenseEquip, int level) {
-    int valueLabel = defenseEquip.price;
+    int valueLabel = defenseEquip.mundanePrice;
     if (level < 3) {
       return valueLabel;
     } else if (level == 3 || level == 4) {

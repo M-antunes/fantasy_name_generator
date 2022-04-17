@@ -98,20 +98,6 @@ class _StatsSectionState extends State<StatsSection>
                         ],
                       ),
                       const SizedBox(height: 2),
-                      // Row(
-                      //   crossAxisAlignment: CrossAxisAlignment.start,
-                      //   children: [
-                      //     SizedBox(
-                      //         width: deviceWidth! * 0.5,
-                      //         child: CharDescriptionText(
-                      //             label: "Combat:",
-                      //             textValue: ctrl.char.battleStyle.name)),
-                      //     CharDescriptionText(
-                      //         label: "Style:",
-                      //         textValue: ctrl.char.physicalStyle.name),
-                      //   ],
-                      // ),
-                      // const SizedBox(height: 2),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -231,53 +217,4 @@ class _StatsSectionState extends State<StatsSection>
       ),
     );
   }
-}
-
-Future<dynamic> showStartingOverConfirmation(
-    BuildContext context, CharController state) {
-  return showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: const Center(
-            child: Text(
-              "ATENTION!",
-              style: TextStyle(
-                color: AppColors.primaryGold,
-              ),
-            ),
-          ),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                  "If you start over, the ${state.cha.charClass.name} ${state.cha.charName.fullName}, will be lost forever.",
-                  style: AppTextStyle.subTextGrey,
-                  textAlign: TextAlign.center),
-              Text("Is that what you desire?", style: AppTextStyle.subTextGrey),
-            ],
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                state.startCharAllOver();
-                Navigator.of(context).pop();
-              },
-              child: const Text(
-                'YES',
-                style: TextStyle(color: AppColors.primary),
-              ),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text(
-                'NO',
-                style: TextStyle(color: Colors.white70),
-              ),
-            ),
-          ],
-        );
-      });
 }

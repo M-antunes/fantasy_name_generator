@@ -1,3 +1,4 @@
+import 'package:fantasy_name_generator/shared/constants/phone_sizes.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../shared/themes/app_colors.dart';
@@ -27,13 +28,13 @@ class SavedMinionTile extends StatelessWidget {
           elevation: 10,
           child: ListTile(
             leading: CircleAvatar(
+              radius: deviceWidth! < 350 ? 22 : 24,
               child: RichText(
                 text: TextSpan(children: [
                   TextSpan(text: "Lv ", style: AppTextStyle.classNotSelected),
                   TextSpan(
                       text: "$level",
-                      style: AppTextStyle.selectRace.copyWith(
-                          fontSize: 35, color: AppColors.primaryText)),
+                      style: AppTextStyle.savedSelectionLevelDisplay),
                 ]),
               ),
             ),

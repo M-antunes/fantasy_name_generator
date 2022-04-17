@@ -12,7 +12,7 @@ class EquipData {
         forbiddenTo: [],
         damage: "1d4",
         damageType: "Slashing or piercing",
-        price: 2,
+        mundanePrice: 2,
         type: WeaponFamilyModel(
           forbiddenTo: [],
           wielding: "One-handed",
@@ -25,7 +25,7 @@ class EquipData {
         forbiddenTo: [],
         damage: "1d4",
         damageType: "Bludgeoning",
-        price: 4,
+        mundanePrice: 4,
         type: WeaponFamilyModel(
           forbiddenTo: [],
           wielding: "One-handed",
@@ -38,7 +38,7 @@ class EquipData {
         forbiddenTo: [],
         damage: "1d6",
         damageType: "Bludgeoning",
-        price: 0,
+        mundanePrice: 0,
         type: WeaponFamilyModel(
           forbiddenTo: [],
           wielding: "One-handed",
@@ -51,7 +51,7 @@ class EquipData {
         forbiddenTo: [],
         damage: "1d8",
         damageType: "Bludgeoning",
-        price: 4,
+        mundanePrice: 4,
         type: WeaponFamilyModel(
           forbiddenTo: [],
           wielding: "One-handed",
@@ -64,7 +64,7 @@ class EquipData {
         forbiddenTo: ["Monk"],
         damage: "1d8",
         damageType: "Bludgeoning and piercing",
-        price: 12,
+        mundanePrice: 12,
         type: WeaponFamilyModel(
           forbiddenTo: [],
           wielding: "One-handed",
@@ -77,7 +77,7 @@ class EquipData {
         forbiddenTo: [],
         damage: "1d4",
         damageType: "Piercing",
-        price: 6,
+        mundanePrice: 6,
         type: WeaponFamilyModel(
           forbiddenTo: [],
           wielding: "One-handed",
@@ -89,7 +89,7 @@ class EquipData {
         critical: "19-20 x2",
         damage: "1d6",
         damageType: "Slashing",
-        price: 35,
+        mundanePrice: 35,
         forbiddenTo: [
           "Wizard",
           "Arcanist",
@@ -113,7 +113,7 @@ class EquipData {
         forbiddenTo: [],
         damage: "1d6",
         damageType: "Slashing",
-        price: 6,
+        mundanePrice: 6,
         type: WeaponFamilyModel(
           forbiddenTo: [],
           wielding: "One-handed",
@@ -126,7 +126,7 @@ class EquipData {
         forbiddenTo: [],
         damage: "1d4",
         damageType: "Slashing or piercing",
-        price: 4,
+        mundanePrice: 4,
         type: WeaponFamilyModel(
           forbiddenTo: [],
           wielding: "One-handed",
@@ -139,7 +139,7 @@ class EquipData {
         forbiddenTo: [],
         damage: "1d4",
         damageType: "Bludgeoning",
-        price: 6,
+        mundanePrice: 6,
         type: WeaponFamilyModel(
           forbiddenTo: [],
           wielding: "One-handed",
@@ -152,7 +152,7 @@ class EquipData {
         forbiddenTo: [],
         damage: "1d6",
         damageType: "Slashing",
-        price: 10,
+        mundanePrice: 10,
         type: WeaponFamilyModel(
           forbiddenTo: [],
           wielding: "One-handed",
@@ -165,7 +165,7 @@ class EquipData {
         forbiddenTo: ["Monk"],
         damage: "1d6",
         damageType: "Piercing",
-        price: 10,
+        mundanePrice: 10,
         type: WeaponFamilyModel(
           forbiddenTo: [],
           wielding: "One-handed",
@@ -178,7 +178,7 @@ class EquipData {
         forbiddenTo: [],
         damage: "1d4",
         damageType: "Slasing or piercing",
-        price: 10,
+        mundanePrice: 10,
         type: WeaponFamilyModel(
           forbiddenTo: [],
           wielding: "One-handed",
@@ -191,7 +191,7 @@ class EquipData {
         forbiddenTo: ["Monk"],
         damage: "1d8",
         damageType: "Bludgeoning",
-        price: 40,
+        mundanePrice: 40,
         type: WeaponFamilyModel(
           forbiddenTo: [],
           wielding: "One-handed",
@@ -203,7 +203,7 @@ class EquipData {
         critical: "19-20 x2",
         damage: "1d8",
         damageType: "Slashing",
-        price: 20,
+        mundanePrice: 20,
         forbiddenTo: [
           "Wizard",
           "Arcanist",
@@ -223,7 +223,7 @@ class EquipData {
         critical: "19-20 x2",
         damage: "1d6",
         damageType: "Piercing",
-        price: 50,
+        mundanePrice: 50,
         forbiddenTo: [
           "Wizard",
           "Arcanist",
@@ -245,7 +245,7 @@ class EquipData {
         critical: "19-20 x2",
         damage: "1d6",
         damageType: "Slashing",
-        price: 10,
+        mundanePrice: 10,
         forbiddenTo: [
           "Wizard",
           "Arcanist",
@@ -266,7 +266,7 @@ class EquipData {
         critical: "19-20 x2",
         damage: "2d4",
         damageType: "Slashing",
-        price: 10,
+        mundanePrice: 10,
         forbiddenTo: [
           "Wizard",
           "Arcanist",
@@ -291,7 +291,7 @@ class EquipData {
         forbiddenTo: [],
         damage: "1d2",
         damageType: "Slashing",
-        price: 2,
+        mundanePrice: 2,
         type: WeaponFamilyModel(
           forbiddenTo: [],
           wielding: "One-handed",
@@ -304,7 +304,7 @@ class EquipData {
         forbiddenTo: [],
         damage: "1d4",
         damageType: "Piercing or slashing",
-        price: 10,
+        mundanePrice: 10,
         type: WeaponFamilyModel(
           forbiddenTo: [],
           wielding: "One-handed",
@@ -316,7 +316,7 @@ class EquipData {
         critical: "19-20 x2",
         damage: "1d10",
         damageType: "Slashing",
-        price: 20,
+        mundanePrice: 20,
         forbiddenTo: [
           "Wizard",
           "Arcanist",
@@ -341,7 +341,7 @@ class EquipData {
         forbiddenTo: [],
         damage: "1d10",
         damageType: "Slashing",
-        price: 10,
+        mundanePrice: 10,
         type: WeaponFamilyModel(
           forbiddenTo: [],
           wielding: "One-handed",
@@ -353,7 +353,7 @@ class EquipData {
         critical: "19-20 x2",
         damage: "1d8",
         damageType: "Slashing",
-        price: 50,
+        mundanePrice: 50,
         forbiddenTo: [
           "Wizard",
           "Arcanist",
@@ -376,7 +376,7 @@ class EquipData {
         critical: "19-20 x2",
         damage: "1d8",
         damageType: "Slashing",
-        price: 10,
+        mundanePrice: 10,
         forbiddenTo: [
           "Wizard",
           "Arcanist",
@@ -400,7 +400,7 @@ class EquipData {
         forbiddenTo: [],
         damage: "2d4",
         damageType: "Piercing",
-        price: 12,
+        mundanePrice: 12,
         type: WeaponFamilyModel(
           forbiddenTo: [],
           wielding: "One-handed",
@@ -413,7 +413,7 @@ class EquipData {
         forbiddenTo: [],
         damage: "1d4",
         damageType: "Bludgeoning",
-        price: 0,
+        mundanePrice: 0,
         type: WeaponFamilyModel(
           forbiddenTo: [],
           wielding: "One-handed",
@@ -426,7 +426,7 @@ class EquipData {
         forbiddenTo: [],
         damage: "1d4",
         damageType: "Bludgeoning",
-        price: 5,
+        mundanePrice: 5,
         type: WeaponFamilyModel(
           forbiddenTo: [],
           wielding: "One-handed",
@@ -439,7 +439,7 @@ class EquipData {
         forbiddenTo: [],
         damage: "1d4",
         damageType: "Bludgeoning",
-        price: 4,
+        mundanePrice: 4,
         type: WeaponFamilyModel(
           forbiddenTo: [],
           wielding: "One-handed",
@@ -452,7 +452,7 @@ class EquipData {
         forbiddenTo: [],
         damage: "1d4",
         damageType: "Bludgeoning and piercing",
-        price: 3,
+        mundanePrice: 3,
         type: WeaponFamilyModel(
           forbiddenTo: [],
           wielding: "One-handed",
@@ -467,7 +467,7 @@ class EquipData {
         ],
         damage: "1d6",
         damageType: "Piercing",
-        price: 2,
+        mundanePrice: 2,
         type: WeaponFamilyModel(
           wielding: "Two-handed",
           forbiddenTo: [],
@@ -480,7 +480,7 @@ class EquipData {
         forbiddenTo: [],
         damage: "1d8",
         damageType: "Piercing",
-        price: 4,
+        mundanePrice: 4,
         type: WeaponFamilyModel(
           wielding: "Two-handed",
           forbiddenTo: [],
@@ -493,7 +493,7 @@ class EquipData {
         forbiddenTo: [],
         damage: "1d8",
         damageType: "Piercing",
-        price: 8,
+        mundanePrice: 8,
         type: WeaponFamilyModel(
           wielding: "Two-handed",
           forbiddenTo: [],
@@ -506,7 +506,7 @@ class EquipData {
         forbiddenTo: [],
         damage: "1d10",
         damageType: "Piercing",
-        price: 10,
+        mundanePrice: 10,
         type: WeaponFamilyModel(
           wielding: "Two-handed",
           forbiddenTo: [],
@@ -519,7 +519,7 @@ class EquipData {
         forbiddenTo: [],
         damage: "1d8",
         damageType: "Piercing",
-        price: 20,
+        mundanePrice: 20,
         type: WeaponFamilyModel(
           wielding: "Two-handed",
           forbiddenTo: [],
@@ -532,7 +532,7 @@ class EquipData {
         forbiddenTo: [],
         damage: "1d10",
         damageType: "Piercing or slashing",
-        price: 16,
+        mundanePrice: 16,
         type: WeaponFamilyModel(
           wielding: "Two-handed",
           forbiddenTo: [],
@@ -545,7 +545,7 @@ class EquipData {
         forbiddenTo: [],
         damage: "1d10",
         damageType: "Piercing or slashing",
-        price: 12,
+        mundanePrice: 12,
         type: WeaponFamilyModel(
           wielding: "Two-handed",
           forbiddenTo: [],
@@ -558,7 +558,7 @@ class EquipData {
         forbiddenTo: [],
         damage: "2d6",
         damageType: "Bludgeoning",
-        price: 24,
+        mundanePrice: 24,
         type: WeaponFamilyModel(
           wielding: "Two-handed",
           forbiddenTo: [],
@@ -571,7 +571,7 @@ class EquipData {
         forbiddenTo: [],
         damage: "1d10",
         damageType: "Bludgeoning",
-        price: 10,
+        mundanePrice: 10,
         type: WeaponFamilyModel(
           wielding: "Two-handed",
           forbiddenTo: [],
@@ -584,7 +584,7 @@ class EquipData {
         forbiddenTo: [],
         damage: "1d12",
         damageType: "Bludgeoning",
-        price: 20,
+        mundanePrice: 20,
         type: WeaponFamilyModel(
           wielding: "Two-handed",
           forbiddenTo: [],
@@ -597,7 +597,7 @@ class EquipData {
         forbiddenTo: [],
         damage: "1d12",
         damageType: "Slashing",
-        price: 35,
+        mundanePrice: 35,
         type: WeaponFamilyModel(
           wielding: "Two-handed",
           forbiddenTo: [],
@@ -610,7 +610,7 @@ class EquipData {
         forbiddenTo: [],
         damage: "1d12",
         damageType: "Slashing",
-        price: 40,
+        mundanePrice: 40,
         type: WeaponFamilyModel(
           wielding: "Two-handed",
           forbiddenTo: [],
@@ -623,7 +623,7 @@ class EquipData {
         forbiddenTo: [],
         damage: "2d6",
         damageType: "Slashing",
-        price: 50,
+        mundanePrice: 50,
         type: WeaponFamilyModel(
           wielding: "Two-handed",
           forbiddenTo: [],
@@ -636,7 +636,7 @@ class EquipData {
         forbiddenTo: [],
         damage: "2d6",
         damageType: "Slashing",
-        price: 50,
+        mundanePrice: 50,
         type: WeaponFamilyModel(
           wielding: "Two-handed",
           forbiddenTo: [],
@@ -649,7 +649,7 @@ class EquipData {
         forbiddenTo: [],
         damage: "1d10",
         damageType: "Piercing",
-        price: 10,
+        mundanePrice: 10,
         type: WeaponFamilyModel(
           wielding: "Two-handed",
           forbiddenTo: [],
@@ -662,7 +662,7 @@ class EquipData {
         forbiddenTo: [],
         damage: "1d8",
         damageType: "Piercing",
-        price: 10,
+        mundanePrice: 10,
         type: WeaponFamilyModel(
           wielding: "Two-handed",
           forbiddenTo: [],
@@ -675,7 +675,7 @@ class EquipData {
         forbiddenTo: [],
         damage: "1d8",
         damageType: "Piercing",
-        price: 14,
+        mundanePrice: 14,
         type: WeaponFamilyModel(
           wielding: "Two-handed",
           forbiddenTo: [],
@@ -688,7 +688,7 @@ class EquipData {
         forbiddenTo: [],
         damage: "2d4",
         damageType: "Piercing",
-        price: 20,
+        mundanePrice: 20,
         type: WeaponFamilyModel(
           wielding: "Two-handed",
           forbiddenTo: [],
@@ -701,7 +701,7 @@ class EquipData {
         forbiddenTo: [],
         damage: "1d10",
         damageType: "Piercing or slashing",
-        price: 10,
+        mundanePrice: 10,
         type: WeaponFamilyModel(
           wielding: "Two-handed",
           forbiddenTo: [],
@@ -714,7 +714,7 @@ class EquipData {
         forbiddenTo: [],
         damage: "1d8",
         damageType: "Piercing",
-        price: 20,
+        mundanePrice: 20,
         type: WeaponFamilyModel(
           wielding: "Two-handed",
           forbiddenTo: [],
@@ -727,7 +727,7 @@ class EquipData {
         forbiddenTo: [],
         damage: "1d10",
         damageType: "Slashing",
-        price: 60,
+        mundanePrice: 60,
         type: WeaponFamilyModel(
           wielding: "Two-handed",
           forbiddenTo: [],
@@ -740,7 +740,7 @@ class EquipData {
         forbiddenTo: [],
         damage: "1d10",
         damageType: "Piercing or slashing",
-        price: 10,
+        mundanePrice: 10,
         type: WeaponFamilyModel(
           wielding: "Two-handed",
           forbiddenTo: [],
@@ -753,7 +753,7 @@ class EquipData {
         forbiddenTo: [],
         damage: "1d6/1d6",
         damageType: "Bludgeoning",
-        price: 7,
+        mundanePrice: 7,
         type: WeaponFamilyModel(
           wielding: "Two-handed",
           forbiddenTo: [],
@@ -766,7 +766,7 @@ class EquipData {
         forbiddenTo: [],
         damage: "1d8/1d8",
         damageType: "Slashing",
-        price: 6,
+        mundanePrice: 6,
         type: WeaponFamilyModel(
           wielding: "Two-handed",
           forbiddenTo: [],
@@ -779,7 +779,7 @@ class EquipData {
         forbiddenTo: [],
         damage: "2d4",
         damageType: "Piercing",
-        price: 10,
+        mundanePrice: 10,
         type: WeaponFamilyModel(
           wielding: "Two-handed",
           forbiddenTo: [],
@@ -792,7 +792,7 @@ class EquipData {
         forbiddenTo: [],
         damage: "-",
         damageType: "-",
-        price: 10,
+        mundanePrice: 10,
         type: WeaponFamilyModel(
           wielding: "Two-handed",
           forbiddenTo: [],
@@ -805,7 +805,7 @@ class EquipData {
         forbiddenTo: [],
         damage: "1d12",
         damageType: "Slashing",
-        price: 30,
+        mundanePrice: 30,
         type: WeaponFamilyModel(
           wielding: "Two-handed",
           forbiddenTo: [],
@@ -818,7 +818,7 @@ class EquipData {
         forbiddenTo: [],
         damage: "1d6/1d6",
         damageType: "Bludgeoning",
-        price: 20,
+        mundanePrice: 20,
         type: WeaponFamilyModel(
           wielding: "Two-handed",
           forbiddenTo: [],
@@ -831,7 +831,7 @@ class EquipData {
         forbiddenTo: [],
         damage: "1d8/1d8",
         damageType: "Bludgeoning",
-        price: 50,
+        mundanePrice: 50,
         type: WeaponFamilyModel(
           wielding: "Two-handed",
           forbiddenTo: [],
@@ -844,7 +844,7 @@ class EquipData {
         forbiddenTo: [],
         damage: "1d10",
         damageType: "Piercing",
-        price: 10,
+        mundanePrice: 10,
         type: WeaponFamilyModel(
           wielding: "Two-handed",
           forbiddenTo: [],
@@ -857,7 +857,7 @@ class EquipData {
         forbiddenTo: ["Barbarian"],
         damage: "1d10",
         damageType: "Piercing",
-        price: 40,
+        mundanePrice: 40,
         type: WeaponFamilyModel(
           wielding: "Range",
           forbiddenTo: [],
@@ -870,7 +870,7 @@ class EquipData {
         forbiddenTo: [],
         damage: "1d6",
         damageType: "Slashing",
-        price: 4,
+        mundanePrice: 4,
         type: WeaponFamilyModel(
           wielding: "Range",
           forbiddenTo: [],
@@ -883,7 +883,7 @@ class EquipData {
         forbiddenTo: [],
         damage: "1d6",
         damageType: "Piercing",
-        price: 2,
+        mundanePrice: 2,
         type: WeaponFamilyModel(
           wielding: "Range",
           forbiddenTo: [],
@@ -896,7 +896,7 @@ class EquipData {
         forbiddenTo: [],
         damage: "1d8",
         damageType: "Bludgeoning",
-        price: 2,
+        mundanePrice: 2,
         type: WeaponFamilyModel(
           wielding: "Range",
           forbiddenTo: [],
@@ -909,7 +909,7 @@ class EquipData {
         forbiddenTo: ["Barbarian"],
         damage: "1d8",
         damageType: "Slashing",
-        price: 1,
+        mundanePrice: 1,
         type: WeaponFamilyModel(
           wielding: "Range",
           forbiddenTo: [],
@@ -922,7 +922,7 @@ class EquipData {
         forbiddenTo: ["Barbarian"],
         damage: "1d8",
         damageType: "Piercing",
-        price: 30,
+        mundanePrice: 30,
         type: WeaponFamilyModel(
           wielding: "Range",
           forbiddenTo: [],
@@ -935,7 +935,7 @@ class EquipData {
         forbiddenTo: [],
         damage: "1d8",
         damageType: "Piercing",
-        price: 20,
+        mundanePrice: 20,
         type: WeaponFamilyModel(
           wielding: "Range",
           forbiddenTo: [],
@@ -948,7 +948,7 @@ class EquipData {
         forbiddenTo: [],
         damage: "1d6",
         damageType: "Piercing",
-        price: 10,
+        mundanePrice: 10,
         type: WeaponFamilyModel(
           wielding: "Range",
           forbiddenTo: [],
@@ -961,7 +961,7 @@ class EquipData {
         forbiddenTo: [],
         damage: "1d8",
         damageType: "Piercing",
-        price: 10,
+        mundanePrice: 10,
         type: WeaponFamilyModel(
           wielding: "Range",
           forbiddenTo: [],
@@ -974,7 +974,7 @@ class EquipData {
         forbiddenTo: [],
         damage: "1d6",
         damageType: "Piercing",
-        price: 3,
+        mundanePrice: 3,
         type: WeaponFamilyModel(
           wielding: "Range",
           forbiddenTo: [],
@@ -987,7 +987,7 @@ class EquipData {
         forbiddenTo: [],
         damage: "1d6",
         damageType: "Piercing",
-        price: 10,
+        mundanePrice: 10,
         type: WeaponFamilyModel(
           wielding: "Range",
           forbiddenTo: [],
@@ -1000,7 +1000,7 @@ class EquipData {
         forbiddenTo: ["Barbarian", "Warrior"],
         damage: "1d2",
         damageType: "Piercing",
-        price: 1,
+        mundanePrice: 1,
         type: WeaponFamilyModel(
           wielding: "Range",
           forbiddenTo: [],
@@ -1201,7 +1201,7 @@ class EquipData {
         maxDexAllowed: 99,
         checkPenalty: 0,
         speedPenalty: 0,
-        price: 0,
+        mundanePrice: 0,
         isSelected: false,
         name: "No armor"),
     ArmorModel(
@@ -1213,7 +1213,7 @@ class EquipData {
         maxDexAllowed: 8,
         checkPenalty: 0,
         speedPenalty: 0,
-        price: 100,
+        mundanePrice: 100,
         isSelected: false,
         name: "Quilted cloth"),
     ArmorModel(
@@ -1225,7 +1225,7 @@ class EquipData {
         maxDexAllowed: 8,
         checkPenalty: 0,
         speedPenalty: 0,
-        price: 10,
+        mundanePrice: 10,
         isSelected: false,
         name: "Padded"),
     ArmorModel(
@@ -1237,7 +1237,7 @@ class EquipData {
         maxDexAllowed: 8,
         checkPenalty: 0,
         speedPenalty: 0,
-        price: 30,
+        mundanePrice: 30,
         isSelected: false,
         name: "Silken ceremonial"),
     ArmorModel(
@@ -1249,7 +1249,7 @@ class EquipData {
         maxDexAllowed: 5,
         checkPenalty: 0,
         speedPenalty: 0,
-        price: 15,
+        mundanePrice: 15,
         isSelected: false,
         name: "Lamellar (cuirass)"),
     ArmorModel(
@@ -1261,7 +1261,7 @@ class EquipData {
         maxDexAllowed: 6,
         checkPenalty: 0,
         speedPenalty: 0,
-        price: 20,
+        mundanePrice: 20,
         isSelected: false,
         name: "Leather"),
     ArmorModel(
@@ -1273,7 +1273,7 @@ class EquipData {
         maxDexAllowed: 7,
         checkPenalty: 1,
         speedPenalty: 0,
-        price: 25,
+        mundanePrice: 25,
         isSelected: false,
         name: "Fur stripes"),
     ArmorModel(
@@ -1285,7 +1285,7 @@ class EquipData {
         maxDexAllowed: 5,
         checkPenalty: 1,
         speedPenalty: 5,
-        price: 250,
+        mundanePrice: 250,
         isSelected: false,
         name: "Studded leather"),
     ArmorModel(
@@ -1297,7 +1297,7 @@ class EquipData {
         maxDexAllowed: 4,
         checkPenalty: 2,
         speedPenalty: 5,
-        price: 50,
+        mundanePrice: 50,
         isSelected: false,
         fitForDruid: false,
         name: "Armored coat"),
@@ -1310,7 +1310,7 @@ class EquipData {
         maxDexAllowed: 4,
         checkPenalty: 3,
         speedPenalty: 5,
-        price: 75,
+        mundanePrice: 75,
         isSelected: false,
         fitForDruid: false,
         name: "Ring mail"),
@@ -1323,7 +1323,7 @@ class EquipData {
         maxDexAllowed: 5,
         checkPenalty: 1,
         speedPenalty: 5,
-        price: 70,
+        mundanePrice: 70,
         isSelected: false,
         name: "Wooden plaques"),
     ArmorModel(
@@ -1335,7 +1335,7 @@ class EquipData {
         maxDexAllowed: 4,
         checkPenalty: 3,
         speedPenalty: 5,
-        price: 90,
+        mundanePrice: 90,
         isSelected: false,
         fitForDruid: false,
         name: "Banded iron"),
@@ -1348,7 +1348,7 @@ class EquipData {
         maxDexAllowed: 4,
         checkPenalty: 3,
         speedPenalty: 5,
-        price: 15,
+        mundanePrice: 15,
         isSelected: false,
         name: "Hide"),
     ArmorModel(
@@ -1360,7 +1360,7 @@ class EquipData {
         maxDexAllowed: 3,
         checkPenalty: 4,
         speedPenalty: 5,
-        price: 100,
+        mundanePrice: 100,
         isSelected: false,
         name: "Lamellar (wooden)"),
     ArmorModel(
@@ -1372,7 +1372,7 @@ class EquipData {
         maxDexAllowed: 3,
         checkPenalty: 4,
         speedPenalty: 5,
-        price: 50,
+        mundanePrice: 50,
         isSelected: false,
         fitForDruid: false,
         name: "Scale mail"),
@@ -1385,7 +1385,7 @@ class EquipData {
         maxDexAllowed: 3,
         checkPenalty: 4,
         speedPenalty: 5,
-        price: 200,
+        mundanePrice: 200,
         isSelected: false,
         fitForDruid: false,
         name: "Breastplate"),
@@ -1398,7 +1398,7 @@ class EquipData {
         maxDexAllowed: 3,
         checkPenalty: 4,
         speedPenalty: 5,
-        price: 150,
+        mundanePrice: 150,
         isSelected: false,
         fitForDruid: false,
         name: "Chainmail"),
@@ -1411,7 +1411,7 @@ class EquipData {
         maxDexAllowed: 3,
         checkPenalty: 6,
         speedPenalty: 5,
-        price: 400,
+        mundanePrice: 400,
         isSelected: false,
         fitForDruid: false,
         name: "Agile breastplate"),
@@ -1424,7 +1424,7 @@ class EquipData {
         maxDexAllowed: 3,
         checkPenalty: 4,
         speedPenalty: 5,
-        price: 250,
+        mundanePrice: 250,
         isSelected: false,
         name: "Mountain pattern"),
     ArmorModel(
@@ -1436,7 +1436,7 @@ class EquipData {
         maxDexAllowed: 2,
         checkPenalty: 7,
         speedPenalty: 5,
-        price: 300,
+        mundanePrice: 300,
         isSelected: false,
         fitForDruid: false,
         name: "Splint mail"),
@@ -1449,7 +1449,7 @@ class EquipData {
         maxDexAllowed: 1,
         checkPenalty: 7,
         speedPenalty: 5,
-        price: 200,
+        mundanePrice: 200,
         isSelected: false,
         fitForDruid: false,
         name: "Lamellar (iron)"),
@@ -1462,7 +1462,7 @@ class EquipData {
         maxDexAllowed: 2,
         checkPenalty: 5,
         speedPenalty: 5,
-        price: 850,
+        mundanePrice: 850,
         isSelected: false,
         fitForDruid: false,
         name: "Agile half-plate"),
@@ -1475,7 +1475,7 @@ class EquipData {
         maxDexAllowed: 1,
         checkPenalty: 7,
         speedPenalty: 5,
-        price: 600,
+        mundanePrice: 600,
         isSelected: false,
         fitForDruid: false,
         name: "Half-plate"),
@@ -1488,7 +1488,7 @@ class EquipData {
         maxDexAllowed: 1,
         checkPenalty: 6,
         speedPenalty: 5,
-        price: 1500,
+        mundanePrice: 1500,
         isSelected: false,
         fitForDruid: false,
         name: "Full plate"),
@@ -1501,7 +1501,7 @@ class EquipData {
         maxDexAllowed: 1,
         checkPenalty: 6,
         speedPenalty: 5,
-        price: 1800,
+        mundanePrice: 1800,
         isSelected: false,
         name: "Stoneplate"),
   ];
@@ -1516,7 +1516,7 @@ class EquipData {
         maxDexAllowed: 99,
         checkPenalty: 1,
         speedPenalty: 0,
-        price: 5,
+        mundanePrice: 5,
         isSelected: false,
         name: "Buckler"),
     ArmorModel(
@@ -1528,7 +1528,7 @@ class EquipData {
         maxDexAllowed: 99,
         checkPenalty: 1,
         speedPenalty: 0,
-        price: 12,
+        mundanePrice: 12,
         isSelected: false,
         name: "Wooden shield"),
     ArmorModel(
@@ -1540,7 +1540,7 @@ class EquipData {
         maxDexAllowed: 99,
         checkPenalty: 1,
         speedPenalty: 0,
-        price: 15,
+        mundanePrice: 15,
         isSelected: false,
         fitForDruid: false,
         name: "Iron-wood shield"),
@@ -1553,7 +1553,7 @@ class EquipData {
         maxDexAllowed: 99,
         checkPenalty: 2,
         speedPenalty: 0,
-        price: 30,
+        mundanePrice: 30,
         isSelected: false,
         name: "Large wood shield"),
     ArmorModel(
@@ -1565,7 +1565,7 @@ class EquipData {
         maxDexAllowed: 99,
         checkPenalty: 2,
         speedPenalty: 0,
-        price: 20,
+        mundanePrice: 20,
         isSelected: false,
         fitForDruid: false,
         name: "Iron shield"),
@@ -1578,7 +1578,7 @@ class EquipData {
         maxDexAllowed: 99,
         checkPenalty: 2,
         speedPenalty: 0,
-        price: 50,
+        mundanePrice: 50,
         isSelected: false,
         fitForDruid: false,
         name: "Steel shield"),
@@ -1591,7 +1591,7 @@ class EquipData {
         maxDexAllowed: 99,
         checkPenalty: 4,
         speedPenalty: 0,
-        price: 90,
+        mundanePrice: 90,
         isSelected: false,
         fitForDruid: false,
         name: "Broad shield"),

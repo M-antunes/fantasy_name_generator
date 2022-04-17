@@ -15,7 +15,8 @@ class WeaponModel {
   String? damageType;
   String? critical;
   List<String> forbiddenTo;
-  int price;
+  int mundanePrice;
+  int fullPrice;
   WeaponModel({
     this.type,
     this.isSelected,
@@ -25,7 +26,8 @@ class WeaponModel {
     this.damageType,
     this.critical,
     required this.forbiddenTo,
-    required this.price,
+    this.mundanePrice = 0,
+    this.fullPrice = 0,
   });
 
   WeaponModel copyWith({
@@ -37,7 +39,8 @@ class WeaponModel {
     String? damageType,
     String? critical,
     List<String>? forbiddenTo,
-    int? price,
+    int? mundanePrice,
+    int? fullPrice,
   }) {
     return WeaponModel(
       type: type ?? this.type,
@@ -48,7 +51,8 @@ class WeaponModel {
       damageType: damageType ?? this.damageType,
       critical: critical ?? this.critical,
       forbiddenTo: forbiddenTo ?? this.forbiddenTo,
-      price: price ?? this.price,
+      mundanePrice: mundanePrice ?? this.mundanePrice,
+      fullPrice: fullPrice ?? this.fullPrice,
     );
   }
 
@@ -62,7 +66,8 @@ class WeaponModel {
       'damageType': damageType,
       'critical': critical,
       'forbiddenTo': forbiddenTo,
-      'price': price,
+      'mundanePrice': mundanePrice,
+      'fullPrice': fullPrice,
     };
   }
 
@@ -79,7 +84,8 @@ class WeaponModel {
       damageType: map['damageType'],
       critical: map['critical'],
       forbiddenTo: List<String>.from(map['forbiddenTo']),
-      price: map['price']?.toInt() ?? 0,
+      mundanePrice: map['mundanePrice']?.toInt() ?? 0,
+      fullPrice: map['fullPrice']?.toInt() ?? 0,
     );
   }
 
@@ -90,7 +96,7 @@ class WeaponModel {
 
   @override
   String toString() {
-    return 'WeaponModel(type: $type, isSelected: $isSelected, name: $name, enchantment: $enchantment, damage: $damage, damageType: $damageType, critical: $critical, forbiddenTo: $forbiddenTo, price: $price)';
+    return 'WeaponModel(type: $type, isSelected: $isSelected, name: $name, enchantment: $enchantment, damage: $damage, damageType: $damageType, critical: $critical, forbiddenTo: $forbiddenTo, mundanePrice: $mundanePrice, fullPrice: $fullPrice)';
   }
 
   @override
@@ -106,7 +112,8 @@ class WeaponModel {
         other.damageType == damageType &&
         other.critical == critical &&
         listEquals(other.forbiddenTo, forbiddenTo) &&
-        other.price == price;
+        other.mundanePrice == mundanePrice &&
+        other.fullPrice == fullPrice;
   }
 
   @override
@@ -119,6 +126,7 @@ class WeaponModel {
         damageType.hashCode ^
         critical.hashCode ^
         forbiddenTo.hashCode ^
-        price.hashCode;
+        mundanePrice.hashCode ^
+        fullPrice.hashCode;
   }
 }

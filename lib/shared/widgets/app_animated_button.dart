@@ -26,7 +26,8 @@ class AppAnimatedButton extends StatelessWidget {
       height: deviceWidth! < 400 ? 35 : 40,
       onPressed: onTap,
       child: Center(
-        child: Text(label ?? 'Next', style: style ?? AppTextStyle.changeRace),
+        child: Text(label ?? 'Next',
+            style: style ?? AppTextStyle.subTextGreyPlusSize),
       ),
     );
   }

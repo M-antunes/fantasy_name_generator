@@ -1,3 +1,4 @@
+import 'package:fantasy_name_generator/controllers/stage_controller/imports.dart';
 import 'package:fantasy_name_generator/modules/saved_chars/saved_char_sheet/controller/saved_char_controller.dart';
 import 'package:fantasy_name_generator/modules/saved_chars/saved_char_sheet/sheet_info_sections/sheet_info_features.dart';
 import 'package:fantasy_name_generator/modules/saved_chars/saved_char_sheet/sheet_info_sections/sheet_info_loot.dart';
@@ -21,6 +22,7 @@ class SavedCharSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var char = ModalRoute.of(context)!.settings.arguments as CharModel;
     return SafeArea(
       child: Scaffold(
         body: Container(
@@ -40,7 +42,7 @@ class SavedCharSheet extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("Char name",
+                      Text(char.charName.fullName,
                           style: AppTextStyle.nameExhibitionSheet),
                       RichText(
                         text: TextSpan(
@@ -58,7 +60,7 @@ class SavedCharSheet extends StatelessWidget {
                             TextSpan(
                                 text: "lv: ", style: AppTextStyle.subTextWhite),
                             TextSpan(
-                                text: "10",
+                                text: "${char.charLevel}",
                                 style: AppTextStyle.levelDisplayStatsPageText)
                           ],
                         ),
@@ -72,12 +74,13 @@ class SavedCharSheet extends StatelessWidget {
                         children: [
                           SizedBox(
                               width: deviceWidth! * 0.5,
-                              child: const CharDescriptionText(
+                              child: CharDescriptionText(
                                 label: "Race:",
-                                textValue: "Example",
+                                textValue: char.charRace.name,
                               )),
-                          const CharDescriptionText(
-                              label: "Gender:", textValue: "Example"),
+                          CharDescriptionText(
+                              label: "Gender:",
+                              textValue: char.charName.gender),
                         ],
                       ),
                       const SizedBox(height: 2),
@@ -86,10 +89,12 @@ class SavedCharSheet extends StatelessWidget {
                         children: [
                           SizedBox(
                               width: deviceWidth! * 0.5,
-                              child: const CharDescriptionText(
-                                  label: "Class:", textValue: "Example")),
-                          const CharDescriptionText(
-                              label: "Alignment:", textValue: "Example"),
+                              child: CharDescriptionText(
+                                  label: "Class:",
+                                  textValue: char.charClass.name)),
+                          CharDescriptionText(
+                              label: "Alignment:",
+                              textValue: char.alignment.abreviation!),
                         ],
                       ),
                       const SizedBox(height: 2),
@@ -98,11 +103,13 @@ class SavedCharSheet extends StatelessWidget {
                         children: [
                           SizedBox(
                               width: deviceWidth! * 0.5,
-                              child: const CharDescriptionText(
+                              child: CharDescriptionText(
                                   label: "Height:",
-                                  textValue: "Ex. ft. Ex. in.")),
-                          const CharDescriptionText(
-                              label: "Weight:", textValue: "Example lib"),
+                                  textValue:
+                                      "${char.charRace.height!.key}. ft. ${char.charRace.height!.value} in.")),
+                          CharDescriptionText(
+                              label: "Weight:",
+                              textValue: "${char.charRace.weight} lbs"),
                         ],
                       ),
                       const SizedBox(height: 2),
@@ -111,10 +118,11 @@ class SavedCharSheet extends StatelessWidget {
                         children: [
                           SizedBox(
                               width: deviceWidth! * 0.5,
-                              child: const CharDescriptionText(
-                                  label: "Age:", textValue: "Example")),
-                          const CharDescriptionText(
-                              label: "Size:", textValue: "Example"),
+                              child: CharDescriptionText(
+                                  label: "Age:",
+                                  textValue: "${char.charRace.age}")),
+                          CharDescriptionText(
+                              label: "Size:", textValue: char.charRace.size!),
                         ],
                       ),
                       const SizedBox(height: 2),
@@ -123,10 +131,13 @@ class SavedCharSheet extends StatelessWidget {
                         children: [
                           SizedBox(
                               width: deviceWidth! * 0.5,
-                              child: const CharDescriptionText(
-                                  label: "Vision:", textValue: "Example")),
-                          const CharDescriptionText(
-                              label: "Perception:", textValue: "Example"),
+                              child: CharDescriptionText(
+                                  label: "Vision:",
+                                  textValue: "${char.charRace.vision}")),
+                          CharDescriptionText(
+                              label: "Perception:",
+                              textValue:
+                                  "${char.skills.firstWhere((element) => element.name == 'Perception').finalValue}"),
                         ],
                       ),
                       const SizedBox(height: 3),
@@ -150,7 +161,7 @@ class SavedCharSheet extends StatelessWidget {
                                       return IconStatsButton(
                                         svg: icon.iconSvg,
                                         isSelected: icon.isSelected,
-                                        onTap: () => state.showDescriptions(
+                                        onTap: () => state.switchIconRow(
                                             index, state.allIcons),
                                       );
                                     }),
@@ -166,27 +177,32 @@ class SavedCharSheet extends StatelessWidget {
                               child: Column(
                                 children: [
                                   state.tempIcon.iconlabel == "Ability Scores"
-                                      ? const SheetInfoAbilityScore()
+                                      ? SheetInfoAbilityScore(char: char)
                                       : state.tempIcon.iconlabel == "Combat"
-                                          ? const SheetInfoCombat()
+                                          ? SheetInfoCombat(char: char)
                                           : state.tempIcon.iconlabel ==
                                                   "Equipment"
-                                              ? const SheetInfoMagicEquip()
+                                              ? SheetInfoMagicEquip(char: char)
                                               : state.tempIcon.iconlabel ==
                                                       "Features"
-                                                  ? const SheetInfoFeatures()
+                                                  ? SheetInfoFeatures(
+                                                      char: char)
                                                   : state.tempIcon.iconlabel ==
                                                           "Feats"
-                                                      ? const SheetInfoFeats()
+                                                      ? SheetInfoFeats(
+                                                          char: char)
                                                       : state.tempIcon
                                                                   .iconlabel ==
                                                               "Skills"
-                                                          ? const SheetInfoSkills()
+                                                          ? SheetInfoSkills(
+                                                              char: char)
                                                           : state.tempIcon
                                                                       .iconlabel ==
                                                                   "Spells"
-                                                              ? const SheetInfoSpells()
-                                                              : const SheetInfoLoot(),
+                                                              ? SheetInfoSpells(
+                                                                  char: char)
+                                                              : SheetInfoLoot(
+                                                                  char: char),
                                 ],
                               ),
                             ),

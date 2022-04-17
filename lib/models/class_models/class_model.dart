@@ -16,8 +16,8 @@ class ClassModel {
   final String combatStyle;
   final List<String> forbidenArmorType;
   final List<String> permittedAligments;
-  final List<TraitModel>? traits;
-  final List<SpecialsModel>? speacials;
+  List<TraitModel>? traits;
+  List<SpecialsModel>? speacials;
   final String specialName;
   final int skillRankPerLevel;
   ClassModel({

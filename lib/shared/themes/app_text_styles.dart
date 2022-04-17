@@ -410,4 +410,14 @@ class AppTextStyle {
             ? 11
             : 12,
   );
+  static final savedSelectionLevelDisplay = TextStyle(
+    fontWeight: FontWeight.w400,
+    fontFamily: "OldLondon",
+    color: AppColors.primaryText0,
+    fontSize: deviceWidth! < 350
+        ? 19
+        : deviceWidth! > 350 && deviceWidth! < 400
+            ? 23
+            : 28,
+  );
 }

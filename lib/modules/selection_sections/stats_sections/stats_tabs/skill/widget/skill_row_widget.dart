@@ -11,6 +11,7 @@ class SkillRowWidget extends StatelessWidget {
   final String pointAdded;
   final String armorPenalty;
   final int atrbValue;
+
   bool classSkill;
 
   SkillRowWidget({
@@ -58,12 +59,13 @@ class SkillRowWidget extends StatelessWidget {
                       child: Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                            skillName.contains("Knowledge")
-                                ? "${skillName.substring(0, 9)}\n${skillName.substring(10)}"
-                                : skillName,
-                            style: classSkill
-                                ? AppTextStyle.subTextWhitePlusSize
-                                : AppTextStyle.statsLabelBrighter),
+                          skillName.contains("Knowledge")
+                              ? "${skillName.substring(0, 9)}\n${skillName.substring(10)}"
+                              : skillName,
+                          style: classSkill
+                              ? AppTextStyle.subTextWhitePlusSize
+                              : AppTextStyle.statsLabelBrighter,
+                        ),
                       ),
                     ),
                   ),

@@ -1,14 +1,18 @@
-import 'package:fantasy_name_generator/modules/saved_chars/saved_char_sheet/sheet_info_sections/widgets/gradient_label_sheet.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../models/char_personal_models/char_model.dart';
 import '../../../../shared/constants/phone_sizes.dart';
 import '../../../../shared/themes/app_text_styles.dart';
 import '../../../../shared/widgets/app_horizontal_line.dart';
 import '../../../../shared/widgets/expanded_section.dart';
+import 'widgets/label_for_category_icon.dart';
 
 class SheetInfoSkills extends StatelessWidget {
+  final CharModel char;
+
   const SheetInfoSkills({
     Key? key,
+    required this.char,
   }) : super(key: key);
 
   @override
@@ -17,44 +21,52 @@ class SheetInfoSkills extends StatelessWidget {
       expand: true,
       child: Column(
         children: [
-          const GradientLabelSheet(label: "Skills"),
-          SizedBox(height: deviceHeight! * 0.003),
-          SizedBox(height: deviceHeight! * 0.005),
+          const LabelForCategoryIcon(label: "Skills"),
           const AppHorizontalLine(),
-          SizedBox(height: deviceHeight! * 0.004),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               SizedBox(
                 width: deviceWidth! * 0.11,
                 child: Text(
                   "Bonus",
-                  style: AppTextStyle.longDescription,
+                  style: AppTextStyle.longDescription.copyWith(fontSize: 11),
                 ),
               ),
               SizedBox(
-                  width: deviceWidth! * 0.3,
-                  child: ListTile(
-                      title: Text(
-                    "Name of the skill",
-                    style: AppTextStyle.longDescription,
-                  ))),
-              SizedBox(
-                  width: deviceWidth! * 0.12,
+                  width: deviceWidth! * 0.34,
                   child: Text(
-                    "Added\nPoints",
-                    style: AppTextStyle.longDescription,
+                    " Skill name",
+                    style: AppTextStyle.longDescription.copyWith(fontSize: 11),
                   )),
               SizedBox(
-                  width: deviceWidth! * 0.1,
-                  child: Text(
-                    "Atrb",
-                    style: AppTextStyle.longDescription,
+                  width: deviceWidth! * 0.11,
+                  child: Center(
+                    child: Text(
+                      "Atrb",
+                      style:
+                          AppTextStyle.longDescription.copyWith(fontSize: 11),
+                    ),
                   )),
               SizedBox(
-                  width: deviceWidth! * 0.13,
-                  child: Text(
-                    "Armor\nPenalty",
-                    style: AppTextStyle.longDescription,
+                  width: deviceWidth! * 0.11,
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: Text(
+                      "Points\nAdded",
+                      style:
+                          AppTextStyle.longDescription.copyWith(fontSize: 11),
+                    ),
+                  )),
+              SizedBox(
+                  width: deviceWidth! * 0.11,
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: Text(
+                      "Armor\nPenalty",
+                      style:
+                          AppTextStyle.longDescription.copyWith(fontSize: 11),
+                    ),
                   )),
             ],
           ),
@@ -67,49 +79,68 @@ class SheetInfoSkills extends StatelessWidget {
                 ListView.builder(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
-                    itemCount: 15,
+                    itemCount: char.skills.length,
                     itemBuilder: (context, index) {
-                      return Row(
-                        children: [
-                          SizedBox(
-                            width: deviceWidth! * 0.08,
-                            child: CircleAvatar(
-                              backgroundColor: Colors.grey[900],
-                              radius: 16,
-                              child: Text(
-                                "10",
-                                style: AppTextStyle.statsLabelBrighter,
-                                textAlign: TextAlign.center,
+                      var skill = char.skills[index];
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 1.5),
+                        child: Row(
+                          children: [
+                            SizedBox(
+                              width: deviceWidth! * 0.08,
+                              child: CircleAvatar(
+                                backgroundColor: Colors.grey[900],
+                                radius: 16,
+                                child: Text(
+                                  "${skill.finalValue}",
+                                  style: AppTextStyle.statsLabelBrighter,
+                                  textAlign: TextAlign.center,
+                                ),
                               ),
                             ),
-                          ),
-                          SizedBox(
-                              width: deviceWidth! * 0.4,
-                              child: ListTile(
-                                  title: Text(
-                                      "Name of the damn skill might be big"))),
-                          SizedBox(
-                              width: deviceWidth! * 0.05,
-                              child: Text(
-                                "0",
-                                style: AppTextStyle.longDescription,
-                                textAlign: TextAlign.left,
-                              )),
-                          SizedBox(
-                              width: deviceWidth! * 0.1,
-                              child: Text(
-                                "dex 0",
-                                style: AppTextStyle.longDescription,
-                                textAlign: TextAlign.left,
-                              )),
-                          SizedBox(
-                              width: deviceWidth! * 0.1,
-                              child: Text(
-                                "0",
-                                style: AppTextStyle.longDescription,
-                                textAlign: TextAlign.center,
-                              )),
-                        ],
+                            const SizedBox(width: 5),
+                            SizedBox(
+                                width: deviceWidth! * 0.35,
+                                child: Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 4),
+                                  child: Text(
+                                    skill.name.contains("Knowledge")
+                                        ? "${skill.name.substring(0, 9)}\n${skill.name.substring(10)}"
+                                        : skill.name,
+                                    style: skill.initialClassSkill
+                                        ? AppTextStyle.subTextWhitePlusSize
+                                        : AppTextStyle.statsLabelBrighter,
+                                    textScaleFactor: 0.9,
+                                  ),
+                                )),
+                            SizedBox(
+                                width: deviceWidth! * 0.14,
+                                child: Center(
+                                  child: Text(
+                                    "${skill.atributeUsed.substring(0, 3)} (${skill.atrbValue})",
+                                    style: AppTextStyle.statsLabelBrighter,
+                                    textAlign: TextAlign.center,
+                                  ),
+                                )),
+                            SizedBox(
+                                width: deviceWidth! * 0.1,
+                                child: Text(
+                                  "${skill.pointsAdded}",
+                                  style: AppTextStyle.statsLabelBrighter,
+                                  textAlign: TextAlign.center,
+                                )),
+                            SizedBox(
+                                width: deviceWidth! * 0.1,
+                                child: Text(
+                                  skill.checkPenalty > 0
+                                      ? "-${skill.checkPenalty}"
+                                      : "  0",
+                                  style: AppTextStyle.statsLabelBrighter,
+                                  textAlign: TextAlign.center,
+                                )),
+                          ],
+                        ),
                       );
                     }),
                 SizedBox(height: deviceHeight! * 0.004),
@@ -118,7 +149,7 @@ class SheetInfoSkills extends StatelessWidget {
                 RichText(
                     textScaleFactor: 0.9,
                     text: TextSpan(
-                        style: AppTextStyle.longDescription
+                        style: AppTextStyle.statsLabelBrighter
                             .copyWith(fontStyle: FontStyle.italic),
                         children: const [
                           TextSpan(

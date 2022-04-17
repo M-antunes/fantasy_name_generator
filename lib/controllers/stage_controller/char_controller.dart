@@ -915,14 +915,7 @@ class CharController extends ChangeNotifier {
 
   updateCharModel() {
     cha = CharModel(
-        charRace: RaceModel(
-          name: chosenRace.name,
-          isSelected: chosenRace.isSelected,
-          height: KeyValueModel(key: 0, value: 0),
-          weight: 0,
-          age: 0,
-          speed: 0,
-        ),
+        charRace: chosenRace,
         feats: [],
         physicalStyle: physicalStyleChoice,
         battleStyle: chosenStyle,
@@ -935,6 +928,7 @@ class CharController extends ChangeNotifier {
           objectPronoun: isMale ? "him" : "her",
           possessiveAdjective: isMale ? "his" : "her",
         ),
+        skills: [],
         alignment: chosenAlignment,
         combatStats: CombatModel(),
         charClass: chosenClass,

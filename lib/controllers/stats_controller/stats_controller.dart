@@ -1,4 +1,8 @@
+import 'dart:convert';
+
 import 'package:fantasy_name_generator/shared/data/default_char_model_data.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'imports.dart';
 
@@ -41,9 +45,8 @@ class StatsController with ChangeNotifier {
   }
 
   resetEquipAndStats() {
-    char.charEquip.armour = ArmorModel(price: 0);
-    char.charEquip.shield =
-        char.charEquip.shield == null ? null : ArmorModel(price: 0);
+    char.charEquip.armour = ArmorModel();
+    char.charEquip.shield = char.charEquip.shield == null ? null : ArmorModel();
     char.charEquip.meleeWeapon = null;
     char.charEquip.rangeWeapon = null;
     char.charEquip.wonderousItems = null;
@@ -629,5 +632,23 @@ class StatsController with ChangeNotifier {
         char.charLevel,
         char.charEquip);
     notifyListeners();
+  }
+
+  updateCharModel() {
+    char.loot = charLoot;
+    char.charClass.traits = traits;
+    char.charClass.speacials = specials;
+    char.feats = charFeats;
+    char.skills = charSkills;
+    char.charEquip.tomesAndManuals = tomesAndManuals;
+    notifyListeners();
+  }
+
+  Future saveChar(CharModel char) async {
+    updateCharModel();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var charMap = char.toJson();
+    String json = jsonEncode(charMap);
+    prefs.setString("char", json);
   }
 }

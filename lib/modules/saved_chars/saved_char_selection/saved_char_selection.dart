@@ -1,10 +1,12 @@
 import 'package:fantasy_name_generator/modules/saved_chars/saved_char_selection/bosses/boss_separation_group.dart';
+import 'package:fantasy_name_generator/modules/saved_chars/saved_char_sheet/controller/saved_char_controller.dart';
 import 'package:fantasy_name_generator/shared/routes/app_roues.dart';
 import 'package:flutter/material.dart';
 
 import 'package:fantasy_name_generator/shared/constants/phone_sizes.dart';
 import 'package:fantasy_name_generator/shared/themes/app_colors.dart';
 import 'package:fantasy_name_generator/shared/widgets/expanded_section.dart';
+import 'package:provider/provider.dart';
 
 import 'minions/minion_separation_group.dart';
 import 'widgets/card_tab_for_char_kind.dart';
@@ -18,11 +20,18 @@ class SavedCharSelection extends StatefulWidget {
 
 class _SavedCharSelectionState extends State<SavedCharSelection> {
   bool minionPressed = true;
-
+  late SavedCharController savedCharCtrl = SavedCharController();
   switPressingTabs() {
     setState(() {
       minionPressed = !minionPressed;
     });
+  }
+
+  @override
+  void initState() {
+    savedCharCtrl = context.read();
+    savedCharCtrl.loadStoredCharacters();
+    super.initState();
   }
 
   @override
@@ -67,23 +76,22 @@ class _SavedCharSelectionState extends State<SavedCharSelection> {
                   child: ListView(
                     physics: const BouncingScrollPhysics(),
                     children: [
-                      ListView.builder(
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemCount: 3,
-                          itemBuilder: (contex, index) {
-                            return minionPressed
-                                ? MinionSeparationGroup(
-                                    className: "Barbarian",
-                                    numberOfChars: 4,
-                                    isSelected: true,
-                                  )
-                                : BossSeparationGroup(
-                                    className: "Warrior",
-                                    numberOfChars: 2,
-                                    isSelected: true,
-                                  );
-                          }),
+                      Consumer<SavedCharController>(
+                          builder: (context, state, child) {
+                        return ListView.builder(
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemCount: state.allChars.length,
+                            itemBuilder: (contex, index) {
+                              var char = state.allChars[index];
+                              return MinionSeparationGroup(
+                                className: char.charClass.name,
+                                numberOfChars: index + 1,
+                                isSelected: true,
+                                char: char,
+                              );
+                            });
+                      }),
                     ],
                   )),
             ),

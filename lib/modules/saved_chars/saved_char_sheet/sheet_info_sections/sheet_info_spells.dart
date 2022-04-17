@@ -1,12 +1,16 @@
-import 'package:fantasy_name_generator/modules/saved_chars/saved_char_sheet/sheet_info_sections/widgets/gradient_label_sheet.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../models/char_personal_models/char_model.dart';
 import '../../../../shared/constants/phone_sizes.dart';
 import '../../../../shared/widgets/expanded_section.dart';
+import 'widgets/label_for_category_icon.dart';
 
 class SheetInfoSpells extends StatelessWidget {
+  final CharModel char;
+
   const SheetInfoSpells({
     Key? key,
+    required this.char,
   }) : super(key: key);
 
   @override
@@ -15,7 +19,7 @@ class SheetInfoSpells extends StatelessWidget {
       expand: true,
       child: Column(
         children: [
-          const GradientLabelSheet(label: "Spells"),
+          const LabelForCategoryIcon(label: "Spells"),
           SizedBox(height: deviceHeight! * 0.003),
         ],
       ),

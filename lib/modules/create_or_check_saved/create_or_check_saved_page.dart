@@ -1,3 +1,4 @@
+import 'package:fantasy_name_generator/modules/saved_chars/saved_char_sheet/controller/saved_char_controller.dart';
 import 'package:fantasy_name_generator/shared/constants/phone_sizes.dart';
 import 'package:fantasy_name_generator/shared/routes/app_roues.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,8 @@ class CreateOrCheckSavedPage extends StatelessWidget {
   Widget build(BuildContext context) {
     deviceHeight = MediaQuery.of(context).size.height;
     deviceWidth = MediaQuery.of(context).size.width;
+    var savedNameCtrl = SavedCharController();
+
     return Scaffold(
       appBar: AppBar(
         title: SizedBox(
@@ -49,6 +52,7 @@ class CreateOrCheckSavedPage extends StatelessWidget {
                   ),
                   onTap: () {
                     Navigator.pushNamed(context, AppRoutes.charSection);
+                    savedNameCtrl.loadStoredCharacters();
                   },
                 ),
                 InkWell(

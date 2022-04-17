@@ -16,7 +16,8 @@ class ArmorModel {
   int checkPenalty;
   int maxDexAllowed;
   int speedPenalty;
-  int price;
+  int mundanePrice;
+  int fullPrice;
   ArmorModel({
     this.name,
     this.material,
@@ -28,7 +29,8 @@ class ArmorModel {
     this.checkPenalty = 0,
     this.maxDexAllowed = 0,
     this.speedPenalty = 0,
-    required this.price,
+    this.mundanePrice = 0,
+    this.fullPrice = 0,
   });
 
   ArmorModel copyWith({
@@ -42,7 +44,8 @@ class ArmorModel {
     int? checkPenalty,
     int? maxDexAllowed,
     int? speedPenalty,
-    int? price,
+    int? mundanePrice,
+    int? fullPrice,
   }) {
     return ArmorModel(
       name: name ?? this.name,
@@ -55,7 +58,8 @@ class ArmorModel {
       checkPenalty: checkPenalty ?? this.checkPenalty,
       maxDexAllowed: maxDexAllowed ?? this.maxDexAllowed,
       speedPenalty: speedPenalty ?? this.speedPenalty,
-      price: price ?? this.price,
+      mundanePrice: mundanePrice ?? this.mundanePrice,
+      fullPrice: fullPrice ?? this.fullPrice,
     );
   }
 
@@ -71,7 +75,8 @@ class ArmorModel {
       'checkPenalty': checkPenalty,
       'maxDexAllowed': maxDexAllowed,
       'speedPenalty': speedPenalty,
-      'price': price,
+      'mundanePrice': mundanePrice,
+      'fullPrice': fullPrice,
     };
   }
 
@@ -86,11 +91,12 @@ class ArmorModel {
               map['enchantment']?.map((x) => EnchantModel.fromMap(x)))
           : null,
       fitForDruid: map['fitForDruid'] ?? false,
-      defenseBonus: map['defenseBonus']?.toInt(),
-      checkPenalty: map['checkPenalty']?.toInt(),
-      maxDexAllowed: map['maxDexAllowed']?.toInt(),
-      speedPenalty: map['speedPenalty']?.toInt(),
-      price: map['price']?.toInt() ?? 0,
+      defenseBonus: map['defenseBonus']?.toInt() ?? 0,
+      checkPenalty: map['checkPenalty']?.toInt() ?? 0,
+      maxDexAllowed: map['maxDexAllowed']?.toInt() ?? 0,
+      speedPenalty: map['speedPenalty']?.toInt() ?? 0,
+      mundanePrice: map['mundanePrice']?.toInt() ?? 0,
+      fullPrice: map['fullPrice']?.toInt() ?? 0,
     );
   }
 
@@ -101,7 +107,7 @@ class ArmorModel {
 
   @override
   String toString() {
-    return 'ArmorModel(name: $name, material: $material, type: $type, isSelected: $isSelected, enchantment: $enchantment, fitForDruid: $fitForDruid, defenseBonus: $defenseBonus, checkPenalty: $checkPenalty, maxDexAllowed: $maxDexAllowed, speedPenalty: $speedPenalty, price: $price)';
+    return 'ArmorModel(name: $name, material: $material, type: $type, isSelected: $isSelected, enchantment: $enchantment, fitForDruid: $fitForDruid, defenseBonus: $defenseBonus, checkPenalty: $checkPenalty, maxDexAllowed: $maxDexAllowed, speedPenalty: $speedPenalty, mundanePrice: $mundanePrice, fullPrice: $fullPrice)';
   }
 
   @override
@@ -119,7 +125,8 @@ class ArmorModel {
         other.checkPenalty == checkPenalty &&
         other.maxDexAllowed == maxDexAllowed &&
         other.speedPenalty == speedPenalty &&
-        other.price == price;
+        other.mundanePrice == mundanePrice &&
+        other.fullPrice == fullPrice;
   }
 
   @override
@@ -134,6 +141,7 @@ class ArmorModel {
         checkPenalty.hashCode ^
         maxDexAllowed.hashCode ^
         speedPenalty.hashCode ^
-        price.hashCode;
+        mundanePrice.hashCode ^
+        fullPrice.hashCode;
   }
 }
