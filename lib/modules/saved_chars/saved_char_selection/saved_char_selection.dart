@@ -81,9 +81,9 @@ class _SavedCharSelectionState extends State<SavedCharSelection> {
                         return ListView.builder(
                             shrinkWrap: true,
                             physics: const NeverScrollableScrollPhysics(),
-                            itemCount: state.allChars.length,
+                            itemCount: state.barbarians.length,
                             itemBuilder: (contex, index) {
-                              var char = state.allChars[index];
+                              var char = state.barbarians[index];
                               return MinionSeparationGroup(
                                 className: char.charClass.name,
                                 numberOfChars: index + 1,

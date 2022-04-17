@@ -63,6 +63,14 @@ class SavedCharController with ChangeNotifier {
     notifyListeners();
   }
 
+  clearAllLists() {
+    allChars.clear();
+    alchemists.clear();
+    aristocrats.clear();
+    bandits.clear();
+    barbarians.clear();
+  }
+
   separateLoadedChars() {
     for (var i in allChars) {
       switch (i.charClass.name) {
@@ -102,12 +110,14 @@ class SavedCharController with ChangeNotifier {
 
   ///Load chars from Shared preferences
   loadStoredCharacters() async {
+    clearAllLists();
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    dynamic json = prefs.getString('char') ?? '';
-    dynamic response = jsonDecode(json);
+    String json = prefs.getString('char') ?? '';
+    Iterable<dynamic> response = jsonDecode(json);
 
-    CharModel charsGotten = CharModel.fromJson(response);
-    allChars.add(charsGotten);
+    List<CharModel> charsGotten =
+        response.map((e) => CharModel.fromMap(e)).toList();
+    allChars.addAll(charsGotten);
     notifyListeners();
     separateLoadedChars();
     getAvalableStoredClasses();

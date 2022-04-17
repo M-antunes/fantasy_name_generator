@@ -1,11 +1,11 @@
 import 'package:fantasy_name_generator/modules/create_or_check_saved/create_or_check_saved_page.dart';
-import 'package:fantasy_name_generator/modules/main_screens/char_development_page.dart';
 import 'package:fantasy_name_generator/modules/saved_chars/saved_char_sheet/saved_chars_sheet.dart';
 import 'package:fantasy_name_generator/shared/routes/app_roues.dart';
 import 'package:flutter/material.dart';
 
+import '../../modules/char_creation/main_screens/char_development_page.dart';
+import '../../modules/char_creation/selection_sections/stats_sections/loading_page/loading_page.dart';
 import '../../modules/saved_chars/saved_char_selection/saved_char_selection.dart';
-import '../../modules/selection_sections/stats_sections/loading_page/loading_page.dart';
 
 abstract class RouteGenerator {
   static Route<dynamic> onGenerateRoute(RouteSettings routeSettings) {

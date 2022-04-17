@@ -1,13 +1,13 @@
 import 'package:fantasy_name_generator/controllers/stage_controller/imports.dart';
-import 'package:fantasy_name_generator/modules/selection_sections/stats_sections/stats_tabs/combat/widgets/weapon_tile.dart';
-import 'package:fantasy_name_generator/modules/selection_sections/stats_sections/widgets/atribute_division.dart';
 
 import '../../../../shared/constants/phone_sizes.dart';
 import '../../../../shared/widgets/expanded_section.dart';
-import '../../../selection_sections/stats_sections/stats_tabs/combat/widgets/combat_info.dart';
-import '../../../selection_sections/stats_sections/stats_tabs/combat/widgets/defense_equip_tile.dart';
-import '../../../selection_sections/stats_sections/widgets/char_description_text.dart';
-import '../../../selection_sections/stats_sections/widgets/gradient_label.dart';
+import '../../../char_creation/selection_sections/stats_sections/stats_tabs/combat/widgets/combat_info.dart';
+import '../../../char_creation/selection_sections/stats_sections/stats_tabs/combat/widgets/defense_equip_tile.dart';
+import '../../../char_creation/selection_sections/stats_sections/stats_tabs/combat/widgets/weapon_tile.dart';
+import '../../../char_creation/selection_sections/stats_sections/widgets/atribute_division.dart';
+import '../../../char_creation/selection_sections/stats_sections/widgets/char_description_text.dart';
+import '../../../char_creation/selection_sections/stats_sections/widgets/gradient_label.dart';
 import 'widgets/label_for_category_icon.dart';
 
 class SheetInfoCombat extends StatelessWidget {

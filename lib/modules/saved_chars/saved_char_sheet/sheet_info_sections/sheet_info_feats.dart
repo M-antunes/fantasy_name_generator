@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import '../../../../models/char_personal_models/char_model.dart';
 import '../../../../shared/constants/phone_sizes.dart';
 import '../../../../shared/widgets/expanded_section.dart';
-import '../../../selection_sections/stats_sections/stats_tabs/features/widgets/feature_list_widget.dart';
+import '../../../char_creation/selection_sections/stats_sections/stats_tabs/features/widgets/feature_list_widget.dart';
 import '../controller/saved_char_controller.dart';
 import 'widgets/label_for_category_icon.dart';
 

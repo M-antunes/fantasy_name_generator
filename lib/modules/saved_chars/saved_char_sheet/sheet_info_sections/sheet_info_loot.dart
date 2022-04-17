@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 
-import 'package:fantasy_name_generator/modules/selection_sections/stats_sections/widgets/atribute_division.dart';
-
 import '../../../../models/char_personal_models/char_model.dart';
 import '../../../../shared/constants/phone_sizes.dart';
 import '../../../../shared/themes/app_text_styles.dart';
 import '../../../../shared/utils/utils.dart';
 import '../../../../shared/widgets/expanded_section.dart';
-import '../../../selection_sections/stats_sections/stats_tabs/loot/widgets/loot_tile.dart';
+import '../../../char_creation/selection_sections/stats_sections/stats_tabs/loot/widgets/loot_tile.dart';
+import '../../../char_creation/selection_sections/stats_sections/widgets/atribute_division.dart';
 import 'widgets/label_for_category_icon.dart';
 
 class SheetInfoLoot extends StatelessWidget {

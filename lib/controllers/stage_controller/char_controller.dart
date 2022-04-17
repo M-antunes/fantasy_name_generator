@@ -1,7 +1,4 @@
 // ignore_for_file: avoid_function_literals_in_foreach_calls
-
-import 'package:fantasy_name_generator/shared/data/default_char_model_data.dart';
-
 import 'imports.dart';
 
 class CharController extends ChangeNotifier {
@@ -28,7 +25,6 @@ class CharController extends ChangeNotifier {
   int randomChance = 0;
   String newName = ' - ? - ';
   String newLastName = ' - ? - ';
-  List<SavedNameModel> savedNames = [];
   List<AlignmentModel> filteredAlignments = [];
   List<ClassModel> filteredClasses = [];
   List<PhysicalStyleModel> possibleStyles = [];
@@ -292,7 +288,7 @@ class CharController extends ChangeNotifier {
 
   /// generates name size
   List<String> generateNameSize(int desiredLength, int maxLength) {
-    randomChance = randomIndex.nextInt(desiredLength) + 1;
+    randomChance = generateRandom(desiredLength) + 1;
     String temporaryName = '';
     String temporaryLastName = '';
     List<String> temporaryFullName = [];
@@ -304,10 +300,10 @@ class CharController extends ChangeNotifier {
         getAllLetters(letters.syllabus, "fourLetterSyllabus"),
       ];
       letterPicker.shuffle();
-      var changableIndexName = randomIndex.nextInt(4);
-      var changableIndexLastName = randomIndex.nextInt(4);
+      var changableIndexName = generateRandom(4);
+      var changableIndexLastName = generateRandom(4);
       while (changableIndexName == changableIndexLastName) {
-        changableIndexLastName = randomIndex.nextInt(4);
+        changableIndexLastName = generateRandom(4);
       }
       temporaryName = temporaryName + letterPicker[changableIndexName];
       temporaryLastName =
@@ -828,70 +824,70 @@ class CharController extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// saves the displayed name for the saved names page
-  saveName(
-    BuildContext context,
-    String noNameMessage,
-    String alreadySavedmessage,
-    String savedMessage,
-    Color sucessColor,
-    Color noNameColor,
-    Color alreadySavedColor,
-  ) {
-    if (newName == " - ? - " || newLastName == " - ? - ") {
-      callMessageSnackbar(context, noNameMessage, noNameColor, null);
-      return;
-    }
-    for (var name in savedNames) {
-      if (name.firstName == newName && name.lastName == newLastName) {
-        callMessageSnackbar(
-            context, alreadySavedmessage, alreadySavedColor, null);
-        return;
-      }
-    }
-    SavedNameModel nameToSave = SavedNameModel(
-        race: chosenRace,
-        gender: isMale ? "Male" : "Female",
-        firstName: newName,
-        lastName: newLastName,
-        fullName: "$newName $newLastName");
-    savedNames.insert(0, nameToSave);
-    storeName(savedNames);
-    callMessageSnackbar(context, savedMessage, sucessColor, null);
-  }
+  // /// saves the displayed name for the saved names page
+  // saveName(
+  //   BuildContext context,
+  //   String noNameMessage,
+  //   String alreadySavedmessage,
+  //   String savedMessage,
+  //   Color sucessColor,
+  //   Color noNameColor,
+  //   Color alreadySavedColor,
+  // ) {
+  //   if (newName == " - ? - " || newLastName == " - ? - ") {
+  //     callMessageSnackbar(context, noNameMessage, noNameColor, null);
+  //     return;
+  //   }
+  //   for (var name in savedNames) {
+  //     if (name.firstName == newName && name.lastName == newLastName) {
+  //       callMessageSnackbar(
+  //           context, alreadySavedmessage, alreadySavedColor, null);
+  //       return;
+  //     }
+  //   }
+  // //   SavedNameModel nameToSave = SavedNameModel(
+  //       race: chosenRace,
+  //       gender: isMale ? "Male" : "Female",
+  //       firstName: newName,
+  //       lastName: newLastName,
+  //       fullName: "$newName $newLastName");
+  //   savedNames.insert(0, nameToSave);
+  //   storeName(savedNames);
+  //   callMessageSnackbar(context, savedMessage, sucessColor, null);
+  // }
 
-  /// Erase name from the list
-  deleteName(
-    SavedNameModel name,
-    int index,
-    BuildContext context,
-  ) {
-    var deletedName = name;
-    savedNames.remove(deletedName);
-    notifyListeners();
-    deletedNameFromStorage().then((_) {
-      updateStorageNameList();
-    });
-    callUndoButton(context, index, () async {
-      savedNames.insert(index, deletedName);
-      notifyListeners();
-      updateStorageNameList();
-      Navigator.pop(context);
-    });
-  }
+  // /// Erase name from the list
+  // deleteName(
+  //   SavedNameModel name,
+  //   int index,
+  //   BuildContext context,
+  // ) {
+  //   var deletedName = name;
+  //   savedNames.remove(deletedName);
+  //   notifyListeners();
+  //   deletedNameFromStorage().then((_) {
+  //     updateStorageNameList();
+  //   });
+  //   callUndoButton(context, index, () async {
+  //     savedNames.insert(index, deletedName);
+  //     notifyListeners();
+  //     updateStorageNameList();
+  //     Navigator.pop(context);
+  //   });
+  // }
 
-  /// Deletes the entire list of names in the storage
-  Future<void> deletedNameFromStorage() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.remove('names');
-  }
+  // /// Deletes the entire list of names in the storage
+  // Future<void> deletedNameFromStorage() async {
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   prefs.remove('names');
+  // }
 
-  /// Updates and brings back the list of names in the storage, with or without the deleted name
-  updateStorageNameList() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String json = jsonEncode(savedNames);
-    prefs.setString("names", json);
-  }
+  // /// Updates and brings back the list of names in the storage, with or without the deleted name
+  // // updateStorageNameList() async {
+  // //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  // //   String json = jsonEncode(savedNames);
+  // //   prefs.setString("names", json);
+  // // }
 
   /// Stores the name in SharedPreferences
   storeName(dynamic name) async {
@@ -907,7 +903,7 @@ class CharController extends ChangeNotifier {
     Iterable<dynamic> response = jsonDecode(json);
     List<SavedNameModel> chosenNames =
         response.map((e) => SavedNameModel.fromJson(e)).toList();
-    savedNames = chosenNames;
+    // savedNames = chosenNames;
     notifyListeners();
   }
 

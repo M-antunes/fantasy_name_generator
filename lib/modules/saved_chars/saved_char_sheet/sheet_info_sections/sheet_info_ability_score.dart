@@ -7,7 +7,7 @@ import 'package:fantasy_name_generator/shared/themes/app_text_styles.dart';
 
 import '../../../../shared/constants/phone_sizes.dart';
 import '../../../../shared/widgets/expanded_section.dart';
-import '../../../selection_sections/stats_sections/widgets/general_magical_equip_row.dart';
+import '../../../char_creation/selection_sections/stats_sections/widgets/general_magical_equip_row.dart';
 import 'widgets/label_for_category_icon.dart';
 
 class SheetInfoAbilityScore extends StatelessWidget {

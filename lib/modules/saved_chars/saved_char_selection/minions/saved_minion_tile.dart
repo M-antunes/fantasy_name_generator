@@ -1,5 +1,6 @@
-import 'package:fantasy_name_generator/shared/constants/phone_sizes.dart';
 import 'package:flutter/material.dart';
+
+import 'package:fantasy_name_generator/shared/constants/phone_sizes.dart';
 
 import '../../../../shared/themes/app_colors.dart';
 import '../../../../shared/themes/app_text_styles.dart';
@@ -7,11 +8,13 @@ import '../../../../shared/themes/app_text_styles.dart';
 class SavedMinionTile extends StatelessWidget {
   final int level;
   final String charName;
+  final bool isMale;
   final VoidCallback onTap;
   const SavedMinionTile({
     Key? key,
     required this.level,
     required this.charName,
+    required this.isMale,
     required this.onTap,
   }) : super(key: key);
 
@@ -43,6 +46,11 @@ class SavedMinionTile extends StatelessWidget {
                     fontSize: 20,
                     color: AppColors.primaryText,
                     fontWeight: FontWeight.w600)),
+            trailing: Icon(
+              isMale ? Icons.male : Icons.female,
+              size: 30,
+              color: AppColors.primaryText0,
+            ),
           ),
         ),
       ),

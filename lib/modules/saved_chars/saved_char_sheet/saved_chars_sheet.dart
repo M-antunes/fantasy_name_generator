@@ -11,7 +11,7 @@ import 'package:fantasy_name_generator/shared/themes/app_text_styles.dart';
 import 'package:provider/provider.dart';
 
 import '../../../shared/constants/phone_sizes.dart';
-import '../../selection_sections/stats_sections/widgets/char_description_text.dart';
+import '../../char_creation/selection_sections/stats_sections/widgets/char_description_text.dart';
 import 'sheet_info_sections/sheet_info_ability_score.dart';
 import 'sheet_info_sections/sheet_info_combat.dart';
 import 'sheet_info_sections/sheet_info_feats.dart';
