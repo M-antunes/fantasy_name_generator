@@ -1194,9 +1194,9 @@ class EquipData {
   final List<ArmorModel> allArmors = [
     ArmorModel(
         type: ArmorFamilyModel(
-            name: "Light",
-            isSelected: false,
-            picture: "assets/images/armors/none.svg"),
+          name: "Light",
+          isSelected: false,
+        ),
         defenseBonus: 0,
         maxDexAllowed: 99,
         checkPenalty: 0,
@@ -1206,9 +1206,9 @@ class EquipData {
         name: "No armor"),
     ArmorModel(
         type: ArmorFamilyModel(
-            name: "Light",
-            isSelected: false,
-            picture: "assets/images/armors/light.svg"),
+          name: "Light",
+          isSelected: false,
+        ),
         defenseBonus: 1,
         maxDexAllowed: 8,
         checkPenalty: 0,
@@ -1218,9 +1218,9 @@ class EquipData {
         name: "Quilted cloth"),
     ArmorModel(
         type: ArmorFamilyModel(
-            name: "Light",
-            isSelected: false,
-            picture: "assets/images/armors/light.svg"),
+          name: "Light",
+          isSelected: false,
+        ),
         defenseBonus: 1,
         maxDexAllowed: 8,
         checkPenalty: 0,
@@ -1230,9 +1230,9 @@ class EquipData {
         name: "Padded"),
     ArmorModel(
         type: ArmorFamilyModel(
-            name: "Light",
-            isSelected: false,
-            picture: "assets/images/armors/light.svg"),
+          name: "Light",
+          isSelected: false,
+        ),
         defenseBonus: 1,
         maxDexAllowed: 8,
         checkPenalty: 0,
@@ -1242,9 +1242,9 @@ class EquipData {
         name: "Silken ceremonial"),
     ArmorModel(
         type: ArmorFamilyModel(
-            name: "Light",
-            isSelected: false,
-            picture: "assets/images/armors/light.svg"),
+          name: "Light",
+          isSelected: false,
+        ),
         defenseBonus: 2,
         maxDexAllowed: 5,
         checkPenalty: 0,
@@ -1254,9 +1254,9 @@ class EquipData {
         name: "Lamellar (cuirass)"),
     ArmorModel(
         type: ArmorFamilyModel(
-            name: "Light",
-            isSelected: false,
-            picture: "assets/images/armors/light.svg"),
+          name: "Light",
+          isSelected: false,
+        ),
         defenseBonus: 2,
         maxDexAllowed: 6,
         checkPenalty: 0,
@@ -1266,9 +1266,9 @@ class EquipData {
         name: "Leather"),
     ArmorModel(
         type: ArmorFamilyModel(
-            name: "Light",
-            isSelected: false,
-            picture: "assets/images/armors/light.svg"),
+          name: "Light",
+          isSelected: false,
+        ),
         defenseBonus: 2,
         maxDexAllowed: 7,
         checkPenalty: 1,
@@ -1278,9 +1278,9 @@ class EquipData {
         name: "Fur stripes"),
     ArmorModel(
         type: ArmorFamilyModel(
-            name: "Light",
-            isSelected: false,
-            picture: "assets/images/armors/medium.svg"),
+          name: "Light",
+          isSelected: false,
+        ),
         defenseBonus: 3,
         maxDexAllowed: 5,
         checkPenalty: 1,
@@ -1290,9 +1290,9 @@ class EquipData {
         name: "Studded leather"),
     ArmorModel(
         type: ArmorFamilyModel(
-            name: "Medium",
-            isSelected: false,
-            picture: "assets/images/armors/medium.svg"),
+          name: "Medium",
+          isSelected: false,
+        ),
         defenseBonus: 4,
         maxDexAllowed: 4,
         checkPenalty: 2,
@@ -1303,9 +1303,9 @@ class EquipData {
         name: "Armored coat"),
     ArmorModel(
         type: ArmorFamilyModel(
-            name: "Medium",
-            isSelected: false,
-            picture: "assets/images/armors/medium.svg"),
+          name: "Medium",
+          isSelected: false,
+        ),
         defenseBonus: 4,
         maxDexAllowed: 4,
         checkPenalty: 3,
@@ -1316,9 +1316,9 @@ class EquipData {
         name: "Ring mail"),
     ArmorModel(
         type: ArmorFamilyModel(
-            name: "Medium",
-            isSelected: false,
-            picture: "assets/images/armors/medium.svg"),
+          name: "Medium",
+          isSelected: false,
+        ),
         defenseBonus: 3,
         maxDexAllowed: 5,
         checkPenalty: 1,
@@ -1328,9 +1328,9 @@ class EquipData {
         name: "Wooden plaques"),
     ArmorModel(
         type: ArmorFamilyModel(
-            name: "Medium",
-            isSelected: false,
-            picture: "assets/images/armors/medium.svg"),
+          name: "Medium",
+          isSelected: false,
+        ),
         defenseBonus: 5,
         maxDexAllowed: 4,
         checkPenalty: 3,
@@ -1341,9 +1341,9 @@ class EquipData {
         name: "Banded iron"),
     ArmorModel(
         type: ArmorFamilyModel(
-            name: "Medium",
-            isSelected: false,
-            picture: "assets/images/armors/medium.svg"),
+          name: "Medium",
+          isSelected: false,
+        ),
         defenseBonus: 4,
         maxDexAllowed: 4,
         checkPenalty: 3,
@@ -1353,9 +1353,9 @@ class EquipData {
         name: "Hide"),
     ArmorModel(
         type: ArmorFamilyModel(
-            name: "Medium",
-            isSelected: false,
-            picture: "assets/images/armors/medium.svg"),
+          name: "Medium",
+          isSelected: false,
+        ),
         defenseBonus: 5,
         maxDexAllowed: 3,
         checkPenalty: 4,
@@ -1365,9 +1365,9 @@ class EquipData {
         name: "Lamellar (wooden)"),
     ArmorModel(
         type: ArmorFamilyModel(
-            name: "Medium",
-            isSelected: false,
-            picture: "assets/images/armors/medium.svg"),
+          name: "Medium",
+          isSelected: false,
+        ),
         defenseBonus: 5,
         maxDexAllowed: 3,
         checkPenalty: 4,
@@ -1378,9 +1378,9 @@ class EquipData {
         name: "Scale mail"),
     ArmorModel(
         type: ArmorFamilyModel(
-            name: "Medium",
-            isSelected: false,
-            picture: "assets/images/armors/medium.svg"),
+          name: "Medium",
+          isSelected: false,
+        ),
         defenseBonus: 6,
         maxDexAllowed: 3,
         checkPenalty: 4,
@@ -1391,9 +1391,9 @@ class EquipData {
         name: "Breastplate"),
     ArmorModel(
         type: ArmorFamilyModel(
-            name: "Medium",
-            isSelected: false,
-            picture: "assets/images/armors/medium.svg"),
+          name: "Medium",
+          isSelected: false,
+        ),
         defenseBonus: 6,
         maxDexAllowed: 3,
         checkPenalty: 4,
@@ -1404,9 +1404,9 @@ class EquipData {
         name: "Chainmail"),
     ArmorModel(
         type: ArmorFamilyModel(
-            name: "Heavy",
-            isSelected: false,
-            picture: "assets/images/armors/heavy.svg"),
+          name: "Heavy",
+          isSelected: false,
+        ),
         defenseBonus: 7,
         maxDexAllowed: 3,
         checkPenalty: 6,
@@ -1417,9 +1417,9 @@ class EquipData {
         name: "Agile breastplate"),
     ArmorModel(
         type: ArmorFamilyModel(
-            name: "Heavy",
-            isSelected: false,
-            picture: "assets/images/armors/heavy.svg"),
+          name: "Heavy",
+          isSelected: false,
+        ),
         defenseBonus: 6,
         maxDexAllowed: 3,
         checkPenalty: 4,
@@ -1429,9 +1429,9 @@ class EquipData {
         name: "Mountain pattern"),
     ArmorModel(
         type: ArmorFamilyModel(
-            name: "Heavy",
-            isSelected: false,
-            picture: "assets/images/armors/heavy.svg"),
+          name: "Heavy",
+          isSelected: false,
+        ),
         defenseBonus: 7,
         maxDexAllowed: 2,
         checkPenalty: 7,
@@ -1442,9 +1442,9 @@ class EquipData {
         name: "Splint mail"),
     ArmorModel(
         type: ArmorFamilyModel(
-            name: "Heavy",
-            isSelected: false,
-            picture: "assets/images/armors/heavy.svg"),
+          name: "Heavy",
+          isSelected: false,
+        ),
         defenseBonus: 7,
         maxDexAllowed: 1,
         checkPenalty: 7,
@@ -1455,9 +1455,9 @@ class EquipData {
         name: "Lamellar (iron)"),
     ArmorModel(
         type: ArmorFamilyModel(
-            name: "Heavy",
-            isSelected: false,
-            picture: "assets/images/armors/heavy.svg"),
+          name: "Heavy",
+          isSelected: false,
+        ),
         defenseBonus: 8,
         maxDexAllowed: 2,
         checkPenalty: 5,
@@ -1468,9 +1468,9 @@ class EquipData {
         name: "Agile half-plate"),
     ArmorModel(
         type: ArmorFamilyModel(
-            name: "Heavy",
-            isSelected: false,
-            picture: "assets/images/armors/heavy.svg"),
+          name: "Heavy",
+          isSelected: false,
+        ),
         defenseBonus: 8,
         maxDexAllowed: 1,
         checkPenalty: 7,
@@ -1481,9 +1481,9 @@ class EquipData {
         name: "Half-plate"),
     ArmorModel(
         type: ArmorFamilyModel(
-            name: "Heavy",
-            isSelected: false,
-            picture: "assets/images/armors/heavy.svg"),
+          name: "Heavy",
+          isSelected: false,
+        ),
         defenseBonus: 9,
         maxDexAllowed: 1,
         checkPenalty: 6,
@@ -1494,9 +1494,9 @@ class EquipData {
         name: "Full plate"),
     ArmorModel(
         type: ArmorFamilyModel(
-            name: "Heavy",
-            isSelected: false,
-            picture: "assets/images/armors/heavy.svg"),
+          name: "Heavy",
+          isSelected: false,
+        ),
         defenseBonus: 9,
         maxDexAllowed: 1,
         checkPenalty: 6,
@@ -1509,9 +1509,9 @@ class EquipData {
   List<ArmorModel> allShields = [
     ArmorModel(
         type: ArmorFamilyModel(
-            name: "Buckler",
-            isSelected: false,
-            picture: "assets/images/shields/buckler.svg"),
+          name: "Buckler",
+          isSelected: false,
+        ),
         defenseBonus: 1,
         maxDexAllowed: 99,
         checkPenalty: 1,
@@ -1521,9 +1521,9 @@ class EquipData {
         name: "Buckler"),
     ArmorModel(
         type: ArmorFamilyModel(
-            name: "Light",
-            isSelected: false,
-            picture: "assets/images/shields/light.svg"),
+          name: "Light",
+          isSelected: false,
+        ),
         defenseBonus: 1,
         maxDexAllowed: 99,
         checkPenalty: 1,
@@ -1533,9 +1533,9 @@ class EquipData {
         name: "Wooden shield"),
     ArmorModel(
         type: ArmorFamilyModel(
-            name: "Light",
-            isSelected: false,
-            picture: "assets/images/shields/light.svg"),
+          name: "Light",
+          isSelected: false,
+        ),
         defenseBonus: 2,
         maxDexAllowed: 99,
         checkPenalty: 1,
@@ -1546,9 +1546,9 @@ class EquipData {
         name: "Iron-wood shield"),
     ArmorModel(
         type: ArmorFamilyModel(
-            name: "Heavy",
-            isSelected: false,
-            picture: "assets/images/shields/heavy.svg"),
+          name: "Heavy",
+          isSelected: false,
+        ),
         defenseBonus: 2,
         maxDexAllowed: 99,
         checkPenalty: 2,
@@ -1558,9 +1558,9 @@ class EquipData {
         name: "Large wood shield"),
     ArmorModel(
         type: ArmorFamilyModel(
-            name: "Heavy",
-            isSelected: false,
-            picture: "assets/images/shields/heavy.svg"),
+          name: "Heavy",
+          isSelected: false,
+        ),
         defenseBonus: 2,
         maxDexAllowed: 99,
         checkPenalty: 2,
@@ -1571,9 +1571,9 @@ class EquipData {
         name: "Iron shield"),
     ArmorModel(
         type: ArmorFamilyModel(
-            name: "Heavy",
-            isSelected: false,
-            picture: "assets/images/shields/heavy.svg"),
+          name: "Heavy",
+          isSelected: false,
+        ),
         defenseBonus: 2,
         maxDexAllowed: 99,
         checkPenalty: 2,
@@ -1584,9 +1584,9 @@ class EquipData {
         name: "Steel shield"),
     ArmorModel(
         type: ArmorFamilyModel(
-            name: "Heavy",
-            isSelected: false,
-            picture: "assets/images/shields/heavy.svg"),
+          name: "Heavy",
+          isSelected: false,
+        ),
         defenseBonus: 3,
         maxDexAllowed: 99,
         checkPenalty: 4,

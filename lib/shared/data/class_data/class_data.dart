@@ -110,7 +110,7 @@ class ClassData {
             "Knifemen are known by their capability of working well and damaging plenty with small blades, such as daggers, kukris and other. Knifemen are good for surprises and ambushes, but they are not made for direct physical confront. They wear none to light armor and no shield at all. Best fit: Rogue.",
         svg: "assets/images/weapon_types/knife.svg",
         weaponType: "Knife",
-        forbiddenClasses: ["Barbarian", "Monk"],
+        forbiddenClasses: ["Barbarian", "Monk", "Antipaladin", "Paladin"],
         isSelected: false),
     PhysicalStyleModel(
         name: "Martial",

@@ -65,8 +65,6 @@ flutter:
     - assets/images/
     - assets/images/classes/
     - assets/images/weapon_types/
-    - assets/images/armors/
-    - assets/images/shields/
   #   - images/a_dot_ham.jpeg
   fonts:
     - family: Grantmouth

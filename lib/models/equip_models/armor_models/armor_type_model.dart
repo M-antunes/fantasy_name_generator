@@ -3,22 +3,18 @@ import 'dart:convert';
 class ArmorFamilyModel {
   String name;
   bool isSelected;
-  String picture;
   ArmorFamilyModel({
     required this.name,
     required this.isSelected,
-    required this.picture,
   });
 
   ArmorFamilyModel copyWith({
     String? name,
     bool? isSelected,
-    String? picture,
   }) {
     return ArmorFamilyModel(
       name: name ?? this.name,
       isSelected: isSelected ?? this.isSelected,
-      picture: picture ?? this.picture,
     );
   }
 
@@ -26,7 +22,6 @@ class ArmorFamilyModel {
     return {
       'name': name,
       'isSelected': isSelected,
-      'picture': picture,
     };
   }
 
@@ -34,7 +29,6 @@ class ArmorFamilyModel {
     return ArmorFamilyModel(
       name: map['name'] ?? '',
       isSelected: map['isSelected'] ?? false,
-      picture: map['picture'] ?? '',
     );
   }
 
@@ -44,8 +38,7 @@ class ArmorFamilyModel {
       ArmorFamilyModel.fromMap(json.decode(source));
 
   @override
-  String toString() =>
-      'ArmorTypeModel(name: $name, isSelected: $isSelected, picture: $picture)';
+  String toString() => 'ArmorFamilyModel(name: $name, isSelected: $isSelected)';
 
   @override
   bool operator ==(Object other) {
@@ -53,10 +46,9 @@ class ArmorFamilyModel {
 
     return other is ArmorFamilyModel &&
         other.name == name &&
-        other.isSelected == isSelected &&
-        other.picture == picture;
+        other.isSelected == isSelected;
   }
 
   @override
-  int get hashCode => name.hashCode ^ isSelected.hashCode ^ picture.hashCode;
+  int get hashCode => name.hashCode ^ isSelected.hashCode;
 }

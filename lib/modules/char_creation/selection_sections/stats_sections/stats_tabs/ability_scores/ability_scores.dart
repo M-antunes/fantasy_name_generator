@@ -1,12 +1,11 @@
 import 'package:fantasy_name_generator/controllers/stats_controller/stats_controller.dart';
 import 'package:fantasy_name_generator/shared/constants/phone_sizes.dart';
+import 'package:fantasy_name_generator/shared/themes/app_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../widgets/atribute_division.dart';
-import '../../widgets/gradient_label.dart';
 import 'widgets/stats_description_column.dart';
-import '../../widgets/general_magical_equip_row.dart';
 import 'widgets/stats_description_text.dart';
 
 class AbilityScoreSection extends StatelessWidget {
@@ -78,33 +77,21 @@ class AbilityScoreSection extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(height: deviceHeight! * 0.03),
-              state.statsGenerated && state.tomesAndManuals.isNotEmpty
-                  ? Column(
-                      children: [
-                        const GradientLabel(label: "Special Boosts"),
-                        SizedBox(height: deviceHeight! * 0.006),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8),
-                          child: ListView.builder(
-                              shrinkWrap: true,
-                              physics: const NeverScrollableScrollPhysics(),
-                              itemCount: state.tomesAndManuals.length,
-                              itemBuilder: (context, index) {
-                                var book = state.tomesAndManuals[index];
-                                return GeneralMagicalEquipRow(
-                                  label: "Book read",
-                                  item: book.name!,
-                                  selected: book.isSelected,
-                                  description: book.description!,
-                                  onTap: () => state.showDescriptions(
-                                      index, state.tomesAndManuals),
-                                );
-                              }),
-                        )
-                      ],
-                    )
-                  : const SizedBox(),
+              SizedBox(height: deviceHeight! * 0.02),
+              const AtributeDivision(label: "Languages known"),
+              ListView.builder(
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: 3,
+                itemBuilder: ((context, index) {
+                  return Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                    child:
+                        Text('example', style: AppTextStyle.statsLabelBrighter),
+                  );
+                }),
+              )
             ],
           ),
         ],

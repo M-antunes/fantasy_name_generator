@@ -19,19 +19,14 @@ class CombatEquipSection extends StatelessWidget {
         child: Column(
           children: [
             Text(
-              "Select a ${state.chosenStyle.descriptionTitle} for",
+              "Select a ${state.chosenStyle.descriptionTitle}",
               style: AppTextStyle.subTextGrey,
             ),
-            SizedBox(height: deviceHeight! * 0.01),
-            Text(
-              "${state.newName} ${state.newLastName}",
-              style: AppTextStyle.subTextWhite,
-            ),
-            SizedBox(height: deviceHeight! * 0.03),
+            SizedBox(height: deviceHeight! * 0.02),
             GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 3,
-                  childAspectRatio: 1 / 1,
+                  childAspectRatio: 1.1 / 1,
                 ),
                 itemCount: state.possibleStyles.length,
                 physics: const NeverScrollableScrollPhysics(),
@@ -64,7 +59,7 @@ class CombatEquipSection extends StatelessWidget {
                     ],
                   );
                 }),
-            SizedBox(height: deviceHeight! * 0.05),
+            SizedBox(height: deviceHeight! * 0.02),
             LongDescriptionWidget(
               label: state.physicalStyleChoice.name,
               description: state.physicalStyleChoice.description,
