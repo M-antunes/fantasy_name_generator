@@ -1,3 +1,4 @@
+import 'package:fantasy_name_generator/controllers/char_admin_controller/char_adimin_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -27,7 +28,7 @@ class GenerationBottomNav extends StatelessWidget {
           children: [
             Consumer<StatsController>(builder: (context, ctrl, child) {
               return AppAnimatedButton(
-                  label: state.creationStage == 8 ? "Reset" : "Previous",
+                  label: state.creationStage == 8 ? "Reset all" : "Previous",
                   onTap: () {
                     if (state.creationStage == 1) {
                       Navigator.of(context).pop();
@@ -60,17 +61,25 @@ class GenerationBottomNav extends StatelessWidget {
                       : () => ctrl.resetEquipAndStats(),
                 );
               }),
-            Consumer<StatsController>(builder: (context, ctrl, child) {
-              return AppAnimatedButton(
-                label: state.creationStage == 8 ? "Save" : null,
-                onTap: state.creationStage == 8
-                    ? () => ctrl.saveChar(ctrl.char).then((value) => {
+            if (state.creationStage != 8)
+              AppAnimatedButton(
+                onTap: () => buttonFunction(state, context),
+              ),
+            if (state.creationStage == 8)
+              Consumer<StatsController>(builder: (context, ctrl, child) {
+                var admin = context.read<CharAdminController>();
+                return ctrl.statsGenerated
+                    ? AppAnimatedButton(
+                        label: "Save",
+                        onTap: () {
+                          ctrl.updateCharModel();
+                          admin.saveCharacterInList(ctrl.char);
+                          admin.saveCharInPreferences();
                           callMessageSnackbar(context, "Character Saved",
-                              AppColors.successColor, 800)
+                              AppColors.successColor, 1400);
                         })
-                    : () => buttonFunction(state, context),
-              );
-            }),
+                    : const SizedBox();
+              }),
           ],
         ),
       );

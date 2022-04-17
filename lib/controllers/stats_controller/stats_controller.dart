@@ -641,6 +641,8 @@ class StatsController with ChangeNotifier {
   }
 
   updateCharModel() {
+    char.charClass.description != '';
+    char.alignment.description != '';
     char.loot = charLoot;
     char.charClass.traits = traits;
     char.charClass.speacials = specials;
@@ -648,13 +650,5 @@ class StatsController with ChangeNotifier {
     char.skills = charSkills;
     char.charEquip.tomesAndManuals = tomesAndManuals;
     notifyListeners();
-  }
-
-  Future saveChar(CharModel char) async {
-    updateCharModel();
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    var charMap = char.toJson();
-    String json = jsonEncode(charMap);
-    prefs.setString("characters", json);
   }
 }

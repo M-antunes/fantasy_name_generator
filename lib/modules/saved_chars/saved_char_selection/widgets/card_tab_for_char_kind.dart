@@ -20,6 +20,7 @@ class CardTabForCharKind extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      splashColor: Colors.transparent,
       onTap: onTap,
       child: Card(
         shape: const RoundedRectangleBorder(

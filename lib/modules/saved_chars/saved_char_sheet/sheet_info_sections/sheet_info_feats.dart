@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
 
+import '../../../../controllers/char_admin_controller/char_adimin_controller.dart';
 import '../../../../models/char_personal_models/char_model.dart';
 import '../../../../shared/constants/phone_sizes.dart';
 import '../../../../shared/widgets/expanded_section.dart';
 import '../../../char_creation/selection_sections/stats_sections/stats_tabs/features/widgets/feature_list_widget.dart';
-import '../controller/saved_char_controller.dart';
 import 'widgets/label_for_category_icon.dart';
 
 class SheetInfoFeats extends StatelessWidget {
@@ -19,7 +19,7 @@ class SheetInfoFeats extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var ctrl = context.read<SavedCharController>();
+    var ctrl = context.read<CharAdminController>();
 
     return ExpandedSection(
       expand: true,

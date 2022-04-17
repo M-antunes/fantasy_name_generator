@@ -32,6 +32,7 @@ class SheetInfoCombat extends StatelessWidget {
                 label: "Defense",
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   SizedBox(
                     width: deviceWidth! * 0.45,

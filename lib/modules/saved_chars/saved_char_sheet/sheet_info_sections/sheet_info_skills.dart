@@ -149,7 +149,7 @@ class SheetInfoSkills extends StatelessWidget {
                 RichText(
                     textScaleFactor: 0.9,
                     text: TextSpan(
-                        style: AppTextStyle.statsLabelBrighter
+                        style: AppTextStyle.statsLabel
                             .copyWith(fontStyle: FontStyle.italic),
                         children: const [
                           TextSpan(

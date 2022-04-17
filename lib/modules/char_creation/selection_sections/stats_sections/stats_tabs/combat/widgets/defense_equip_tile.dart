@@ -29,7 +29,6 @@ class DefenseEquipTile extends StatelessWidget {
                 color: Colors.grey[400], fontStyle: FontStyle.italic)),
         Text(magic ?? "",
             style: AppTextStyle.subTextWhite.copyWith(color: Colors.grey[300])),
-        const SizedBox(width: 10),
       ],
     );
   }

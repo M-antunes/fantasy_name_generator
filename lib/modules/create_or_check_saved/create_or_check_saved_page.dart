@@ -1,7 +1,9 @@
-import 'package:fantasy_name_generator/modules/saved_chars/saved_char_sheet/controller/saved_char_controller.dart';
 import 'package:fantasy_name_generator/shared/constants/phone_sizes.dart';
 import 'package:fantasy_name_generator/shared/routes/app_roues.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../controllers/char_admin_controller/char_adimin_controller.dart';
 
 class CreateOrCheckSavedPage extends StatelessWidget {
   const CreateOrCheckSavedPage({Key? key}) : super(key: key);
@@ -10,7 +12,7 @@ class CreateOrCheckSavedPage extends StatelessWidget {
   Widget build(BuildContext context) {
     deviceHeight = MediaQuery.of(context).size.height;
     deviceWidth = MediaQuery.of(context).size.width;
-    var savedNameCtrl = SavedCharController();
+    var savedNameCtrl = context.read<CharAdminController>();
 
     return Scaffold(
       appBar: AppBar(
@@ -52,7 +54,6 @@ class CreateOrCheckSavedPage extends StatelessWidget {
                   ),
                   onTap: () {
                     Navigator.pushNamed(context, AppRoutes.charSection);
-                    savedNameCtrl.loadStoredCharacters();
                   },
                 ),
                 InkWell(
@@ -68,6 +69,7 @@ class CreateOrCheckSavedPage extends StatelessWidget {
                   ),
                   onTap: () {
                     Navigator.pushNamed(context, AppRoutes.savedCharSelection);
+                    savedNameCtrl.loadStoredCharacters();
                   },
                 ),
               ],

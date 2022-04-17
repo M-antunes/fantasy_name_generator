@@ -1,7 +1,7 @@
 // This widget is the root of your application.
+import 'package:fantasy_name_generator/controllers/char_admin_controller/char_adimin_controller.dart';
 import 'package:fantasy_name_generator/controllers/stage_controller/char_controller.dart';
 import 'package:fantasy_name_generator/controllers/stats_controller/stats_controller.dart';
-import 'package:fantasy_name_generator/modules/saved_chars/saved_char_sheet/controller/saved_char_controller.dart';
 import 'package:fantasy_name_generator/modules/splash/splash_page.dart';
 import 'package:fantasy_name_generator/shared/core/route_generator.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +22,7 @@ class _MyAppState extends State<MyApp> {
       providers: [
         ChangeNotifierProvider(create: (_) => CharController()),
         ChangeNotifierProvider(create: (_) => StatsController()),
-        ChangeNotifierProvider(create: (_) => SavedCharController()),
+        ChangeNotifierProvider(create: (_) => CharAdminController()),
       ],
       child: MaterialApp(
         title: 'Fantasy Character Generator',

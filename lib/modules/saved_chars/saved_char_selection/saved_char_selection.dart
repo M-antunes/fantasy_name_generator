@@ -1,14 +1,15 @@
-import 'package:fantasy_name_generator/modules/saved_chars/saved_char_selection/bosses/boss_separation_group.dart';
-import 'package:fantasy_name_generator/modules/saved_chars/saved_char_sheet/controller/saved_char_controller.dart';
-import 'package:fantasy_name_generator/shared/routes/app_roues.dart';
 import 'package:flutter/material.dart';
-
-import 'package:fantasy_name_generator/shared/constants/phone_sizes.dart';
-import 'package:fantasy_name_generator/shared/themes/app_colors.dart';
-import 'package:fantasy_name_generator/shared/widgets/expanded_section.dart';
 import 'package:provider/provider.dart';
 
-import 'minions/minion_separation_group.dart';
+import 'package:fantasy_name_generator/controllers/stage_controller/imports.dart';
+import 'package:fantasy_name_generator/shared/constants/phone_sizes.dart';
+
+import '../../../controllers/char_admin_controller/char_adimin_controller.dart';
+import '../../../shared/routes/app_roues.dart';
+import '../../../shared/themes/app_colors.dart';
+import '../../../shared/themes/app_text_styles.dart';
+import '../../../shared/widgets/expanded_section.dart';
+import 'minions/saved_minion_tile.dart';
 import 'widgets/card_tab_for_char_kind.dart';
 
 class SavedCharSelection extends StatefulWidget {
@@ -20,18 +21,10 @@ class SavedCharSelection extends StatefulWidget {
 
 class _SavedCharSelectionState extends State<SavedCharSelection> {
   bool minionPressed = true;
-  late SavedCharController savedCharCtrl = SavedCharController();
   switPressingTabs() {
     setState(() {
       minionPressed = !minionPressed;
     });
-  }
-
-  @override
-  void initState() {
-    savedCharCtrl = context.read();
-    savedCharCtrl.loadStoredCharacters();
-    super.initState();
   }
 
   @override
@@ -76,21 +69,28 @@ class _SavedCharSelectionState extends State<SavedCharSelection> {
                   child: ListView(
                     physics: const BouncingScrollPhysics(),
                     children: [
-                      Consumer<SavedCharController>(
+                      Consumer<CharAdminController>(
                           builder: (context, state, child) {
-                        return ListView.builder(
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            itemCount: state.barbarians.length,
-                            itemBuilder: (contex, index) {
-                              var char = state.barbarians[index];
-                              return MinionSeparationGroup(
-                                className: char.charClass.name,
-                                numberOfChars: index + 1,
-                                isSelected: true,
-                                char: char,
-                              );
-                            });
+                        return state.allChars.isEmpty
+                            ? const Text("You have no Character generated.")
+                            : ListView.builder(
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemCount: state.storedClasses.length,
+                                itemBuilder: (contex, index) {
+                                  var storedClass = state.storedClasses[index];
+                                  return MinionGroups(
+                                    isSelected: storedClass.isSelected,
+                                    storedClass: "${storedClass.name}s",
+                                    characterQnt:
+                                        state.claculateNumberOfCharsPerClass(
+                                            storedClass.name),
+                                    classList: state.returningRightClassList(
+                                        storedClass.name),
+                                    onTap: () => state.showDescriptions(
+                                        index, state.storedClasses),
+                                  );
+                                });
                       }),
                     ],
                   )),
@@ -99,5 +99,69 @@ class _SavedCharSelectionState extends State<SavedCharSelection> {
         ),
       ),
     ));
+  }
+}
+
+class MinionGroups extends StatelessWidget {
+  final bool isSelected;
+  final String storedClass;
+  final int characterQnt;
+  final List<CharModel> classList;
+  final VoidCallback onTap;
+  const MinionGroups({
+    Key? key,
+    this.isSelected = false,
+    required this.storedClass,
+    required this.characterQnt,
+    required this.classList,
+    required this.onTap,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8),
+        child: Column(
+          children: [
+            Chip(
+                elevation: 10,
+                label: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(storedClass,
+                        style: AppTextStyle.legendaryLabel.copyWith(
+                            color: AppColors.primaryText, fontSize: 26)),
+                    CircleAvatar(
+                      radius: 14,
+                      child: Text(
+                        "$characterQnt",
+                        style: AppTextStyle.subTextWhitePlusSize,
+                      ),
+                    ),
+                  ],
+                )),
+            ExpandedSection(
+                expand: isSelected,
+                child: ListView.builder(
+                    itemCount: characterQnt,
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemBuilder: (context, index) {
+                      var char = classList[index];
+                      return SavedMinionTile(
+                        level: char.charLevel,
+                        charName: char.charName.fullName,
+                        isMale: char.charName.gender == "Male" ? true : false,
+                        onTap: () => Navigator.of(context).pushNamed(
+                            AppRoutes.savedCharSheet,
+                            arguments: char),
+                      );
+                    }))
+          ],
+        ),
+      ),
+    );
   }
 }
