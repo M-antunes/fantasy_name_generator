@@ -154,7 +154,6 @@ class CharAdminController with ChangeNotifier {
       CharModel savedChar = i as CharModel;
       allChars.add(savedChar);
     }
-
     getAvalableStoredClasses();
     separateLoadedChars();
   }

@@ -47,29 +47,27 @@ class SheetInfoCombat extends StatelessWidget {
                         Column(
                           children: [
                             DefenseEquipTile(
-                                isMasterWork: false,
-                                label: "Shield",
-                                name: char.charEquip.shield != null
-                                    ? char.loot.items!
-                                        .firstWhere((element) => element.name
-                                            .contains(
-                                                char.charEquip.shield!.name!))
-                                        .name
-                                    : "no shield",
-                                magic: ""),
+                              label: "Shield",
+                              name: char.charEquip.shield != null
+                                  ? char.loot.items!
+                                      .firstWhere((element) => element.name
+                                          .contains(
+                                              char.charEquip.shield!.name!))
+                                      .name
+                                  : "no shield",
+                            ),
                             const SizedBox(height: 3),
                           ],
                         ),
                         DefenseEquipTile(
-                            isMasterWork: false,
-                            label: "Armor",
-                            name: char.charEquip.armour != null
-                                ? char.loot.items!
-                                    .firstWhere((element) => element.name
-                                        .contains(char.charEquip.armour!.name!))
-                                    .name
-                                : "no armor",
-                            magic: "")
+                          label: "Armor",
+                          name: char.charEquip.armour != null
+                              ? char.loot.items!
+                                  .firstWhere((element) => element.name
+                                      .contains(char.charEquip.armour!.name!))
+                                  .name
+                              : "no armor",
+                        )
                       ],
                     ),
                   ),
@@ -161,8 +159,6 @@ class SheetInfoCombat extends StatelessWidget {
                       .firstWhere((element) => element.name
                           .contains(char.charEquip.meleeWeapon!.name!))
                       .name,
-                  magic: "",
-                  effect: "",
                   attack: "(${char.combatStats.meleeAttack})",
                   damageValue: char.charEquip.meleeWeapon!.damage!,
                   damageBonus: "+${char.combatStats.meleeDamage}",
@@ -179,8 +175,6 @@ class SheetInfoCombat extends StatelessWidget {
                       .firstWhere((element) => element.name
                           .contains(char.charEquip.rangeWeapon!.name!))
                       .name,
-                  magic: "",
-                  effect: "",
                   attack: "${char.combatStats.rangeAttack}",
                   damageValue: "${char.charEquip.rangeWeapon!.damage}",
                   damageBonus: "+${char.combatStats.rangeDamage}",

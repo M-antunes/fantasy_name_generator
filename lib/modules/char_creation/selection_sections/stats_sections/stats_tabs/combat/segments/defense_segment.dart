@@ -32,50 +32,15 @@ class DefenseSegment extends StatelessWidget {
                       value: "${state.char.hitPoints}",
                     ),
                     const SizedBox(height: 3),
-                    state.char.physicalStyle.name == "Soldier"
-                        ? Column(
-                            children: [
-                              DefenseEquipTile(
-                                isMasterWork: state.char.charLevel > 2 &&
-                                        state.char.charLevel < 5 &&
-                                        state.char.charEquip.shield != null
-                                    ? true
-                                    : false,
-                                label: "Shield",
-                                name: state.char.charEquip.shield!.name != null
-                                    ? state.char.charEquip.shield!.name!
-                                    : "Shield",
-                                magic:
-                                    state.char.charEquip.shield?.enchantment !=
-                                            null
-                                        ? state.char.charEquip.shield!
-                                            .enchantment![0].enchant
-                                        : "",
-                              ),
-                              const SizedBox(height: 3),
-                            ],
-                          )
-                        : SizedBox(height: deviceHeight! * 0.025),
-                    if (state.char.battleStyle.name != "Spellcaster" ||
-                        state.char.battleStyle.name != "Diplomat")
-                      state.char.charEquip.armour != null
-                          ? DefenseEquipTile(
-                              isMasterWork: state.char.charLevel > 2 &&
-                                      state.char.charLevel < 5
-                                  ? true
-                                  : false,
-                              label: "Armor",
-                              name: state.char.charEquip.armour!.name != null
-                                  ? state.char.charEquip.armour!.name!
-                                  : "Armour",
-                              magic: state.char.charEquip.armour!.enchantment !=
-                                      null
-                                  ? state.char.charEquip.armour!.enchantment![0]
-                                      .enchant
-                                  : "",
-                            )
-                          : const DefenseEquipTile(
-                              label: "Armor", name: "armor"),
+                    DefenseEquipTile(
+                      label: "Shield",
+                      name: state.shieldName,
+                    ),
+                    const SizedBox(height: 3),
+                    DefenseEquipTile(
+                      label: "Armor",
+                      name: state.armorName,
+                    )
                   ],
                 ),
               ),

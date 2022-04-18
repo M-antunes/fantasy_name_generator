@@ -27,6 +27,10 @@ class StatsController with ChangeNotifier {
   int shieldPrice = 0;
   int meleePrice = 0;
   int rangePrice = 0;
+  String meleeName = '';
+  String rangeName = '';
+  String armorName = '';
+  String shieldName = '';
 
   bool statsGenerated = false;
 
@@ -115,6 +119,7 @@ class StatsController with ChangeNotifier {
     makeWeaponMagic();
     makeArmorOrShieldMagic();
     getCombatEquipPrices();
+    getEquipFullNames();
     gettingClassTraits();
     gettingClassSpecials();
     getFeats();
@@ -235,6 +240,18 @@ class StatsController with ChangeNotifier {
         ? defenseCtrl.claculateMagicEquipPrice(
             char.charEquip.shield!, char.charLevel)
         : 0;
+    notifyListeners();
+  }
+
+  getEquipFullNames() {
+    meleeName = getEquipFullName(char.charEquip.meleeWeapon, char.charLevel);
+    rangeName = getEquipFullName(char.charEquip.rangeWeapon, char.charLevel);
+    armorName = char.charEquip.armour != null
+        ? getEquipFullName(char.charEquip.armour, char.charLevel)
+        : "No armor";
+    shieldName = char.charEquip.shield != null
+        ? getEquipFullName(char.charEquip.shield, char.charLevel)
+        : "No Shield";
     notifyListeners();
   }
 

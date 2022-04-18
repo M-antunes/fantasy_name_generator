@@ -1,3 +1,4 @@
+import 'package:fantasy_name_generator/modules/char_creation/selection_sections/stats_sections/widgets/atribute_division.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -30,7 +31,9 @@ class SheetInfoAbilityScore extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 8),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                const AttributeDivision(label: "Ability Scores"),
                 AbilityRow(
                     label: "Strength:",
                     modValue: char.modAttributes.strength,
@@ -58,25 +61,31 @@ class SheetInfoAbilityScore extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(height: deviceHeight! * 0.03),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: ListView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: char.charEquip.tomesAndManuals!.length,
-                itemBuilder: (context, index) {
-                  var book = char.charEquip.tomesAndManuals![index];
-                  return GeneralMagicalEquipRow(
-                    label: "Book read",
-                    item: book.name!,
-                    selected: book.isSelected,
-                    description: book.description!,
-                    onTap: () => ctrl.showDescriptions(
-                        index, char.charEquip.tomesAndManuals),
-                  );
-                }),
-          )
+          AttributeDivision(
+              label: "languages known (${char.languages.length})"),
+          ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: char.languages.length,
+              itemBuilder: (context, index) {
+                var idiom = char.languages[index];
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    RichText(
+                        text: TextSpan(
+                      children: [
+                        TextSpan(
+                            text: "${idiom.name} ",
+                            style: AppTextStyle.statsLabelBrighter),
+                        TextSpan(
+                            text: " (Spoken by ${idiom.spokenBy})",
+                            style: AppTextStyle.longDescription)
+                      ],
+                    ))
+                  ],
+                );
+              })
         ],
       ),
     );

@@ -7,6 +7,7 @@ import '../../../../shared/constants/phone_sizes.dart';
 import '../../../../shared/widgets/expanded_section.dart';
 import '../../../char_creation/selection_sections/stats_sections/widgets/atribute_division.dart';
 import '../../../char_creation/selection_sections/stats_sections/widgets/general_magical_equip_row.dart';
+import '../../../char_creation/selection_sections/stats_sections/widgets/gradient_label.dart';
 import 'widgets/label_for_category_icon.dart';
 
 class SheetInfoMagicEquip extends StatelessWidget {
@@ -45,7 +46,32 @@ class SheetInfoMagicEquip extends StatelessWidget {
                       onTap: () => ctrl.showDescriptions(
                           index, char.charEquip.wonderousItems!),
                       selected: item.isSelected);
-                })
+                }),
+            SizedBox(height: deviceHeight! * 0.003),
+            char.charEquip.tomesAndManuals!.isNotEmpty
+                ? Column(
+                    children: [
+                      const GradientLabel(label: "Special Boosts"),
+                      SizedBox(height: deviceHeight! * 0.003),
+                      ListView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: char.charEquip.tomesAndManuals!.length,
+                          itemBuilder: (context, index) {
+                            var book = char.charEquip.tomesAndManuals![index];
+                            return GeneralMagicalEquipRow(
+                              isCharSheet: true,
+                              label: "Book read",
+                              item: book.name!,
+                              selected: book.isSelected,
+                              description: book.description!,
+                              onTap: () => ctrl.showDescriptions(
+                                  index, char.charEquip.tomesAndManuals),
+                            );
+                          })
+                    ],
+                  )
+                : const SizedBox(),
           ],
         ),
       ),

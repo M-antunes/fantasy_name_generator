@@ -10,12 +10,16 @@ class SavedMinionTile extends StatelessWidget {
   final String charName;
   final bool isMale;
   final VoidCallback onTap;
+  final String race;
+  final String alignment;
   const SavedMinionTile({
     Key? key,
     required this.level,
     required this.charName,
     required this.isMale,
     required this.onTap,
+    required this.race,
+    required this.alignment,
   }) : super(key: key);
 
   @override
@@ -46,6 +50,13 @@ class SavedMinionTile extends StatelessWidget {
                     fontSize: 20,
                     color: AppColors.primaryText,
                     fontWeight: FontWeight.w600)),
+            subtitle: Row(
+              children: [
+                Text(race, style: AppTextStyle.statsLabel),
+                const SizedBox(width: 10),
+                Text(alignment, style: AppTextStyle.statsLabel)
+              ],
+            ),
             trailing: Icon(
               isMale ? Icons.male : Icons.female,
               size: 30,

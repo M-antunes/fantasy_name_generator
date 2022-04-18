@@ -153,6 +153,8 @@ class MinionGroups extends StatelessWidget {
                       return SavedMinionTile(
                         level: char.charLevel,
                         charName: char.charName.fullName,
+                        alignment: char.alignment.name,
+                        race: char.charRace.name,
                         isMale: char.charName.gender == "Male" ? true : false,
                         onTap: () => Navigator.of(context).pushNamed(
                             AppRoutes.savedCharSheet,

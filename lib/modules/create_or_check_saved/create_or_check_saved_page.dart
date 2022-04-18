@@ -1,18 +1,20 @@
+import 'package:flutter/material.dart';
+
+import 'package:fantasy_name_generator/controllers/char_admin_controller/char_adimin_controller.dart';
 import 'package:fantasy_name_generator/shared/constants/phone_sizes.dart';
 import 'package:fantasy_name_generator/shared/routes/app_roues.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
-import '../../controllers/char_admin_controller/char_adimin_controller.dart';
 
 class CreateOrCheckSavedPage extends StatelessWidget {
-  const CreateOrCheckSavedPage({Key? key}) : super(key: key);
+  final CharAdminController? savedNameCtrl;
+  const CreateOrCheckSavedPage({
+    Key? key,
+    this.savedNameCtrl,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     deviceHeight = MediaQuery.of(context).size.height;
     deviceWidth = MediaQuery.of(context).size.width;
-    var savedNameCtrl = context.read<CharAdminController>();
 
     return Scaffold(
       appBar: AppBar(
@@ -69,7 +71,7 @@ class CreateOrCheckSavedPage extends StatelessWidget {
                   ),
                   onTap: () {
                     Navigator.pushNamed(context, AppRoutes.savedCharSelection);
-                    savedNameCtrl.loadStoredCharacters();
+                    savedNameCtrl!.loadStoredCharacters();
                   },
                 ),
               ],

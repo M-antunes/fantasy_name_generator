@@ -7,19 +7,6 @@ import '../../../../../../../models/equip_models/magic_equip_models/wonderous_it
 import '../../../../../../../shared/utils/utils.dart';
 
 class LootController {
-  String getEquipFullName(dynamic equip) {
-    if (equip.enchantment != null) {
-      if (equip.enchantment.isEmpty) {
-        return equip.name!;
-      } else {
-        return equip.enchantment!.length > 1
-            ? "${equip.enchantment![1].enchant} ${equip.name} ${equip.enchantment![0].enchant}"
-            : "${equip.name} ${equip.enchantment![0].enchant}";
-      }
-    }
-    return equip.name!;
-  }
-
   LootModel calculateLoot(
       List<WonderousItemsModel>? list,
       int level,
@@ -38,35 +25,34 @@ class LootController {
             name: i.name!, qnt: 1, price: i.price!, finalPrice: i.price!));
       }
     }
-    String mW = level > 2 && level < 5 ? " (masterwork)" : "";
     int mwPrice = level > 2 && level < 5 ? 150 : 0;
     loot.items!.add(TreasureModel(
-        name: getEquipFullName(equip.meleeWeapon!) + mW,
+        name: getEquipFullName(equip.meleeWeapon!, level),
         qnt: 1,
         price: meleePrice + mwPrice + mwPrice,
         finalPrice: meleePrice));
     if (physical == "Dual-weilder") {
       loot.items!.add(TreasureModel(
-          name: getEquipFullName(equip.meleeWeapon!) + mW,
+          name: getEquipFullName(equip.meleeWeapon!, level),
           qnt: 1,
           price: meleePrice + mwPrice + mwPrice,
           finalPrice: meleePrice));
     }
     loot.items!.add(TreasureModel(
-        name: getEquipFullName(equip.rangeWeapon!) + mW,
+        name: getEquipFullName(equip.rangeWeapon!, level),
         qnt: 1,
         price: rangePrice + mwPrice + mwPrice,
         finalPrice: rangePrice));
     if (equip.armour != null) {
       loot.items!.add(TreasureModel(
-          name: getEquipFullName(equip.armour!) + mW,
+          name: getEquipFullName(equip.armour!, level),
           qnt: 1,
           price: armorPrice + mwPrice,
           finalPrice: armorPrice));
     }
     if (equip.shield != null) {
       loot.items!.add(TreasureModel(
-          name: getEquipFullName(equip.shield!) + mW,
+          name: getEquipFullName(equip.shield!, level),
           qnt: 1,
           price: shieldPrice + mwPrice,
           finalPrice: shieldPrice));

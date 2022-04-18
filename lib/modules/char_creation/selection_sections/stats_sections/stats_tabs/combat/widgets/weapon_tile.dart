@@ -7,9 +7,6 @@ class WeaponTile extends StatelessWidget {
   final String type;
   final String? specificType;
   final String name;
-  final String magic;
-  final String effect;
-  final bool isMasterWork;
   final String attack;
   final String damageValue;
   final String damageBonus;
@@ -20,9 +17,6 @@ class WeaponTile extends StatelessWidget {
     required this.type,
     this.specificType,
     required this.name,
-    required this.magic,
-    required this.effect,
-    this.isMasterWork = false,
     required this.attack,
     required this.damageValue,
     required this.damageBonus,
@@ -41,15 +35,7 @@ class WeaponTile extends StatelessWidget {
                 style:
                     AppTextStyle.subTextWhite.copyWith(color: Colors.grey[300]),
                 children: [
-              TextSpan(
-                  text: effect != "" ? "$effect  " : "",
-                  style: const TextStyle(fontStyle: FontStyle.italic)),
               TextSpan(text: "$name  "),
-              TextSpan(
-                  text: isMasterWork ? "(mw)  " : "",
-                  style: AppTextStyle.statsLabel.copyWith(
-                      color: Colors.grey[400], fontStyle: FontStyle.italic)),
-              TextSpan(text: magic != "" ? "$magic  " : ""),
               TextSpan(text: attack),
             ])),
         const SizedBox(height: 3),

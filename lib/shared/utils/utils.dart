@@ -49,3 +49,18 @@ int discoverMinAvailability(int lvAvailable) {
   }
   return minLvAvailable;
 }
+
+String getEquipFullName(dynamic equip, int level) {
+  String mW = level > 2 && level < 5 ? " (masterwork)" : "";
+
+  if (equip.enchantment != null) {
+    if (equip.enchantment.isEmpty) {
+      return equip.name! + mW;
+    } else {
+      return equip.enchantment!.length > 1
+          ? "${equip.enchantment![1].enchant} ${equip.name} ${equip.enchantment![0].enchant}"
+          : "${equip.name} ${equip.enchantment![0].enchant}";
+    }
+  }
+  return equip.name! + mW;
+}

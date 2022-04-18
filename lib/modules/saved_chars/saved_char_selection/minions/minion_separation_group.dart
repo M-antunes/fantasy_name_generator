@@ -54,6 +54,8 @@ class MinionSeparationGroup extends StatelessWidget {
                     return SavedMinionTile(
                       level: char.charLevel,
                       charName: char.charName.fullName,
+                      race: char.charRace.name,
+                      alignment: char.alignment.name,
                       isMale: char.charName.gender == "Male" ? true : false,
                       onTap: () => Navigator.of(context)
                           .pushNamed(AppRoutes.savedCharSheet, arguments: char),

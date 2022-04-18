@@ -57,29 +57,12 @@ class OffenseSegment extends StatelessWidget {
             Column(
               children: [
                 WeaponTile(
-                  isMasterWork:
-                      state.char.charLevel > 2 && state.char.charLevel < 5
-                          ? true
-                          : false,
                   type: state.char.physicalStyle.name == "Dual-weilder"
                       ? "Main-hand (Dual-weilder)"
                       : "Melee",
                   specificType:
                       state.char.charEquip.meleeWeapon!.type!.wielding,
-                  name: state.char.charEquip.meleeWeapon!.name!,
-                  magic: state.char.charLevel >= 5
-                      ? state.char.charEquip.meleeWeapon!.enchantment!.first
-                          .enchant
-                      : "",
-                  effect:
-                      state.char.charEquip.meleeWeapon!.enchantment != null &&
-                              state.char.charLevel >= 5 &&
-                              state.char.charEquip.meleeWeapon!.enchantment!
-                                      .length >
-                                  1
-                          ? state.char.charEquip.meleeWeapon!.enchantment!.last
-                              .enchant
-                          : "",
+                  name: state.meleeName,
                   attack: state.char.charEquip.meleeWeapon != null
                       ? "(${state.char.combatStats.meleeAttack!})"
                       : "",
@@ -99,29 +82,12 @@ class OffenseSegment extends StatelessWidget {
                 ),
                 if (state.char.physicalStyle.name == "Dual-weilder")
                   WeaponTile(
-                    isMasterWork:
-                        state.char.charLevel > 2 && state.char.charLevel < 5
-                            ? true
-                            : false,
                     type: state.char.physicalStyle.name == "Dual-weilder"
                         ? "Off-hand (Dual-weilder)"
                         : "Melee",
                     specificType:
                         state.char.charEquip.meleeWeapon!.type!.wielding,
                     name: state.char.charEquip.meleeWeapon!.name!,
-                    magic: state.char.charLevel >= 5
-                        ? state.char.charEquip.meleeWeapon!.enchantment!.first
-                            .enchant
-                        : "",
-                    effect:
-                        state.char.charEquip.meleeWeapon!.enchantment != null &&
-                                state.char.charLevel >= 5 &&
-                                state.char.charEquip.meleeWeapon!.enchantment!
-                                        .length >
-                                    1
-                            ? state.char.charEquip.meleeWeapon!.enchantment!
-                                .last.enchant
-                            : "",
                     attack: state.char.charEquip.meleeWeapon != null
                         ? "(${state.char.combatStats.meleeAttack!})"
                         : "",
@@ -141,25 +107,8 @@ class OffenseSegment extends StatelessWidget {
                     critical: state.char.charEquip.meleeWeapon!.critical!,
                   ),
                 WeaponTile(
-                  isMasterWork:
-                      state.char.charLevel > 2 && state.char.charLevel < 5
-                          ? true
-                          : false,
                   type: "Range",
-                  name: state.char.charEquip.rangeWeapon!.name!,
-                  magic: state.char.charLevel >= 5
-                      ? state.char.charEquip.rangeWeapon!.enchantment!.first
-                          .enchant
-                      : "",
-                  effect:
-                      state.char.charEquip.rangeWeapon!.enchantment != null &&
-                              state.char.charLevel >= 5 &&
-                              state.char.charEquip.rangeWeapon!.enchantment!
-                                      .length >
-                                  1
-                          ? state.char.charEquip.rangeWeapon!.enchantment!.last
-                              .enchant
-                          : "",
+                  name: state.rangeName,
                   attack: state.char.charEquip.rangeWeapon != null
                       ? "(${state.char.combatStats.rangeAttack!})"
                       : "",
@@ -185,8 +134,6 @@ class OffenseSegment extends StatelessWidget {
                 WeaponTile(
                     type: "Melee",
                     name: "Weapon Name",
-                    effect: "",
-                    magic: "",
                     attack: "(Attack value)",
                     damageValue: "damage",
                     damageBonus: "+bonus",
@@ -194,8 +141,6 @@ class OffenseSegment extends StatelessWidget {
                 WeaponTile(
                     type: "Range",
                     name: "Weapon Name",
-                    effect: "",
-                    magic: "",
                     attack: "(Attack value)",
                     damageValue: "damage",
                     damageBonus: "+bonus",
