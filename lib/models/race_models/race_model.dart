@@ -10,11 +10,11 @@ class RaceModel {
   final List<KeyValueModel>? traits;
   KeyValueModel? height;
   String initialIdiom;
-  double? weight;
-  int? age;
-  int? speed;
-  String? size;
-  String? vision;
+  double weight;
+  int age;
+  int speed;
+  String size;
+  String senses;
   RaceModel({
     required this.name,
     required this.isSelected,
@@ -24,8 +24,8 @@ class RaceModel {
     this.weight = 0,
     this.age = 0,
     this.speed = 0,
-    this.size = "",
-    this.vision = "",
+    this.size = "-",
+    this.senses = "-",
   });
 
   RaceModel copyWith({
@@ -38,7 +38,7 @@ class RaceModel {
     int? age,
     int? speed,
     String? size,
-    String? vision,
+    String? senses,
   }) {
     return RaceModel(
       name: name ?? this.name,
@@ -50,7 +50,7 @@ class RaceModel {
       age: age ?? this.age,
       speed: speed ?? this.speed,
       size: size ?? this.size,
-      vision: vision ?? this.vision,
+      senses: senses ?? this.senses,
     );
   }
 
@@ -65,7 +65,7 @@ class RaceModel {
       'age': age,
       'speed': speed,
       'size': size,
-      'vision': vision,
+      'senses': senses,
     };
   }
 
@@ -80,11 +80,11 @@ class RaceModel {
       height:
           map['height'] != null ? KeyValueModel.fromMap(map['height']) : null,
       initialIdiom: map['initialIdiom'] ?? '',
-      weight: map['weight']?.toDouble(),
-      age: map['age']?.toInt(),
-      speed: map['speed']?.toInt(),
-      size: map['size'],
-      vision: map['vision'],
+      weight: map['weight']?.toDouble() ?? 0.0,
+      age: map['age']?.toInt() ?? 0,
+      speed: map['speed']?.toInt() ?? 0,
+      size: map['size'] ?? '',
+      senses: map['senses'] ?? '',
     );
   }
 
@@ -95,7 +95,7 @@ class RaceModel {
 
   @override
   String toString() {
-    return 'RaceModel(name: $name, isSelected: $isSelected, traits: $traits, height: $height, initialIdiom: $initialIdiom, weight: $weight, age: $age, speed: $speed, size: $size, vision: $vision)';
+    return 'RaceModel(name: $name, isSelected: $isSelected, traits: $traits, height: $height, initialIdiom: $initialIdiom, weight: $weight, age: $age, speed: $speed, size: $size, senses: $senses)';
   }
 
   @override
@@ -112,7 +112,7 @@ class RaceModel {
         other.age == age &&
         other.speed == speed &&
         other.size == size &&
-        other.vision == vision;
+        other.senses == senses;
   }
 
   @override
@@ -126,6 +126,6 @@ class RaceModel {
         age.hashCode ^
         speed.hashCode ^
         size.hashCode ^
-        vision.hashCode;
+        senses.hashCode;
   }
 }

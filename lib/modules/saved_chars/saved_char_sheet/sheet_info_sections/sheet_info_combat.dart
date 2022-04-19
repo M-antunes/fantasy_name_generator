@@ -151,8 +151,8 @@ class SheetInfoCombat extends StatelessWidget {
                 ],
               ),
               WeaponTile(
-                  type: char.physicalStyle.name == "Dual-weilder"
-                      ? "Main-hand (Dual-weilder)"
+                  type: char.physicalStyle.name == "Dual-wielder"
+                      ? "Main-hand (Dual-wielder)"
                       : "Melee",
                   specificType: char.charEquip.meleeWeapon!.type!.wielding,
                   name: char.loot.items!

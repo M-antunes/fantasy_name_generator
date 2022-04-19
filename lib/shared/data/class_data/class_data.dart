@@ -110,7 +110,14 @@ class ClassData {
             "Knifemen are known by their capability of working well and damaging plenty with small blades, such as daggers, kukris and other. Knifemen are good for surprises and ambushes, but they are not made for direct physical confront. They wear none to light armor and no shield at all. Best fit: Rogue.",
         svg: "assets/images/weapon_types/knife.svg",
         weaponType: "Knife",
-        forbiddenClasses: ["Barbarian", "Monk", "Antipaladin", "Paladin"],
+        forbiddenClasses: [
+          "Barbarian",
+          "Monk",
+          "Antipaladin",
+          "Paladin",
+          "Cleric",
+          "Druid"
+        ],
         isSelected: false),
     PhysicalStyleModel(
         name: "Martial",
@@ -122,6 +129,7 @@ class ClassData {
           "Bard",
           "Barbarian",
           "Samurai",
+          "Druid",
           "Antipaladin",
           "Paladin",
           "Rogue",
@@ -133,6 +141,7 @@ class ClassData {
           "Aristocrat",
           "Noble",
           "Commoner",
+          "Cleric",
         ],
         isSelected: false),
     PhysicalStyleModel(
@@ -157,7 +166,7 @@ class ClassData {
             "Marksmen base their main physical combat on striking foes from distance. In particular, they prefer to use crossbows instead of bows and arrows to punish those who oppose them. They usually can wear more protection, light to medium armor, but never shields. Best fit: Ranger and Warrior",
         svg: "assets/images/weapon_types/crossbow.svg",
         weaponType: "Crossbow",
-        forbiddenClasses: ["Barbarian", "Commoner", "Monk"],
+        forbiddenClasses: ["Barbarian", "Commoner", "Monk", "Druid"],
         isSelected: false),
     PhysicalStyleModel(
         name: "Thrower",
@@ -174,6 +183,7 @@ class ClassData {
           "Commoner",
           "Antipaladin",
           "Paladin",
+          "Cleric",
         ],
         isSelected: false),
   ];

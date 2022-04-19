@@ -114,8 +114,13 @@ class MagicGearController {
     return listOfItemsForChar;
   }
 
-  List<WonderousItemsModel> getWonderousItems(int level, String combatStyle,
-      String mainAtrb, List<WonderousItemsModel> allitems, String className) {
+  List<WonderousItemsModel> getWonderousItems(
+      int level,
+      String combatStyle,
+      String mainAtrb,
+      List<WonderousItemsModel> allitems,
+      String className,
+      String physicalStyle) {
     var availableItems = findMagicItem(level, allitems, className);
     var numberOfItems = (level / 5).floor();
     var itemsPerBodyParts = findItemForBodyParts(numberOfItems);
@@ -230,6 +235,16 @@ class MagicGearController {
               allitems));
       }
     }
+    if ((physicalStyle == "Bowman" ||
+            physicalStyle == "Marksman" ||
+            physicalStyle == "Thrower") &&
+        charMagicItems.any(
+            (element) => element.name!.contains("Belt of giant strength"))) {
+      charMagicItems.removeWhere(
+          (element) => element.name!.contains("Belt of giant strength"));
+      charMagicItems.add(allitems.firstWhere((element) =>
+          element.name!.contains("Belt of gincredible dexterity")));
+    }
     return charMagicItems;
   }
 
@@ -281,7 +296,8 @@ class MagicGearController {
       List<WonderousItemsModel>? charItems,
       int level,
       String mainAtrb,
-      AttributeModel charAtrb) {
+      AttributeModel charAtrb,
+      String physicalStyle) {
     AttributeModel atrbBoost = AttributeModel();
     if (charItems == null) {
       return charAtrb;
@@ -315,15 +331,30 @@ class MagicGearController {
     if (list.any((element) => element.type == "Belt")) {
       if (mainAtrb == "strength") {
         boosts = identifyBoost(list, "might", "perfection", "Belt");
-        if (boosts.length == 3) {
-          physicalAtr.strength = boosts.first;
-          physicalAtr.dexterity = boosts.first;
-          physicalAtr.constitution = boosts.first;
-        } else if (boosts.length == 2) {
-          physicalAtr.strength = boosts.first;
-          physicalAtr.constitution = boosts.first;
-        } else if (boosts.length == 1) {
-          physicalAtr.strength = boosts.first;
+        if (physicalStyle == "Bowman" ||
+            physicalStyle == "Marksman" ||
+            physicalStyle == "Thrower") {
+          if (boosts.length == 3) {
+            physicalAtr.strength = boosts.first;
+            physicalAtr.dexterity = boosts.first;
+            physicalAtr.constitution = boosts.first;
+          } else if (boosts.length == 2) {
+            physicalAtr.dexterity = boosts.first;
+            physicalAtr.constitution = boosts.first;
+          } else if (boosts.length == 1) {
+            physicalAtr.dexterity = boosts.first;
+          }
+        } else {
+          if (boosts.length == 3) {
+            physicalAtr.strength = boosts.first;
+            physicalAtr.dexterity = boosts.first;
+            physicalAtr.constitution = boosts.first;
+          } else if (boosts.length == 2) {
+            physicalAtr.strength = boosts.first;
+            physicalAtr.constitution = boosts.first;
+          } else if (boosts.length == 1) {
+            physicalAtr.strength = boosts.first;
+          }
         }
       } else if (mainAtrb == "dexterity") {
         boosts = identifyBoost(list, "might", "perfection", "Belt");

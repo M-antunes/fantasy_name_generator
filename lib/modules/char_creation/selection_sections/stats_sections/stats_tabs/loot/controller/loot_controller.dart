@@ -31,7 +31,7 @@ class LootController {
         qnt: 1,
         price: meleePrice + mwPrice + mwPrice,
         finalPrice: meleePrice));
-    if (physical == "Dual-weilder") {
+    if (physical == "Dual-wielder") {
       loot.items!.add(TreasureModel(
           name: getEquipFullName(equip.meleeWeapon!, level),
           qnt: 1,

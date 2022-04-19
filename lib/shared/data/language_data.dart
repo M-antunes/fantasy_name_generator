@@ -23,9 +23,10 @@ class LanguageData {
         probability: 3,
         spokenBy: "angels and other good outsiders"),
     LanguageModel(
-        name: "Common",
-        probability: 5,
-        spokenBy: "humans and the core races from Races"),
+      name: "Common",
+      probability: 5,
+      spokenBy: "humans and the core races",
+    ),
     LanguageModel(
         name: "Draconic",
         probability: 4,

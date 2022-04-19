@@ -42,7 +42,7 @@ class OffenseController {
               element.type!.name == style[4].weaponType &&
               !element.forbiddenTo.contains(className))
           .toList();
-    } else if (charPhysical == "Dual-weilder") {
+    } else if (charPhysical == "Dual-wielder") {
       possibleWeapons = allWeapons
           .where((element) =>
               (element.type!.name == "Sword" ||
@@ -214,7 +214,7 @@ class OffenseController {
   int calculateSpeed(List<RaceModel> races, int level, String charRace,
       String charClass, int speed, ArmorModel? armor) {
     var raceGotten = races.firstWhere((element) => element.name == charRace);
-    var baseSpeed = raceGotten.speed!;
+    var baseSpeed = raceGotten.speed;
     if (charClass == "Barbarian" && (armor!.type!.name == "Light")) {
       baseSpeed = baseSpeed + 10;
     }

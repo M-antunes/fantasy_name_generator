@@ -57,8 +57,8 @@ class OffenseSegment extends StatelessWidget {
             Column(
               children: [
                 WeaponTile(
-                  type: state.char.physicalStyle.name == "Dual-weilder"
-                      ? "Main-hand (Dual-weilder)"
+                  type: state.char.physicalStyle.name == "Dual-wielder"
+                      ? "Main-hand (Dual-wielder)"
                       : "Melee",
                   specificType:
                       state.char.charEquip.meleeWeapon!.type!.wielding,
@@ -80,31 +80,37 @@ class OffenseSegment extends StatelessWidget {
                       : "",
                   critical: state.char.charEquip.meleeWeapon!.critical!,
                 ),
-                if (state.char.physicalStyle.name == "Dual-weilder")
-                  WeaponTile(
-                    type: state.char.physicalStyle.name == "Dual-weilder"
-                        ? "Off-hand (Dual-weilder)"
-                        : "Melee",
-                    specificType:
-                        state.char.charEquip.meleeWeapon!.type!.wielding,
-                    name: state.char.charEquip.meleeWeapon!.name!,
-                    attack: state.char.charEquip.meleeWeapon != null
-                        ? "(${state.char.combatStats.meleeAttack!})"
-                        : "",
-                    damageValue: state.char.charEquip.meleeWeapon!.damage!,
-                    damageBonus: state.char.charEquip.meleeWeapon != null
-                        ? "+${state.char.combatStats.meleeDamage!}"
-                        : "",
-                    extraDamage: state
-                                    .char.charEquip.meleeWeapon!.enchantment !=
-                                null &&
-                            state.char.charLevel >= 5 &&
-                            state.char.charEquip.meleeWeapon!.enchantment!
-                                    .length >
-                                1
-                        ? "${state.char.charEquip.meleeWeapon!.enchantment!.last.additionalDiceDamage}"
-                        : "",
-                    critical: state.char.charEquip.meleeWeapon!.critical!,
+                if (state.char.physicalStyle.name == "Dual-wielder")
+                  Column(
+                    children: [
+                      const SizedBox(height: 3),
+                      WeaponTile(
+                        type: state.char.physicalStyle.name == "Dual-wielder"
+                            ? "Off-hand (Dual-wielder)"
+                            : "Melee",
+                        specificType:
+                            state.char.charEquip.meleeWeapon!.type!.wielding,
+                        name: state.meleeName,
+                        attack: state.char.charEquip.meleeWeapon != null
+                            ? "(${state.char.combatStats.meleeAttack!})"
+                            : "",
+                        damageValue: state.char.charEquip.meleeWeapon!.damage!,
+                        damageBonus: state.char.charEquip.meleeWeapon != null
+                            ? "+${state.char.combatStats.meleeDamage!}"
+                            : "",
+                        extraDamage: state.char.charEquip.meleeWeapon!
+                                        .enchantment !=
+                                    null &&
+                                state.char.charLevel >= 5 &&
+                                state.char.charEquip.meleeWeapon!.enchantment!
+                                        .length >
+                                    1
+                            ? "${state.char.charEquip.meleeWeapon!.enchantment!.last.additionalDiceDamage}"
+                            : "",
+                        critical: state.char.charEquip.meleeWeapon!.critical!,
+                      ),
+                      const SizedBox(height: 3),
+                    ],
                   ),
                 WeaponTile(
                   type: "Range",
@@ -122,7 +128,7 @@ class OffenseSegment extends StatelessWidget {
                           state.char.charEquip.rangeWeapon!.enchantment!
                                   .length >
                               1
-                      ? "(${state.char.charEquip.rangeWeapon!.enchantment!.last.additionalDiceDamage})"
+                      ? "${state.char.charEquip.rangeWeapon!.enchantment!.last.additionalDiceDamage}"
                       : "",
                   critical: state.char.charEquip.rangeWeapon!.critical!,
                 ),

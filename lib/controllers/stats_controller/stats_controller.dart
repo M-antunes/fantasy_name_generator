@@ -1,4 +1,5 @@
 import 'package:fantasy_name_generator/models/char_personal_models/language_model.dart';
+import 'package:fantasy_name_generator/modules/char_creation/selection_sections/stats_sections/stats_tabs/feats/controllers/feats_controller.dart';
 
 import '../../shared/data/language_data.dart';
 import '../stage_controller/imports.dart';
@@ -12,6 +13,7 @@ class StatsController with ChangeNotifier {
   var listOfRaces = RaceData();
   var skillData = SkillData();
   var languages = LanguageData();
+
   var appearanceCtrl = AppearanceController();
   var abilityCtrl = AbilityController();
   var magicGearCtrl = MagicGearController();
@@ -19,9 +21,11 @@ class StatsController with ChangeNotifier {
   var offenseCtrl = OffenseController();
   var defenseCtrl = DefenseController();
   var skillCtrl = SkillController();
+  var featCtrl = FeatsController();
   List<WonderousItemsModel> tomesAndManuals = [];
   List<SkillModel> charSkills = [];
   List<LanguageModel> charLanguages = [];
+  List<TraitModel> charFeats = [];
 
   int armorPrice = 0;
   int shieldPrice = 0;
@@ -59,6 +63,8 @@ class StatsController with ChangeNotifier {
     char.resistances = ResistanceModel();
     char.charRace.speed = 0;
     char.charRace.age = 0;
+    char.charRace.size = "-";
+    char.charRace.senses = "-";
     char.charRace.height!.value = 0;
     char.charRace.height!.key = 0;
     char.charRace.weight = 0;
@@ -172,7 +178,8 @@ class StatsController with ChangeNotifier {
         char.charClass.combatStyle,
         char.charClass.mainAtrb,
         listOfWonderousItems.allItems,
-        char.charClass.name));
+        char.charClass.name,
+        char.physicalStyle.name));
 
     char.charEquip.wonderousItems!.addAll(magicGearCtrl.addIndispensableItem(
         listOfWonderousItems.protRings, char.charLevel));
@@ -285,7 +292,7 @@ class StatsController with ChangeNotifier {
         char.charLevel,
         char.charRace.name,
         char.charClass.name,
-        char.charRace.speed!,
+        char.charRace.speed,
         char.charEquip.armour!);
     notifyListeners();
   }
@@ -359,55 +366,10 @@ class StatsController with ChangeNotifier {
 
   // ====================================================================================
   // Feat part
-  var classFeatList = ReariedFeatsData();
-  var allFeats = AllFeatsData();
-  List<TraitModel> charFeats = [];
-  getFeats() {
-    switch (char.physicalStyle.name) {
-      case "Berserker":
-        calculateFeats(classFeatList.berserkerFeats, allFeats.allFeats);
-        break;
-      case "Dual-weilder":
-        calculateFeats(classFeatList.dualWeilderFeat, allFeats.allFeats);
-        break;
-      default:
-    }
-  }
 
-  calculateFeats(List<TraitModel> list, List<TraitModel> allFeats) {
-    List<TraitModel> feats = list;
-    var numberOfFeats = char.charLevel % 2 != 0
-        ? ((char.charLevel + 1) / 2).floor()
-        : (char.charLevel / 2).floor();
-    if (char.charClass.name == "Warrior") {
-      numberOfFeats = char.charLevel;
-    }
-    if (char.charRace.name == "Human") {
-      numberOfFeats++;
-    }
-    List<TraitModel> filteredFeats = [];
-    filteredFeats.insert(0, AllFeatsData().reactionary);
-    if (feats.length > numberOfFeats) {
-      for (var i = 0; i < numberOfFeats; i++) {
-        filteredFeats.add(feats[i]);
-      }
-      charFeats = filteredFeats;
-    } else if (feats.length == numberOfFeats) {
-      charFeats.addAll(feats);
-    } else {
-      filteredFeats.addAll(feats);
-      var featsLeft = numberOfFeats - feats.length;
-      for (var i = 0; i < featsLeft; i++) {
-        var random = generateRandom(allFeats.length);
-        var newItem = allFeats[random];
-        while (filteredFeats.contains(newItem)) {
-          var newRandom = generateRandom(allFeats.length);
-          newItem = (allFeats[newRandom]);
-        }
-        filteredFeats.add(newItem);
-      }
-      charFeats.addAll(filteredFeats);
-    }
+  getFeats() {
+    charFeats = featCtrl.getFeats(char.physicalStyle.name, char.charLevel,
+        char.charClass.name, char.charRace.name);
     notifyListeners();
   }
 
@@ -449,11 +411,11 @@ class StatsController with ChangeNotifier {
 
   getAtrbBoostFromWonderousItem() {
     char.baseAttributes = magicGearCtrl.getAtrbBoostFromWonderousItem(
-      char.charEquip.wonderousItems!,
-      char.charLevel,
-      char.charClass.mainAtrb,
-      char.baseAttributes,
-    );
+        char.charEquip.wonderousItems!,
+        char.charLevel,
+        char.charClass.mainAtrb,
+        char.baseAttributes,
+        char.physicalStyle.name);
     notifyListeners();
   }
 

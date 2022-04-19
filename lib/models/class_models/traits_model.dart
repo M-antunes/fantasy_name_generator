@@ -5,12 +5,14 @@ class TraitModel {
   final int levelAcquired;
   final String traiDescription;
   final int? multiplier;
+  final String fitFor;
   bool isSelected;
   TraitModel({
     required this.traiName,
     required this.levelAcquired,
     required this.traiDescription,
     this.multiplier,
+    this.fitFor = "",
     required this.isSelected,
   });
 
@@ -19,6 +21,7 @@ class TraitModel {
     int? levelAcquired,
     String? traiDescription,
     int? multiplier,
+    String? fitFor,
     bool? isSelected,
   }) {
     return TraitModel(
@@ -26,6 +29,7 @@ class TraitModel {
       levelAcquired: levelAcquired ?? this.levelAcquired,
       traiDescription: traiDescription ?? this.traiDescription,
       multiplier: multiplier ?? this.multiplier,
+      fitFor: fitFor ?? this.fitFor,
       isSelected: isSelected ?? this.isSelected,
     );
   }
@@ -36,6 +40,7 @@ class TraitModel {
       'levelAcquired': levelAcquired,
       'traiDescription': traiDescription,
       'multiplier': multiplier,
+      'fitFor': fitFor,
       'isSelected': isSelected,
     };
   }
@@ -46,6 +51,7 @@ class TraitModel {
       levelAcquired: map['levelAcquired']?.toInt() ?? 0,
       traiDescription: map['traiDescription'] ?? '',
       multiplier: map['multiplier']?.toInt(),
+      fitFor: map['fitFor'] ?? '',
       isSelected: map['isSelected'] ?? false,
     );
   }
@@ -57,7 +63,7 @@ class TraitModel {
 
   @override
   String toString() {
-    return 'TraitModel(traiName: $traiName, levelAcquired: $levelAcquired, traiDescription: $traiDescription, multiplier: $multiplier, isSelected: $isSelected)';
+    return 'TraitModel(traiName: $traiName, levelAcquired: $levelAcquired, traiDescription: $traiDescription, multiplier: $multiplier, fitFor: $fitFor, isSelected: $isSelected)';
   }
 
   @override
@@ -69,6 +75,7 @@ class TraitModel {
         other.levelAcquired == levelAcquired &&
         other.traiDescription == traiDescription &&
         other.multiplier == multiplier &&
+        other.fitFor == fitFor &&
         other.isSelected == isSelected;
   }
 
@@ -78,6 +85,7 @@ class TraitModel {
         levelAcquired.hashCode ^
         traiDescription.hashCode ^
         multiplier.hashCode ^
+        fitFor.hashCode ^
         isSelected.hashCode;
   }
 }

@@ -24,7 +24,6 @@ export 'package:fantasy_name_generator/shared/data/name_data/human_names_data.da
 export 'package:fantasy_name_generator/shared/data/name_data/letters_data.dart';
 export 'package:fantasy_name_generator/shared/data/race_data/race_data.dart';
 export 'package:fantasy_name_generator/models/race_models/race_model.dart';
-export 'package:fantasy_name_generator/shared/widgets/call_undo_button.dart';
 export 'package:shared_preferences/shared_preferences.dart';
 export '../../models/combat_models/base_atribute_model.dart';
 

@@ -1,6 +1,4 @@
-import '../../../../../../models/class_models/class_model.dart';
-import '../../../../../../models/race_models/race_model.dart';
-import '../../../../../../shared/utils/utils.dart';
+import 'package:fantasy_name_generator/controllers/stage_controller/imports.dart';
 
 class AppearanceController {
   applyHeightAndWeight(
@@ -16,7 +14,7 @@ class AppearanceController {
         raceList.firstWhere((element) => element.name == race.name);
     int baseInches = raceGotten.height!.value;
     int baseFeet = raceGotten.height!.key;
-    var baseWeight = raceGotten.weight!;
+    var baseWeight = raceGotten.weight;
     if (raceGotten.name == "Dwarf" || raceGotten.size == "Small") {
       increment = rollingDice(4) + rollingDice(4);
       baseInches += increment;
@@ -42,6 +40,7 @@ class AppearanceController {
       baseInches += rollingDice(4);
       baseWeight += rollingDice(20) + rollingDice(20);
     }
+    race = upDateSizeAndSenses(raceList, race.name);
     race.age = claculateAge(classList, raceList, raceName, className, level);
     race.height!.value = baseInches;
     race.height!.key = baseFeet;
@@ -134,6 +133,18 @@ class AppearanceController {
         break;
       default:
     }
-    return baseAge! + tempRaceAge;
+    return baseAge + tempRaceAge;
+  }
+
+  RaceModel upDateSizeAndSenses(List<RaceModel> races, String charRace) {
+    RaceModel race = races.firstWhere((element) => element.name == charRace);
+    RaceModel raceAjust = RaceModel(
+        name: race.name,
+        isSelected: false,
+        initialIdiom: race.initialIdiom,
+        size: race.size,
+        senses: race.senses,
+        height: KeyValueModel(key: 0, value: 0));
+    return raceAjust;
   }
 }

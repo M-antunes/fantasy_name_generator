@@ -122,7 +122,7 @@ class SavedCharSheet extends StatelessWidget {
                                   label: "Age:",
                                   textValue: "${char.charRace.age}")),
                           CharDescriptionText(
-                              label: "Size:", textValue: char.charRace.size!),
+                              label: "Size:", textValue: char.charRace.size),
                         ],
                       ),
                       const SizedBox(height: 2),
@@ -132,8 +132,8 @@ class SavedCharSheet extends StatelessWidget {
                           SizedBox(
                               width: deviceWidth! * 0.5,
                               child: CharDescriptionText(
-                                  label: "Vision:",
-                                  textValue: "${char.charRace.vision}")),
+                                  label: "Senses:",
+                                  textValue: char.charRace.senses)),
                           CharDescriptionText(
                               label: "Perception:",
                               textValue:

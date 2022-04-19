@@ -124,7 +124,7 @@ class _StatsSectionState extends State<StatsSection>
                           CharDescriptionText(
                               label: "Weight:",
                               textValue:
-                                  "${ctrl.char.charRace.weight!.toInt()} lbs."),
+                                  "${ctrl.char.charRace.weight.toInt()} lbs."),
                         ],
                       ),
                       const SizedBox(height: 2),
@@ -138,7 +138,7 @@ class _StatsSectionState extends State<StatsSection>
                                   textValue: "${ctrl.char.charRace.age}")),
                           CharDescriptionText(
                               label: "Size:",
-                              textValue: "${state.chosenRace.size}"),
+                              textValue: ctrl.char.charRace.size),
                         ],
                       ),
                       const SizedBox(height: 2),
@@ -148,8 +148,8 @@ class _StatsSectionState extends State<StatsSection>
                           SizedBox(
                               width: deviceWidth! * 0.5,
                               child: CharDescriptionText(
-                                  label: "Vision:",
-                                  textValue: state.chosenRace.vision!)),
+                                  label: "Senses:",
+                                  textValue: ctrl.char.charRace.senses)),
                           CharDescriptionText(
                               label: "Perception:",
                               textValue: ctrl.charSkills.isNotEmpty

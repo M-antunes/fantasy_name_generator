@@ -12,7 +12,7 @@ class RaceData {
       speed: 20,
       size: "Medium",
       initialIdiom: "Dwarven",
-      vision: "Darkvision 60 ft",
+      senses: "Darkvision 60 ft",
       traits: [
         KeyValueModel(
             key: '+2 Constitution, +2 Wisdom, –2 Charisma:',
@@ -59,7 +59,7 @@ class RaceData {
       speed: 30,
       size: "Medium",
       initialIdiom: "Elven",
-      vision: "Low-light Vision",
+      senses: "Low-light Vision",
       traits: [
         KeyValueModel(
             key: "+2 Dexterity, +2 Intelligence, –2 Constitution:",
@@ -98,7 +98,7 @@ class RaceData {
       speed: 20,
       size: "Small",
       initialIdiom: "Gnome",
-      vision: "Low-light Vision",
+      senses: "Low-light Vision",
       traits: [
         KeyValueModel(
             key: "+2 Constitution, +2 Charisma, –2 Strength:",
@@ -145,7 +145,7 @@ class RaceData {
       speed: 20,
       size: "Small",
       initialIdiom: "Halfling",
-      vision: "Standard",
+      senses: "Standard",
       traits: [
         KeyValueModel(
             key: "+2 Dexterity, +2 Charisma, –2 Strength:",
@@ -184,7 +184,7 @@ class RaceData {
       speed: 30,
       size: "Medium",
       initialIdiom: "Elven",
-      vision: "Low-light Vision",
+      senses: "Low-light Vision",
       traits: [
         KeyValueModel(
             key: "+2 to One Ability Score:",
@@ -228,7 +228,7 @@ class RaceData {
       speed: 30,
       size: "Medium",
       initialIdiom: "Orc",
-      vision: "Darkvision 60 ft.",
+      senses: "Darkvision 60 ft.",
       traits: [
         KeyValueModel(
             key: "+2 to One Ability Score:",
@@ -267,7 +267,7 @@ class RaceData {
       speed: 30,
       size: "Medium",
       initialIdiom: "",
-      vision: "Standard",
+      senses: "Standard",
       traits: [
         KeyValueModel(
             key: "+2 to One Ability Score:",
@@ -299,7 +299,7 @@ class RaceData {
       speed: 30,
       size: "Medium",
       initialIdiom: "Orc",
-      vision: "Darkvision 60 ft.",
+      senses: "Darkvision 60 ft.",
       traits: [
         KeyValueModel(
             key: "+4 to Strength:",

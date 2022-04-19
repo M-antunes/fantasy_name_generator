@@ -1,16 +1,15 @@
-import 'package:fantasy_name_generator/controllers/stage_controller/imports.dart';
-import 'package:fantasy_name_generator/models/equip_models/equip_model.dart';
-import 'package:fantasy_name_generator/shared/data/race_data/race_data.dart';
-
 import '../../../../../../../models/class_models/level_model.dart';
 import '../../../../../../../models/class_models/traits_model.dart';
+import '../../../../../../../models/combat_models/base_atribute_model.dart';
 import '../../../../../../../models/combat_models/resistance_model.dart';
 import '../../../../../../../models/equip_models/armor_models/armor_model.dart';
+import '../../../../../../../models/equip_models/equip_model.dart';
 import '../../../../../../../models/equip_models/magic_equip_models/enchant_model.dart';
 import '../../../../../../../models/equip_models/magic_equip_models/wonderous_items_model.dart';
 import '../../../../../../../models/key_value.model.dart';
 import '../../../../../../../models/race_models/race_model.dart';
 import '../../../../../../../shared/data/equip_data/enchant_data.dart';
+import '../../../../../../../shared/data/race_data/race_data.dart';
 import '../../../../../../../shared/utils/utils.dart';
 
 class DefenseController {
@@ -178,17 +177,41 @@ class DefenseController {
       touch += wis;
       surprise += wis;
     }
+
     var dodge = charFeats.any((element) => element.traiName == "Dodge") ? 1 : 0;
     armorAc += dodge;
     touch += dodge;
     surprise += dodge;
+    var twoWeaponDefense =
+        charFeats.any((element) => element.traiName == "Two-Weapon Defense")
+            ? 1
+            : 0;
+    armorAc += twoWeaponDefense;
+    touch += twoWeaponDefense;
+    surprise += twoWeaponDefense;
+    var shieldFocus =
+        charFeats.any((element) => element.traiName == "Shield Focus") ? 1 : 0;
+    armorAc += shieldFocus;
+    touch += shieldFocus;
+    surprise += shieldFocus;
+    var shieldFocusGreater =
+        charFeats.any((element) => element.traiName == "Greater Shield Focus")
+            ? 1
+            : 0;
+    armorAc += shieldFocusGreater;
+    touch += shieldFocusGreater;
+    surprise += shieldFocusGreater;
+    var armorFocus =
+        charFeats.any((element) => element.traiName == "Armor Focus") ? 1 : 0;
+    armorAc += armorFocus;
+    touch += armorFocus;
+    surprise += armorFocus;
     var ringBoost = findBoostyItem(list, "Ring of protection");
     armorAc += ringBoost;
     touch += ringBoost;
     surprise += ringBoost;
     var amuletBoost = findBoostyItem(list, "Amulet of natural armor");
     armorAc += amuletBoost;
-    touch += amuletBoost;
     surprise += amuletBoost;
     if (list.any((element) => element.name == "Vambraces of defense")) {
       armorAc++;

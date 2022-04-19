@@ -63,7 +63,7 @@ class ReariedFeatsData {
     ),
   ];
 
-  final List<TraitModel> bowmanAndmarksmanFeats = [
+  final List<TraitModel> bowmanFeats = [
     TraitModel(
       traiName: "Weapon Focus",
       levelAcquired: 1,
@@ -116,7 +116,74 @@ class ReariedFeatsData {
     ),
   ];
 
-  final List<TraitModel> dualWeilderFeat = [
+  final List<TraitModel> marksmanFeats = [
+    TraitModel(
+      traiName: "Point-Blank Shot",
+      levelAcquired: 1,
+      traiDescription: "+1 attack and damage on targets within 30 feet",
+      isSelected: false,
+    ),
+    TraitModel(
+      traiName: "Precise Shot",
+      levelAcquired: 1,
+      traiDescription: "No penalty for shooting into melee",
+      isSelected: false,
+    ),
+    TraitModel(
+      traiName: "Rapid Reload",
+      levelAcquired: 1,
+      traiDescription:
+          "The time required for you to reload your chosen type of crossbow is reduced to a free action (for a hand or light crossbow) or a move action (for a heavy crossbow). Reloading a crossbow still provokes an attack of opportunity. If you have selected this feat for hand crossbow or light crossbow, you may fire that weapon as many times in a full-attack action as you could attack if you were using a bow.",
+      isSelected: false,
+    ),
+    TraitModel(
+      traiName: "Crossbow Mastery",
+      levelAcquired: 4,
+      traiDescription:
+          " The time required for you to reload any type of crossbow is reduced to a free action, regardless of the type of crossbow used. You can fire a crossbow as many times in a full attack action as you could attack if you were using a bow. Reloading a crossbow for the type of crossbow you chose when you took Rapid Reload no longer provokes attacks of opportunity.",
+      isSelected: false,
+    ),
+    TraitModel(
+      traiName: "Weapon Focus",
+      levelAcquired: 1,
+      traiDescription:
+          "You gain a +1 bonus on all attack rolls you make using the selected weapon.",
+      isSelected: false,
+    ),
+    TraitModel(
+      traiName: "Weapon Specialization",
+      levelAcquired: 4,
+      traiDescription: "+2 bonus on damage rolls with one weapon",
+      isSelected: false,
+    ),
+    TraitModel(
+      traiName: "Improved Initiative",
+      levelAcquired: 1,
+      traiDescription: "+4 bonus on initiative checks",
+      isSelected: false,
+    ),
+    TraitModel(
+      traiName: "Rapid Shot",
+      levelAcquired: 1,
+      traiDescription:
+          "When making a full-attack action with a ranged weapon, you can fire one additional time this round at your highest bonus. All of your attack rolls take a –2 penalty when using Rapid Shot.",
+      isSelected: false,
+    ),
+    TraitModel(
+      traiName: "Improved PreciseShot",
+      levelAcquired: 11,
+      traiDescription: "No cover or concealment chance on ranged attacks",
+      isSelected: false,
+    ),
+    TraitModel(
+      traiName: "Iron Will",
+      levelAcquired: 1,
+      traiDescription: "+2 bonus on Will saves",
+      isSelected: false,
+    ),
+  ];
+
+  final List<TraitModel> dualWielderFeat = [
     TraitModel(
       traiName: "Weapon Focus",
       levelAcquired: 1,
@@ -155,7 +222,7 @@ class ReariedFeatsData {
       isSelected: false,
     ),
     TraitModel(
-      traiName: "Greater Two-Weapon Fighting*",
+      traiName: "Greater Two-Weapon Fighting",
       levelAcquired: 19,
       traiDescription: "Gain a third off-hand attack",
       isSelected: false,
@@ -263,12 +330,6 @@ class ReariedFeatsData {
       levelAcquired: 1,
       traiDescription:
           "You can make a Bluff check to feint in combat as a move action.",
-      isSelected: false,
-    ),
-    TraitModel(
-      traiName: "Penetrating Strike",
-      levelAcquired: 1,
-      traiDescription: "Your attacks ignore 5 points of damage reduction",
       isSelected: false,
     ),
   ];
@@ -392,12 +453,6 @@ class ReariedFeatsData {
       traiName: "Iron Will",
       levelAcquired: 1,
       traiDescription: "+2 bonus on Will saves",
-      isSelected: false,
-    ),
-    TraitModel(
-      traiName: "Penetrating Strike",
-      levelAcquired: 1,
-      traiDescription: "Your attacks ignore 5 points of damage reduction",
       isSelected: false,
     ),
     TraitModel(

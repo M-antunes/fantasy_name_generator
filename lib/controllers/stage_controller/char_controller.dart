@@ -825,95 +825,17 @@ class CharController extends ChangeNotifier {
     notifyListeners();
   }
 
-  // /// saves the displayed name for the saved names page
-  // saveName(
-  //   BuildContext context,
-  //   String noNameMessage,
-  //   String alreadySavedmessage,
-  //   String savedMessage,
-  //   Color sucessColor,
-  //   Color noNameColor,
-  //   Color alreadySavedColor,
-  // ) {
-  //   if (newName == " - ? - " || newLastName == " - ? - ") {
-  //     callMessageSnackbar(context, noNameMessage, noNameColor, null);
-  //     return;
-  //   }
-  //   for (var name in savedNames) {
-  //     if (name.firstName == newName && name.lastName == newLastName) {
-  //       callMessageSnackbar(
-  //           context, alreadySavedmessage, alreadySavedColor, null);
-  //       return;
-  //     }
-  //   }
-  // //   SavedNameModel nameToSave = SavedNameModel(
-  //       race: chosenRace,
-  //       gender: isMale ? "Male" : "Female",
-  //       firstName: newName,
-  //       lastName: newLastName,
-  //       fullName: "$newName $newLastName");
-  //   savedNames.insert(0, nameToSave);
-  //   storeName(savedNames);
-  //   callMessageSnackbar(context, savedMessage, sucessColor, null);
-  // }
-
-  // /// Erase name from the list
-  // deleteName(
-  //   SavedNameModel name,
-  //   int index,
-  //   BuildContext context,
-  // ) {
-  //   var deletedName = name;
-  //   savedNames.remove(deletedName);
-  //   notifyListeners();
-  //   deletedNameFromStorage().then((_) {
-  //     updateStorageNameList();
-  //   });
-  //   callUndoButton(context, index, () async {
-  //     savedNames.insert(index, deletedName);
-  //     notifyListeners();
-  //     updateStorageNameList();
-  //     Navigator.pop(context);
-  //   });
-  // }
-
-  // /// Deletes the entire list of names in the storage
-  // Future<void> deletedNameFromStorage() async {
-  //   SharedPreferences prefs = await SharedPreferences.getInstance();
-  //   prefs.remove('names');
-  // }
-
-  // /// Updates and brings back the list of names in the storage, with or without the deleted name
-  // // updateStorageNameList() async {
-  // //   SharedPreferences prefs = await SharedPreferences.getInstance();
-  // //   String json = jsonEncode(savedNames);
-  // //   prefs.setString("names", json);
-  // // }
-
-  /// Stores the name in SharedPreferences
-  storeName(dynamic name) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String json = jsonEncode(name);
-    prefs.setString("names", json);
-  }
-
-  /// Loads the list of stored names when the application starts
-  loadStoredNames() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String json = prefs.getString('names') ?? '';
-    Iterable<dynamic> response = jsonDecode(json);
-    List<SavedNameModel> chosenNames =
-        response.map((e) => SavedNameModel.fromJson(e)).toList();
-    // savedNames = chosenNames;
-    notifyListeners();
-  }
-
 // ======================================================================================
 
   updateCharModel() {
     cha = CharModel(
         languages: [],
-        charRace: chosenRace,
+        charRace: chosenRace.copyWith(
+            height: KeyValueModel(key: 0, value: 0),
+            age: 0,
+            weight: 0,
+            size: "-",
+            senses: "-"),
         feats: [],
         physicalStyle: physicalStyleChoice,
         battleStyle: chosenStyle,
@@ -999,6 +921,11 @@ class CharController extends ChangeNotifier {
     chosenRace = listOfRaces.races.first;
     tempRaceForSwitching.isSelected = true;
     tempClassForSwitching.isSelected = true;
+    listOfClasses.combatStyles.forEach((element) => element.isSelected = false);
+    chosenStyle = listOfClasses.combatStyles[0];
+    chosenStyle.isSelected = true;
+    tempStyleForSwitching = chosenStyle;
+    physicalStyleChoice.isSelected = false;
     creationStage = 1;
     notifyListeners();
   }
