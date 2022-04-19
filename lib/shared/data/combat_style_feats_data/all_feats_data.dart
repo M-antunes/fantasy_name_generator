@@ -25,6 +25,19 @@ class AllFeatsData {
       isSelected: false,
     ),
     TraitModel(
+      traiName: "Combat Reflexes",
+      levelAcquired: 1,
+      traiDescription:
+          "You may make a number of additional attacks of opportunity per round equal to your Dexterity bonus. With this feat, you may also make attacks of opportunity while flat-footed.",
+      isSelected: false,
+    ),
+    TraitModel(
+      traiName: "Nimble Moves",
+      levelAcquired: 1,
+      traiDescription: "Ignore 5 feet of difficult terrain when you move",
+      isSelected: false,
+    ),
+    TraitModel(
       traiName: "Bullseye Shot",
       levelAcquired: 1,
       traiDescription: "Gain +4 bonus on next ranged attack as a move action.",

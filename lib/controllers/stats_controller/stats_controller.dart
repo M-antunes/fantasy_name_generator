@@ -1,7 +1,3 @@
-import 'package:fantasy_name_generator/models/char_personal_models/language_model.dart';
-import 'package:fantasy_name_generator/modules/char_creation/selection_sections/stats_sections/stats_tabs/feats/controllers/feats_controller.dart';
-
-import '../../shared/data/language_data.dart';
 import '../stage_controller/imports.dart';
 
 class StatsController with ChangeNotifier {
@@ -15,7 +11,7 @@ class StatsController with ChangeNotifier {
   var languages = LanguageData();
 
   var appearanceCtrl = AppearanceController();
-  var abilityCtrl = AbilityController();
+  var abilityCtrl = AttributeController();
   var magicGearCtrl = MagicGearController();
   var lootCtrl = LootController();
   var offenseCtrl = OffenseController();

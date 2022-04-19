@@ -5,7 +5,7 @@ import '../../../../../../../models/class_models/skill_model.dart';
 import '../../../../../../../models/combat_models/base_atribute_model.dart';
 import '../../../../../../../shared/utils/utils.dart';
 
-class AbilityController {
+class AttributeController {
   AttributeModel attribute = AttributeModel();
 
   AttributeModel ajustStatsToLevel(

@@ -11,15 +11,17 @@ export 'dart:convert';
 
 export 'package:fantasy_name_generator/shared/data/default_char_model_data.dart';
 export 'package:shared_preferences/shared_preferences.dart';
-
 export '../../modules/char_creation/selection_sections/stats_sections/stats_main/controllers/appearance_controller.dart';
-export '../../modules/char_creation/selection_sections/stats_sections/stats_tabs/ability_scores/controller/ability_controller.dart';
 export '../../modules/char_creation/selection_sections/stats_sections/stats_tabs/combat/controller/defense_controller.dart';
 export '../../modules/char_creation/selection_sections/stats_sections/stats_tabs/combat/controller/offense_controller.dart';
 export '../../modules/char_creation/selection_sections/stats_sections/stats_tabs/loot/controller/loot_controller.dart';
 export '../../modules/char_creation/selection_sections/stats_sections/stats_tabs/magic_gear/controller/magic_gear_controller.dart';
 export '../../modules/char_creation/selection_sections/stats_sections/stats_tabs/skill/controller/skill_controller.dart';
+export 'package:fantasy_name_generator/models/char_personal_models/language_model.dart';
+export 'package:fantasy_name_generator/modules/char_creation/selection_sections/stats_sections/stats_tabs/feats/controllers/feats_controller.dart';
 
+export '../../modules/char_creation/selection_sections/stats_sections/stats_tabs/attributes/controller/attribute_controller.dart';
+export '../../shared/data/language_data.dart';
 export '../../models/equip_models/armor_models/armor_model.dart';
 export '../../models/equip_models/magic_equip_models/wonderous_items_model.dart';
 export '../../models/class_models/specials_model.dart';

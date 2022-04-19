@@ -521,4 +521,57 @@ class ReariedFeatsData {
       isSelected: false,
     ),
   ];
+
+  final List<TraitModel> throwerFeats = [
+    TraitModel(
+      traiName: "Weapon Focus",
+      levelAcquired: 1,
+      traiDescription:
+          "You gain a +1 bonus on all attack rolls you make using the selected weapon.",
+      isSelected: false,
+    ),
+    TraitModel(
+      traiName: "Point-Blank Shot",
+      levelAcquired: 1,
+      traiDescription: "+1 attack and damage on targets within 30 feet",
+      isSelected: false,
+    ),
+    TraitModel(
+      traiName: "Precise Shot",
+      levelAcquired: 1,
+      traiDescription: "No penalty for shooting into melee",
+      isSelected: false,
+    ),
+    TraitModel(
+      traiName: "Combat Reflexes",
+      levelAcquired: 1,
+      traiDescription:
+          "You may make a number of additional attacks of opportunity per round equal to your Dexterity bonus. With this feat, you may also make attacks of opportunity while flat-footed.",
+      isSelected: false,
+    ),
+    TraitModel(
+      traiName: "Weapon Specialization",
+      levelAcquired: 4,
+      traiDescription: "+2 bonus on damage rolls with one weapon",
+      isSelected: false,
+    ),
+    TraitModel(
+      traiName: "Improved Initiative",
+      levelAcquired: 1,
+      traiDescription: "+4 bonus on initiative checks",
+      isSelected: false,
+    ),
+    TraitModel(
+      traiName: "Dodge",
+      levelAcquired: 1,
+      traiDescription: "+1 dodge bonus to AC",
+      isSelected: false,
+    ),
+    TraitModel(
+      traiName: "Improved PreciseShot",
+      levelAcquired: 11,
+      traiDescription: "No cover or concealment chance on ranged attacks",
+      isSelected: false,
+    ),
+  ];
 }

@@ -1,14 +1,11 @@
 import 'package:fantasy_name_generator/modules/char_creation/selection_sections/stats_sections/widgets/atribute_division.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import 'package:fantasy_name_generator/controllers/stage_controller/imports.dart';
 import 'package:fantasy_name_generator/shared/themes/app_text_styles.dart';
 
-import '../../../../controllers/char_admin_controller/char_adimin_controller.dart';
 import '../../../../shared/constants/phone_sizes.dart';
 import '../../../../shared/widgets/expanded_section.dart';
-import '../../../char_creation/selection_sections/stats_sections/widgets/general_magical_equip_row.dart';
 import 'widgets/label_for_category_icon.dart';
 
 class SheetInfoAbilityScore extends StatelessWidget {
@@ -20,13 +17,12 @@ class SheetInfoAbilityScore extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var ctrl = context.read<CharAdminController>();
     return ExpandedSection(
       expand: true,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const LabelForCategoryIcon(label: "Ability Socores"),
+          const LabelForCategoryIcon(label: "Attributes"),
           SizedBox(height: deviceHeight! * 0.003),
           Padding(
             padding: const EdgeInsets.only(left: 8),

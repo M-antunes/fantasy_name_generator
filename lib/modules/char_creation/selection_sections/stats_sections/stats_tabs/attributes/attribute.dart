@@ -8,8 +8,8 @@ import '../../widgets/atribute_division.dart';
 import 'widgets/stats_description_column.dart';
 import 'widgets/stats_description_text.dart';
 
-class AbilityScoreSection extends StatelessWidget {
-  const AbilityScoreSection({Key? key}) : super(key: key);
+class AttributeSection extends StatelessWidget {
+  const AttributeSection({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

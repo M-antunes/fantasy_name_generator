@@ -12,7 +12,7 @@ import 'package:provider/provider.dart';
 import '../../../controllers/char_admin_controller/char_adimin_controller.dart';
 import '../../../shared/constants/phone_sizes.dart';
 import '../../char_creation/selection_sections/stats_sections/widgets/char_description_text.dart';
-import 'sheet_info_sections/sheet_info_ability_score.dart';
+import 'sheet_info_sections/sheet_info_attribute.dart';
 import 'sheet_info_sections/sheet_info_combat.dart';
 import 'sheet_info_sections/sheet_info_feats.dart';
 import 'widgets/IconsStatsButton.dart';

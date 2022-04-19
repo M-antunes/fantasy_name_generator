@@ -8,7 +8,7 @@ import 'package:fantasy_name_generator/shared/themes/app_text_styles.dart';
 import 'package:fantasy_name_generator/shared/widgets/app_horizontal_line.dart';
 
 import '../../../../../shared/themes/app_colors.dart';
-import '../stats_tabs/ability_scores/ability_scores.dart';
+import '../stats_tabs/attributes/attribute.dart';
 import '../stats_tabs/combat/combat_stats.dart';
 import '../stats_tabs/feats/feats_stats.dart';
 import '../stats_tabs/features/features_stats.dart';
@@ -193,7 +193,7 @@ class _StatsSectionState extends State<StatsSection>
                               child: TabBarView(
                                 controller: _controller,
                                 children: const [
-                                  AbilityScoreSection(),
+                                  AttributeSection(),
                                   CombatStats(),
                                   MagicGearStats(),
                                   FeatureStats(),
