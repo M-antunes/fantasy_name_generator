@@ -28,7 +28,7 @@ class SavedCharSheet extends StatelessWidget {
         body: Container(
           decoration: BoxDecoration(
               gradient: LinearGradient(
-            colors: [Colors.blueGrey[900]!, Colors.grey[900]!],
+            colors: [Color.fromARGB(255, 68, 54, 1), Colors.grey[900]!],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           )),

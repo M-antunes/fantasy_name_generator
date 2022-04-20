@@ -601,7 +601,6 @@ class StatsController with ChangeNotifier {
 
   calculateClassSkills() {
     charSkills = skillCtrl.calculateClassSkills(
-        skillData.skills,
         char.charClass.name,
         char.charClass.skillRankPerLevel,
         char.modAttributes,
@@ -621,8 +620,14 @@ class StatsController with ChangeNotifier {
   //======================================================================================
 
   updateCharModel() {
-    char.charClass.description != '';
-    char.alignment.description != '';
+    char.charClass = char.charClass.copyWith(
+        description: '', permittedAligments: [], forbidenArmorType: []);
+    char.physicalStyle =
+        char.physicalStyle.copyWith(description: '', forbiddenClasses: []);
+    char.alignment = char.alignment.copyWith(
+      description: '',
+    );
+    char.battleStyle = char.battleStyle.copyWith(description: '');
     char.loot = charLoot;
     char.charClass.traits = traits;
     char.charClass.speacials = specials;

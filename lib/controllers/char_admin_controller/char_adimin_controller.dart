@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:fantasy_name_generator/models/class_models/sotered_char.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../models/char_personal_models/char_model.dart';
@@ -58,9 +59,9 @@ class CharAdminController with ChangeNotifier {
       }
     }
     for (var i = 0; i < classStrings.length; i++) {
-      for (var i = 0; i < 1; i++) {
+      for (var j = 0; j < 1; j++) {
         var newStoredClass =
-            StoredCharClass(name: classStrings[i], isSelected: false);
+            StoredCharClass(name: classStrings[j], isSelected: false);
         storedClasses.add(newStoredClass);
       }
       if (storedClasses[i].name != classStrings[i]) {
@@ -138,6 +139,25 @@ class CharAdminController with ChangeNotifier {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String json = jsonEncode(allChars);
     prefs.setString("charact", json);
+  }
+
+  saveCharInHive(CharModel character) {
+    saveCharacterInList(character);
+    String json = jsonEncode(character);
+    Hive.box("characters").add(json);
+  }
+
+  loadCharFromHive() {
+    clearAllLists();
+    var jsonLength = Hive.box('characters').length;
+    for (var i = 0; i < jsonLength; i++) {
+      var json = Hive.box('characters').get(i);
+      var response = jsonDecode(json);
+      var charGotten = CharModel.fromJson(response);
+      allChars.add(charGotten);
+    }
+    getAvalableStoredClasses();
+    separateLoadedChars();
   }
 
   ///Load chars from Shared preferences

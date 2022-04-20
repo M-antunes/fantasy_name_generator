@@ -1,18 +1,13 @@
-import 'package:fantasy_name_generator/models/combat_models/base_atribute_model.dart';
-
 import '../../../../../../../models/class_models/skill_model.dart';
+import '../../../../../../../models/combat_models/base_atribute_model.dart';
 import '../../../../../../../models/equip_models/equip_model.dart';
+import '../../../../../../../shared/data/class_data/skill_data.dart';
 import '../../../../../../../shared/utils/utils.dart';
 
 class SkillController {
-  List<SkillModel> calculateClassSkills(
-      List<SkillModel> skillData,
-      String className,
-      int rankLevel,
-      AttributeModel charAtrb,
-      int level,
-      EquipModel equip) {
-    List<SkillModel> charSkillList = skillData;
+  List<SkillModel> calculateClassSkills(String className, int rankLevel,
+      AttributeModel charAtrb, int level, EquipModel equip) {
+    List<SkillModel> charSkillList = SkillData().skills;
     for (var i in charSkillList) {
       i.finalValue = 0;
       i.atrbValue = 0;
@@ -89,6 +84,10 @@ class SkillController {
         in charSkillList.where((element) => element.hasPenalty == true)) {
       i.checkPenalty = penalty;
       i.finalValue -= penalty;
+    }
+
+    for (var i = 0; i < charSkillList.length; i++) {
+      charSkillList[i] = charSkillList[i].copyWith(skillOfClasses: []);
     }
     return charSkillList;
   }

@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart';
 
 import 'package:fantasy_name_generator/controllers/stage_controller/imports.dart';
-import 'package:fantasy_name_generator/models/char_personal_models/language_model.dart';
 
 class CharModel {
   RaceModel charRace;

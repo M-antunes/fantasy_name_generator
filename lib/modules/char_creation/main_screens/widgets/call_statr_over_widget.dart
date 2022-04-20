@@ -1,7 +1,7 @@
 import 'package:fantasy_name_generator/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 
-import '../themes/app_text_styles.dart';
+import '../../../../shared/themes/app_text_styles.dart';
 
 Future<dynamic> callStartOverConfirmation(BuildContext context,
     String className, String charName, VoidCallback? onConfirm) {

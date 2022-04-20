@@ -415,9 +415,9 @@ class AppTextStyle {
     fontFamily: "OldLondon",
     color: AppColors.primaryText0,
     fontSize: deviceWidth! < 350
-        ? 19
+        ? 20
         : deviceWidth! > 350 && deviceWidth! < 400
-            ? 23
-            : 28,
+            ? 25
+            : 30,
   );
 }

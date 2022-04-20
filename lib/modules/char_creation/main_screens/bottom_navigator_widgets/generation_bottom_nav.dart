@@ -10,7 +10,8 @@ import '../../../../shared/themes/app_colors.dart';
 import '../../../../shared/widgets/app_animated_button.dart';
 import '../../../../shared/widgets/app_generate_button.dart';
 import '../../../../shared/widgets/call_message_snackbar.dart';
-import '../../../../shared/widgets/call_warning_widget.dart';
+import '../widgets/call_statr_over_widget.dart';
+import '../widgets/call_confirm_save._widgetdart';
 
 // ignore: must_be_immutable
 class GenerationBottomNav extends StatelessWidget {
@@ -33,7 +34,9 @@ class GenerationBottomNav extends StatelessWidget {
                     if (state.creationStage == 1) {
                       Navigator.of(context).pop();
                     } else if (state.creationStage == 8) {
-                      confimrReset(context, state.cha.charName.fullName,
+                      callStartOverConfirmation(
+                          context,
+                          state.cha.charName.fullName,
                           state.chosenClass.name, () {
                         state.startCharAllOver();
                         ctrl.resetEquipAndStats();
@@ -72,11 +75,17 @@ class GenerationBottomNav extends StatelessWidget {
                     ? AppAnimatedButton(
                         label: "Save",
                         onTap: () {
-                          ctrl.updateCharModel();
-                          admin.saveCharacterInList(ctrl.char);
-                          admin.saveCharInPreferences();
-                          callMessageSnackbar(context, "Character Saved",
-                              AppColors.successColor, 1400);
+                          confirmSave(context, ctrl.char.charName.fullName,
+                              ctrl.char.charClass.name, () {
+                            ctrl.updateCharModel();
+                            admin.saveCharInHive(ctrl.char);
+                            state.startCharAllOver();
+                            ctrl.resetEquipAndStats();
+                            Navigator.of(context).pop();
+                            Navigator.of(context).pop();
+                            callMessageSnackbar(context, "Character Saved",
+                                AppColors.successColor, 1800);
+                          });
                         })
                     : const SizedBox();
               }),
@@ -85,16 +94,11 @@ class GenerationBottomNav extends StatelessWidget {
       );
     });
   }
-}
 
-void buttonFunction(CharController state, BuildContext context) {
-  var text = state.activateNextButton();
-  if (text != null) {
-    callMessageSnackbar(context, text, AppColors.warningColor, null);
+  void buttonFunction(CharController state, BuildContext context) {
+    var text = state.activateNextButton();
+    if (text != null) {
+      callMessageSnackbar(context, text, AppColors.warningColor, null);
+    }
   }
-}
-
-confimrReset(BuildContext context, String charName, String className,
-    VoidCallback onTap) {
-  callStartOverConfirmation(context, className, charName, onTap);
 }
