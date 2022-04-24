@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
+import 'package:fantasy_name_generator/models/spell_models/spell_model.dart';
+
 import 'armor_models/armor_model.dart';
 import 'magic_equip_models/wonderous_items_model.dart';
 import 'weapon_models/weapon_model.dart';
@@ -13,6 +15,7 @@ class EquipModel {
   ArmorModel? shield;
   List<WonderousItemsModel>? wonderousItems;
   List<WonderousItemsModel>? tomesAndManuals;
+  List<SpellModel> potions;
   EquipModel({
     this.meleeWeapon,
     this.rangeWeapon,
@@ -20,6 +23,7 @@ class EquipModel {
     this.shield,
     this.wonderousItems,
     this.tomesAndManuals,
+    this.potions = const [],
   });
 
   EquipModel copyWith({
@@ -29,6 +33,7 @@ class EquipModel {
     ArmorModel? shield,
     List<WonderousItemsModel>? wonderousItems,
     List<WonderousItemsModel>? tomesAndManuals,
+    List<SpellModel>? potions,
   }) {
     return EquipModel(
       meleeWeapon: meleeWeapon ?? this.meleeWeapon,
@@ -37,6 +42,7 @@ class EquipModel {
       shield: shield ?? this.shield,
       wonderousItems: wonderousItems ?? this.wonderousItems,
       tomesAndManuals: tomesAndManuals ?? this.tomesAndManuals,
+      potions: potions ?? this.potions,
     );
   }
 
@@ -48,6 +54,7 @@ class EquipModel {
       'shield': shield?.toMap(),
       'wonderousItems': wonderousItems?.map((x) => x.toMap()).toList(),
       'tomesAndManuals': tomesAndManuals?.map((x) => x.toMap()).toList(),
+      'potions': potions.map((x) => x.toMap()).toList(),
     };
   }
 
@@ -69,6 +76,8 @@ class EquipModel {
           ? List<WonderousItemsModel>.from(map['tomesAndManuals']
               ?.map((x) => WonderousItemsModel.fromMap(x)))
           : null,
+      potions: List<SpellModel>.from(
+          map['potions']?.map((x) => SpellModel.fromMap(x))),
     );
   }
 
@@ -79,7 +88,7 @@ class EquipModel {
 
   @override
   String toString() {
-    return 'EquipModel(meleeWeapon: $meleeWeapon, rangeWeapon: $rangeWeapon, armour: $armour, shield: $shield, wonderousItems: $wonderousItems, tomesAndManuals: $tomesAndManuals)';
+    return 'EquipModel(meleeWeapon: $meleeWeapon, rangeWeapon: $rangeWeapon, armour: $armour, shield: $shield, wonderousItems: $wonderousItems, tomesAndManuals: $tomesAndManuals, potions: $potions)';
   }
 
   @override
@@ -92,7 +101,8 @@ class EquipModel {
         other.armour == armour &&
         other.shield == shield &&
         listEquals(other.wonderousItems, wonderousItems) &&
-        listEquals(other.tomesAndManuals, tomesAndManuals);
+        listEquals(other.tomesAndManuals, tomesAndManuals) &&
+        listEquals(other.potions, potions);
   }
 
   @override
@@ -102,6 +112,7 @@ class EquipModel {
         armour.hashCode ^
         shield.hashCode ^
         wonderousItems.hashCode ^
-        tomesAndManuals.hashCode;
+        tomesAndManuals.hashCode ^
+        potions.hashCode;
   }
 }

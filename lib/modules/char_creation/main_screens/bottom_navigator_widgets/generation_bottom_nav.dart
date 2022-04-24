@@ -10,8 +10,8 @@ import '../../../../shared/themes/app_colors.dart';
 import '../../../../shared/widgets/app_animated_button.dart';
 import '../../../../shared/widgets/app_generate_button.dart';
 import '../../../../shared/widgets/call_message_snackbar.dart';
+import '../widgets/call_confirm_save._widget.dart';
 import '../widgets/call_statr_over_widget.dart';
-import '../widgets/call_confirm_save._widgetdart';
 
 // ignore: must_be_immutable
 class GenerationBottomNav extends StatelessWidget {
