@@ -25,7 +25,7 @@ class SpellModel {
     this.range = '',
     this.target = '',
     this.duration = '',
-    this.savingThrow = '',
+    this.savingThrow = 'no',
     this.spellResistance = "no",
     this.magicType = "",
     this.canBePotion = false,

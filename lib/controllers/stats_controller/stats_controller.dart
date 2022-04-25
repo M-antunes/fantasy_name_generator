@@ -1,3 +1,6 @@
+import 'package:fantasy_name_generator/shared/data/spell_data/spell_data.dart';
+
+import '../../models/spell_models/spell_model.dart';
 import '../stage_controller/imports.dart';
 
 class StatsController with ChangeNotifier {
@@ -9,6 +12,7 @@ class StatsController with ChangeNotifier {
   var listOfRaces = RaceData();
   var skillData = SkillData();
   var languages = LanguageData();
+  var allSpells = SpellData();
 
   var appearanceCtrl = AppearanceController();
   var abilityCtrl = AttributeController();
@@ -22,11 +26,13 @@ class StatsController with ChangeNotifier {
   List<SkillModel> charSkills = [];
   List<LanguageModel> charLanguages = [];
   List<TraitModel> charFeats = [];
+  List<SpellModel> charPotions = [];
 
   int armorPrice = 0;
   int shieldPrice = 0;
   int meleePrice = 0;
   int rangePrice = 0;
+  int repeatedPotion = 0;
   String meleeName = '';
   String rangeName = '';
   String armorName = '';
@@ -72,6 +78,7 @@ class StatsController with ChangeNotifier {
     traits = [];
     specials = [];
     charFeats = [];
+    charPotions = [];
     charLoot = LootModel();
     tomesAndManuals = [];
     charSkills = [];
@@ -125,6 +132,7 @@ class StatsController with ChangeNotifier {
     gettingClassTraits();
     gettingClassSpecials();
     getFeats();
+    getPotions();
     generateLoot();
     calculateSpeed();
     generateAllAttributes();
@@ -205,6 +213,100 @@ class StatsController with ChangeNotifier {
     notifyListeners();
   }
 
+  getPotions() {
+    charPotions = generatePotions();
+    repeatedPotion = identifyMultiplePotions();
+    notifyListeners();
+  }
+
+  List<SpellModel> generatePotions() {
+    if (char.charLevel < 5) {
+      return [];
+    }
+    List<SpellModel> charPotions = [];
+    List<SpellModel> allPotions = [];
+    allPotions = allSpells.allSpellsLeveled
+        .where((element) => element.canBePotion == true)
+        .toList();
+    int numberOfPotions =
+        getNumberOfPotionsPerClass(char.battleStyle.name, char.charLevel);
+    for (var i = 0; i < numberOfPotions; i++) {
+      var chance = generateRandom(100);
+      switch (numberOfPotions) {
+        case 1:
+          levelPotions(allPotions, chance, charPotions, "0", "1",
+              "Cure Light Wounds", char.charLevel, i);
+          break;
+        case 2:
+          levelPotions(allPotions, chance, charPotions, "1", "2",
+              "Cure Light Wounds", char.charLevel, i);
+          break;
+        case 3:
+          levelPotions(allPotions, chance, charPotions, "2", "3",
+              "Cure Moderate Wounds", char.charLevel, i);
+          break;
+        default:
+          levelPotions(allPotions, chance, charPotions, "3", "3",
+              "Cure Serious Wounds", char.charLevel, i);
+      }
+    }
+    return charPotions;
+  }
+
+  levelPotions(
+      List<SpellModel> allPotions,
+      int chance,
+      List<SpellModel> charPotions,
+      String weakPotion,
+      String strongPotion,
+      String curePotion,
+      int level,
+      int index) {
+    List<SpellModel> leveldPotions = [];
+    leveldPotions = allPotions
+        .where((element) =>
+            element.magicType.contains(weakPotion) ||
+            element.magicType.contains(strongPotion))
+        .toList();
+    if (chance > 40) {
+      var charCurePotion =
+          allPotions.firstWhere((element) => element.name == curePotion);
+      charCurePotion.conjurerLevel = level;
+      charPotions.add(charCurePotion);
+    } else {
+      leveldPotions.shuffle();
+      for (var i = 0; i < leveldPotions.length; i++) {
+        if (!charPotions.contains(leveldPotions[i])) {
+          var charRandomPotion = leveldPotions[i];
+          charRandomPotion.conjurerLevel = level;
+          charRandomPotion.difficultClass =
+              "DC (${10 + (level / 1.5).floor()})";
+          charPotions.add(charRandomPotion);
+          return;
+        }
+      }
+    }
+  }
+
+  int identifyMultiplePotions() {
+    List<SpellModel> multiplePotions = [];
+    var repeatedPotion = 0;
+    for (var j = 0; j < charPotions.length; j++) {
+      if (charPotions[j].name.contains("Cure")) {
+        multiplePotions.add(charPotions[j]);
+        repeatedPotion++;
+      }
+    }
+    if (multiplePotions.isEmpty) {
+      return 0;
+    } else {
+      charPotions.removeWhere((element) => element.name.contains("Cure"));
+      charPotions.add(multiplePotions[0]);
+      return repeatedPotion;
+    }
+  }
+
+  // ===================================================================================
   //Apply magic to weapon
 
   makeWeaponMagic() {
@@ -371,7 +473,7 @@ class StatsController with ChangeNotifier {
 
   // ====================================================================================
   // Loot part
-  LootModel charLoot = LootModel(items: [], jwels: []);
+  LootModel charLoot = LootModel(items: [], jwels: [], potions: []);
   var listOfGems = JwelsData();
 
   generateLoot() {
@@ -385,7 +487,9 @@ class StatsController with ChangeNotifier {
         char.charEquip,
         char.physicalStyle.name,
         char.battleStyle.name,
-        listOfGems.gems);
+        listOfGems.gems,
+        charPotions,
+        repeatedPotion);
     notifyListeners();
   }
 
@@ -635,6 +739,7 @@ class StatsController with ChangeNotifier {
     char.skills = charSkills;
     char.charEquip.tomesAndManuals = tomesAndManuals;
     char.languages = charLanguages;
+    char.charEquip.potions = charPotions;
     notifyListeners();
   }
 }

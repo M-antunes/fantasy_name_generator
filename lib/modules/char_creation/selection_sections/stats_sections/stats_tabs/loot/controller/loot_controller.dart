@@ -4,6 +4,7 @@ import '../../../../../../../models/equip_models/loot_models/gem_model.dart';
 import '../../../../../../../models/equip_models/loot_models/loot_model.dart';
 import '../../../../../../../models/equip_models/loot_models/treasure_model.dart';
 import '../../../../../../../models/equip_models/magic_equip_models/wonderous_items_model.dart';
+import '../../../../../../../models/spell_models/spell_model.dart';
 import '../../../../../../../shared/utils/utils.dart';
 
 class LootController {
@@ -17,8 +18,10 @@ class LootController {
       EquipModel equip,
       String physical,
       String battleStyle,
-      List<GemModel> gems) {
-    LootModel loot = LootModel(items: [], jwels: []);
+      List<GemModel> gems,
+      List<SpellModel> potions,
+      int repeatedPotion) {
+    LootModel loot = LootModel(items: [], jwels: [], potions: []);
     if (list != null) {
       for (var i in list) {
         loot.items!.add(TreasureModel(
@@ -99,6 +102,22 @@ class LootController {
         value > valuePerClass ? tries = 50 : tries++;
       }
     }
+
+    for (var i = 0; i < potions.length; i++) {
+      var levelPrice = potions[i].level == 0 ? 1 : potions[i].level;
+      var basePrice = levelPrice * potions[i].conjurerLevel * 50;
+      var potionQnt = repeatedPotion > 1 ? repeatedPotion : 1;
+      loot.potions!.add(
+        TreasureModel(
+            name: potions[i].name,
+            price: basePrice,
+            qnt: potions[i].name.contains("Cure") ? potionQnt : 1,
+            finalPrice: potions[i].name.contains("Cure")
+                ? basePrice * potionQnt
+                : basePrice),
+      );
+    }
+
     var coin = battleStyle == "Physical"
         ? (rollingDice(20) * level) * 100
         : battleStyle == "Spellcaster"

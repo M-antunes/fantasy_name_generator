@@ -1,5 +1,7 @@
 import 'dart:math';
 
+import 'package:fantasy_name_generator/controllers/stage_controller/imports.dart';
+
 int generateRandom(int number) {
   Random i = Random();
   var newNumber = i.nextInt(number);
@@ -63,4 +65,22 @@ String getEquipFullName(dynamic equip, int level) {
     }
   }
   return equip.name! + mW;
+}
+
+int getNumberOfPotionsPerClass(String style, int level) {
+  int potionQnt = 0;
+  switch (style) {
+    case "Physical":
+      potionQnt = rollingDice(2) + (level / 10).ceil();
+      break;
+    case "Hybrid":
+      potionQnt = rollingDice(3) + (level / 10).ceil();
+      break;
+    case "Spellcaster":
+      potionQnt = rollingDice(5) + (level / 10).ceil();
+      break;
+    default:
+      potionQnt = rollingDice(4) + (level / 10).ceil();
+  }
+  return potionQnt;
 }

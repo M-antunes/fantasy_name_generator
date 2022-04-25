@@ -1,13 +1,14 @@
-import 'package:fantasy_name_generator/controllers/stats_controller/stats_controller.dart';
 import 'package:flutter/material.dart';
-
 import 'package:provider/provider.dart';
+
+import 'package:fantasy_name_generator/controllers/stats_controller/stats_controller.dart';
 
 import '../../../../../../shared/constants/phone_sizes.dart';
 import '../../../../../../shared/themes/app_text_styles.dart';
 import '../../widgets/atribute_division.dart';
 import '../../widgets/general_magical_equip_row.dart';
 import '../../widgets/gradient_label.dart';
+import 'widgets/spell_and_potion_description.dart';
 
 class MagicGearStats extends StatelessWidget {
   const MagicGearStats({Key? key}) : super(key: key);
@@ -69,6 +70,42 @@ class MagicGearStats extends StatelessWidget {
                   ],
                 )
               : const SizedBox(),
+          SizedBox(height: deviceHeight! * 0.01),
+          const AttributeDivision(label: "Potions"),
+          !state.statsGenerated
+              ? const Center()
+              : state.charPotions.isEmpty
+                  ? Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      child: Text(
+                        "${state.char.charName.fullName} has no potions",
+                        style: AppTextStyle.statsLabel,
+                      ),
+                    )
+                  : ListView.builder(
+                      itemCount: state.charPotions.length,
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemBuilder: (context, index) {
+                        var multiple = state.repeatedPotion;
+                        var multipleIndicator =
+                            multiple > 1 ? " (x$multiple)" : "";
+                        var potion = state.charPotions[index];
+                        return InkWell(
+                          child: Padding(
+                            padding: const EdgeInsets.all(4),
+                            child: Text(
+                              "Potion of ${potion.name}  $multipleIndicator",
+                              style: AppTextStyle.statsLabelBrighter,
+                            ),
+                          ),
+                          onTap: () => Navigator.of(context).push(
+                            MaterialPageRoute(
+                                builder: ((context) =>
+                                    SpellAndPotionDescription(potion: potion))),
+                          ),
+                        );
+                      })
         ],
       );
     });

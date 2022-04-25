@@ -72,6 +72,7 @@ class FeatsController {
       charFeats = filteredFeats;
     } else if (feats.length == numberOfFeats) {
       charFeats.addAll(feats);
+      charFeats.insert(0, filteredFeats[0]);
     } else {
       filteredFeats.addAll(feats);
       var featsLeft = numberOfFeats - feats.length;
@@ -83,8 +84,8 @@ class FeatsController {
                 element.fitFor.contains(className)));
         filteredFeats.add(newItem);
       }
+      charFeats = filteredFeats;
     }
-    charFeats = filteredFeats;
     return charFeats;
   }
 }

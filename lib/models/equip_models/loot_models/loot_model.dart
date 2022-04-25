@@ -7,21 +7,25 @@ import 'treasure_model.dart';
 class LootModel {
   List<TreasureModel>? items;
   List<TreasureModel>? jwels;
+  List<TreasureModel>? potions;
   int? gold;
   LootModel({
     this.items = const [],
     this.jwels = const [],
+    this.potions = const [],
     this.gold = 0,
   });
 
   LootModel copyWith({
     List<TreasureModel>? items,
     List<TreasureModel>? jwels,
+    List<TreasureModel>? potions,
     int? gold,
   }) {
     return LootModel(
       items: items ?? this.items,
       jwels: jwels ?? this.jwels,
+      potions: potions ?? this.potions,
       gold: gold ?? this.gold,
     );
   }
@@ -30,6 +34,7 @@ class LootModel {
     return {
       'items': items?.map((x) => x.toMap()).toList(),
       'jwels': jwels?.map((x) => x.toMap()).toList(),
+      'potions': potions?.map((x) => x.toMap()).toList(),
       'gold': gold,
     };
   }
@@ -44,6 +49,10 @@ class LootModel {
           ? List<TreasureModel>.from(
               map['jwels']?.map((x) => TreasureModel.fromMap(x)))
           : null,
+      potions: map['potions'] != null
+          ? List<TreasureModel>.from(
+              map['potions']?.map((x) => TreasureModel.fromMap(x)))
+          : null,
       gold: map['gold']?.toInt(),
     );
   }
@@ -54,7 +63,9 @@ class LootModel {
       LootModel.fromMap(json.decode(source));
 
   @override
-  String toString() => 'LootModel(items: $items, jwels: $jwels, gold: $gold)';
+  String toString() {
+    return 'LootModel(items: $items, jwels: $jwels, potions: $potions, gold: $gold)';
+  }
 
   @override
   bool operator ==(Object other) {
@@ -63,9 +74,12 @@ class LootModel {
     return other is LootModel &&
         listEquals(other.items, items) &&
         listEquals(other.jwels, jwels) &&
+        listEquals(other.potions, potions) &&
         other.gold == gold;
   }
 
   @override
-  int get hashCode => items.hashCode ^ jwels.hashCode ^ gold.hashCode;
+  int get hashCode {
+    return items.hashCode ^ jwels.hashCode ^ potions.hashCode ^ gold.hashCode;
+  }
 }

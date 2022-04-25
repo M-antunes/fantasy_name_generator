@@ -1,3 +1,4 @@
+import 'package:fantasy_name_generator/modules/char_creation/selection_sections/stats_sections/stats_tabs/magic_gear/widgets/spell_and_potion_description.dart';
 import 'package:fantasy_name_generator/modules/create_or_check_saved/create_or_check_saved_page.dart';
 import 'package:fantasy_name_generator/modules/saved_chars/saved_char_sheet/saved_chars_sheet.dart';
 import 'package:fantasy_name_generator/shared/routes/app_roues.dart';
@@ -35,6 +36,7 @@ abstract class RouteGenerator {
           builder: (_) => const SavedCharSelection(),
           settings: routeSettings,
         );
+
       default:
         throw Exception();
     }

@@ -52,6 +52,31 @@ class LootSection extends StatelessWidget {
                         style: AppTextStyle.statsLabel,
                       ),
                     ),
+          const AttributeDivision(
+              label: "Potions", label2: "(if not used during encounter)"),
+          !state.statsGenerated
+              ? const Center()
+              : state.charLoot.potions!.isNotEmpty
+                  ? ListView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: state.charLoot.potions!.length,
+                      itemBuilder: (context, index) {
+                        var potion = state.charLoot.potions![index];
+                        return LootTile(
+                            name: "Potion of ${potion.name}",
+                            fullPrice: formatGoldPiece(potion.finalPrice),
+                            price: potion.price,
+                            qnt: potion.qnt);
+                      })
+                  : Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      child: Text(
+                        "${state.char.charName.fullName} has no potions",
+                        style: AppTextStyle.statsLabel,
+                      ),
+                    ),
+          SizedBox(height: deviceHeight! * 0.01),
           const AttributeDivision(label: "Coin"),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),

@@ -4,6 +4,7 @@ class SpellData {
   List<SpellModel> allSpellsLeveled = [
     SpellModel(
       name: "Acid Splash",
+      level: 0,
       school: "Conjuration",
       effect:
           "You fire a small orb of acid at the target. You must succeed on a ranged touch attack to hit your target. The orb deals 1d3 points of acid damage. This acid disappears after 1 round.",
@@ -14,6 +15,7 @@ class SpellData {
     ),
     SpellModel(
       name: "Breeze",
+      level: 0,
       school: "Evocation",
       effect:
           "You create a light wind that blows against the target, from a direction of your choice. The breeze grants the subject a +2 bonus on saves against very hot conditions, severe heat, breath weapons, and saves against cloud vapors and gases (such as cloudkill, stinking cloud, and inhaled poisons). This spell does not function without air or underwater. You can only have one breeze active at any one time. If you cast this spell while another casting is still in effect, the previous casting is dispelled.",
@@ -24,6 +26,7 @@ class SpellData {
     ),
     SpellModel(
       name: "Detect Magic",
+      level: 0,
       effect:
           "You detect magical auras. The amount of information revealed depends on how long you study a particular area or subject. 1st Round: Presence or absence of magical auras. 2nd Round: Number of different magical auras and the power of the most potent aura. 3rd Round: The strength and location of each aura. If the items or creatures bearing the auras are in line of sight, you can make Knowledge (arcana) skill checks to determine the school of magic involved in each. (Make one check per aura: DC 15 + spell level, or 15 + 1/2 caster level for a nonspell effect.) If the aura eminates from a magic item, you can attempt to identify its properties",
       school: "Divination",
@@ -35,6 +38,7 @@ class SpellData {
     ),
     SpellModel(
       name: "Detect Poison",
+      level: 0,
       effect:
           "You determine whether a creature, object, or area has been poisoned or is poisonous. You can determine the exact type of poison with a DC 20 Wisdom check. A character with the Craft (alchemy) skill may try a DC 20 Craft (alchemy) check if the Wisdom check fails, or may try the Craft (alchemy) check prior to the Wisdom check. The spell can penetrate barriers, but 1 foot of stone, 1 inch of common metal, a thin sheet of lead, or 3 feet of wood or dirt blocks it.",
       school: "Divination",
@@ -47,6 +51,7 @@ class SpellData {
     ),
     SpellModel(
         name: "Disrupt Undead",
+        level: 0,
         effect:
             "You direct a ray of positive energy. You must make a ranged touch attack to hit, and if the ray hits an undead creature, it deals 1d6 points of damage to it.",
         school: "Necromancy",
@@ -57,6 +62,7 @@ class SpellData {
         spellResistance: "yes"),
     SpellModel(
       name: "Ghost Sound",
+      level: 0,
       effect:
           "Ghost sound allows you to create a volume of sound that rises, recedes, approaches, or remains at a fixed place. You choose what type of sound ghost sound creates when casting it and cannot thereafter change the sound's basic character. The volume of sound created depends on your level. You can produce as much noise as four normal humans per caster level (maximum 40 humans). Thus, talking, singing, shouting, walking, marching, or running sounds can be created. The noise a ghost sound spell produces can be virtually any type of sound within the volume limit. A horde of rats running and squeaking is about the same volume as eight humans running and shouting. A roaring lion is equal to the noise from 16 humans, while a roaring dragon is equal to the noise from 32 humans. Anyone who hears a ghost sound receives a Will save to disbelieve.",
       school: "Illusion",
@@ -68,6 +74,7 @@ class SpellData {
     ),
     SpellModel(
       name: "Light",
+      level: 0,
       effect:
           "This spell causes a touched object to glow like a torch, shedding normal light in a 20-foot radius, and increasing the light level for an additional 20 feet by one step, up to normal light (darkness becomes dim light, and dim light becomes normal light). In an area of normal or bright light, this spell has no effect. The effect is immobile, but it can be cast on a movable object. You can only have one light spell active at any one time. If you cast this spell while another casting is still in effect, the previous casting is dispelled. If you make this spell permanent (through permanency or a similar effect), it does not count against this limit. Light can be used to counter or dispel any darkness spell of equal or lower spell level.",
       school: "Evocation",
@@ -79,6 +86,7 @@ class SpellData {
     ),
     SpellModel(
       name: "Mage Hand",
+      level: 0,
       effect:
           "You point your finger at an object and can lift it and move it at will from a distance. As a move action, you can propel the object as far as 15 feet in any direction, though the spell ends if the distance between you and the object ever exceeds the spell's range.",
       school: "Transmutation;",
@@ -90,6 +98,7 @@ class SpellData {
     ),
     SpellModel(
         name: "Open/Close",
+        level: 0,
         effect:
             "You can open or close (your choice) a door, chest, box, window, bag, pouch, bottle, barrel, or other container. If anything resists this activity (such as a bar on a door or a lock on a chest), the spell fails. In addition, the spell can only open and close things weighing 30 pounds or less. Thus, doors, chests, and similar objects sized for enormous creatures may be beyond this spell's ability to affect.",
         school: "Transmutation",
@@ -102,6 +111,7 @@ class SpellData {
         spellResistance: "yes (object)"),
     SpellModel(
       name: "Message",
+      level: 0,
       effect:
           "You can whisper messages and receive whispered replies. Those nearby can hear these messages with a DC 25 Perception check. You point your finger at each creature you want to receive the message. When you whisper, the whispered message is audible to all targeted creatures within range. Magical silence, 1 foot of stone, 1 inch of common metal (or a thin sheet of lead), or 3 feet of wood or dirt blocks the spell. The message does not have to travel in a straight line. It can circumvent a barrier if there is an open path between you and the subject, and the path's entire length lies within the spell's range. The creatures that receive the message can whisper a reply that you hear. The spell transmits sound, not meaning; it doesn't transcend language barriers. To speak a message, you must mouth the words and whisper.",
       school: "Transmutation",
@@ -112,6 +122,7 @@ class SpellData {
     ),
     SpellModel(
       name: "Prestidigitation",
+      level: 0,
       effect:
           "Prestidigitations are minor tricks that novice spellcasters use for practice. Once cast, a prestidigitation spell enables you to perform simple magical effects for 1 hour. The effects are minor and have severe limitations. A prestidigitation can slowly lift 1 pound of material. It can color, clean, or soil items in a 1-foot cube each round. It can chill, warm, or flavor 1 pound of nonliving material. It cannot deal damage or affect the concentration of spellcasters. Prestidigitation can create small objects, but they look crude and artificial. The materials created by a prestidigitation spell are extremely fragile, and they cannot be used as tools, weapons, or spell components. Finally, prestidigitation lacks the power to duplicate any other spell effects. Any actual change to an object (beyond just moving, cleaning, or soiling it) persists only 1 hour.",
       school: "Universal",
@@ -124,6 +135,7 @@ class SpellData {
     ),
     SpellModel(
       name: "Read Magic",
+      level: 0,
       effect:
           "You can decipher magical inscriptions on objects—books, scrolls, weapons, and the like—that would otherwise be unintelligible. This deciphering does not normally invoke the magic contained in the writing, although it may do so in the case of a cursed or trapped scroll. Furthermore, once the spell is cast and you have read the magical inscription, you are thereafter able to read that particular writing without recourse to the use of read magic. You can read at the rate of one page (250 words) per minute. The spell allows you to identify a glyph of warding with a DC 13 Spellcraft check, a greater glyph of warding with a DC 16 Spellcraft check, or any symbol spell with a Spellcraft check (DC 10 + spell level).",
       school: "Divination",
@@ -136,6 +148,7 @@ class SpellData {
     ),
     SpellModel(
       name: "Create Water",
+      level: 0,
       effect:
           "This spell generates wholesome, drinkable water, just like clean rain water. Water can be created in an area as small as will actually contain the liquid, or in an area three times as large—possibly creating a downpour or filling many small receptacles. This water disappears after 1 day if not consumed.",
       school: "Conjuration",
@@ -146,6 +159,7 @@ class SpellData {
     ),
     SpellModel(
       name: "Resistance",
+      level: 0,
       effect:
           "You imbue the subject with magical energy that protects it from harm, granting it a +1 resistance bonus on saves.",
       school: "Abjuration",
@@ -160,6 +174,7 @@ class SpellData {
     ),
     SpellModel(
         name: "Stabilize",
+        level: 0,
         effect:
             "Upon casting this spell, you target a living creature that has –1 or fewer hit points. That creature is automatically stabilized and does not lose any further hit points. If the creature later takes damage, it continues dying normally.",
         school: "Conjuration",
@@ -171,6 +186,7 @@ class SpellData {
         spellResistance: "yes (harmless)"),
     SpellModel(
       name: "Grasp",
+      level: 0,
       effect:
           "You can cast this spell as an immediate action when you fail a Climb check and would fall. You can immediately attempt another Climb check as a free action at a –2 penalty. Each successive use of this spell in a particular situation increases the penalty by 2. If successful, you don't fall, but you don't progress at climbing.",
       school: "Divination",
@@ -183,6 +199,7 @@ class SpellData {
     ),
     SpellModel(
         name: "Purify Food and Drink",
+        level: 0,
         effect:
             "This spell makes spoiled, rotten, diseased, poisonous, or otherwise contaminated food and water pure and suitable for eating and drinking. This spell does not prevent subsequent natural decay or spoilage. Unholy water and similar food and drink of significance is spoiled by purify food and drink, but the spell has no effect on creatures of any type nor upon magic potions. Water weighs about 8 pounds per gallon. One cubic foot of water contains roughly 8 gallons and weighs about 60 pounds.",
         school: "Transmutation",
@@ -195,6 +212,7 @@ class SpellData {
         spellResistance: "yes (object)"),
     SpellModel(
       name: "Know Direction",
+      level: 0,
       effect:
           "When you cast this spell, you instantly know the direction of north from your current position. The spell is effective in any environment in which “north” exists, but it may not work in extraplanar settings. Your knowledge of north is correct at the moment of casting, but you can get lost again within moments if you don't find some external reference point to help you keep track of direction.",
       school: "Divination",
@@ -206,6 +224,7 @@ class SpellData {
     ),
     SpellModel(
         name: "Lullaby",
+        level: 0,
         effect:
             "Any creature within the area that fails a Will save becomes drowsy and inattentive, taking a –5 penalty on Perception checks and a –2 penalty on Will saves against sleep effects while the lullaby is in effect. Lullaby lasts for as long as the caster concentrates, plus up to 1 round per caster level thereafter.",
         school: "Enchantment",
@@ -217,6 +236,7 @@ class SpellData {
         spellResistance: "yes"),
     SpellModel(
       name: "Summon Instrument",
+      level: 0,
       effect:
           "This spell summons one handheld musical instrument of your choice. This instrument appears in your hands or at your feet (your choice). The instrument is typical for its type. Only one instrument appears per casting, and it will play only for you. You can't summon an instrument too large to be held in two hands. The summoned instrument disappears at the end of this spell.",
       school: "Conjuration",
@@ -237,6 +257,7 @@ class SpellData {
         name: "Air Bubble:",
         effect:
             "Air bubble creates a small pocket of breathable air that surrounds the touched creature’s head or the touched object. The air bubble allows the creature touched to breathe underwater or in similar airless environments, or protects the object touched from water damage.",
+        level: 1,
         magicType: "arcanist1, cleric1, druid1, ranger1, sorcerer1, wizard1",
         school: "Conjuration",
         range: "touch",
@@ -251,6 +272,7 @@ class SpellData {
       effect:
           "Alarm creates a subtle ward on an area you select. Once the spell effect is in place, it thereafter sounds a mental or audible alarm each time a creature of Tiny or larger size enters the warded area or touches it. A creature that speaks the password (determined by you at the time of casting) does not set off the alarm. You decide at the time of casting whether the alarm will be mental or audible in nature. Mental Alarm: A mental alarm alerts you (and only you) so long as you remain within 1 mile of the warded area. You note a single mental “ping” that awakens you from normal sleep but does not otherwise disturb concentration. A silence spell has no effect on a mental alarm. Audible Alarm: An audible alarm produces the sound of a hand bell, and anyone within 60 feet of the warded area can hear it clearly. Reduce the distance by 10 feet for each interposing closed door and by 20 feet for each substantial interposing wall. In quiet conditions, the ringing can be heard faintly as far as 180 feet away. The sound lasts for 1 round. Creatures within a silence spell cannot hear the ringing. Ethereal or astral creatures do not trigger the alarm.",
       school: "Abjuration",
+      level: 1,
       magicType: "arcanist1, bard1, ranger1, sorcerer1, summoner1, wizard1",
       range: "close (25 ft. + 5 ft./2 levels)",
       duration: "2 hours/level",
@@ -261,6 +283,7 @@ class SpellData {
         effect:
             "You subtly enhance or diminish the effects of natural winds within the spell’s area, which is an immobile emanation around a point touched by you as the spell is cast. Within the area, natural (but not magical) wind effects are either increased or decreased by one step in intensity (Core Rulebook 439). The maximum wind force you can affect with this spell is based on your caster level, as shown on the table below. Alter winds has no effect on magical wind effects. 1st–3rd - Light / 4th–9th - Moderate / 10th–15th - Strong / 16th or higher -	Severe",
         school: "Transmutation",
+        level: 1,
         magicType: "arcanist1, druid1, sorcerer1, wizard1",
         range: "touch",
         duration: "1 hour/level",
@@ -272,6 +295,7 @@ class SpellData {
       effect:
           "You can animate a nonliving rope-like object. The maximum length assumes a rope with a 1-inch diameter. Reduce the maximum length by 50% for every additional inch of thickness, and increase it by 50% for each reduction of the rope's diameter by half. The possible commands are “coil” (form a neat, coiled stack), “coil and knot,” “loop,” “loop and knot,” “tie and knot,” and the opposites of all of the above (“uncoil,” and so forth). You can give one command each round as a move action, as if directing an active spell. The rope can enwrap only a creature or an object within 1 foot of it—it does not snake outward—so it must be thrown near the intended target. Doing so requires a successful ranged touch attack roll (range increment 10 feet). A typical 1-inch-diameter hemp rope has 2 hit points, AC 10, and requires a DC 23 Strength check to burst it. The rope does not deal damage, but it can be used as a trip line or to cause a single opponent that fails a Reflex saving throw to become entangled. A creature capable of spellcasting that is bound by this spell must make a concentration check with a DC of 15 + the spell's level to cast a spell. An entangled creature can slip free with a DC 20 Escape Artist check.",
       school: "Transmutation",
+      level: 1,
       magicType: "arcanist1, bard1, sorcerer1, wizard1",
       range: "medium (100 ft. + 10 ft./level)",
       duration: "1 round/level",
@@ -281,6 +305,7 @@ class SpellData {
         name: "Ant Haul",
         effect:
             "The target's carrying capacity triples. This does not affect the creature's actual Strength in any way, merely the amount of material it can carry while benefiting from this spell. It also has no effect on encumbrance due to armor. If the creature wears armor it still takes the normal penalties for doing so regardless of how much weight the spell allows it to carry.",
+        level: 1,
         magicType: "all",
         school: "Transmutation",
         range: "touch",
@@ -293,6 +318,7 @@ class SpellData {
       effect:
           "With a touch, you conjure an extradimensional space inside a pouch or pocket. The pocket acts as a bag of holding, except it can hold only 10 pounds per caster level. Regardless of what is placed into the pocket, it weighs 3 pounds. Unlike a bag of holding, the pocket created by this ability cannot be overloaded or ruptured—any additional material simply spills out of the top—nor does it have any special interaction with other kinds of extradimensional spaces. An arcane pocket grants you a +1 bonus on Sleight of Hand checks to conceal its contents. The pocket becomes nonmagical, spilling all of its contents onto the ground unharmed, if it leaves your possession or you create a new arcane pocket.",
       school: "Conjuration",
+      level: 1,
       magicType: "arcanist1, sorcerer1, wizard1",
       range: "touch",
       duration: "1 hour/level",
@@ -303,6 +329,7 @@ class SpellData {
       effect:
           "You take on an aspect of a falcon. Your eyes become wide and raptor-like, and you grow feathers on the sides of your head. You gain a +3 competence bonus on Perception checks, a +1 competence bonus on ranged attacks, and the critical multiplier for your bows and crossbows becomes 19–20/×3. This effect does not stack with any other effect that expands the threat range of a weapon, such as the Improved Critical feat or a keen weapon.",
       school: "Transmutation",
+      level: 1,
       magicType: "druid1, ranger1",
       range: "personal",
       duration: "1 minute/level",
@@ -314,6 +341,7 @@ class SpellData {
       effect:
           "You take on an aspect of a nightingale. Your voice becomes clear and pleasant. You gain a +2 competence bonus on Perform (sing) checks and a +2 competence bonus on Diplomacy checks. Once per minute, if you are subject to a charm effect that allows a saving throw, you may roll twice and take the more favorable result.",
       school: "Transmutation",
+      level: 1,
       magicType: "bard1, cleric1, druid1, paladin1, ranger1",
       range: "personal",
       duration: "1 minute/level",
@@ -325,6 +353,7 @@ class SpellData {
       effect:
           "You cause the targets to believe they hear any sound you imagine. The sound can include intelligible speech. Instead of precisely imagining a sound, you can identify a sound the subjects know and they imagine it doing what you describe as you cast the spell. For example, you could cast this spell on orc warriors and have them imagine the sound of their chieftain calling for help, even if you’ve never heard their chieftain and even if the chieftain speaks in a language you don’t understand. All targets hear the same hallucination. You can change the sound as part of concentrating on the spell.",
       school: "Illusion",
+      level: 1,
       magicType: "arcanist1, bard1, sorcerer1, wizard1",
       range: "long (400 ft. + 40 ft./level)",
       duration: "concentration",
@@ -338,6 +367,7 @@ class SpellData {
       effect:
           "Bane fills your enemies with fear and doubt. Each affected creature takes a –1 penalty on attack rolls and a –1 penalty on saving throws against fear effects. Bane counters and dispels bless.",
       school: "Enchantment",
+      level: 1,
       magicType: "antipaladin1, cleric1",
       range: "50 ft.",
       duration: "1 min./level",
@@ -350,6 +380,7 @@ class SpellData {
       effect:
           "You summon a chain from another realm, causing it to burst out from the ground and strike a target within the spell’s range. You can have the chain either make a melee attack (dealing 1d6 points of slashing damage) or attempt a trip combat maneuver against the target. The chain uses your base attack bonus plus your key spellcasting ability score modifier as its attack bonus and combat maneuver bonus. On a successful hit or combat maneuver check, the target must attempt a Will save. If it fails its save, the creature is shaken for 1d4 rounds. You summon one additional chain every 3 levels after 1st, for a total of two chains at 4th level, three at 7th level, and a maximum of four at 10th level. Multiple chains can attack the same target but the shaken effect doesn’t stack.",
       school: "Conjuration",
+      level: 1,
       magicType: "antipaladin1, cleric1, summoner1",
       range: "close (25 ft. + 5 ft./2 levels)",
       duration: "instantaneous",
@@ -362,6 +393,7 @@ class SpellData {
         effect:
             "You offer an object to an adjacent creature, and entice it into using or consuming the proffered item. If the target fails its Will save, it immediately takes the offered object, dropping an already held object if necessary. On its next turn, it consumes or dons the object, as appropriate for the item in question. For example, an apple would be eaten, a potion consumed, a ring put on a finger, and a sword wielded in a free hand. If the target is physically unable to accept the object, the spell fails. The subject is under no obligation to continue consuming or using the item once the spell’s duration has expired, although it may find a cursed item difficult to be rid of.",
         school: "Enchantment",
+        level: 1,
         magicType: "bard1",
         range: "5 ft.",
         duration: "1 round",
@@ -373,6 +405,7 @@ class SpellData {
       effect:
           "You imbue a slashing melee weapon with the ability to create a bleeding wound. As a free action when the weapon hits a living creature, the wielder can discharge this spell to add 1 point of bleed damage to the weapon’s base damage. This bleeding is difficult to stop; add your spellcasting ability modifier (Wisdom for clerics, and so on) to the DC to stop the bleeding.",
       school: "Necromancy",
+      level: 1,
       magicType: "antipaladin1, cleric1, ranger1,",
       range: "touch",
       duration: "1 round/level or until discharged",
@@ -385,6 +418,7 @@ class SpellData {
       effect:
           "You draw upon your elven link to the wilderness to change the coloration of yourself and your equipment to match that of your surroundings. This grants you a +4 circumstance bonus on Stealth checks and allows you to make Stealth checks without cover or concealment, but only while you move no more than half your base speed or less. If you move more than half your base speed on your turn, you gain no benefit from this spell until the start of your next turn. If you make an attack, this spell ends (as invisibility).",
       school: "Illusion",
+      level: 1,
       magicType: "alchemist1, arcanist1, druid1, ranger1, sorcerer1, wizard1",
       range: "personal",
       duration: "10 minutes/level",
@@ -396,6 +430,7 @@ class SpellData {
       effect:
           "Bless fills your allies with courage. Each ally gains a +1 morale bonus on attack rolls and on saving throws against fear effects. Bless counters and dispels bane.",
       school: "Enchantment",
+      level: 1,
       magicType: "cleric1 paladin1,",
       range: "50 ft.",
       duration: "1 min./level",
@@ -408,6 +443,7 @@ class SpellData {
       name: "Bless Water",
       effect:
           "This transmutation imbues a flask (1 pint) of water with positive energy, turning it into holy water.",
+      level: 1,
       magicType: "cleric1, paladin1",
       school: "Transmutation",
       range: "touch",
@@ -421,6 +457,7 @@ class SpellData {
         effect:
             "The target takes a –20 penalty on its next attack roll or check that requires a d20 roll. The action must be one deliberately taken by the target on its turn. Creatures with more than 10 HD are unaffected by this spell.",
         school: "Enchantment ",
+        level: 1,
         magicType: "arcanist1, sorcerer1, wizard1",
         range: "close (25 ft. + 5 ft./2 levels)",
         duration: "concentration + 2 rounds or until triggered",
@@ -433,6 +470,7 @@ class SpellData {
       effect:
           "A cone of searing flame shoots from your fingertips. Any creature in the area of the flames takes 1d4 points of fire damage per caster level (maximum 5d4). Flammable materials burn if the flames touch them. A character can extinguish burning items as a full-round action.",
       school: "Evocation",
+      level: 1,
       magicType: "arcanist1, sorcerer1, wizard1",
       range: "15 ft.",
       duration: "instantaneous",
@@ -445,6 +483,7 @@ class SpellData {
       effect:
           "This spell calls the nearest wild animal of a particular type you designate (provided the animal’s CR is equal to or less than your caster level) to seek you out. The animal moves toward you under its own power, so the time it takes to arrive depends on how close an animal of the desired type is when you cast the spell. If there is no animal of that type capable of reaching you within the spell’s duration, you are aware of this fact, but the spell is wasted. Knowledge of the local fauna makes this spell more effective, and the GM may permit a Knowledge (nature) skill check (DC 15) to know what animals can be found in an area. When the called animal arrives, it approaches to within 5 feet of you and remains nearby for the duration of the spell. Its starting attitude is indifferent, modified by circumstances and interaction. Other than starting attitude, this spell gives you no special influence or ability to communicate with the called animal, although you may use other spells or abilities to do so. Once the spell’s duration expires, the animal acts in accordance with its attitude. Most animals will likely wander off, but a hostile predatory animal may attack, especially if it is hungry or provoked.",
       school: "Enchantment",
+      level: 1,
       magicType: "druid1, ranger1",
       range: "see description",
       duration: "1 hour/level",
@@ -455,6 +494,7 @@ class SpellData {
       name: "Calm Animals",
       effect:
           "This spell soothes and quiets animals, rendering them docile and harmless. Only ordinary animals (those with Intelligence scores of 1 or 2) can be affected by this spell. All the subjects must be of the same kind, and no two may be more than 30 feet apart. The maximum number of HD of animals you can affect is equal to 2d4 + caster level. The affected creatures remain where they are and do not attack or flee. They are not helpless and defend themselves normally if attacked. Any threat breaks the spell on the threatened creatures.",
+      level: 1,
       magicType: "druid1, ranger1",
       school: "Enchantment",
       range: "close (25 ft. + 5 ft./2 levels)",
@@ -469,6 +509,7 @@ class SpellData {
       effect:
           "The affected creature becomes frightened. If the subject succeeds on a Will save, it is shaken for 1 round. Creatures with 6 or more HD are immune to this effect. Cause fear counters and dispels remove fear.",
       school: "Necromancy",
+      level: 1,
       magicType: "antipaladin1, arcanist1, bard1, cleric1, sorcerer1, wizard1",
       range: "close (25 ft. + 5 ft./2 levels)",
       duration: "1d4 rounds or 1 round; see text",
@@ -481,6 +522,7 @@ class SpellData {
       effect:
           "You anoint a wounded creature with the blood of an outsider with the good subtype (such as an angel) or holy water, giving it fast healing 1. The target radiates the aura of a good creature for the duration of the spell and can sense the righteousness of the magic, though this has no long-term effect on the target’s alignment. If the target has its own evil aura, this is not suppressed by celestial healing, and can also be detected normally.",
       school: "Conjuration",
+      level: 1,
       magicType: "arcanist1, cleric1, sorcerer1, summoner1, wizard1",
       range: "touch",
       duration: "1 round/2 levels",
@@ -493,6 +535,7 @@ class SpellData {
       name: "Charm Animal",
       effect:
           "This charm makes a creature of the animal type regard you as its trusted friend and ally (treat the target's attitude as friendly). If the creature is currently being threatened or attacked by you or your allies, however, it receives a +5 bonus on its saving throw. The spell does not enable you to control the charmed animal as if it were an automaton, but it perceives your words and actions in the most favorable way. You can try to give the subject orders, but you must win an opposed Charisma check to convince it to do anything it wouldn't ordinarily do. (Retries are not allowed.) An affected creature never obeys suicidal or obviously harmful orders, but it might be convinced that something very dangerous is worth doing. Any act by you or your apparent allies that threatens the charmed animal breaks the spell. ",
+      level: 1,
       magicType: "druid1, ranger1",
       school: "Enchantment",
       range: "close (25 ft. + 5 ft./2 levels)",
@@ -506,6 +549,7 @@ class SpellData {
         effect:
             "This charm makes a creature of type fey regard you as its trusted friend and ally (treat the target's attitude as friendly). If the creature is currently being threatened or attacked by you or your allies, however, it receives a +5 bonus on its saving throw. The spell does not enable you to control the charmed fey as if it were an automaton, but it perceives your words and actions in the most favorable way. You can try to give the subject orders, but you must win an opposed Charisma check to convince it to do anything it wouldn't ordinarily do. (Retries are not allowed.) An affected creature never obeys suicidal or obviously harmful orders, but it might be convinced that something very dangerous is worth doing. Any act by you or your apparent allies that threatens the charmed person breaks the spell. You must speak the creature's language to communicate your commands, or else be good at pantomiming.",
         school: "enchantment",
+        level: 1,
         magicType: "arcanist1, bard1, sorcerer1, wizard1",
         range: "close (25 ft. + 5 ft./2 levels)",
         duration: "1 hour/level",
@@ -517,6 +561,7 @@ class SpellData {
         effect:
             "This charm makes a humanoid creature regard you as its trusted friend and ally (treat the target's attitude as friendly). If the creature is currently being threatened or attacked by you or your allies, however, it receives a +5 bonus on its saving throw. The spell does not enable you to control the charmed person as if it were an automaton, but it perceives your words and actions in the most favorable way. You can try to give the subject orders, but you must win an opposed Charisma check to convince it to do anything it wouldn't ordinarily do. (Retries are not allowed.) An affected creature never obeys suicidal or obviously harmful orders, but it might be convinced that something very dangerous is worth doing. Any act by you or your apparent allies that threatens the charmed person breaks the spell. You must speak the person's language to communicate your commands, or else be good at pantomiming.",
         school: "enchantment",
+        level: 1,
         magicType: "arcanist1, bard1, sorcerer1, wizard1",
         range: "close (25 ft. + 5 ft./2 levels)",
         duration: "1 hour/level",
@@ -528,6 +573,7 @@ class SpellData {
         effect:
             "A touch from your hand, which glows with blue energy, disrupts the life force of living creatures. Each touch channels negative energy that deals 1d6 points of damage. The touched creature also takes 1 point of Strength damage unless it makes a successful Fortitude saving throw. You can use this melee touch attack up to one time per level. An undead creature you touch takes no damage of either sort, but it must make a successful Will saving throw or flee as if panicked for 1d4 rounds + 1 round per caster level.",
         school: "Necromancy",
+        level: 1,
         magicType: "arcanist1, sorcerer1, wizard1",
         range: "touch",
         duration: "instantaneous",
@@ -539,6 +585,7 @@ class SpellData {
         effect:
             "A vivid cone of clashing colors springs forth from your hand, causing creatures to become stunned, perhaps also blinded, and possibly knocking them unconscious. Each creature within the cone is affected according to its HD. 2 HD or less: The creature is unconscious, blinded, and stunned for 2d4 rounds, then blinded and stunned for 1d4 rounds, and then stunned for 1 round. (Only living creatures are knocked unconscious). 3 or 4 HD: The creature is blinded and stunned for 1d4 rounds, then stunned for 1 round. 5 or more HD: The creature is stunned for 1 round. Sightless creatures are not affected by color spray.",
         school: "Illusion",
+        level: 1,
         magicType: "arcanist1, sorcerer1, wizard1",
         range: "15 ft.",
         duration: "instantaneous",
@@ -550,6 +597,7 @@ class SpellData {
       effect:
           "You give the subject a single command, which it obeys to the best of its ability at its earliest opportunity. You may select from the following options. Approach: On its turn, the subject moves toward you as quickly and directly as possible for 1 round. The creature may do nothing but move during its turn, and it provokes attacks of opportunity for this movement as normal. Drop: On its turn, the subject drops whatever it is holding. It can't pick up any dropped item until its next turn. Fall: On its turn, the subject falls to the ground and remains prone for 1 round. It may act normally while prone but takes any appropriate penalties. Flee: On its turn, the subject moves away from you as quickly as possible for 1 round. It may do nothing but move during its turn, and it provokes attacks of opportunity for this movement as normal. Halt: The subject stands in place for 1 round. It may not take any actions but is not considered helpless. If the subject can't carry out your command on its next turn, the spell automatically fails.",
       school: "Enchantment",
+      level: 1,
       magicType: "antipaladin1, cleric1,",
       range: "close (25 ft. + 5 ft./2 levels)",
       duration: "1 round",
@@ -562,6 +610,7 @@ class SpellData {
       effect:
           "You utter a question in the form of a low-pitched bird call that can be heard up to a mile away, and can understand the responses given by birds in the area. Over the next 10 minutes, the birds reply as if you had asked them the question using speak with animals, giving you a general consensus answer to the question based on their knowledge. For example, you could ask if there is drinkable water in the area, the location of predators or other creatures, directions to a mountaintop or other natural feature, and so on, and the local bird communities would answer to the best of their ability. If there are no birds in range, the spell has no effect and you do not get a response. Any creature using speak with animals (or a similar ability) who hears this bird call can understand your question, though it may not be able to reply in a way you can hear.",
       school: "Divination",
+      level: 1,
       magicType:
           "arcanist2, bard2, druid1, ranger1, shaman2, sorcerer2, wizard2",
       range: "personal",
@@ -574,6 +623,7 @@ class SpellData {
       effect:
           "Whenever a creature you can see that threatens you makes an attack against one of your allies, as an immediate action, you can compel that creature to attack you instead. When you compel a creature to attack you, you must first overcome that creature’s spell resistance, and the creature can attempt a Will saving throw to ignore the compulsion.",
       school: "Enchantment",
+      level: 1,
       magicType: "bard1, cleric1, paladin1, ranger1, summoner1",
       range: "personal",
       duration: "1 round/level",
@@ -586,6 +636,7 @@ class SpellData {
       effect:
           "You can understand the spoken words of creatures or read otherwise incomprehensible written messages. The ability to read does not necessarily impart insight into the material, merely its literal meaning. The spell enables you to understand or read an unknown language, not speak or write it. Written material can be read at the rate of one page (250 words) per minute. Magical writing cannot be read, though the spell reveals that it is magical. This spell can be foiled by certain warding magic (such as the secret page and illusory script spells). It does not decipher codes or reveal messages concealed in otherwise normal text.",
       school: "Divination",
+      level: 1,
       magicType: "alchemist1, arcanist1, bard1, cleric1, sorcerer1, wizard1",
       range: "personal",
       duration: "10 min./level",
@@ -597,6 +648,7 @@ class SpellData {
         name: "Corrosive Touch",
         effect: "Conjuration",
         school: "Conjuration",
+        level: 1,
         magicType: "arcanist1, sorcerer1, wizard1",
         range: "touch",
         duration: "instantaneous",
@@ -607,6 +659,7 @@ class SpellData {
         effect:
             "When laying your hand upon a living creature, you channel positive energy that cures 1d8 points of damage + 1 point per caster level (maximum +5). Since undead are powered by negative energy, this spell deals damage to them instead of curing their wounds. An undead creature can apply spell resistance, and can attempt a Will save to take half damage.",
         school: "Conjuration",
+        level: 1,
         magicType: "alchemist1, bard1, cleric1, druid1, paladin1, ranger2,",
         range: "touch",
         duration: "instantaneous",
@@ -619,6 +672,7 @@ class SpellData {
       effect:
           "You create either up to four spheres of darkness that each reduce the illumination level by one step within a 20-foot-radius, or one dimly lit, vaguely humanoid shape. Each sphere of dancing darkness must stay within a 10-foot-radius area of one another but can otherwise move as you desire (no concentration required): forward or back, up or down, straight or turning corners, or the like. The darkness can move up to 100 feet per round. The effect winks out if the distance between you and it exceeds the spell’s range.",
       school: "Evocation",
+      level: 1,
       magicType: "antipaladin1, arcanist1, bard1, sorcerer1, wizard1",
       range: "medium (100 ft. + 10 ft./level)",
       duration: "1 minute/level",
@@ -629,6 +683,7 @@ class SpellData {
       effect:
           "You can animate a lantern and order it to follow you. The lantern floats at shoulder height and remains within 5 feet of you, no matter how fast you move. The lantern cannot support any additional weight. The lantern illuminates its normal area, even if it does not have any oil in it. For the purposes of spells or effects targeting it the lantern always acts as if in your possession even when not directly on your person.",
       school: "Transmutation",
+      level: 1,
       magicType: "arcanist1, bard1, cleric1, ranger1, sorcerer1, wizard1",
       range: "touch",
       duration: "1 hour/level",
@@ -640,6 +695,7 @@ class SpellData {
       effect:
           "While subject to this spell, you take upon yourself the mantle of the hunter, channeling the insights of the spirits of the wild. You gain a +4 sacred bonus on all Survival checks for the duration of the spell, and you do not have to move at half your speed while traveling through the wilderness or while tracking.",
       school: "",
+      level: 1,
       magicType: "bard1, cleric1, druid1, ranger1",
       range: "personal",
       duration: "1 hour/level",
@@ -651,6 +707,7 @@ class SpellData {
       effect:
           "You reach into the target's mind and put its thought processes into a temporary loop. Whatever full-round, standard, or move actions the creature takes on its first turn after you cast this spell, it must repeat on the turn after that. The creature must take the same type of actions in the same order (for example, making a full attack, casting a specific spell, withdrawing, attempting a bull rush combat maneuver, or activating a magic item) and must act against the same target or targets, but doesn’t have to make exactly the same choices (such as using Power Attack when attacking, moving exactly 15 feet, or choosing “drop” for the command spell). If the circumstances would prevent the target from repeating an action, such as if the target of its attack is dead or the target cannot cast the same spell again, the target instead becomes confused until the spell ends. A creature currently affected by deja vu can’t be targeted with another deja vu spell. A creature affected by deja vu can’t delay, and if it readies an action on its first turn, it must ready the same action on its second turn.",
       school: "enchantment",
+      level: 1,
       magicType: "arcanist1, bard1, sorcerer1, wizard1",
       range: "medium (100 ft. + 10 ft./level)",
       duration: "2 rounds",
@@ -662,6 +719,7 @@ class SpellData {
       effect:
           "A creature that fails its save uses an immediate action to hand you whatever object it’s currently wielding or holding. If the target doesn’t have an immediate action available, it uses a move action at the beginning of its next turn to hand you the object. If it’s currently holding or wielding more than one item, determine randomly which item it gives you. If you’re no longer adjacent to the creature when it has to give you the item, the spell ends with no effect. A creature that isn’t holding an item when you cast this spell is unaffected.",
       school: "Enchantment",
+      level: 1,
       magicType: "antipaladin1, arcanist2, bard2, sorcerer2, wizard2",
       range: "5 ft.",
       duration: "instantaneous or 1 round",
@@ -674,6 +732,7 @@ class SpellData {
       effect:
           "You can detect a particular kind of aberrations in a cone emanating out from you in whatever direction you face. You must think of a kind of an aberration when using the spell, but you can change the aberration kind each round. The amount of information revealed depends on how long you search a particular area or focus on a specific kind of aberration. 1st Round: Presence or absence of that kind of aberration in the area. 2nd Round: Number of individuals of the specified kind in the area and the condition of the healthiest specimen. 3rd Round: The condition (see below) and location of each individual present. If an aberration is outside your line of sight, then you discern its direction but not its exact location. Conditions: For purposes of this spell, the categories of condition are as follows: Normal: Has at least 90% of full normal hit points, free of disease. Fair: 30% to 90% of full normal hit points remaining. Poor: Less than 30% of full normal hit points remaining, afflicted with a disease, or suffering from a debilitating injury. Weak: 0 or fewer hit points remaining, afflicted with a disease that has reduced an ability score to 5 or less, or crippled. If a creature falls into more than one category, the spell indicates the weaker of the two. Each round you can turn to detect a kind of aberration in a new area. The spell can penetrate barriers, but 1 foot of stone, 1 inch of common metal, a thin sheet of lead, or 3 feet of wood or dirt blocks it.",
       school: "Divination",
+      level: 1,
       magicType: "druid1, range1",
       range: "long (400 ft. + 40 ft./level)",
       duration: "concentration, up to 10 minutes/level",
@@ -685,6 +744,7 @@ class SpellData {
       effect:
           "You can detect a particular kind of animal or plant in a cone emanating out from you in whatever direction you face. You must think of a kind of animal or plant when using the spell, but you can change the animal or plant kind each round. The amount of information revealed depends on how long you search a particular area or focus on a specific kind of animal or plant. 1st Round: Presence or absence of that kind of animal or plant in the area. 2nd Round: Number of individuals of the specified kind in the area and the condition of the healthiest specimen. 3rd Round: The condition (see below) and location of each individual present. If an animal or a plant is outside your line of sight, then you discern its direction but not its exact location. Conditions: For purposes of this spell, the categories of condition are as follows: Normal: Has at least 90% of full normal hit points, free of disease. Fair: 30% to 90% of full normal hit points remaining. Poor: Less than 30% of full normal hit points remaining, afflicted with a disease, or suffering from a debilitating injury. Weak: 0 or fewer hit points remaining, afflicted with a disease that has reduced an ability score to 5 or less, or crippled. If a creature falls into more than one category, the spell indicates the weaker of the two. Each round you can turn to detect a kind of animal or plant in a new area. The spell can penetrate barriers, but 1 foot of stone, 1 inch of common metal, a thin sheet of lead, or 3 feet of wood or dirt blocks it.",
       school: "Divination",
+      level: 1,
       magicType: "druid1, ranger1",
       range: "long (400 ft. + 40 ft./level)",
       duration: "concentration, up to 10 min./level",
@@ -697,6 +757,7 @@ class SpellData {
       effect:
           "This spell functions as per detect magic, except that it detects only charm, compulsion, and possession effects. You immediately detect the strength and location of each such aura on all creatures in the area. You can attempt to identify the properties of each aura (see Spellcraft on page 106 the Pathfinder RPG Core Rulebook). In addition to noticing the targets of these effects, you can recognize when creatures in the area are using these effects on others by attempting a Sense Motive check as a standard action (DC = 20 + caster level). If you succeed, you can attempt a Spellcraft check to identify what magic it is using (even if the target is not in the area).",
       school: "Divination",
+      level: 1,
       magicType: "arcanist1, bard1, cleric1, paladin1, sorcerer1, wizard1",
       range: "60 ft",
       duration: "concentration, up to 1 minute/level",
@@ -708,6 +769,7 @@ class SpellData {
       effect:
           "You can sense the presence of good. The amount of information revealed depends on how long you study a particular area or subject. 1st Round: Presence or absence of good. 2nd Round: Number of good auras (creatures, objects, or spells) in the area and the power of the most potent good aura present. If you are of evil alignment, and the strongest good aura's power is overwhelming and the HD or level of the aura's source is at least twice your character level, you are stunned for 1 round and the spell ends. 3rd Round: The power and location of each aura. If an aura is outside your line of sight, then you discern its direction but not its exact location.",
       school: "Divination",
+      level: 1,
       magicType: "cleric1",
       range: "60 ft.",
       duration: "concentration, up to 10 min./level",
@@ -719,6 +781,7 @@ class SpellData {
       effect:
           "You can sense the presence of evil. The amount of information revealed depends on how long you study a particular area or subject. 1st Round: Presence or absence of evil. 2nd Round: Number of evil auras (creatures, objects, or spells) in the area and the power of the most potent evil aura present. If you are of good alignment, and the strongest evil aura's power is overwhelming and the HD or level of the aura's source is at least twice your character level, you are stunned for 1 round and the spell ends. 3rd Round: The power and location of each aura. If an aura is outside your line of sight, then you discern its direction but not its exact location.",
       school: "Divination",
+      level: 1,
       magicType: "cleric1",
       range: "60 ft.",
       duration: "concentration, up to 10 min./level",
@@ -730,6 +793,7 @@ class SpellData {
       effect:
           "You detect any metal objects or creatures within a 60-foot cone. You can specify all metal objects or one or more specific types of metal (such as silver, cold iron, or a type of skymetal) when you cast this spell; in the case of the latter, you detect only objects or creatures made of the specified metal.",
       school: "Divination",
+      level: 1,
       magicType: "alchemist1, arcanist1, bard1, sorcerer1, summoner1, wizard1",
       range: "60 ft",
       duration: "concentration, up to 1 minute/level",
@@ -741,6 +805,7 @@ class SpellData {
       effect:
           "You can detect secret doors, compartments, caches, and so forth. Only passages, doors, or openings that have been specifically constructed to escape detection are detected by this spell. The amount of information revealed depends on how long you study a particular area or subject. 1st Round: Presence or absence of secret doors. 2nd Round: Number of secret doors and the location of each. If an aura is outside your line of sight, then you discern its direction but not its exact location. Each Additional Round: The mechanism or trigger for one particular secret portal closely examined by you. Each round, you can turn to detect secret doors in a new area. The spell can penetrate barriers, but 1 foot of stone, 1 inch of common metal, a thin sheet of lead, or 3 feet of wood or dirt blocks it.",
       school: "Divination",
+      level: 1,
       magicType: "alchemist1, arcanist1, bard1, sorcerer1, wizard1",
       range: "60 ft",
       duration: "concentration, up to 1 minute/level",
@@ -752,6 +817,7 @@ class SpellData {
       effect:
           "You can detect simple pits, deadfalls, and snares as well as mechanical traps constructed of natural materials. The spell does not detect complex traps, including trapdoor traps. Detect snares and pits does detect certain natural hazards—quicksand (a snare), a sinkhole (a pit), or unsafe walls of natural rock (a deadfall). It does not reveal other potentially dangerous conditions. The spell does not detect magic traps (except those that operate by pit, deadfall, or snaring; see the spell snare), nor mechanically complex ones, nor those that have been rendered safe or inactive. The amount of information revealed depends on how long you study a particular area. 1st Round: Presence or absence of hazards. 2nd Round: Number of hazards and the location of each. If a hazard is outside your line of sight, then you discern its direction but not its exact location. Each Additional Round: The general type and trigger for one particular hazard closely examined by you. Each round, you can turn to examine a new area. The spell can penetrate barriers, but 1 foot of stone, 1 inch of common metal, a thin sheet of lead, or 3 feet of wood or dirt blocks it.",
       school: "Divination",
+      level: 1,
       magicType: "druid1, ranger1",
       range: "60 ft.",
       duration: "concentration, up to 10 min./level ",
@@ -762,6 +828,7 @@ class SpellData {
       effect:
           "You can detect the aura that surrounds undead creatures. The amount of information revealed depends on how long you study a particular area. 1st Round: Presence or absence of undead auras. 2nd Round: Number of undead auras in the area and the strength of the strongest undead aura present. If you are of good alignment, and the strongest undead aura's strength is overwhelming (see below), and the creature has HD of at least twice your character level, you are stunned for 1 round and the spell ends. 3rd Round: The strength and location of each undead aura. If an aura is outside your line of sight, then you discern its direction but not its exact location.",
       school: "Divination",
+      level: 1,
       magicType: "alchemist1, arcanist1, cleric1, paladin1, sorcerer1, wizard1",
       range: "60 ft",
       duration: "concentration, up to 1 minute/level",
@@ -773,6 +840,7 @@ class SpellData {
       effect:
           "You make yourself—including clothing, armor, weapons, and equipment—look different. You can seem 1 foot shorter or taller, thin, fat, or in between. You cannot change your creature type (although you can appear as another subtype). Otherwise, the extent of the apparent change is up to you. You could add or obscure a minor feature or look like an entirely different person or gender. The spell does not provide the abilities or mannerisms of the chosen form, nor does it alter the perceived tactile (touch) or audible (sound) properties of you or your equipment. If you use this spell to create a disguise, you get a +10 bonus on the Disguise check. A creature that interacts with the glamer gets a Will save to recognize it as an illusion.",
       school: "Illusion",
+      level: 1,
       magicType:
           "alchemist1, antipaladin1, arcanist1, bard1, sorcerer1, wizard1",
       range: "personal",
@@ -785,6 +853,7 @@ class SpellData {
       effect:
           "Calling upon the strength and wisdom of a deity, you gain a +1 luck bonus on attack and weapon damage rolls for every three caster levels you have (at least +1, maximum +3). The bonus doesn't apply to spell damage.",
       school: "Divination",
+      level: 1,
       magicType: "cleric1, paladin1",
       range: "personal",
       target: "you",
@@ -796,6 +865,7 @@ class SpellData {
       effect:
           "This spell fills a single subject with a feeling of horrible dread that causes it to become shaken.",
       school: "Necromancy",
+      level: 1,
       magicType: "antipaladin1, cleric1,",
       range: "medium (100 ft. + 10 ft./level)",
       duration: "1 min./level",
@@ -807,6 +877,7 @@ class SpellData {
       name: "Endure Elements",
       effect:
           "A creature protected by endure elements suffers no harm from being in a hot or cold environment. It can exist comfortably in conditions between –50 and 140 degrees Fahrenheit without having to make Fortitude saves. The creature's equipment is likewise protected. Endure elements doesn't provide any protection from fire or cold damage, nor does it protect against other environmental hazards such as smoke, lack of air, and so forth.",
+      level: 1,
       magicType:
           "alchemist1, arcanist1, cleric1, druid1, paladin1, ranger1, sorcerer1, summoner1 wizard1",
       school: "abjuration",
@@ -822,6 +893,7 @@ class SpellData {
       effect:
           "This spell causes instant growth of a humanoid creature, doubling its height and multiplying its weight by 8. This increase changes the creature's size category to the next larger one. The target gains a +2 size bonus to Strength, a –2 size penalty to Dexterity (to a minimum of 1), and a –1 penalty on attack rolls and AC due to its increased size. A humanoid creature whose size increases to Large has a space of 10 feet and a natural reach of 10 feet. This spell does not change the target's speed. If insufficient room is available for the desired growth, the creature attains the maximum possible size and may make a Strength check (using its increased Strength) to burst any enclosures in the process. If it fails, it is constrained without harm by the materials enclosing it—the spell cannot be used to crush a creature by increasing its size. All equipment worn or carried by a creature is similarly enlarged by the spell. Melee weapons affected by this spell deal more damage (see Table: Tiny and Large Weapon Damage). Other magical properties are not affected by this spell. Any enlarged item that leaves an enlarged creature's possession (including a projectile or thrown weapon) instantly returns to its normal size. This means that thrown and projectile weapons deal their normal damage. Magical properties of enlarged items are not increased by this spell.",
       school: "Transmutation",
+      level: 1,
       magicType: "alchemist1, arcanist1, sorcerer1, summoner1, wizard1",
       range: "close (25 ft. + 5 ft./2 levels)",
       duration: "1 min./level",
@@ -835,6 +907,7 @@ class SpellData {
       effect:
           "This spell causes tall grass, weeds, and other plants to wrap around creatures in the area of effect or those that enter the area. Creatures that fail their save gain the entangled condition. Creatures that make their save can move as normal, but those that remain in the area must save again at the end of your turn. Creatures that move into the area must save immediately. Those that fail must end their movement and gain the entangled condition. Entangled creatures can attempt to break free as a move action, making a Strength or Escape Artist check. The DC for this check is equal to the DC of the spell. The entire area of effect is considered difficult terrain while the effect lasts. If the plants in the area are covered in thorns, those in the area take 1 point of damage each time they fail a save against the entangle or fail a check made to break free. Other effects, depending on the local plants, might be possible at GM discretion.",
       school: "Transmutation",
+      level: 1,
       magicType: "druid1, ranger1",
       range: "long (400 ft. + 40 ft./level)",
       duration: "1 min./level",
@@ -846,6 +919,7 @@ class SpellData {
       effect:
           "A magical field appears around you, glowing with a chaotic blast of multicolored hues. This field deflects incoming arrows, rays, and other ranged attacks. Each ranged attack directed at you for which the attacker must make an attack roll has a 20% miss chance (similar to the effects of concealment). Other attacks that simply work at a distance are not affected.",
       school: "Abjuration",
+      level: 1,
       magicType: "cleric1",
       range: "personal",
       duration: "1 min./level",
@@ -857,6 +931,7 @@ class SpellData {
       effect:
           "While protected by fastidiousness, your person and your equipment stay clean and dry. Dust and moisture slough off immediately; even when you are completely soiled, your appearance reverts to a pristine state over the course of 1 minute. While this spell offers no protection against most attacks, staying constantly sanitary grants you a +2 circumstance bonus on Fortitude saving throws against inhaled and ingested diseases.",
       school: "Abjuration",
+      level: 1,
       magicType: " arcanist1, bard1, cleric1, paladin1, sorcerer1, wizard1",
       range: "personal",
       duration: "24 hours",
@@ -868,6 +943,7 @@ class SpellData {
       effect:
           "This spell alters details of your appearance so that you are no longer recognizable as yourself. Your new appearance is within the norms for your race, ethnicity, and gender. You lack control over the details of your appearance; however, when casting false face, you can choose an appearance you previously used, allowing you to maintain specific identities.",
       school: "Transmutation",
+      level: 1,
       magicType: "alchemist1, arcanist1, bard1, sorcerer1, wizard1",
       range: "personal",
       duration: "1 hour/level",
@@ -879,6 +955,7 @@ class SpellData {
         effect:
             "Each target that fails its saving throw gains light blindness, as per the universal monster rule. When exposed to bright light, affected targets are blinded for 1 full round and are dazzled in successive rounds. If you cast this spell in the presence of bright light, any target that fails its save is blinded immediately, and dazzled starting at the beginning of its first turn.",
         school: "Transmutation",
+        level: 2,
         magicType:
             "antipaladin1, arcanist2, cleric2, druid2, sorcerer2, wizard2",
         range: "medium (100 ft. + 10 ft./level)",
@@ -891,6 +968,7 @@ class SpellData {
       name: "Feather Fall",
       effect:
           "The affected creatures or objects fall slowly. Feather fall instantly changes the rate at which the targets fall to a mere 60 feet per round (equivalent to the end of a fall from a few feet), and the subjects take no damage upon landing while the spell is in effect. When the spell duration expires, a normal rate of falling resumes. The spell affects one or more Medium or smaller creatures (including gear and carried objects up to each creature's maximum load) or objects, or the equivalent in larger creatures: a Large creature or object counts as two Medium creatures or objects, a Huge creature or object counts as four Medium creatures or objects, and so forth.",
+      level: 1,
       magicType: "arcanist1, bard1, sorcerer1, summoner1, wizard1",
       school: "Transmutation",
       range: "close (25 ft. + 5 ft./2 levels)",
@@ -905,6 +983,7 @@ class SpellData {
       name: "Feather Step",
       effect:
           "Subject ignores adverse movement effects in difficult terrain. Duration 10 minutes/level",
+      level: 1,
       magicType: " bard1, druid1, ranger1,",
       school: "Transmutation",
       range: "close (25 ft. + 5 ft./2 levels)",
@@ -918,6 +997,7 @@ class SpellData {
       name: "Floating Disk",
       effect:
           "You create a slightly concave, circular plane of force that follows you about and carries loads for you. The disk is 3 feet in diameter and 1 inch deep at its center. It can hold 100 pounds of weight per caster level. If used to transport a liquid, its capacity is 2 gallons. The disk floats approximately 3 feet above the ground at all times and remains level. It floats along horizontally within spell range and will accompany you at a rate of no more than your normal speed each round. If not otherwise directed, it maintains a constant interval of 5 feet between itself and you. The disk winks out of existence when the spell duration expires. The disk also winks out if you move beyond its range or try to take the disk more than 3 feet away from the surface beneath it. When the disk winks out, whatever it was supporting falls to the surface beneath it.",
+      level: 1,
       magicType: "arcanist1, sorcerer1, wizard1",
       school: "Evocation",
       range: "close (25 ft. + 5 ft./2 levels)",
@@ -929,6 +1009,7 @@ class SpellData {
       effect:
           "You forbid the target a single course of action, which it avoids to the best of its ability. You may demand the target not take actions that fall into one of the following options. Attack: The target cannot take any action that involves an attack roll, or uses a spell or ability that targets a foe or an area that includes a foe. Cast: Target cannot cast spells or use spell-like abilities. Communicate: The target cannot take any actions that allow it to communicate with anyone. This includes such acts as speaking, Bluff checks to pass secret messages, writing, and using telepathy. It does not prevent verbalizations made for purposes other than communication, such as command words or the verbal component of spellcasting. Draw: Target cannot ready or prepare any item, weapon, component, or equipment. Move: The target can take no act that would cause it to end up in a different location. The target does not resist being moved by others (and thus can be picked up or dragged, or can float along on a raft), but does not consciously attempt to move (including not directing a mount to move). The target is free to take any actions not forbidden by the caster. For example, a target affected by this spell’s demand to not move is still free to cast spells, make attacks, or shout for help.",
       school: "Enchantment",
+      level: 1,
       magicType: "cleric1",
       range: "close (25 ft. + 5 ft./2 levels)",
       duration: "1 round",
@@ -941,6 +1022,7 @@ class SpellData {
       effect:
           "You create a light wind that blows only against the target, from a direction of your choice. The breeze grants the target a +2 circumstance bonus on saves against very hot conditions, severe heat, and saves against clouds, vapors, and gases (such as cloudkill, stinking cloud, and inhaled poisons). There must be air present to use this spell.",
       school: "Evocation",
+      level: 1,
       magicType: "arcanist1, druid1, sorcerer1, wizard1",
       range: "close (25 ft. + 5 ft./2 levels)",
       duration: "1 hour",
@@ -953,6 +1035,7 @@ class SpellData {
       effect:
           "Gravity bow significantly increases the weight and density of arrows or bolts fired from your bow or crossbow the instant before they strike their target and then return them to normal a few moments later. Any arrow fired from a bow or crossbow you are carrying when the spell is cast deals damage as if one size larger than it actually is. For instance, an arrow fired from a Medium longbow normally deals 1d8 points of damage, but it would instead deal 2d6 points of damage if fired from a gravity bow. Only you can benefit from this spell. If anyone else uses your bow to make an attack the arrows deal damage as normal for their size.",
       school: "Transmutation",
+      level: 1,
       magicType: "arcanist1, ranger1, sorcerer1, wizard1",
       range: "personal",
       duration: "1 minute/level",
@@ -965,6 +1048,7 @@ class SpellData {
           "Until the end of your turn, your movement does not provoke attacks of opportunity.",
       school: "Abjuration",
       castingTime: "1 swift action",
+      level: 1,
       magicType: " cleric2, paladin1,",
       range: "personal",
       duration: "1 round",
@@ -976,6 +1060,7 @@ class SpellData {
       effect:
           "A grease spell covers a solid surface with a layer of slippery grease. Any creature in the area when the spell is cast must make a successful Reflex save or fall. A creature can walk within or through the area of grease at half normal speed with a DC 10 Acrobatics check. Failure means it can't move that round (and must then make a Reflex save or fall), while failure by 5 or more means it falls (see the Acrobatics skill for details). Creatures that do not move on their turn do not need to make this check and are not considered flat-footed. The spell can also be used to create a greasy coating on an item. Material objects not in use are always affected by this spell, while an object wielded or employed by a creature requires its bearer to make a Reflex saving throw to avoid the effect. If the initial saving throw fails, the creature immediately drops the item. A saving throw must be made in each round that the creature attempts to pick up or use the greased item. A creature wearing greased armor or clothing gains a +10 circumstance bonus on Escape Artist checks and combat maneuver checks made to escape a grapple, and to their CMD to avoid being grappled.",
       school: "Conjuration",
+      level: 1,
       magicType: "arcanist1, bard1, sorcerer1, summoner1, wizard1",
       range: "close (25 ft. + 5 ft./2 levels)",
       duration: "1 min./level",
@@ -988,6 +1073,7 @@ class SpellData {
       effect:
           "A weapon made from divine force appears and floats near you. This weapon takes the shape of your deity’s favored weapon (if you have no deity, the weapon appears as a simple weapon with special significance to you). You gain one additional weapon at 6th level and every 4 caster levels thereafter—two at 6th, three at 10th, four at 14th, and a maximum of five weapons at 18th level. The weapon averts and deflects attacks, granting you a +1 deflection bonus to AC for each weapon summoned (maximum +5 at 18th level). As a standard action, you can grasp a weapon and throw it as a ranged attack at any target you can see within 30 feet of you (even if it’s a type of weapon that can’t normally be thrown). On a successful hit, the weapon deals 2d6 points of force damage to the target. This force weapon has the same threat range and critical multiplier as a standard weapon of its type, but no other special abilities. Because it deals force damage, DR doesn’t apply. Each weapon thrown lowers the total deflection bonus to your AC by 1 as it disappears immediately after the attack action. The spell immediately ends once you throw all the weapons.",
       school: "Abjuration",
+      level: 1,
       magicType: "cleric1, antipaladin1, paladin1 ",
       range: "personal",
       duration: "24 hours",
@@ -999,6 +1085,7 @@ class SpellData {
       effect:
           "Undead cannot see, hear, or smell creatures warded by this spell. Even extraordinary or supernatural sensory capabilities, such as blindsense, blindsight, scent, and tremorsense, cannot detect or locate warded creatures. Nonintelligent undead creatures (such as skeletons or zombies) are automatically affected and act as though the warded creatures are not there. An intelligent undead creature gets a single Will saving throw. If it fails, the subject can't see any of the warded creatures. If it has reason to believe unseen opponents are present, however, it can attempt to find or strike them. If a warded creature attempts to channel positive energy, turn or command undead, touches an undead creature, or attacks any creature (even with a spell), the spell ends for all recipients.",
       school: "Abjuration",
+      level: 1,
       magicType: "cleric1",
       range: "touch",
       duration: "10 min./level",
@@ -1012,6 +1099,7 @@ class SpellData {
       effect:
           "You call forth a quick blast of water that knocks over and soaks one creature or square. You can use this blast of water to make a bull rush against any one creature or object. Your CMB for this bull rush is equal to your caster level plus your Intelligence, Wisdom, or Charisma modifier, whichever is highest. This bull rush does not provoke an attack of opportunity. Hydraulic push extinguishes any normal fires on a creature, object, or in a single 5-foot square which it is targeted against. Magical fires are unaffected.",
       school: "Evocation",
+      level: 1,
       magicType: "arcanist1, druid1, sorcerer1, wizard1",
       range: "close (25 ft. + 5 ft./2 levels)",
       duration: "instantaneous",
@@ -1022,6 +1110,7 @@ class SpellData {
         effect:
             "Your gestures and droning incantation fascinate nearby creatures, causing them to stop and stare blankly at you. In addition, you can use their rapt attention to make your suggestions and requests seem more plausible. Roll 2d4 to see how many total HD of creatures you affect. Creatures with fewer HD are affected before creatures with more HD. Only creatures that can see or hear you are affected, but they do not need to understand you to be fascinated. If you use this spell in combat, each target gains a +2 bonus on its saving throw. If the spell affects only a single creature not in combat at the time, the saving throw has a penalty of –2. While the subject is fascinated by this spell, it reacts as though it were two steps more friendly in attitude. This allows you to make a single request of the affected creature (provided you can communicate with it). The request must be brief and reasonable. Even after the spell ends, the creature retains its new attitude toward you, but only with respect to that particular request. A creature that fails its saving throw does not remember that you enspelled it.",
         school: "Enchantment",
+        level: 1,
         magicType: "arcanist1, bard1, sorcerer1, wizard1",
         range: "close (25 ft. + 5 ft./2 levels)",
         duration: "2d4 rounds",
@@ -1035,6 +1124,7 @@ class SpellData {
         effect:
             "This spell functions as detect magic, except that it gives you a +10 enhancement bonus on Spellcraft checks made to identify the properties and command words of magic items in your possession. This spell does not allow you to identify artifacts.",
         school: "Divination",
+        level: 1,
         magicType:
             "alchemist1, arcanist1, bard1, sorcerer1, summoner1, wizard1",
         range: "60 ft.",
@@ -1046,6 +1136,7 @@ class SpellData {
         effect:
             "You summon an illusory swarm of angry wasps that fills a 10-foot-diameter sphere. You can summon it so that it shares an area with other creatures, and you can move it up to 40 feet each round as a move action. Creatures caught inside the swarm’s area of effect cannot use skills that require patience or concentration. Additionally, spellcasters within the area must succeed at a caster level check (DC = 20 + level of spell to be cast) in order to cast spells. On a failed caster level check, the spell is lost. While the buzzing is unpleasant, it is not so loud as to drown out other noises or make communication difficult.",
         school: "Illusion",
+        level: 1,
         magicType: "antipaladin1, arcanist1, bard1, sorcerer1, wizard1",
         range: "medium (100 ft. + 10 ft./level)",
         duration: "1 round/level",
@@ -1057,6 +1148,7 @@ class SpellData {
       effect:
           "When laying your hand upon a creature, you channel negative energy that deals 1d8 points of damage + 1 point per caster level (maximum +5). Since undead are powered by negative energy, this spell cures such a creature of a like amount of damage, rather than harming it.",
       school: "Necromancy",
+      level: 1,
       magicType: "antipaladin1, cleric1",
       range: "touch",
       duration: "instantaneous",
@@ -1070,6 +1162,7 @@ class SpellData {
         effect:
             "You question the target, backed up by the threat of magical pain. You may ask one question per two caster levels. The target can either answer the question or take 1d4 points of damage plus your Wisdom bonus. The target is not compelled to answer truthfully, but the threat of pain gives it a –4 penalty on Bluff checks to convince you when it is lying.",
         school: "Necromancy",
+        level: 1,
         magicType: "arcanist1, sorcerer1, wizard1",
         range: "touch",
         duration: "1 minute/level",
@@ -1082,6 +1175,7 @@ class SpellData {
       effect:
           "Bleed effects on the target immediately end when this spell is cast, and no blood flows out when the target is damaged by a slashing or piercing weapon. The target takes the full amount of damage from attacks, but because the wounds produce no blood, they do not attract creatures with the ability to sense blood, such as sharks. If the target suffers another bleed effect while this spell is in effect, the bleed effect ends and the spell is immediately dismissed.",
       school: "Conjuration",
+      level: 1,
       magicType: "alchemist1, bard1, cleric1, druid1, paladin1, ranger1",
       range: "touch",
       duration: "1 round/level",
@@ -1094,6 +1188,7 @@ class SpellData {
       effect:
           "This spell functions as alarm, except it is triggered only by invisible creatures entering or leaving the warded area. The spell has a different mental alarm depending on whether the invisible creature is entering or leaving the area. This spell does not aid you in sensing or pinpointing the location of an invisible creature within the spell’s area.",
       school: "Abjuration",
+      level: 1,
       magicType: "alchemist1, arcanist1, bard1, ranger1, sorcerer1, wizard1",
       range: "close (25 ft. + 5 ft./2 levels)",
       duration: "10 minutes/level",
@@ -1104,6 +1199,7 @@ class SpellData {
         name: "Jump",
         effect:
             "The subject gets a +10 enhancement bonus on Acrobatics checks made to attempt high jumps or long jumps. The enhancement bonus increases to +20 at caster level 5th, and to +30 (the maximum) at caster level 9th.",
+        level: 1,
         magicType:
             "alchemist1, arcanist1, druid1, ranger1, sorcerer1, summoner1, wizard1",
         school: "Transmutation",
@@ -1118,6 +1214,7 @@ class SpellData {
         effect:
             "When you cast this spell, a spectral force binds a broken weapon together, relieving the broken condition for a short time. While under the effects of this spell, an item with the broken condition suffers no adverse effects from that condition, and is treated as if it is not broken. The object regains no hit points, and damage can still destroy the object.",
         school: "Transmutation",
+        level: 1,
         magicType: "arcanist1, bard1, sorcerer1, summoner1, wizard1",
         range: "touch",
         duration: "one broken object of up to 2 lbs./level",
@@ -1128,6 +1225,7 @@ class SpellData {
       effect:
           "You commune with the divine, reflecting on one type of creature you encountered in the last day. You may make a Knowledge check regarding that creature type with a +10 insight bonus.",
       school: "Divination",
+      level: 1,
       magicType: "cleric1, paladin1, ranger1",
       range: "personal",
       duration: "you",
@@ -1139,6 +1237,7 @@ class SpellData {
         effect:
             "If the target is bound, grappled, or otherwise restrained, he may make an Escape Artist check to escape as an immediate action. He gains a competence bonus on this check equal to twice your caster level (maximum +20). This spell has no effect if the target could not get free by using the Escape Artist skill (for example, if he were under the effects of a hold person spell or paralyzed by Strength damage).",
         school: "Transmutation",
+        level: 1,
         magicType:
             "arcanist1, bard1, cleric1, druid1, paladin1, ranger1, sorcerer1, wizard1",
         range: "close (25 ft. + 5 ft./2 levels)",
@@ -1152,6 +1251,7 @@ class SpellData {
       effect:
           "The target's weight decreases by half. If this spell is cast on armor, the armor’s armor check penalty decreases by 1, though its categorization as light, medium, or heavy does not change.",
       school: "Transmutation",
+      level: 1,
       magicType: "arcanist1, bard1, cleric1, sorcerer1, summoner1, wizard1",
       range: "close (25 ft. + 5 ft./2 levels)",
       duration: "1 minute/level",
@@ -1165,6 +1265,7 @@ class SpellData {
       effect:
           "You create a glowing crimson line around the area. Against creatures in the area, you can attempt a number of additional attacks of opportunity per round equal to your spellcasting ability score modifier (Intelligence for magi and wizards, Charisma for bloodragers and sorcerers), although this does not allow you to make more than one attack against a creature per action that provokes.",
       school: "Abjuration",
+      level: 1,
       magicType: "arcanist1, sorcerer1, wizard1",
       range: "5 ft.",
       duration: "1 round/level",
@@ -1177,6 +1278,7 @@ class SpellData {
       effect:
           "This spell reduces the effect of range, granting a +10-foot bonus to the range increment of any weapon used by the subject.",
       school: "Transmutation",
+      level: 1,
       magicType:
           "alchemist1, antipaladin1, arcanist1, paladin1, ranger1, sorcerer1, wizard1",
       range: "personal",
@@ -1189,6 +1291,7 @@ class SpellData {
       effect:
           "This spell gives you a +10 foot enhancement bonus to your base speed. It has no effect on other modes of movement, such as burrow, climb, fly, or swim.",
       school: "Transmutation",
+      level: 1,
       magicType: "druid1, ranger1",
       range: "personal",
       target: "you",
@@ -1199,6 +1302,7 @@ class SpellData {
       name: "Mage Armor",
       effect:
           "An invisible but tangible field of force surrounds the subject of a mage armor spell, providing a +4 armor bonus to AC. Unlike mundane armor, mage armor entails no armor check penalty, arcane spell failure chance, or speed reduction. Since mage armor is made of force, incorporeal creatures can't bypass it the way they do normal armor.",
+      level: 1,
       magicType: "arcanist1, sorcerer1, summoner1, wizard1",
       school: "conjuration",
       range: "touch",
@@ -1212,6 +1316,7 @@ class SpellData {
       effect:
           "A missile of magical energy darts forth from your fingertip and strikes its target, dealing 1d4+1 points of force damage. The missile strikes unerringly, even if the target is in melee combat, so long as it has less than total cover or total concealment. Specific parts of a creature can't be singled out. Objects are not damaged by the spell. For every two caster levels beyond 1st, you gain an additional missile—two at 3rd level, three at 5th, four at 7th, and the maximum of five missiles at 9th level or higher. If you shoot multiple missiles, you can have them strike a single creature or several creatures. A single missile can strike only one creature. You must designate targets before you check for spell resistance or roll damage.",
       school: "evocation",
+      level: 1,
       magicType: "arcanist1, sorcerer1, wizard1",
       range: "medium (100 ft. + 10 ft./level)",
       duration: "instantaneous",
@@ -1223,6 +1328,7 @@ class SpellData {
       effect:
           "You transmute as many as three pebbles, which can be no larger than sling bullets, so that they strike with great force when thrown or slung. If hurled, they have a range increment of 20 feet. If slung, treat them as sling bullets (range increment 50 feet). The spell gives them a +1 enhancement bonus on attack and damage rolls. The user of the stones makes a normal ranged attack. Each stone that hits deals 1d6+1 points of damage (including the spell's enhancement bonus), or 2d6+2 points against undead.",
       school: "Transmutation",
+      level: 1,
       magicType: "cleric1, druid1",
       range: "touch",
       duration: "30 minutes or until discharged",
@@ -1234,6 +1340,7 @@ class SpellData {
         effect:
             "Magic weapon gives a weapon a +1 enhancement bonus on attack and damage rolls. An enhancement bonus does not stack with a masterwork weapon's +1 bonus on attack rolls.",
         school: "Transmutation",
+        level: 1,
         magicType:
             "antipaladin1, arcanist1, cleric1, paladin1, sorcerer1, wizard1",
         range: "touch",
@@ -1247,6 +1354,7 @@ class SpellData {
       effect:
           "When you cast this spell, you conjure a single ball of sticky mud and launch it at an enemy’s face as a ranged touch attack. If the mudball hits, the target is blinded. Each round at the beginning of its turn, a creature blinded by this spell can attempt a Reflex saving throw to shake off the mud, ending the effect. The mudball can also be wiped off by the creature affected by it or by a creature adjacent to the creature affected by it as a standard action.",
       school: "Conjuration",
+      level: 1,
       magicType: "arcanist1, druid1, sorcerer1, wizard1",
       range: "one creature",
       duration: "instantaneous",
@@ -1258,6 +1366,7 @@ class SpellData {
         effect:
             "You give the target a mental urge to kill its nearest ally, which it obeys to the best of its ability. The target attacks its nearest ally on its next turn with a melee weapon or natural weapon. If necessary, it moves to or charges to the nearest ally in order to make this attack. If it is unable to reach its closest ally on its next turn, the target uses its turn to get as close as possible to the ally.",
         school: "Enchantment",
+        level: 1,
         magicType: " antipaladin1, cleric1",
         range: "close (25 ft. + 5 ft./2 levels)",
         duration: "1 round",
@@ -1269,6 +1378,7 @@ class SpellData {
       school: "Abjuration",
       effect:
           "You radiate the unearthly grace of a nereid. If you're not wearing armor, you gain a deflection bonus to your AC and CMD equal to your Charisma bonus (maximum +3). The maximum increases by 1 for every 6 levels you possess (maximum +6 at 18th level).",
+      level: 1,
       magicType: "druid1",
       range: "personal",
       target: "you",
@@ -1280,6 +1390,7 @@ class SpellData {
       effect:
           "A misty vapor arises around you. It is stationary. The vapor obscures all sight, including darkvision, beyond 5 feet. A creature 5 feet away has concealment (attacks have a 20% miss chance). Creatures farther away have total concealment (50% miss chance, and the attacker cannot use sight to locate the target). A moderate wind (11+ mph), such as from a gust of wind spell, disperses the fog in 4 rounds. A strong wind (21+ mph) disperses the fog in 1 round. A fireball, flame strike, or similar spell burns away the fog in the explosive or fiery spell's area. A wall of fire burns away the fog in the area into which it deals damage. This spell does not function underwater.",
       school: "Conjuration",
+      level: 1,
       magicType: "arcanist1, cleric1, druid1, sorcerer1, summoner1, wizard1",
       range: "20 ft.",
       duration: "1 min./level",
@@ -1291,6 +1402,7 @@ class SpellData {
       effect:
           "The target gains a +5 insight bonus on Perception checks to see through disguises. This bonus increases to +10 at caster level 7th.",
       school: "Divination",
+      level: 1,
       magicType: "alchemist1, arcanist1, bard1, cleric1, sorcerer1, wizard1",
       range: "touch",
       duration: "10 minutes/level",
@@ -1302,6 +1414,7 @@ class SpellData {
       effect:
           "Flames as bright as a torch appear in your open hand. The flames harm neither you nor your equipment. In addition to providing illumination, the flames can be hurled or used to touch enemies. You can strike an opponent with a melee touch attack, dealing fire damage equal to 1d6 + 1 point per caster level (maximum +5). Alternatively, you can hurl the flames up to 120 feet as a thrown weapon. When doing so, you attack with a ranged touch attack (with no range penalty) and deal the same damage as with the melee attack. No sooner do you hurl the flames than a new set appears in your hand. Each attack you make reduces the remaining duration by 1 minute. If an attack reduces the remaining duration to 0 minutes or less, the spell ends after the attack resolves. This spell does not function underwater.",
       school: "Evocation",
+      level: 1,
       magicType: "druid1",
       range: "touch/ranged touch attack",
       target: "one creature",
@@ -1311,6 +1424,7 @@ class SpellData {
       name: "Protection from Chaos",
       effect:
           "+2 to AC and saves, plus additional protection against selected alignment.",
+      level: 1,
       magicType: "arcanist1, cleric1, paladin1, sorcerer1, summoner1, wizard1",
       school: "Abjuration",
       range: "touch",
@@ -1323,6 +1437,7 @@ class SpellData {
       name: "Protection from Evil",
       effect:
           "+2 to AC and saves, plus additional protection against selected alignment.",
+      level: 1,
       magicType: "arcanist1, cleric1, sorcerer1, summoner1, paladin1 wizard1",
       school: "Abjuration",
       range: "touch",
@@ -1335,6 +1450,7 @@ class SpellData {
       name: "Protection from Good",
       effect:
           "+2 to AC and saves, plus additional protection against selected alignment",
+      level: 1,
       magicType:
           "arcanist1, cleric1, sorcerer1, summoner1, antipaladin1 wizard1",
       school: "Abjuration",
@@ -1348,6 +1464,7 @@ class SpellData {
       name: "Protection from Law",
       effect:
           "+2 to AC and saves, plus additional protection against selected alignment.",
+      level: 1,
       magicType: "arcanist1, cleric1, sorcerer1, summoner1, wizard1",
       school: "Abjuration",
       range: "touch",
@@ -1361,6 +1478,7 @@ class SpellData {
       effect:
           "A coruscating ray springs from your hand. You must succeed on a ranged touch attack to strike a target. The subject takes a penalty to Strength equal to 1d6+1 per two caster levels (maximum 1d6+5). The subject's Strength score cannot drop below 1. A successful Fortitude save reduces this penalty by half. This penalty does not stack with itself. Apply the highest penalty instead.",
       school: "Necromancy",
+      level: 1,
       magicType: "arcanist1, sorcerer1, wizard1",
       range: "close (25 ft. + 5 ft./2 levels)",
       duration: "1 round/level",
@@ -1374,6 +1492,7 @@ class SpellData {
       effect:
           "This spell functions as ray of exhaustion, except the target is sickened if it fails its save and unaffected if it makes its save.",
       school: "Necromancy",
+      level: 1,
       magicType: "arcanist1, cleric1, druid1, sorcerer1, summoner1, wizard1",
       range: "close (25 ft. + 5 ft./2 levels)",
       duration: "1 min./level",
@@ -1386,6 +1505,7 @@ class SpellData {
       effect:
           "This spell allows you to forecast the weather at your location for the next 48 hours, providing you with advance warning of storms, tornadoes, and so on. This forecast reveals only the weather that would arise naturally, and does not take into account any magical occurrences that might change the weather.",
       school: "Divination",
+      level: 1,
       magicType: "bard1, cleric1, druid1, ranger1",
       range: "personal",
       duration: "you",
@@ -1397,6 +1517,7 @@ class SpellData {
       effect:
           "This spell causes instant diminution of a humanoid creature, halving its height, length, and width and dividing its weight by 8. This decrease changes the creature's size category to the next smaller one. The target gains a +2 size bonus to Dexterity, a –2 size penalty to Strength (to a minimum of 1), and a +1 bonus on attack rolls and AC due to its reduced size. A Small humanoid creature whose size decreases to Tiny has a space of 2-1/2 feet and a natural reach of 0 feet (meaning that it must enter an opponent's square to attack). A Large humanoid creature whose size decreases to Medium has a space of 5 feet and a natural reach of 5 feet. This spell doesn't change the target's speed.",
       school: "Transmutation",
+      level: 1,
       magicType: " alchemist1, arcanist1, sorcerer1, summoner1, wizard1",
       range: "close (25 ft. + 5 ft./2 levels)",
       duration: "1 min./level",
@@ -1409,6 +1530,7 @@ class SpellData {
       name: "Remove Fear",
       effect:
           "You instill courage in the subject, granting it a +4 morale bonus against fear effects for 10 minutes. If the subject is under the influence of a fear effect when receiving the spell, that effect is suppressed for the duration of the spell.",
+      level: 1,
       magicType: "bard1, cleric1",
       school: "Abjuration;",
       range: "close (25 ft. + 5 ft./2 levels)",
@@ -1421,6 +1543,7 @@ class SpellData {
       name: "Remove Sickness",
       effect:
           "You quell feelings of illness and nausea in the target, giving it a +4 morale bonus on saving throws against disease, nausea, and sickened effects. If the subject is already under the influence of one of these effects when receiving the spell, that effect is suppressed for the duration of the spell.",
+      level: 1,
       magicType: "cleric1, druid1",
       school: "Conjuration",
       range: "close (25 ft. + 5 ft./2 levels)",
@@ -1433,6 +1556,7 @@ class SpellData {
         effect:
             "When you touch an undead creature, you channel negative energy that heals 1d8 points of damage + 1 point per caster level (maximum +5). This spell has no effect on living creatures, except those that are healed by negative energy are also healed by the spell.",
         school: "Necromancy",
+        level: 1,
         magicType: "arcanist1, sorcerer1, wizard1",
         range: "touch",
         duration: "instantaneous",
@@ -1445,6 +1569,7 @@ class SpellData {
       effect:
           "You energize your body's immune system, improving your ability to resist toxins and ailments. You gain a +2 resistance bonus on saving throws to resist diseases, drugs, and poisons. Additionally, at any time during the spell’s duration, whenever you fail a saving throw to resist a disease, drug, or poison, you can expend the spell’s remaining duration as an immediate action in order to reroll that saving throw. You must take the second result, even if it’s worse. The +2 resistance bonus granted by the spell applies to the reroll, but after you make this reroll, the spell ends.",
       school: "Abjuration",
+      level: 1,
       magicType: "cleric1, druid1, paladin1, ranger1",
       range: "personal",
       duration: "24 hours or until discharged",
@@ -1455,7 +1580,8 @@ class SpellData {
       name: "Rite of Centered Mind",
       effect:
           "You heighten your awareness of your own thoughts, allowing you to more easily resist outside influences. You gain a +1 resistance bonus on saving throws to resist mind-affecting effects. This resistance bonus is increased to +2 if the effect is an emotion or fear effect. Additionally, at any time during the spell’s duration, whenever you fail a saving throw to resist a mind-affecting effect, you can expend the spell’s remaining duration as an immediate action in order to reroll that saving throw. You must take the second result, even if it’s worse. The +2 resistance bonus granted by the spell applies to the reroll, but after you make this reroll, the spell ends.",
-      school: "",
+      school: "Abjuration",
+      level: 1,
       magicType: "arcanist1, cleric1, druid1, wizard1",
       range: "personal",
       duration: "24 hours or until discharged",
@@ -1467,6 +1593,7 @@ class SpellData {
       effect:
           "Any opponent attempting to directly attack the warded creature, even with a targeted spell, must attempt a Will save. If the save succeeds, the opponent can attack normally and is unaffected by that casting of the spell. If the save fails, the opponent can't follow through with the attack, that part of its action is lost, and it can't directly attack the warded creature for the duration of the spell. Those not attempting to attack the subject remain unaffected. This spell does not prevent the warded creature from being attacked or affected by area of effect spells. The subject cannot attack without breaking the spell but may use nonattack spells or otherwise act.",
       school: "Abjuration",
+      level: 1,
       magicType: "cleric1",
       range: "touch",
       duration: "1 round/level",
@@ -1479,6 +1606,7 @@ class SpellData {
         effect:
             "You pin the target's shadow to its current location, causing the target to become entangled and preventing it from moving farther than 5 feet from its original position, as if its shadow were anchored to the terrain. Each round on its turn, the target can attempt a new saving throw to end the effect as a full-round action. A flying creature can only hover in place or fall while entangled in this manner. This spell automatically fails when cast on a creature that doesn’t throw a shadow, and it ends if the creature is entirely in an area with no illumination.",
         school: "Illusion",
+        level: 1,
         magicType:
             "antipaladin1, arcanist1, bard1, cleric1, sorcerer1, wizard1",
         range: "close (25 ft. + 5 ft./2 levels)",
@@ -1490,6 +1618,7 @@ class SpellData {
       name: "Shield",
       effect:
           "Shield creates an invisible shield of force that hovers in front of you. It negates magic missile attacks directed at you. The disk also provides a +4 shield bonus to AC. This bonus applies against incorporeal touch attacks, since it is a force effect. The shield has no armor check penalty or arcane spell failure chance.",
+      level: 1,
       magicType: "alchemist1, arcanist1, sorcerer1, summoner1, wizard1",
       school: "Abjuration",
       range: "personal",
@@ -1501,6 +1630,7 @@ class SpellData {
       name: "Shield of Faith",
       effect:
           "This spell creates a shimmering, magical field around the target that averts and deflects attacks. The spell grants the subject a +2 deflection bonus to AC, with an additional +1 to the bonus for every six levels you have (maximum +5 deflection bonus at 18th level).",
+      level: 1,
       magicType: "cleric1",
       school: "Abjuration",
       range: "touch",
@@ -1513,6 +1643,7 @@ class SpellData {
         effect:
             "Your successful melee touch attack deals 1d6 points of electricity damage per caster level (maximum 5d6). When delivering the jolt, you gain a +3 bonus on attack rolls if the opponent is wearing metal armor (or is carrying a metal weapon or is made of metal).",
         school: "Evocation",
+        level: 1,
         magicType: " arcanist1,sorcerer1, wizard1",
         range: "touch",
         duration: "instantaneous",
@@ -1523,6 +1654,7 @@ class SpellData {
         effect:
             "A sleep spell causes a magical slumber to come upon 4 HD of creatures. Creatures with the fewest HD are affected first. Among creatures with equal HD, those who are closest to the spell's point of origin are affected first. HD that are not sufficient to affect a creature are wasted. Sleeping creatures are helpless. Slapping or wounding awakens an affected creature, but normal noise does not. Awakening a creature is a standard action (an application of the aid another action). Sleep does not target unconscious creatures, constructs, or undead creatures.",
         school: "Enchantment",
+        level: 1,
         magicType: "arcanist1, bard1, sorcerer1, wizard1",
         range: "medium (100 ft. + 10 ft./level)",
         duration: "1 min./level",
@@ -1534,6 +1666,7 @@ class SpellData {
       effect:
           "This spell functions as tongues, except the creature touched gains only the ability to speak and understand a regional human language, such as Varisian or Common (Taldane in the Inner Sea region or Tien in Tian Xia), and the language granted must be one you know. You must select the language at the time of casting. The language can’t be a dead language, such as Ancient Osiriani or Jistka. The target speaks the language with a native accent, but the spell doesn’t impart knowledge about any culture associated with the language, nor does it change the target’s appearance.",
       school: "Divination",
+      level: 1,
       magicType: "arcanist1, bard1, cleric1, ranger1, sorcerer1, wizard1",
       range: "touch",
       duration: "10 min./level",
@@ -1545,6 +1678,7 @@ class SpellData {
       effect:
           "This spell transforms your hands into living stone. While this spell is in effect, your unarmed strikes do not provoke attacks of opportunity and deal 1d6 points of lethal bludgeoning damage (1d4 if you are Small). In addition, your unarmed strikes ignore the hardness of any object with a hardness less than 8.",
       school: "Transmutation",
+      level: 1,
       magicType: "alchemist1, arcanist1, druid1, sorcerer1, wizard1",
       range: "personal",
       duration: "1 minute/level",
@@ -1556,6 +1690,7 @@ class SpellData {
       effect:
           "This spell summons to your side a natural creature (typically an animal, fey, magical beast, outsider with the elemental subtype, or a giant). The summoned ally appears where you designate and acts immediately, on your turn. It attacks your opponents to the best of its ability. If you can communicate with the creature, you can direct it not to attack, to attack particular enemies, or to perform other actions as you command. A summoned monster cannot summon or otherwise conjure another creature, nor can it use any teleportation or planar travel abilities. Creatures cannot be summoned into an environment that cannot support them. Creatures summoned using this spell cannot use spells or spell-like abilities that duplicate spells that have expensive material components (such as wish). You choose which kind of creature to summon, and you can change that choice each time you cast the spell. All creatures summoned with this spell have an alignment that matches yours, regardless of their usual alignment.  Creatures are: Dire rat — Dog — Dolphin — Eagle — Giant centipede — Fire beetle	— Mite (gremlin) — Poisonous frog — Pony (horse) — Stirge — Viper (snake).",
       school: "Conjuration",
+      level: 1,
       magicType: "druid1, ranger1,",
       range: "close (25 ft. + 5 ft./2 levels)",
       duration: "1 round/level",
@@ -1565,6 +1700,7 @@ class SpellData {
       effect:
           "You make the affected subjects ready for battle despite their fear. If a target is suffering from a fear effect of any kind, he gains a +2 morale bonus to Strength and Constitution, a +1 morale bonus on Will saves, and a –2 penalty to AC. If the subject is frightened, he remains in place and gains the confused condition for the remainder of the fear effect, except he treats all results of “attack self ” as “do nothing” and treats “attack nearest creature” as “act normally.” If the subject is panicked, he remains in place and gains the confused condition for the duration of the fear effect.",
       school: "Enchantment",
+      level: 1,
       magicType: "bard1, cleric1,",
       range: "close (25 ft. + 5 ft./2 levels)",
       duration: "10 minutes",
@@ -1577,6 +1713,7 @@ class SpellData {
       effect:
           "This spell allows you to tap into the natural beauty of your soul and let it shine from your eyes and your speech. While the spell is active, you gain a +2 insight bonus on all Charisma ability checks and Charisma-based skill checks.",
       school: "Divination",
+      level: 1,
       magicType: "bard1, cleric1",
       range: "personal",
       duration: "1 minute/level",
@@ -1588,6 +1725,7 @@ class SpellData {
       effect:
           "You ward a single object in your possession against theft. You gain a +10 bonus on Perception checks to notice someone trying to take the object from you.",
       school: "Abjuration",
+      level: 1,
       magicType: "arcanist1, cleric1, sorcerer1, wizard1",
       range: "touch",
       duration: "1 day",
@@ -1600,6 +1738,7 @@ class SpellData {
       effect:
           "You stomp your foot or strike your weapon against the ground or floor, creating a ripple of power that you can use to trip a creature. Attempt the combat maneuver check to trip the target, but instead of your base attack bonus you can use your caster level, and instead of your Strength modifier you can use your spellcasting ability score modifier (Intelligence for magi and wizards; Wisdom for druids and rangers; Charisma for bloodragers and sorcerers). This does not provoke an attack of opportunity. This spell has no effect if you cannot reach the ground or floor, or if your target is not in contact with the ground or floor.",
       school: "Evocation",
+      level: 1,
       magicType: "druid1",
       range: "close (25 ft. + 5 ft./2 levels)",
       duration: "instantaneous",
@@ -1611,6 +1750,7 @@ class SpellData {
         effect:
             "A touch from your hand, which is engulfed in darkness, disrupts a creature’s vision by coating its eyes in supernatural darkness. Each touch causes the target to become blinded for 1 round unless it makes a successful Fortitude saving throw. You can use this melee touch attack up to one time per caster level. Any touch attack not used after 1 round per caster level is lost.",
         school: "Necromancy",
+        level: 1,
         magicType:
             "antipaladin1, arcanist1, bard1, cleric1, sorcerer1, wizard1",
         range: "touch",
@@ -1623,6 +1763,7 @@ class SpellData {
         effect:
             "With a single touch, you reduce a creature to a fumbling clown. The target takes a penalty to its Dexterity equal to 1d6+1 per two caster levels (maximum 1d6+5). This penalty cannot drop the target’s Dexterity score below 1. In addition, if the subject moves more than half its speed, it falls prone. If the subject flies, its maneuverability is reduced by one step (perfect maneuverability becomes good, good becomes average, and so on). A successful Fortitude save halves the penalty to Dexterity and negates the possibility of falling prone or the reduction to fly maneuverabilities.",
         school: "Transmutation",
+        level: 1,
         magicType: "arcanist1, bard1, sorcerer1, wizard1",
         range: "touch",
         duration: "1 round/level",
@@ -1634,6 +1775,7 @@ class SpellData {
         effect:
             "You cause webs to grow between the target’s fingers and its feet to transform into flippers, granting a swim speed of 30 feet along with the standard +8 bonus on Swim checks and the ability to take 10 even if distracted or endangered. You can also use the run action while swimming, provided you swim in a straight line. This transformation causes any boots or gloves the target is wearing to meld into its form (although magic items with a continuous effect continue to function). This spell does not grant the target any ability to breathe water.",
         school: "Transmutation",
+        level: 1,
         magicType: "alchemist1, arcanist1, druid1, sorcerer1, wizard1",
         range: "touch",
         duration: "1 minute/level",
@@ -1646,6 +1788,7 @@ class SpellData {
       effect:
           "You animate a rope, vine, or similar object so that it attempts to trip any creature that comes near. The rope attacks anything in a 10-foot-square area you designate. The rope does not provoke an attack of opportunity. Its CMB is equal to your caster level +2. A tripped target that was running, jumping, or charging takes 1d6 points of nonlethal damage. Creatures aware of the tripvine gain a +4 bonus to their CMD against it. The Green Faith created this spell, but it is now common.",
       school: "Transmutation",
+      level: 1,
       magicType: "arcanist1, bard1, druid1, sorcerer1, wizard1",
       range: "touch",
       duration: "10 minutes/leve",
@@ -1658,6 +1801,7 @@ class SpellData {
       effect:
           "When faced with an important situation, you grant yourself a magical edge to ensure your success. When casting this spell, select one skill for which you can attempt a skill check. The next time you attempt a skill check using the selected skill (before the spell’s duration ends), you gain an insight bonus on the check equal to 1/2 your caster level (minimum 1).",
       school: "Divination",
+      level: 1,
       magicType: "alchemist1, arcanist1, bard1, sorcerer1, wizard1",
       range: "personal",
       duration: "1 minute/level",
@@ -1669,6 +1813,7 @@ class SpellData {
       effect:
           "You gain temporary, intuitive insight into the immediate future during your next attack. Your next single attack roll (if it is made before the end of the next round) gains a +20 insight bonus. Additionally, you are not affected by the miss chance that applies to attackers trying to strike a concealed target.",
       school: "Divination",
+      level: 1,
       magicType: "alchemist1, arcanist1, sorcerer1, wizard1",
       range: "personal",
       duration: "1 minute/level",
@@ -1680,6 +1825,7 @@ class SpellData {
       effect:
           "An unseen servant is an invisible, mindless, shapeless force that performs simple tasks at your command. It can run and fetch things, open unstuck doors, and hold chairs, as well as clean and mend. The servant can perform only one activity at a time, but it repeats the same activity over and over again if told to do so as long as you remain within range. It can open only normal doors, drawers, lids, and the like. It has an effective Strength score of 2 (so it can lift 20 pounds or drag 100 pounds). It can trigger traps and such, but it can exert only 20 pounds of force, which is not enough to activate certain pressure plates and other devices. It can't perform any task that requires a skill check with a DC higher than 10 or that requires a check using a skill that can't be used untrained. This servant cannot fly, climb, or even swim (though it can walk on water). Its base speed is 15 feet.",
       school: "Conjuration",
+      level: 1,
       magicType: "arcanist1, bard1, sorcerer1, summoner1, wizard1",
       range: " close (25 ft. + 5 ft./2 levels)",
       duration: "1 hour/level",
@@ -1689,6 +1835,7 @@ class SpellData {
       name: "Vanish",
       effect:
           "This spell functions like invisibility, except the effect only lasts for 1 round per caster level (maximum of 5 rounds). Like invisibility, the spell immediately ends if the subject attacks any creature.",
+      level: 1,
       magicType: "arcanist1, bard1, sorcerer1, wizard1",
       school: "Illusion",
       range: "touch",
@@ -1703,6 +1850,7 @@ class SpellData {
       effect:
           "You polymorph your target to look like an older version of itself. You select how much older (for example, “10 years older” or “as an adult”). You can’t otherwise change the target’s appearance other than those details directly associated with aging (for example, a target’s hair might turn gray or the target might develop liver spots). This spell allows children of creatures that are Medium or smaller when fully grown to grow one size category to the normal, adult size of that type of creature, but otherwise the selected age increase doesn’t alter the creature’s size. A change in size doesn’t alter the target’s ability scores. This spell doesn’t affect or cause any age-based modifications to ability scores or other age-related effects like dragon age categories or natural metamorphoses.",
       school: "Transmutation",
+      level: 1,
       magicType: " alchemist1, arcanist1, bard1, sorcerer1, wizard1",
       range: "touch",
       duration: "1 hour/level",
@@ -1716,6 +1864,7 @@ class SpellData {
       effect:
           "You make your target look like a younger version of itself. You select how much younger it looks (for example, “10 years” or “as a young adult”). You cannot otherwise change details of the target’s appearance other than those directly associated with aging (for example, gray hair returns to its original color). The target cannot appear so much younger that it changes size. This spell does not affect any age-based modifications to ability scores or other age-related effects.",
       school: "Transmutation",
+      level: 1,
       magicType: "alchemist1, arcanist1, bard1, sorcerer1, wizard1",
       range: "touch",
       duration: "1 hour/level",
@@ -1736,6 +1885,7 @@ class SpellData {
       effect:
           "The targets are able to breathe water, freely. However, they can no longer breathe air. Divide the duration evenly among all the creatures you touch. This spell has no effect on creatures that can already breathe water.",
       school: "Transmutation",
+      level: 2,
       magicType: "arcanist2, cleric2, druid2, sorcerer2, wizard2 ",
       range: "touch",
       duration: "1 hour/level",
@@ -1748,6 +1898,7 @@ class SpellData {
       effect:
           "An arrow of acid springs from your hand and speeds to its target. You must succeed on a ranged touch attack to hit your target. The arrow deals 2d4 points of acid damage with no splash damage. For every three caster levels you possess, the acid, unless neutralized, lasts for another round (to a maximum of 6 additional rounds at 18th level), dealing another 2d4 points of damage in each round.",
       school: "Conjuration",
+      level: 2,
       magicType: " arcanist2, sorcerer2, wizard2",
       range: " long (400 ft. + 40 ft./level)",
       duration: "1 round + 1 round per three levels",
@@ -1758,6 +1909,7 @@ class SpellData {
       effect:
           "Your blood thickens to becomes a glue-like substance upon contact with air. A piercing or slashing weapon that deals hit point damage to you is stuck fast unless the wielder succeeds at a Reflex save. A creature can pry off a stuck weapon on its turn as a standard action with a successful Strength check against the spell’s DC. Strong alcohol or universal solvent dissolves the adhesive. The glue breaks down 5 rounds after you die, or when the duration ends. This glue has no effect while underwater or in environments that lack air.",
       school: "Transmutation",
+      level: 2,
       magicType: "alchemist2, arcanist2, sorcerer2, wizard2",
       range: "personal",
       duration: "1 minute/level",
@@ -1769,6 +1921,7 @@ class SpellData {
       effect:
           "You blast your enemies with rays of nonlethal force. You may fire one ray, plus one additional ray for every four levels you possess beyond 3rd (to a maximum of three rays at 11th level). Each ray requires a ranged touch attack to hit and deals 4d6 points of nonlethal damage. This is a force effect. The rays may be fired at the same or different targets, but all rays must be fired simultaneously and aimed at targets within 30 feet of each other. The rays hit about as hard as a punch from a strong adult human, and can knock away unattended objects weighing up to 10 pounds if that amount of force could normally do so.",
       school: "Evocation",
+      level: 2,
       magicType: "arcanist2, cleric2, sorcerer2, wizard2",
       range: "close (25 ft. + 5 ft./2 levels)",
       duration: "instantaneous",
@@ -1779,6 +1932,7 @@ class SpellData {
       effect:
           "The target of this spell is the subject of adoration by those whom it tries to affect with Diplomacy or during performance combat. If the target is out of combat, it receives a +2 morale bonus on all Diplomacy checks it makes to influence creatures.",
       school: "Enchantment",
+      level: 2,
       magicType: "arcanist2, bard1, sorcerer2, wizard2",
       range: "close (25 ft. + 5 ft./2 levels)",
       target: "one creature",
@@ -1791,6 +1945,7 @@ class SpellData {
       effect:
           "A crackling, spherical storm cloud flies in whichever direction you point and deals electricity damage to those it strikes. It has a fly speed of 20 feet with perfect maneuverability. If it enters a space that contains a creature, the storm stops moving for the round and deals 3d6 points of electricity damage to that creature, though a successful Reflex save negates that damage. It provides concealment (20% miss chance) to anything within it, and its flickering light illuminates the same area a candle would. The sphere moves as long as you actively direct it (as a move action for you); otherwise, it stays at rest and crackles with lightning. It can be moved by wind effects and counts as a Small creature for the purpose of determining how winds affect it. The sphere has no physical substance and cannot exert any force on corporeal creatures or objects. It disperses if it exceeds the spell’s range.",
       school: "Evocation",
+      level: 2,
       magicType:
           "arcanist 2, druid 2, hunter 2, magus 2, sorcerer 2, witch 2, wizard 2",
       range: "medium (100 ft. + 10 ft./level)",
@@ -1804,6 +1959,7 @@ class SpellData {
       effect:
           "Aid grants the target a +1 morale bonus on attack rolls and saves against fear effects, plus temporary hit points equal to 1d8 + caster level (to a maximum of 1d8+10 temporary hit points at caster level 10th).",
       school: "Enchantment",
+      level: 2,
       magicType: "alchemist2, cleric2",
       range: "touch",
       target: "living creature touched",
@@ -1815,6 +1971,7 @@ class SpellData {
       effect:
           "This spell functions as air walk, except you can rise no higher than 1 foot off the ground, you cannot pass over liquid, and the air you walk on is less stable than solid ground. When walking on air, you ignore difficult terrain that is less than 1 foot high, you do not trigger effects based on weight (such as a pressure plate), and any creature trying to track you through areas you crossed with this spell takes a –10 penalty on its Perception or Survival check to do so. However, because of the instability of the air you walk on, your speed is reduced by 10 feet (to a minimum of 5 feet) and you take a –4 penalty on Acrobatics, Climb, and Ride checks. If you have 1 rank in Fly, your speed is not reduced when using this spell, and you can cross over liquid at half speed. If you have 5 ranks in Fly, you can cross liquid at full speed and do not take the penalties to your skill checks.",
       school: "Transmutation",
+      level: 2,
       magicType:
           "alchemist2, arcanist2, bard2, cleric2, druid2, ranger2, sorcerer2, wizard2",
       range: "personal",
@@ -1827,6 +1984,7 @@ class SpellData {
       effect:
           "When you cast this spell, you can assume the form of any Small or Medium creature of the humanoid type. If the form you assume has any of the following abilities, you gain the listed ability: darkvision 60 feet, low-light vision, scent, and swim 30 feet. Small creature: If the form you take is that of a Small humanoid, you gain a +2 size bonus to your Dexterity. Medium creature: If the form you take is that of a Medium humanoid, you gain a +2 size bonus to your Strength.",
       school: "Transmutation",
+      level: 2,
       magicType: "alchemist2, arcanist2, bard2, sorcerer2, summoner2, wizard2",
       range: "personal",
       target: "you",
@@ -1838,6 +1996,7 @@ class SpellData {
       effect:
           "You gain some of the beneficial qualities of an animal. Your base form is largely unchanged and your size is unaltered, but some of your body parts are altered. Armor or gear you are wearing adjusts to your new shape for the duration of the spell. When you cast animal aspect, choose one of the following animals to gain the associated benefits. You can only have one animal aspect or greater animal aspect spell active on you at a time. Frog: Your legs become elongated and muscular. You gain a +4 competence bonus on Acrobatics checks, and you always jump as if you had a running start. Gorilla: Your arms become long, flexible, and strong like those of a great ape. Your unarmed damage die type increases by one step, and you gain a +4 competence bonus on combat maneuver checks when making the grapple or reposition combat maneuver. Monkey: Your hands and arms become dexterous like those of a simian. You gain a +4 competence bonus on Climb checks, and you can throw objects as if you had the Throw Anything feat. Otter: Your hands and feet gain webbing, and your lungs gain capacity, allowing you to move through the water with ease. You gain a Swim speed equal to half your speed, and all the benefits of having a swim speed. Additionally, you can hold your breath for 4 rounds per point of Constitution before being forced to make Constitution checks to keep holding your breath. Raccoon: Your hands become extremely dexterous, and your feet become padded. You gain a +2 competence bonus on Disable Device, Sleight of Hand, and Stealth checks. Raptor: Your legs become built for running speed, like those of a deinonychus. You gain a enhancement bonus of +20 feet to your base speed. Tree Lizard: Your hands and feet gain climbing claws and climbing pads. You gain a climb speed equal to half your normal speed and all the benefits of having a natural climb speed.",
       school: "Transmutation",
+      level: 2,
       magicType: "alchemist2, arcanist2, druid2, ranger2, sorcerer2, wizard2",
       range: "personal",
       target: "you",
@@ -1850,6 +2009,7 @@ class SpellData {
           "You compel a Tiny animal to go to a spot you designate. The most common use for this spell is to get an animal to carry a message to your allies. The animal cannot be one tamed or trained by someone else, including such creatures as familiars and animal companions. Using some type of food desirable to the animal as a lure, you call the animal to you. It advances and awaits your bidding. You can mentally impress on the animal a certain place well known to you or an obvious landmark. The directions must be simple, because the animal depends on your knowledge and can't find a destination on its own. You can attach a small item or note to the messenger. The animal then goes to the designated location and waits there until the duration of the spell expires, whereupon it resumes its normal activities. During this period of waiting, the messenger allows others to approach it and remove any scroll or token it carries. The intended recipient gains no special ability to communicate with the animal or read any attached message (if it's written in a language he doesn't know, for example).",
       school: "Enchantment",
       castingTime: "1 minute",
+      level: 2,
       magicType: "bard2, druid2, ranger1",
       range: "close (25 ft. + 5 ft./2 levels)",
       target: "one tiny animal",
@@ -1862,6 +2022,7 @@ class SpellData {
       effect:
           "Your swaying motions and music (or singing, or chanting) compel animals and magical beasts to do nothing but watch you. Only a creature with an Intelligence score of 1 or 2 can be fascinated by this spell. Roll 2d6 to determine the total number of HD worth of creatures that you fascinate. The closest targets are selected first until no more targets within range can be affected.",
       school: "Enchantment",
+      level: 2,
       magicType: "bard2, druid2",
       range: "close (25 ft. + 5 ft./2 levels)",
       target: "animals or magical beasts with Intelligence 1 or 2",
@@ -1874,6 +2035,7 @@ class SpellData {
       effect:
           "This spell taps into the target's mind so you get an impression of the actions it will take. You gain a +2 insight bonus to AC against the target’s attacks. If the target fails its Will save, you also see how the target will react to your attacks, and the bonus applies on your attack rolls and damage rolls against the target. These bonuses apply only while the target is within range of the spell, though if it goes out of range, the bonuses return once it’s back in range. Whenever the target misses you with an attack, the spell’s bonuses increase by 1 until the spell ends (to a maximum of +5).",
       school: "Divination",
+      level: 2,
       magicType: "",
       range: "close (25 ft. + 5 ft./2 levels)",
       target: "one creature",
@@ -1887,6 +2049,7 @@ class SpellData {
       effect:
           "Within the area of effect, this spell impedes the use of spells of the summoning subschool and other effects that summon creatures. Any such spells, spell-like abilities, or similar summoning effects used within the area have a percent chance of failure equals 5% × your caster level, to a maximum 75% chance of failure. If the summoning effect already has a percent chance of failure (as is often the case with the summon spell-like ability of outsiders), these percentages stack. This spell does not affect summoners attempting to summon their eidolon, but it does affect summoners casting other summoning spells.",
       school: "Abjuration",
+      level: 2,
       magicType: "arcanist2, bard2, sorcerer2, summoner2, wizard2",
       range: "medium (100 ft. + 10 ft./level)",
       target: "50-ft.-radius",
@@ -1899,6 +2062,7 @@ class SpellData {
       effect:
           "An arcane lock spell cast upon a door, chest, or portal magically locks it. You can freely pass your own arcane lock without affecting it. If the locked object has a lock, the DC to open that lock increases by 10 while it remains attached to the object. If the object does not have a lock, this spell creates one that can only be opened with a DC 20 Disable Device skill check. A door or object secured with this spell can be opened only by breaking in or with a successful dispel magic or knock spell. Add 10 to the normal DC to break open a door or portal affected by this spell. A knock spell does not remove an arcane lock; it only suppresses the effect for 10 minutes.",
       school: "Abjuration",
+      level: 2,
       magicType: "arcanist2, sorcerer2, wizard2",
       range: "touch",
       target: "door, chest, or portal touched, up to 30 sq. ft./level in size",
@@ -1911,6 +2075,7 @@ class SpellData {
       effect:
           "Align weapon makes a weapon chaotic, evil, good, or lawful, as you choose. A weapon that is aligned can bypass the damage reduction of certain creatures. This spell has no effect on a weapon that already has an alignment. You can't cast this spell on a natural weapon, such as an unarmed strike. When you make a weapon chaotic, evil, good, or lawful, align weapon is a chaotic, evil, good, or lawful spell, respectively.",
       school: "Transmutation",
+      level: 2,
       magicType: "cleric2",
       range: "touch",
       target:
@@ -1925,6 +2090,7 @@ class SpellData {
       effect:
           "An augury can tell you whether a particular action will bring good or bad results for you in the immediate future. The base chance for receiving a meaningful reply is 70% + 1% per caster level, to a maximum of 90%; this roll is made secretly. A question may be so straightforward that a successful result is automatic, or so vague as to have no chance of success. If the augury succeeds, you get one of four results: Weal (if the action will probably bring good results). Woe (for bad results). Weal and woe (for both). Nothing (for actions that don't have especially good or bad results). If the spell fails, you get the “nothing” result. A cleric who gets the “nothing” result has no way to tell whether it was the consequence of a failed or successful augury. The augury can see into the future only about half an hour, so anything that might happen after that does not affect the result. Thus, the result might not take into account the long-term consequences of a contemplated action. All auguries cast by the same person about the same topic use the same die result as the first casting.",
       school: "Divination",
+      level: 2,
       magicType: "cleric2",
       castingTime: "1 minute",
       range: "personal",
@@ -1937,10 +2103,12 @@ class SpellData {
       effect:
           "Barkskin toughens a creature's skin. The effect grants a +2 enhancement bonus to the creature's existing natural armor bonus. This enhancement bonus increases by 1 for every three caster levels above 3rd, to a maximum of +5 at 12th level. The enhancement bonus provided by barkskin stacks with the target's natural armor bonus, but not with other enhancement bonuses to natural armor. A creature without natural armor has an effective natural armor bonus of +0.",
       school: "Transmutation",
+      level: 2,
       magicType: "alchemist2, druid2, ranger2, summoner2",
       range: "touch",
       target: "living creature touched",
       duration: "10 min./level",
+      savingThrow: "Will negates (harmless)",
       spellResistance: "yes (harmless)",
       canBePotion: true,
     ),
@@ -1949,6 +2117,7 @@ class SpellData {
       effect:
           "The affected creature gains greater vitality and stamina. The spell grants the subject a +4 enhancement bonus to Constitution, which adds the usual benefits to hit points, Fortitude saves, Constitution checks, and so forth. Hit points gained by a temporary increase in Constitution score are not temporary hit points. They go away when the subject's Constitution drops back to normal. They are not lost first as temporary hit points are.",
       school: "Transmutation",
+      level: 2,
       magicType:
           "alchemist2, arcanist2, cleric2, druid2, ranger2, sorcerer2, summoner2, wizard2",
       range: "touch",
@@ -1963,6 +2132,7 @@ class SpellData {
       effect:
           "Your blood becomes as hard as iron upon contact with air. Each time you take at least 5 points of piercing or slashing damage, your armor gains a +1 enhancement bonus to your AC. An outfit of regular clothing counts as armor that grants no AC bonus for the purpose of this spell. This enhancement bonus stacks with itself, but not with an existing enhancement bonus, to a maximum enhancement bonus of +5. This spell has no effect while underwater or in environments that lack air.",
       school: "Transmutation",
+      level: 2,
       magicType: "alchemist2, arcanist2, sorcerer2, summoner2, wizard2",
       range: "personal",
       target: "you",
@@ -1974,6 +2144,7 @@ class SpellData {
       effect:
           "You call upon the powers of unlife to render the subject blinded or deafened, as you choose.",
       school: "Necromancy",
+      level: 2,
       magicType: "antipaladin2, arcanist2, bard2, cleric3, sorcerer2, wizard2",
       range: "medium (100 ft. + 10 ft./level)",
       target: "one living creature",
@@ -1986,6 +2157,7 @@ class SpellData {
       effect:
           "The subject's outline appears blurred, shifting, and wavering. This distortion grants the subject concealment (20% miss chance). A see invisibility spell does not counteract the blur effect, but a true seeing spell does. Opponents that cannot see the subject ignore the spell's effect (though fighting an unseen opponent carries penalties of its own).",
       school: "Illusion",
+      level: 2,
       magicType: "alchemist2, arcanist2, bard2, sorcerer2, summoner2, wizard2",
       range: "touch",
       target: "creature touched",
@@ -1999,6 +2171,7 @@ class SpellData {
       effect:
           "The subject becomes stronger. The spell grants a +4 enhancement bonus to Strength, adding the usual benefits to melee attack rolls, melee damage rolls, and other uses of the Strength modifier.",
       school: "Transmutation",
+      level: 2,
       magicType:
           "alchemist2, arcanist2, cleric2, druid2, ranger2, sorcerer2, summoner2, wizard2",
       range: "touch",
@@ -2013,6 +2186,7 @@ class SpellData {
       effect:
           "This spell calms agitated creatures. You have no control over the affected creatures, but calm emotions can stop raging creatures from fighting or joyous ones from reveling. Creatures so affected cannot take violent actions (although they can defend themselves) or do anything destructive. Any aggressive action against or damage dealt to a calmed creature immediately breaks the spell on all calmed creatures. This spell automatically suppresses (but does not dispel) any morale bonuses granted by spells such as bless, good hope, and rage, and also negates a bard's ability to inspire courage or a barbarian's rage ability. It also suppresses any fear effects and removes the confused condition from all targets. While the spell lasts, a suppressed spell, condition, or effect has no effect. When the calm emotions spell ends, the original spell or effect takes hold of the creature again, provided that its duration has not expired in the meantime.",
       school: "Enchantment",
+      level: 2,
       magicType: " bard2, cleric2",
       range: "medium (100 ft. + 10 ft./level)",
       target: "creatures in a 20-ft.-radius spread",
@@ -2025,6 +2199,7 @@ class SpellData {
       effect:
           "The transmuted creature becomes more graceful, agile, and coordinated. The spell grants a +4 enhancement bonus to Dexterity, adding the usual benefits to AC, Reflex saves, and other uses of the Dexterity modifier.",
       school: "Transmutation",
+      level: 2,
       magicType:
           "alchemist2, arcanist2, cleric2, druid2, ranger2, sorcerer2, summoner2, wizard2",
       range: "touch",
@@ -2039,6 +2214,7 @@ class SpellData {
       effect:
           "A flame, equivalent in brightness to a torch, springs forth from an object that you touch. The effect looks like a regular flame, but it creates no heat and doesn't use oxygen. A continual flame can be covered and hidden but not smothered or quenched. Light spells counter and dispel darkness spells of an equal or lower level.",
       school: "Evocation",
+      level: 2,
       magicType: " arcanist2, cleric3, sorcerer2, wizard2",
       range: "touch",
       target: "object touched",
@@ -2050,6 +2226,7 @@ class SpellData {
       effect:
           "This spell temporarily calms agitated haunts and incorporeal undead such as ghosts. You have no control over the affected creatures, but calm spirit postpones hostile action by the affected spirits for the duration of the spell. Entities so affected cannot take violent actions or do anything destructive, including triggering persistent haunt abilities, though they can defend themselves. Any aggressive action against or damage dealt to a calmed spirit or haunt immediately ends the effect. Haunts do not receive a saving throw against the spell, but the caster must succeed at a caster level check whose difficulty is equal to at least 10 + the haunt’s CR in order to temporarily calm the angry entity. The spell’s duration changes to concentration (up to 1 round/level) when affecting a haunt.",
       school: "Necromancy",
+      level: 2,
       magicType: "cleric2",
       range: "close (25 ft. + 5 ft./2 levels)",
       target: " close (25 ft. + 5 ft./2 levels)",
@@ -2062,6 +2239,7 @@ class SpellData {
       effect:
           "Chill metal makes metal extremely cold. Unattended, nonmagical metal gets no saving throw. Magical metal is allowed a saving throw against the spell. An item in a creature's possession uses the creature's saving throw bonus unless its own is higher. A creature takes cold damage if its equipment is chilled. It takes full damage if its armor, shield, or weapon is affected. The creature takes minimum damage (1 point or 2 points; see the table) if it's not wearing or wielding such an item. On the first round of the spell, the metal becomes chilly and uncomfortable to touch but deals no damage. The same effect also occurs on the last round of the spell's duration. During the second (and also the next-to-last) round, icy coldness causes pain and damage. In the third, fourth, and fifth rounds, the metal is freezing cold, and causes more damage. *Round 2 (icy-1d4 points) *Round 3, 4 and 5 (freezing-2d4 points) *Round 6 (icy-1d4 points). Any heat intense enough to damage the creature negates cold damage from the spell (and vice versa) on a point-for-point basis. Underwater, chill metal deals no damage, but ice immediately forms around the affected metal, making it float if unattended. Chill metal counters and dispels heat metal.",
       school: "Transmutation",
+      level: 2,
       magicType: "druid2,",
       range: "close (25 ft. + 5 ft./2 levels)",
       target:
@@ -2076,6 +2254,7 @@ class SpellData {
       effect:
           "This spell allows you a degree of control over an undead creature. If the subject is intelligent, it perceives your words and actions favorably (treat its attitude as friendly). It will not attack you while the spell lasts. You can give the subject orders, but you must win an opposed Charisma check to convince it to do anything it wouldn't ordinarily do. Retries are not allowed. An intelligent commanded undead never obeys suicidal or obviously harmful orders, but it might be convinced that something very dangerous is worth doing. A nonintelligent undead creature gets no saving throw against this spell. When you control a mindless being, you can communicate only basic commands, such as “come here,” “go there,” “fight,” “stand still,” and so on. Nonintelligent undead won't resist suicidal or obviously harmful orders. Any act by you or your apparent allies that threatens the commanded undead (regardless of its Intelligence) breaks the spell. Your commands are not telepathic. The undead creature must be able to hear you.",
       school: "Necromancy",
+      level: 2,
       magicType: "arcanist2, sorcerer2, wizard2",
       range: "close (25 ft. + 5 ft./2 levels)",
       target: "one undead creature",
@@ -2088,6 +2267,7 @@ class SpellData {
       effect:
           "This spell blesses an area with positive energy. The DC to resist positive channeled energy within this area gains a +3 sacred bonus. Every undead creature entering a consecrated area suffers minor disruption, suffering a –1 penalty on attack rolls, damage rolls, and saves. Undead cannot be created within or summoned into a consecrated area. If the consecrated area contains an altar, shrine, or other permanent fixture dedicated to your deity, pantheon, or aligned higher power, the modifiers given above are doubled (+6 sacred bonus to positive channeled energy DCs, –2 penalties for undead in the area). You cannot consecrate an area with a similar fixture of a deity other than your own patron. Instead, the consecrate spell curses the area, cutting off its connection with the associated deity or power. This secondary function, if used, does not also grant the bonuses and penalties relating to undead, as given above. Consecrate counters and dispels desecrate.",
       school: "Evocation",
+      level: 2,
       magicType: "cleric2",
       range: "close (25 ft. + 5 ft./2 levels)",
       target: "20-ft. radius emanation",
@@ -2099,6 +2279,7 @@ class SpellData {
       effect:
           "You create a 10-foot-by-10-foot extradimensional hole with a depth of 10 feet per two caster levels (maximum 30 feet). You must create the pit on a horizontal surface of sufficient size. Since it extends into another dimension, the pit has no weight and does not otherwise displace the original underlying material. You can create the pit in the deck of a ship as easily as in a dungeon floor or the ground of a forest. Any creature standing in the area where you first conjured the pit must make a Reflex saving throw to avoid falling into it. In addition, the edges of the pit are sloped, and any creature ending its turn on a square adjacent to the pit must make a Reflex saving throw with a +2 bonus to avoid falling into it. Creatures subjected to an effect intended to push them into the pit (such as bull rush) do not get a saving throw to avoid falling in if they are affected by the pushing effect. Creatures who fall into the pit take falling damage as normal. The pit’s coarse stone walls have a Climb DC of 25. When the duration of the spell ends, creatures within the hole rise up with the bottom of the pit until they are standing on the surface over the course of a single round.",
       school: "Conjuration",
+      level: 2,
       magicType: "arcanist2, sorcerer2, summoner2, wizard2 ",
       range: "medium (100 ft. + 10 ft./level)",
       target: "10-ft.-by-10-ft. hole, 10 ft. deep/2 levels",
@@ -2110,6 +2291,7 @@ class SpellData {
       effect:
           "cures 2d8 points of damage + 1 point per caster level (maximum +10).",
       school: "Conjuration",
+      level: 2,
       magicType:
           " adept 2, alchemist 2, bard 2, cleric 2, druid 3, hunter 3, inquisitor 2, investigator 2, occultist 2, oracle 2, paladin 3, ranger 3, shaman 2, skald 2, spiritualist 2, warpriest 2, witch 2",
       range: "touch",
@@ -2124,6 +2306,7 @@ class SpellData {
       effect:
           "This spell causes an object to radiate darkness out to a 20-foot radius. This darkness causes the illumination level in the area to drop one step, from bright light to normal light, from normal light to dim light, or from dim light to darkness. This spell has no effect in an area that is already dark. Creatures with light vulnerability or sensitivity take no penalties in normal light. All creatures gain concealment (20% miss chance) in dim light. All creatures gain total concealment (50% miss chance) in darkness. Creatures with darkvision can see in an area of dim light or darkness without penalty. Nonmagical sources of light, such as torches and lanterns, do not increase the light level in an area of darkness. Magical light sources only increase the light level in an area if they are of a higher spell level than darkness. If darkness is cast on a small object that is then placed inside or under a lightproof covering, the spell's effect is blocked until the covering is removed. This spell does not stack with itself. Darkness can be used to counter or dispel any light spell of equal or lower spell level.",
       school: "Evocation",
+      level: 2,
       magicType: "antipaladin2, arcanist2, bard2, cleric2, sorcerer2, wizard2",
       range: "touch",
       target: "object touched",
@@ -2135,6 +2318,7 @@ class SpellData {
       effect:
           "You draw forth the ebbing life force of a creature and use it to fuel your own power. Upon casting this spell, you touch a living creature that has –1 or fewer hit points. If the subject fails its saving throw, it dies, and you gain 1d8 temporary hit points and a +2 enhancement bonus to Strength. Additionally, your effective caster level goes up by +1, improving spell effects dependent on caster level. This increase in effective caster level does not grant you access to more spells. These effects last for 10 minutes per HD of the subject creature.",
       school: "Necromancy",
+      level: 2,
       magicType: "antipaladin1, cleric2",
       range: "touch",
       target: "living creature touched",
@@ -2147,6 +2331,7 @@ class SpellData {
       effect:
           "The subject becomes temporarily immune to poison. Any poison in its system or any poison to which it is exposed during the spell's duration does not affect the subject until the spell's duration has expired. Delay poison does not cure any damage that poison may have already done.",
       school: "Conjuration",
+      level: 2,
       magicType: "alchemist2, bard2, cleric2, druid2, paladin2, ranger1",
       range: "touch",
       target: "creature touched",
@@ -2160,6 +2345,7 @@ class SpellData {
       effect:
           "The target becomes temporarily immune to disease. Any disease to which it is exposed during the spell’s duration does not affect the target until the spell’s duration has expired. If the target is currently infected with a disease, you must make a caster level check against the disease’s DC to suspend it for the duration of the spell; otherwise, that disease affects the target normally. Delay disease does not cure any damage a disease may have already done.",
       school: "Conjuration",
+      level: 2,
       magicType: "alchemist2, cleric2, druid2, paladin2, ranger2",
       range: "touch",
       target: "creature touched",
@@ -2172,6 +2358,7 @@ class SpellData {
       effect:
           "This spell imbues an area with negative energy. The DC to resist negative channeled energy within this area gains a +3 profane bonus. Every undead creature entering a desecrated area gains a +1 profane bonus on all attack rolls, damage rolls, and saving throws. An undead creature created within or summoned into such an area gains +1 hit points per HD. If the desecrated area contains an altar, shrine, or other permanent fixture dedicated to your deity or aligned higher power, the modifiers given above are doubled (+6 profane bonus to negative channeled energy DCs, +2 profane bonus and +2 hit points per HD for undead created in the area). Furthermore, anyone who casts animate dead within this area may create as many as double the normal amount of undead (that is, 4 HD per caster level rather than 2 HD per caster level). If the area contains an altar, shrine, or other permanent fixture of a deity, pantheon, or higher power other than your patron, the desecrate spell instead curses the area, cutting off its connection with the associated deity or power. This secondary function, if used, does not also grant the bonuses and penalties relating to undead, as given above. Desecrate counters and dispels consecrate.",
       school: "Evocation",
+      level: 2,
       magicType: "antipaladin2, cleric2,",
       range: "close (25 ft. + 5 ft./2 levels)",
       target: "20-ft.-radius emanation",
@@ -2183,6 +2370,7 @@ class SpellData {
       effect:
           "You detect surface thoughts. The amount of information revealed depends on how long you study a particular area or subject. 1st Round: Presence or absence of thoughts (from conscious creatures with Intelligence scores of 1 or higher). 2nd Round: Number of thinking minds and the Intelligence score of each. If the highest Intelligence is 26 or higher (and at least 10 points higher than your own Intelligence score), you are stunned for 1 round and the spell ends. This spell does not let you determine the location of the thinking minds if you can't see the creatures whose thoughts you are detecting. 3rd Round: Surface thoughts of any mind in the area. A target's Will save prevents you from reading its thoughts, and you must cast detect thoughts again to have another chance. Creatures of animal intelligence (Int 1 or 2) have simple, instinctual thoughts. Each round, you can turn to detect thoughts in a new area. The spell can penetrate barriers, but 1 foot of stone, 1 inch of common metal, a thin sheet of lead, or 3 feet of wood or dirt blocks it.",
       school: "Divination",
+      level: 2,
       magicType: "alchemist2, arcanist2, bard2, sorcerer2, summoner2, wizard2",
       range: "60 ft.",
       target: "cone-shaped emanation",
@@ -2194,6 +2382,7 @@ class SpellData {
       effect:
           "You weaken a creature's resistance against one energy type you select: acid, cold, electricity, fire, or sonic. The creature’s resistance to that energy type decreases by 5 (minimum 0), plus an additional 5 for every 5 caster levels beyond 3rd (to a maximum of 20 at 18th level).",
       school: "Transmutation",
+      level: 2,
       magicType: "arcanist2, bard2, cleric2, sorcerer2, wizard2",
       range: "medium (100 ft. + 10 ft./level)",
       target: "one creature",
@@ -2206,6 +2395,7 @@ class SpellData {
       effect:
           "The transmuted creature becomes more poised, articulate, and personally forceful. The spell grants a +4 enhancement bonus to Charisma, adding the usual benefits to Charisma-based skill checks and other uses of the Charisma modifier. Bards, paladins, and sorcerers (and other spellcasters who rely on Charisma) affected by this spell do not gain any additional bonus spells for the increased Charisma, but the save DCs for spells they cast while under this spell's effect do increase.",
       school: "Transmutation",
+      level: 2,
       magicType:
           "alchemist2, arcanist2, cleric2, druid2, ranger2, sorcerer2, summoner2, wizard2",
       range: "touch",
@@ -2220,6 +2410,7 @@ class SpellData {
       effect:
           "You channel a fraction of the tumultuous ecosystem of the Hao Jin Tapestry and redirect it through your hands as a beam of deteriorating energy. You can fire one ray, plus one additional ray for every 4 levels beyond 3rd (to a maximum of three rays at 11th level). Each ray requires a ranged touch attack to hit and can target only a construct or an object. If a ray hits, the target begins to crumble, taking 2d6 points of damage. This damage ignores hardness and damage reduction.",
       school: "Transmutation",
+      level: 2,
       magicType: "arcanist2, cleric2, druid2, sorcerer2, wizard2",
       range: "close (25 ft. + 5 ft./2 levels)",
       target: "one construct or object",
@@ -2230,6 +2421,7 @@ class SpellData {
       effect:
           "You harness the power of unlife to grant yourself a limited ability to avoid death. While this spell is in effect, you gain temporary hit points equal to 1d10 + 1 per caster level (maximum +10).",
       school: "Necromancy",
+      level: 2,
       magicType: " alchemist2, arcanist2, sorcerer2, wizard2",
       range: "personal",
       target: "you",
@@ -2241,6 +2433,7 @@ class SpellData {
       effect:
           "You gain intuitive insight into the workings of traps. You gain an insight bonus equal to 1/2 your caster level (maximum +10) on Perception checks made to find traps while the spell is in effect. You receive a check to notice traps within 10 feet of you, even if you are not actively searching for them. Note that find traps grants no ability to disable the traps that you may find.",
       school: "Divination",
+      level: 2,
       magicType: " cleric2",
       range: "personal",
       target: "you",
@@ -2252,6 +2445,7 @@ class SpellData {
       effect:
           "Fire trap creates a fiery explosion when an intruder opens the item that the trap protects. A fire trap spell can ward any object that can be opened and closed. When casting fire trap, you select a point on the object as the spell's center. When someone other than you opens the object, a fiery explosion fills the area within a 5-foot radius around the spell's center. The flames deal 1d4 points of fire damage + 1 point per caster level (maximum +20). The item protected by the trap is not harmed by this explosion. A fire-trapped item cannot have a second closure or warding spell placed on it. A knock spell does not bypass a fire trap. An unsuccessful dispel magic spell does not detonate the spell. Underwater, this ward deals half damage and creates a large cloud of steam. You can use the fire-trapped object without discharging it, as can any individual to whom the object was specifically attuned when cast. Attuning a fire-trapped object to an individual usually involves setting a password that you can share with friends. Magic traps such as fire trap are hard to detect and disable. A character with trapfinding can use the Perception skill to find a fire trap and Disable Device to thwart it. The DC in each case is 25 + spell level (DC 27 for a druid's fire trap or DC 29 for the arcane version).",
       school: "Abjuration",
+      level: 2,
       magicType: "arcanist4, druid2, sorcerer4, wizard4",
       castingTime: "10 minutes",
       range: "touch",
@@ -2266,6 +2460,7 @@ class SpellData {
       effect:
           "A 3-foot-long, blazing beam of red-hot fire springs forth from your hand. You wield this blade-like beam as if it were a scimitar. Attacks with the flame blade are melee touch attacks. The blade deals 1d8 points of fire damage + 1 point per two caster levels (maximum +10). Since the blade is immaterial, your Strength modifier does not apply to the damage. A flame blade can ignite combustible materials such as parchment, straw, dry sticks, and cloth.",
       school: "Evocation",
+      level: 2,
       magicType: "druid2",
       range: "0 ft.",
       target: "sword-like beam",
@@ -2277,6 +2472,7 @@ class SpellData {
       effect:
           "A burning globe of fire rolls in whichever direction you point and burns those it strikes. It moves 30 feet per round. As part of this movement, it can ascend or jump up to 30 feet to strike a target. If it enters a space with a creature, it stops moving for the round and deals 3d6 points of fire damage to that creature, though a successful Reflex save negates that damage. A flaming sphere rolls over barriers less than 4 feet tall. It ignites flammable substances it touches and illuminates the same area as a torch would. The sphere moves as long as you actively direct it (a move action for you); otherwise, it merely stays at rest and burns. It can be extinguished by any means that would put out a normal fire of its size. The surface of the sphere has a spongy, yielding consistency and so does not cause damage except by its flame. It cannot push aside unwilling creatures or batter down large obstacles. A flaming sphere winks out if it exceeds the spell's range.",
       school: "Evocation",
+      level: 2,
       magicType: "arcanist2, druid2, sorcerer2, wizard2",
       range: "medium (100 ft. + 10 ft./level)",
       target: "5-ft.-diameter sphere",
@@ -2289,6 +2485,7 @@ class SpellData {
       effect:
           "A bank of fog billows out from the point you designate. The fog obscures all sight, including darkvision, beyond 5 feet. A creature within 5 feet has concealment (attacks have a 20% miss chance). Creatures farther away have total concealment (50% miss chance, and the attacker can't use sight to locate the target). A moderate wind (11+ mph) disperses the fog in 4 rounds; a strong wind (21+ mph) disperses the fog in 1 round. The spell does not function underwater.",
       school: "Conjuration",
+      level: 2,
       magicType: "arcanist2, druid2, sorcerer2, summoner2, wizard2",
       range: "medium (100 ft. + 10 ft./level)",
       target: "fog spreads in 20-ft. radius",
@@ -2314,6 +2511,7 @@ class SpellData {
       effect:
           "The area of this spell is covered in chilling frost, dealing 2d6 points of cold damage to all creatures within it. Creatures that the spell initially damages must succeed at a Fortitude save or become staggered for 1 round. The area remains chilled for the spell’s duration. Any creature that starts your turn within the spell’s area takes 1d6 points of cold damage (Fortitude saving throw for half) but does not become staggered even on a failed saving throw.",
       school: "Evocation",
+      level: 2,
       magicType: "arcanist2, druid2, sorcerer2, wizard2",
       range: "close (25 ft. + 5 ft./2 levels)",
       target: "5-foot radius burst",
@@ -2326,6 +2524,7 @@ class SpellData {
       effect:
           "Vividly colored poisonous mushrooms instantly spring into existence in squares you select. The mushrooms can appear on any solid surface, even growing horizontally from walls or upside down from the ceiling. Once per round as a move action, starting the round after you cast this spell, you can command the mushrooms to release poisonous spores. Each creature adjacent to a mushroom or in a mushroom’s square must then succeed at a Fortitude save or become sickened for 1d4 rounds. The condition of creatures that fail multiple saving throws does not worsen, but each additional failed saving throw adds 1d4 rounds to the duration the creature is sickened. The mushrooms are Tiny and cannot provide cover, but they are fairly sturdy (AC 7, hp 30, break DC 20). Creatures can move through squares containing mushrooms as normal. When destroyed, a mushroom evaporates and releases one last cloud of spores.",
       school: "Conjuration",
+      level: 2,
       magicType: "arcanist2, druid2, ranger2, sorcerer2, summoner2, wizard2",
       range: "medium (100 ft. + 10 ft./level)",
       target:
@@ -2340,6 +2539,7 @@ class SpellData {
       effect:
           "You preserve the remains of a dead creature so that they do not decay. Doing so effectively extends the time limit on raising that creature from the dead (see raise dead). Days spent under the influence of this spell don't count against the time limit. Additionally, this spell makes transporting a slain (and thus decaying) comrade less unpleasant. The spell also works on severed body parts and the like.",
       school: "Necromancy",
+      level: 2,
       magicType: "arcanist3, cleric2, sorcerer3, wizard3",
       range: "touch",
       target: "corpse touched",
@@ -2353,6 +2553,7 @@ class SpellData {
       effect:
           "A cloud of golden particles covers everyone and everything in the area, causing creatures to become blinded and visibly outlining invisible things for the duration of the spell. All within the area are covered by the dust, which cannot be removed and continues to sparkle until it fades. Each round at the end of their turn blinded creatures may attempt new saving throws to end the blindness effect. Any creature covered by the dust takes a –40 penalty on Stealth checks.",
       school: "Conjuration",
+      level: 2,
       magicType: "arcanist2, bard2, sorcerer2, summoner2, wizard2",
       range: "medium (100 ft. + 10 ft./level)",
       target: "creatures and objects within 10-ft.-radius spread",
@@ -2366,6 +2567,7 @@ class SpellData {
       effect:
           "You cause a long, thin vine to sprout from your body—typically from the center of your chest or from the palm of an outstretched hand. As a standard action, you can direct the end of the vine to move to any square within 20 feet of you and perform one of the following tasks: deliver a touch spell that you cast after the vine has grown, pick up an unattended object weighing 20 pounds or less, give a held object to another creature, attempt to disable a trap or lock using your Disable Device modifier with a –2 penalty, or perform any other task that the GM deems reasonable. The vine does not threaten squares and cannot make attacks of opportunity, nor can it wield weapons.",
       school: "Transmutation",
+      level: 2,
       magicType: "alchemist2, arcanist2, druid2, ranger2, sorcerer2, wizard2",
       range: "personal",
       target: "you",
@@ -2377,6 +2579,7 @@ class SpellData {
       effect:
           "The target of this spell gains the ability to see up to 60 feet through thick plant matter as though it were transparent. Greenery, leaves, and vines—even lichen, moss, and slime—offer no concealment to the recipient’s sight, though her vision still can be blocked by solid wood, such as trees or wooden structures. Undergrowth does not grant concealment to a creature against a target of the effects of greensight.",
       school: "Transmutation",
+      level: 2,
       magicType: "arcanist2, druid2, sorcerer2, wizard2",
       range: "touch",
       target: "creature touched",
@@ -2389,6 +2592,7 @@ class SpellData {
       effect:
           "Imbuing you with negative energy, this spell allows you to paralyze a single living humanoid for the duration of the spell with a successful melee touch attack. A paralyzed subject exudes a carrion stench that causes all living creatures (except you) in a 10-foot-radius spread to become sickened (Fortitude negates). A neutralize poison spell removes the effect from a sickened creature, and creatures immune to poison are unaffected by the stench. This is a poison effect.",
       school: "Necromancy",
+      level: 2,
       magicType: "arcanist2, sorcerer2, wizard2",
       range: "touch",
       target: "living humanoid touched",
@@ -2401,6 +2605,7 @@ class SpellData {
       effect:
           "A swirling ball of wind rolls in whichever direction you point, hurling those it strikes with great force. The sphere is treated in all ways as an area of severe wind , applying a –4 penalty on ranged weapon attacks that pass through it. The sphere moves 30 feet per round. As part of this movement, it can ascend or jump up to 30 feet to strike a target. If it enters a space containing a Medium or smaller creature, it stops moving for that round and generates a sharp thrust of wind to bull rush the creature. The sphere’s CMB for bull rush combat maneuvers uses your caster level in place of its base attack bonus, with a +2 bonus for its Strength score (14). Whether or not the bull rush is successful, the creature takes 1d6 points of nonlethal bludgeoning damage from the attack. If the bull rush fails, the creature is still subject to the severe winds from the sphere as long as they remain in the same square as it. A gusting sphere rolls over objects or barriers that are less than 4 feet tall. The sphere moves as long as you actively direct it (a move action for you); otherwise, it merely stays at rest. A gusting sphere immediately dissipates if it exceeds the spell’s range.",
       school: "Evocation",
+      level: 2,
       magicType: "arcanist2, druid2, sorcerer2, wizard2 ",
       range: "medium (100 ft. + 10 ft./level)",
       target: "5-ft.-diameter sphere of air",
@@ -2413,6 +2618,7 @@ class SpellData {
       effect:
           "This spell creates a severe blast of air (approximately 50 mph) that originates from you, affecting all creatures in its path. All flying creatures in this area take a –4 penalty on Fly skill checks. Tiny or smaller flying creatures must make a DC 25 Fly skill check or be blown back 2d6 × 10 feet and take 2d6 points of damage. Small or smaller flying creatures must make a DC 20 Fly skill check to move against the force of the wind. A Tiny or smaller creature on the ground is knocked down and rolled 1d4 × 10 feet, taking 1d4 points of nonlethal damage per 10 feet. Small creatures are knocked prone by the force of the wind. Medium or smaller creatures are unable to move forward against the force of the wind unless they succeed at a DC 15 Strength check. Large or larger creatures may move normally within a gust of wind effect. This spell can't move a creature beyond the limit of it's range.Any creature, regardless of size, takes a –4 penalty on ranged attacks and Perception checks in the area of a gust of wind. The force of the gust automatically extinguishes candles, torches, and similar unprotected flames. It causes protected flames, such as those in lanterns, to dance wildly and has a 50% chance to extinguish those lights. In addition to the effects noted, a gust of wind can do anything that a sudden blast of wind would be expected to do. It can create a stinging spray of sand or dust, fan a large fire, overturn delicate awnings or hangings, heel over a small boat, and blow gases or vapors to the edge of its range.",
       school: "Evocation",
+      level: 2,
       magicType: "arcanist2, druid2, sorcerer2, wizard2",
       range: "60 ft.",
       target:
@@ -2426,6 +2632,7 @@ class SpellData {
       effect:
           "You grant each of your allies within the area a +10 competence bonus on a single Reflex saving throw. Each ally must decide whether to use the bonus before making the roll to which it applies. When an ally uses the bonus, the spell ends for that individual.",
       school: "Transmutation",
+      level: 2,
       magicType: "bard2",
       range: "30 ft.",
       target: "allies within a 30-ft.-radius burst centered on you",
@@ -2439,6 +2646,7 @@ class SpellData {
       effect:
           "This spell imbues a single creature with great bravery and morale in battle. The target gains a +2 morale bonus on attack rolls, saves, and skill checks.",
       school: "Enchantment",
+      level: 2,
       magicType:
           "alchemist 3, arcanist 3, bard 2, bloodrager 3, inquisitor 3, investigator 3, medium 2, psychic 3, skald 2, sorcerer 3, spiritualist 3, summoner 3, summoner (unchained) 3, witch 3, wizard 3",
       range: "touch",
@@ -2452,6 +2660,7 @@ class SpellData {
       effect:
           "The subject becomes paralyzed and freezes in place. It is aware and breathes normally but cannot take any actions, even speech. Each round on its turn, the subject may attempt a new saving throw to end the effect. This is a full-round action that does not provoke attacks of opportunity. A winged creature who is paralyzed cannot flap its wings and falls. A swimmer can't swim and may drown.",
       school: "Enchantment",
+      level: 2,
       magicType: "druid2, ranger2",
       range: "medium (100 ft. + 10 ft./level)",
       target: "one animal",
@@ -2464,6 +2673,7 @@ class SpellData {
       effect:
           "Heat metal makes metal extremely hot. Unattended, nonmagical metal gets no saving throw. Magical metal is allowed a saving throw against the spell. An item in a creature's possession uses the creature's saving throw bonus unless its own is higher. A creature takes fire damage if its equipment is heated. It takes full damage if its armor, shield, or weapon is affected. The creature takes minimum damage (1 point or 2 points; see the table) if it's not wearing or wielding such an item. On the first round of the spell, the metal becomes warm and uncomfortable to touch but deals no damage. The same effect also occurs on the last round of the spell's duration. During the second (and also the next-to-last) round, intense heat causes pain and damage. In the third, fourth, and fifth rounds, the metal is searing hot, and causes more damage. *Round 2 (hot-1d4 points) *Round 3, 4 and 5 (searing-2d4 points) *Round 6 (hot-1d4 points). Any cold intense enough to damage the creature negates fire damage from the spell (and vice versa) on a point-for-point basis. If cast underwater, heat metal deals half damage and boils the surrounding water. Heat metal counters and dispels chill metal.",
       school: "Transmutation",
+      level: 2,
       magicType: "druid2",
       range: "close (25 ft. + 5 ft./2 levels)",
       target:
@@ -2477,6 +2687,7 @@ class SpellData {
       effect:
           "This spell afflicts the subject with uncontrollable laughter. It collapses into gales of manic laughter, falling prone. The subject can take no actions while laughing, but is not considered helpless. After the spell ends, it can act normally. On the creature's next turn, it may attempt a new saving throw to end the effect. This is a full round action that does not provoke attacks of opportunity. If this save is successful, the effect ends. If not, the creature continues laughing for the entire duration. A creature with an Intelligence score of 2 or lower is not affected. A creature whose type is different from the caster's receives a +4 bonus on its saving throw, because humor doesn't “translate” well.",
       school: "Enchantment",
+      level: 2,
       magicType: "arcanist2, bard1, sorcerer2, wizard2",
       range: "close (25 ft. + 5 ft./2 levels)",
       target: "one creature",
@@ -2490,6 +2701,7 @@ class SpellData {
       effect:
           "The subject becomes paralyzed and freezes in place. It is aware and breathes normally but cannot take any actions, even speech. Each round on its turn, the subject may attempt a new saving throw to end the effect. This is a full-round action that does not provoke attacks of opportunity. A winged creature who is paralyzed cannot flap its wings and falls. A swimmer can't swim and may drown.",
       school: "Enchantment",
+      level: 2,
       magicType: "antipaladin2, arcanist3, bard2, cleric2, sorcerer3, wizard3",
       range: "medium (100 ft. + 10 ft./level)",
       target: "one humanoid creature",
@@ -2502,6 +2714,7 @@ class SpellData {
       effect:
           "The subject becomes paralyzed and freezes in place. It is aware and breathes normally but cannot take any actions, even speech. Each round on its turn, the subject may attempt a new saving throw to end the effect. This is a full-round action that does not provoke attacks of opportunity. A winged creature who is paralyzed cannot flap its wings and falls. A swimmer can't swim and may drown.",
       school: "Enchantment",
+      level: 2,
       magicType: "antipaladin2, arcanist3, bard2, cleric2, sorcerer3, wizard3",
       range: "medium (100 ft. + 10 ft./level)",
       target: "one fey creature",
@@ -2514,6 +2727,7 @@ class SpellData {
       effect:
           "A twisting pattern of subtle, shifting colors weaves through the air, fascinating creatures within it. Roll 2d4 and add your caster level (maximum 10) to determine the total number of HD of creatures affected. Creatures with the fewest HD are affected first; and, among creatures with equal HD, those who are closest to the spell's point of origin are affected first. HD that are not sufficient to affect a creature are wasted. Affected creatures become fascinated by the pattern of colors. Sightless creatures are not affected.",
       school: "Illusion",
+      level: 2,
       magicType: "arcanist2, bard2, sorcerer2, wizard2",
       range: "medium (100 ft. + 10 ft./level)",
       target: "colorful lights in a 10-ft.-radius spread",
@@ -2526,6 +2740,7 @@ class SpellData {
       effect:
           "You create a blast of intense cold, coating all solid surfaces in the area with a thin coating of ice. Any creature in the area when the spell is cast takes 1d6 points of cold damage + 1 point per caster level (maximum +10) and falls prone; creatures that succeed at a Reflex save take half damage and don’t fall prone. Spell resistance applies to this initial effect. A creature can walk within or through the area of ice at half its normal speed with a successful DC 10 Acrobatics check. Failure by 4 or less means the creature can’t move that round (and must succeed at a Reflex save or fall); failure by 5 or more means it falls. Creatures that do not move on their turn do not need to attempt this check. A 5-foot square of ice has hardness 0 and 3 hit points. The ice is an instantaneous effect, but persists as nonmagical ice. Under temperate conditions, the ice lasts 1 minute per level. In tropical environments, it might last only half as long. In cold environments where ice and snow persist without melting, it could last indefinitely.",
       school: "Evocation",
+      level: 2,
       magicType: "arcanist2, druid2, ranger2, sorcerer2, wizard2",
       range: "close (25 ft. + 5 ft./2 levels)",
       target: "5-ft.-radius burst",
@@ -2537,6 +2752,7 @@ class SpellData {
       effect:
           "Deals 2d8 points of damage + 1 point per caster level (maximum +10).",
       school: "Necromancy",
+      level: 2,
       magicType: "antipaladin3, cleric2",
       range: "touch",
       target: "creature touched",
@@ -2549,6 +2765,7 @@ class SpellData {
       effect:
           "The creature or object touched becomes invisible. If the recipient is a creature carrying gear, that vanishes, too. If you cast the spell on someone else, neither you nor your allies can see the subject, unless you can normally see invisible things or you employ magic to do so. Items dropped or put down by an invisible creature become visible; items picked up disappear if tucked into the clothing or pouches worn by the creature. Light, however, never becomes invisible, although a source of light can become so (thus, the effect is that of a light with no visible source). Any part of an item that the subject carries but that extends more than 10 feet from it becomes visible. Of course, the subject is not magically silenced, and certain other conditions can render the recipient detectable (such as swimming in water or stepping in a puddle). If a check is required, a stationary invisible creature has a +40 bonus on its Stealth checks. This bonus is reduced to +20 if the creature is moving. The spell ends if the subject attacks any creature. For purposes of this spell, an attack includes any spell targeting a foe or whose area or effect includes a foe. Exactly who is a foe depends on the invisible character's perceptions. Actions directed at unattended objects do not break the spell. Causing harm indirectly is not an attack. Thus, an invisible being can open doors, talk, eat, climb stairs, summon monsters and have them attack, cut the ropes holding a rope bridge while enemies are on the bridge, remotely trigger traps, open a portcullis to release attack dogs, and so forth. If the subject attacks directly, however, it immediately becomes visible along with all its gear. Spells such as bless that specifically affect allies but not foes are not attacks for this purpose, even when they include foes in their area.",
       school: "Illusion",
+      level: 2,
       magicType:
           "alchemist2, antipaladin2, arcanist2, bard2, sorcerer2, summoner2, wizard2",
       range: "personal or touch",
@@ -2564,6 +2781,7 @@ class SpellData {
       effect:
           "Knock opens stuck, barred, or locked doors, as well as those subject to hold portal or arcane lock. When you complete the casting of this spell, make a caster level check against the DC of the lock with a +10 bonus. If successful, knock opens up to two means of closure. This spell opens secret doors, as well as locked or trick-opening boxes or chests. It also loosens welds, shackles, or chains (provided they serve to hold something shut). If used to open an arcane locked door, the spell does not remove the arcane lock but simply suspends its functioning for 10 minutes. In all other cases, the door does not relock itself or become stuck again on its own. Knock does not raise barred gates or similar impediments (such as a portcullis), nor does it affect ropes, vines, and the like. The effect is limited by the area. Each casting can undo as many as two means of preventing access.",
       school: "Transmutation",
+      level: 2,
       magicType: "arcanist2, sorcerer2, wizard2",
       range: "medium (100 ft. + 10 ft./level)",
       target: "one door, box, or chest with an area of up to 10 sq. ft./level",
@@ -2575,6 +2793,7 @@ class SpellData {
       effect:
           "Levitate allows you to move yourself, another creature, or an object up and down as you wish. A creature must be willing to be levitated, and an object must be unattended or possessed by a willing creature. You can mentally direct the recipient to move up or down as much as 20 feet each round; doing so is a move action. You cannot move the recipient horizontally, but the recipient could clamber along the face of a cliff, for example, or push against a ceiling to move laterally (generally at half its base land speed). A levitating creature that attacks with a melee or ranged weapon finds itself increasingly unstable; the first attack has a –1 penalty on attack rolls, the second –2, and so on, to a maximum penalty of –5. A full round spent stabilizing allows the creature to begin again at –1.",
       school: "Transmutation",
+      level: 2,
       magicType: "alchemist2, arcanist2, sorcerer2, summoner2, wizard2",
       range: "personal or close (25 ft. + 5 ft./2 levels)",
       target:
@@ -2587,6 +2806,7 @@ class SpellData {
       effect:
           "You sense the direction of a well-known or clearly visualized object. You can search for general items, in which case you locate the nearest of its kind if more than one is within range. Attempting to find a certain item requires a specific and accurate mental image; if the image is not close enough to the actual object, the spell fails. You cannot specify a unique item unless you have observed that particular item firsthand (not through divination). The spell is blocked by even a thin sheet of lead. Creatures cannot be found by this spell. Polymorph any object and nondetection fool it.",
       school: "Divination",
+      level: 2,
       magicType: "arcanist2, bard2, cleric 3, sorcerer2, wizard2",
       range: "long (400 ft. + 40 ft./level)",
       target:
@@ -2598,6 +2818,7 @@ class SpellData {
       effect:
           "This spell functions as mending, except that it repairs 1d6 points of damage per level when cast on a construct creature (maximum 5d6). Make whole can fix destroyed magic items (at 0 hit points or less), and restores the magic properties of the item if your caster level is at least twice that of the item. Items with charges (such as wands) and single-use items (such as potions and scrolls) cannot be repaired in this way. When make whole is used on a construct creature, the spell bypasses any immunity to magic as if the spell did not allow spell resistance.",
       school: "Transmutation",
+      level: 2,
       magicType: "arcanist2, cleric2, sorcerer2, wizard2",
       range: "close (25 ft. + 5 ft./2 levels)",
       target:
@@ -2612,6 +2833,7 @@ class SpellData {
       effect:
           "This spell creates a number of illusory doubles of you that inhabit your square. These doubles make it difficult for enemies to precisely locate and attack you. When mirror image is cast, 1d4 images plus one image per three caster levels (maximum eight images total) are created. These images remain in your space and move with you, mimicking your movements, sounds, and actions exactly. Whenever you are attacked or are the target of a spell that requires an attack roll, there is a possibility that the attack targets one of your images instead. If the attack is a hit, roll randomly to see whether the selected target is real or a figment. If it is a figment, the figment is destroyed. If the attack misses by 5 or less, one of your figments is destroyed by the near miss. Area spells affect you normally and do not destroy any of your figments. Spells and effects that do not require an attack roll affect you normally and do not destroy any of your figments. Spells that require a touch attack are harmlessly discharged if used to destroy a figment. An attacker must be able to see the figments to be fooled. If you are invisible or the attacker is blind, the spell has no effect (although the normal miss chances still apply).",
       school: "Illusion",
+      level: 2,
       magicType: "arcanist2, bard2, sorcerer2, wizard2",
       range: "personal",
       target: "you",
@@ -2623,6 +2845,7 @@ class SpellData {
       effect:
           "By means of this spell, you misdirect the information from divination spells that reveal auras (detect evil, detect magic, discern lies, and the like). On casting the spell, you choose another object within range. For the duration of the spell, the subject of misdirection is detected as if it were the other object. Neither the subject nor the other object gets a saving throw against this effect. Detection spells provide information based on the second object rather than on the actual target of the detection unless the caster of the detection succeeds on a Will save. For instance, you could make yourself detect as a tree if one were within range at casting: not evil, not lying, not magical, neutral in alignment, and so forth. This spell does not affect other types of divination magic (augury, detect thoughts, clairaudience/clairvoyance, and the like).",
       school: "Illusion",
+      level: 2,
       magicType:
           "arcanist 2, bard 2, medium 2, mesmerist 2, occultist 2, psychic 2, redmantisassassin 2, skald 2, sorcerer 2, spiritualist 2, summoner 2, summoner (unchained) 2, wizard 2",
       range: "close (25 ft. + 5 ft./2 levels)",
@@ -2635,6 +2858,7 @@ class SpellData {
       effect:
           "The transmuted creature becomes wiser. The spell grants a +4 enhancement bonus to Wisdom, adding the usual benefit to Wisdom-related skills. Clerics, druids, and rangers (and other Wisdom-based spellcasters) who receive owl's wisdom do not gain any additional bonus spells for the increased Wisdom, but the save DCs for their spells increase.",
       school: "Transmutation",
+      level: 2,
       magicType:
           "alchemist2, arcanist2, cleric2, druid2, ranger2, sorcerer2, summoner2, wizard2",
       range: "touch",
@@ -2649,6 +2873,7 @@ class SpellData {
       effect:
           "This spell makes a lock or other small mechanism seem to be trapped to anyone who can detect traps. You place the spell upon any small mechanism or device, such as a lock, hinge, hasp, cork, cap, or ratchet. Any character able to detect traps, or who uses any spell or device enabling trap detection, is certain a real trap exists. Of course, the effect is illusory and nothing happens if the trap is “sprung”; its primary purpose is to frighten away thieves or make them waste precious time. If another phantom trap is active within 50 feet when the spell is cast, the casting fails.",
       school: "Illusion",
+      level: 2,
       magicType: "arcanist2, sorcerer2, wizard2",
       range: "touch",
       target: "object touched",
@@ -2660,6 +2885,7 @@ class SpellData {
       effect:
           "The warded creature gains resistance to ranged weapons. The subject gains damage reduction 10/magic against ranged weapons. This spell doesn't grant you the ability to damage creatures with similar damage reduction. Once the spell has prevented a total of 10 points of damage per caster level (maximum 100 points), it is discharged.",
       school: "Abjuration",
+      level: 2,
       magicType: "arcanist2 sorcerer2 wizard 2",
       range: "touch",
       target: "creature touched",
@@ -2672,6 +2898,7 @@ class SpellData {
       effect:
           "Protection from energy grants temporary immunity to the type of energy you specify when you cast it (acid, cold, electricity, fire, or sonic). When the spell absorbs 12 points per caster level of energy damage (to a maximum of 120 points at 10th level), it is discharged. Protection from energy overlaps (and does not stack with) resist energy. If a character is warded by protection from energy and resist energy, the protection spell absorbs damage until its power is exhausted.",
       school: "Abjuration",
+      level: 3,
       magicType:
           "alchemist3, arcanist3, bloodrager3, cleric3, druid3, ranger2, sorcerer3, summoner3, wizard3",
       range: "touch",
@@ -2686,6 +2913,7 @@ class SpellData {
       effect:
           "Pyrotechnics turns a fire into a burst of blinding fireworks or a thick cloud of choking smoke, depending on your choice. The spell uses one fire source, which is immediately extinguished. A fire so large that it exceeds a 20-foot cube is only partly extinguished. Magical fires are not extinguished, although a fire-based creature used as a source takes 1 point of damage per caster level. Fireworks: The fireworks are a flashing, fiery, momentary burst of glowing, colored aerial lights. This effect causes creatures within 120 feet of the fire source to become blinded for 1d4+1 rounds (Will negates). These creatures must have line of sight to the fire to be affected. Spell resistance can prevent blindness. Smoke Cloud: A stream of smoke billows out from the fire, forming a choking cloud that spreads 20 feet in all directions and lasts for 1 round per caster level. All sight, even darkvision, is ineffective in or through the cloud. All within the cloud take –4 penalties to Strength and Dexterity (Fortitude negates). These effects last for 1d4+1 rounds after the cloud dissipates or after the creature leaves the area of the cloud. Spell resistance does not apply.",
       school: "Transmutation",
+      level: 2,
       magicType: "arcanist2, bard2, sorcerer2, wizard2",
       range: "long (400 ft. + 40 ft./level)",
       target: "one fire source, up to a 20-ft. cube",
@@ -2699,6 +2927,7 @@ class SpellData {
       effect:
           "Reduces the size and the damage dealt by the animal's natural attacks as appropriate for its new size.",
       school: "Transmutation",
+      level: 2,
       magicType: "druid2 ranger3",
       range: "touch",
       target: "one willing animal of Small, Medium, Large, or Huge size",
@@ -2709,6 +2938,7 @@ class SpellData {
       effect:
           "You can free one or more creatures from the effects of temporary paralysis or related magic, including spells and effects that cause a creature to gain the staggered condition. If the spell is cast on one creature, the paralysis is negated. If cast on two creatures, each receives another save with a +4 resistance bonus against the effect that afflicts it. If cast on three or four creatures, each receives another save with a +2 resistance bonus. The spell does not restore ability scores reduced by penalties, damage, or drain.",
       school: "Conjuration",
+      level: 2,
       magicType: " cleric2, paladin2",
       range: "close (25 ft. + 5 ft./2 levels)",
       target:
@@ -2724,6 +2954,7 @@ class SpellData {
       effect:
           "This abjuration grants a creature limited protection from damage of whichever one of five energy types you select: acid, cold, electricity, fire, or sonic. The subject gains resist energy 10 against the energy type chosen, meaning that each time the creature is subjected to such damage (whether from a natural or magical source), that damage is reduced by 10 points before being applied to the creature's hit points. The value of the energy resistance granted increases to 20 points at 7th level and to a maximum of 30 points at 11th level. The spell protects the recipient's equipment as well. Resist energy absorbs only damage. The subject could still suffer unfortunate side effects. Resist energy overlaps (and does not stack with) protection from energy. If a character is warded by protection from energy and resist energy, the protection spell absorbs damage until its power is exhausted.",
       school: "Abjuration",
+      level: 2,
       magicType:
           "alchemist2, arcanist2, cleric2, druid2, paladin2, ranger 1, sorcerer2, summoner2, wizard2",
       range: "touch",
@@ -2739,6 +2970,7 @@ class SpellData {
           "This spell functions like lesser restoration, except that it also dispels temporary negative levels or one permanent negative level. If this spell is used to dispel a permanent negative level, it has a material component of diamond dust worth 1,000 gp. This spell cannot be used to dispel more than one permanent negative level possessed by a target in a 1-week period. Restoration cures all temporary ability damage, and it restores all points permanently drained from a single ability score (your choice if more than one is drained). It also eliminates any fatigue or exhaustion suffered by the target.",
       school: "Conjuration",
       castingTime: "3 rounds",
+      level: 2,
       magicType:
           "alchemist 4, cleric 4, inquisitor 4, investigator 4, mesmerist 4, oracle 4, paladin 4,",
       range: "touch",
@@ -2753,6 +2985,7 @@ class SpellData {
       effect:
           "When this spell is cast upon a piece of rope from 5 to 30 feet long, one end of the rope rises into the air until the whole rope hangs perpendicular to the ground, as if affixed at the upper end. The upper end is, in fact, fastened to an extradimensional space that is outside the usual multiverse of extradimensional spaces. Creatures in the extradimensional space are hidden, beyond the reach of spells (including divinations), unless those spells work across planes. The space holds as many as eight creatures (of any size). The rope cannot be removed or hidden. The rope can support up to 16,000 pounds. A weight greater than that can pull the rope free. Spells cannot be cast across the extradimensional interface, nor can area effects cross it. Those in the extradimensional space can see out of it as if a 3-foot-by-5-foot window were centered on the rope. The window is invisible, and even creatures that can see the window can't see through it. Anything inside the extradimensional space drops out when the spell ends. The rope can be climbed by only one person at a time. The rope trick spell enables climbers to reach a normal place if they do not climb all the way to the extradimensional space.",
       school: "Transmutation",
+      level: 2,
       magicType: "arcanist2, sorcerer2, wizard2",
       range: "touch",
       target: "one touched piece of rope from 5 ft. to 30 ft. long",
@@ -2765,6 +2998,7 @@ class SpellData {
       effect:
           "You can see any objects or beings that are invisible within your range of vision, as well as any that are ethereal, as if they were normally visible. Such creatures are visible to you as translucent shapes, allowing you easily to discern the difference between visible, invisible, and ethereal creatures. The spell does not reveal the method used to obtain invisibility. It does not reveal illusions or enable you to see through opaque objects. It does not reveal creatures who are simply hiding, concealed, or otherwise hard to see.",
       school: "Divination",
+      level: 2,
       magicType: "alchemist2, arcanist2, bard 3, sorcerer2, summoner2, wizard2",
       range: "personal",
       target: "you",
@@ -2776,6 +3010,7 @@ class SpellData {
       effect:
           "You blast your enemies with a searing beam of fire. You may fire one ray, plus one additional ray for every four levels beyond 3rd (to a maximum of three rays at 11th level). Each ray requires a ranged touch attack to hit and deals 4d6 points of fire damage. The rays may be fired at the same or different targets, but all rays must be aimed at targets within 30 feet of each other and fired simultaneously.",
       school: "Evocation",
+      level: 2,
       magicType: "arcanist2, sorcerer2, wizard2",
       range: "close (25 ft. + 5 ft./2 levels)",
       target: "one or more rays",
@@ -2787,6 +3022,7 @@ class SpellData {
       effect:
           "This spell functions like cause fear, except that it causes all targeted creatures of less than 6 HD to become frightened.",
       school: "Necromancy",
+      level: 2,
       magicType: "antipaladin2, arcanist2, bard2, sorcerer2, wizard2",
       range: "medium (100 ft. + 10 ft./level)",
       target:
@@ -2800,6 +3036,7 @@ class SpellData {
       effect:
           "Shatter creates a loud, ringing noise that breaks brittle, nonmagical objects; sunders a single solid, nonmagical object; or damages a crystalline creature. Used as an area attack, shatter destroys nonmagical objects of crystal, glass, ceramic, or porcelain. All such unattended objects within a 5-foot radius of the point of origin are smashed into dozens of pieces by the spell. Objects weighing more than 1 pound per your level are not affected, but all other objects of the appropriate composition are shattered. Alternatively, you can target shatter against a single solid nonmagical object, regardless of composition, weighing up to 10 pounds per caster level. Targeted against a crystalline creature (of any weight), shatter deals 1d6 points of sonic damage per caster level (maximum 10d6), with a Fortitude save for half damage.",
       school: "Evocation",
+      level: 2,
       magicType: "arcanist2, bard2, cleric2, sorcerer2, wizard2",
       range: "close (25 ft. + 5 ft./2 levels)",
       target:
@@ -2814,6 +3051,7 @@ class SpellData {
       effect:
           "This spell wards the subject and creates a mystic connection between you and the subject so that some of its wounds are transferred to you. The subject gains a +1 deflection bonus to AC and a +1 resistance bonus on saves. Additionally, the subject takes only half damage from all wounds and attacks (including those dealt by special abilities) that deal hit point damage. The amount of damage not taken by the warded creature is taken by you. Forms of harm that do not involve hit points, such as charm effects, temporary ability damage, level draining, and death effects, are not affected. If the subject suffers a reduction of hit points from a lowered Constitution score, the reduction is not split with you because it is not hit point damage. When the spell ends, subsequent damage is no longer divided between the subject and you, but damage already split is not reassigned to the subject. If you and the subject of the spell move out of range of each other, the spell ends.",
       school: "Abjuration",
+      level: 2,
       magicType: "cleric2, paladin2,",
       range: "close (25 ft. + 5 ft./2 levels)",
       target: "one creature",
@@ -2827,6 +3065,7 @@ class SpellData {
       effect:
           "Upon the casting of this spell, complete silence prevails in the affected area. All sound is stopped: Conversation is impossible, spells with verbal components cannot be cast, and no noise whatsoever issues from, enters, or passes through the area. The spell can be cast on a point in space, but the effect is stationary unless cast on a mobile object. The spell can be centered on a creature, and the effect then radiates from the creature and moves as it moves. An unwilling creature can attempt a Will save to negate the spell and can use spell resistance, if any. Items in a creature's possession or magic items that emit sound receive the benefits of saves and spell resistance, but unattended objects and points in space do not. Creatures in an area of a silence spell are immune to sonic or language-based attacks, spells, and effects.",
       school: "Illusion",
+      level: 2,
       magicType: "antipaladin2, bard2, cleric2",
       range: "long (400 ft. + 40 ft./level)",
       target:
@@ -2841,6 +3080,7 @@ class SpellData {
       effect:
           "You coat all walls and ceilings within the spell's area with a slick substance. The DC of all Climb checks for the affected surfaces increases by twice your caster level (maximum +20). Creatures cannot take 10 on Climb checks while scaling the affected surfaces, even if they have a climb speed or other ability that would normally allow taking 10. This spell has no effect on magical walls or surfaces, such as the sides of a hole created with create pit",
       school: "Conjuration",
+      level: 2,
       magicType: "arcanist2, bard2, sorcerer2, summoner2, wizard2",
       range: "close (25 ft. + 5 ft./2 levels)",
       target: "30-ft.-radius emanation centered on a point in space",
@@ -2851,6 +3091,7 @@ class SpellData {
       effect:
           "When this spell is cast, all natural, undressed earth or stone in the spell's area is softened. Wet earth becomes thick mud, dry earth becomes loose sand or dirt, and stone becomes soft clay that is easily molded or chopped. You affect a 10-foot square area to a depth of 1 to 4 feet, depending on the toughness or resilience of the ground at that spot. Magical, enchanted, dressed, or worked stone cannot be affected. Earth or stone creatures are not affected. A creature in mud must succeed on a Reflex save or be caught for 1d2 rounds and unable to move, attack, or cast spells. A creature that succeeds on its save can move through the mud at half speed, and it can't run or charge. Loose dirt is not as troublesome as mud, but all creatures in the area can move at only half their normal speed and can't run or charge over the surface. Stone softened into clay does not hinder movement, but it does allow characters to cut, shape, or excavate areas they may not have been able to affect before. While this spell does not affect dressed or worked stone, cavern ceilings or vertical surfaces such as cliff faces can be affected. Usually, this causes a moderate collapse or landslide as the loosened material peels away from the face of the wall or roof and falls (treat as a cave-in with no bury zone, see Environment). A moderate amount of structural damage can be dealt to a manufactured structure by softening the ground beneath it, causing it to settle. However, most well-built structures will only be damaged by this spell, not destroyed.",
       school: "Transmutation",
+      level: 2,
       magicType: "druid2",
       range: "close (25 ft. + 5 ft./2 levels)",
       target: "10-ft. square/level",
@@ -2862,6 +3103,7 @@ class SpellData {
       effect:
           "You blast an area with a tremendous cacophony. Every creature in the area takes 1d8 points of sonic damage and must succeed on a Fortitude save to avoid being stunned for 1 round. Creatures that cannot hear are not stunned but are still damaged.",
       school: "Evocation",
+      level: 2,
       magicType: "bard 2, cleric 2,",
       range: "close (25 ft. + 5 ft./2 levels)",
       target: "10-ft.-radius spread",
@@ -2874,6 +3116,7 @@ class SpellData {
       effect:
           "You can communicate with normal plants and plant creatures, and can ask questions of and receive answers from them. A normal plant's sense of its surroundings is limited, so it won't be able to give (or recognize) detailed descriptions of creatures or answer questions about events outside its immediate vicinity. The spell doesn't make plant creatures any more friendly or cooperative than normal. Furthermore, wary and cunning plant creatures are likely to be terse and evasive, while the more stupid ones may make inane comments. If a plant creature is friendly, it may do some favor or service for you.",
       school: "Divination",
+      level: 2,
       magicType: "bard4, druid3, ranger2",
       range: "personal",
       target: "you",
@@ -2885,6 +3128,7 @@ class SpellData {
       effect:
           "A ghostly hand shaped from your life force materializes and moves as you desire, allowing you to deliver low-level, touch range spells at a distance. On casting the spell, you lose 1d4 hit points that return when the spell ends (even if it is dispelled), but not if the hand is destroyed. (The hit points can be healed as normal.) For as long as the spell lasts, any touch range spell of 4th level or lower that you cast can be delivered by the spectral hand. The spell gives you a +2 bonus on your melee touch attack roll, and attacking with the hand counts normally as an attack. The hand always strikes from your direction. The hand cannot flank targets like a creature can. After it delivers a spell, or if it goes beyond the spell range or goes out of your sight, the hand returns to you and hovers. The hand is incorporeal and thus cannot be harmed by normal weapons. It has improved evasion (half damage on a failed Reflex save and no damage on a successful save), your save bonuses, and an AC of 22 (+8 size, +4 natural armor). Your Intelligence modifier applies to the hand's AC as if it were the hand's Dexterity modifier. The hand has 1 to 4 hit points, the same number that you lost in creating it.",
       school: "Necromancy",
+      level: 2,
       magicType: "arcanist2, sorcerer2, wizard2",
       range: "medium (100 ft. + 10 ft./level)",
       target: "one spectral hand",
@@ -2896,6 +3140,7 @@ class SpellData {
       effect:
           "The subject can climb and travel on vertical surfaces or even traverse ceilings as well as a spider does. The affected creature must have its hands free to climb in this manner. The subject gains a climb speed of 20 feet and a +8 racial bonus on Climb skill checks; furthermore, it need not make Climb checks to traverse a vertical or horizontal surface (even upside down). A spider climbing creature retains its Dexterity bonus to Armor Class (if any) while climbing, and opponents get no special bonus to their attacks against it. It cannot, however, use the run action while climbing.",
       school: "Transmutation",
+      level: 2,
       magicType: "alchemist2, arcanist2, druid2, sorcerer2, summoner2, wizard2",
       range: "touch",
       target: "creature touched",
@@ -2909,6 +3154,7 @@ class SpellData {
       effect:
           "Any ground-covering vegetation in the spell's area becomes very hard and sharply pointed without changing its appearance. In areas of bare earth, roots and rootlets act in the same way. Typically, spike growth can be cast in any outdoor setting except open water, ice, heavy snow, sandy desert, or bare stone. Any creature moving on foot into or through the spell's area takes 1d4 points of piercing damage for each 5 feet of movement through the spiked area. Any creature that takes damage from this spell must also succeed on a Reflex save or suffer injuries to its feet and legs that slow its land speed by half. This speed penalty lasts for 24 hours or until the injured creature receives a cure spell (which also restores lost hit points). Another character can remove the penalty by taking 10 minutes to dress the injuries and succeeding on a Heal check against the spell's save DC. Magic traps are hard to detect. A rogue (only) can use the Perception skill to find a spike growth. The DC is 25 + spell level, or DC 28 for spike growth (or DC 27 for spike growth cast by a ranger). Spike growth can't be disabled with the Disable Device skill.",
       school: "Transmutation",
+      level: 2,
       magicType: "druid3, ranger2",
       range: "medium (100 ft. + 10 ft./level)",
       target: "one 20-ft. square/level",
@@ -2921,6 +3167,7 @@ class SpellData {
       effect:
           "A weapon made of force appears and attacks foes at a distance, as you direct it, dealing 1d8 force damage per hit, + 1 point per three caster levels (maximum +5 at 15th level). The weapon takes the shape of a weapon favored by your deity or a weapon with some spiritual significance or symbolism to you (see below) and has the same threat range and critical multipliers as a real weapon of its form. It strikes the opponent you designate, starting with one attack in the round the spell is cast and continuing each round thereafter on your turn. It uses your base attack bonus (possibly allowing it multiple attacks per round in subsequent rounds) plus your Wisdom modifier as its attack bonus. It strikes as a spell, not as a weapon, so for example, it can damage creatures that have damage reduction. As a force effect, it can strike incorporeal creatures without the reduction in damage associated with incorporeality. The weapon always strikes from your direction. It does not get a flanking bonus or help a combatant get one. Your feats or combat actions do not affect the weapon. If the weapon goes beyond the spell range, if it goes out of your sight, or if you are not directing it, the weapon returns to you and hovers. Each round after the first, you can use a move action to redirect the weapon to a new target. If you do not, the weapon continues to attack the previous round's target. On any round that the weapon switches targets, it gets one attack. Subsequent rounds of attacking that target allow the weapon to make multiple attacks if your base attack bonus would allow it to. Even if the spiritual weapon is a ranged weapon, use the spell's range, not the weapon's normal range increment, and switching targets still is a move action. A spiritual weapon cannot be attacked or harmed by physical attacks, but dispel magic, disintegrate, a sphere of annihilation, or a rod of cancellation affects it. A spiritual weapon's AC against touch attacks is 12 (10 + size bonus for Tiny object). If an attacked creature has spell resistance, you make a caster level check (1d20 + caster level) against that spell resistance the first time the spiritual weapon strikes it. If the weapon is successfully resisted, the spell is dispelled. If not, the weapon has its normal full effect on that creature for the duration of the spell. The weapon that you get is often a force replica of your deity's own personal weapon. A cleric without a deity gets a weapon based on his alignment. A neutral cleric without a deity can create a spiritual weapon of any alignment, provided he is acting at least generally in accord with that alignment at the time. The weapons associated with each alignment are as follows: chaos (battleaxe), evil (light flail), good (warhammer), law (longsword).",
       school: "Evocation",
+      level: 2,
       magicType: "cleric2",
       range: "medium (100 ft. + 10 ft./level)",
       duration: "1 round/level",
@@ -2931,6 +3178,7 @@ class SpellData {
       effect:
           "You influence the actions of the target creature by suggesting a course of activity (limited to a sentence or two). The suggestion must be worded in such a manner as to make the activity sound reasonable. Asking the creature to do some obviously harmful act automatically negates the effect of the spell. The suggested course of activity can continue for the entire duration. If the suggested activity can be completed in a shorter time, the spell ends when the subject finishes what it was asked to do. You can instead specify conditions that will trigger a special activity during the duration. If the condition is not met before the spell duration expires, the activity is not performed. A very reasonable suggestion causes the save to be made with a penalty (such as –1 or –2).",
       school: "Enchantment",
+      level: 2,
       magicType: "arcanist3, bard2, sorcerer3, wizard3",
       range: "close (25 ft. + 5 ft./2 levels)",
       target: "one living creature",
@@ -2944,6 +3192,7 @@ class SpellData {
       effect:
           "This spell summons an extraplanar creature (typically an outsider, elemental, or magical beast native to another plane). It appears where you designate and acts immediately, on your turn. It attacks your opponents to the best of its ability. If you can communicate with the creature, you can direct it not to attack, to attack particular enemies, or to perform other actions. You choose which kind of creature to summon, and you can choose a different one each time you cast the spell. A summoned monster cannot summon or otherwise conjure another creature, nor can it use any teleportation or planar travel abilities. Creatures cannot be summoned into an environment that cannot support them. Creatures summoned using this spell cannot use spells or spell-like abilities that duplicate spells with expensive material components (such as wish). If the creature has an alignment label that is diferente from yours, you cannot choose that creature, (Unless you are of neutral alignment). No aligment lable means that creature's alignment will match whatever alignment is summoning them.  # Creatures are: Ant, giant (worker) — Elemental (Small) — Giant centipede	— Giant frog — Giant spider — Goblin dog — Horse — Hyena — Lemure (devil, Lawful-Evil) — Octopus — Squid	— Wolf.",
       school: "Conjuration",
+      level: 2,
       magicType:
           "antipaladin2, arcanist2, bard2, cleric2, sorcerer2, summoner2, wizard2",
       range: "close (25 ft. + 5 ft./2 levels)",
@@ -2956,6 +3205,7 @@ class SpellData {
       effect:
           "This spell summons to your side a natural creature (typically an animal, fey, magical beast, outsider with the elemental subtype, or a giant). The summoned ally appears where you designate and acts immediately, on your turn. It attacks your opponents to the best of its ability. If you can communicate with the creature, you can direct it not to attack, to attack particular enemies, or to perform other actions as you command. A summoned monster cannot summon or otherwise conjure another creature, nor can it use any teleportation or planar travel abilities. Creatures cannot be summoned into an environment that cannot support them. Creatures summoned using this spell cannot use spells or spell-like abilities that duplicate spells that have expensive material components (such as wish). You choose which kind of creature to summon, and you can change that choice each time you cast the spell. All creatures summoned with this spell have an alignment that matches yours, regardless of their usual alignment.  # Creatures are: Ant, giant (worker) — Elemental(Small) — Giant frog	— Giant spider	— Goblin Dog — Horse — Hyena — Octopus — Squid — Wolf.",
       school: "Conjuration",
+      level: 2,
       magicType: "druid2, ranger2",
       range: "close (25 ft. + 5 ft./2 levels)",
       target: "one summoned creature",
@@ -2966,6 +3216,7 @@ class SpellData {
       effect:
           "You summon a swarm of bats, rats, or spiders (your choice), which attacks all other creatures within its area. (You may summon the swarm so that it shares the area of other creatures.) If no living creatures are within its area, the swarm attacks or pursues the nearest creature as best it can. The caster has no control over its target or direction of travel.",
       school: "Conjuration",
+      level: 2,
       magicType: "arcanist2, bard2, druid2, sorcerer2, summoner2, wizard2",
       range: "close (25 ft. + 5 ft./2 levels)",
       target: "one swarm of bats, rats, or spiders",
@@ -2976,6 +3227,7 @@ class SpellData {
       effect:
           "You touch your boots, shoes, or other footwear and imbue them with the ability to find purchase on even the most treacherous ground. While the spell is in effect, the footwear’s wearer treats any Acrobatics skill check to balance as though the wearer had rolled a 20.",
       school: "Transmutation",
+      level: 2,
       magicType: "druid2, ranger2",
       range: "personal",
       target: "you",
@@ -2987,6 +3239,7 @@ class SpellData {
       effect:
           "This spell grants the creature touched the ability to speak and understand the language of any intelligent creature, whether it is a racial tongue or a regional dialect. The subject can speak only one language at a time, although it may be able to understand several languages. Tongues does not enable the subject to speak with creatures who don't speak. The subject can make itself understood as far as its voice carries. This spell does not predispose any creature addressed toward the subject in any way.",
       school: "",
+      level: 2,
       magicType: "",
       range: "touch",
       target: "creature touched",
@@ -2999,6 +3252,7 @@ class SpellData {
       effect:
           "With a touch, you reduce the target's mental faculties. Your successful melee touch attack applies a 1d6 penalty to the target's Intelligence, Wisdom, and Charisma scores. This penalty can't reduce any of these scores below 1. This spell's effect may make it impossible for the target to cast some or all of its spells, if the requisite ability score drops below the minimum required to cast spells of that level.",
       school: "Enchantment",
+      level: 2,
       magicType: "arcanist2, sorcerer2, wizard2",
       range: "touch",
       target: "living creature touched",
@@ -3010,6 +3264,7 @@ class SpellData {
       effect:
           "This spell allows you to assume the form of a Large living tree or shrub or a Large dead tree trunk with a small number of limbs. The exact type of tree, as well as its appearance, is completely under your control. Even the closest inspection cannot reveal that the tree in question is actually a magically concealed creature. To all normal tests you are, in fact, a tree or shrub, although a detect magic spell reveals a faint transmutation on the tree. While in tree form, you can observe all that transpires around you just as if you were in your normal form, and your hit points and save bonuses remain unaffected. You gain a +10 natural armor bonus to AC but have an effective Dexterity score of 0 and a speed of 0 feet. You are immune to critical hits while in tree form. All clothing and gear carried or worn changes with you. You can dismiss tree shape as a free action (instead of as a standard action).",
       school: "Transmutation",
+      level: 2,
       magicType: "druid2 ranger3",
       range: "personal",
       target: "you",
@@ -3020,6 +3275,7 @@ class SpellData {
       effect:
           "An undetectable alignment spell conceals the alignment of an object or a creature from all forms of divination.",
       school: "Abjuration",
+      level: 2,
       magicType: "alchemist2, antipaladin2, bard1, cleric2, paladin2",
       range: "close (25 ft. + 5 ft./2 levels)",
       target: "one creature or object",
@@ -3033,6 +3289,7 @@ class SpellData {
       effect:
           "You cause wood to bend and warp, permanently destroying its straightness, form, and strength. A warped door springs open (or becomes stuck, requiring a Strength check to open, at your option). A boat or ship springs a leak. Warped ranged weapons are useless. A warped melee weapon causes a –4 penalty on attack rolls. You may warp one Small or smaller object or its equivalent per caster level. A Medium object counts as two Small objects, a Large object as four, a Huge object as eight, a Gargantuan object as 16, and a Colossal object as 32. Alternatively, you can unwarp wood (effectively warping it back to normal) with this spell. Make whole, on the other hand, does no good in repairing a warped item. You can combine multiple consecutive warp wood spells to warp (or unwarp) an object that is too large for you to warp with a single spell. Until the object is completely warped, it suffers no ill effects.",
       school: "Transmutation",
+      level: 2,
       magicType: "druid2",
       range: "close (25 ft. + 5 ft./2 levels)",
       target: "1 Small wooden object/level, all within a 20-ft. radius",
@@ -3045,6 +3302,7 @@ class SpellData {
       effect:
           "Web creates a many-layered mass of strong, sticky strands. These strands trap those caught in them. The strands are similar to spiderwebs but far larger and tougher. These masses must be anchored to two or more solid and diametrically opposed points or else the web collapses upon itself and disappears. Creatures caught within a web become grappled by the sticky fibers. Attacking a creature in a web doesn't cause you to become grappled. Anyone in the effect's area when the spell is cast must make a Reflex save. If this save succeeds, the creature is inside the web but is otherwise unaffected. If the save fails, the creature gains the grappled condition, but can break free by making a combat maneuver check or Escape Artist check as a standard action against the DC of this spell. The entire area of the web is considered difficult terrain. Anyone moving through the webs must make a combat maneuver check or Escape Artist check as part of their move action, with a DC equal to the spell's DC. Creatures that fail lose their movement and become grappled in the first square of webbing that they enter. If you have at least 5 feet of web between you and an opponent, it provides cover. If you have at least 20 feet of web between you, it provides total cover. The strands of a web spell are flammable. A flaming weapon can slash them away as easily as a hand brushes away cobwebs. Any fire can set the webs alight and burn away one 5-foot square in 1 round. All creatures within flaming webs take 2d4 points of fire damage from the flames.",
       school: "Conjuration",
+      level: 2,
       magicType: "arcanist2, sorcerer2, wizard2",
       range: "medium (100 ft. + 10 ft./level)",
       target: "webs in a 20-ft.-radius spread",
@@ -3057,6 +3315,7 @@ class SpellData {
       effect:
           "You send a message or sound on the wind to a designated spot. The whispering wind travels to a specific location within range that is familiar to you, provided that it can find a way to the location. A whispering wind is as gentle and unnoticed as a zephyr until it reaches the location. It then delivers its whisper-quiet message or other sound. Note that the message is delivered regardless of whether anyone is present to hear it. The wind then dissipates. You can prepare the spell to bear a message of no more than 25 words, cause the spell to deliver other sounds for 1 round, or merely have the whispering wind seem to be a faint stirring of the air. You can likewise cause the whispering wind to move as slowly as 1 mile per hour or as quickly as 1 mile per 10 minutes. When the spell reaches its objective, it swirls and remains in place until the message is delivered. As with magic mouth, whispering wind cannot speak verbal components, use command words, or activate magical effects.",
       school: "Transmutation",
+      level: 2,
       magicType: " arcanist2, bard2, sorcerer2, wizard2",
       range: "1 mile/level",
       target: "10-ft.-radius spread",
@@ -3069,6 +3328,7 @@ class SpellData {
       effect:
           "ce encrusts the ground, radiating supernatural cold and making it hard for creatures to maintain their balance. This icy ground is treated as normal ice, forcing creatures to spend 2 squares of movement to enter an icy square and increasing the DC of Acrobatics checks in the area by 5. A creature that begins its turn in the affected area takes 1d6 points of cold damage and takes a –2 penalty on saving throws against spells with the cold descriptor for 1 round.",
       school: "Conjuration",
+      level: 2,
       magicType: "druid2",
       range: "medium (100 ft. + 10 ft./level)",
       target: "20-ft.-radius spread",
@@ -3080,6 +3340,7 @@ class SpellData {
       effect:
           "Wood shape enables you to form one existing piece of wood into any shape that suits your purpose. While it is possible to make crude coffers, doors, and so forth, fine detail isn't possible. There is a 30% chance that any shape that includes moving parts simply doesn't work.",
       school: "Transmutation",
+      level: 2,
       magicType: "druid2",
       range: "touch",
       target:
@@ -3093,6 +3354,7 @@ class SpellData {
       effect:
           "Creatures within the emanation area (or those who enter it) can't speak any deliberate and intentional lies. Each potentially affected creature is allowed a save to avoid the effects when the spell is cast or when the creature first enters the emanation area. Affected creatures are aware of this enchantment. Therefore, they may avoid answering questions to which they would normally respond with a lie, or they may be evasive as long as they remain within the boundaries of the truth. Creatures who leave the area are free to speak as they choose.",
       school: "Enchantment",
+      level: 2,
       magicType: "cleric2, paladin2",
       range: "close (25 ft. + 5 ft./2 levels)",
       target: "20-ft.-radius emanation",
@@ -3113,6 +3375,7 @@ class SpellData {
       effect:
           "This spell turns corpses into undead skeletons or zombies that obey your spoken commands. The undead can be made to follow you, or they can be made to remain in an area and attack any creature (or just a specific kind of creature) entering the place. They remain animated until they are destroyed. A destroyed skeleton or zombie can't be animated again. Regardless of the type of undead you create with this spell, you can't create more HD of undead than twice your caster level with a single casting of animate dead. The desecrate spell doubles this limit. The undead you create remain under your control indefinitely. No matter how many times you use this spell, however, you can control only 4 HD worth of undead creatures per caster level. If you exceed this number, all the newly created creatures fall under your control, and any excess undead from previous castings become uncontrolled. You choose which creatures are released. Undead you control through the Command Undead feat do not count toward this limit. Skeletons: A skeleton can be created only from a mostly intact corpse or skeleton. The corpse must have bones. If a skeleton is made from a corpse, the flesh falls off the bones. Zombies: A zombie can be created only from a mostly intact corpse. The corpse must be that of a creature with a physical anatomy.",
       school: "Necromancy",
+      level: 3,
       magicType: "antipaladin3, arcanist4, cleric3, sorcerer4, wizard4",
       range: "touch",
       target: "one or more corpses touched",
@@ -3124,6 +3387,7 @@ class SpellData {
       effect:
           "This spell makes your eyes glow blue and allows you to see magical auras within 120 feet of you. The effect is similar to that of a detect magic spell, but arcane sight does not require concentration and discerns aura location and power more quickly. You know the location and power of all magical auras within your sight. An aura's power depends on a spell's functioning level or an item's caster level, as noted in the description of the detect magic spell. If the items or creatures bearing the auras are in line of sight, you can make Spellcraft skill checks to determine the school of magic involved in each. (Make one check per aura; DC 15 + spell level, or 15 + half caster level for a nonspell effect.) If you concentrate on a specific creature within 120 feet of you as a standard action, you can determine whether it has any spellcasting or spell-like abilities, whether these are arcane or divine (spell-like abilities register as arcane), and the strength of the most powerful spell or spell-like ability the creature currently has available for use. As with detect magic, you can use this spell to identify the properties of magic items, but not artifacts.",
       school: "Divination",
+      level: 3,
       magicType: "alchemist3, arcanist3, sorcerer3, wizard3",
       range: "personal",
       target: "you",
@@ -3136,6 +3400,7 @@ class SpellData {
       effect:
           "When you cast this spell, you can assume the form of any Small or Medium creature of the animal type. If the form you assume has any of the following abilities, you gain the listed ability: climb 30 feet, fly 30 feet (average maneuverability), swim 30 feet, darkvision 60 feet, low-light vision, and scent. Small animal: If the form you take is that of a Small animal, you gain a +2 size bonus to your Dexterity and a +1 natural armor bonus. Medium animal: If the form you take is that of a Medium animal, you gain a +2 size bonus to your Strength and a +2 natural armor bonus.",
       school: "Transmutation",
+      level: 3,
       magicType: " alchemist3, arcanist3, sorcerer3, wizard3",
       range: "personal",
       target: "you",
@@ -3147,6 +3412,7 @@ class SpellData {
       effect:
           "You place a curse on the subject. Choose one of the following: * –6 decrease to an ability score (minimum 1). * –4 penalty on attack rolls, saves, ability checks, and skill checks. * Each turn, the target has a 50% chance to act normally; otherwise, it takes no action. You may also invent your own curse, but it should be no more powerful than those described above. The curse bestowed by this spell cannot be dispelled, but it can be removed with a break enchantment, limited wish, miracle, remove curse, or wish spell. Bestow curse counters remove curse.",
       school: "Necromancy",
+      level: 3,
       magicType: "antipaladin3, arcanist4, cleric3, sorcerer4, wizard4",
       range: "touch",
       target: "creature touched",
@@ -3159,6 +3425,7 @@ class SpellData {
       effect:
           "You “blink” quickly back and forth between the Material Plane and the Ethereal Plane and look as though you're winking in and out of reality at random. Blink has several effects, as follows. Physical attacks against you have a 50% miss chance, and the Blind-Fight feat doesn't help opponents, since you're ethereal and not merely invisible. If the attack is capable of striking ethereal creatures, the miss chance is only 20% (for concealment). If the attacker can see invisible creatures, the miss chance is also only 20%. (For an attacker who can both see and strike ethereal creatures, there is no miss chance.) Likewise, your own attacks have a 20% miss chance, since you sometimes go ethereal just as you are about to strike. Any individually targeted spell has a 50% chance to fail against you while you're blinking unless your attacker can target invisible, ethereal creatures. Your own spells have a 20% chance to activate just as you go ethereal, in which case they typically do not affect the Material Plane (but they might affect targets on the Ethereal Plane). While blinking, you take only half damage from area attacks (but full damage from those that extend onto the Ethereal Plane). Although you are only partially visible, you are not considered invisible and targets retain their Dexterity bonus to AC against your attacks. You do receive a +2 bonus on attack rolls made against enemies that cannot see invisible creatures. You take only half damage from falling, since you fall only while you are material. While blinking, you can step through (but not see through) solid objects. For each 5 feet of solid material you walk through, there is a 50% chance that you become material. If this occurs, you are shunted off to the nearest open space and take 1d6 points of damage per 5 feet so traveled. Since you spend about half your time on the Ethereal Plane, you can see and even attack ethereal creatures. You interact with ethereal creatures roughly the same way you interact with material ones. An ethereal creature is invisible, incorporeal, and capable of moving in any direction, even up or down. As an incorporeal creature, you can move through solid objects, including living creatures. An ethereal creature can see and hear the Material Plane, but everything looks gray and insubstantial. Sight and hearing on the Material Plane are limited to 60 feet. Force effects and abjurations affect you normally. Their effects extend onto the Ethereal Plane from the Material Plane, but not vice versa. An ethereal creature can't attack material creatures, and spells you cast while ethereal affect only other ethereal things. Certain material creatures or objects have attacks or effects that work on the Ethereal Plane. Treat other ethereal creatures and objects as material.",
       school: "Transmutation",
+      level: 3,
       magicType: "arcanist3, bard3,sorcerer3, wizard3",
       range: "personal",
       target: "you",
@@ -3170,6 +3437,7 @@ class SpellData {
       effect:
           "Immediately upon completion of the spell, and once per round thereafter, you may call down a 5-foot-wide, 30-foot-long, vertical bolt of lightning that deals 3d6 points of electricity damage. The bolt of lightning flashes down in a vertical stroke at whatever target point you choose within the spell's range (measured from your position at the time). Any creature in the target square or in the path of the bolt is affected. You need not call a bolt of lightning immediately; other actions, even spellcasting, can be performed first. Each round after the first you may use a standard action (concentrating on the spell) to call a bolt. You may call a total number of bolts equal to your caster level (maximum 10 bolts). If you are outdoors and in a stormy area—a rain shower, clouds and wind, hot and cloudy conditions, or even a tornado (including a whirlwind formed by a djinni or an air elemental of at least Large size)—each bolt deals 3d10 points of electricity damage instead of 3d6. This spell functions indoors or underground but not underwater.",
       school: "Evocation",
+      level: 3,
       magicType: "druid3,",
       range: "medium (100 ft. + 10 ft./level)",
       target: "one or more 30-ft.-long vertical lines of lightning",
@@ -3182,6 +3450,7 @@ class SpellData {
       effect:
           "This charm makes a creature regard you as its trusted friend and ally (treat the target's attitude as friendly). If the creature is currently being threatened or attacked by you or your allies, however, it receives a +5 bonus on its saving throw. The spell does not enable you to control the charmed monster as if it were an automaton, but it perceives your words and actions in the most favorable way. You can try to give the subject orders, but you must win an opposed Charisma check to convince it to do anything it wouldn't ordinarily do. (Retries are not allowed.) An affected creature never obeys suicidal or obviously harmful orders, but it might be convinced that something very dangerous is worth doing. Any act by you or your apparent allies that threatens the charmed person breaks the spell. You must speak the creature's language to communicate your commands, or else be good at pantomiming.",
       school: "Enchantment",
+      level: 3,
       magicType: "arcanist4, bard3, sorcerer4, summoner3, wizard4",
       range: "close (25 ft. + 5 ft./2 levels)",
       target: "one living creature",
@@ -3194,6 +3463,7 @@ class SpellData {
       effect:
           "Clairaudience/clairvoyance creates an invisible magical sensor at a specific location that enables you to hear or see (your choice) almost as if you were there. You don't need line of sight or line of effect, but the locale must be known—a place familiar to you, or an obvious one. Once you have selected the locale, the sensor doesn't move, but you can rotate it in all directions to view the area as desired. Unlike other scrying spells, this spell does not allow magically or supernaturally enhanced senses to work through it. If the chosen locale is magically dark, you see nothing. If it is naturally pitch black, you can see in a 10-foot radius around the center of the spell's effect. Clairaudience/clairvoyance functions only on the plane of existence you are currently occupying.",
       school: "Divination",
+      level: 3,
       magicType: "arcanist3, bard3, sorcerer3, wizard3",
       castingTime: "10 minutes",
       range: "long (400 ft. + 40 ft./level)",
@@ -3206,6 +3476,7 @@ class SpellData {
       effect:
           "This spell causes confusion in the targets, making them unable to determine their actions. Roll on the following at the start of each subject's turn each round to see what it does in that round. (01-25 [act normally]) - (26-50 [Do nothing but babble incoherently]) - (51-75 [Deal 1d8 points of damage + Str modifier to self with item in hand]) - (76-100 [Attack nearest creature (for this purpose, a familiar counts as part of the subject's self)]). A confused character who can't carry out the indicated action does nothing but babble incoherently. Attackers are not at any special advantage when attacking a confused character. Any confused character who is attacked automatically attacks its attackers on its next turn, as long as it is still confused when its turn comes. Note that a confused character will not make attacks of opportunity against any creature that it is not already devoted to attacking (either because of its most recent action or because it has just been attacked).",
       school: "Enchantment",
+      level: 3,
       magicType: "arcanist4, bard3, sorcerer4, wizard4",
       range: "medium (100 ft. + 10 ft./level)",
       target: "all creatures in a 15-ft.-radius burst",
@@ -3218,6 +3489,7 @@ class SpellData {
       effect:
           "The subject contracts one of the following diseases: blinding sickness, bubonic plague, cackle fever, filth fever, leprosy, mindfire, red ache, shakes, or slimy doom. The disease is contracted immediately (the onset period does not apply). Use the disease's listed frequency and save DC to determine further effects. For more information see Diseases.",
       school: "Necromancy",
+      level: 3,
       magicType: "antipaladin3, arcanist4, cleric3, druid3, sorcerer4, wizard4",
       range: "touch",
       target: "living creature touched",
@@ -3230,6 +3502,7 @@ class SpellData {
       effect:
           "The food that this spell creates is simple fare of your choice—highly nourishing, if rather bland. Food so created decays and becomes inedible after 24 hours, although it can be kept fresh for another 24 hours by casting a purify food and water spell on it. The water created by this spell is just like clean rain water, and it doesn't go bad as the food does.",
       school: "Conjuration",
+      level: 3,
       magicType: "cleric3",
       range: "close (25 ft. + 5 ft./2 levels)",
       target:
@@ -3242,6 +3515,7 @@ class SpellData {
       effect:
           "An invisible cone of despair causes great sadness in the subjects. Each affected creature takes a –2 penalty on attack rolls, saving throws, ability checks, skill checks, and weapon damage rolls. Crushing despair counters and dispels good hope.",
       school: "Enchantment",
+      level: 3,
       magicType: "antipaladin3 arcanist4, bard3, sorcerer4, wizard4",
       range: "30 ft.",
       target: "cone-shaped burst",
@@ -3254,6 +3528,7 @@ class SpellData {
       effect:
           "cures 3d8 points of damage + 1 point per caster level (maximum +15).",
       school: "Conjuration",
+      level: 3,
       magicType: "alchemist3, bard3, cleric3, druid4, paladin4, ranger4",
       range: "touch",
       target: "creature touched",
@@ -3267,6 +3542,7 @@ class SpellData {
       effect:
           "You touch an object when you cast this spell, causing the object to shed bright light in a 60-foot radius. This illumination increases the light level for an additional 60 feet by one step (darkness becomes dim light, dim light becomes normal light, and normal light becomes bright light). Creatures that take penalties in bright light take them while within the 60-foot radius of this magical light. Despite its name, this spell is not the equivalent of daylight for the purposes of creatures that are damaged or destroyed by such light. If daylight is cast on a small object that is then placed inside or under a light-proof covering, the spell's effects are blocked until the covering is removed. Daylight brought into an area of magical darkness (or vice versa) is temporarily negated, so that the otherwise prevailing light conditions exist in the overlapping areas of effect. Daylight counters or dispels any darkness spell of equal or lower level, such as darkness.",
       school: "Evocation",
+      level: 3,
       magicType:
           "arcanist3, bard3, cleric3, druid3, paladin3, sorcerer3, wizard3",
       range: "touch",
@@ -3279,6 +3555,7 @@ class SpellData {
       effect:
           "A Deep Slumber spell causes a magical slumber to come upon 10 HD of creatures. Creatures with the fewest HD are affected first. Among creatures with equal HD, those who are closest to the spell's point of origin are affected first. HD that are not sufficient to affect a creature are wasted. Sleeping creatures are helpless. Slapping or wounding awakens an affected creature, but normal noise does not. Awakening a creature is a standard action (an application of the aid another action). Sleep does not target unconscious creatures, constructs, or undead creatures.",
       school: "Enchantment",
+      level: 3,
       magicType: "arcanist3, bard3, sorcerer3, wizard3",
       range: "close (25 ft. + 5 ft./2 levels)",
       target: "one or more living creatures within a 10-ft.-radius burst",
@@ -3291,6 +3568,7 @@ class SpellData {
       effect:
           "objects radiate darkness in a 60-foot radius and the light level is lowered by two steps. Bright light becomes dim light and normal light becomes darkness. Areas of dim light and darkness become supernaturally dark. This functions like darkness, but even creatures with darkvision cannot see within the spell's confines. Creatures with light vulnerability or sensitivity take no penalties in normal light. All creatures gain concealment (20% miss chance) in dim light. All creatures gain total concealment (50% miss chance) in darkness. This spell does not stack with itself. Deeper darkness can be used to counter or dispel any light spell of equal or lower spell level.",
       school: "Evocation",
+      level: 3,
       magicType: "antipaladin3, cleric3",
       range: "touch",
       target: "object touched",
@@ -3301,6 +3579,7 @@ class SpellData {
       effect:
           "This spell has two versions. Prune Growth: This version of the spell causes normal vegetation within long range (400 feet + 40 feet per level) to shrink to about one-third normal size, becoming untangled and less bushy. The affected vegetation appears to have been carefully pruned and trimmed. This version of diminish plants automatically dispels any spells or effects that enhance plants, such as entangle, plant growth, and wall of thorns. At your option, the area can be a 100-foot-radius circle, a 150-foot-radius semicircle, or a 200-foot-radius quarter-circle. You may also designate portions of the area that are not affected. Stunt Growth: This version of the spell targets all normal plants within a range of 1/2 mile, reducing their potential productivity over the course of the following year to half normal. This spell has no effect on plant creatures.",
       school: "Transmutation",
+      level: 3,
       magicType: " druid3, ranger3",
       range: "see text",
       target: "see text",
@@ -3312,6 +3591,7 @@ class SpellData {
       effect:
           "You can use dispel magic to end one ongoing spell that has been cast on a creature or object, to temporarily suppress the magical abilities of a magic item, or to counter another spellcaster's spell. A dispelled spell ends as if its duration had expired. Some spells, as detailed in their descriptions, can't be defeated by dispel magic. Dispel magic can dispel (but not counter) spell-like effects just as it does spells. The effect of a spell with an instantaneous duration can't be dispelled, because the magical effect is already over before the dispel magic can take effect. You choose to use dispel magic in one of two ways: a targeted dispel or a counterspell. Targeted Dispel: One object, creature, or spell is the target of the dispel magic spell. You make one dispel check (1d20 + your caster level) and compare that to the spell with highest caster level (DC = 11 + the spell's caster level). If successful, that spell ends. If not, compare the same result to the spell with the next highest caster level. Repeat this process until you have dispelled one spell affecting the target, or you have failed to dispel every spell. For example, a 7th-level caster casts dispel magic, targeting a creature affected by stoneskin (caster level 12th) and fly (caster level 6th). The caster level check results in a 19. This check is not high enough to end the stoneskin (which would have required a 23 or higher), but it is high enough to end the fly (which only required a 17). Had the dispel check resulted in a 23 or higher, the stoneskin would have been dispelled, leaving the fly intact. Had the dispel check been a 16 or less, no spells would have been affected. You can also use a targeted dispel to specifically end one spell affecting the target or one spell affecting an area (such as a wall of fire). You must name the specific spell effect to be targeted in this way. If your caster level check is equal to or higher than the DC of that spell, it ends. No other spells or effects on the target are dispelled if your check is not high enough to end the targeted effect. If you target an object or creature that is the effect of an ongoing spell (such as a monster summoned by summon monster), you make a dispel check to end the spell that conjured the object or creature. If the object that you target is a magic item, you make a dispel check against the item's caster level (DC = 11 + the item's caster level). If you succeed, all the item's magical properties are suppressed for 1d4 rounds, after which the item recovers its magical properties. A suppressed item becomes nonmagical for the duration of the effect. An interdimensional opening (such as a bag of holding) is temporarily closed. A magic item's physical properties are unchanged: A suppressed magic sword is still a sword (a masterwork sword, in fact). Artifacts and deities are unaffected by mortal magic such as this. You automatically succeed on your dispel check against any spell that you cast yourself. Counterspell: When dispel magic is used in this way, the spell targets a spellcaster and is cast as a counterspell. Unlike a true counterspell, however, dispel magic may not work; you must make a dispel check to counter the other spellcaster's spell.",
       school: "Abjuration",
+      level: 3,
       magicType:
           "antipaladin3, arcanist3, bard3, cleric3, druid 4, paladin3, sorcerer3, summoner3, wizard3",
       range: "medium (100 ft. + 10 ft./level)",
@@ -3324,6 +3604,7 @@ class SpellData {
       effect:
           "The subject of this spell appears to be about 2 feet away from its true location. The creature benefits from a 50% miss chance as if it had total concealment. Unlike actual total concealment, displacement does not prevent enemies from targeting the creature normally. True seeing reveals its true location and negates the miss chance.",
       school: "Illusion",
+      level: 3,
       magicType: "alchemist3, arcanist3, bard3, sorcerer3, summoner3, wizard3",
       range: "touch",
       target: "creature touched",
@@ -3337,6 +3618,7 @@ class SpellData {
       effect:
           "This spell allows you to enchant the targeted animal and direct it with simple commands such as “Attack,” “Run,” and “Fetch.” Suicidal or self-destructive commands (including an order to attack a creature two or more size categories larger than the dominated animal) are simply ignored. Dominate animal establishes a mental link between you and the subject creature. The animal can be directed by silent mental command as long as it remains in range. You need not see the creature to control it. You do not receive direct sensory input from the creature, but you know what it is experiencing. Because you are directing the animal with your own intelligence, it may be able to undertake actions normally beyond its own comprehension. You need not concentrate exclusively on controlling the creature unless you are trying to direct it to do something it normally couldn't do. Changing your instructions or giving a dominated creature a new command is the equivalent of redirecting a spell, so it is a move action.",
       school: "Enchantment",
+      level: 3,
       magicType: "druid3,",
       range: "close (25 ft. + 5 ft./2 levels)",
       target: "one animal",
@@ -3348,6 +3630,7 @@ class SpellData {
       effect:
           "You trace mystic runes upon a book, map, scroll, or similar object bearing written information. The explosive runes detonate when read, dealing 6d6 points of force damage. Anyone next to the explosive runes (close enough to read them) takes the full damage with no saving throw; any other creature within 10 feet of the explosive runes is entitled to a Reflex save for half damage. The object on which the explosive runes were written also takes full damage (no saving throw). You and any characters you specifically instruct can read the protected writing without triggering the explosive runes. Likewise, you can remove the explosive runes whenever desired. Another creature can remove them with a successful dispel magic or erase spell, but attempting to dispel or erase the explosive runes and failing to do so triggers the explosion. Magic traps such as explosive runes are hard to detect and disable. A character with the trapfinding class feature (only) can use Disable Device to thwart explosive runes. The DC to find magic traps using Perception and to disable them is 25 + spell level, or 28 for explosive runes.",
       school: "Abjuration",
+      level: 3,
       magicType: "arcanist3, sorcerer3, wizard3",
       range: "touch",
       target: "one touched object weighing no more than 10 lbs.",
@@ -3360,6 +3643,7 @@ class SpellData {
       effect:
           "This spell forms an aura of energy around you, damaging all those that come near you. Choose an energy type: acid, cold, electricity, or fire. Creatures adjacent to you when this spell is cast and at the start of your turn take 2d6 points of energy damage of the selected type. This aura has an additional effect, depending upon the type of energy chosen. Acid: Creatures affected by your aura take 1 point of ongoing acid damage per round for 1 round per three caster levels, and are sickened for the duration of the ongoing acid damage. Cold: Creatures affected by your aura are fatigued. A creature that is already fatigued suffers no additional effect. Electricity: Creatures affected by your aura are staggered for 1 round. Fire: Creatures affected by your aura catch on fire (Core Rulebook 444). Creatures adjacent to you are allowed a Reflex save to halve the damage and negate the additional effect. The aura’s additional effects do not stack if a creature takes damage from your aura multiple times. You may only have one elemental aura in effect at one time. When you cast this spell to deal acid, cold, electricity, or fire damage, it is a spell of that type.",
       school: "Evocation",
+      level: 3,
       magicType: "alchemist3, arcanist3, sorcerer3, wizard3",
       range: "personal",
       target: "you",
@@ -3373,6 +3657,7 @@ class SpellData {
       effect:
           "An invisible cone of terror causes each living creature in the area to become panicked unless it succeeds on a Will save. If cornered, a panicked creature begins cowering. If the Will save succeeds, the creature is shaken for 1 round.",
       school: "Necromancy",
+      level: 3,
       magicType: "antipaladin4, arcanist4, bard3, sorcerer4, wizard4",
       range: "30 ft.",
       target: "cone-shaped burst",
@@ -3385,6 +3670,7 @@ class SpellData {
       effect:
           "A fireball spell generates a searing explosion of flame that detonates with a low roar and deals 1d6 points of fire damage per caster level (maximum 10d6) to every creature within the area. Unattended objects also take this damage. The explosion creates almost no pressure. You point your finger and determine the range (distance and height) at which the fireball is to burst. A glowing, pea-sized bead streaks from the pointing digit and, unless it impacts upon a material body or solid barrier prior to attaining the prescribed range, blossoms into the fireball at that point. An early impact results in an early detonation. If you attempt to send the bead through a narrow passage, such as through an arrow slit, you must “hit” the opening with a ranged touch attack, or else the bead strikes the barrier and detonates prematurely. The fireball sets fire to combustibles and damages objects in the area. It can melt metals with low melting points, such as lead, gold, copper, silver, and bronze. If the damage caused to an interposing barrier shatters or breaks through it, the fireball may continue beyond the barrier if the area permits; otherwise it stops at the barrier just as any other spell effect does.",
       school: "Evocation",
+      level: 3,
       magicType: "arcanist3, sorcerer3, wizard3",
       range: "long (400 ft. + 40 ft./level)",
       target: "20-ft.-radius spread",
@@ -3397,6 +3683,7 @@ class SpellData {
       effect:
           "A rushing stream of fire sprays from your outstretched hand, dealing 2d6 points of fire damage to every creature in the area. Each round you continue to concentrate on the spell, you can select a new area for it to affect. Firestream sets fire to combustibles and damages objects in the area. It can melt metals with low melting points, such as lead, gold, copper, silver, and bronze. If the damage caused to an interposing barrier shatters or breaks through it, the firestream may continue beyond the barrier if the area permits; otherwise it stops at the barrier just as any other spell effect does.",
       school: "Evocation",
+      level: 3,
       magicType: "arcanist3, sorcerer3, wizard3",
       range: "20 ft.",
       target: "20-ft. line",
@@ -3409,6 +3696,7 @@ class SpellData {
       effect:
           "This spell allows you to turn ammunition (such as arrows, crossbow bolts, shuriken, and sling stones) into fiery projectiles. Each piece of ammunition deals an extra 1d6 points of fire damage to any target it hits. A flaming projectile can easily ignite a flammable object or structure, but it won't ignite a creature it strikes.",
       school: "Transmutation",
+      level: 3,
       magicType: "arcanist3, sorcerer3, wizard3",
       range: "close (25 ft. + 5 ft./2 levels)",
       target:
@@ -3421,6 +3709,7 @@ class SpellData {
       effect:
           "The subject can fly at a speed of 60 feet (or 40 feet if it wears medium or heavy armor, or if it carries a medium or heavy load). It can ascend at half speed and descend at double speed, and its maneuverability is good. Using a fly spell requires only as much concentration as walking, so the subject can attack or cast spells normally. The subject of a fly spell can charge but not run, and it cannot carry aloft more weight than its maximum load, plus any armor it wears. The subject gains a bonus on Fly skill checks equal to 1/2 your caster level. Should the spell duration expire while the subject is still aloft, the magic fails slowly. The subject floats downward 60 feet per round for 1d6 rounds. If it reaches the ground in that amount of time, it lands safely. If not, it falls the rest of the distance, taking 1d6 points of damage per 10 feet of fall. Since dispelling a spell effectively ends it, the subject also descends safely in this way if the fly spell is dispelled, but not if it is negated by an antimagic field.",
       school: "Transmutation",
+      level: 3,
       magicType: "alchemist3, arcanist3, sorcerer3, summoner3, wizard3",
       range: "touch",
       target: "creature touched",
@@ -3435,6 +3724,7 @@ class SpellData {
       effect:
           "The subject and all its gear become insubstantial, misty, and translucent. Its material armor (including natural armor) becomes worthless, though its size, Dexterity, deflection bonuses, and armor bonuses from force effects still apply. The subject gains DR 10/magic and becomes immune to poison, sneak attacks, and critical hits. It can't attack or cast spells with verbal, somatic, material, or focus components while in gaseous form. This does not rule out the use of certain spells that the subject may have prepared using the feats Silent Spell, Still Spell, and Eschew Materials. The subject also loses supernatural abilities while in gaseous form. If it has a touch spell ready to use, that spell is discharged harmlessly when the gaseous form spell takes effect. A gaseous creature can't run, but it can fly at a speed of 10 feet and automatically succeeds on all Fly skill checks. It can pass through small holes or narrow openings, even mere cracks, with all it was wearing or holding in its hands, as long as the spell persists. The creature is subject to the effects of wind, and it can't enter water or other liquid. It also can't manipulate objects or activate items, even those carried along with its gaseous form. Continuously active items remain active, though in some cases their effects may be moot.",
       school: "Transmutation",
+      level: 3,
       magicType: "alchemist3, arcanist3, bard3, sorcerer3, wizard3",
       range: "touch",
       target: "willing corporeal creature touched",
@@ -3446,6 +3736,7 @@ class SpellData {
       effect:
           "A lesser geas places a magical command on a creature to carry out some service or to refrain from some action or course of activity, as desired by you. The creature must have 7 or fewer HD and be able to understand you. While a geas cannot compel a creature to kill itself or perform acts that would result in certain death, it can cause almost any other course of activity. The geased creature must follow the given instructions until the geas is completed, no matter how long it takes. If the instructions involve some open-ended task that the recipient cannot complete through his own actions, the spell remains in effect for a maximum of 1 day per caster level. A clever recipient can subvert some instructions. If the subject is prevented from obeying the lesser geas for 24 hours, it takes a –2 penalty to each of its ability scores. Each day, another –2 penalty accumulates, up to a total of –8. No ability score can be reduced to less than 1 by this effect. The ability score penalties are removed 24 hours after the subject resumes obeying the lesser geas. A lesser geas (and all ability score penalties) can be ended by break enchantment, limited wish, remove curse, miracle, or wish. Dispel magic does not affect a lesser geas.",
       school: "Enchantment",
+      level: 3,
       magicType: "arcanist4, bard3, sorcerer4, wizard4",
       range: "close (25 ft. + 5 ft./2 levels)",
       target: "one living creature with 7 HD or less",
@@ -3458,6 +3749,7 @@ class SpellData {
       effect:
           "You preserve the remains of a dead creature so that they do not decay. Doing so effectively extends the time limit on raising that creature from the dead (see raise dead). Days spent under the influence of this spell don't count against the time limit. Additionally, this spell makes transporting a slain (and thus decaying) comrade less unpleasant. The spell also works on severed body parts and the like.",
       school: "Necromancy",
+      level: 3,
       magicType: "arcanist3, cleric2, sorcerer3, wizard3",
       range: "touch",
       target: "corpse touched",
@@ -3470,6 +3762,7 @@ class SpellData {
       effect:
           "This powerful inscription harms those who enter, pass, or open the warded area or object. A glyph of warding can guard a bridge or passage, ward a portal, trap a chest or box, and so on. You set all of the conditions of the ward. Typically, any creature entering the warded area or opening the warded object without speaking a password (which you set when casting the spell) is subject to the magic it stores. Alternatively or in addition to a password trigger, glyphs can be set according to physical characteristics (such as height or weight) or creature type, subtype, or kind. Glyphs can also be set with respect to good, evil, law, or chaos, or to pass those of your religion. They cannot be set according to class, HD, or level. Glyphs respond to invisible creatures normally but are not triggered by those who travel past them ethereally. Multiple glyphs cannot be cast on the same area. However, if a cabinet has three different drawers, each can be separately warded.",
       school: "Abjuration",
+      level: 3,
       magicType: "cleric3, ",
       range: "touch",
       target: "object touched or up to 5 sq. ft./level",
@@ -3482,6 +3775,7 @@ class SpellData {
       effect:
           "This spell instills powerful hope in the subjects. Each affected creature gains a +2 morale bonus on saving throws, attack rolls, ability checks, skill checks, and weapon damage rolls. Good hope counters and dispels crushing despair.",
       school: "Enchantment",
+      level: 3,
       magicType: "bard3",
       range: "medium (100 ft. + 10 ft./level)",
       target:
@@ -3496,6 +3790,7 @@ class SpellData {
       effect:
           "This spell renders as many as three undead creatures immobile. A nonintelligent undead creature gets no saving throw; an intelligent undead creature does. If the spell is successful, it renders the undead creature immobile for the duration of the spell (similar to the effect of hold person on a living creature). The effect is broken if the halted creatures are attacked or take damage.",
       school: "Necromancy",
+      level: 3,
       magicType: "arcanist3, sorcerer3, wizard3",
       range: "medium (100 ft. + 10 ft./level)",
       target:
@@ -3509,6 +3804,7 @@ class SpellData {
       effect:
           "The transmuted creatures move and act more quickly than normal. This extra speed has several effects. When making a full attack action, a hasted creature may make one extra attack with one natural or manufactured weapon. The attack is made using the creature's full base attack bonus, plus any modifiers appropriate to the situation. (This effect is not cumulative with similar effects, such as that provided by a speed weapon, nor does it actually grant an extra action, so you can't use it to cast a second spell or otherwise take an extra action in the round.) A hasted creature gains a +1 bonus on attack rolls and a +1 dodge bonus to AC and Reflex saves. Any condition that makes you lose your Dexterity bonus to Armor Class (if any) also makes you lose dodge bonuses. All of the hasted creature's modes of movement (including land movement, burrow, climb, fly, and swim) increase by 30 feet, to a maximum of twice the subject's normal speed using that form of movement. This increase counts as an enhancement bonus, and it affects the creature's jumping distance as normal for increased speed. Multiple haste effects don't stack. Haste dispels and counters slow.",
       school: "Transmutation",
+      level: 3,
       magicType: "alchemist3, arcanist3, bard3, sorcerer3, summoner2, wizard3",
       range: "close (25 ft. + 5 ft./2 levels)",
       target:
@@ -3522,6 +3818,7 @@ class SpellData {
       name: "Inflict Serious Wounds",
       effect: "deals 3d8 + 1 point per caster level (maximum +15).",
       school: "Necromancy",
+      level: 3,
       magicType: "antipaladin4, cleric3",
       range: "touch",
       target: "creature touched",
@@ -3534,6 +3831,7 @@ class SpellData {
       effect:
           "You write instructions or other information on parchment, paper, or any suitable writing material. The illusory script appears to be some form of foreign or magical writing. Only the person (or people) designated by you at the time of the casting can read the writing; it's unintelligible to any other character. Any unauthorized creature attempting to read the script triggers a potent illusory effect and must make a saving throw. A successful saving throw means the creature can look away with only a mild sense of disorientation. Failure means the creature is subject to a suggestion implanted in the script by you at the time the illusory script spell was cast. The suggestion lasts only 30 minutes. Typical suggestions include “Close the book and leave,” “Forget the existence of this note,” and so forth. If successfully dispelled by dispel magic, the illusory script and its secret message disappear. The hidden message can be read by a combination of the true seeing spell with the read magic or comprehend languages spell.",
       school: "Illusion",
+      level: 3,
       magicType: "arcanist3, bard3, sorcerer3, wizard3",
       range: "touch",
       target: "one touched object weighing no more than 10 lbs.",
@@ -3546,6 +3844,7 @@ class SpellData {
       effect:
           "You surround yourself with a sphere of power with a radius of 5 feet per caster level that negates all forms of invisibility. Anything invisible becomes visible while in the area.",
       school: "Evocation",
+      level: 3,
       magicType: "cleric3,",
       range: "personal",
       target: "you",
@@ -3557,6 +3856,7 @@ class SpellData {
       effect:
           "You telepathically wrack the target's mind and body with agonizing pain that imposes a –4 penalty on attack rolls, skill checks, and ability checks. A successful Will save reduces the duration to 1 round.",
       school: "Enchantment",
+      level: 3,
       magicType: "antipaladin2, arcanist3, sorcerer3, wizard3",
       range: "close (25 ft. + 5 ft./2 levels)",
       target: "one creature",
@@ -3569,6 +3869,7 @@ class SpellData {
       effect:
           "This spell functions like invisibility, except that this spell confers invisibility upon all creatures within 10 feet of the recipient at the time the spell is cast. The center of the effect is mobile with the recipient. Those affected by this spell can see each other and themselves as if unaffected by the spell. Any affected creature moving out of the area becomes visible, but creatures moving into the area after the spell is cast do not become invisible. Affected creatures (other than the recipient) who attack negate the invisibility only for themselves. If the spell recipient attacks, the invisibility sphere ends.",
       school: "Illusion",
+      level: 3,
       magicType: "arcanist3, bard3, sorcerer3, summoner3, wizard3",
       range: "personal or touch",
       target: "10-ft.-radius emanation around the creature",
@@ -3583,6 +3884,7 @@ class SpellData {
       effect:
           "This spell makes a weapon magically keen, improving its ability to deal telling blows. This transmutation doubles the threat range of the weapon. A threat range of 20 becomes 19–20, a threat range of 19–20 becomes 17–20, and a threat range of 18–20 becomes 15–20. The spell can be cast only on piercing or slashing weapons. If cast on arrows or crossbow bolts, the keen edge on a particular projectile ends after one use, whether or not the missile strikes its intended target. Treat shuriken as arrows, rather than as thrown weapons, for the purpose of this spell. Multiple effects that increase a weapon's threat range (such as the keen special weapon property and the Improved Critical feat) don't stack. You can't cast this spell on a natural weapon, such as a claw.",
       school: "Transmutation",
+      level: 3,
       magicType: "arcanist3, sorcerer3, wizard3",
       range: "close (25 ft. + 5 ft./2 levels)",
       target:
@@ -3597,6 +3899,7 @@ class SpellData {
       effect:
           "You release a powerful stroke of electrical energy that deals 1d6 points of electricity damage per caster level (maximum 10d6) to each creature within its area. The bolt begins at your fingertips. The lightning bolt sets fire to combustibles and damages objects in its path. It can melt metals with a low melting point, such as lead, gold, copper, silver, or bronze. If the damage caused to an interposing barrier shatters or breaks through it, the bolt may continue beyond the barrier if the spell's range permits; otherwise, it stops at the barrier just as any other spell effect does.",
       school: "Evocation",
+      level: 3,
       magicType: "adept3, arcanist3, sorcerer3, wizard3",
       range: "120 ft.",
       target: "120-ft. line",
@@ -3610,6 +3913,7 @@ class SpellData {
       effect:
           "This spell functions like magic fang, except that the enhancement bonus on attack and damage rolls is +1 per four caster levels (maximum +5). This bonus does not allow a natural weapon or unarmed strike to bypass damage reduction aside from magic. Alternatively, you may imbue all of the creature's natural weapons with a +1 enhancement bonus (regardless of your caster level). Greater magic fang can be made permanent with a permanency spell.",
       school: "Transmutation",
+      level: 3,
       magicType: "druid3, ranger3, summoner3,",
       range: "close (25 ft. + 5 ft./2 levels)",
       target: "one living creature",
@@ -3623,6 +3927,7 @@ class SpellData {
       effect:
           "You imbue a suit of armor or a shield with an enhancement bonus of +1 per four caster levels (maximum +5 at 20th level). An outfit of regular clothing counts as armor that grants no AC bonus for the purpose of this spell.",
       school: "Transmutation",
+      level: 3,
       magicType: "cleric3, ",
       range: "touch",
       target: "armor or shield touched",
@@ -3636,6 +3941,7 @@ class SpellData {
       effect:
           "This spell functions like magic weapon, except that it gives a weapon an enhancement bonus on attack and damage rolls of +1 per four caster levels (maximum +5). This bonus does not allow a weapon to bypass damage reduction aside from magic. Alternatively, you can affect as many as 50 arrows, bolts, or bullets. The projectiles must be of the same kind, and they have to be together (in the same quiver or other container). Projectiles, but not thrown weapons, lose their transmutation after they are used. Treat shuriken as projectiles, rather than as thrown weapons, for the purpose of this spell.",
       school: "Transmutation",
+      level: 3,
       magicType:
           "antipaladin3, arcanist3, cleric4, paladin3, sorcerer3, wizard3",
       range: "close (25 ft. + 5 ft./2 levels)",
@@ -3651,6 +3957,7 @@ class SpellData {
       effect:
           "This spell creates the visual illusion of an object, creature, or force, as visualized by you. Sound, smell, and thermal illusions are included in the spell effect. While concentrating, you can move the image within the range. The image disappears when struck by an opponent unless you cause the illusion to react appropriately.",
       school: "Illusion",
+      level: 3,
       magicType: "arcanist3, bard3, sorcerer3, wizard3",
       range: "long (400 ft. + 40 ft./level)",
       target:
@@ -3664,6 +3971,7 @@ class SpellData {
       effect:
           "Meld into stone enables you to meld your body and possessions into a single block of stone. The stone must be large enough to accommodate your body in all three dimensions. When the casting is complete, you and not more than 100 pounds of nonliving gear merge with the stone. If either condition is violated, the spell fails and is wasted. While in the stone, you remain in contact, however tenuous, with the face of the stone through which you melded. You remain aware of the passage of time and can cast spells on yourself while hiding in the stone. Nothing that goes on outside the stone can be seen, but you can still hear what happens around you. Minor physical damage to the stone does not harm you, but its partial destruction (to the extent that you no longer fit within it) expels you and deals you 5d6 points of damage. The stone's complete destruction expels you and slays you instantly unless you make a DC 18 Fortitude save. Even if you make your save, you still take 5d6 points of damage. Any time before the duration expires, you can step out of the stone through the surface that you entered. If the spell's duration expires or the effect is dispelled before you voluntarily exit the stone, you are violently expelled and take 5d6 points of damage. The following spells harm you if cast upon the stone that you are occupying. Stone to flesh expels you and deals you 5d6 points of damage. Stone shape deals 3d6 points of damage but does not expel you. Transmute rock to mud expels you and then slays you instantly unless you make a DC 18 Fortitude save, in which case you are merely expelled. Finally, passwall expels you without damage.",
       school: "Transmutation",
+      level: 3,
       magicType: " cleric3, druid3",
       range: "personal",
       target: "you",
@@ -3674,6 +3982,7 @@ class SpellData {
       effect:
           "You detoxify any sort of venom in the creature or object touched. If the target is a creature, you must make a caster level check (1d20 + caster level) against the DC of each poison affecting the target. Success means that the poison is neutralized. A cured creature suffers no additional effects from the poison, and any temporary effects are ended, but the spell does not reverse instantaneous effects, such as hit point damage, temporary ability damage, or effects that don't go away on their own. This spell can instead neutralize the poison in a poisonous creature or object for 10 minutes per level, at the caster's option. If cast on a creature, the creature receives a Will save to negate the effect.",
       school: "Conjuration",
+      level: 3,
       magicType:
           " alchemist 4, bard 4, cleric 4, druid 3, hunter 3, inquisitor 4, investigator 4, oracle 4, paladin 4, ranger 3, shaman 4, skald 4, spiritualist 4, warpriest 4, witch 4",
       range: "touch",
@@ -3688,6 +3997,7 @@ class SpellData {
       effect:
           "The warded creature or object becomes difficult to detect by divination spells such as clairaudience/clairvoyance, locate object, and detect spells. Nondetection also prevents location by such magic items as crystal balls. If a divination is attempted against the warded creature or item, the caster of the divination must succeed on a caster level check (1d20 + caster level) against a DC of 11 + the caster level of the spellcaster who cast nondetection. If you cast nondetection on yourself or on an item currently in your possession, the DC is 15 + your caster level. If cast on a creature, nondetection wards the creature's gear as well as the creature itself.",
       school: "Abjuration",
+      level: 3,
       magicType:
           "alchemist3, antipaladin3, arcanist3, ranger4, sorcerer3, summoner3, wizard3",
       range: "touch",
@@ -3702,6 +4012,7 @@ class SpellData {
       effect:
           "You conjure a Large, quasi-real, horselike creature (the exact coloration can be customized as you wish). It can be ridden only by you or by the one person for whom you specifically created the mount. A phantom steed has a black head and body, gray mane and tail, and smoke-colored, insubstantial hooves that make no sound. It has what seems to be a saddle, bit, and bridle. It does not fight, but animals shun it and refuse to attack it. The mount is AC 18 (–1 size, +4 natural armor, +5 Dex) and 7 hit points + 1 hit point per caster level. If it loses all its hit points, the phantom steed disappears. A phantom steed has a speed of 20 feet per two caster levels, to a maximum of 100 feet at 10th level. It can bear its rider's weight plus up to 10 pounds per caster level. These mounts gain certain powers according to caster level. A mount's abilities include those of mounts of lower caster levels. 8th Level: The mount can ride over sandy, muddy, or even swampy ground without difficulty or decrease in speed. 10th Level: The mount can use water walk at will (as the spell, no action required to activate this ability). 12th Level: The mount can use air walk at will (as the spell, no action required to activate this ability) for up to 1 round at a time, after which it falls to the ground. 14th Level: The mount can fly at its speed with a bonus on Fly skill checks equal to your caster level.",
       school: "Conjuration",
+      level: 3,
       magicType: "arcanist3, bard3, sorcerer3, summoner2, wizard3",
       castingTime: "10 minutes",
       range: "0 ft.",
@@ -3714,6 +4025,7 @@ class SpellData {
       effect:
           "Plant growth has different effects depending on the version chosen. Overgrowth: This effect causes normal vegetation (grasses, briars, bushes, creepers, thistles, trees, vines, and so on) within long range (400 feet + 40 feet per caster level) to become thick and overgrown. The plants entwine to form a thicket or jungle that creatures must hack or force a way through. Speed drops to 5 feet, or 10 feet for Large or larger creatures. The area must have brush and trees in it for this spell to take effect. If this spell is cast on an area that is already affected by any spell or effect that enhances plants, such as entangle or wall of thorns, any DC involved with these spells is increased by 4. This bonus is granted for 1 day after the casting of plant growth. At your option, the area can be a 100-foot-radius circle, a 150-foot-radius semicircle, or a 200-foot-radius quarter circle. You may designate places within the area that are not affected. Enrichment: This effect targets plants within a range of a half-mile, raising their potential productivity over the course of the next year to one-third above normal. Plant growth counters diminish plants. This spell has no effect on plant creatures.",
       school: "Transmutation",
+      level: 3,
       magicType: "druid3, ranger3",
       range: "see text",
       target: "see text",
@@ -3724,6 +4036,7 @@ class SpellData {
       effect:
           "Calling upon the venomous powers of natural predators, you infect the subject with a horrible poison by making a successful melee touch attack. This poison deals 1d3 Constitution damage per round for 6 rounds. Poisoned creatures can make a Fortitude save each round to negate the damage and end the affliction.",
       school: "Necromancy",
+      level: 3,
       magicType: "antipaladin4, cleric4, druid3",
       range: "touch",
       target: "living creature touched",
@@ -3736,6 +4049,7 @@ class SpellData {
       effect:
           "You bring special favor upon yourself and your allies while bringing disfavor to your enemies. You and each of your allies gain a +1 luck bonus on attack rolls, weapon damage rolls, saves, and skill checks, while each of your foes takes a –1 penalty on such rolls.",
       school: "Enchantment",
+      level: 3,
       magicType: "cleric3, paladin3",
       range: "40 ft.",
       target:
@@ -3748,6 +4062,7 @@ class SpellData {
       effect:
           "Quench is often used to put out forest fires and other conflagrations. It extinguishes all nonmagical fires in its area. The spell also dispels any fire spells in its area, though you must succeed on a dispel check (1d20 +1 per caster level, maximum +15) against each spell to dispel it. The DC to dispel such spells is 11 + the caster level of the fire spell. Each creature with the fire subtype within the area of a quench spell takes 1d6 points of damage per caster level (maximum 10d6, no save allowed). Alternatively, you can target the spell on a single magic item that creates or controls flame. The item loses all its fire-based magical abilities for 1d4 hours unless it succeeds on a Will save. Artifacts are immune to this effect.",
       school: "Transmutation",
+      level: 3,
       magicType: "druid3,",
       range: "medium (100 ft. + 10 ft./level)",
       target: "one 20-ft. cube/level (S) or one fire-based magic item",
@@ -3760,6 +4075,7 @@ class SpellData {
       effect:
           "A black ray projects from your pointing finger. You must succeed on a ranged touch attack with the ray to strike a target. The subject is immediately exhausted for the spell's duration. A successful Fortitude save means the creature is only fatigued. A character that is already fatigued instead becomes exhausted. This spell has no effect on a creature that is already exhausted. Unlike normal exhaustion or fatigue, the effect ends as soon as the spell's duration expires.",
       school: "Necromancy",
+      level: 3,
       magicType: "arcanist3, sorcerer3, wizard3",
       range: "close (25 ft. + 5 ft./2 levels)",
       target: "one creature",
@@ -3773,6 +4089,7 @@ class SpellData {
       effect:
           "Remove blindness/deafness cures blindness or deafness (your choice), whether the effect is normal or magical in nature. The spell does not restore ears or eyes that have been lost, but it repairs them if they are damaged. Remove blindness/deafness counters and dispels blindness/deafness.",
       school: "Conjuration",
+      level: 3,
       magicType: "alchemist3, cleric3, paladin3, ",
       range: "touch",
       target: "creature touched",
@@ -3785,6 +4102,7 @@ class SpellData {
       effect:
           "Remove curse can remove all curses on an object or a creature. If the target is a creature, you must make a caster level check (1d20 + caster level) against the DC of each curse affecting the target. Success means that the curse is removed. Remove curse does not remove the curse from a cursed shield, weapon, or suit of armor, although a successful caster level check enables the creature afflicted with any such cursed item to remove and get rid of it. Remove curse counters and dispels bestow curse.",
       school: "Abjuration",
+      level: 3,
       magicType:
           "alchemist3, arcanist4, bard3, cleric3, paladin3, sorcerer4, wizard4",
       range: "touch",
@@ -3799,6 +4117,7 @@ class SpellData {
       effect:
           "Remove disease can cure all diseases from which the subject is suffering. You must make a caster level check (1d20 + caster level) against the DC of each disease affecting the target. Success means that the disease is cured. The spell also kills some hazards and parasites, including green slime and others. Since the spell's duration is instantaneous, it does not prevent reinfection after a new exposure to the same disease at a later date.",
       school: "Conjuration",
+      level: 3,
       magicType: "alchemist3, cleric3, druid3, ranger3",
       range: "touch",
       target: "creature touched",
@@ -3812,6 +4131,7 @@ class SpellData {
       effect:
           "An invisible barrier holds back vermin. A vermin with HD of less than one-third your level cannot penetrate the barrier. A vermin with HD of one-third your level or more can penetrate the barrier if it succeeds on a Will save. Even so, crossing the barrier deals the vermin 2d6 points of damage, and pressing against the barrier causes pain, which deters most vermin.",
       school: "Abjuration",
+      level: 3,
       magicType: "bard4, cleric4, druid4, ranger3",
       range: "10 ft.",
       target: "10-ft.-radius emanation centered on you",
@@ -3825,6 +4145,7 @@ class SpellData {
       effect:
           "You can change the sounds that creatures or objects make. You can create sounds where none exist, deaden sounds, or transform sounds into other sounds. All affected creatures or objects must be transmuted in the same way. Once the transmutation is made, you cannot change it. You can change the qualities of sounds but cannot create words with which you are unfamiliar yourself. A spellcaster whose voice is changed dramatically is unable to cast spells with verbal components.",
       school: "Transmutation",
+      level: 3,
       magicType: "bard3",
       range: "close (25 ft. + 5 ft./2 levels)",
       target:
@@ -3838,6 +4159,7 @@ class SpellData {
       effect:
           "Focusing divine power like a ray of the sun, you project a blast of light from your open palm. You must succeed on a ranged touch attack to strike your target. A creature struck by this ray of light takes 1d8 points of damage per two caster levels (maximum 5d8). An undead creature takes 1d6 points of damage per caster level (maximum 10d6), and an undead creature particularly vulnerable to bright light takes 1d8 points of damage per caster level (maximum 10d8). A construct or inanimate object takes only 1d6 points of damage per two caster levels (maximum 5d6).",
       school: "Evocation",
+      level: 3,
       magicType: "cleric3",
       range: "medium (100 ft. + 10 ft./level)",
       target: "one creature",
@@ -3849,6 +4171,7 @@ class SpellData {
       effect:
           "You cause a small symbol to appear in the text of a written work. The text containing the symbol must be at least 25 words long. When anyone reads the text containing the symbol, the sepia snake sigil springs into being, transforming into a large sepia serpent that strikes at the reader, provided there is line of effect between the symbol and the reader. Simply seeing the enspelled text is not sufficient to trigger the spell; the subject must deliberately read it. The target is entitled to a save to evade the snake's strike. If it succeeds, the sepia snake dissipates in a flash of brown light accompanied by a puff of dun-colored smoke and a loud noise. If the target fails its save, it is engulfed in a shimmering amber field of force and immobilized until released, either at your command or when 1d4 days + 1 day per caster level have elapsed. While trapped in the amber field of force, the subject does not age, breathe, grow hungry, sleep, or regain spells. It is preserved in a state of suspended animation, unaware of its surroundings. It can be damaged by outside forces (and perhaps even killed), since the field provides no protection against physical injury. However, a dying subject does not lose hit points or become stable until the spell ends. The hidden sigil cannot be detected by normal observation, and detect magic reveals only that the entire text is magical. A dispel magic can remove the sigil. An erase spell destroys the entire page of text. Sepia snake sigil can be cast in combination with other spells that hide or garble text, such as secret page.",
       school: "Conjuration",
+      level: 3,
       magicType: "arcanist3, bard3, sorcerer3, wizard3",
       range: "touch",
       target: "one touched book or written work",
@@ -3862,6 +4185,7 @@ class SpellData {
       effect:
           "You are able to shrink one nonmagical item (if it is within the size limit) to 1/16 of its normal size in each dimension (to about 1/4,000 the original volume and mass). This change effectively reduces the object's size by four categories. Optionally, you can also change its now shrunken composition to a clothlike one. Objects changed by a shrink item spell can be returned to normal composition and size merely by tossing them onto any solid surface or by a word of command from the original caster. Even a burning fire and its fuel can be shrunk by this spell. Restoring the shrunken object to its normal size and composition ends the spell.",
       school: "Transmutation",
+      level: 3,
       magicType: "arcanist3, sorcerer3, wizard3",
       range: "touch",
       target: "one touched object of up to 2 cu. ft./level",
@@ -3875,6 +4199,7 @@ class SpellData {
       effect:
           "As daylight, except the object touched sheds bright silvery light in a 20-foot radius. In addition to providing illumination, the area of bright light is painful to creatures that are susceptible to alchemical silver. A creature with DR/silver that begins its turn within the light of this spell is automatically dazzled and becomes sickened unless it succeeds on a Fortitude save. These effects disappear 1 round after the target leaves the silverlight. A creature that leaves the area and then returns must make a new saving throw. This spell provides dim light up to 40 feet away, but only creatures within 20 feet are subject to the above e!ects.",
       school: "Evocation",
+      level: 3,
       magicType:
           "arcanist3, bard3, cleric3, druid3, paladin3, sorcerer3, wizard3",
       range: "touch",
@@ -3887,6 +4212,7 @@ class SpellData {
       effect:
           "Driving sleet blocks all sight (even darkvision) within it and causes the ground in the area to be icy. A creature can walk within or through the area of sleet at half normal speed with a DC 10 Acrobatics check. Failure means it can't move in that round, while failure by 5 or more means it falls (see the Acrobatics skill for details). The sleet extinguishes torches and small fires.",
       school: "Conjuration",
+      level: 3,
       magicType: "arcanist3, druid3, sorcerer3, wizard3",
       range: "long (400 ft. + 40 ft./level)",
       target: "cylinder (40-ft. radius, 20 ft. high)",
@@ -3897,6 +4223,7 @@ class SpellData {
       effect:
           "An affected creature moves and attacks at a drastically slowed rate. Creatures affected by this spell are staggered and can take only a single move action or standard action each turn, but not both (nor may it take full-round actions). Additionally, it takes a –1 penalty on attack rolls, AC, and Reflex saves. A slowed creature moves at half its normal speed (round down to the next 5-foot increment), which affects the creature's jumping distance as normal for decreased speed.",
       school: "Transmutation",
+      level: 3,
       magicType: "arcanist3, bard3, sorcerer3, summoner2, wizard3",
       range: "close (25 ft. + 5 ft./2 levels)",
       target:
@@ -3910,6 +4237,7 @@ class SpellData {
       effect:
           "You grant the semblance of life to a corpse, allowing it to answer questions. You may ask one question per two caster levels. The corpse's knowledge is limited to what it knew during life, including the languages it spoke. Answers are brief, cryptic, or repetitive, especially if the creature would have opposed you in life. If the dead creature's alignment was different from yours, the corpse gets a Will save to resist the spell as if it were alive. If successful, the corpse can refuse to answer your questions or attempt to deceive you, using Bluff. The soul can only speak about what it knew in life. It cannot answer any questions that pertain to events that occurred after its death. If the corpse has been subject to speak with dead within the past week, the new spell fails. You can cast this spell on a corpse that has been deceased for any amount of time, but the body must be mostly intact to be able to respond. A damaged corpse may be able to give partial answers or partially correct answers, but it must at least have a mouth in order to speak at all. This spell does not affect a corpse that has been turned into an undead creature.",
       school: "Necromancy",
+      level: 3,
       magicType: "cleric3,",
       range: "10 ft.",
       target: "one dead creature",
@@ -3923,6 +4251,7 @@ class SpellData {
           "You summon a spectral creature in the shape of the Tiny or smaller animal of your choice, which always appears in your square. The creature emits a faint glow of a color you choose at the time of the spell’s casting, providing the illumination of a candle. It has the same statistics as the creature after which it is modeled (including ability scores, Armor Class, feats, senses, skills, and speed), but is incorporeal and has only 1 hit point. A spectral scout cannot attack, but can otherwise follow any basic instructions that could be given to a pet or animal companion of similar intelligence but without the need to make Handle Animal skill checks. A spectral scout can communicate verbally with the caster but can’t be understood by others. A spectral scout can relay information it has directly witnessed with perfect clarity, including sights, sounds, and smells, but it cannot further interpret that information. For example, a spectral scout can report on how many individuals it sees, the direction they are going, and what equipment they carry; it can’t tell the caster whether the people were friend or foe, or their objective.",
       school: "Conjuration",
       castingTime: "1 minute",
+      level: 3,
       magicType: "arcanist3, bard3, druid3, ranger3, sorcerer3, wizard3",
       range: "1 mile",
       target: "one incorporeal animal of size Tiny or smaller",
@@ -3934,6 +4263,7 @@ class SpellData {
       effect:
           "You create a 10-foot-by-10-foot extradimensional hole with a depth of 10 feet per two caster levels (maximum 50 feet). Spiked pit is lined with wickedly sharp spikes along its bottom and walls. You must create the pit on a horizontal surface of sufficient size. Since it extends into another dimension, the pit has no weight and does not otherwise displace the original underlying material. You can create the pit in the deck of a ship as easily as in a dungeon floor or the ground of a forest. Any creature standing in the area where you first conjured the pit must make a Reflex saving throw to avoid falling into it. In addition, the edges of the pit are sloped, and any creature ending its turn on a square adjacent to the pit must make a Reflex saving throw with a +2 bonus to avoid falling into it. Creatures subjected to an effect intended to push them into the pit (such as bull rush) do not get a saving throw to avoid falling in if they are affected by the pushing effect. Creatures who fall into the pit take falling damage as normal, plus 2d6 points of piercing damage from the spikes. Any creature or object coming into contact with the spikes along the walls, such as a creature trying to climb out, or rope or other typical aids to climbing, takes 1d6 points of piercing damage each round they are in contact with the walls. For those willing to accept the damage incurred while climbing, the pit’s walls have a Climb DC of 20.",
       school: "Conjuration",
+      level: 3,
       magicType: "arcanist3, sorcerer3, summoner3, wizard3",
       range: "medium (100 ft. + 10 ft./level)",
       target: "10-ft.-by-10-ft. hole, 10 ft. deep/2 levels",
@@ -3946,6 +4276,7 @@ class SpellData {
       effect:
           "Stinking cloud creates a bank of fog like that created by fog cloud, except that the vapors are nauseating. Living creatures in the cloud become nauseated. This condition lasts as long as the creature is in the cloud and for 1d4+1 rounds after it leaves. (Roll separately for each nauseated character.) Any creature that succeeds on its save but remains in the cloud must continue to save each round on your turn. This is a poison effect. Stinking cloud can be made permanent with a permanency spell. A permanent stinking cloud dispersed by wind reforms in 10 minutes.",
       school: "Conjuration",
+      level: 3,
       magicType: "arcanist3, sorcerer3, summoner3, wizard3",
       range: "medium (100 ft. + 10 ft./level)",
       target: "cloud spreads in 20-ft. radius, 20 ft. high",
@@ -3958,6 +4289,7 @@ class SpellData {
       effect:
           "You can form an existing piece of stone into any shape that suits your purpose. While it's possible to make crude coffers, doors, and so forth with stone shape, fine detail isn't possible. There is a 30% chance that any shape including moving parts simply doesn't work.",
       school: "Transmutation",
+      level: 3,
       magicType: "arcanist4, cleric3, druid3, sorcerer4, wizard4",
       range: "touch",
       target:
@@ -3969,6 +4301,7 @@ class SpellData {
       effect:
           "You are able to harness the power of the storm to transport yourself a short distance, by taking the form of a furious, sizzling bolt of elemental electricity. You must either have line of sight to your destination or you must specify a direction and distance within range. Creatures and objects in the path of your passage take 1d8 points of electricity damage per  caster3evels (max3um 5d8).A successful Reflex save halves the damage. If your path intersects with a solid object, you damage the barrier accordingly. If the damage is enough to break through the barrier, you continue beyond the barrier as long as the spell’s range permits; otherwise, your movement stops in the square adjacent to the barrier and the effect ends.",
       school: "Conjuration",
+      level: 3,
       magicType: "arcanist3, sorcerer3, wizard3",
       range: "close (25 ft. + 5 ft./ levels)",
       target: "you",
@@ -3982,6 +4315,7 @@ class SpellData {
       effect:
           "This spell summons an extraplanar creature (typically an outsider, elemental, or magical beast native to another plane). It appears where you designate and acts immediately, on your turn. It attacks your opponents to the best of its ability. If you can communicate with the creature, you can direct it not to attack, to attack particular enemies, or to perform other actions. You choose which kind of creature to summon, and you can choose a different one each time you cast the spell. A summoned monster cannot summon or otherwise conjure another creature, nor can it use any teleportation or planar travel abilities. Creatures cannot be summoned into an environment that cannot support them. Creatures summoned using this spell cannot use spells or spell-like abilities that duplicate spells with expensive material components (such as wish). If the creature has an alignment label that is diferente from yours, you cannot choose that creature, (Unless you are of neutral alignment). No aligment lable means that creature's alignment will match whatever alignment is summoning them.  # Creatures are: Ape — Aurochs (herd animal) — Boar — Cheetah — Constrictor snake — Crocodile — Dire bat — Dretch (demon Chaotic, Evil) — Electric eel — Lantern archon (Good, Lawful) — Leopard (cat) — Monitor lizard — shark — Wolverine.",
       school: "Conjuration",
+      level: 3,
       magicType:
           "antipaladin3, arcanist3, bard3, cleric3, sorcerer3, summoner3, wizard3",
       range: "close (25 ft. + 5 ft./2 levels)",
@@ -3994,6 +4328,7 @@ class SpellData {
       effect:
           "You create an unmoving, opaque sphere of force of any color you desire around yourself. Half the sphere projects above the ground, and the lower hemisphere passes through the ground. As many as nine other Medium creatures can fit into the field with you; they can freely pass into and out of the hut without harming it. However, if you remove yourself from the hut, the spell ends. The temperature inside the hut is 70° F if the exterior temperature is between 0° and 100° F. An exterior temperature below 0° or above 100° lowers or raises the interior temperature on a 1-degree-for-1 basis. The hut also provides protection against the elements, such as rain, dust, and sandstorms. The hut withstands any wind of less than hurricane force, but a hurricane (75+ mph wind speed) or greater force destroys it. The interior of the hut is a hemisphere. You can illuminate it dimly upon command or extinguish the light as desired. Although the force field is opaque from the outside, it is transparent from within. Missiles, weapons, and most spell effects can pass through the hut without affecting it, although the occupants cannot be seen from outside the hut (they have total concealment).",
       school: "Evocation",
+      level: 3,
       magicType: "arcanist3, bard3, sorcerer3, wizard3",
       range: "20 ft.",
       target: "20-ft.-radius sphere centered on your location",
@@ -4005,6 +4340,7 @@ class SpellData {
       effect:
           "You must hold an elixir, infused extract, poison, or potion in hand as you cast this spell. The held substance drains from its container into a magical sac in your body. While the spell lasts, you can deliver the substance with a mere touch. To do so to an opponent, you must make a successful melee touch attack. If you hit, the substance takes effect immediately, despite any onset period, and that opponent receives the normal saving throw (if any) against the substance. In the case of a personal infused extract, the opponent receives both a Fortitude save and spell resistance. If you miss, the substance remains in the magical sac for you to use later. This spell protects you from poison in the sac, but unless you have the poison use class feature, you suffer a 5% chance of exposing yourself to the poison when you first cast the spell. If you roll a natural 1 while attempting to inject the poison into an enemy, you are exposed to it.",
       school: "Transmutation",
+      level: 3,
       magicType: "alchemist2, arcanist3, sorcerer3, wizard3",
       range: "personal",
       target: "you",
@@ -4016,6 +4352,7 @@ class SpellData {
       effect:
           "You must succeed on a melee touch attack. Your touch deals 1d6 points of damage per two caster levels (maximum 10d6). You gain temporary hit points equal to the damage you deal. You can't gain more than the subject's current hit points + the subject's Constitution score (which is enough to kill the subject). The temporary hit points disappear 1 hour later.",
       school: "Necromancy",
+      level: 3,
       magicType: "antipaladin3, arcanist3, sorcerer3, wizard3",
       range: "touch",
       target: "living creature touched",
@@ -4027,6 +4364,7 @@ class SpellData {
       effect:
           "You overlay a realistic illusion of a terrifying hellscape upon an area. Structures, equipment, and creatures within the area are not hidden, though environmental features take on an infernal appearance. While you are prepared for these images and are not affected by them, any other creature within the area must make a Will save or become shaken and also take a –2 penalty on saves versus fear effects; the fear and penalty persists as long as the creature remains in the area. Devils and any lawful evil creatures suffer no negative effects from this spell.",
       school: "Illusion",
+      level: 3,
       magicType: "arcanist3, bard3, cleric3, sorcerer3, wizard3",
       range: "medium (100 ft. + 10 ft./level)",
       target: "50-ft.-radius emanation",
@@ -4038,6 +4376,7 @@ class SpellData {
       effect:
           "You create a transparent, shimmering wall through which creatures and objects appear to be wildly distorted to viewers. Any creature that passes through the wall is immediately assailed by overwhelming vertigo, becoming nauseated for 1 round unless it succeeds at a Fortitude save; if nauseated, the creature must also succeed at a DC 12 Acrobatics check or fall prone. Creatures gain partial concealment (20% miss chance) against creatures on the other side of the wall. The wall must be vertical and rectangular. It need not touch the ground. The wall must be continuous and unbroken when formed. If its surface is broken by any object or creature when it is cast, the spell fails.",
       school: "Illusion",
+      level: 3,
       magicType: "arcanist3, bard3, sorcerer3, wizard3",
       range: "close (25 ft. + 5 ft./2 levels)",
       target: "transparent wall whose area is up to one 10-ft. square/level",
@@ -4049,6 +4388,7 @@ class SpellData {
       effect:
           "The transmuted creatures can breathe water freely. Divide the duration evenly among all the creatures you touch. The spell does not make creatures unable to breathe air.",
       school: "Transmutation",
+      level: 3,
       magicType:
           "alchemist3, arcanist3, cleric3, druid3, sorcerer3, summoner3, wizard3",
       range: "touch",
@@ -4063,6 +4403,7 @@ class SpellData {
       effect:
           "The transmuted creatures can tread on any liquid as if it were firm ground. Mud, oil, snow, quicksand, running water, ice, and even lava can be traversed easily, since the subjects' feet hover an inch or two above the surface. Creatures crossing molten lava still take damage from the heat because they are near it. The subjects can walk, run, charge, or otherwise move across the surface as if it were normal ground. If the spell is cast underwater (or while the subjects are partially or wholly submerged in whatever liquid they are in), the subjects are borne toward the surface at 60 feet per round until they can stand on it.",
       school: "Transmutation",
+      level: 3,
       magicType: "cleric3, ranger3",
       range: "touch",
       target: "one touched creature/level",
@@ -4076,6 +4417,7 @@ class SpellData {
       effect:
           "An invisible vertical curtain of wind appears. It is 2 feet thick and of considerable strength. It is a roaring blast sufficient to blow away any bird smaller than an eagle, or tear papers and similar materials from unsuspecting hands. (A Reflex save allows a creature to maintain its grasp on an object.) Tiny and Small flying creatures cannot pass through the barrier. Loose materials and cloth garments fly upward when caught in a wind wall. Arrows and bolts are deflected upward and miss, while any other normal ranged weapon passing through the wall has a 30% miss chance. (A giant-thrown boulder, a siege engine projectile, and other massive ranged weapons are not affected.) Gases, most gaseous breath weapons, and creatures in gaseous form cannot pass through the wall (although it is no barrier to incorporeal creatures). While the wall must be vertical, you can shape it in any continuous path along the ground that you like. It is possible to create cylindrical or square wind walls to enclose specific points.",
       school: "Evocation",
+      level: 3,
       magicType:
           "arcanist3, bloodrager3, cleric3, druid3, ranger2, sorcerer3, summoner2, wizard3",
       range: "medium (100 ft. + 10 ft./level)",
@@ -4088,6 +4430,7 @@ class SpellData {
       effect:
           "A shimmering mantle of light shrouds the subject, casting light like a torch. The subject of the spell gains a +1 resistance bonus on all saving throws per four caster levels (maximum +5 at 20th level). The subject can end the wrathful mantle at any time as a swift action to deal 2d8 points of force damage to all creatures within 5 feet.",
       school: "Evocation",
+      level: 3,
       magicType: "cleric3, paladin3,",
       range: "touch or 5 ft.",
       target: "creature touched or all creatures within 5 ft.",
