@@ -24,12 +24,12 @@ class SheetInfoAbilityScore extends StatelessWidget {
         children: [
           const LabelForCategoryIcon(label: "Attributes"),
           SizedBox(height: deviceHeight! * 0.003),
+          const AttributeDivision(label: "Ability Scores"),
           Padding(
             padding: const EdgeInsets.only(left: 8),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const AttributeDivision(label: "Ability Scores"),
                 AbilityRow(
                     label: "Strength:",
                     modValue: char.modAttributes.strength,
@@ -59,29 +59,32 @@ class SheetInfoAbilityScore extends StatelessWidget {
           ),
           AttributeDivision(
               label: "languages known (${char.languages.length})"),
-          ListView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: char.languages.length,
-              itemBuilder: (context, index) {
-                var idiom = char.languages[index];
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    RichText(
-                        text: TextSpan(
-                      children: [
-                        TextSpan(
-                            text: "${idiom.name} ",
-                            style: AppTextStyle.statsLabelBrighter),
-                        TextSpan(
-                            text: " (Spoken by ${idiom.spokenBy})",
-                            style: AppTextStyle.longDescription)
-                      ],
-                    ))
-                  ],
-                );
-              })
+          Padding(
+            padding: const EdgeInsets.only(left: 8),
+            child: ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: char.languages.length,
+                itemBuilder: (context, index) {
+                  var idiom = char.languages[index];
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      RichText(
+                          text: TextSpan(
+                        children: [
+                          TextSpan(
+                              text: "${idiom.name} ",
+                              style: AppTextStyle.statsLabelBrighter),
+                          TextSpan(
+                              text: " (Spoken by ${idiom.spokenBy})",
+                              style: AppTextStyle.longDescription)
+                        ],
+                      ))
+                    ],
+                  );
+                }),
+          ),
         ],
       ),
     );
@@ -101,23 +104,23 @@ class AbilityRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: deviceWidth! * 0.5,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          SizedBox(
-              width: deviceWidth! * 0.3,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(label, style: AppTextStyle.statsLabel),
-                  Text("$value", style: AppTextStyle.statsValue),
-                ],
-              )),
-          Padding(
-            padding: const EdgeInsets.only(right: 6),
-            child: CircleAvatar(
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 1),
+      child: SizedBox(
+        width: deviceWidth! * 0.45,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            SizedBox(
+                width: deviceWidth! * 0.3,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(label, style: AppTextStyle.statsLabel),
+                    Text("$value", style: AppTextStyle.statsValue),
+                  ],
+                )),
+            CircleAvatar(
               backgroundColor: Colors.grey[900],
               radius: 16,
               child: Text(
@@ -125,8 +128,8 @@ class AbilityRow extends StatelessWidget {
                 style: AppTextStyle.modefier,
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -17,7 +17,7 @@ class GradientLabelSheet extends StatelessWidget {
     return Container(
         margin: const EdgeInsets.symmetric(vertical: 3),
         width: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [
               AppColors.primary,

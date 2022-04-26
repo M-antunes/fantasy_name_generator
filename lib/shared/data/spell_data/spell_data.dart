@@ -951,19 +951,19 @@ class SpellData {
       canBePotion: true,
     ),
     SpellModel(
-        name: "Fear the Sun",
-        effect:
-            "Each target that fails its saving throw gains light blindness, as per the universal monster rule. When exposed to bright light, affected targets are blinded for 1 full round and are dazzled in successive rounds. If you cast this spell in the presence of bright light, any target that fails its save is blinded immediately, and dazzled starting at the beginning of its first turn.",
-        school: "Transmutation",
-        level: 2,
-        magicType:
-            "antipaladin1, arcanist2, cleric2, druid2, sorcerer2, wizard2",
-        range: "medium (100 ft. + 10 ft./level)",
-        duration: "1 round/level",
-        target:
-            "up to one creature/level, no two of which can be more than 30 ft. apart",
-        savingThrow: "Fortitude negates",
-        spellResistance: "yes"),
+      name: "Fear the Sun",
+      effect:
+          "Each target that fails its saving throw gains light blindness, as per the universal monster rule. When exposed to bright light, affected targets are blinded for 1 full round and are dazzled in successive rounds. If you cast this spell in the presence of bright light, any target that fails its save is blinded immediately, and dazzled starting at the beginning of its first turn.",
+      school: "Transmutation",
+      level: 2,
+      magicType: "antipaladin1, arcanist2, cleric2, druid2, sorcerer2, wizard2",
+      range: "medium (100 ft. + 10 ft./level)",
+      duration: "1 round/level",
+      target:
+          "up to one creature/level, no two of which can be more than 30 ft. apart",
+      savingThrow: "Fortitude negates",
+      spellResistance: "yes",
+    ),
     SpellModel(
       name: "Feather Fall",
       effect:
@@ -1106,43 +1106,45 @@ class SpellData {
       target: "one creature or object",
     ),
     SpellModel(
-        name: "Hypnotism",
-        effect:
-            "Your gestures and droning incantation fascinate nearby creatures, causing them to stop and stare blankly at you. In addition, you can use their rapt attention to make your suggestions and requests seem more plausible. Roll 2d4 to see how many total HD of creatures you affect. Creatures with fewer HD are affected before creatures with more HD. Only creatures that can see or hear you are affected, but they do not need to understand you to be fascinated. If you use this spell in combat, each target gains a +2 bonus on its saving throw. If the spell affects only a single creature not in combat at the time, the saving throw has a penalty of –2. While the subject is fascinated by this spell, it reacts as though it were two steps more friendly in attitude. This allows you to make a single request of the affected creature (provided you can communicate with it). The request must be brief and reasonable. Even after the spell ends, the creature retains its new attitude toward you, but only with respect to that particular request. A creature that fails its saving throw does not remember that you enspelled it.",
-        school: "Enchantment",
-        level: 1,
-        magicType: "arcanist1, bard1, sorcerer1, wizard1",
-        range: "close (25 ft. + 5 ft./2 levels)",
-        duration: "2d4 rounds",
-        target:
-            "several living creatures, no two of which may be more than 30 ft. apart",
-        savingThrow: "Will negates",
-        canBePotion: true,
-        spellResistance: "yes"),
+      name: "Hypnotism",
+      effect:
+          "Your gestures and droning incantation fascinate nearby creatures, causing them to stop and stare blankly at you. In addition, you can use their rapt attention to make your suggestions and requests seem more plausible. Roll 2d4 to see how many total HD of creatures you affect. Creatures with fewer HD are affected before creatures with more HD. Only creatures that can see or hear you are affected, but they do not need to understand you to be fascinated. If you use this spell in combat, each target gains a +2 bonus on its saving throw. If the spell affects only a single creature not in combat at the time, the saving throw has a penalty of –2. While the subject is fascinated by this spell, it reacts as though it were two steps more friendly in attitude. This allows you to make a single request of the affected creature (provided you can communicate with it). The request must be brief and reasonable. Even after the spell ends, the creature retains its new attitude toward you, but only with respect to that particular request. A creature that fails its saving throw does not remember that you enspelled it.",
+      school: "Enchantment",
+      level: 1,
+      magicType: "arcanist1, bard1, sorcerer1, wizard1",
+      range: "close (25 ft. + 5 ft./2 levels)",
+      duration: "2d4 rounds",
+      target:
+          "several living creatures, no two of which may be more than 30 ft. apart",
+      savingThrow: "Will negates",
+      canBePotion: true,
+      spellResistance: "yes",
+    ),
     SpellModel(
-        name: "Identify",
-        effect:
-            "This spell functions as detect magic, except that it gives you a +10 enhancement bonus on Spellcraft checks made to identify the properties and command words of magic items in your possession. This spell does not allow you to identify artifacts.",
-        school: "Divination",
-        level: 1,
-        magicType:
-            "alchemist1, arcanist1, bard1, sorcerer1, summoner1, wizard1",
-        range: "60 ft.",
-        duration: "3 rounds/level",
-        target: "cone-shaped emanation",
-        canBePotion: true),
+      name: "Identify",
+      effect:
+          "This spell functions as detect magic, except that it gives you a +10 enhancement bonus on Spellcraft checks made to identify the properties and command words of magic items in your possession. This spell does not allow you to identify artifacts.",
+      school: "Divination",
+      level: 1,
+      magicType: "alchemist1, arcanist1, bard1, sorcerer1, summoner1, wizard1",
+      range: "60 ft.",
+      duration: "3 rounds/level",
+      target: "cone-shaped emanation",
+      canBePotion: true,
+    ),
     SpellModel(
-        name: "Incessant Buzzing",
-        effect:
-            "You summon an illusory swarm of angry wasps that fills a 10-foot-diameter sphere. You can summon it so that it shares an area with other creatures, and you can move it up to 40 feet each round as a move action. Creatures caught inside the swarm’s area of effect cannot use skills that require patience or concentration. Additionally, spellcasters within the area must succeed at a caster level check (DC = 20 + level of spell to be cast) in order to cast spells. On a failed caster level check, the spell is lost. While the buzzing is unpleasant, it is not so loud as to drown out other noises or make communication difficult.",
-        school: "Illusion",
-        level: 1,
-        magicType: "antipaladin1, arcanist1, bard1, sorcerer1, wizard1",
-        range: "medium (100 ft. + 10 ft./level)",
-        duration: "1 round/level",
-        target: "10-ft.-diameter sphere",
-        savingThrow: "Will negates",
-        spellResistance: "yes"),
+      name: "Incessant Buzzing",
+      effect:
+          "You summon an illusory swarm of angry wasps that fills a 10-foot-diameter sphere. You can summon it so that it shares an area with other creatures, and you can move it up to 40 feet each round as a move action. Creatures caught inside the swarm’s area of effect cannot use skills that require patience or concentration. Additionally, spellcasters within the area must succeed at a caster level check (DC = 20 + level of spell to be cast) in order to cast spells. On a failed caster level check, the spell is lost. While the buzzing is unpleasant, it is not so loud as to drown out other noises or make communication difficult.",
+      school: "Illusion",
+      level: 1,
+      magicType: "antipaladin1, arcanist1, bard1, sorcerer1, wizard1",
+      range: "medium (100 ft. + 10 ft./level)",
+      duration: "1 round/level",
+      target: "10-ft.-diameter sphere",
+      savingThrow: "Will negates",
+      spellResistance: "yes",
+    ),
     SpellModel(
       name: "Inflict Light Wounds",
       effect:
@@ -1158,18 +1160,19 @@ class SpellData {
       canBePotion: true,
     ),
     SpellModel(
-        name: "Interrogation",
-        effect:
-            "You question the target, backed up by the threat of magical pain. You may ask one question per two caster levels. The target can either answer the question or take 1d4 points of damage plus your Wisdom bonus. The target is not compelled to answer truthfully, but the threat of pain gives it a –4 penalty on Bluff checks to convince you when it is lying.",
-        school: "Necromancy",
-        level: 1,
-        magicType: "arcanist1, sorcerer1, wizard1",
-        range: "touch",
-        duration: "1 minute/level",
-        target: "living creature touched",
-        canBePotion: true,
-        savingThrow: "Fortitude negates",
-        spellResistance: "yes"),
+      name: "Interrogation",
+      effect:
+          "You question the target, backed up by the threat of magical pain. You may ask one question per two caster levels. The target can either answer the question or take 1d4 points of damage plus your Wisdom bonus. The target is not compelled to answer truthfully, but the threat of pain gives it a –4 penalty on Bluff checks to convince you when it is lying.",
+      school: "Necromancy",
+      level: 1,
+      magicType: "arcanist1, sorcerer1, wizard1",
+      range: "touch",
+      duration: "1 minute/level",
+      target: "living creature touched",
+      canBePotion: true,
+      savingThrow: "Fortitude negates",
+      spellResistance: "yes",
+    ),
     SpellModel(
       name: "Instant Clot",
       effect:
@@ -1196,30 +1199,32 @@ class SpellData {
       canBePotion: true,
     ),
     SpellModel(
-        name: "Jump",
-        effect:
-            "The subject gets a +10 enhancement bonus on Acrobatics checks made to attempt high jumps or long jumps. The enhancement bonus increases to +20 at caster level 5th, and to +30 (the maximum) at caster level 9th.",
-        level: 1,
-        magicType:
-            "alchemist1, arcanist1, druid1, ranger1, sorcerer1, summoner1, wizard1",
-        school: "Transmutation",
-        range: "touch",
-        target: "creature touched",
-        duration: "1 min./level",
-        savingThrow: " Will negates (harmless)",
-        canBePotion: true,
-        spellResistance: "yes (harmless)"),
+      name: "Jump",
+      effect:
+          "The subject gets a +10 enhancement bonus on Acrobatics checks made to attempt high jumps or long jumps. The enhancement bonus increases to +20 at caster level 5th, and to +30 (the maximum) at caster level 9th.",
+      level: 1,
+      magicType:
+          "alchemist1, arcanist1, druid1, ranger1, sorcerer1, summoner1, wizard1",
+      school: "Transmutation",
+      range: "touch",
+      target: "creature touched",
+      duration: "1 min./level",
+      savingThrow: " Will negates (harmless)",
+      canBePotion: true,
+      spellResistance: "yes (harmless)",
+    ),
     SpellModel(
-        name: "Jury-Rig",
-        effect:
-            "When you cast this spell, a spectral force binds a broken weapon together, relieving the broken condition for a short time. While under the effects of this spell, an item with the broken condition suffers no adverse effects from that condition, and is treated as if it is not broken. The object regains no hit points, and damage can still destroy the object.",
-        school: "Transmutation",
-        level: 1,
-        magicType: "arcanist1, bard1, sorcerer1, summoner1, wizard1",
-        range: "touch",
-        duration: "one broken object of up to 2 lbs./level",
-        target: "1 round/level",
-        canBePotion: true),
+      name: "Jury-Rig",
+      effect:
+          "When you cast this spell, a spectral force binds a broken weapon together, relieving the broken condition for a short time. While under the effects of this spell, an item with the broken condition suffers no adverse effects from that condition, and is treated as if it is not broken. The object regains no hit points, and damage can still destroy the object.",
+      school: "Transmutation",
+      level: 1,
+      magicType: "arcanist1, bard1, sorcerer1, summoner1, wizard1",
+      range: "touch",
+      duration: "one broken object of up to 2 lbs./level",
+      target: "1 round/level",
+      canBePotion: true,
+    ),
     SpellModel(
       name: "Know the Enemy",
       effect:
@@ -1233,19 +1238,20 @@ class SpellData {
       canBePotion: true,
     ),
     SpellModel(
-        name: "Liberating Command",
-        effect:
-            "If the target is bound, grappled, or otherwise restrained, he may make an Escape Artist check to escape as an immediate action. He gains a competence bonus on this check equal to twice your caster level (maximum +20). This spell has no effect if the target could not get free by using the Escape Artist skill (for example, if he were under the effects of a hold person spell or paralyzed by Strength damage).",
-        school: "Transmutation",
-        level: 1,
-        magicType:
-            "arcanist1, bard1, cleric1, druid1, paladin1, ranger1, sorcerer1, wizard1",
-        range: "close (25 ft. + 5 ft./2 levels)",
-        duration: "instantaneous",
-        target: "one creature",
-        savingThrow: "Will negates (harmless)",
-        canBePotion: true,
-        spellResistance: "yes (harmless)"),
+      name: "Liberating Command",
+      effect:
+          "If the target is bound, grappled, or otherwise restrained, he may make an Escape Artist check to escape as an immediate action. He gains a competence bonus on this check equal to twice your caster level (maximum +20). This spell has no effect if the target could not get free by using the Escape Artist skill (for example, if he were under the effects of a hold person spell or paralyzed by Strength damage).",
+      school: "Transmutation",
+      level: 1,
+      magicType:
+          "arcanist1, bard1, cleric1, druid1, paladin1, ranger1, sorcerer1, wizard1",
+      range: "close (25 ft. + 5 ft./2 levels)",
+      duration: "instantaneous",
+      target: "one creature",
+      savingThrow: "Will negates (harmless)",
+      canBePotion: true,
+      spellResistance: "yes (harmless)",
+    ),
     SpellModel(
       name: "Lighten Object",
       effect:
@@ -1272,7 +1278,6 @@ class SpellData {
       target: "5-ft. burst centered on you",
       canBePotion: true,
     ),
-
     SpellModel(
       name: "Longshot",
       effect:
@@ -1438,7 +1443,7 @@ class SpellData {
       effect:
           "+2 to AC and saves, plus additional protection against selected alignment.",
       level: 1,
-      magicType: "arcanist1, cleric1, sorcerer1, summoner1, paladin1 wizard1",
+      magicType: "arcanist1, cleric1, sorcerer1, summoner1, paladin1, wizard1",
       school: "Abjuration",
       range: "touch",
       target: "creature touched",
@@ -1452,7 +1457,7 @@ class SpellData {
           "+2 to AC and saves, plus additional protection against selected alignment",
       level: 1,
       magicType:
-          "arcanist1, cleric1, sorcerer1, summoner1, antipaladin1 wizard1",
+          "arcanist1, cleric1, sorcerer1, summoner1, antipaladin1, wizard1",
       school: "Abjuration",
       range: "touch",
       target: "creature touched",
@@ -1732,7 +1737,6 @@ class SpellData {
       target: "one object",
       canBePotion: true,
     ),
-
     SpellModel(
       name: "Thunderstomp",
       effect:
@@ -1946,8 +1950,7 @@ class SpellData {
           "A crackling, spherical storm cloud flies in whichever direction you point and deals electricity damage to those it strikes. It has a fly speed of 20 feet with perfect maneuverability. If it enters a space that contains a creature, the storm stops moving for the round and deals 3d6 points of electricity damage to that creature, though a successful Reflex save negates that damage. It provides concealment (20% miss chance) to anything within it, and its flickering light illuminates the same area a candle would. The sphere moves as long as you actively direct it (as a move action for you); otherwise, it stays at rest and crackles with lightning. It can be moved by wind effects and counts as a Small creature for the purpose of determining how winds affect it. The sphere has no physical substance and cannot exert any force on corporeal creatures or objects. It disperses if it exceeds the spell’s range.",
       school: "Evocation",
       level: 2,
-      magicType:
-          "arcanist 2, druid 2, hunter 2, magus 2, sorcerer 2, witch 2, wizard 2",
+      magicType: "arcanist2, druid2, sorcerer2, wizard2",
       range: "medium (100 ft. + 10 ft./level)",
       target: "5-ft.-diameter sphere",
       duration: "1 round/level",
@@ -2036,7 +2039,7 @@ class SpellData {
           "This spell taps into the target's mind so you get an impression of the actions it will take. You gain a +2 insight bonus to AC against the target’s attacks. If the target fails its Will save, you also see how the target will react to your attacks, and the bonus applies on your attack rolls and damage rolls against the target. These bonuses apply only while the target is within range of the spell, though if it goes out of range, the bonuses return once it’s back in range. Whenever the target misses you with an attack, the spell’s bonuses increase by 1 until the spell ends (to a maximum of +5).",
       school: "Divination",
       level: 2,
-      magicType: "",
+      magicType: "arcanist2, bard2, sorcerer2, wizard2",
       range: "close (25 ft. + 5 ft./2 levels)",
       target: "one creature",
       duration: "1 round/level",
@@ -2069,7 +2072,6 @@ class SpellData {
       duration: "permanent",
       canBePotion: true,
     ),
-
     SpellModel(
       name: "Align Weapon",
       effect:
@@ -2292,8 +2294,7 @@ class SpellData {
           "cures 2d8 points of damage + 1 point per caster level (maximum +10).",
       school: "Conjuration",
       level: 2,
-      magicType:
-          " adept 2, alchemist 2, bard 2, cleric 2, druid 3, hunter 3, inquisitor 2, investigator 2, occultist 2, oracle 2, paladin 3, ranger 3, shaman 2, skald 2, spiritualist 2, warpriest 2, witch 2",
+      magicType: "alchemist2, bard2, cleric2, druid3, paladin3, ranger3",
       range: "touch",
       target: "creature touched",
       duration: "instantaneous",
@@ -2647,8 +2648,7 @@ class SpellData {
           "This spell imbues a single creature with great bravery and morale in battle. The target gains a +2 morale bonus on attack rolls, saves, and skill checks.",
       school: "Enchantment",
       level: 2,
-      magicType:
-          "alchemist 3, arcanist 3, bard 2, bloodrager 3, inquisitor 3, investigator 3, medium 2, psychic 3, skald 2, sorcerer 3, spiritualist 3, summoner 3, summoner (unchained) 3, witch 3, wizard 3",
+      magicType: "alchemist3, arcanist3, bard2, sorcerer3, summoner3, wizard3",
       range: "touch",
       target: "creature touched",
       duration: "10 min./level",

@@ -215,7 +215,6 @@ class StatsController with ChangeNotifier {
 
   getPotions() {
     charPotions = generatePotions();
-    repeatedPotion = identifyMultiplePotions();
     notifyListeners();
   }
 
@@ -250,6 +249,22 @@ class StatsController with ChangeNotifier {
               "Cure Serious Wounds", char.charLevel, i);
       }
     }
+    List<SpellModel> multiplePotions = [];
+    var repeatedPotion = 0;
+    for (var j = 0; j < charPotions.length; j++) {
+      if (charPotions[j].name.contains("Cure")) {
+        multiplePotions.add(charPotions[j]);
+        repeatedPotion++;
+      }
+    }
+    if (multiplePotions.isEmpty) {
+      return charPotions;
+    } else {
+      charPotions.removeWhere((element) => element.name.contains("Cure"));
+      String multiplier = repeatedPotion > 1 ? "(x$repeatedPotion)" : "";
+      charPotions.add(multiplePotions[0]
+          .copyWith(name: "${multiplePotions[0].name}  $multiplier"));
+    }
     return charPotions;
   }
 
@@ -278,31 +293,13 @@ class StatsController with ChangeNotifier {
       for (var i = 0; i < leveldPotions.length; i++) {
         if (!charPotions.contains(leveldPotions[i])) {
           var charRandomPotion = leveldPotions[i];
-          charRandomPotion.conjurerLevel = level;
+          charRandomPotion.conjurerLevel = (level / 1.2).floor();
           charRandomPotion.difficultClass =
-              "DC (${10 + (level / 1.5).floor()})";
+              "DC (${10 + (level / 1.2).floor()})";
           charPotions.add(charRandomPotion);
-          return;
+          break;
         }
       }
-    }
-  }
-
-  int identifyMultiplePotions() {
-    List<SpellModel> multiplePotions = [];
-    var repeatedPotion = 0;
-    for (var j = 0; j < charPotions.length; j++) {
-      if (charPotions[j].name.contains("Cure")) {
-        multiplePotions.add(charPotions[j]);
-        repeatedPotion++;
-      }
-    }
-    if (multiplePotions.isEmpty) {
-      return 0;
-    } else {
-      charPotions.removeWhere((element) => element.name.contains("Cure"));
-      charPotions.add(multiplePotions[0]);
-      return repeatedPotion;
     }
   }
 

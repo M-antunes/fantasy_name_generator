@@ -102,11 +102,31 @@ class LootController {
         value > valuePerClass ? tries = 50 : tries++;
       }
     }
-
     for (var i = 0; i < potions.length; i++) {
-      var levelPrice = potions[i].level == 0 ? 1 : potions[i].level;
-      var basePrice = levelPrice * potions[i].conjurerLevel * 50;
-      var potionQnt = repeatedPotion > 1 ? repeatedPotion : 1;
+      var basePrice = 0;
+      var potionLvl = potions[i].level == 0 ? 1 : potions[i].level;
+      var potionQnt = 1;
+      if (potions[i].name.contains("Cure")) {
+        var curePotionMultiplierPerLvl = potions[i].level == 1
+            ? 5
+            : potions[i].level == 2
+                ? 10
+                : potions[i].level == 3
+                    ? 15
+                    : 1;
+        basePrice = potionLvl * curePotionMultiplierPerLvl * 50;
+        potionQnt = potions[i].name.contains("x2")
+            ? 2
+            : potions[i].name.contains("x3")
+                ? 3
+                : potions[i].name.contains("x4")
+                    ? 4
+                    : potions[i].name.contains("x5")
+                        ? 5
+                        : 1;
+      } else {
+        basePrice = potionLvl * potions[i].conjurerLevel * 50;
+      }
       loot.potions!.add(
         TreasureModel(
             name: potions[i].name,

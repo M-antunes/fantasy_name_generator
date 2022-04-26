@@ -53,7 +53,9 @@ class LootSection extends StatelessWidget {
                       ),
                     ),
           const AttributeDivision(
-              label: "Potions", label2: "(if not used during encounter)"),
+              label: "Potions",
+              label2:
+                  "(Only available if not used by this NPC during encounter)"),
           !state.statsGenerated
               ? const Center()
               : state.charLoot.potions!.isNotEmpty

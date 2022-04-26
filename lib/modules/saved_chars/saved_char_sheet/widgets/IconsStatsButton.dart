@@ -1,5 +1,7 @@
-import 'package:flutter/material.dart';
+// ignore_for_file: file_names
+
 import 'package:flutter_svg/svg.dart';
+import 'package:flutter/material.dart';
 
 import '../../../../shared/constants/phone_sizes.dart';
 import '../../../../shared/themes/app_colors.dart';

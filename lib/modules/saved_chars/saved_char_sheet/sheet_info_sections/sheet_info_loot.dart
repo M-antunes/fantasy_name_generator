@@ -52,6 +52,24 @@ class SheetInfoLoot extends StatelessWidget {
                       price: jwel.price,
                       qnt: jwel.qnt);
                 }),
+            AttributeDivision(
+              defineWidth: deviceWidth! * 075,
+              label: "Potions",
+              label2:
+                  "(Only available if not used by this NPC during encounter)",
+            ),
+            ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: char.loot.potions!.length,
+                itemBuilder: (context, index) {
+                  var potion = char.loot.potions![index];
+                  return LootTile(
+                      name: potion.name,
+                      fullPrice: formatGoldPiece(potion.finalPrice),
+                      price: potion.price,
+                      qnt: potion.qnt);
+                }),
             AttributeDivision(defineWidth: deviceWidth! * 075, label: "Coin"),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8),

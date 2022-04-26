@@ -1,5 +1,5 @@
 // ignore_for_file: avoid_function_literals_in_foreach_calls
-import '../../models/combat_models/base_atribute_model.dart';
+
 import 'imports.dart';
 
 class CharController extends ChangeNotifier {

@@ -87,15 +87,12 @@ class MagicGearStats extends StatelessWidget {
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
                       itemBuilder: (context, index) {
-                        var multiple = state.repeatedPotion;
-                        var multipleIndicator =
-                            multiple > 1 ? " (x$multiple)" : "";
                         var potion = state.charPotions[index];
                         return InkWell(
                           child: Padding(
                             padding: const EdgeInsets.all(4),
                             child: Text(
-                              "Potion of ${potion.name}  $multipleIndicator",
+                              "Potion of ${potion.name}",
                               style: AppTextStyle.statsLabelBrighter,
                             ),
                           ),

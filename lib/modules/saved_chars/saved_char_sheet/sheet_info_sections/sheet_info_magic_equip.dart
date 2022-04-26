@@ -4,7 +4,9 @@ import 'package:provider/provider.dart';
 import '../../../../controllers/char_admin_controller/char_adimin_controller.dart';
 import '../../../../models/char_personal_models/char_model.dart';
 import '../../../../shared/constants/phone_sizes.dart';
+import '../../../../shared/themes/app_text_styles.dart';
 import '../../../../shared/widgets/expanded_section.dart';
+import '../../../char_creation/selection_sections/stats_sections/stats_tabs/magic_gear/widgets/spell_and_potion_description.dart';
 import '../../../char_creation/selection_sections/stats_sections/widgets/atribute_division.dart';
 import '../../../char_creation/selection_sections/stats_sections/widgets/general_magical_equip_row.dart';
 import '../../../char_creation/selection_sections/stats_sections/widgets/gradient_label.dart';
@@ -72,6 +74,31 @@ class SheetInfoMagicEquip extends StatelessWidget {
                     ],
                   )
                 : const SizedBox(),
+            SizedBox(height: deviceHeight! * 0.003),
+            const AttributeDivision(label: "Potions"),
+            SizedBox(height: deviceHeight! * 0.003),
+            ListView.builder(
+                itemCount: char.charEquip.potions.length,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemBuilder: (context, index) {
+                  var potion = char.charEquip.potions[index];
+                  return InkWell(
+                    child: Padding(
+                      padding: const EdgeInsets.all(4),
+                      child: Text(
+                        "Potion of ${potion.name}",
+                        style: AppTextStyle.statsLabelBrighter,
+                      ),
+                    ),
+                    onTap: () => Navigator.of(context).push(
+                      MaterialPageRoute(
+                          builder: ((context) =>
+                              SpellAndPotionDescription(potion: potion))),
+                    ),
+                  );
+                }),
+            SizedBox(height: deviceHeight! * 0.003),
           ],
         ),
       ),

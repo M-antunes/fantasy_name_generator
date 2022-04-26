@@ -151,6 +151,7 @@ class SheetInfoCombat extends StatelessWidget {
                 ],
               ),
               WeaponTile(
+                  isOnCharSheet: true,
                   type: char.physicalStyle.name == "Dual-wielder"
                       ? "Main-hand (Dual-wielder)"
                       : "Melee",
@@ -169,7 +170,29 @@ class SheetInfoCombat extends StatelessWidget {
                               .additionalDiceDamage!
                           : "",
                   critical: "${char.charEquip.meleeWeapon!.critical}"),
+              if (char.physicalStyle.name == "Dual-wielder")
+                WeaponTile(
+                    isOnCharSheet: true,
+                    type: char.physicalStyle.name == "Dual-wielder"
+                        ? "Off-hand (Dual-wielder)"
+                        : "Melee",
+                    specificType: char.charEquip.meleeWeapon!.type!.wielding,
+                    name: char.loot.items!
+                        .firstWhere((element) => element.name
+                            .contains(char.charEquip.meleeWeapon!.name!))
+                        .name,
+                    attack: "(${char.combatStats.meleeAttack})",
+                    damageValue: char.charEquip.meleeWeapon!.damage!,
+                    damageBonus: "+${char.combatStats.meleeDamage}",
+                    extraDamage: char.charEquip.meleeWeapon!.enchantment == null
+                        ? ""
+                        : char.charEquip.meleeWeapon!.enchantment!.length > 1
+                            ? char.charEquip.meleeWeapon!.enchantment![1]
+                                .additionalDiceDamage!
+                            : "",
+                    critical: "${char.charEquip.meleeWeapon!.critical}"),
               WeaponTile(
+                  isOnCharSheet: true,
                   type: char.charEquip.rangeWeapon!.type!.wielding,
                   name: char.loot.items!
                       .firstWhere((element) => element.name

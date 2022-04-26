@@ -28,7 +28,7 @@ class SavedCharSheet extends StatelessWidget {
         body: Container(
           decoration: BoxDecoration(
               gradient: LinearGradient(
-            colors: [Color.fromARGB(255, 68, 54, 1), Colors.grey[900]!],
+            colors: [const Color.fromARGB(255, 68, 54, 1), Colors.grey[900]!],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           )),
@@ -42,8 +42,11 @@ class SavedCharSheet extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(char.charName.fullName,
-                          style: AppTextStyle.nameExhibitionSheet),
+                      Text(
+                        char.charName.fullName,
+                        style: AppTextStyle.nameExhibitionSheet,
+                        textScaleFactor: 1.2,
+                      ),
                       RichText(
                         text: TextSpan(
                           children: [
