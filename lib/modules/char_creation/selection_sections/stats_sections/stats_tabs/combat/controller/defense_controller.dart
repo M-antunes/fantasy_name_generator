@@ -103,6 +103,10 @@ class DefenseController {
     var toughness =
         charFeats.any((element) => element.traiName == "Toughness") ? level : 0;
     hitPoints += diceHitPoints + toughness;
+    // boost from aid potion
+    if (level > 8) {
+      hitPoints += rollingDice(8) + level;
+    }
     return hitPoints;
   }
 
@@ -140,18 +144,16 @@ class DefenseController {
     return boost;
   }
 
-  int claculatingHitDefense(
-      EquipModel equip,
-      int level,
-      int dex,
-      RaceModel race,
-      String className,
-      int wis,
-      List<WonderousItemsModel> list,
-      List<TraitModel> charFeats,
-      bool isAc,
-      isSur,
-      isTch) {
+  List<int> claculatingHitDefense(
+    EquipModel equip,
+    int level,
+    int dex,
+    RaceModel race,
+    String className,
+    int wis,
+    List<WonderousItemsModel> list,
+    List<TraitModel> charFeats,
+  ) {
     int armorDefense = equip.armour != null ? equip.armour!.defenseBonus : 0;
     int shieldDefense = equip.shield != null ? equip.shield!.defenseBonus : 0;
     int maxDex = equip.armour != null ? equip.armour!.maxDexAllowed : 0;
@@ -181,30 +183,25 @@ class DefenseController {
     var dodge = charFeats.any((element) => element.traiName == "Dodge") ? 1 : 0;
     armorAc += dodge;
     touch += dodge;
-    surprise += dodge;
     var twoWeaponDefense =
         charFeats.any((element) => element.traiName == "Two-Weapon Defense")
             ? 1
             : 0;
     armorAc += twoWeaponDefense;
-    touch += twoWeaponDefense;
     surprise += twoWeaponDefense;
     var shieldFocus =
         charFeats.any((element) => element.traiName == "Shield Focus") ? 1 : 0;
     armorAc += shieldFocus;
-    touch += shieldFocus;
     surprise += shieldFocus;
     var shieldFocusGreater =
         charFeats.any((element) => element.traiName == "Greater Shield Focus")
             ? 1
             : 0;
     armorAc += shieldFocusGreater;
-    touch += shieldFocusGreater;
     surprise += shieldFocusGreater;
     var armorFocus =
         charFeats.any((element) => element.traiName == "Armor Focus") ? 1 : 0;
     armorAc += armorFocus;
-    touch += armorFocus;
     surprise += armorFocus;
     var ringBoost = findBoostyItem(list, "Ring of protection");
     armorAc += ringBoost;
@@ -221,14 +218,8 @@ class DefenseController {
     armorAc += level > 9 ? 1 : 0;
     surprise += level > 9 ? 1 : 0;
     touch += level > 9 ? 1 : 0;
-    if (isAc) {
-      return armorAc;
-    } else if (isSur) {
-      return surprise;
-    } else if (isTch) {
-      return touch;
-    }
-    return 0;
+    List<int> allDefenses = [armorAc, surprise, touch];
+    return allDefenses;
   }
 
   ResistanceModel calculateResistances(
@@ -276,12 +267,10 @@ class DefenseController {
         partialRef = bonusAtLevel.good;
         partialWill = bonusAtLevel.good;
         break;
-      case "all":
+      default:
         partialFort = bonusAtLevel.good;
         partialRef = bonusAtLevel.good;
         partialWill = bonusAtLevel.good;
-        break;
-      default:
     }
     if (race == "Hafling") {
       partialFort += 1;

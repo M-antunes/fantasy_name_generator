@@ -312,16 +312,16 @@ class OffenseController {
     }
   }
 
-  calculatingPhysicalAttack(
-      String mainAtrb,
-      AttributeModel atrb,
-      int charBba,
-      List<TraitModel> charFeats,
-      String physical,
-      int level,
-      int enchantPowerMelee,
-      int enchantPowerRange,
-      bool isMelee) {
+  List<String> calculatingPhysicalAttack(
+    String mainAtrb,
+    AttributeModel atrb,
+    int charBba,
+    List<TraitModel> charFeats,
+    String physical,
+    int level,
+    int enchantPowerMelee,
+    int enchantPowerRange,
+  ) {
     String meleeAtk = "";
     int meleeAtkNum = 0;
     String rangeAtk = "";
@@ -340,6 +340,11 @@ class OffenseController {
     } else if (level > 4) {
       meleeAtkNum += enchantPowerMelee;
       rangeAtkNum += enchantPowerRange;
+    }
+    // boost from aid potion
+    if (level > 8) {
+      meleeAtkNum++;
+      rangeAtkNum++;
     }
     if (charFeats.any((element) => element.traiName == "Weapon Focus")) {
       meleeAtkNum += boostWeaponWithFeat(1, 0, physical);
@@ -365,22 +370,19 @@ class OffenseController {
       rangeAtk =
           "+$rangeAtkNum / +${rangeAtkNum - 5} / +${rangeAtkNum - 10} / +${rangeAtkNum - 15}";
     }
-    if (isMelee) {
-      return meleeAtk;
-    } else {
-      return rangeAtk;
-    }
+    List<String> attacks = [meleeAtk, rangeAtk];
+    return attacks;
   }
 
-  calculatingPhysicalDamage(
-      String mainAtrb,
-      AttributeModel atrb,
-      List<TraitModel> charFeats,
-      String physical,
-      int level,
-      int enchantPowerMelee,
-      int enchantPowerRange,
-      bool isMelee) {
+  List<int> calculatingPhysicalDamage(
+    String mainAtrb,
+    AttributeModel atrb,
+    List<TraitModel> charFeats,
+    String physical,
+    int level,
+    int enchantPowerMelee,
+    int enchantPowerRange,
+  ) {
     int meleeDamage = 0;
     int rangeDamage = 0;
     if (level > 4) {
@@ -403,11 +405,8 @@ class OffenseController {
       meleeDamage += boostWeaponWithFeat(2, 0, physical);
       rangeDamage += boostWeaponWithFeat(0, 2, physical);
     }
-    if (isMelee) {
-      return "$meleeDamage";
-    } else {
-      return "$rangeDamage";
-    }
+    List<int> damages = [meleeDamage, rangeDamage];
+    return damages;
   }
 
   int claculateWeaponPrice(WeaponModel weapon, int level) {

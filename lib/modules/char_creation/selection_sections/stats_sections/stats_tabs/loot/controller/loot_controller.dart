@@ -137,7 +137,9 @@ class LootController {
                 : basePrice),
       );
     }
-
+    if (loot.potions!.first.name == "Aid") {
+      loot.potions!.removeAt(0);
+    }
     var coin = battleStyle == "Physical"
         ? (rollingDice(20) * level) * 100
         : battleStyle == "Spellcaster"

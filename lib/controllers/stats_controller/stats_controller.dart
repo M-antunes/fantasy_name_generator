@@ -12,7 +12,6 @@ class StatsController with ChangeNotifier {
   var listOfRaces = RaceData();
   var skillData = SkillData();
   var languages = LanguageData();
-  var allSpells = SpellData();
 
   var appearanceCtrl = AppearanceController();
   var abilityCtrl = AttributeController();
@@ -212,97 +211,14 @@ class StatsController with ChangeNotifier {
     char.charEquip.wonderousItems!.shuffle();
     notifyListeners();
   }
+  // ===================================================================================
+  // get Potions
 
   getPotions() {
-    charPotions = generatePotions();
+    charPotions =
+        magicGearCtrl.generatePotions(char.charLevel, char.physicalStyle.name);
     notifyListeners();
   }
-
-  List<SpellModel> generatePotions() {
-    if (char.charLevel < 5) {
-      return [];
-    }
-    List<SpellModel> charPotions = [];
-    List<SpellModel> allPotions = [];
-    allPotions = allSpells.allSpellsLeveled
-        .where((element) => element.canBePotion == true)
-        .toList();
-    int numberOfPotions =
-        getNumberOfPotionsPerClass(char.battleStyle.name, char.charLevel);
-    for (var i = 0; i < numberOfPotions; i++) {
-      var chance = generateRandom(100);
-      switch (numberOfPotions) {
-        case 1:
-          levelPotions(allPotions, chance, charPotions, "0", "1",
-              "Cure Light Wounds", char.charLevel, i);
-          break;
-        case 2:
-          levelPotions(allPotions, chance, charPotions, "1", "2",
-              "Cure Light Wounds", char.charLevel, i);
-          break;
-        case 3:
-          levelPotions(allPotions, chance, charPotions, "2", "3",
-              "Cure Moderate Wounds", char.charLevel, i);
-          break;
-        default:
-          levelPotions(allPotions, chance, charPotions, "3", "3",
-              "Cure Serious Wounds", char.charLevel, i);
-      }
-    }
-    List<SpellModel> multiplePotions = [];
-    var repeatedPotion = 0;
-    for (var j = 0; j < charPotions.length; j++) {
-      if (charPotions[j].name.contains("Cure")) {
-        multiplePotions.add(charPotions[j]);
-        repeatedPotion++;
-      }
-    }
-    if (multiplePotions.isEmpty) {
-      return charPotions;
-    } else {
-      charPotions.removeWhere((element) => element.name.contains("Cure"));
-      String multiplier = repeatedPotion > 1 ? "(x$repeatedPotion)" : "";
-      charPotions.add(multiplePotions[0]
-          .copyWith(name: "${multiplePotions[0].name}  $multiplier"));
-    }
-    return charPotions;
-  }
-
-  levelPotions(
-      List<SpellModel> allPotions,
-      int chance,
-      List<SpellModel> charPotions,
-      String weakPotion,
-      String strongPotion,
-      String curePotion,
-      int level,
-      int index) {
-    List<SpellModel> leveldPotions = [];
-    leveldPotions = allPotions
-        .where((element) =>
-            element.magicType.contains(weakPotion) ||
-            element.magicType.contains(strongPotion))
-        .toList();
-    if (chance > 40) {
-      var charCurePotion =
-          allPotions.firstWhere((element) => element.name == curePotion);
-      charCurePotion.conjurerLevel = level;
-      charPotions.add(charCurePotion);
-    } else {
-      leveldPotions.shuffle();
-      for (var i = 0; i < leveldPotions.length; i++) {
-        if (!charPotions.contains(leveldPotions[i])) {
-          var charRandomPotion = leveldPotions[i];
-          charRandomPotion.conjurerLevel = (level / 1.2).floor();
-          charRandomPotion.difficultClass =
-              "DC (${10 + (level / 1.2).floor()})";
-          charPotions.add(charRandomPotion);
-          break;
-        }
-      }
-    }
-  }
-
   // ===================================================================================
   //Apply magic to weapon
 
@@ -552,32 +468,11 @@ class StatsController with ChangeNotifier {
     notifyListeners();
   }
 
+//======================================================================================
+// section to generate Ac defense
+
   claculatingHitDefense() {
-    char.combatStats.armourClass = defenseCtrl.claculatingHitDefense(
-        char.charEquip,
-        char.charLevel,
-        char.modAttributes.dexterity,
-        char.charRace,
-        char.charClass.name,
-        char.modAttributes.wisdom,
-        char.charEquip.wonderousItems!,
-        charFeats,
-        true,
-        false,
-        false);
-    char.combatStats.armourSurprise = defenseCtrl.claculatingHitDefense(
-        char.charEquip,
-        char.charLevel,
-        char.modAttributes.dexterity,
-        char.charRace,
-        char.charClass.name,
-        char.modAttributes.wisdom,
-        char.charEquip.wonderousItems!,
-        charFeats,
-        false,
-        true,
-        false);
-    char.combatStats.armourTouch = defenseCtrl.claculatingHitDefense(
+    var defenses = defenseCtrl.claculatingHitDefense(
       char.charEquip,
       char.charLevel,
       char.modAttributes.dexterity,
@@ -586,15 +481,15 @@ class StatsController with ChangeNotifier {
       char.modAttributes.wisdom,
       char.charEquip.wonderousItems!,
       charFeats,
-      false,
-      false,
-      true,
     );
+    char.combatStats.armourClass = defenses[0];
+    char.combatStats.armourSurprise = defenses[1];
+    char.combatStats.armourTouch = defenses[2];
     notifyListeners();
   }
 
 //======================================================================================
-// section to generate Ac defense
+// section to generate resistances
 
   calculateResistances() {
     ResistanceModel resists = defenseCtrl.calculateResistances(
@@ -657,44 +552,30 @@ class StatsController with ChangeNotifier {
         : char.charEquip.rangeWeapon!.enchantment!.isNotEmpty
             ? char.charEquip.rangeWeapon!.enchantment![0].power
             : 0;
-    char.combatStats.meleeAttack = offenseCtrl.calculatingPhysicalAttack(
-        char.charClass.mainAtrb,
-        char.modAttributes,
-        char.combatStats.baseAttackBonus!,
-        charFeats,
-        char.physicalStyle.name,
-        char.charLevel,
-        meleeEnchant,
-        rangeEnchant,
-        true);
-    char.combatStats.rangeAttack = offenseCtrl.calculatingPhysicalAttack(
-        char.charClass.mainAtrb,
-        char.modAttributes,
-        char.combatStats.baseAttackBonus!,
-        charFeats,
-        char.physicalStyle.name,
-        char.charLevel,
-        meleeEnchant,
-        rangeEnchant,
-        false);
-    char.combatStats.meleeDamage = offenseCtrl.calculatingPhysicalDamage(
-        char.charClass.mainAtrb,
-        char.modAttributes,
-        charFeats,
-        char.physicalStyle.name,
-        char.charLevel,
-        meleeEnchant,
-        rangeEnchant,
-        true);
-    char.combatStats.rangeDamage = offenseCtrl.calculatingPhysicalDamage(
-        char.charClass.mainAtrb,
-        char.modAttributes,
-        charFeats,
-        char.physicalStyle.name,
-        char.charLevel,
-        meleeEnchant,
-        rangeEnchant,
-        false);
+    List<String> attackValues = offenseCtrl.calculatingPhysicalAttack(
+      char.charClass.mainAtrb,
+      char.modAttributes,
+      char.combatStats.baseAttackBonus!,
+      charFeats,
+      char.physicalStyle.name,
+      char.charLevel,
+      meleeEnchant,
+      rangeEnchant,
+    );
+    char.combatStats.meleeAttack = attackValues.first;
+    char.combatStats.rangeAttack = attackValues.last;
+    List<int> damages = offenseCtrl.calculatingPhysicalDamage(
+      char.charClass.mainAtrb,
+      char.modAttributes,
+      charFeats,
+      char.physicalStyle.name,
+      char.charLevel,
+      meleeEnchant,
+      rangeEnchant,
+    );
+    char.combatStats.meleeDamage = damages.first.toString();
+    char.combatStats.rangeDamage = damages.last.toString();
+    notifyListeners();
   }
 
   // =========================================================================================

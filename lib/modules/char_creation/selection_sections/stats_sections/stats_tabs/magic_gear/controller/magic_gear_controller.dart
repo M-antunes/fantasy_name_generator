@@ -1,5 +1,8 @@
+import 'package:fantasy_name_generator/shared/data/spell_data/spell_data.dart';
+
 import '../../../../../../../models/combat_models/base_atribute_model.dart';
 import '../../../../../../../models/equip_models/magic_equip_models/wonderous_items_model.dart';
+import '../../../../../../../models/spell_models/spell_model.dart';
 import '../../../../../../../shared/utils/utils.dart';
 
 class MagicGearController {
@@ -544,5 +547,114 @@ class MagicGearController {
     attribute.wisdom = atrb.contains("wisdom") ? boost : noBoost;
     attribute.charisma = atrb.contains("charisma") ? boost : noBoost;
     return attribute;
+  }
+
+  List<SpellModel> generatePotions(int level, String style) {
+    if (level < 5) {
+      return [];
+    }
+    List<SpellModel> charPotions = [];
+    List<SpellModel> allPotions = [];
+    allPotions = SpellData()
+        .allSpellsLeveled
+        .where((element) => element.canBePotion == true)
+        .toList();
+    int numberOfPotions = getNumberOfPotionsPerClass(style, level);
+    for (var i = 0; i < numberOfPotions; i++) {
+      var chance = generateRandom(100);
+      switch (numberOfPotions) {
+        case 1:
+          levelPotions(allPotions, chance, charPotions, "0", "1",
+              "Cure Light Wounds", level, i);
+          break;
+        case 2:
+          levelPotions(allPotions, chance, charPotions, "1", "2",
+              "Cure Light Wounds", level, i);
+          break;
+        case 3:
+          levelPotions(allPotions, chance, charPotions, "2", "3",
+              "Cure Moderate Wounds", level, i);
+          break;
+        default:
+          levelPotions(allPotions, chance, charPotions, "3", "3",
+              "Cure Serious Wounds", level, i);
+      }
+    }
+    List<SpellModel> multiplePotions = [];
+    var repeatedPotion = 0;
+    for (var j = 0; j < charPotions.length; j++) {
+      if (charPotions[j].name.contains("Cure")) {
+        multiplePotions.add(charPotions[j]);
+        repeatedPotion++;
+      }
+    }
+    if (multiplePotions.isEmpty) {
+      return charPotions;
+    } else {
+      charPotions.removeWhere((element) => element.name.contains("Cure"));
+      String multiplier = repeatedPotion > 1 ? "(x$repeatedPotion)" : "";
+      charPotions.add(multiplePotions[0]
+          .copyWith(name: "${multiplePotions[0].name}  $multiplier"));
+    }
+    if (level > 8) {
+      var aidPotion = allPotions
+          .firstWhere((element) => element.name == "Aid")
+          .copyWith(conjurerLevel: (level / 1.2).floor());
+      charPotions.insert(0, aidPotion);
+    }
+    return charPotions;
+  }
+
+  levelPotions(
+      List<SpellModel> allPotions,
+      int chance,
+      List<SpellModel> charPotions,
+      String weakPotion,
+      String strongPotion,
+      String curePotion,
+      int level,
+      int index) {
+    List<SpellModel> leveldPotions = [];
+    leveldPotions = allPotions
+        .where((element) =>
+            element.magicType.contains(weakPotion) ||
+            element.magicType.contains(strongPotion))
+        .toList();
+    if (chance > 40) {
+      var charCurePotion =
+          allPotions.firstWhere((element) => element.name == curePotion);
+      charCurePotion.conjurerLevel = level;
+      charPotions.add(charCurePotion);
+    } else {
+      leveldPotions.shuffle();
+      for (var i = 0; i < leveldPotions.length; i++) {
+        if (!charPotions.contains(leveldPotions[i])) {
+          var charRandomPotion = leveldPotions[i];
+          charRandomPotion.conjurerLevel = (level / 1.2).floor();
+          charRandomPotion.difficultClass =
+              "DC (${10 + (level / 1.2).floor()})";
+          charPotions.add(charRandomPotion);
+          break;
+        }
+      }
+    }
+  }
+
+  int getNumberOfPotionsPerClass(String style, int level) {
+    int potionQnt = 0;
+    switch (style) {
+      case "Physical":
+        potionQnt = rollingDice(2) + (level / 10).ceil();
+        break;
+      case "Hybrid":
+        potionQnt = rollingDice(3) + (level / 10).ceil();
+        break;
+      case "Spellcaster":
+        potionQnt = rollingDice(5) + (level / 10).ceil();
+        break;
+      default:
+        potionQnt = rollingDice(4) + (level / 10).ceil();
+    }
+    return potionQnt;
   }
 }

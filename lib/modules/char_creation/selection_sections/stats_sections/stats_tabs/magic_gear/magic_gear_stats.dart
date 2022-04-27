@@ -91,10 +91,23 @@ class MagicGearStats extends StatelessWidget {
                         return InkWell(
                           child: Padding(
                             padding: const EdgeInsets.all(4),
-                            child: Text(
-                              "Potion of ${potion.name}",
-                              style: AppTextStyle.statsLabelBrighter,
-                            ),
+                            child: state.char.charLevel > 8 &&
+                                    potion.name == "Aid" &&
+                                    state.charPotions.first.name == "Aid"
+                                ? RichText(
+                                    text: TextSpan(children: [
+                                    TextSpan(
+                                      text: "Potion of ${potion.name}  ",
+                                      style: AppTextStyle.statsLabelBrighter,
+                                    ),
+                                    TextSpan(
+                                        text: "used for encounter",
+                                        style: AppTextStyle.penaltyStyleText)
+                                  ]))
+                                : Text(
+                                    "Potion of ${potion.name}",
+                                    style: AppTextStyle.statsLabelBrighter,
+                                  ),
                           ),
                           onTap: () => Navigator.of(context).push(
                             MaterialPageRoute(

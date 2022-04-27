@@ -1967,7 +1967,9 @@ class SpellData {
       range: "touch",
       target: "living creature touched",
       duration: "1 min./level",
+      savingThrow: "Will (harmless)",
       spellResistance: "yes (harmless)",
+      canBePotion: true,
     ),
     SpellModel(
       name: "Air Step",
