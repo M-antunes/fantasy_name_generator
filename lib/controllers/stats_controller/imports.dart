@@ -27,8 +27,6 @@ export '../../models/equip_models/magic_equip_models/wonderous_items_model.dart'
 export '../../models/class_models/specials_model.dart';
 export '../../models/class_models/traits_model.dart';
 export '../../shared/data/class_data/class_traits_data/barbarian/barbarian_traits_data.dart';
-export '../../shared/data/combat_style_feats_data/all_feats_data.dart';
-export '../../shared/data/combat_style_feats_data/readied_feats_data.dart';
 export '../../shared/data/equip_data/enchant_data.dart';
 export '../../shared/data/race_data/race_data.dart';
 export '../../shared/data/class_data/skill_data.dart';

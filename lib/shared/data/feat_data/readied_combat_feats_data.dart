@@ -1,6 +1,6 @@
 import '../../../models/class_models/traits_model.dart';
 
-class ReariedFeatsData {
+class ReariedCombatFeatsData {
   List<TraitModel> berserkerFeats = [
     TraitModel(
       traiName: "Power Attack",
@@ -274,6 +274,13 @@ class ReariedFeatsData {
       levelAcquired: 1,
       traiDescription:
           "You gain a +1 bonus on all attack rolls you make using the selected weapon.",
+      isSelected: false,
+    ),
+    TraitModel(
+      traiName: "Twist Away",
+      levelAcquired: 1,
+      traiDescription:
+          " While you are wearing light armor or no armor, if you are forced to attempt a Fortitude saving throw, you can use an immediate action to instead attempt a Reflex saving throw (at the same DC). If you succeed at this saving throw and the attack has a reduced effect on a successful save, you avoid the effect entirely. Whether the saving throw is successful or not, you are staggered until the end of your next turn. If you are prevented from becoming staggered, you can't use Twist Away , nor can you ignore the staggered condition from Twist Away or remove it early.",
       isSelected: false,
     ),
     TraitModel(
@@ -571,6 +578,211 @@ class ReariedFeatsData {
       traiName: "Improved PreciseShot",
       levelAcquired: 11,
       traiDescription: "No cover or concealment chance on ranged attacks",
+      isSelected: false,
+    ),
+  ];
+
+  List<TraitModel> hybridFeats = [
+    TraitModel(
+      traiName: "Alignment Channel",
+      levelAcquired: 1,
+      traiDescription:
+          "Instead of its normal effect, you can choose to have your ability to channel energy heal or harm outsiders of the chosen alignment subtype. You must make this choice each time you channel energy. If you choose to heal or harm creatures of the chosen alignment subtype, your channel energy has no effect on other creatures. The amount of damage healed or dealt and the DC to halve the damage is otherwise unchanged.",
+      isSelected: false,
+      fitFor: "Paladin, Antipaladin, Cleric",
+    ),
+    TraitModel(
+      traiName: "Augment Summoning",
+      levelAcquired: 1,
+      traiDescription:
+          ": Each creature you conjure with any summon spell gains a +4 enhancement bonus to Strength and Constitution for the duration of the spell that summoned it.",
+      isSelected: false,
+    ),
+    TraitModel(
+      traiName: "Channel Smite",
+      levelAcquired: 1,
+      traiDescription:
+          " Before you make a melee attack roll, you can choose to spend one use of your channel energy ability as a swift action. If you channel positive energy and you hit an undead creature, that creature takes an amount of additional damage equal to the damage dealt by your channel positive energy ability. If you channel negative energy and you hit a living creature, that creature takes an amount of additional damage equal to the damage dealt by your channel negative energy ability. Your target can make a Will save, as normal, to halve this additional damage. If your attack misses, the channel energy ability is still expended with no effect.",
+      isSelected: false,
+      fitFor: "Paladin, Antipaladin, Cleric",
+    ),
+    TraitModel(
+      traiName: "Combat Casting",
+      levelAcquired: 1,
+      traiDescription:
+          "You get a +4 bonus on concentration checks made to cast a spell or use a spell-like ability when casting on the defensive or while grappled.",
+      isSelected: false,
+    ),
+    TraitModel(
+      traiName: "Eschew Materials",
+      levelAcquired: 1,
+      traiDescription:
+          "You can cast any spell with a material component costing 1 gp or less without needing that component. The casting of the spell still provokes attacks of opportunity as normal. If the spell requires a material component that costs more than 1 gp, you must have the material component on hand to cast the spell, as normal.",
+      isSelected: false,
+    ),
+    TraitModel(
+      traiName: "Extra Channel",
+      levelAcquired: 1,
+      traiDescription:
+          "You can channel energy two additional times per day. Special: If a paladin with the ability to channel positive energy takes this feat, she can use lay on hands four additional times a day, but only to channel positive energy.",
+      isSelected: false,
+      fitFor: "Paladin, Antipaladin, Cleric",
+    ),
+    TraitModel(
+      traiName: "Extra Ki",
+      levelAcquired: 1,
+      traiDescription:
+          ": Your ki pool increases by 2. Special: You can gain Extra Ki multiple times. Its effects stack.",
+      isSelected: false,
+      fitFor: "Monk",
+    ),
+    TraitModel(
+      traiName: "Natural Spell",
+      levelAcquired: 1,
+      traiDescription:
+          " You can complete the verbal and somatic components of spells while using wild shape. You substitute various noises and gestures for the normal verbal and somatic components of a spell. You can also use any material components or focuses you possess, even if such items are melded within your current form. This feat does not permit the use of magic items while you are in a form that could not ordinarily use them, and you do not gain the ability to speak while using wild shape.",
+      isSelected: false,
+      fitFor: "Druid",
+    ),
+    TraitModel(
+      traiName: "Selective Channeling",
+      levelAcquired: 1,
+      traiDescription:
+          " When you channel energy, you can choose a number of targets in the area up to your Charisma modifier. These targets are not affected by your channeled energy.",
+      isSelected: false,
+      fitFor: "Paladin, Antipaladin, Cleric",
+    ),
+    TraitModel(
+      traiName: "Spell Focus",
+      levelAcquired: 1,
+      traiDescription:
+          " Add +1 to the Difficulty Class for all saving throws against spells from the school of magic you select.",
+      isSelected: false,
+    ),
+    TraitModel(
+      traiName: "Greater Spell Focus",
+      levelAcquired: 1,
+      traiDescription:
+          " Add +1 to the Difficulty Class for all saving throws against spells from the school of magic you select. This bonus stacks with the bonus from Spell Focus.",
+      isSelected: false,
+    ),
+    TraitModel(
+      traiName: "Spell Penetration",
+      levelAcquired: 1,
+      traiDescription:
+          "You get a +2 bonus on caster level checks (1d20 + caster level) made to overcome a creature's spell resistance.",
+      isSelected: false,
+    ),
+    TraitModel(
+      traiName: "Greater Spell Penetration",
+      levelAcquired: 1,
+      traiDescription:
+          "  You get a +2 bonus on caster level checks (1d20 + caster level) made to overcome a creature's spell resistance. This bonus stacks with the one from Spell Penetration.",
+      isSelected: false,
+    ),
+    TraitModel(
+      traiName: "Elemental Focus",
+      levelAcquired: 1,
+      traiDescription: "+1 bonus on save DCs for one energy type",
+      isSelected: false,
+    ),
+    TraitModel(
+      traiName: "Greater Elemental Focus",
+      levelAcquired: 1,
+      traiDescription: "+1 bonus on save DCs for one energy type",
+      isSelected: false,
+    ),
+    TraitModel(
+      traiName: "Spell Perfection",
+      levelAcquired: 10,
+      traiDescription:
+          "Apply any metamagic feat to one spell without penalty, up to 9th level",
+      isSelected: false,
+    ),
+  ];
+
+  List<TraitModel> spellCaster = [
+    TraitModel(
+      traiName: "Spell Focus",
+      levelAcquired: 1,
+      traiDescription:
+          " Add +1 to the Difficulty Class for all saving throws against spells from the school of magic you select.",
+      isSelected: false,
+      fitFor: "Spellcaster",
+    ),
+    TraitModel(
+      traiName: "Eschew Materials",
+      levelAcquired: 1,
+      traiDescription:
+          "You can cast any spell with a material component costing 1 gp or less without needing that component. The casting of the spell still provokes attacks of opportunity as normal. If the spell requires a material component that costs more than 1 gp, you must have the material component on hand to cast the spell, as normal.",
+      isSelected: false,
+      fitFor: "Spellcaster",
+    ),
+    TraitModel(
+      traiName: "Combat Casting",
+      levelAcquired: 1,
+      traiDescription:
+          "You get a +4 bonus on concentration checks made to cast a spell or use a spell-like ability when casting on the defensive or while grappled.",
+      isSelected: false,
+    ),
+    TraitModel(
+      traiName: "Greater Spell Focus",
+      levelAcquired: 1,
+      traiDescription:
+          " Add +1 to the Difficulty Class for all saving throws against spells from the school of magic you select. This bonus stacks with the bonus from Spell Focus.",
+      isSelected: false,
+      fitFor: "Spellcaster",
+    ),
+    TraitModel(
+      traiName: "Spell Penetration",
+      levelAcquired: 1,
+      traiDescription:
+          "You get a +2 bonus on caster level checks (1d20 + caster level) made to overcome a creature's spell resistance.",
+      isSelected: false,
+    ),
+    TraitModel(
+      traiName: "Greater Spell Penetration",
+      levelAcquired: 1,
+      traiDescription:
+          "  You get a +2 bonus on caster level checks (1d20 + caster level) made to overcome a creature's spell resistance. This bonus stacks with the one from Spell Penetration.",
+      isSelected: false,
+    ),
+    TraitModel(
+      traiName: "Elemental Focus",
+      levelAcquired: 1,
+      traiDescription: "+1 bonus on save DCs for one energy type",
+      isSelected: false,
+    ),
+    TraitModel(
+      traiName: "Greater Elemental Focus",
+      levelAcquired: 1,
+      traiDescription: "+1 bonus on save DCs for one energy type",
+      isSelected: false,
+    ),
+    TraitModel(
+      traiName: "Spell Perfection",
+      levelAcquired: 10,
+      traiDescription:
+          "Apply any metamagic feat to one spell without penalty, up to 9th level",
+      isSelected: false,
+      fitFor: "Spellcaster",
+    ),
+    TraitModel(
+      traiName: "Improved Initiative",
+      levelAcquired: 1,
+      traiDescription: "+4 bonus on initiative checks",
+      isSelected: false,
+    ),
+    TraitModel(
+      traiName: "Dodge",
+      levelAcquired: 1,
+      traiDescription: "+1 dodge bonus to AC",
+      isSelected: false,
+    ),
+    TraitModel(
+      traiName: "Toughness",
+      levelAcquired: 1,
+      traiDescription: "+3 hit points, +1 per Hit Die beyond 3",
       isSelected: false,
     ),
   ];

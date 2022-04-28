@@ -65,6 +65,8 @@ class SkillRowWidget extends StatelessWidget {
                           style: classSkill
                               ? AppTextStyle.subTextWhitePlusSize
                               : AppTextStyle.statsLabelBrighter,
+                          textScaleFactor:
+                              skillName.contains("Knowledge") ? 0.9 : 1,
                         ),
                       ),
                     ),

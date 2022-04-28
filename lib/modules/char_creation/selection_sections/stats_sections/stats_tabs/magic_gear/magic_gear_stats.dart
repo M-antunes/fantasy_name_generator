@@ -44,33 +44,6 @@ class MagicGearStats extends StatelessWidget {
                                 index, state.char.charEquip.wonderousItems!),
                             selected: item.isSelected);
                       }),
-          state.statsGenerated && state.tomesAndManuals.isNotEmpty
-              ? Column(
-                  children: [
-                    const GradientLabel(label: "Special Boosts"),
-                    SizedBox(height: deviceHeight! * 0.006),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8),
-                      child: ListView.builder(
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemCount: state.tomesAndManuals.length,
-                          itemBuilder: (context, index) {
-                            var book = state.tomesAndManuals[index];
-                            return GeneralMagicalEquipRow(
-                              label: "Book read",
-                              item: book.name!,
-                              selected: book.isSelected,
-                              description: book.description!,
-                              onTap: () => state.showDescriptions(
-                                  index, state.tomesAndManuals),
-                            );
-                          }),
-                    )
-                  ],
-                )
-              : const SizedBox(),
-          SizedBox(height: deviceHeight! * 0.01),
           const AttributeDivision(label: "Potions"),
           !state.statsGenerated
               ? const Center()
@@ -115,7 +88,34 @@ class MagicGearStats extends StatelessWidget {
                                     SpellAndPotionDescription(potion: potion))),
                           ),
                         );
-                      })
+                      }),
+          SizedBox(height: deviceHeight! * 0.01),
+          state.statsGenerated && state.tomesAndManuals.isNotEmpty
+              ? Column(
+                  children: [
+                    const GradientLabel(label: "Special Boosts"),
+                    SizedBox(height: deviceHeight! * 0.006),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      child: ListView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: state.tomesAndManuals.length,
+                          itemBuilder: (context, index) {
+                            var book = state.tomesAndManuals[index];
+                            return GeneralMagicalEquipRow(
+                              label: "Book read",
+                              item: book.name!,
+                              selected: book.isSelected,
+                              description: book.description!,
+                              onTap: () => state.showDescriptions(
+                                  index, state.tomesAndManuals),
+                            );
+                          }),
+                    )
+                  ],
+                )
+              : const SizedBox(),
         ],
       );
     });

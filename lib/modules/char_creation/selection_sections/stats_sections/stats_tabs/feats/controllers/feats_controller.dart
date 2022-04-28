@@ -1,10 +1,10 @@
 import 'package:fantasy_name_generator/models/class_models/traits_model.dart';
 
-import '../../../../../../../shared/data/combat_style_feats_data/all_feats_data.dart';
-import '../../../../../../../shared/data/combat_style_feats_data/readied_feats_data.dart';
+import '../../../../../../../shared/data/feat_data/all_feats_data.dart';
+import '../../../../../../../shared/data/feat_data/readied_combat_feats_data.dart';
 
 class FeatsController {
-  var classFeatList = ReariedFeatsData();
+  var classFeatList = ReariedCombatFeatsData();
   var allFeats = AllFeatsData();
 
   getFeats(String physicalStyle, int level, String className, String raceName) {

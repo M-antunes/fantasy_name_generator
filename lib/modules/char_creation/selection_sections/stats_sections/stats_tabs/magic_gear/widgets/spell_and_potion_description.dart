@@ -16,6 +16,7 @@ class SpellAndPotionDescription extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         body: ListView(
+          physics: const BouncingScrollPhysics(),
           children: [
             Padding(
               padding: const EdgeInsets.all(8.0),

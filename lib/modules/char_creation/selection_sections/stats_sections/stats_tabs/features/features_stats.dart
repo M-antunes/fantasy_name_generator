@@ -25,31 +25,44 @@ class FeatureStats extends StatelessWidget {
               itemBuilder: (context, index) {
                 var trait = state.traits[index];
                 return FeatureListWidget(
-                  name: trait.traiName,
+                  name: trait.traiName.contains("Weapon training") &&
+                          state.char.charLevel < 9
+                      ? "${trait.traiName} (${state.char.charEquip.meleeWeapon!.type!.name})"
+                      : trait.traiName.contains("Weapon training") &&
+                              state.char.charLevel > 8
+                          ? "${trait.traiName} (${state.char.charEquip.meleeWeapon!.type!.name}) - (${state.char.charEquip.rangeWeapon!.type!.name})"
+                          : trait.traiName,
                   selected: trait.isSelected,
                   description: trait.traiDescription,
                   onTap: () => state.showDescriptions(index, state.traits),
                 );
               }),
           SizedBox(height: deviceHeight! * 0.005),
-          AttributeDivision(
-              label:
-                  "${state.char.charClass.name}  ${state.char.charClass.specialName}"),
-          SizedBox(height: deviceHeight! * 0.005),
-          ListView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: state.specials.length,
-              itemBuilder: (context, index) {
-                var special = state.specials[index];
-                return FeatureListWidget(
-                  name: special.name,
-                  selected: special.isSelected,
-                  description: special.description,
-                  onTap: () => state.showDescriptions(index, state.specials),
-                );
-              }),
-          SizedBox(height: deviceHeight! * 0.05),
+          state.char.charClass.speacials!.isNotEmpty
+              ? Column(
+                  children: [
+                    AttributeDivision(
+                        label:
+                            "${state.char.charClass.name}  ${state.char.charClass.specialName}"),
+                    SizedBox(height: deviceHeight! * 0.005),
+                    ListView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: state.specials.length,
+                        itemBuilder: (context, index) {
+                          var special = state.specials[index];
+                          return FeatureListWidget(
+                            name: special.name,
+                            selected: special.isSelected,
+                            description: special.description,
+                            onTap: () =>
+                                state.showDescriptions(index, state.specials),
+                          );
+                        }),
+                    SizedBox(height: deviceHeight! * 0.05),
+                  ],
+                )
+              : const SizedBox(),
         ],
       );
     });

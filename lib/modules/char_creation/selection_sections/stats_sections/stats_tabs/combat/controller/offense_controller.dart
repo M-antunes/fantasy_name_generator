@@ -317,6 +317,7 @@ class OffenseController {
     AttributeModel atrb,
     int charBba,
     List<TraitModel> charFeats,
+    String charClass,
     String physical,
     int level,
     int enchantPowerMelee,
@@ -345,6 +346,13 @@ class OffenseController {
     if (level > 8) {
       meleeAtkNum++;
       rangeAtkNum++;
+    }
+
+    if (charClass == "Warrior") {
+      for (var i = 5; i < level; i += 4) {
+        meleeAtkNum++;
+        rangeAtkNum++;
+      }
     }
     if (charFeats.any((element) => element.traiName == "Weapon Focus")) {
       meleeAtkNum += boostWeaponWithFeat(1, 0, physical);
@@ -375,6 +383,7 @@ class OffenseController {
   }
 
   List<int> calculatingPhysicalDamage(
+    String charClass,
     String mainAtrb,
     AttributeModel atrb,
     List<TraitModel> charFeats,
@@ -394,6 +403,12 @@ class OffenseController {
     }
     if (physical == "Berserker") {
       meleeDamage = (meleeDamage * 1.5).floor();
+    }
+    if (charClass == "Warrior") {
+      for (var i = 5; i < level; i += 4) {
+        meleeDamage++;
+        rangeDamage++;
+      }
     }
     if (charFeats
         .any((element) => element.traiName == "Weapon Specialization")) {

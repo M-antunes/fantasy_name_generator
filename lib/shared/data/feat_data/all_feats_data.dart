@@ -195,7 +195,7 @@ class AllFeatsData {
     ),
     TraitModel(
       traiName: "Critical Mastery",
-      levelAcquired: 1,
+      levelAcquired: 8,
       fitFor: "all",
       traiDescription:
           "When you score a critical hit, you can apply the effects of two critical feats in addition to the damage dealt.",
@@ -203,7 +203,7 @@ class AllFeatsData {
     ),
     TraitModel(
       traiName: "Deafening Critical",
-      levelAcquired: 1,
+      levelAcquired: 9,
       fitFor: "all",
       traiDescription:
           "Whenever you score a critical hit against an opponent, the victim is permanently deafened. A successful Fortitude save reduces the deafness to 1 round. The DC of this Fortitude save is equal to 10 + your base attack bonus. This feat has no effect on deaf creatures. This deafness can be cured by heal, regeneration, remove deafness, or a similar ability.",
@@ -211,7 +211,7 @@ class AllFeatsData {
     ),
     TraitModel(
       traiName: "Sickening Critical",
-      levelAcquired: 1,
+      levelAcquired: 9,
       fitFor: "all",
       traiDescription:
           "Whenever you score a critical hit, your opponent becomes sickened for 1 minute. The effects of this feat do not stack. Additional hits instead add to the effect's duration.",
@@ -219,7 +219,7 @@ class AllFeatsData {
     ),
     TraitModel(
       traiName: "Staggering Critical",
-      levelAcquired: 1,
+      levelAcquired: 9,
       fitFor: "all",
       traiDescription:
           "Whenever you score a critical hit, your opponent becomes staggered for 1d4+1 rounds. A successful Fortitude save reduces the duration to 1 round. The DC of this Fortitude save is equal to 10 + your base attack bonus. The effects of this feat do not stack. Additional hits instead add to the duration.",
@@ -227,7 +227,7 @@ class AllFeatsData {
     ),
     TraitModel(
       traiName: "Stunning Critical",
-      levelAcquired: 1,
+      levelAcquired: 9,
       fitFor: "all",
       traiDescription:
           "You must declare that you are using this feat before you make your attack roll (thus, a failed attack roll ruins the attempt). Stunning Fist forces a foe damaged by your unarmed attack to make a Fortitude saving throw (DC 10 + 1/2 your character level + your Str modifier), in addition to dealing damage normally. A defender who fails this saving throw is stunned for 1 round (until just before your next turn). A stunned character drops everything held, can't take actions, loses any Dexterity bonus to AC, and takes a –2 penalty to AC. You may attempt a stunning attack once per day for every four levels you have attained (but see Special), and no more than once per round. Constructs, oozes, plants, undead, incorporeal creatures, and creatures immune to critical hits cannot be stunned.",
@@ -235,7 +235,7 @@ class AllFeatsData {
     ),
     TraitModel(
       traiName: "Tiring Critical",
-      levelAcquired: 1,
+      levelAcquired: 9,
       fitFor: "all",
       traiDescription:
           "Whenever you score a critical hit, your opponent becomes fatigued. This feat has no additional effect on a fatigued or exhausted creature.",
@@ -243,7 +243,7 @@ class AllFeatsData {
     ),
     TraitModel(
       traiName: "Exhausting Critical",
-      levelAcquired: 1,
+      levelAcquired: 9,
       fitFor: "all",
       traiDescription:
           "When you score a critical hit on a foe, your target immediately becomes exhausted. This feat has no effect on exhausted creatures.",
@@ -256,6 +256,33 @@ class AllFeatsData {
       traiDescription: "+1 dodge bonus to AC",
       isSelected: false,
     ),
+    TraitModel(
+      traiName: "Bodyguard",
+      levelAcquired: 1,
+      traiDescription:
+          " When an adjacent ally is attacked, you may use an attack of opportunity to attempt the aid another action to improve your ally's AC. You may not use the aid another action to improve your ally's attack roll with this attack.",
+      isSelected: false,
+    ),
+    TraitModel(
+      traiName: "Furious Focus",
+      levelAcquired: 1,
+      traiDescription:
+          "Do not take the Power Attack penalty on the first attack each round",
+      isSelected: false,
+    ),
+    TraitModel(
+        traiName: "Pushing Assault",
+        levelAcquired: 1,
+        traiDescription: "Push a foe back with a two-handed weapon",
+        isSelected: false,
+        fitFor: "Berserker"),
+    TraitModel(
+      traiName: "Stunning Assault",
+      levelAcquired: 1,
+      traiDescription:
+          " You can choose to take a –5 penalty on all melee attack rolls and combat maneuver checks to stun targets you hit with your melee attacks for 1 round. A successful Fortitude save negates the effect. The DC of this save is 10 + your base attack bonus. You must choose to use this feat before making the attack roll, and its effects last until your next turn.",
+      isSelected: false,
+    ),
   ];
 
   List<TraitModel> metamagicFeats = [
@@ -263,14 +290,14 @@ class AllFeatsData {
       traiName: "Bouncing Spell",
       levelAcquired: 1,
       traiDescription:
-          " Whenever a bouncing spell targeting a single creature has no effect on its intended target (whether due to spell resistance or a successful saving throw) you may, as a swift action, redirect it to target another eligible creature within range. The redirected spell behaves in all ways as if its new target were the original target for the spell. Spells that affect a target in any way (including a lesser effect from a successful saving throw) may not be redirected in this manner. A bouncing spell uses up a spell slot one level higher than the spell's actual level.",
+          "Whenever a bouncing spell targeting a single creature has no effect on its intended target (whether due to spell resistance or a successful saving throw) you may, as a swift action, redirect it to target another eligible creature within range. The redirected spell behaves in all ways as if its new target were the original target for the spell. Spells that affect a target in any way (including a lesser effect from a successful saving throw) may not be redirected in this manner. A bouncing spell uses up a spell slot one level higher than the spell's actual level.",
       isSelected: false,
     ),
     TraitModel(
       traiName: "Dazing Spell",
       levelAcquired: 1,
       traiDescription:
-          " You can modify a spell to daze a creature damaged by the spell. When a creature takes damage from this spell, they become dazed for a number of rounds equal to the original level of the spell. If the spell allows a saving throw, a successful save negates the daze effect. If the spell does not allow a save, the target can make a Will save to negate the daze effect. If the spell effect also causes the creature to become dazed, the duration of this metamagic effect is added to the duration of the spell. A dazing spell uses up a spell slot three levels higher than the spell's actual level. Spells that do not inflict damage do not benefit from this feat.",
+          "You can modify a spell to daze a creature damaged by the spell. When a creature takes damage from this spell, they become dazed for a number of rounds equal to the original level of the spell. If the spell allows a saving throw, a successful save negates the daze effect. If the spell does not allow a save, the target can make a Will save to negate the daze effect. If the spell effect also causes the creature to become dazed, the duration of this metamagic effect is added to the duration of the spell. A dazing spell uses up a spell slot three levels higher than the spell's actual level. Spells that do not inflict damage do not benefit from this feat.",
       isSelected: false,
     ),
     TraitModel(

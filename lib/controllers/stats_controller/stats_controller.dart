@@ -1,3 +1,4 @@
+import 'package:fantasy_name_generator/modules/char_creation/selection_sections/stats_sections/stats_tabs/features/controllers/feature_controller.dart';
 import 'package:fantasy_name_generator/shared/data/spell_data/spell_data.dart';
 
 import '../../models/spell_models/spell_model.dart';
@@ -310,70 +311,79 @@ class StatsController with ChangeNotifier {
 
   // ===================================================================================
   //Traits part
-
-  var barbarian = BarbarianTraitsData();
-  List<SpecialsModel> specials = [];
   List<TraitModel> traits = [];
+  FeaturesController featuresCtrl = FeaturesController();
 
   gettingClassTraits() {
-    List<TraitModel> newList = [];
-    var valueList = [];
-    List<TraitModel> replacementList = [];
-    List<TraitModel> list = barbarian.barbarianTraits
-        .where((element) => element.levelAcquired <= char.charLevel)
-        .toList();
-    var onlyVariableTraits =
-        list.where((element) => element.multiplier != null).toList();
-    list.removeWhere((element) => element.multiplier != null);
-    for (var i in onlyVariableTraits) {
-      var changableValue = char.charLevel - i.levelAcquired;
-      if (i.levelAcquired == char.charLevel) {
-        changableValue++;
-      }
-      changableValue = (changableValue / i.multiplier!).floor();
-      valueList.add(changableValue);
-    }
-    var index = 0;
-    for (var i in onlyVariableTraits) {
-      var newString = "${i.traiName} ${valueList[index] + 1}";
-      var newTrait = TraitModel(
-          traiName: newString,
-          levelAcquired: i.levelAcquired,
-          traiDescription: i.traiDescription,
-          isSelected: i.isSelected);
-      newList.add(newTrait);
-      index++;
-    }
-    replacementList.addAll(list);
-    replacementList.addAll(newList);
-    traits = replacementList;
+    traits =
+        featuresCtrl.gettingClassTraits(char.charClass.name, char.charLevel);
     notifyListeners();
   }
+
+  //   List<TraitModel> newList = [];
+  //   var valueList = [];
+  //   List<TraitModel> replacementList = [];
+  //   List<TraitModel> list = barbarian.barbarianTraits
+  //       .where((element) => element.levelAcquired <= char.charLevel)
+  //       .toList();
+  //   var onlyVariableTraits =
+  //       list.where((element) => element.multiplier != null).toList();
+  //   list.removeWhere((element) => element.multiplier != null);
+  //   for (var i in onlyVariableTraits) {
+  //     var changableValue = char.charLevel - i.levelAcquired;
+  //     if (i.levelAcquired == char.charLevel) {
+  //       changableValue++;
+  //     }
+  //     changableValue = (changableValue / i.multiplier!).floor();
+  //     valueList.add(changableValue);
+  //   }
+  //   var index = 1;
+  //   for (var i in onlyVariableTraits) {
+  //     var newString = "${i.traiName} ${valueList[index]}";
+  //     var newTrait = TraitModel(
+  //         traiName: newString,
+  //         levelAcquired: i.levelAcquired,
+  //         traiDescription: i.traiDescription,
+  //         isSelected: i.isSelected);
+  //     newList.add(newTrait);
+  //     index++;
+  //   }
+  //   replacementList.addAll(list);
+  //   replacementList.addAll(newList);
+  //   replacementList.sort((a, b) => a.levelAcquired.compareTo(b.levelAcquired));
+  //   traits = replacementList;
+  //   notifyListeners();
+  // }
+  List<SpecialsModel> specials = [];
 
   gettingClassSpecials() {
-    var numberOfSpecial = (char.charLevel / 2).floor();
-    List<SpecialsModel> cloneList = barbarian.ragePowers
-        .where((element) => element.levelAcquired <= char.charLevel)
-        .toList();
-    if (char.charRace.name == "Human" || char.charRace.name == "Hafling") {
-      cloneList.removeWhere((element) =>
-          element.name == "Night Vision" && element.name == "Low-light Vision");
-    }
-    if (char.charRace.name == "Orc" ||
-        char.charRace.name != "Dwarf" ||
-        char.charRace.name != "Half-orc") {
-      cloneList.removeWhere((element) => element.name == "Night Vision");
-    }
-    List<SpecialsModel> specialList = [];
-    for (var i = 0; i < numberOfSpecial; i++) {
-      var random = generateRandom(cloneList.length);
-
-      specialList.add(cloneList[random]);
-      cloneList.remove(cloneList[random]);
-    }
-    specials = specialList;
+    specials = featuresCtrl.gettingClassSpecials(
+        char.charClass.name, char.charLevel, char.charRace.name);
     notifyListeners();
   }
+  //   var numberOfSpecial = (char.charLevel / 2).floor();
+  //   List<SpecialsModel> cloneList = barbarian.ragePowers
+  //       .where((element) => element.levelAcquired <= char.charLevel)
+  //       .toList();
+  //   if (char.charRace.name == "Human" || char.charRace.name == "Hafling") {
+  //     cloneList.removeWhere((element) =>
+  //         element.name == "Night Vision" && element.name == "Low-light Vision");
+  //   }
+  //   if (char.charRace.name == "Orc" ||
+  //       char.charRace.name != "Dwarf" ||
+  //       char.charRace.name != "Half-orc") {
+  //     cloneList.removeWhere((element) => element.name == "Night Vision");
+  //   }
+  //   List<SpecialsModel> specialList = [];
+  //   for (var i = 0; i < numberOfSpecial; i++) {
+  //     var random = generateRandom(cloneList.length);
+
+  //     specialList.add(cloneList[random]);
+  //     cloneList.remove(cloneList[random]);
+  //   }
+  //   specials = specialList;
+  //   notifyListeners();
+  // }
 
   // ====================================================================================
   // Feat part
@@ -557,6 +567,7 @@ class StatsController with ChangeNotifier {
       char.modAttributes,
       char.combatStats.baseAttackBonus!,
       charFeats,
+      char.charClass.name,
       char.physicalStyle.name,
       char.charLevel,
       meleeEnchant,
@@ -565,6 +576,7 @@ class StatsController with ChangeNotifier {
     char.combatStats.meleeAttack = attackValues.first;
     char.combatStats.rangeAttack = attackValues.last;
     List<int> damages = offenseCtrl.calculatingPhysicalDamage(
+      char.charClass.name,
       char.charClass.mainAtrb,
       char.modAttributes,
       charFeats,

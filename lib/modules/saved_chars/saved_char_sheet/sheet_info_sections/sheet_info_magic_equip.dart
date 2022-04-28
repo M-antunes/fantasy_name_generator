@@ -50,31 +50,6 @@ class SheetInfoMagicEquip extends StatelessWidget {
                       selected: item.isSelected);
                 }),
             SizedBox(height: deviceHeight! * 0.003),
-            char.charEquip.tomesAndManuals!.isNotEmpty
-                ? Column(
-                    children: [
-                      const GradientLabel(label: "Special Boosts"),
-                      SizedBox(height: deviceHeight! * 0.003),
-                      ListView.builder(
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemCount: char.charEquip.tomesAndManuals!.length,
-                          itemBuilder: (context, index) {
-                            var book = char.charEquip.tomesAndManuals![index];
-                            return GeneralMagicalEquipRow(
-                              isCharSheet: true,
-                              label: "Book read",
-                              item: book.name!,
-                              selected: book.isSelected,
-                              description: book.description!,
-                              onTap: () => ctrl.showDescriptions(
-                                  index, char.charEquip.tomesAndManuals),
-                            );
-                          })
-                    ],
-                  )
-                : const SizedBox(),
-            SizedBox(height: deviceHeight! * 0.003),
             const AttributeDivision(label: "Potions"),
             SizedBox(height: deviceHeight! * 0.003),
             ListView.builder(
@@ -110,6 +85,31 @@ class SheetInfoMagicEquip extends StatelessWidget {
                     ),
                   );
                 }),
+            SizedBox(height: deviceHeight! * 0.003),
+            char.charEquip.tomesAndManuals!.isNotEmpty
+                ? Column(
+                    children: [
+                      const GradientLabel(label: "Special Boosts"),
+                      SizedBox(height: deviceHeight! * 0.003),
+                      ListView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: char.charEquip.tomesAndManuals!.length,
+                          itemBuilder: (context, index) {
+                            var book = char.charEquip.tomesAndManuals![index];
+                            return GeneralMagicalEquipRow(
+                              isCharSheet: true,
+                              label: "Book read",
+                              item: book.name!,
+                              selected: book.isSelected,
+                              description: book.description!,
+                              onTap: () => ctrl.showDescriptions(
+                                  index, char.charEquip.tomesAndManuals),
+                            );
+                          })
+                    ],
+                  )
+                : const SizedBox(),
             SizedBox(height: deviceHeight! * 0.003),
           ],
         ),
