@@ -315,8 +315,8 @@ class StatsController with ChangeNotifier {
   FeaturesController featuresCtrl = FeaturesController();
 
   gettingClassTraits() {
-    traits =
-        featuresCtrl.gettingClassTraits(char.charClass.name, char.charLevel);
+    traits = featuresCtrl.gettingClassTraits(
+        char.charClass.name, char.charLevel, char.charEquip);
     notifyListeners();
   }
 
@@ -389,8 +389,13 @@ class StatsController with ChangeNotifier {
   // Feat part
 
   getFeats() {
-    charFeats = featCtrl.getFeats(char.physicalStyle.name, char.charLevel,
-        char.charClass.name, char.charRace.name);
+    charFeats = featCtrl.getFeats(
+        char.physicalStyle.name,
+        char.charLevel,
+        char.charClass.name,
+        char.charRace.name,
+        char.charEquip,
+        char.physicalStyle.name);
     notifyListeners();
   }
 
@@ -573,8 +578,20 @@ class StatsController with ChangeNotifier {
       meleeEnchant,
       rangeEnchant,
     );
-    char.combatStats.meleeAttack = attackValues.first;
-    char.combatStats.rangeAttack = attackValues.last;
+    char.combatStats.meleeAttack = attackValues[0];
+    char.combatStats.rangeAttack = attackValues[1];
+    char.combatStats.dualWieldAttack = attackValues[2];
+
+    String? meleeExtraDamage = char.charEquip.meleeWeapon!.enchantment == null
+        ? ""
+        : char.charEquip.meleeWeapon!.enchantment!.length > 1
+            ? char.charEquip.meleeWeapon!.enchantment![1].additionalDiceDamage
+            : "";
+    String? rangeExtraDamage = char.charEquip.rangeWeapon!.enchantment == null
+        ? ""
+        : char.charEquip.rangeWeapon!.enchantment!.length > 1
+            ? char.charEquip.rangeWeapon!.enchantment![1].additionalDiceDamage
+            : "";
     List<int> damages = offenseCtrl.calculatingPhysicalDamage(
       char.charClass.name,
       char.charClass.mainAtrb,
@@ -585,8 +602,12 @@ class StatsController with ChangeNotifier {
       meleeEnchant,
       rangeEnchant,
     );
-    char.combatStats.meleeDamage = damages.first.toString();
-    char.combatStats.rangeDamage = damages.last.toString();
+    char.combatStats.meleeDamage =
+        "${char.charEquip.meleeWeapon!.damage!} +${damages[0].toString()} $meleeExtraDamage";
+    char.combatStats.rangeDamage =
+        "${char.charEquip.rangeWeapon!.damage!} +${damages[1].toString()} $rangeExtraDamage";
+    char.combatStats.dualWieldDamage =
+        "${char.charEquip.meleeWeapon!.damage!} +${damages[2].toString()} $meleeExtraDamage";
     notifyListeners();
   }
 

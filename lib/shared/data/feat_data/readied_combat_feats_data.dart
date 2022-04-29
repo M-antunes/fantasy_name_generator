@@ -46,6 +46,7 @@ class ReariedCombatFeatsData {
     TraitModel(
       traiName: "Iron Will",
       levelAcquired: 1,
+      fitFor: "all",
       traiDescription: "+2 bonus on Will saves",
       isSelected: false,
     ),
@@ -59,6 +60,7 @@ class ReariedCombatFeatsData {
       traiName: "Critical Focus",
       levelAcquired: 9,
       traiDescription: "+4 bonus on attack rolls made to confirm critical hits",
+      fitFor: "all",
       isSelected: false,
     ),
   ];
@@ -111,6 +113,7 @@ class ReariedCombatFeatsData {
     TraitModel(
       traiName: "Iron Will",
       levelAcquired: 1,
+      fitFor: "all",
       traiDescription: "+2 bonus on Will saves",
       isSelected: false,
     ),
@@ -178,6 +181,7 @@ class ReariedCombatFeatsData {
     TraitModel(
       traiName: "Iron Will",
       levelAcquired: 1,
+      fitFor: "all",
       traiDescription: "+2 bonus on Will saves",
       isSelected: false,
     ),
@@ -193,8 +197,14 @@ class ReariedCombatFeatsData {
     ),
     TraitModel(
       traiName: "Two-Weapon Fighting",
-      levelAcquired: 15,
+      levelAcquired: 1,
       traiDescription: "Reduce two-weapon fighting penalties",
+      isSelected: false,
+    ),
+    TraitModel(
+      traiName: "Double Slice",
+      levelAcquired: 1,
+      traiDescription: "Add your Str bonus to off-hand damage rolls",
       isSelected: false,
     ),
     TraitModel(
@@ -205,14 +215,8 @@ class ReariedCombatFeatsData {
     ),
     TraitModel(
       traiName: "Improved Two-Weapon Fighting",
-      levelAcquired: 17,
+      levelAcquired: 8,
       traiDescription: "Gain additional off-hand attack",
-      isSelected: false,
-    ),
-    TraitModel(
-      traiName: "Double Slice",
-      levelAcquired: 1,
-      traiDescription: "Add your Str bonus to off-hand damage rolls",
       isSelected: false,
     ),
     TraitModel(
@@ -223,7 +227,7 @@ class ReariedCombatFeatsData {
     ),
     TraitModel(
       traiName: "Greater Two-Weapon Fighting",
-      levelAcquired: 19,
+      levelAcquired: 10,
       traiDescription: "Gain a third off-hand attack",
       isSelected: false,
     ),
@@ -235,7 +239,7 @@ class ReariedCombatFeatsData {
     ),
     TraitModel(
       traiName: "Two-Weapon Rend",
-      levelAcquired: 15,
+      levelAcquired: 111,
       traiDescription:
           "If you hit an opponent with both your primary hand and your off-hand weapon, you deal an additional 1d10 points of damage plus 1-1/2 times your Strength modifier. You can only deal this additional damage once each round.",
       isSelected: false,
@@ -243,6 +247,7 @@ class ReariedCombatFeatsData {
     TraitModel(
       traiName: "Iron Will",
       levelAcquired: 1,
+      fitFor: "all",
       traiDescription: "+2 bonus on Will saves",
       isSelected: false,
     ),
@@ -323,6 +328,7 @@ class ReariedCombatFeatsData {
     TraitModel(
       traiName: "Iron Will",
       levelAcquired: 1,
+      fitFor: "all",
       traiDescription: "+2 bonus on Will saves",
       isSelected: false,
     ),
@@ -459,6 +465,7 @@ class ReariedCombatFeatsData {
     TraitModel(
       traiName: "Iron Will",
       levelAcquired: 1,
+      fitFor: "all",
       traiDescription: "+2 bonus on Will saves",
       isSelected: false,
     ),

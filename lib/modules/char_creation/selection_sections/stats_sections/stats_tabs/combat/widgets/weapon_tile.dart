@@ -9,8 +9,6 @@ class WeaponTile extends StatelessWidget {
   final String name;
   final String attack;
   final String damageValue;
-  final String damageBonus;
-  final String? extraDamage;
   final String critical;
   final bool isOnCharSheet;
   const WeaponTile({
@@ -20,8 +18,6 @@ class WeaponTile extends StatelessWidget {
     required this.name,
     required this.attack,
     required this.damageValue,
-    required this.damageBonus,
-    this.extraDamage,
     required this.critical,
     this.isOnCharSheet = false,
   }) : super(key: key);
@@ -51,20 +47,6 @@ class WeaponTile extends StatelessWidget {
             const SizedBox(width: 4),
             Text(
               damageValue,
-              style:
-                  AppTextStyle.subTextWhite.copyWith(color: Colors.grey[300]),
-              textScaleFactor: isOnCharSheet ? 0.8 : 1,
-            ),
-            const SizedBox(width: 4),
-            Text(
-              damageBonus,
-              style:
-                  AppTextStyle.subTextWhite.copyWith(color: Colors.grey[300]),
-              textScaleFactor: isOnCharSheet ? 0.8 : 1,
-            ),
-            const SizedBox(width: 4),
-            Text(
-              extraDamage ?? "",
               style:
                   AppTextStyle.subTextWhite.copyWith(color: Colors.grey[300]),
               textScaleFactor: isOnCharSheet ? 0.8 : 1,

@@ -120,7 +120,7 @@ class AllFeatsData {
     ),
     TraitModel(
       traiName: "Bleeding Critical",
-      levelAcquired: 1,
+      levelAcquired: 11,
       fitFor: "all",
       traiDescription:
           "Whenever you score a critical hit with a slashing or piercing weapon, your opponent takes 2d6 points of bleed damage (see Conditions) each round on his turn, in addition to the damage dealt by the critical hit. Bleed damage can be stopped by a DC 15 Heal skill check or through any magical healing. The effects of this feat stack.",

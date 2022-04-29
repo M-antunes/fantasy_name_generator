@@ -25,13 +25,7 @@ class FeatureStats extends StatelessWidget {
               itemBuilder: (context, index) {
                 var trait = state.traits[index];
                 return FeatureListWidget(
-                  name: trait.traiName.contains("Weapon training") &&
-                          state.char.charLevel < 9
-                      ? "${trait.traiName} (${state.char.charEquip.meleeWeapon!.type!.name})"
-                      : trait.traiName.contains("Weapon training") &&
-                              state.char.charLevel > 8
-                          ? "${trait.traiName} (${state.char.charEquip.meleeWeapon!.type!.name}) - (${state.char.charEquip.rangeWeapon!.type!.name})"
-                          : trait.traiName,
+                  name: trait.traiName,
                   selected: trait.isSelected,
                   description: trait.traiDescription,
                   onTap: () => state.showDescriptions(index, state.traits),

@@ -26,17 +26,6 @@ class FeatStats extends StatelessWidget {
                   var feat = state.charFeats[index];
                   return FeatListWidget(
                     name: feat.traiName,
-                    focusOrSpecialization: (feat.traiName != "Weapon Focus" &&
-                            feat.traiName != "Weapon Specialization" &&
-                            feat.traiName != "Greater Weapon Focus" &&
-                            feat.traiName != "Greater Weapon Specialization" &&
-                            feat.traiName != "Weapon Finesse")
-                        ? ""
-                        : state.char.physicalStyle.name == "Bowman" ||
-                                state.char.physicalStyle.name == "Marksman" ||
-                                state.char.physicalStyle.name == "Thrower"
-                            ? "(${state.char.charEquip.rangeWeapon!.name})"
-                            : "(${state.char.charEquip.meleeWeapon!.name})",
                     selected: feat.isSelected,
                     description: feat.traiDescription,
                     onTap: () => state.showDescriptions(index, state.charFeats),

@@ -562,22 +562,18 @@ class MagicGearController {
     int numberOfPotions = getNumberOfPotionsPerClass(style, level);
     for (var i = 0; i < numberOfPotions; i++) {
       var chance = generateRandom(100);
-      switch (numberOfPotions) {
-        case 1:
-          levelPotions(allPotions, chance, charPotions, "0", "1",
-              "Cure Light Wounds", level, i);
-          break;
-        case 2:
-          levelPotions(allPotions, chance, charPotions, "1", "2",
-              "Cure Light Wounds", level, i);
-          break;
-        case 3:
-          levelPotions(allPotions, chance, charPotions, "2", "3",
-              "Cure Moderate Wounds", level, i);
-          break;
-        default:
-          levelPotions(allPotions, chance, charPotions, "3", "3",
-              "Cure Serious Wounds", level, i);
+      if (level > 4 && level < 7) {
+        levelPotions(allPotions, chance, charPotions, "0", "1",
+            "Cure Light Wounds", level, i);
+      } else if (level > 6 && level < 10) {
+        levelPotions(allPotions, chance, charPotions, "1", "2",
+            "Cure Light Wounds", level, i);
+      } else if (level > 9 && level < 12) {
+        levelPotions(allPotions, chance, charPotions, "2", "3",
+            "Cure Moderate Wounds", level, i);
+      } else {
+        levelPotions(allPotions, chance, charPotions, "3", "3",
+            "Cure Moderate Wounds", level, i);
       }
     }
     List<SpellModel> multiplePotions = [];
@@ -644,16 +640,16 @@ class MagicGearController {
     int potionQnt = 0;
     switch (style) {
       case "Physical":
-        potionQnt = rollingDice(2) + (level / 10).ceil();
+        potionQnt = rollingDice(2) + (level / 10).floor();
         break;
       case "Hybrid":
-        potionQnt = rollingDice(3) + (level / 10).ceil();
+        potionQnt = rollingDice(3) + (level / 10).floor();
         break;
       case "Spellcaster":
-        potionQnt = rollingDice(5) + (level / 10).ceil();
+        potionQnt = rollingDice(4) + (level / 10).floor();
         break;
       default:
-        potionQnt = rollingDice(4) + (level / 10).ceil();
+        potionQnt = rollingDice(4) + (level / 10).floor();
     }
     return potionQnt;
   }

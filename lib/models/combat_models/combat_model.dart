@@ -10,6 +10,8 @@ class CombatModel {
   String? rangeAttack;
   String? meleeDamage;
   String? rangeDamage;
+  String? dualWieldAttack;
+  String? dualWieldDamage;
   int? combatManeuverBonus;
   int? combatManeuverDefense;
   CombatModel({
@@ -22,6 +24,8 @@ class CombatModel {
     this.rangeAttack = "0",
     this.meleeDamage = "0",
     this.rangeDamage = "0",
+    this.dualWieldAttack = "0",
+    this.dualWieldDamage = "0",
     this.combatManeuverBonus = 0,
     this.combatManeuverDefense = 0,
   });
@@ -36,6 +40,8 @@ class CombatModel {
     String? rangeAttack,
     String? meleeDamage,
     String? rangeDamage,
+    String? dualWieldAttack,
+    String? dualWieldDamage,
     int? combatManeuverBonus,
     int? combatManeuverDefense,
   }) {
@@ -49,6 +55,8 @@ class CombatModel {
       rangeAttack: rangeAttack ?? this.rangeAttack,
       meleeDamage: meleeDamage ?? this.meleeDamage,
       rangeDamage: rangeDamage ?? this.rangeDamage,
+      dualWieldAttack: dualWieldAttack ?? this.dualWieldAttack,
+      dualWieldDamage: dualWieldDamage ?? this.dualWieldDamage,
       combatManeuverBonus: combatManeuverBonus ?? this.combatManeuverBonus,
       combatManeuverDefense:
           combatManeuverDefense ?? this.combatManeuverDefense,
@@ -66,6 +74,8 @@ class CombatModel {
       'rangeAttack': rangeAttack,
       'meleeDamage': meleeDamage,
       'rangeDamage': rangeDamage,
+      'dualWieldAttack': dualWieldAttack,
+      'dualWieldDamage': dualWieldDamage,
       'combatManeuverBonus': combatManeuverBonus,
       'combatManeuverDefense': combatManeuverDefense,
     };
@@ -82,6 +92,8 @@ class CombatModel {
       rangeAttack: map['rangeAttack'],
       meleeDamage: map['meleeDamage'],
       rangeDamage: map['rangeDamage'],
+      dualWieldAttack: map['dualWieldAttack'],
+      dualWieldDamage: map['dualWieldDamage'],
       combatManeuverBonus: map['combatManeuverBonus']?.toInt(),
       combatManeuverDefense: map['combatManeuverDefense']?.toInt(),
     );
@@ -94,7 +106,7 @@ class CombatModel {
 
   @override
   String toString() {
-    return 'CombatModel(armourClass: $armourClass, armourTouch: $armourTouch, armourSurprise: $armourSurprise, baseAttackBonus: $baseAttackBonus, initiative: $initiative, meleeAttack: $meleeAttack, rangeAttack: $rangeAttack, meleeDamage: $meleeDamage, rangeDamage: $rangeDamage, combatManeuverBonus: $combatManeuverBonus, combatManeuverDefense: $combatManeuverDefense)';
+    return 'CombatModel(armourClass: $armourClass, armourTouch: $armourTouch, armourSurprise: $armourSurprise, baseAttackBonus: $baseAttackBonus, initiative: $initiative, meleeAttack: $meleeAttack, rangeAttack: $rangeAttack, meleeDamage: $meleeDamage, rangeDamage: $rangeDamage, dualWieldAttack: $dualWieldAttack, dualWieldDamage: $dualWieldDamage, combatManeuverBonus: $combatManeuverBonus, combatManeuverDefense: $combatManeuverDefense)';
   }
 
   @override
@@ -111,6 +123,8 @@ class CombatModel {
         other.rangeAttack == rangeAttack &&
         other.meleeDamage == meleeDamage &&
         other.rangeDamage == rangeDamage &&
+        other.dualWieldAttack == dualWieldAttack &&
+        other.dualWieldDamage == dualWieldDamage &&
         other.combatManeuverBonus == combatManeuverBonus &&
         other.combatManeuverDefense == combatManeuverDefense;
   }
@@ -126,6 +140,8 @@ class CombatModel {
         rangeAttack.hashCode ^
         meleeDamage.hashCode ^
         rangeDamage.hashCode ^
+        dualWieldAttack.hashCode ^
+        dualWieldDamage.hashCode ^
         combatManeuverBonus.hashCode ^
         combatManeuverDefense.hashCode;
   }

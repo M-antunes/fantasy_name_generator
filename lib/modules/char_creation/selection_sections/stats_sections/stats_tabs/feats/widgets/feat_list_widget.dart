@@ -7,14 +7,12 @@ import '../../../../../../../shared/widgets/expanded_section.dart';
 // ignore: must_be_immutable
 class FeatListWidget extends StatelessWidget {
   final String name;
-  final String? focusOrSpecialization;
   bool selected;
   final VoidCallback onTap;
   final String description;
   FeatListWidget({
     Key? key,
     required this.name,
-    this.focusOrSpecialization,
     required this.selected,
     required this.onTap,
     required this.description,
@@ -30,9 +28,6 @@ class FeatListWidget extends StatelessWidget {
               children: [
                 Text(name,
                     style: AppTextStyle.statsLabel
-                        .copyWith(color: Colors.grey[400])),
-                Text(" $focusOrSpecialization",
-                    style: AppTextStyle.longDescription
                         .copyWith(color: Colors.grey[400])),
                 selected
                     ? const Icon(Icons.arrow_drop_down,

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../../../../../../../controllers/stats_controller/stats_controller.dart';
 import '../../../../../../../shared/constants/phone_sizes.dart';
 import '../../../widgets/atribute_division.dart';
 import '../../../widgets/char_description_text.dart';
 import '../widgets/combat_info.dart';
+import '../widgets/dual_wield_tile.dart';
 import '../widgets/weapon_tile.dart';
 
 class OffenseSegment extends StatelessWidget {
@@ -58,26 +58,13 @@ class OffenseSegment extends StatelessWidget {
               children: [
                 WeaponTile(
                   type: state.char.physicalStyle.name == "Dual-wielder"
-                      ? "Main-hand (Dual-wielder)"
+                      ? "Main-hand"
                       : "Melee",
                   specificType:
                       state.char.charEquip.meleeWeapon!.type!.wielding,
                   name: state.meleeName,
-                  attack: state.char.charEquip.meleeWeapon != null
-                      ? "(${state.char.combatStats.meleeAttack!})"
-                      : "",
-                  damageValue: state.char.charEquip.meleeWeapon!.damage!,
-                  damageBonus: state.char.charEquip.meleeWeapon != null
-                      ? "+${state.char.combatStats.meleeDamage!}"
-                      : "",
-                  extraDamage: state.char.charEquip.meleeWeapon!.enchantment !=
-                              null &&
-                          state.char.charLevel >= 5 &&
-                          state.char.charEquip.meleeWeapon!.enchantment!
-                                  .length >
-                              1
-                      ? "${state.char.charEquip.meleeWeapon!.enchantment!.last.additionalDiceDamage}"
-                      : "",
+                  attack: "(${state.char.combatStats.meleeAttack!})",
+                  damageValue: state.char.combatStats.meleeDamage!,
                   critical: state.char.charEquip.meleeWeapon!.critical!,
                 ),
                 if (state.char.physicalStyle.name == "Dual-wielder")
@@ -85,31 +72,22 @@ class OffenseSegment extends StatelessWidget {
                     children: [
                       const SizedBox(height: 3),
                       WeaponTile(
-                        type: state.char.physicalStyle.name == "Dual-wielder"
-                            ? "Off-hand (Dual-wielder)"
-                            : "Melee",
+                        type: "Off-hand",
                         specificType:
                             state.char.charEquip.meleeWeapon!.type!.wielding,
                         name: state.meleeName,
-                        attack: state.char.charEquip.meleeWeapon != null
-                            ? "(${state.char.combatStats.meleeAttack!})"
-                            : "",
-                        damageValue: state.char.charEquip.meleeWeapon!.damage!,
-                        damageBonus: state.char.charEquip.meleeWeapon != null
-                            ? "+${state.char.combatStats.meleeDamage!}"
-                            : "",
-                        extraDamage: state.char.charEquip.meleeWeapon!
-                                        .enchantment !=
-                                    null &&
-                                state.char.charLevel >= 5 &&
-                                state.char.charEquip.meleeWeapon!.enchantment!
-                                        .length >
-                                    1
-                            ? "${state.char.charEquip.meleeWeapon!.enchantment!.last.additionalDiceDamage}"
-                            : "",
+                        attack: "(${state.char.combatStats.meleeAttack!})",
+                        damageValue: state.char.combatStats.dualWieldDamage!,
                         critical: state.char.charEquip.meleeWeapon!.critical!,
                       ),
                       const SizedBox(height: 3),
+                      DualWieldTile(
+                        attack: "${state.char.combatStats.dualWieldAttack}",
+                        damage:
+                            "${state.char.combatStats.meleeDamage!} / ${state.char.combatStats.dualWieldDamage}",
+                        critical:
+                            "${state.char.charEquip.meleeWeapon!.critical!} / ${state.char.charEquip.meleeWeapon!.critical!}",
+                      )
                     ],
                   ),
                 WeaponTile(
@@ -118,18 +96,7 @@ class OffenseSegment extends StatelessWidget {
                   attack: state.char.charEquip.rangeWeapon != null
                       ? "(${state.char.combatStats.rangeAttack!})"
                       : "",
-                  damageValue: state.char.charEquip.rangeWeapon!.damage!,
-                  damageBonus: state.char.charEquip.rangeWeapon != null
-                      ? "+${state.char.combatStats.rangeDamage!}"
-                      : "",
-                  extraDamage: state.char.charEquip.rangeWeapon!.enchantment !=
-                              null &&
-                          state.char.charLevel >= 5 &&
-                          state.char.charEquip.rangeWeapon!.enchantment!
-                                  .length >
-                              1
-                      ? "${state.char.charEquip.rangeWeapon!.enchantment!.last.additionalDiceDamage}"
-                      : "",
+                  damageValue: state.char.combatStats.rangeDamage!,
                   critical: state.char.charEquip.rangeWeapon!.critical!,
                 ),
               ],
@@ -141,15 +108,13 @@ class OffenseSegment extends StatelessWidget {
                     type: "Melee",
                     name: "Weapon Name",
                     attack: "(Attack value)",
-                    damageValue: "damage",
-                    damageBonus: "+bonus",
+                    damageValue: "damage +bonus",
                     critical: "x"),
                 WeaponTile(
                     type: "Range",
                     name: "Weapon Name",
                     attack: "(Attack value)",
-                    damageValue: "damage",
-                    damageBonus: "+bonus",
+                    damageValue: "damage +bonus",
                     critical: "x"),
               ],
             ),

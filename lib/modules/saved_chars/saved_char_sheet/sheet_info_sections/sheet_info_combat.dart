@@ -1,4 +1,5 @@
 import 'package:fantasy_name_generator/controllers/stage_controller/imports.dart';
+import 'package:fantasy_name_generator/modules/char_creation/selection_sections/stats_sections/stats_tabs/combat/widgets/dual_wield_tile.dart';
 
 import '../../../../shared/constants/phone_sizes.dart';
 import '../../../../shared/widgets/expanded_section.dart';
@@ -161,36 +162,34 @@ class SheetInfoCombat extends StatelessWidget {
                           .contains(char.charEquip.meleeWeapon!.name!))
                       .name,
                   attack: "(${char.combatStats.meleeAttack})",
-                  damageValue: char.charEquip.meleeWeapon!.damage!,
-                  damageBonus: "+${char.combatStats.meleeDamage}",
-                  extraDamage: char.charEquip.meleeWeapon!.enchantment == null
-                      ? ""
-                      : char.charEquip.meleeWeapon!.enchantment!.length > 1
-                          ? char.charEquip.meleeWeapon!.enchantment![1]
-                              .additionalDiceDamage!
-                          : "",
+                  damageValue: char.combatStats.meleeDamage!,
                   critical: "${char.charEquip.meleeWeapon!.critical}"),
               if (char.physicalStyle.name == "Dual-wielder")
-                WeaponTile(
-                    isOnCharSheet: true,
-                    type: char.physicalStyle.name == "Dual-wielder"
-                        ? "Off-hand (Dual-wielder)"
-                        : "Melee",
-                    specificType: char.charEquip.meleeWeapon!.type!.wielding,
-                    name: char.loot.items!
-                        .firstWhere((element) => element.name
-                            .contains(char.charEquip.meleeWeapon!.name!))
-                        .name,
-                    attack: "(${char.combatStats.meleeAttack})",
-                    damageValue: char.charEquip.meleeWeapon!.damage!,
-                    damageBonus: "+${char.combatStats.meleeDamage}",
-                    extraDamage: char.charEquip.meleeWeapon!.enchantment == null
-                        ? ""
-                        : char.charEquip.meleeWeapon!.enchantment!.length > 1
-                            ? char.charEquip.meleeWeapon!.enchantment![1]
-                                .additionalDiceDamage!
-                            : "",
-                    critical: "${char.charEquip.meleeWeapon!.critical}"),
+                Column(
+                  children: [
+                    WeaponTile(
+                        isOnCharSheet: true,
+                        type: char.physicalStyle.name == "Dual-wielder"
+                            ? "Off-hand (Dual-wielder)"
+                            : "Melee",
+                        specificType:
+                            char.charEquip.meleeWeapon!.type!.wielding,
+                        name: char.loot.items!
+                            .firstWhere((element) => element.name
+                                .contains(char.charEquip.meleeWeapon!.name!))
+                            .name,
+                        attack: "(${char.combatStats.meleeAttack})",
+                        damageValue: char.combatStats.meleeDamage!,
+                        critical: "${char.charEquip.meleeWeapon!.critical}"),
+                    DualWieldTile(
+                        isOnCharSheet: true,
+                        attack: "${char.combatStats.dualWieldAttack}",
+                        damage:
+                            "${char.combatStats.meleeAttack} / ${char.combatStats.dualWieldAttack}",
+                        critical:
+                            "${char.charEquip.meleeWeapon!.critical} / ${char.charEquip.meleeWeapon!.critical}")
+                  ],
+                ),
               WeaponTile(
                   isOnCharSheet: true,
                   type: char.charEquip.rangeWeapon!.type!.wielding,
@@ -199,14 +198,7 @@ class SheetInfoCombat extends StatelessWidget {
                           .contains(char.charEquip.rangeWeapon!.name!))
                       .name,
                   attack: "${char.combatStats.rangeAttack}",
-                  damageValue: "${char.charEquip.rangeWeapon!.damage}",
-                  damageBonus: "+${char.combatStats.rangeDamage}",
-                  extraDamage: char.charEquip.rangeWeapon!.enchantment == null
-                      ? ""
-                      : char.charEquip.rangeWeapon!.enchantment!.length > 1
-                          ? char.charEquip.rangeWeapon!.enchantment![1]
-                              .additionalDiceDamage!
-                          : "",
+                  damageValue: char.combatStats.rangeDamage!,
                   critical: "${char.charEquip.rangeWeapon!.critical}"),
             ],
           ),

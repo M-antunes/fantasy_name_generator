@@ -10,5 +10,5 @@ Future<void> main() async {
       await path_provider.getApplicationDocumentsDirectory();
   Hive.init(appDocumentDirectory.path);
   runApp(const MyApp());
-  final allCharacters = await Hive.openBox("characters");
+  await Hive.openBox("characters");
 }

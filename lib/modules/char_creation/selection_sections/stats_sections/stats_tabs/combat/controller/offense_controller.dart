@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_brace_in_string_interps
+
 import 'package:fantasy_name_generator/models/combat_models/base_atribute_model.dart';
 
 import '../../../../../../../models/class_models/class_model.dart';
@@ -363,22 +365,31 @@ class OffenseController {
       meleeAtkNum += boostWeaponWithFeat(1, 0, physical);
       rangeAtkNum += boostWeaponWithFeat(0, 1, physical);
     }
+    var dualWieldAtkNum = meleeAtkNum - 2;
+    var dualWieldAtk = '';
     if (bba < 6) {
       meleeAtk = "+$meleeAtkNum";
       rangeAtk = "+$rangeAtkNum";
+      dualWieldAtk = "+${dualWieldAtkNum} / +${dualWieldAtkNum}";
     } else if (bba > 5 && bba < 11) {
       meleeAtk = "+$meleeAtkNum / +${meleeAtkNum - 5}";
       rangeAtk = "+$rangeAtkNum / +${rangeAtkNum - 5}";
+      dualWieldAtk =
+          "+${dualWieldAtkNum} +${dualWieldAtkNum} / +${dualWieldAtkNum - 5} +${dualWieldAtkNum - 5}";
     } else if (bba > 10 && bba < 16) {
       meleeAtk = "+$meleeAtkNum / +${meleeAtkNum - 5} / +${meleeAtkNum - 10}";
       rangeAtk = "+$rangeAtkNum / +${rangeAtkNum - 5} / +${rangeAtkNum - 10}";
+      dualWieldAtk =
+          "+${dualWieldAtkNum} +${dualWieldAtkNum} / +${dualWieldAtkNum - 5} +${dualWieldAtkNum - 5} / +${dualWieldAtkNum - 10} +${dualWieldAtkNum - 10}";
     } else {
       meleeAtk =
           "+$meleeAtkNum / +${meleeAtkNum - 5} / +${meleeAtkNum - 10} / +${meleeAtkNum - 15}";
       rangeAtk =
           "+$rangeAtkNum / +${rangeAtkNum - 5} / +${rangeAtkNum - 10} / +${rangeAtkNum - 15}";
+      dualWieldAtk =
+          "+${dualWieldAtkNum} +${dualWieldAtkNum} / +${dualWieldAtkNum - 5} +${dualWieldAtkNum - 5} / +${dualWieldAtkNum - 10} +${dualWieldAtkNum - 10} / +${dualWieldAtkNum - 15}";
     }
-    List<String> attacks = [meleeAtk, rangeAtk];
+    List<String> attacks = [meleeAtk, rangeAtk, dualWieldAtk];
     return attacks;
   }
 
@@ -394,6 +405,7 @@ class OffenseController {
   ) {
     int meleeDamage = 0;
     int rangeDamage = 0;
+    int offHandDamage = 0;
     if (level > 4) {
       meleeDamage += atrb.strength + enchantPowerMelee;
       rangeDamage += atrb.strength + enchantPowerRange;
@@ -404,6 +416,8 @@ class OffenseController {
     if (physical == "Berserker") {
       meleeDamage = (meleeDamage * 1.5).floor();
     }
+
+    //weapon training buff if warrior
     if (charClass == "Warrior") {
       for (var i = 5; i < level; i += 4) {
         meleeDamage++;
@@ -420,7 +434,13 @@ class OffenseController {
       meleeDamage += boostWeaponWithFeat(2, 0, physical);
       rangeDamage += boostWeaponWithFeat(0, 2, physical);
     }
-    List<int> damages = [meleeDamage, rangeDamage];
+    if (physical == "Dual-wielder") {
+      offHandDamage =
+          charFeats.any((element) => element.traiName == "Double Slice")
+              ? meleeDamage
+              : meleeDamage - atrb.strength;
+    }
+    List<int> damages = [meleeDamage, rangeDamage, offHandDamage];
     return damages;
   }
 

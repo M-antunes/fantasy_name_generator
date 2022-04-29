@@ -18,6 +18,7 @@ class CharAdminController with ChangeNotifier {
   List<CharModel> aristocrats = [];
   List<CharModel> bandits = [];
   List<CharModel> barbarians = [];
+  List<CharModel> warriors = [];
   List<StoredCharClass> storedClasses = [];
 
   initializingController() {
@@ -59,16 +60,9 @@ class CharAdminController with ChangeNotifier {
       }
     }
     for (var i = 0; i < classStrings.length; i++) {
-      for (var j = 0; j < 1; j++) {
-        var newStoredClass =
-            StoredCharClass(name: classStrings[j], isSelected: false);
-        storedClasses.add(newStoredClass);
-      }
-      if (storedClasses[i].name != classStrings[i]) {
-        var newStoredClass =
-            StoredCharClass(name: classStrings[i], isSelected: false);
-        storedClasses.add(newStoredClass);
-      }
+      var newStoredClass =
+          StoredCharClass(name: classStrings[i], isSelected: false);
+      storedClasses.add(newStoredClass);
     }
     notifyListeners();
   }
@@ -93,6 +87,8 @@ class CharAdminController with ChangeNotifier {
         return barbarians;
       case "Aristocrat":
         return barbarians;
+      case "Warrior":
+        return warriors;
     }
   }
 
@@ -102,6 +98,7 @@ class CharAdminController with ChangeNotifier {
     aristocrats.clear();
     bandits.clear();
     barbarians.clear();
+    warriors.clear();
     storedClasses.clear();
   }
 
@@ -119,6 +116,9 @@ class CharAdminController with ChangeNotifier {
           break;
         case "Barbarian":
           barbarians.add(i);
+          break;
+        case "Warrior":
+          warriors.add(i);
           break;
         default:
       }

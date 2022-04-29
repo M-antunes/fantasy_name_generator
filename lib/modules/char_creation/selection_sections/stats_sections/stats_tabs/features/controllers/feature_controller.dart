@@ -1,5 +1,6 @@
 import '../../../../../../../models/class_models/specials_model.dart';
 import '../../../../../../../models/class_models/traits_model.dart';
+import '../../../../../../../models/equip_models/equip_model.dart';
 import '../../../../../../../shared/data/class_data/class_traits_data/barbarian/barbarian_traits_data.dart';
 import '../../../../../../../shared/data/class_data/class_traits_data/warrior/warrior_traits_data.dart';
 import '../../../../../../../shared/utils/utils.dart';
@@ -8,21 +9,27 @@ class FeaturesController {
   var barbarian = BarbarianTraitsData();
   var warrior = WarriorTraitsData();
 
-  List<TraitModel> gettingClassTraits(String className, int level) {
+  List<TraitModel> gettingClassTraits(
+      String className, int level, EquipModel equip) {
     List<TraitModel> traitList = [];
     switch (className) {
       case "Barbarian":
-        traitList = gettingTraits(level, barbarian.barbarianTraits);
+        traitList = gettingTraits(level, barbarian.barbarianTraits, equip);
+        traitList.sort((a, b) => a.levelAcquired.compareTo(b.levelAcquired));
         break;
       case "Warrior":
-        traitList = gettingTraits(level, warrior.warriorTraits);
+        traitList = gettingTraits(level, warrior.warriorTraits, equip);
+        traitList = addingInformationToTrait(
+            traitList, equip, level, "Weapon training");
+        traitList.sort((a, b) => a.levelAcquired.compareTo(b.levelAcquired));
         break;
       default:
     }
     return traitList;
   }
 
-  List<TraitModel> gettingTraits(int level, List<TraitModel> charTraits) {
+  List<TraitModel> gettingTraits(
+      int level, List<TraitModel> charTraits, EquipModel equip) {
     List<TraitModel> newList = [];
     var valueList = [];
     List<TraitModel> replacementList = [];
@@ -52,8 +59,29 @@ class FeaturesController {
     }
     replacementList.addAll(list);
     replacementList.addAll(newList);
-    replacementList.sort((a, b) => a.levelAcquired.compareTo(b.levelAcquired));
     return replacementList;
+  }
+
+  List<TraitModel> addingInformationToTrait(List<TraitModel> charTraits,
+      EquipModel equip, int level, String traitName) {
+    if (!charTraits.any((element) => element.traiName.contains(traitName))) {
+      return charTraits;
+    }
+    TraitModel? newTrait;
+    var alteredTrait = charTraits
+        .firstWhere((element) => element.traiName.contains(traitName));
+    if (level > 4 && level < 9) {
+      newTrait = alteredTrait.copyWith(
+          traiName:
+              "${alteredTrait.traiName} (${equip.meleeWeapon!.type!.name})");
+    } else if (level > 8) {
+      newTrait = alteredTrait.copyWith(
+          traiName:
+              "${alteredTrait.traiName}  (${equip.meleeWeapon!.type!.name}) - (${equip.rangeWeapon!.type!.name})");
+    }
+    charTraits.removeWhere((element) => element.traiName.contains(traitName));
+    charTraits.add(newTrait!);
+    return charTraits;
   }
 
   List<SpecialsModel> gettingClassSpecials(
