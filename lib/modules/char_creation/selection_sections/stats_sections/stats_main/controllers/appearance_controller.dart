@@ -86,7 +86,9 @@ class AppearanceController {
     }
     if (level > 4) {
       for (var i = 4; i < level; i = i + 4) {
-        baseAge = baseAge + 1;
+        baseAge = className == "Barbarian" || className == "Rogue"
+            ? baseAge + 0.5
+            : baseAge + 1;
       }
     }
     return baseAge.toInt();
@@ -121,15 +123,15 @@ class AppearanceController {
         break;
       case "Half-orc":
         tempRaceAge =
-            ajustAgeAccordingtoRace(classList, className, level, 7, 14);
+            ajustAgeAccordingtoRace(classList, className, level, 7, 11);
         break;
       case "Human":
         tempRaceAge =
-            ajustAgeAccordingtoRace(classList, className, level, 8, 14);
+            ajustAgeAccordingtoRace(classList, className, level, 8, 10);
         break;
       case "Orc":
         tempRaceAge =
-            ajustAgeAccordingtoRace(classList, className, level, 4, 12);
+            ajustAgeAccordingtoRace(classList, className, level, 4, 9);
         break;
       default:
     }

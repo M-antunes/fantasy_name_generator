@@ -32,7 +32,7 @@ class FeatureStats extends StatelessWidget {
                 );
               }),
           SizedBox(height: deviceHeight! * 0.005),
-          state.char.charClass.speacials!.isNotEmpty
+          state.specials.isNotEmpty
               ? Column(
                   children: [
                     AttributeDivision(

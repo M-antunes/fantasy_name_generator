@@ -289,6 +289,14 @@ class ReariedCombatFeatsData {
       isSelected: false,
     ),
     TraitModel(
+      traiName: "Steadfast Personality",
+      levelAcquired: 1,
+      fitFor: "Rogue",
+      traiDescription:
+          "Add your Charisma modifier instead of your Wisdom bonus to Will saves. If you have a Wisdom penalty, you must apply both your Wisdom penalty and your Charisma modifier.",
+      isSelected: false,
+    ),
+    TraitModel(
       traiName: "Dodge",
       levelAcquired: 1,
       traiDescription: "+1 dodge bonus to AC",

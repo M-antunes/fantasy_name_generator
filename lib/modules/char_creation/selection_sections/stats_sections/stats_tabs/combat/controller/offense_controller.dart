@@ -297,7 +297,7 @@ class OffenseController {
   int gettingInitiative(List<TraitModel> charFeats, int dex) {
     //Reactionary points
     int init = 2;
-    init = charFeats.any((element) => element.traiName == "Initiative")
+    init = charFeats.any((element) => element.traiName.contains("Initiative"))
         ? init += 4
         : init;
     init += dex;
@@ -331,7 +331,8 @@ class OffenseController {
     int rangeAtkNum = 0;
     int strOrWis = mainAtrb == "wisdom" ? atrb.wisdom : atrb.strength;
     int bba = charBba;
-    if (charFeats.any((element) => element.traiName == "Weapon Finesse")) {
+    if (charFeats
+        .any((element) => element.traiName.contains("Weapon Finesse"))) {
       meleeAtkNum += atrb.dexterity + bba;
     } else {
       meleeAtkNum += strOrWis + bba;

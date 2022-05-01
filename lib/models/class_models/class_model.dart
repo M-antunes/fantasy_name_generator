@@ -17,7 +17,7 @@ class ClassModel {
   final List<String> forbidenArmorType;
   final List<String> permittedAligments;
   List<TraitModel>? traits;
-  List<SpecialsModel>? speacials;
+  List<SpecialsModel>? specials;
   final String specialName;
   final int skillRankPerLevel;
   ClassModel({
@@ -32,7 +32,7 @@ class ClassModel {
     required this.forbidenArmorType,
     required this.permittedAligments,
     this.traits = const [],
-    this.speacials = const [],
+    this.specials = const [],
     this.specialName = "",
     required this.skillRankPerLevel,
   });
@@ -49,7 +49,7 @@ class ClassModel {
     List<String>? forbidenArmorType,
     List<String>? permittedAligments,
     List<TraitModel>? traits,
-    List<SpecialsModel>? speacials,
+    List<SpecialsModel>? specials,
     String? specialName,
     int? skillRankPerLevel,
   }) {
@@ -65,7 +65,7 @@ class ClassModel {
       forbidenArmorType: forbidenArmorType ?? this.forbidenArmorType,
       permittedAligments: permittedAligments ?? this.permittedAligments,
       traits: traits ?? this.traits,
-      speacials: speacials ?? this.speacials,
+      specials: specials ?? this.specials,
       specialName: specialName ?? this.specialName,
       skillRankPerLevel: skillRankPerLevel ?? this.skillRankPerLevel,
     );
@@ -84,7 +84,7 @@ class ClassModel {
       'forbidenArmorType': forbidenArmorType,
       'permittedAligments': permittedAligments,
       'traits': traits?.map((x) => x.toMap()).toList(),
-      'speacials': speacials?.map((x) => x.toMap()).toList(),
+      'specials': specials?.map((x) => x.toMap()).toList(),
       'specialName': specialName,
       'skillRankPerLevel': skillRankPerLevel,
     };
@@ -106,9 +106,9 @@ class ClassModel {
           ? List<TraitModel>.from(
               map['traits']?.map((x) => TraitModel.fromMap(x)))
           : null,
-      speacials: map['speacials'] != null
+      specials: map['specials'] != null
           ? List<SpecialsModel>.from(
-              map['speacials']?.map((x) => SpecialsModel.fromMap(x)))
+              map['specials']?.map((x) => SpecialsModel.fromMap(x)))
           : null,
       specialName: map['specialName'] ?? '',
       skillRankPerLevel: map['skillRankPerLevel']?.toInt() ?? 0,
@@ -122,7 +122,7 @@ class ClassModel {
 
   @override
   String toString() {
-    return 'ClassModel(name: $name, isSelected: $isSelected, mainAtrb: $mainAtrb, hitDice: $hitDice, resistUpgrade: $resistUpgrade, description: $description, classIcon: $classIcon, combatStyle: $combatStyle, forbidenArmorType: $forbidenArmorType, permittedAligments: $permittedAligments, traits: $traits, speacials: $speacials, specialName: $specialName, skillRankPerLevel: $skillRankPerLevel)';
+    return 'ClassModel(name: $name, isSelected: $isSelected, mainAtrb: $mainAtrb, hitDice: $hitDice, resistUpgrade: $resistUpgrade, description: $description, classIcon: $classIcon, combatStyle: $combatStyle, forbidenArmorType: $forbidenArmorType, permittedAligments: $permittedAligments, traits: $traits, specials: $specials, specialName: $specialName, skillRankPerLevel: $skillRankPerLevel)';
   }
 
   @override
@@ -141,7 +141,7 @@ class ClassModel {
         listEquals(other.forbidenArmorType, forbidenArmorType) &&
         listEquals(other.permittedAligments, permittedAligments) &&
         listEquals(other.traits, traits) &&
-        listEquals(other.speacials, speacials) &&
+        listEquals(other.specials, specials) &&
         other.specialName == specialName &&
         other.skillRankPerLevel == skillRankPerLevel;
   }
@@ -159,7 +159,7 @@ class ClassModel {
         forbidenArmorType.hashCode ^
         permittedAligments.hashCode ^
         traits.hashCode ^
-        speacials.hashCode ^
+        specials.hashCode ^
         specialName.hashCode ^
         skillRankPerLevel.hashCode;
   }

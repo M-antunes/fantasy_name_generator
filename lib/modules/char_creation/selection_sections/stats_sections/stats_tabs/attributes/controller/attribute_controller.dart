@@ -342,9 +342,11 @@ class AttributeController {
     List<LanguageModel> allIdioms = [];
     allIdioms = LanguageData().allLanguagues;
     int idiomsQnt = intelligence +
-        skills
-            .firstWhere((element) => element.name == "Linguistics")
-            .pointsAdded;
+        (skills
+                    .firstWhere((element) => element.name == "Linguistics")
+                    .pointsAdded /
+                4)
+            .floor();
     List<LanguageModel> idioms = [];
     idioms = allIdioms
         .where((element) =>

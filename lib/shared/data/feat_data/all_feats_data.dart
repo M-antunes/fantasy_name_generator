@@ -280,7 +280,15 @@ class AllFeatsData {
       traiName: "Stunning Assault",
       levelAcquired: 1,
       traiDescription:
-          " You can choose to take a –5 penalty on all melee attack rolls and combat maneuver checks to stun targets you hit with your melee attacks for 1 round. A successful Fortitude save negates the effect. The DC of this save is 10 + your base attack bonus. You must choose to use this feat before making the attack roll, and its effects last until your next turn.",
+          "You can choose to take a –5 penalty on all melee attack rolls and combat maneuver checks to stun targets you hit with your melee attacks for 1 round. A successful Fortitude save negates the effect. The DC of this save is 10 + your base attack bonus. You must choose to use this feat before making the attack roll, and its effects last until your next turn.",
+      isSelected: false,
+    ),
+    TraitModel(
+      traiName: "Steadfast Personality",
+      levelAcquired: 1,
+      fitFor: "Rogue",
+      traiDescription:
+          "Add your Charisma modifier instead of your Wisdom bonus to Will saves. If you have a Wisdom penalty, you must apply both your Wisdom penalty and your Charisma modifier.",
       isSelected: false,
     ),
   ];

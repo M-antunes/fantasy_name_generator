@@ -105,7 +105,7 @@ class DefenseController {
     hitPoints += diceHitPoints + toughness;
     // boost from aid potion
     if (level > 8) {
-      hitPoints += rollingDice(8) + level;
+      hitPoints += rollingDice(8) + 10;
     }
     return hitPoints;
   }
@@ -282,20 +282,28 @@ class DefenseController {
       partialWill += atrb.charisma;
       partialRef += atrb.charisma;
     }
+    if (charFeats.any((element) => element.traiName == "Lightning Reflexes")) {
+      partialRef += 2;
+    }
     if (charFeats.any((element) => element.traiName == "Iron Will")) {
       partialWill += 2;
     }
     if (charFeats.any((element) => element.traiName == "Great Fortitude")) {
       partialFort += 2;
     }
-    if (charFeats.any((element) => element.traiName == "Lightning Reflexes")) {
-      partialRef += 2;
-    }
 
     var boost = findBoostyItem(items, "Cloak of resistance");
     resists.fortitude = partialFort + atrb.constitution + boost;
     resists.reflex = partialRef + atrb.dexterity + boost;
-    resists.will = partialWill + atrb.wisdom + boost;
+    if (charFeats
+        .any((element) => element.traiName == "Steadfast Personality")) {
+      resists.will = partialWill + atrb.charisma + boost;
+    } else {
+      resists.will = partialWill + atrb.wisdom + boost;
+    }
+    if (charFeats.any((element) => element.traiName == "Twist Away")) {
+      resists.fortitude = resists.reflex;
+    }
     return resists;
   }
 

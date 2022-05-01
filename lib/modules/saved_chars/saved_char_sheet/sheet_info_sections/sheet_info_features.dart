@@ -50,15 +50,15 @@ class SheetInfoFeatures extends StatelessWidget {
             ListView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
-                itemCount: char.charClass.speacials!.length,
+                itemCount: char.charClass.specials!.length,
                 itemBuilder: (context, index) {
-                  var special = char.charClass.speacials![index];
+                  var special = char.charClass.specials![index];
                   return FeatureListWidget(
                       name: special.name,
                       selected: special.isSelected,
                       description: special.description,
                       onTap: () => ctrl.showDescriptions(
-                          index, char.charClass.speacials!));
+                          index, char.charClass.specials!));
                 }),
           ],
         ),

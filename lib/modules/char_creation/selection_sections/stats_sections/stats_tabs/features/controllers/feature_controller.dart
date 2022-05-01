@@ -2,12 +2,14 @@ import '../../../../../../../models/class_models/specials_model.dart';
 import '../../../../../../../models/class_models/traits_model.dart';
 import '../../../../../../../models/equip_models/equip_model.dart';
 import '../../../../../../../shared/data/class_data/class_traits_data/barbarian/barbarian_traits_data.dart';
+import '../../../../../../../shared/data/class_data/class_traits_data/rogue/rogue_traits_data.dart';
 import '../../../../../../../shared/data/class_data/class_traits_data/warrior/warrior_traits_data.dart';
 import '../../../../../../../shared/utils/utils.dart';
 
 class FeaturesController {
   var barbarian = BarbarianTraitsData();
   var warrior = WarriorTraitsData();
+  var rogue = RogueTraitsData();
 
   List<TraitModel> gettingClassTraits(
       String className, int level, EquipModel equip) {
@@ -21,6 +23,10 @@ class FeaturesController {
         traitList = gettingTraits(level, warrior.warriorTraits, equip);
         traitList = addingInformationToTrait(
             traitList, equip, level, "Weapon training");
+        traitList.sort((a, b) => a.levelAcquired.compareTo(b.levelAcquired));
+        break;
+      case "Rogue":
+        traitList = gettingTraits(level, rogue.rogueTraits, equip);
         traitList.sort((a, b) => a.levelAcquired.compareTo(b.levelAcquired));
         break;
       default:
@@ -48,7 +54,12 @@ class FeaturesController {
     }
     var index = 0;
     for (var i in onlyVariableTraits) {
-      var newString = "${i.traiName} ${valueList[index] + 1}";
+      var newString = '';
+      if (i.traiName.contains("Sneak attack")) {
+        newString = "${i.traiName} +${valueList[index] + 1}d6";
+      } else {
+        newString = "${i.traiName} ${valueList[index] + 1}";
+      }
       var newTrait = TraitModel(
           traiName: newString,
           levelAcquired: i.levelAcquired,
@@ -91,6 +102,9 @@ class FeaturesController {
       case "Barbarian":
         specials = gettingBarbarianRagePowers(level, race);
         break;
+      case "Rogue":
+        specials = gettingRogueTalents(level);
+        break;
       default:
     }
     return specials;
@@ -112,6 +126,20 @@ class FeaturesController {
     for (var i = 0; i < numberOfSpecial; i++) {
       var random = generateRandom(cloneList.length);
 
+      specialList.add(cloneList[random]);
+      cloneList.remove(cloneList[random]);
+    }
+    return specialList;
+  }
+
+  List<SpecialsModel> gettingRogueTalents(int level) {
+    var numberOfSpecial = (level / 2).floor();
+    List<SpecialsModel> cloneList = rogue.rogueTalents
+        .where((element) => element.levelAcquired <= level)
+        .toList();
+    List<SpecialsModel> specialList = [];
+    for (var i = 0; i < numberOfSpecial; i++) {
+      var random = generateRandom(cloneList.length);
       specialList.add(cloneList[random]);
       cloneList.remove(cloneList[random]);
     }

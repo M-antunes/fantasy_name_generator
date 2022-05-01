@@ -151,6 +151,21 @@ class SheetInfoCombat extends StatelessWidget {
                   ),
                 ],
               ),
+              if (char.charClass.name == "Rogue")
+                Column(
+                  children: [
+                    const SizedBox(height: 3),
+                    CombatInfo(
+                      length: deviceWidth! * 0.5,
+                      label: "Sneak attack:",
+                      value: char.charClass.traits!
+                          .firstWhere((element) =>
+                              element.traiName.contains("Sneak attack"))
+                          .traiName
+                          .substring(13),
+                    ),
+                  ],
+                ),
               WeaponTile(
                   isOnCharSheet: true,
                   type: char.physicalStyle.name == "Dual-wielder"

@@ -53,6 +53,23 @@ class OffenseSegment extends StatelessWidget {
               ),
             ],
           ),
+          if (state.char.charClass.name == "Rogue")
+            Column(
+              children: [
+                const SizedBox(height: 3),
+                CombatInfo(
+                  length: deviceWidth! * 0.5,
+                  label: "Sneak attack:",
+                  value: state.traits.isEmpty
+                      ? ''
+                      : state.traits
+                          .firstWhere((element) =>
+                              element.traiName.contains("Sneak attack"))
+                          .traiName
+                          .substring(13),
+                ),
+              ],
+            ),
           if (state.char.charEquip.meleeWeapon != null)
             Column(
               children: [

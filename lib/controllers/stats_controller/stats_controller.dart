@@ -1,5 +1,4 @@
 import 'package:fantasy_name_generator/modules/char_creation/selection_sections/stats_sections/stats_tabs/features/controllers/feature_controller.dart';
-import 'package:fantasy_name_generator/shared/data/spell_data/spell_data.dart';
 
 import '../../models/spell_models/spell_model.dart';
 import '../stage_controller/imports.dart';
@@ -320,40 +319,8 @@ class StatsController with ChangeNotifier {
     notifyListeners();
   }
 
-  //   List<TraitModel> newList = [];
-  //   var valueList = [];
-  //   List<TraitModel> replacementList = [];
-  //   List<TraitModel> list = barbarian.barbarianTraits
-  //       .where((element) => element.levelAcquired <= char.charLevel)
-  //       .toList();
-  //   var onlyVariableTraits =
-  //       list.where((element) => element.multiplier != null).toList();
-  //   list.removeWhere((element) => element.multiplier != null);
-  //   for (var i in onlyVariableTraits) {
-  //     var changableValue = char.charLevel - i.levelAcquired;
-  //     if (i.levelAcquired == char.charLevel) {
-  //       changableValue++;
-  //     }
-  //     changableValue = (changableValue / i.multiplier!).floor();
-  //     valueList.add(changableValue);
-  //   }
-  //   var index = 1;
-  //   for (var i in onlyVariableTraits) {
-  //     var newString = "${i.traiName} ${valueList[index]}";
-  //     var newTrait = TraitModel(
-  //         traiName: newString,
-  //         levelAcquired: i.levelAcquired,
-  //         traiDescription: i.traiDescription,
-  //         isSelected: i.isSelected);
-  //     newList.add(newTrait);
-  //     index++;
-  //   }
-  //   replacementList.addAll(list);
-  //   replacementList.addAll(newList);
-  //   replacementList.sort((a, b) => a.levelAcquired.compareTo(b.levelAcquired));
-  //   traits = replacementList;
-  //   notifyListeners();
-  // }
+  // ===================================================================================
+  //Special part
   List<SpecialsModel> specials = [];
 
   gettingClassSpecials() {
@@ -361,29 +328,6 @@ class StatsController with ChangeNotifier {
         char.charClass.name, char.charLevel, char.charRace.name);
     notifyListeners();
   }
-  //   var numberOfSpecial = (char.charLevel / 2).floor();
-  //   List<SpecialsModel> cloneList = barbarian.ragePowers
-  //       .where((element) => element.levelAcquired <= char.charLevel)
-  //       .toList();
-  //   if (char.charRace.name == "Human" || char.charRace.name == "Hafling") {
-  //     cloneList.removeWhere((element) =>
-  //         element.name == "Night Vision" && element.name == "Low-light Vision");
-  //   }
-  //   if (char.charRace.name == "Orc" ||
-  //       char.charRace.name != "Dwarf" ||
-  //       char.charRace.name != "Half-orc") {
-  //     cloneList.removeWhere((element) => element.name == "Night Vision");
-  //   }
-  //   List<SpecialsModel> specialList = [];
-  //   for (var i = 0; i < numberOfSpecial; i++) {
-  //     var random = generateRandom(cloneList.length);
-
-  //     specialList.add(cloneList[random]);
-  //     cloneList.remove(cloneList[random]);
-  //   }
-  //   specials = specialList;
-  //   notifyListeners();
-  // }
 
   // ====================================================================================
   // Feat part
@@ -443,7 +387,8 @@ class StatsController with ChangeNotifier {
         char.charLevel,
         char.charClass.mainAtrb,
         char.baseAttributes,
-        char.physicalStyle.name);
+        char.physicalStyle.name,
+        char.charClass.name);
     notifyListeners();
   }
 
@@ -602,12 +547,13 @@ class StatsController with ChangeNotifier {
       meleeEnchant,
       rangeEnchant,
     );
+
     char.combatStats.meleeDamage =
-        "${char.charEquip.meleeWeapon!.damage!} +${damages[0].toString()} $meleeExtraDamage";
+        "${char.charEquip.meleeWeapon!.damage!} +${damages[0]} $meleeExtraDamage";
     char.combatStats.rangeDamage =
-        "${char.charEquip.rangeWeapon!.damage!} +${damages[1].toString()} $rangeExtraDamage";
+        "${char.charEquip.rangeWeapon!.damage!} +${damages[1]} $rangeExtraDamage";
     char.combatStats.dualWieldDamage =
-        "${char.charEquip.meleeWeapon!.damage!} +${damages[2].toString()} $meleeExtraDamage";
+        "${char.charEquip.meleeWeapon!.damage!} +${damages[2]} $meleeExtraDamage";
     notifyListeners();
   }
 
@@ -645,7 +591,7 @@ class StatsController with ChangeNotifier {
     char.battleStyle = char.battleStyle.copyWith(description: '');
     char.loot = charLoot;
     char.charClass.traits = traits;
-    char.charClass.speacials = specials;
+    char.charClass.specials = specials;
     char.feats = charFeats;
     char.skills = charSkills;
     char.charEquip.tomesAndManuals = tomesAndManuals;

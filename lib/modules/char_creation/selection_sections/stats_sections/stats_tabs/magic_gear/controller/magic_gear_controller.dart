@@ -300,7 +300,8 @@ class MagicGearController {
       int level,
       String mainAtrb,
       AttributeModel charAtrb,
-      String physicalStyle) {
+      String physicalStyle,
+      String className) {
     AttributeModel atrbBoost = AttributeModel();
     if (charItems == null) {
       return charAtrb;
@@ -419,6 +420,18 @@ class MagicGearController {
         } else if (boosts.length == 2) {
           mentalAtr.charisma = boosts.first;
           mentalAtr.wisdom = boosts.first;
+        } else if (boosts.length == 1) {
+          mentalAtr.charisma = boosts.first;
+        }
+      } else if (className == "Knifeman") {
+        boosts = identifyBoost(list, "prowess", "superiority", "Headband");
+        if (boosts.length == 3) {
+          mentalAtr.intelligence = boosts.first;
+          mentalAtr.wisdom = boosts.first;
+          mentalAtr.charisma = boosts.first;
+        } else if (boosts.length == 2) {
+          mentalAtr.intelligence = boosts.first;
+          mentalAtr.charisma = boosts.first;
         } else if (boosts.length == 1) {
           mentalAtr.charisma = boosts.first;
         }
