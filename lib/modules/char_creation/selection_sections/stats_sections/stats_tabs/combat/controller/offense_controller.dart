@@ -5,8 +5,8 @@ import 'package:fantasy_name_generator/models/combat_models/base_atribute_model.
 import '../../../../../../../models/class_models/class_model.dart';
 import '../../../../../../../models/class_models/traits_model.dart';
 import '../../../../../../../models/combat_models/physical_style_model.dart';
-import '../../../../../../../models/equip_models/armor_models/armor_model.dart';
 import '../../../../../../../models/equip_models/magic_equip_models/enchant_model.dart';
+import '../../../../../../../models/equip_models/magic_equip_models/wonderous_items_model.dart';
 import '../../../../../../../models/equip_models/weapon_models/weapon_model.dart';
 import '../../../../../../../models/key_value.model.dart';
 import '../../../../../../../models/race_models/race_model.dart';
@@ -214,10 +214,10 @@ class OffenseController {
   }
 
   int calculateSpeed(List<RaceModel> races, int level, String charRace,
-      String charClass, int speed, ArmorModel? armor) {
+      String charClass, int speed, String armorType, int armorPenalty) {
     var raceGotten = races.firstWhere((element) => element.name == charRace);
     var baseSpeed = raceGotten.speed;
-    if (charClass == "Barbarian" && (armor!.type!.name == "Light")) {
+    if (charClass == "Barbarian" && (armorType == "Light")) {
       baseSpeed = baseSpeed + 10;
     }
     if (charClass == "Monk" && level > 2) {
@@ -225,7 +225,7 @@ class OffenseController {
         baseSpeed = baseSpeed + 10;
       }
     }
-    return speed = baseSpeed - armor!.speedPenalty;
+    return speed = baseSpeed - armorPenalty;
   }
 
   int calculateBaseAttackBonus(
@@ -268,8 +268,8 @@ class OffenseController {
     return baseAttackBonus;
   }
 
-  int calculateCombatManeuvers(int bba, AttributeModel atrb, String race,
-      List<TraitModel> charFeats, int level, bool isCmb) {
+  List<int> calculateCombatManeuvers(int bba, AttributeModel atrb, String race,
+      List<TraitModel> charFeats, int level, String className) {
     var bAttackBonus = bba;
     var attributes = atrb;
     var cmb = 0;
@@ -286,12 +286,14 @@ class OffenseController {
     if (charRace.size == "Small") {
       cmb -= 1;
       cmd -= 1;
+      if (className == "Monk") {
+        for (var i = 3; i < level; i += 4) {
+          cmd++;
+        }
+      }
     }
-    if (isCmb) {
-      return cmb;
-    } else {
-      return cmd;
-    }
+    List<int> manouvers = [cmb, cmd];
+    return manouvers;
   }
 
   int gettingInitiative(List<TraitModel> charFeats, int dex) {
@@ -324,6 +326,7 @@ class OffenseController {
     int level,
     int enchantPowerMelee,
     int enchantPowerRange,
+    List<WonderousItemsModel> items,
   ) {
     String meleeAtk = "";
     int meleeAtkNum = 0;
@@ -350,7 +353,7 @@ class OffenseController {
       meleeAtkNum++;
       rangeAtkNum++;
     }
-
+    //Warrior bonus from weapon training feature
     if (charClass == "Warrior") {
       for (var i = 5; i < level; i += 4) {
         meleeAtkNum++;
@@ -366,8 +369,36 @@ class OffenseController {
       meleeAtkNum += boostWeaponWithFeat(1, 0, physical);
       rangeAtkNum += boostWeaponWithFeat(0, 1, physical);
     }
+    if (items
+        .any((element) => element.name!.contains("Amulet of mighty fists"))) {
+      meleeAtkNum += items
+          .firstWhere(
+              (element) => element.name!.contains("Amulet of mighty fists"))
+          .bonus!;
+    }
     var dualWieldAtkNum = meleeAtkNum - 2;
     var dualWieldAtk = '';
+    var flurryOfBlows = '';
+    if (charClass == "Monk") {
+      if (level < 6) {
+        flurryOfBlows = "+${dualWieldAtkNum} / +${dualWieldAtkNum}";
+      } else if (level > 5 && level < 8) {
+        flurryOfBlows =
+            "+${dualWieldAtkNum} / +${dualWieldAtkNum} / +${dualWieldAtkNum - 5}";
+      } else if (level > 7 && level < 11) {
+        flurryOfBlows =
+            "+${dualWieldAtkNum} / +${dualWieldAtkNum} / +${dualWieldAtkNum - 5} / +${dualWieldAtkNum - 5}";
+      } else if (level > 10 && level < 15) {
+        flurryOfBlows =
+            "+${dualWieldAtkNum} / +${dualWieldAtkNum} / +${dualWieldAtkNum - 5} / +${dualWieldAtkNum - 5} / +${dualWieldAtkNum - 10}";
+      } else if (level == 15) {
+        flurryOfBlows =
+            "+${dualWieldAtkNum} / +${dualWieldAtkNum} / +${dualWieldAtkNum - 5} / +${dualWieldAtkNum - 5} / +${dualWieldAtkNum - 10}  / +${dualWieldAtkNum - 10}";
+      } else {
+        flurryOfBlows =
+            "+${dualWieldAtkNum} / +${dualWieldAtkNum} / +${dualWieldAtkNum - 5} / +${dualWieldAtkNum - 5} / +${dualWieldAtkNum - 10}  / +${dualWieldAtkNum - 10} / +${dualWieldAtkNum - 15}";
+      }
+    }
     if (bba < 6) {
       meleeAtk = "+$meleeAtkNum";
       rangeAtk = "+$rangeAtkNum";
@@ -390,7 +421,7 @@ class OffenseController {
       dualWieldAtk =
           "+${dualWieldAtkNum} +${dualWieldAtkNum} / +${dualWieldAtkNum - 5} +${dualWieldAtkNum - 5} / +${dualWieldAtkNum - 10} +${dualWieldAtkNum - 10} / +${dualWieldAtkNum - 15}";
     }
-    List<String> attacks = [meleeAtk, rangeAtk, dualWieldAtk];
+    List<String> attacks = [meleeAtk, rangeAtk, dualWieldAtk, flurryOfBlows];
     return attacks;
   }
 
@@ -403,6 +434,7 @@ class OffenseController {
     int level,
     int enchantPowerMelee,
     int enchantPowerRange,
+    List<WonderousItemsModel> items,
   ) {
     int meleeDamage = 0;
     int rangeDamage = 0;
@@ -440,6 +472,13 @@ class OffenseController {
           charFeats.any((element) => element.traiName == "Double Slice")
               ? meleeDamage
               : meleeDamage - atrb.strength;
+    }
+    if (items
+        .any((element) => element.name!.contains("Amulet of mighty fists"))) {
+      meleeDamage += items
+          .firstWhere(
+              (element) => element.name!.contains("Amulet of mighty fists"))
+          .bonus!;
     }
     List<int> damages = [meleeDamage, rangeDamage, offHandDamage];
     return damages;

@@ -65,6 +65,11 @@ class FeatsController {
     if (raceName == "Human") {
       numberOfFeats++;
     }
+    if (className == "Monk") {
+      for (var i = 4; i < level; i += 4) {
+        numberOfFeats++;
+      }
+    }
     List<TraitModel> filteredFeats = [];
     filteredFeats.insert(0, AllFeatsData().reactionary);
     if (feats.length > numberOfFeats) {

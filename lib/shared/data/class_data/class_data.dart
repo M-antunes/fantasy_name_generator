@@ -57,6 +57,7 @@ class ClassData {
           "Sorcerer",
           "Aristocrat",
           "Noble",
+          "Summoner",
           "Commoner"
         ],
         isSelected: false),
@@ -94,6 +95,7 @@ class ClassData {
           "Noble",
           "Commoner",
           "Monk",
+          "Summoner",
         ],
         isSelected: false),
     PhysicalStyleModel(
@@ -116,7 +118,10 @@ class ClassData {
           "Antipaladin",
           "Paladin",
           "Cleric",
-          "Druid"
+          "Druid",
+          "Warrior",
+          "Samurai",
+          "Summoner",
         ],
         isSelected: false),
     PhysicalStyleModel(
@@ -142,6 +147,7 @@ class ClassData {
           "Noble",
           "Commoner",
           "Cleric",
+          "Summoner",
         ],
         isSelected: false),
     PhysicalStyleModel(
@@ -183,6 +189,7 @@ class ClassData {
           "Commoner",
           "Antipaladin",
           "Paladin",
+          "Summoner",
           "Cleric",
         ],
         isSelected: false),

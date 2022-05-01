@@ -1,6 +1,7 @@
 import 'package:fantasy_name_generator/modules/char_creation/selection_sections/stats_sections/stats_tabs/features/controllers/feature_controller.dart';
 
 import '../../models/spell_models/spell_model.dart';
+import '../../shared/data/class_data/class_traits_data/monk/monk_traits_data.dart';
 import '../stage_controller/imports.dart';
 
 class StatsController with ChangeNotifier {
@@ -277,8 +278,10 @@ class StatsController with ChangeNotifier {
   //Apply magic to Armor and shield
 
   makeArmorOrShieldMagic() {
-    char.charEquip.armour = defenseCtrl.applyMagicToArmorAndShield(
-        char.charLevel, listOfEnchants.magicEnchants, char.charEquip.armour!);
+    char.charEquip.armour = char.charEquip.armour != null
+        ? defenseCtrl.applyMagicToArmorAndShield(char.charLevel,
+            listOfEnchants.magicEnchants, char.charEquip.armour!)
+        : null;
     char.charEquip.shield = char.charEquip.shield != null
         ? defenseCtrl.applyMagicToArmorAndShield(char.charLevel,
             listOfEnchants.magicEnchants, char.charEquip.shield!)
@@ -298,13 +301,19 @@ class StatsController with ChangeNotifier {
 // ======================================================================================
   ///calculate characters speed
   calculateSpeed() {
+    String armorType = char.charEquip.armour != null
+        ? char.charEquip.armour!.type!.name
+        : "Light";
+    int speedPenalty =
+        char.charEquip.armour != null ? char.charEquip.armour!.speedPenalty : 0;
     char.charRace.speed = offenseCtrl.calculateSpeed(
         listOfRaces.races,
         char.charLevel,
         char.charRace.name,
         char.charClass.name,
         char.charRace.speed,
-        char.charEquip.armour!);
+        armorType,
+        speedPenalty);
     notifyListeners();
   }
 
@@ -470,21 +479,15 @@ class StatsController with ChangeNotifier {
 // section to generate combat manouver modifiers
 
   calculateCombatManeuvers() {
-    char.combatStats.combatManeuverBonus = offenseCtrl.calculateCombatManeuvers(
+    List<int> manouvers = offenseCtrl.calculateCombatManeuvers(
         char.combatStats.baseAttackBonus!,
         char.modAttributes,
         char.charRace.name,
         charFeats,
         char.charLevel,
-        true);
-    char.combatStats.combatManeuverDefense =
-        offenseCtrl.calculateCombatManeuvers(
-            char.combatStats.baseAttackBonus!,
-            char.modAttributes,
-            char.charRace.name,
-            charFeats,
-            char.charLevel,
-            false);
+        char.charClass.name);
+    char.combatStats.combatManeuverBonus = manouvers[0];
+    char.combatStats.combatManeuverDefense = manouvers[1];
     notifyListeners();
   }
 
@@ -522,10 +525,12 @@ class StatsController with ChangeNotifier {
       char.charLevel,
       meleeEnchant,
       rangeEnchant,
+      char.charEquip.wonderousItems!,
     );
     char.combatStats.meleeAttack = attackValues[0];
     char.combatStats.rangeAttack = attackValues[1];
-    char.combatStats.dualWieldAttack = attackValues[2];
+    char.combatStats.dualWieldAttack =
+        char.charClass.name != "Monk" ? attackValues[2] : attackValues[3];
 
     String? meleeExtraDamage = char.charEquip.meleeWeapon!.enchantment == null
         ? ""
@@ -546,14 +551,16 @@ class StatsController with ChangeNotifier {
       char.charLevel,
       meleeEnchant,
       rangeEnchant,
+      char.charEquip.wonderousItems!,
     );
-
-    char.combatStats.meleeDamage =
-        "${char.charEquip.meleeWeapon!.damage!} +${damages[0]} $meleeExtraDamage";
+    char.combatStats.meleeDamage = char.charClass.name != "Monk"
+        ? "${char.charEquip.meleeWeapon!.damage!} +${damages[0]} $meleeExtraDamage"
+        : "${MonkTraitsData().unarmedAtk.firstWhere((element) => element.key.contains(char.charLevel.toString())).value} + ${char.charEquip.meleeWeapon!.damage!} +${damages[0]} $meleeExtraDamage";
     char.combatStats.rangeDamage =
         "${char.charEquip.rangeWeapon!.damage!} +${damages[1]} $rangeExtraDamage";
-    char.combatStats.dualWieldDamage =
-        "${char.charEquip.meleeWeapon!.damage!} +${damages[2]} $meleeExtraDamage";
+    char.combatStats.dualWieldDamage = char.charClass.name != "Monk"
+        ? "${char.charEquip.meleeWeapon!.damage!} +${damages[2]} $meleeExtraDamage"
+        : "${MonkTraitsData().unarmedAtk.firstWhere((element) => element.key.contains(char.charLevel.toString())).value} + ${char.charEquip.meleeWeapon!.damage!} +${damages[0]} $meleeExtraDamage";
     notifyListeners();
   }
 

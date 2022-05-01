@@ -1,7 +1,9 @@
+import 'package:fantasy_name_generator/modules/char_creation/selection_sections/stats_sections/widgets/gradient_label.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../../../../../controllers/stats_controller/stats_controller.dart';
 import '../../../../../../../shared/constants/phone_sizes.dart';
+import '../../../../../../../shared/data/class_data/class_traits_data/monk/monk_traits_data.dart';
 import '../../../widgets/atribute_division.dart';
 import '../../../widgets/char_description_text.dart';
 import '../widgets/combat_info.dart';
@@ -68,6 +70,21 @@ class OffenseSegment extends StatelessWidget {
                           .traiName
                           .substring(13),
                 ),
+              ],
+            ),
+          if (state.char.charClass.name == "Monk")
+            Column(
+              children: [
+                const SizedBox(height: 3),
+                GradientLabel(label: "Flurry of blows"),
+                CombatInfo(
+                    length: deviceWidth!,
+                    label: "Total attack: ",
+                    value: "${state.char.combatStats.dualWieldAttack}"),
+                CombatInfo(
+                    length: deviceWidth!,
+                    label: "Damage:",
+                    value: "${state.char.combatStats.dualWieldDamage}")
               ],
             ),
           if (state.char.charEquip.meleeWeapon != null)

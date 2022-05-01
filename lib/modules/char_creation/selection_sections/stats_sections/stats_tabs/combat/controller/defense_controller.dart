@@ -32,11 +32,13 @@ class DefenseController {
     }
   }
 
-  ArmorModel generateArmor(List<String> fobiddenTypes, String mainAtrb,
+  ArmorModel? generateArmor(List<String> fobiddenTypes, String mainAtrb,
       String className, List<ArmorModel> shieldList) {
     ArmorModel armor;
     List<ArmorModel> armors;
-    if (className == "Druid") {
+    if (className == "Monk") {
+      return null;
+    } else if (className == "Druid") {
       armors =
           shieldList.where((element) => element.fitForDruid == true).toList();
     } else if (mainAtrb == "dexterity") {
@@ -157,8 +159,9 @@ class DefenseController {
     int armorDefense = equip.armour != null ? equip.armour!.defenseBonus : 0;
     int shieldDefense = equip.shield != null ? equip.shield!.defenseBonus : 0;
     int maxDex = equip.armour != null ? equip.armour!.maxDexAllowed : 0;
-    if (maxDex < dex) {
-      dex = maxDex;
+    if ((dex - maxDex) < 0) {
+      var newDex = maxDex - dex;
+      dex = newDex;
     }
     int armorAc = 0;
     int touch = 0;
@@ -176,33 +179,36 @@ class DefenseController {
     }
     if (className == "Monk") {
       armorAc += wis;
-      touch += wis;
       surprise += wis;
+      for (var i = 3; i < level; i += 4) {
+        armorAc++;
+        touch++;
+        surprise++;
+      }
     }
 
-    var dodge = charFeats.any((element) => element.traiName == "Dodge") ? 1 : 0;
-    armorAc += dodge;
-    touch += dodge;
-    var twoWeaponDefense =
-        charFeats.any((element) => element.traiName == "Two-Weapon Defense")
-            ? 1
-            : 0;
-    armorAc += twoWeaponDefense;
-    surprise += twoWeaponDefense;
-    var shieldFocus =
-        charFeats.any((element) => element.traiName == "Shield Focus") ? 1 : 0;
-    armorAc += shieldFocus;
-    surprise += shieldFocus;
-    var shieldFocusGreater =
-        charFeats.any((element) => element.traiName == "Greater Shield Focus")
-            ? 1
-            : 0;
-    armorAc += shieldFocusGreater;
-    surprise += shieldFocusGreater;
-    var armorFocus =
-        charFeats.any((element) => element.traiName == "Armor Focus") ? 1 : 0;
-    armorAc += armorFocus;
-    surprise += armorFocus;
+    if (charFeats.any((element) => element.traiName == "Dodge")) {
+      armorAc++;
+      touch++;
+    }
+    if (charFeats.any((element) => element.traiName == "Two-Weapon Defense")) {
+      armorAc++;
+      surprise++;
+    }
+    if (charFeats.any((element) => element.traiName == "Shield Focus")) {
+      surprise++;
+      armorAc++;
+      var shieldFocusGreater =
+          charFeats.any((element) => element.traiName == "Greater Shield Focus")
+              ? 1
+              : 0;
+      armorAc += shieldFocusGreater;
+      surprise += shieldFocusGreater;
+    }
+    if (charFeats.any((element) => element.traiName == "Armor Focus")) {
+      armorAc++;
+      surprise++;
+    }
     var ringBoost = findBoostyItem(list, "Ring of protection");
     armorAc += ringBoost;
     touch += ringBoost;

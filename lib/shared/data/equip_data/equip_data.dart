@@ -413,19 +413,6 @@ class EquipData {
         forbiddenTo: [],
         damage: "1d4",
         damageType: "Bludgeoning",
-        mundanePrice: 0,
-        type: WeaponFamilyModel(
-          forbiddenTo: [],
-          wielding: "One-handed",
-          name: "Fist",
-        ),
-        name: "Unarmed strike"),
-    WeaponModel(
-        isSelected: false,
-        critical: "x2",
-        forbiddenTo: [],
-        damage: "1d4",
-        damageType: "Bludgeoning",
         mundanePrice: 5,
         type: WeaponFamilyModel(
           forbiddenTo: [],

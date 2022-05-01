@@ -1,3 +1,5 @@
+import 'package:fantasy_name_generator/shared/data/class_data/class_traits_data/monk/monk_traits_data.dart';
+
 import '../../../../../../../models/class_models/specials_model.dart';
 import '../../../../../../../models/class_models/traits_model.dart';
 import '../../../../../../../models/equip_models/equip_model.dart';
@@ -10,6 +12,7 @@ class FeaturesController {
   var barbarian = BarbarianTraitsData();
   var warrior = WarriorTraitsData();
   var rogue = RogueTraitsData();
+  var monk = MonkTraitsData();
 
   List<TraitModel> gettingClassTraits(
       String className, int level, EquipModel equip) {
@@ -27,6 +30,10 @@ class FeaturesController {
         break;
       case "Rogue":
         traitList = gettingTraits(level, rogue.rogueTraits, equip);
+        traitList.sort((a, b) => a.levelAcquired.compareTo(b.levelAcquired));
+        break;
+      case "Monk":
+        traitList = gettingTraits(level, monk.monkTraits, equip);
         traitList.sort((a, b) => a.levelAcquired.compareTo(b.levelAcquired));
         break;
       default:
