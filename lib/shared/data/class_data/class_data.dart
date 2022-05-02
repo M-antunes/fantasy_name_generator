@@ -105,7 +105,7 @@ class ClassData {
             "Swordmen are masters of swords. They wield one-handed swords and mainly have their other free for tricks and other purposes. They fight with agility and speed. They wear none to medium armor and no shield at all. Best fit: Bandit.",
         svg: "assets/images/weapon_types/sword.svg",
         weaponType: "sword",
-        forbiddenClasses: ["Barbarian", "Commoner", "Monk"],
+        forbiddenClasses: ["Barbarian", "Commoner", "Monk", "Paladin"],
         isSelected: false),
     PhysicalStyleModel(
         name: "Knifeman",

@@ -151,7 +151,8 @@ class SheetInfoCombat extends StatelessWidget {
                   ),
                 ],
               ),
-              if (char.charClass.name == "Rogue")
+              if (char.charClass.name == "Rogue" ||
+                  char.charClass.name == "Bandit")
                 Column(
                   children: [
                     const SizedBox(height: 3),
@@ -163,6 +164,23 @@ class SheetInfoCombat extends StatelessWidget {
                               element.traiName.contains("Sneak attack"))
                           .traiName
                           .substring(13),
+                    ),
+                  ],
+                ),
+              if (char.charClass.name == "Paladin")
+                Column(
+                  children: [
+                    const SizedBox(height: 3),
+                    CombatInfo(
+                      length: deviceWidth! * 0.5,
+                      label: "Smite Evil:",
+                      value: char.charClass.traits!.isEmpty
+                          ? ''
+                          : char.charClass.traits!
+                              .firstWhere((element) =>
+                                  element.traiName.contains("Smite Evil"))
+                              .traiName
+                              .substring(10),
                     ),
                   ],
                 ),

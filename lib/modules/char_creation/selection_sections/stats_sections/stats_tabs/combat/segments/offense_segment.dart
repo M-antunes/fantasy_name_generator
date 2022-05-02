@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../../../../../controllers/stats_controller/stats_controller.dart';
 import '../../../../../../../shared/constants/phone_sizes.dart';
-import '../../../../../../../shared/data/class_data/class_traits_data/physical_classes/monk_traits_data.dart';
 import '../../../widgets/atribute_division.dart';
 import '../../../widgets/char_description_text.dart';
 import '../widgets/combat_info.dart';
@@ -70,6 +69,23 @@ class OffenseSegment extends StatelessWidget {
                               element.traiName.contains("Sneak attack"))
                           .traiName
                           .substring(13),
+                ),
+              ],
+            ),
+          if (state.char.charClass.name == "Paladin")
+            Column(
+              children: [
+                const SizedBox(height: 3),
+                CombatInfo(
+                  length: deviceWidth! * 0.5,
+                  label: "Smite Evil:",
+                  value: state.traits.isEmpty
+                      ? ''
+                      : state.traits
+                          .firstWhere((element) =>
+                              element.traiName.contains("Smite Evil"))
+                          .traiName
+                          .substring(10),
                 ),
               ],
             ),
