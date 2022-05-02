@@ -65,7 +65,7 @@ class FeatsController {
     if (raceName == "Human") {
       numberOfFeats++;
     }
-    if (className == "Monk") {
+    if (className == "Monk" || className == "Ranger") {
       for (var i = 4; i < level; i += 4) {
         numberOfFeats++;
       }

@@ -158,11 +158,7 @@ class DefenseController {
   ) {
     int armorDefense = equip.armour != null ? equip.armour!.defenseBonus : 0;
     int shieldDefense = equip.shield != null ? equip.shield!.defenseBonus : 0;
-    int maxDex = equip.armour != null ? equip.armour!.maxDexAllowed : 0;
-    if ((dex - maxDex) < 0) {
-      var newDex = maxDex - dex;
-      dex = newDex;
-    }
+
     int armorAc = 0;
     int touch = 0;
     int surprise = 0;

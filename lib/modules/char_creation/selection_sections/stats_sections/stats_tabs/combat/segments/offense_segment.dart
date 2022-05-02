@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../../../../../controllers/stats_controller/stats_controller.dart';
 import '../../../../../../../shared/constants/phone_sizes.dart';
-import '../../../../../../../shared/data/class_data/class_traits_data/monk/monk_traits_data.dart';
+import '../../../../../../../shared/data/class_data/class_traits_data/physical_classes/monk_traits_data.dart';
 import '../../../widgets/atribute_division.dart';
 import '../../../widgets/char_description_text.dart';
 import '../widgets/combat_info.dart';
@@ -76,7 +76,7 @@ class OffenseSegment extends StatelessWidget {
             Column(
               children: [
                 const SizedBox(height: 3),
-                GradientLabel(label: "Flurry of blows"),
+                const GradientLabel(label: "Flurry of blows"),
                 CombatInfo(
                     length: deviceWidth!,
                     label: "Total attack: ",

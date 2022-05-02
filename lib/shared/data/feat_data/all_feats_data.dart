@@ -3,7 +3,7 @@ import 'package:fantasy_name_generator/models/class_models/traits_model.dart';
 class AllFeatsData {
   TraitModel reactionary = TraitModel(
     traiName: "Reactionary (trait)",
-    levelAcquired: 100,
+    levelAcquired: 0,
     traiDescription: "You gain a +2 trait bonus on initiative checks.",
     isSelected: false,
   );

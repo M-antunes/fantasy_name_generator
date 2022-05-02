@@ -166,6 +166,21 @@ class SheetInfoCombat extends StatelessWidget {
                     ),
                   ],
                 ),
+              if (char.charClass.name == "Monk")
+                Column(
+                  children: [
+                    const SizedBox(height: 3),
+                    const GradientLabel(label: "Flurry of blows"),
+                    CombatInfo(
+                        length: deviceWidth!,
+                        label: "Total attack: ",
+                        value: "${char.combatStats.dualWieldAttack}"),
+                    CombatInfo(
+                        length: deviceWidth!,
+                        label: "Damage:",
+                        value: "${char.combatStats.dualWieldDamage}")
+                  ],
+                ),
               WeaponTile(
                   isOnCharSheet: true,
                   type: char.physicalStyle.name == "Dual-wielder"

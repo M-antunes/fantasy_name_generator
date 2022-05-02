@@ -1,11 +1,12 @@
-import 'package:fantasy_name_generator/shared/data/class_data/class_traits_data/monk/monk_traits_data.dart';
+import 'package:fantasy_name_generator/shared/data/class_data/class_traits_data/physical_classes/monk_traits_data.dart';
+import 'package:fantasy_name_generator/shared/data/class_data/class_traits_data/physical_classes/ranger_traits_data.dart';
 
 import '../../../../../../../models/class_models/specials_model.dart';
 import '../../../../../../../models/class_models/traits_model.dart';
 import '../../../../../../../models/equip_models/equip_model.dart';
-import '../../../../../../../shared/data/class_data/class_traits_data/barbarian/barbarian_traits_data.dart';
-import '../../../../../../../shared/data/class_data/class_traits_data/rogue/rogue_traits_data.dart';
-import '../../../../../../../shared/data/class_data/class_traits_data/warrior/warrior_traits_data.dart';
+import '../../../../../../../shared/data/class_data/class_traits_data/physical_classes/barbarian_traits_data.dart';
+import '../../../../../../../shared/data/class_data/class_traits_data/physical_classes/rogue_traits_data.dart';
+import '../../../../../../../shared/data/class_data/class_traits_data/physical_classes/warrior_traits_data.dart';
 import '../../../../../../../shared/utils/utils.dart';
 
 class FeaturesController {
@@ -13,6 +14,7 @@ class FeaturesController {
   var warrior = WarriorTraitsData();
   var rogue = RogueTraitsData();
   var monk = MonkTraitsData();
+  var ranger = RangerTraitsData();
 
   List<TraitModel> gettingClassTraits(
       String className, int level, EquipModel equip) {
@@ -34,6 +36,10 @@ class FeaturesController {
         break;
       case "Monk":
         traitList = gettingTraits(level, monk.monkTraits, equip);
+        traitList.sort((a, b) => a.levelAcquired.compareTo(b.levelAcquired));
+        break;
+      case "Ranger":
+        traitList = gettingTraits(level, ranger.rangerTraits, equip);
         traitList.sort((a, b) => a.levelAcquired.compareTo(b.levelAcquired));
         break;
       default:
@@ -64,6 +70,9 @@ class FeaturesController {
       var newString = '';
       if (i.traiName.contains("Sneak attack")) {
         newString = "${i.traiName} +${valueList[index] + 1}d6";
+      } else if (i.traiName.contains("Favored enemy") ||
+          i.traiName.contains("Favored terrain")) {
+        newString = "${i.traiName} (${valueList[index] + 1})";
       } else {
         newString = "${i.traiName} ${valueList[index] + 1}";
       }
@@ -112,6 +121,9 @@ class FeaturesController {
       case "Rogue":
         specials = gettingRogueTalents(level);
         break;
+      case "Ranger":
+        specials = gettingRangerFavoredEnemiesAndTerrain(level);
+        break;
       default:
     }
     return specials;
@@ -149,6 +161,37 @@ class FeaturesController {
       var random = generateRandom(cloneList.length);
       specialList.add(cloneList[random]);
       cloneList.remove(cloneList[random]);
+    }
+    return specialList;
+  }
+
+  List<SpecialsModel> gettingRangerFavoredEnemiesAndTerrain(int level) {
+    List<SpecialsModel> specialList = [];
+    List<String> cloneEnemyList = ranger.favoriteEnemies;
+    List<String> cloneTerrainList = ranger.favoriteTerrains;
+    int numberOfEnemies = level < 5 ? 1 : (level / 5).floor();
+    int numberOfTerrains = level < 3
+        ? 0
+        : level > 2 && level < 8
+            ? 1
+            : (level / 5).floor();
+    for (var i = 0; i < numberOfEnemies; i++) {
+      cloneEnemyList.shuffle();
+      specialList.add(SpecialsModel(
+          name: cloneEnemyList[i],
+          description: "",
+          // Zero is going to indicate that this speacilModel is refering to enemy when rendering on the sncreen
+          levelAcquired: 0,
+          isSelected: false));
+    }
+    for (var i = 0; i < numberOfTerrains; i++) {
+      cloneTerrainList.shuffle();
+      specialList.add(SpecialsModel(
+          name: cloneTerrainList[i],
+          description: "",
+          // One is going to indicate that this speacilModel is refering to terrain when rendering on the sncreen
+          levelAcquired: 1,
+          isSelected: false));
     }
     return specialList;
   }

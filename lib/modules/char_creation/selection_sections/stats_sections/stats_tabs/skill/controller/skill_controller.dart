@@ -85,7 +85,6 @@ class SkillController {
       i.checkPenalty = penalty;
       i.finalValue -= penalty;
     }
-
     for (var i = 0; i < charSkillList.length; i++) {
       charSkillList[i] = charSkillList[i].copyWith(skillOfClasses: []);
     }

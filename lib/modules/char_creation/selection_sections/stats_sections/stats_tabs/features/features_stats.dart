@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'package:fantasy_name_generator/controllers/stage_controller/imports.dart';
 import 'package:fantasy_name_generator/controllers/stats_controller/stats_controller.dart';
 import 'package:fantasy_name_generator/shared/constants/phone_sizes.dart';
 
 import '../../widgets/atribute_division.dart';
 import 'widgets/feature_list_widget.dart';
+import 'widgets/ranger_favored_info.dart';
 
 class FeatureStats extends StatelessWidget {
   const FeatureStats({Key? key}) : super(key: key);
@@ -32,7 +34,7 @@ class FeatureStats extends StatelessWidget {
                 );
               }),
           SizedBox(height: deviceHeight! * 0.005),
-          state.specials.isNotEmpty
+          state.specials.isNotEmpty && state.char.charClass.name != "Ranger"
               ? Column(
                   children: [
                     AttributeDivision(
@@ -56,7 +58,21 @@ class FeatureStats extends StatelessWidget {
                     SizedBox(height: deviceHeight! * 0.05),
                   ],
                 )
-              : const SizedBox(),
+              : state.specials.isNotEmpty &&
+                      state.char.charClass.name == "Ranger"
+                  ? Column(
+                      children: [
+                        RangerFavoredInfo(
+                            label: "Favorite Enemies",
+                            specials: state.specials,
+                            enemyOrTerrainId: 0),
+                        RangerFavoredInfo(
+                            label: "Favored Terrains",
+                            specials: state.specials,
+                            enemyOrTerrainId: 1),
+                      ],
+                    )
+                  : const SizedBox(),
         ],
       );
     });

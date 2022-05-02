@@ -369,6 +369,9 @@ class OffenseController {
       meleeAtkNum += boostWeaponWithFeat(1, 0, physical);
       rangeAtkNum += boostWeaponWithFeat(0, 1, physical);
     }
+    if (charFeats.any((element) => element.traiName == "Point-Blank Shot")) {
+      rangeAtkNum++;
+    }
     if (items
         .any((element) => element.name!.contains("Amulet of mighty fists"))) {
       meleeAtkNum += items
