@@ -41,7 +41,7 @@ class DefenseController {
     } else if (className == "Druid") {
       armors =
           shieldList.where((element) => element.fitForDruid == true).toList();
-    } else if (mainAtrb == "dexterity") {
+    } else if (mainAtrb == "dexterity" || className == "Bandit") {
       armors =
           shieldList.where((element) => element.type!.name == "Light").toList();
     } else {

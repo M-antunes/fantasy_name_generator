@@ -55,7 +55,8 @@ class OffenseSegment extends StatelessWidget {
               ),
             ],
           ),
-          if (state.char.charClass.name == "Rogue")
+          if (state.char.charClass.name == "Rogue" ||
+              state.char.charClass.name == "Bandit")
             Column(
               children: [
                 const SizedBox(height: 3),
@@ -92,7 +93,7 @@ class OffenseSegment extends StatelessWidget {
               children: [
                 WeaponTile(
                   type: state.char.physicalStyle.name == "Dual-wielder"
-                      ? "Main-hand"
+                      ? "One-hand fight"
                       : "Melee",
                   specificType:
                       state.char.charEquip.meleeWeapon!.type!.wielding,
@@ -105,17 +106,8 @@ class OffenseSegment extends StatelessWidget {
                   Column(
                     children: [
                       const SizedBox(height: 3),
-                      WeaponTile(
-                        type: "Off-hand",
-                        specificType:
-                            state.char.charEquip.meleeWeapon!.type!.wielding,
-                        name: state.meleeName,
-                        attack: "(${state.char.combatStats.meleeAttack!})",
-                        damageValue: state.char.combatStats.dualWieldDamage!,
-                        critical: state.char.charEquip.meleeWeapon!.critical!,
-                      ),
-                      const SizedBox(height: 3),
                       DualWieldTile(
+                        weapons: "${state.meleeName} & ${state.meleeName}",
                         attack: "${state.char.combatStats.dualWieldAttack}",
                         damage:
                             "${state.char.combatStats.meleeDamage!} / ${state.char.combatStats.dualWieldDamage}",

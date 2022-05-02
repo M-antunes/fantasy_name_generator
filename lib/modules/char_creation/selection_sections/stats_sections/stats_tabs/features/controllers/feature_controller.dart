@@ -1,3 +1,4 @@
+import 'package:fantasy_name_generator/shared/data/class_data/class_traits_data/physical_classes/bandit_traits_data.dart';
 import 'package:fantasy_name_generator/shared/data/class_data/class_traits_data/physical_classes/monk_traits_data.dart';
 import 'package:fantasy_name_generator/shared/data/class_data/class_traits_data/physical_classes/ranger_traits_data.dart';
 
@@ -15,23 +16,18 @@ class FeaturesController {
   var rogue = RogueTraitsData();
   var monk = MonkTraitsData();
   var ranger = RangerTraitsData();
+  var bandit = BanditTraitData();
 
   List<TraitModel> gettingClassTraits(
       String className, int level, EquipModel equip) {
     List<TraitModel> traitList = [];
     switch (className) {
+      case "Bandit":
+        traitList = gettingTraits(level, bandit.banditTraits, equip);
+        traitList.sort((a, b) => a.levelAcquired.compareTo(b.levelAcquired));
+        break;
       case "Barbarian":
         traitList = gettingTraits(level, barbarian.barbarianTraits, equip);
-        traitList.sort((a, b) => a.levelAcquired.compareTo(b.levelAcquired));
-        break;
-      case "Warrior":
-        traitList = gettingTraits(level, warrior.warriorTraits, equip);
-        traitList = addingInformationToTrait(
-            traitList, equip, level, "Weapon training");
-        traitList.sort((a, b) => a.levelAcquired.compareTo(b.levelAcquired));
-        break;
-      case "Rogue":
-        traitList = gettingTraits(level, rogue.rogueTraits, equip);
         traitList.sort((a, b) => a.levelAcquired.compareTo(b.levelAcquired));
         break;
       case "Monk":
@@ -40,6 +36,16 @@ class FeaturesController {
         break;
       case "Ranger":
         traitList = gettingTraits(level, ranger.rangerTraits, equip);
+        traitList.sort((a, b) => a.levelAcquired.compareTo(b.levelAcquired));
+        break;
+      case "Rogue":
+        traitList = gettingTraits(level, rogue.rogueTraits, equip);
+        traitList.sort((a, b) => a.levelAcquired.compareTo(b.levelAcquired));
+        break;
+      case "Warrior":
+        traitList = gettingTraits(level, warrior.warriorTraits, equip);
+        traitList = addingInformationToTrait(
+            traitList, equip, level, "Weapon training");
         traitList.sort((a, b) => a.levelAcquired.compareTo(b.levelAcquired));
         break;
       default:
@@ -115,6 +121,9 @@ class FeaturesController {
       String className, int level, String race) {
     List<SpecialsModel> specials = [];
     switch (className) {
+      case "Bandit":
+        specials = gettingFavoredEnemiesAndTerrain(level);
+        break;
       case "Barbarian":
         specials = gettingBarbarianRagePowers(level, race);
         break;
@@ -122,7 +131,7 @@ class FeaturesController {
         specials = gettingRogueTalents(level);
         break;
       case "Ranger":
-        specials = gettingRangerFavoredEnemiesAndTerrain(level);
+        specials = gettingFavoredEnemiesAndTerrain(level);
         break;
       default:
     }
@@ -165,7 +174,7 @@ class FeaturesController {
     return specialList;
   }
 
-  List<SpecialsModel> gettingRangerFavoredEnemiesAndTerrain(int level) {
+  List<SpecialsModel> gettingFavoredEnemiesAndTerrain(int level) {
     List<SpecialsModel> specialList = [];
     List<String> cloneEnemyList = ranger.favoriteEnemies;
     List<String> cloneTerrainList = ranger.favoriteTerrains;
@@ -178,7 +187,7 @@ class FeaturesController {
     for (var i = 0; i < numberOfEnemies; i++) {
       cloneEnemyList.shuffle();
       specialList.add(SpecialsModel(
-          name: cloneEnemyList[i],
+          name: i < 1 ? "Humanoid (human)" : cloneEnemyList[i],
           description: "",
           // Zero is going to indicate that this speacilModel is refering to enemy when rendering on the sncreen
           levelAcquired: 0,
@@ -187,7 +196,9 @@ class FeaturesController {
     for (var i = 0; i < numberOfTerrains; i++) {
       cloneTerrainList.shuffle();
       specialList.add(SpecialsModel(
-          name: cloneTerrainList[i],
+          name: i < 1
+              ? "Urban (buildings, streets, and sewers)"
+              : cloneTerrainList[i],
           description: "",
           // One is going to indicate that this speacilModel is refering to terrain when rendering on the sncreen
           levelAcquired: 1,

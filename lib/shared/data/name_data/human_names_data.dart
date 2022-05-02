@@ -1940,6 +1940,17 @@ class HumanNamesData {
     "Gardengold",
     "Bronzehand",
     "Shellman",
+    "Gablehouser",
+    "McElroy",
+    "Schwizenter",
+    "Fowlleer",
+    "Roustenkest",
+    "Quentanny",
+    "Gemfrost",
+    "Highfire",
+    "Kentucky",
+    "Forthsmith",
+    "Stonebridge",
   ];
 
   List<String> maleNames = [

@@ -181,10 +181,11 @@ class SheetInfoCombat extends StatelessWidget {
                         value: "${char.combatStats.dualWieldDamage}")
                   ],
                 ),
+              const SizedBox(height: 3),
               WeaponTile(
                   isOnCharSheet: true,
                   type: char.physicalStyle.name == "Dual-wielder"
-                      ? "Main-hand (Dual-wielder)"
+                      ? "One-hand fight"
                       : "Melee",
                   specificType: char.charEquip.meleeWeapon!.type!.wielding,
                   name: char.loot.items!
@@ -197,21 +198,10 @@ class SheetInfoCombat extends StatelessWidget {
               if (char.physicalStyle.name == "Dual-wielder")
                 Column(
                   children: [
-                    WeaponTile(
-                        isOnCharSheet: true,
-                        type: char.physicalStyle.name == "Dual-wielder"
-                            ? "Off-hand (Dual-wielder)"
-                            : "Melee",
-                        specificType:
-                            char.charEquip.meleeWeapon!.type!.wielding,
-                        name: char.loot.items!
-                            .firstWhere((element) => element.name
-                                .contains(char.charEquip.meleeWeapon!.name!))
-                            .name,
-                        attack: "(${char.combatStats.meleeAttack})",
-                        damageValue: char.combatStats.meleeDamage!,
-                        critical: "${char.charEquip.meleeWeapon!.critical}"),
+                    const SizedBox(height: 3),
                     DualWieldTile(
+                        weapons:
+                            "${char.loot.items!.firstWhere((element) => element.name.contains(char.charEquip.meleeWeapon!.name!)).name} & ${char.loot.items!.firstWhere((element) => element.name.contains(char.charEquip.meleeWeapon!.name!)).name}",
                         isOnCharSheet: true,
                         attack: "${char.combatStats.dualWieldAttack}",
                         damage:

@@ -217,7 +217,8 @@ class OffenseController {
       String charClass, int speed, String armorType, int armorPenalty) {
     var raceGotten = races.firstWhere((element) => element.name == charRace);
     var baseSpeed = raceGotten.speed;
-    if (charClass == "Barbarian" && (armorType == "Light")) {
+    if ((charClass == "Barbarian" || charClass == "Bandit") &&
+        armorType == "Light") {
       baseSpeed = baseSpeed + 10;
     }
     if (charClass == "Monk" && level > 2) {

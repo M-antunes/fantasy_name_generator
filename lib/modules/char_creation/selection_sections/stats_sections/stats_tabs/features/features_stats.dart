@@ -34,7 +34,9 @@ class FeatureStats extends StatelessWidget {
                 );
               }),
           SizedBox(height: deviceHeight! * 0.005),
-          state.specials.isNotEmpty && state.char.charClass.name != "Ranger"
+          state.specials.isNotEmpty &&
+                  (state.char.charClass.name != "Ranger" &&
+                      state.char.charClass.name != "Bandit")
               ? Column(
                   children: [
                     AttributeDivision(
@@ -59,11 +61,14 @@ class FeatureStats extends StatelessWidget {
                   ],
                 )
               : state.specials.isNotEmpty &&
-                      state.char.charClass.name == "Ranger"
+                      (state.char.charClass.name == "Ranger" ||
+                          state.char.charClass.name == "Bandit")
                   ? Column(
                       children: [
                         RangerFavoredInfo(
-                            label: "Favorite Enemies",
+                            label: state.char.charClass.name == "Bandit"
+                                ? "Favored Prey"
+                                : "Favored Enemies",
                             specials: state.specials,
                             enemyOrTerrainId: 0),
                         RangerFavoredInfo(

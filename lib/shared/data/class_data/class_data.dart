@@ -52,6 +52,7 @@ class ClassData {
           "Wizard",
           "Ranger",
           "Arcanist",
+          "Bandit",
           "Alchemist",
           "Bard",
           "Sorcerer",
@@ -132,6 +133,7 @@ class ClassData {
         weaponType: "Fist",
         forbiddenClasses: [
           "Bard",
+          "Bandit",
           "Barbarian",
           "Samurai",
           "Druid",
