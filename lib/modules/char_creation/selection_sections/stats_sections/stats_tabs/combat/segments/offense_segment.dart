@@ -72,18 +72,25 @@ class OffenseSegment extends StatelessWidget {
                 ),
               ],
             ),
-          if (state.char.charClass.name == "Paladin")
+          if (state.char.charClass.name == "Paladin" ||
+              state.char.charClass.name == "Antipaladin")
             Column(
               children: [
                 const SizedBox(height: 3),
                 CombatInfo(
                   length: deviceWidth! * 0.5,
-                  label: "Smite Evil:",
+                  label: state.traits.isEmpty
+                      ? ''
+                      : state.traits
+                          .firstWhere(
+                              (element) => element.traiName.contains("Smite"))
+                          .traiName
+                          .substring(0, 10),
                   value: state.traits.isEmpty
                       ? ''
                       : state.traits
-                          .firstWhere((element) =>
-                              element.traiName.contains("Smite Evil"))
+                          .firstWhere(
+                              (element) => element.traiName.contains("Smite"))
                           .traiName
                           .substring(10),
                 ),

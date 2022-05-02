@@ -1,3 +1,4 @@
+import 'package:fantasy_name_generator/shared/data/class_data/class_traits_data/physical_classes/antipaladin_traits_data.dart';
 import 'package:fantasy_name_generator/shared/data/class_data/class_traits_data/physical_classes/bandit_traits_data.dart';
 import 'package:fantasy_name_generator/shared/data/class_data/class_traits_data/physical_classes/monk_traits_data.dart';
 import 'package:fantasy_name_generator/shared/data/class_data/class_traits_data/physical_classes/paladin_traits_data.dart';
@@ -19,11 +20,16 @@ class FeaturesController {
   var ranger = RangerTraitsData();
   var bandit = BanditTraitData();
   var paladin = PaladinTraitsData();
+  var antipaladin = AntipaladinTraitData();
 
   List<TraitModel> gettingClassTraits(
       String className, int level, EquipModel equip) {
     List<TraitModel> traitList = [];
     switch (className) {
+      case "Antipaladin":
+        traitList = gettingTraits(level, antipaladin.antipaladinTraits, equip);
+        traitList.sort((a, b) => a.levelAcquired.compareTo(b.levelAcquired));
+        break;
       case "Bandit":
         traitList = gettingTraits(level, bandit.banditTraits, equip);
         traitList.sort((a, b) => a.levelAcquired.compareTo(b.levelAcquired));
@@ -82,7 +88,7 @@ class FeaturesController {
       var newString = '';
       if (i.traiName.contains("Sneak attack")) {
         newString = "${i.traiName} +${valueList[index] + 1}d6";
-      } else if (i.traiName.contains("Smite Evil")) {
+      } else if (i.traiName.contains("Smite")) {
         newString = "${i.traiName} ${valueList[index] + 1}/day";
       } else if (i.traiName.contains("Favored enemy") ||
           i.traiName.contains("Favored terrain")) {

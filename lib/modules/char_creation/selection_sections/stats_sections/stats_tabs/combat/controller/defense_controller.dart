@@ -279,7 +279,7 @@ class DefenseController {
       partialRef += 1;
       partialWill += 1;
     }
-    if (className == "Paladin" || className == "Antipaladin") {
+    if ((className == "Paladin" || className == "Antipaladin") && level > 1) {
       partialFort += atrb.charisma;
       partialWill += atrb.charisma;
       partialRef += atrb.charisma;
@@ -293,7 +293,11 @@ class DefenseController {
     if (charFeats.any((element) => element.traiName == "Great Fortitude")) {
       partialFort += 2;
     }
-
+    if (items.any((element) => element.name!.contains("Pale green"))) {
+      partialFort++;
+      partialWill++;
+      partialRef++;
+    }
     var boost = findBoostyItem(items, "Cloak of resistance");
     resists.fortitude = partialFort + atrb.constitution + boost;
     resists.reflex = partialRef + atrb.dexterity + boost;

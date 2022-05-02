@@ -373,6 +373,11 @@ class OffenseController {
     if (charFeats.any((element) => element.traiName == "Point-Blank Shot")) {
       rangeAtkNum++;
     }
+    if (items.any(
+        (element) => element.name!.contains("Gauntles of skill at arms"))) {
+      meleeAtkNum++;
+      rangeAtkNum++;
+    }
     if (items
         .any((element) => element.name!.contains("Amulet of mighty fists"))) {
       meleeAtkNum += items
@@ -476,6 +481,15 @@ class OffenseController {
           charFeats.any((element) => element.traiName == "Double Slice")
               ? meleeDamage
               : meleeDamage - atrb.strength;
+    }
+    if (items.any(
+        (element) => element.name!.contains("Gauntles of skill at arms"))) {
+      meleeDamage++;
+      rangeDamage++;
+    }
+    if (items.any((element) => element.name!.contains("Pale green"))) {
+      meleeDamage++;
+      rangeDamage++;
     }
     if (items
         .any((element) => element.name!.contains("Amulet of mighty fists"))) {

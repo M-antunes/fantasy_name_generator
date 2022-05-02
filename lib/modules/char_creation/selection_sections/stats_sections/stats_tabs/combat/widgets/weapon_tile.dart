@@ -36,37 +36,19 @@ class WeaponTile extends StatelessWidget {
               TextSpan(text: "$name  "),
               TextSpan(text: attack),
             ])),
-        const SizedBox(height: 4),
-        Row(
-          children: [
-            Text(
-              "Damage:",
-              style: AppTextStyle.statsLabel,
-              textScaleFactor: isOnCharSheet ? 0.8 : 1,
-            ),
-            const SizedBox(width: 4),
-            Text(
-              damageValue,
-              style:
-                  AppTextStyle.subTextWhite.copyWith(color: Colors.grey[300]),
-              textScaleFactor: isOnCharSheet ? 0.8 : 1,
-            ),
-            const SizedBox(width: 10),
-            Text(
-              "Critical:",
-              style: AppTextStyle.statsLabel,
-              textScaleFactor: isOnCharSheet ? 0.8 : 0.9,
-            ),
-            const SizedBox(width: 4),
-            Text(
-              critical,
-              style:
-                  AppTextStyle.subTextWhite.copyWith(color: Colors.grey[300]),
-              textScaleFactor: isOnCharSheet ? 0.8 : 0.9,
-            ),
-            // const SizedBox(height: 3),
-          ],
-        ),
+        RichText(
+            textScaleFactor: isOnCharSheet ? 0.8 : 1,
+            strutStyle: const StrutStyle(height: 1.6),
+            text: TextSpan(
+                style:
+                    AppTextStyle.subTextWhite.copyWith(color: Colors.grey[300]),
+                children: [
+                  TextSpan(text: "Damage: ", style: AppTextStyle.statsLabel),
+                  TextSpan(text: damageValue),
+                  TextSpan(
+                      text: "  Critical: ", style: AppTextStyle.statsLabel),
+                  TextSpan(text: critical),
+                ])),
       ],
     );
   }

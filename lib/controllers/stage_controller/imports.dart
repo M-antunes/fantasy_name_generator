@@ -16,8 +16,8 @@ export 'package:fantasy_name_generator/models/char_personal_models/name_model.da
 export 'package:fantasy_name_generator/models/combat_models/physical_style_model.dart';
 export 'package:fantasy_name_generator/models/combat_models/resistance_model.dart';
 export 'package:fantasy_name_generator/models/saved_name_model.dart';
-export 'package:fantasy_name_generator/shared/data/class_data/alignment_data.dart';
-export 'package:fantasy_name_generator/shared/data/class_data/class_data.dart';
+export 'package:fantasy_name_generator/shared/data/class_data/class_general_info_data/alignment_data.dart';
+export 'package:fantasy_name_generator/shared/data/class_data/class_general_info_data/class_data.dart';
 export 'package:fantasy_name_generator/shared/data/equip_data/equip_data.dart';
 export 'package:fantasy_name_generator/shared/widgets/call_message_snackbar.dart';
 export 'package:fantasy_name_generator/shared/data/name_data/human_names_data.dart';

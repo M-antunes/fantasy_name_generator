@@ -26,7 +26,7 @@ Future<dynamic> callStartOverConfirmation(BuildContext context,
                         text: " $charName ",
                         style: AppTextStyle.subTextGreyPlusSize),
                     TextSpan(
-                        text: " will be lost forever.",
+                        text: "\nwill be lost forever.",
                         style: AppTextStyle.subTextGreyPlusSize
                             .copyWith(color: AppColors.primaryOrange)),
                   ])),

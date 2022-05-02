@@ -167,18 +167,25 @@ class SheetInfoCombat extends StatelessWidget {
                     ),
                   ],
                 ),
-              if (char.charClass.name == "Paladin")
+              if (char.charClass.name == "Paladin" ||
+                  char.charClass.name == "Antipaladin")
                 Column(
                   children: [
                     const SizedBox(height: 3),
                     CombatInfo(
                       length: deviceWidth! * 0.5,
-                      label: "Smite Evil:",
+                      label: char.charClass.traits!.isEmpty
+                          ? ''
+                          : char.charClass.traits!
+                              .firstWhere((element) =>
+                                  element.traiName.contains("Smite"))
+                              .traiName
+                              .substring(0, 10),
                       value: char.charClass.traits!.isEmpty
                           ? ''
                           : char.charClass.traits!
                               .firstWhere((element) =>
-                                  element.traiName.contains("Smite Evil"))
+                                  element.traiName.contains("Smite"))
                               .traiName
                               .substring(10),
                     ),

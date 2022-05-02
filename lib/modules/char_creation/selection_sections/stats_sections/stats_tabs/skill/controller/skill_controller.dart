@@ -1,7 +1,8 @@
 import '../../../../../../../models/class_models/skill_model.dart';
 import '../../../../../../../models/combat_models/base_atribute_model.dart';
 import '../../../../../../../models/equip_models/equip_model.dart';
-import '../../../../../../../shared/data/class_data/skill_data.dart';
+import '../../../../../../../models/equip_models/magic_equip_models/wonderous_items_model.dart';
+import '../../../../../../../shared/data/class_data/class_general_info_data/skill_data.dart';
 import '../../../../../../../shared/utils/utils.dart';
 
 class SkillController {
@@ -88,6 +89,33 @@ class SkillController {
     for (var i = 0; i < charSkillList.length; i++) {
       charSkillList[i] = charSkillList[i].copyWith(skillOfClasses: []);
     }
+    charSkillList = alteringSkillByItemsOrTrait(
+        className, level, charSkillList, equip.wonderousItems!);
     return charSkillList;
   }
+}
+
+List<SkillModel> alteringSkillByItemsOrTrait(String className, int level,
+    List<SkillModel> skills, List<WonderousItemsModel> items) {
+  if (level < 5) {
+    return skills;
+  }
+  if (items.any((element) => element.name == "Boots of elvenkind")) {
+    skills.firstWhere((element) => element.name == "Acrobatics").finalValue +=
+        5;
+  }
+  if (items.any((element) => element.name == "Judge's wig")) {
+    skills.firstWhere((element) => element.name == "Diplomacy").finalValue += 4;
+  }
+  if (items.any((element) => element.name == "Lenses of detection")) {
+    skills.firstWhere((element) => element.name == "Perception").finalValue +=
+        5;
+    skills.firstWhere((element) => element.name == "Survival").finalValue += 5;
+  }
+  if (items
+      .any((element) => element.name == "Gloves of swimming and climbing")) {
+    skills.firstWhere((element) => element.name == "Swim").finalValue += 5;
+    skills.firstWhere((element) => element.name == "Climb").finalValue += 5;
+  }
+  return skills;
 }
