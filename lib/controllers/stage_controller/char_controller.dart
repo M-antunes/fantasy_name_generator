@@ -331,14 +331,14 @@ class CharController extends ChangeNotifier {
       String temporaryName, String temporaryLastName) {
     if (temporaryName.length == 3) {
       chosenRace.name == "Elf" ||
-              chosenRace.name == "Hafling" ||
+              chosenRace.name == "Halfling" ||
               chosenRace.name == "Gnome"
           ? temporaryName = temporaryName +
               getAllLetters(letters.syllabus, "twoLetterSyllabus")
           : temporaryName = temporaryName;
     }
     if (temporaryName.length <= 2) {
-      chosenRace.name == "Elf" || chosenRace.name == "Hafling"
+      chosenRace.name == "Elf" || chosenRace.name == "Halfling"
           ? temporaryName = temporaryName +
               getAllLetters(letters.syllabus, "twoLetterSyllabus") +
               getAllLetters(letters.alphabet, "vowel") +
@@ -625,10 +625,10 @@ class CharController extends ChangeNotifier {
     fullName = alterGnomeNameCharacters(tempFullName[0], tempFullName[1]);
   }
 
-// Hafling designated part =================================================================
+// Halfling designated part =================================================================
 
   ///  /// alters some of the letters of names for haflings
-  List<String> alterHaflingNameCharacters(
+  List<String> alterHalflingNameCharacters(
       String temporaryName, String temporaryLastName) {
     if (randomChance < 3) {
       temporaryName = temporaryName.replaceFirst('w', "fi");
@@ -668,7 +668,7 @@ class CharController extends ChangeNotifier {
   /// generates names for haflings
   haflingNameGenerator() {
     generalNameGenerator(3, 6);
-    fullName = alterHaflingNameCharacters(tempFullName[0], tempFullName[1]);
+    fullName = alterHalflingNameCharacters(tempFullName[0], tempFullName[1]);
   }
 
 // Half-elf and Half-orc designated part ====================================================
@@ -801,7 +801,7 @@ class CharController extends ChangeNotifier {
       case "Elf":
         elfNameGenerator();
         break;
-      case "Hafling":
+      case "Halfling":
         haflingNameGenerator();
         break;
       case "Dwarf":

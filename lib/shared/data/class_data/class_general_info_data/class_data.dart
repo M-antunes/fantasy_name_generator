@@ -156,6 +156,7 @@ class ClassData {
           "Commoner",
           "Cleric",
           "Summoner",
+          "Warrior",
         ],
         isSelected: false),
     PhysicalStyleModel(

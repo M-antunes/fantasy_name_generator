@@ -113,7 +113,7 @@ class AppearanceController {
         tempRaceAge =
             ajustAgeAccordingtoRace(classList, className, level, 20, 40);
         break;
-      case "Hafling":
+      case "Halfling":
         tempRaceAge =
             ajustAgeAccordingtoRace(classList, className, level, 10, 20);
         break;

@@ -16,7 +16,7 @@ class SkillData {
         KeyValueModel(key: "Ring of jumping", value: 5),
       ],
       raceBosst: [
-        KeyValueModel(key: "Hafling", value: 2),
+        KeyValueModel(key: "Halfling", value: 2),
       ],
       skillOfClasses: [
         "Barbarian",
@@ -86,7 +86,7 @@ class SkillData {
         KeyValueModel(key: "Ring of climbing", value: 5),
       ],
       raceBosst: [
-        KeyValueModel(key: "Hafling", value: 2),
+        KeyValueModel(key: "Halfling", value: 2),
       ],
       skillOfClasses: [
         "Barbarian",
@@ -473,7 +473,7 @@ class SkillData {
       raceBosst: [
         KeyValueModel(key: "Elf", value: 2),
         KeyValueModel(key: "Gnome", value: 2),
-        KeyValueModel(key: "Hafling", value: 2),
+        KeyValueModel(key: "Halfling", value: 2),
         KeyValueModel(key: "Half-elf", value: 2),
       ],
       skillOfClasses: [
@@ -600,7 +600,7 @@ class SkillData {
       ],
       raceBosst: [
         KeyValueModel(key: "Gnome", value: 4),
-        KeyValueModel(key: "Hafling", value: 4),
+        KeyValueModel(key: "Halfling", value: 4),
       ],
       skillOfClasses: [
         "Bard",

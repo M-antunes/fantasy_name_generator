@@ -137,7 +137,7 @@ class RaceData {
       ],
     ),
     RaceModel(
-      name: 'Hafling',
+      name: 'Halfling',
       isSelected: false,
       height: KeyValueModel(key: 2, value: 8),
       age: 20,

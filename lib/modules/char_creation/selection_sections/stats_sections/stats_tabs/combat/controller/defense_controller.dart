@@ -274,7 +274,7 @@ class DefenseController {
         partialRef = bonusAtLevel.good;
         partialWill = bonusAtLevel.good;
     }
-    if (race == "Hafling") {
+    if (race == "Halfling") {
       partialFort += 1;
       partialRef += 1;
       partialWill += 1;

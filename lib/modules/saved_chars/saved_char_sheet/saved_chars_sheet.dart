@@ -36,7 +36,7 @@ class SavedCharSheet extends StatelessWidget {
               Consumer<CharAdminController>(builder: (context, state, child) {
             state.initializingController();
             return Padding(
-              padding: const EdgeInsets.all(4),
+              padding: const EdgeInsets.all(6),
               child: Column(
                 children: [
                   Row(

@@ -17,12 +17,23 @@ class SkillController {
     List<SkillModel> classSkills = charSkillList
         .where((element) => element.skillOfClasses.contains(className))
         .toList();
+    bool hasPerception = false;
     for (var i in classSkills) {
       i.initialClassSkill = true;
+      if (i.name == "Perception") {
+        hasPerception = true;
+      }
     }
     int skillRankPerLevel = rankLevel + charAtrb.intelligence;
     skillRankPerLevel += raceName == "Human" ? level : 0;
     int maxSkills = skillRankPerLevel * level;
+    int pointsToAddInPerception = 0;
+    pointsToAddInPerception =
+        hasPerception ? (maxSkills - maxSkills * 0.95).floor() : level;
+    maxSkills -= pointsToAddInPerception;
+    charSkillList
+        .firstWhere((element) => element.name == "Perception")
+        .pointsAdded += pointsToAddInPerception;
     int unUsedRankPoints = 0;
     for (var i = 0; i < maxSkills; i++) {
       var random = generateRandom(classSkills.length);
@@ -34,7 +45,6 @@ class SkillController {
         classSkills[i].pointsAdded = level;
       }
     }
-
     charSkillList
         .removeWhere((element) => element.skillOfClasses.contains(className));
     if (unUsedRankPoints > 0) {
@@ -86,6 +96,7 @@ class SkillController {
       i.checkPenalty = penalty;
       i.finalValue -= penalty;
     }
+
     for (var i = 0; i < charSkillList.length; i++) {
       int totalBoost = 0;
       if (charSkillList[i].boostedByItems.isNotEmpty) {
@@ -107,6 +118,7 @@ class SkillController {
       charSkillList[i].finalValue += totalBoost;
       charSkillList[i] = charSkillList[i].copyWith(skillOfClasses: []);
     }
+
     return charSkillList;
   }
 }

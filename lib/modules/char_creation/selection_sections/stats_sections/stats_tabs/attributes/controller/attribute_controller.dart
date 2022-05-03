@@ -70,7 +70,7 @@ class AttributeController {
       case "Gnome":
         atrb = calculateAjustToRace(atrb, -2, 0, 2, 0, 0, 2);
         break;
-      case "Hafling":
+      case "Halfling":
         atrb = calculateAjustToRace(atrb, -2, 2, 0, 0, 0, 2);
         break;
       default:
@@ -206,7 +206,7 @@ class AttributeController {
         break;
       case "Rogue":
         diceAtrb = sortAttributesToClass(atrb, atrbValues[3], atrbValues[0],
-            atrbValues[5], atrbValues[2], atrbValues[4], atrbValues[1]);
+            atrbValues[4], atrbValues[2], atrbValues[5], atrbValues[1]);
         break;
       case "Ranger":
         diceAtrb = sortAttributesToClass(atrb, atrbValues[1], atrbValues[0],

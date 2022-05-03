@@ -67,6 +67,8 @@ class StatsController with ChangeNotifier {
     char.charRace.age = 0;
     char.charRace.size = "-";
     char.charRace.senses = "-";
+    armorName = "-";
+    shieldName = "-";
     char.charRace.height!.value = 0;
     char.charRace.height!.key = 0;
     char.charRace.weight = 0;

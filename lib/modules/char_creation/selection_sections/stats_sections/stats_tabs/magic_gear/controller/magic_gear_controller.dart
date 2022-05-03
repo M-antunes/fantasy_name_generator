@@ -132,6 +132,9 @@ class MagicGearController {
       List<WonderousItemsModel> items = availableItems
           .where((element) => element.type == itemsPerBodyParts[i])
           .toList();
+      if (items.isEmpty) {
+        break;
+      }
       var random = generateRandom(items.length);
       var newItem = items[random];
       while (charMagicItems.any((element) => element == items[random])) {

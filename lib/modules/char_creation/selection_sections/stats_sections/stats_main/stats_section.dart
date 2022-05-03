@@ -82,6 +82,7 @@ class _StatsSectionState extends State<StatsSection>
                 Consumer<StatsController>(builder: (context, ctrl, child) {
                   ctrl.char = state.cha;
                   return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
