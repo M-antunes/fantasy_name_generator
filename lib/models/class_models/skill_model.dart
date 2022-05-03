@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
+import 'package:fantasy_name_generator/controllers/stage_controller/imports.dart';
+
 class SkillModel {
   final String name;
   final String attributeUsed;
@@ -12,6 +14,8 @@ class SkillModel {
   int finalValue;
   int pointsAdded;
   int atrbValue;
+  int boostValue;
+  List<KeyValueModel> boostedByItems;
   SkillModel({
     this.name = '',
     this.attributeUsed = '',
@@ -22,6 +26,8 @@ class SkillModel {
     this.finalValue = 0,
     this.pointsAdded = 0,
     this.atrbValue = 0,
+    this.boostValue = 0,
+    this.boostedByItems = const [],
   });
 
   SkillModel copyWith({
@@ -34,6 +40,8 @@ class SkillModel {
     int? finalValue,
     int? pointsAdded,
     int? atrbValue,
+    int? boostValue,
+    List<KeyValueModel>? boostedByItems,
   }) {
     return SkillModel(
       name: name ?? this.name,
@@ -45,6 +53,8 @@ class SkillModel {
       finalValue: finalValue ?? this.finalValue,
       pointsAdded: pointsAdded ?? this.pointsAdded,
       atrbValue: atrbValue ?? this.atrbValue,
+      boostValue: boostValue ?? this.boostValue,
+      boostedByItems: boostedByItems ?? this.boostedByItems,
     );
   }
 
@@ -59,6 +69,8 @@ class SkillModel {
       'finalValue': finalValue,
       'pointsAdded': pointsAdded,
       'atrbValue': atrbValue,
+      'boostValue': boostValue,
+      'boostedByItems': boostedByItems.map((x) => x.toMap()).toList(),
     };
   }
 
@@ -73,6 +85,9 @@ class SkillModel {
       finalValue: map['finalValue']?.toInt() ?? 0,
       pointsAdded: map['pointsAdded']?.toInt() ?? 0,
       atrbValue: map['atrbValue']?.toInt() ?? 0,
+      boostValue: map['boostValue']?.toInt() ?? 0,
+      boostedByItems: List<KeyValueModel>.from(
+          map['boostedByItems']?.map((x) => KeyValueModel.fromMap(x))),
     );
   }
 
@@ -83,7 +98,7 @@ class SkillModel {
 
   @override
   String toString() {
-    return 'SkillModel(name: $name, attributeUsed: $attributeUsed, skillOfClasses: $skillOfClasses, hasPenalty: $hasPenalty, initialClassSkill: $initialClassSkill, checkPenalty: $checkPenalty, finalValue: $finalValue, pointsAdded: $pointsAdded, atrbValue: $atrbValue)';
+    return 'SkillModel(name: $name, attributeUsed: $attributeUsed, skillOfClasses: $skillOfClasses, hasPenalty: $hasPenalty, initialClassSkill: $initialClassSkill, checkPenalty: $checkPenalty, finalValue: $finalValue, pointsAdded: $pointsAdded, atrbValue: $atrbValue, boostValue: $boostValue, boostedByItems: $boostedByItems)';
   }
 
   @override
@@ -99,7 +114,9 @@ class SkillModel {
         other.checkPenalty == checkPenalty &&
         other.finalValue == finalValue &&
         other.pointsAdded == pointsAdded &&
-        other.atrbValue == atrbValue;
+        other.atrbValue == atrbValue &&
+        other.boostValue == boostValue &&
+        listEquals(other.boostedByItems, boostedByItems);
   }
 
   @override
@@ -112,6 +129,8 @@ class SkillModel {
         checkPenalty.hashCode ^
         finalValue.hashCode ^
         pointsAdded.hashCode ^
-        atrbValue.hashCode;
+        atrbValue.hashCode ^
+        boostValue.hashCode ^
+        boostedByItems.hashCode;
   }
 }

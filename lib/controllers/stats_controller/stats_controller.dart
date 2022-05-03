@@ -313,7 +313,8 @@ class StatsController with ChangeNotifier {
         char.charClass.name,
         char.charRace.speed,
         armorType,
-        speedPenalty);
+        speedPenalty,
+        char.charEquip.wonderousItems!);
     notifyListeners();
   }
 

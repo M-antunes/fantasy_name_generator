@@ -21,14 +21,8 @@ class SkillStats extends StatelessWidget {
           const AppHorizontalLine(),
           SizedBox(height: deviceHeight! * 0.004),
           const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8.0),
-            child: SkillRowLabelWidget(
-              bonus: "Bonus",
-              skillName: "Skill name",
-              atrb: "Atrbt",
-              pointAdded: "Points\nAdded",
-              armorPenalty: "Armor\npenalty",
-            ),
+            padding: EdgeInsets.symmetric(horizontal: 4),
+            child: SkillRowLabelWidget(),
           ),
           const AppHorizontalLine(),
           SizedBox(height: deviceHeight! * 0.004),
@@ -49,6 +43,7 @@ class SkillStats extends StatelessWidget {
                         atrb: skill.attributeUsed,
                         atrbValue: skill.atrbValue,
                         pointAdded: "${skill.pointsAdded}",
+                        boost: skill.boostValue,
                         armorPenalty: skill.checkPenalty > 0
                             ? "-${skill.checkPenalty}"
                             : "  0",

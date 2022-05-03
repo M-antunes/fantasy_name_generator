@@ -213,12 +213,23 @@ class OffenseController {
     }
   }
 
-  int calculateSpeed(List<RaceModel> races, int level, String charRace,
-      String charClass, int speed, String armorType, int armorPenalty) {
+  int calculateSpeed(
+      List<RaceModel> races,
+      int level,
+      String charRace,
+      String charClass,
+      int speed,
+      String armorType,
+      int armorPenalty,
+      List<WonderousItemsModel> items) {
     var raceGotten = races.firstWhere((element) => element.name == charRace);
     var baseSpeed = raceGotten.speed;
     if ((charClass == "Barbarian" || charClass == "Bandit") &&
         armorType == "Light") {
+      baseSpeed = baseSpeed + 10;
+    }
+    if (items
+        .any((element) => element.name == "Boots of striding and springing")) {
       baseSpeed = baseSpeed + 10;
     }
     if (charClass == "Monk" && level > 2) {

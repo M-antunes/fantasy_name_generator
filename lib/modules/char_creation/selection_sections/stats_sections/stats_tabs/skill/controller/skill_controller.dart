@@ -87,35 +87,18 @@ class SkillController {
       i.finalValue -= penalty;
     }
     for (var i = 0; i < charSkillList.length; i++) {
+      if (charSkillList[i].boostedByItems.isNotEmpty) {
+        for (var j = 0; j < charSkillList[i].boostedByItems.length; j++) {
+          if (equip.wonderousItems!.any((element) =>
+              element.name == charSkillList[i].boostedByItems[j].key)) {
+            charSkillList[i].boostValue =
+                charSkillList[i].boostedByItems[j].value;
+            charSkillList[i].finalValue += charSkillList[i].boostValue;
+          }
+        }
+      }
       charSkillList[i] = charSkillList[i].copyWith(skillOfClasses: []);
     }
-    charSkillList = alteringSkillByItemsOrTrait(
-        className, level, charSkillList, equip.wonderousItems!);
     return charSkillList;
   }
-}
-
-List<SkillModel> alteringSkillByItemsOrTrait(String className, int level,
-    List<SkillModel> skills, List<WonderousItemsModel> items) {
-  if (level < 5) {
-    return skills;
-  }
-  if (items.any((element) => element.name == "Boots of elvenkind")) {
-    skills.firstWhere((element) => element.name == "Acrobatics").finalValue +=
-        5;
-  }
-  if (items.any((element) => element.name == "Judge's wig")) {
-    skills.firstWhere((element) => element.name == "Diplomacy").finalValue += 4;
-  }
-  if (items.any((element) => element.name == "Lenses of detection")) {
-    skills.firstWhere((element) => element.name == "Perception").finalValue +=
-        5;
-    skills.firstWhere((element) => element.name == "Survival").finalValue += 5;
-  }
-  if (items
-      .any((element) => element.name == "Gloves of swimming and climbing")) {
-    skills.firstWhere((element) => element.name == "Swim").finalValue += 5;
-    skills.firstWhere((element) => element.name == "Climb").finalValue += 5;
-  }
-  return skills;
 }

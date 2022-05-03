@@ -1,3 +1,4 @@
+import 'package:fantasy_name_generator/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../../shared/constants/phone_sizes.dart';
@@ -9,6 +10,7 @@ class SkillRowWidget extends StatelessWidget {
   final String skillName;
   final String atrb;
   final String pointAdded;
+  final int boost;
   final String armorPenalty;
   final int atrbValue;
 
@@ -20,6 +22,7 @@ class SkillRowWidget extends StatelessWidget {
     required this.skillName,
     required this.atrb,
     required this.pointAdded,
+    required this.boost,
     required this.armorPenalty,
     required this.atrbValue,
     this.classSkill = false,
@@ -31,7 +34,7 @@ class SkillRowWidget extends StatelessWidget {
       children: [
         Row(
           crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             SizedBox(
               width: deviceWidth! * 0.5,
@@ -39,7 +42,7 @@ class SkillRowWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   SizedBox(
-                    width: deviceWidth! * 0.15,
+                    width: deviceWidth! * 0.11,
                     child: Align(
                       alignment: Alignment.center,
                       child: CircleAvatar(
@@ -78,45 +81,51 @@ class SkillRowWidget extends StatelessWidget {
               ),
             ),
             SizedBox(
-              width: deviceWidth! * 0.13,
-              child: Align(
-                alignment: Alignment.center,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      atrb.substring(0, 3),
-                      style: AppTextStyle.statsLabelBrighter,
-                      textAlign: TextAlign.center,
-                    ),
-                    Text(
-                      "($atrbValue)",
-                      style: AppTextStyle.statsLabelBrighter,
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
-                ),
+              width: deviceWidth! * 0.125,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    atrb.substring(0, 3),
+                    style: AppTextStyle.statsLabelBrighter,
+                  ),
+                  Text(
+                    "($atrbValue)",
+                    style: AppTextStyle.statsLabelBrighter,
+                  ),
+                ],
               ),
             ),
+            SizedBox(width: deviceWidth! * 0.03),
             SizedBox(
-              width: deviceWidth! * 0.13,
-              child: Align(
-                alignment: Alignment.center,
+              width: deviceWidth! * 0.05,
+              child: Center(
                 child: Text(
                   pointAdded,
                   style: AppTextStyle.statsLabelBrighter,
-                  textAlign: TextAlign.center,
                 ),
               ),
             ),
+            SizedBox(width: deviceWidth! * 0.03),
             SizedBox(
-              width: deviceWidth! * 0.13,
-              child: Align(
-                alignment: Alignment.center,
+              width: deviceWidth! * 0.07,
+              child: Center(
+                child: Text(
+                  "$boost",
+                  style: boost > 0
+                      ? AppTextStyle.statsLabelBrighter
+                          .copyWith(color: AppColors.boostColor)
+                      : AppTextStyle.statsLabelBrighter,
+                ),
+              ),
+            ),
+            SizedBox(width: deviceWidth! * 0.03),
+            SizedBox(
+              width: deviceWidth! * 0.07,
+              child: Center(
                 child: Text(
                   armorPenalty,
                   style: AppTextStyle.statsLabelBrighter,
-                  textAlign: TextAlign.center,
                 ),
               ),
             ),
