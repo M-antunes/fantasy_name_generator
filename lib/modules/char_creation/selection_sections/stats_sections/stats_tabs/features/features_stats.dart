@@ -38,6 +38,7 @@ class FeatureStats extends StatelessWidget {
                   (state.char.charClass.name != "Ranger" &&
                       state.char.charClass.name != "Bandit")
               ? Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     AttributeDivision(
                         label:
@@ -64,6 +65,7 @@ class FeatureStats extends StatelessWidget {
                       (state.char.charClass.name == "Ranger" ||
                           state.char.charClass.name == "Bandit")
                   ? Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         RangerFavoredInfo(
                             label: state.char.charClass.name == "Bandit"

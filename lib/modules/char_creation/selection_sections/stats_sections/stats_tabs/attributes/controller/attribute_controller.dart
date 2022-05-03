@@ -345,7 +345,7 @@ class AttributeController {
         (skills
                     .firstWhere((element) => element.name == "Linguistics")
                     .pointsAdded /
-                4)
+                5)
             .floor();
     List<LanguageModel> idioms = [];
     idioms = allIdioms

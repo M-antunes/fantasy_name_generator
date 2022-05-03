@@ -13,6 +13,7 @@ class CharDescriptionText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RichText(
+      textScaleFactor: 0.95,
       text: TextSpan(
         children: [
           TextSpan(text: "$label  ", style: AppTextStyle.statsLabel),

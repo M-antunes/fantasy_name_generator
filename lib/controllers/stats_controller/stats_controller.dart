@@ -571,6 +571,7 @@ class StatsController with ChangeNotifier {
   calculateClassSkills() {
     charSkills = skillCtrl.calculateClassSkills(
         char.charClass.name,
+        char.charRace.name,
         char.charClass.skillRankPerLevel,
         char.modAttributes,
         char.charLevel,

@@ -157,13 +157,6 @@ class FeaturesController {
     List<SpecialsModel> cloneList = barbarian.ragePowers
         .where((element) => element.levelAcquired <= level)
         .toList();
-    if (race == "Human" || race == "Hafling") {
-      cloneList.removeWhere((element) =>
-          element.name == "Night Vision" && element.name == "Low-light Vision");
-    }
-    if (race == "Orc" || race != "Dwarf" || race != "Half-orc") {
-      cloneList.removeWhere((element) => element.name == "Night Vision");
-    }
     List<SpecialsModel> specialList = [];
     for (var i = 0; i < numberOfSpecial; i++) {
       var random = generateRandom(cloneList.length);

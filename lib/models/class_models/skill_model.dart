@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/foundation.dart';
 
 import 'package:fantasy_name_generator/controllers/stage_controller/imports.dart';
@@ -16,6 +14,7 @@ class SkillModel {
   int atrbValue;
   int boostValue;
   List<KeyValueModel> boostedByItems;
+  List<KeyValueModel> raceBosst;
   SkillModel({
     this.name = '',
     this.attributeUsed = '',
@@ -28,6 +27,7 @@ class SkillModel {
     this.atrbValue = 0,
     this.boostValue = 0,
     this.boostedByItems = const [],
+    this.raceBosst = const [],
   });
 
   SkillModel copyWith({
@@ -42,6 +42,7 @@ class SkillModel {
     int? atrbValue,
     int? boostValue,
     List<KeyValueModel>? boostedByItems,
+    List<KeyValueModel>? raceBosst,
   }) {
     return SkillModel(
       name: name ?? this.name,
@@ -55,6 +56,7 @@ class SkillModel {
       atrbValue: atrbValue ?? this.atrbValue,
       boostValue: boostValue ?? this.boostValue,
       boostedByItems: boostedByItems ?? this.boostedByItems,
+      raceBosst: raceBosst ?? this.raceBosst,
     );
   }
 
@@ -71,6 +73,7 @@ class SkillModel {
       'atrbValue': atrbValue,
       'boostValue': boostValue,
       'boostedByItems': boostedByItems.map((x) => x.toMap()).toList(),
+      'raceBosst': raceBosst.map((x) => x.toMap()).toList(),
     };
   }
 
@@ -88,6 +91,8 @@ class SkillModel {
       boostValue: map['boostValue']?.toInt() ?? 0,
       boostedByItems: List<KeyValueModel>.from(
           map['boostedByItems']?.map((x) => KeyValueModel.fromMap(x))),
+      raceBosst: List<KeyValueModel>.from(
+          map['raceBosst']?.map((x) => KeyValueModel.fromMap(x))),
     );
   }
 
@@ -98,7 +103,7 @@ class SkillModel {
 
   @override
   String toString() {
-    return 'SkillModel(name: $name, attributeUsed: $attributeUsed, skillOfClasses: $skillOfClasses, hasPenalty: $hasPenalty, initialClassSkill: $initialClassSkill, checkPenalty: $checkPenalty, finalValue: $finalValue, pointsAdded: $pointsAdded, atrbValue: $atrbValue, boostValue: $boostValue, boostedByItems: $boostedByItems)';
+    return 'SkillModel(name: $name, attributeUsed: $attributeUsed, skillOfClasses: $skillOfClasses, hasPenalty: $hasPenalty, initialClassSkill: $initialClassSkill, checkPenalty: $checkPenalty, finalValue: $finalValue, pointsAdded: $pointsAdded, atrbValue: $atrbValue, boostValue: $boostValue, boostedByItems: $boostedByItems, raceBosst: $raceBosst)';
   }
 
   @override
@@ -116,7 +121,8 @@ class SkillModel {
         other.pointsAdded == pointsAdded &&
         other.atrbValue == atrbValue &&
         other.boostValue == boostValue &&
-        listEquals(other.boostedByItems, boostedByItems);
+        listEquals(other.boostedByItems, boostedByItems) &&
+        listEquals(other.raceBosst, raceBosst);
   }
 
   @override
@@ -131,6 +137,7 @@ class SkillModel {
         pointsAdded.hashCode ^
         atrbValue.hashCode ^
         boostValue.hashCode ^
-        boostedByItems.hashCode;
+        boostedByItems.hashCode ^
+        raceBosst.hashCode;
   }
 }

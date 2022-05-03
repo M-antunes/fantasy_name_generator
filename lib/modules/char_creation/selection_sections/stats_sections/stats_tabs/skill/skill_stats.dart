@@ -21,7 +21,7 @@ class SkillStats extends StatelessWidget {
           const AppHorizontalLine(),
           SizedBox(height: deviceHeight! * 0.004),
           const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 4),
+            padding: EdgeInsets.symmetric(horizontal: 2),
             child: SkillRowLabelWidget(),
           ),
           const AppHorizontalLine(),

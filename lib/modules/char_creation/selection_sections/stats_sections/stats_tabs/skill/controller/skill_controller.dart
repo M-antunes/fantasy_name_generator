@@ -1,13 +1,12 @@
 import '../../../../../../../models/class_models/skill_model.dart';
 import '../../../../../../../models/combat_models/base_atribute_model.dart';
 import '../../../../../../../models/equip_models/equip_model.dart';
-import '../../../../../../../models/equip_models/magic_equip_models/wonderous_items_model.dart';
 import '../../../../../../../shared/data/class_data/class_general_info_data/skill_data.dart';
 import '../../../../../../../shared/utils/utils.dart';
 
 class SkillController {
-  List<SkillModel> calculateClassSkills(String className, int rankLevel,
-      AttributeModel charAtrb, int level, EquipModel equip) {
+  List<SkillModel> calculateClassSkills(String className, String raceName,
+      int rankLevel, AttributeModel charAtrb, int level, EquipModel equip) {
     List<SkillModel> charSkillList = SkillData().skills;
     for (var i in charSkillList) {
       i.finalValue = 0;
@@ -22,6 +21,7 @@ class SkillController {
       i.initialClassSkill = true;
     }
     int skillRankPerLevel = rankLevel + charAtrb.intelligence;
+    skillRankPerLevel += raceName == "Human" ? level : 0;
     int maxSkills = skillRankPerLevel * level;
     int unUsedRankPoints = 0;
     for (var i = 0; i < maxSkills; i++) {
@@ -87,16 +87,24 @@ class SkillController {
       i.finalValue -= penalty;
     }
     for (var i = 0; i < charSkillList.length; i++) {
+      int totalBoost = 0;
       if (charSkillList[i].boostedByItems.isNotEmpty) {
         for (var j = 0; j < charSkillList[i].boostedByItems.length; j++) {
           if (equip.wonderousItems!.any((element) =>
               element.name == charSkillList[i].boostedByItems[j].key)) {
-            charSkillList[i].boostValue =
-                charSkillList[i].boostedByItems[j].value;
-            charSkillList[i].finalValue += charSkillList[i].boostValue;
+            totalBoost =
+                (totalBoost + charSkillList[i].boostedByItems[j].value).toInt();
+          }
+        }
+        for (var j = 0; j < charSkillList[i].raceBosst.length; j++) {
+          if (raceName == charSkillList[i].raceBosst[j].key) {
+            totalBoost =
+                (totalBoost + charSkillList[i].raceBosst[j].value).toInt();
           }
         }
       }
+      charSkillList[i].boostValue = totalBoost;
+      charSkillList[i].finalValue += totalBoost;
       charSkillList[i] = charSkillList[i].copyWith(skillOfClasses: []);
     }
     return charSkillList;

@@ -19,6 +19,11 @@ class CharAdminController with ChangeNotifier {
   List<CharModel> bandits = [];
   List<CharModel> barbarians = [];
   List<CharModel> warriors = [];
+  List<CharModel> rangers = [];
+  List<CharModel> rogues = [];
+  List<CharModel> monks = [];
+  List<CharModel> paladins = [];
+  List<CharModel> antipaladins = [];
   List<StoredCharClass> storedClasses = [];
 
   initializingController() {
@@ -84,9 +89,19 @@ class CharAdminController with ChangeNotifier {
       case "Alchemist":
         return barbarians;
       case "Bandit":
-        return barbarians;
+        return bandits;
+      case "Monk":
+        return monks;
+      case "Ranger":
+        return rangers;
+      case "Rogue":
+        return rogues;
+      case "Paladin":
+        return paladins;
+      case "Antipaladin":
+        return antipaladins;
       case "Aristocrat":
-        return barbarians;
+        return aristocrats;
       case "Warrior":
         return warriors;
     }
@@ -95,10 +110,15 @@ class CharAdminController with ChangeNotifier {
   clearAllLists() {
     allChars.clear();
     alchemists.clear();
+    antipaladins.clear();
     aristocrats.clear();
     bandits.clear();
     barbarians.clear();
     warriors.clear();
+    monks.clear();
+    rangers.clear();
+    rogues.clear();
+    paladins.clear();
     storedClasses.clear();
   }
 
@@ -108,6 +128,9 @@ class CharAdminController with ChangeNotifier {
         case "Alchemist":
           alchemists.add(i);
           break;
+        case "Antipaladin":
+          antipaladins.add(i);
+          break;
         case "Aristocrat":
           aristocrats.add(i);
           break;
@@ -116,6 +139,18 @@ class CharAdminController with ChangeNotifier {
           break;
         case "Barbarian":
           barbarians.add(i);
+          break;
+        case "Monk":
+          monks.add(i);
+          break;
+        case "Ranger":
+          rangers.add(i);
+          break;
+        case "Rogue":
+          rogues.add(i);
+          break;
+        case "Paladin":
+          paladins.add(i);
           break;
         case "Warrior":
           warriors.add(i);

@@ -25,7 +25,6 @@ class SheetInfoCombat extends StatelessWidget {
       child: Column(
         children: [
           const LabelForCategoryIcon(label: "Combat"),
-          SizedBox(height: deviceHeight! * 0.003),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -43,13 +42,16 @@ class SheetInfoCombat extends StatelessWidget {
                         CombatInfo(
                           label: "Hit Points:",
                           value: "${char.hitPoints}",
+                          onCharSheet: true,
                         ),
                         const SizedBox(height: 3),
                         Column(
                           children: [
-                            DefenseEquipTile(
+                            CombatInfo(
+                              length: deviceWidth! * 0.5,
+                              onCharSheet: true,
                               label: "Shield",
-                              name: char.charEquip.shield != null
+                              value: char.charEquip.shield != null
                                   ? char.loot.items!
                                       .firstWhere((element) => element.name
                                           .contains(
@@ -60,9 +62,11 @@ class SheetInfoCombat extends StatelessWidget {
                             const SizedBox(height: 3),
                           ],
                         ),
-                        DefenseEquipTile(
+                        CombatInfo(
+                          length: deviceWidth! * 0.5,
+                          onCharSheet: true,
                           label: "Armor",
-                          name: char.charEquip.armour != null
+                          value: char.charEquip.armour != null
                               ? char.loot.items!
                                   .firstWhere((element) => element.name
                                       .contains(char.charEquip.armour!.name!))
@@ -79,15 +83,20 @@ class SheetInfoCombat extends StatelessWidget {
                         length: deviceWidth! * 0.3,
                         label: "Armor Class:",
                         value: "${char.combatStats.armourClass}",
+                        onCharSheet: true,
                       ),
                       const SizedBox(height: 3),
                       CombatInfo(
-                          label: "Surprise:",
-                          value: "${char.combatStats.armourSurprise}"),
+                        label: "Surprise:",
+                        value: "${char.combatStats.armourSurprise}",
+                        onCharSheet: true,
+                      ),
                       const SizedBox(height: 3),
                       CombatInfo(
-                          label: "Touch:",
-                          value: "${char.combatStats.armourTouch}"),
+                        label: "Touch:",
+                        value: "${char.combatStats.armourTouch}",
+                        onCharSheet: true,
+                      ),
                     ],
                   ),
                 ],
@@ -100,54 +109,62 @@ class SheetInfoCombat extends StatelessWidget {
                     length: deviceWidth! * 0.25,
                     label: "Fortitude:",
                     value: "${char.resistances.fortitude}",
+                    onCharSheet: true,
                   ),
                   SizedBox(width: deviceWidth! * 0.01),
                   CombatInfo(
                     length: deviceWidth! * 0.25,
                     label: "Reflex:",
                     value: "${char.resistances.reflex}",
+                    onCharSheet: true,
                   ),
                   SizedBox(width: deviceWidth! * 0.01),
                   CombatInfo(
                     length: deviceWidth! * 0.25,
                     label: "Will:",
                     value: "${char.resistances.will}",
+                    onCharSheet: true,
                   ),
                 ],
               ),
-              const SizedBox(height: 3),
               const AttributeDivision(label: "Offense"),
               Row(
                 children: [
                   CombatInfo(
                     label: "Initiative:",
                     value: "${char.combatStats.initiative}",
+                    onCharSheet: true,
                   ),
                   SizedBox(width: deviceWidth! * 0.01),
                   CombatInfo(
                     label: "Speed:",
                     value: "${char.charRace.speed} ft.",
+                    onCharSheet: true,
                   ),
                 ],
               ),
               const SizedBox(height: 3),
               Row(
                 children: [
-                  CharDescriptionText(
+                  CombatInfo(
+                    length: deviceWidth! * 0.36,
                     label: "Base attack bonus:",
-                    textValue: "${char.combatStats.baseAttackBonus}",
+                    value: "${char.combatStats.baseAttackBonus}",
+                    onCharSheet: true,
                   ),
                   SizedBox(width: deviceWidth! * 0.02),
                   CombatInfo(
                     length: deviceWidth! * 0.18,
                     label: "CMB:",
                     value: "${char.combatStats.combatManeuverBonus}",
+                    onCharSheet: true,
                   ),
                   SizedBox(width: deviceWidth! * 0.02),
                   CombatInfo(
                     length: deviceWidth! * 0.18,
                     label: "CMD",
                     value: "${char.combatStats.combatManeuverDefense}",
+                    onCharSheet: true,
                   ),
                 ],
               ),
@@ -164,6 +181,7 @@ class SheetInfoCombat extends StatelessWidget {
                               element.traiName.contains("Sneak attack"))
                           .traiName
                           .substring(13),
+                      onCharSheet: true,
                     ),
                   ],
                 ),
@@ -174,6 +192,7 @@ class SheetInfoCombat extends StatelessWidget {
                     const SizedBox(height: 3),
                     CombatInfo(
                       length: deviceWidth! * 0.5,
+                      onCharSheet: true,
                       label: char.charClass.traits!.isEmpty
                           ? ''
                           : char.charClass.traits!
@@ -199,14 +218,15 @@ class SheetInfoCombat extends StatelessWidget {
                     CombatInfo(
                         length: deviceWidth!,
                         label: "Total attack: ",
+                        onCharSheet: true,
                         value: "${char.combatStats.dualWieldAttack}"),
                     CombatInfo(
                         length: deviceWidth!,
                         label: "Damage:",
+                        onCharSheet: true,
                         value: "${char.combatStats.dualWieldDamage}")
                   ],
                 ),
-              const SizedBox(height: 3),
               WeaponTile(
                   isOnCharSheet: true,
                   type: char.physicalStyle.name == "Dual-wielder"

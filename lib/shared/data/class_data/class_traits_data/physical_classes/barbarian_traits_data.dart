@@ -143,13 +143,6 @@ class BarbarianTraitsData {
           "Once per round, the barbarian can make a bull rush attempt against one target in place of a melee attack. If successful, the target takes damage equal to the barbarian's Strength modifier and is moved back as normal. The barbarian does not need to move with the target if successful. This does not provoke an attack of opportunity.",
     ),
     SpecialsModel(
-      name: "Low-Light Vision",
-      isSelected: false,
-      levelAcquired: 1,
-      description:
-          "The barbarian's senses sharpen and she gains low-light vision while raging.",
-    ),
-    SpecialsModel(
       name: "Mighty Swing",
       isSelected: false,
       levelAcquired: 12,
@@ -162,13 +155,6 @@ class BarbarianTraitsData {
       levelAcquired: 1,
       description:
           "The barbarian does not gain any benefits or take any of the penalties from rage for 1 round. Activating this power is a swift action. This includes the penalty to Armor Class and the restriction on what actions can be performed. This round still counts against her total number of rounds of rage per day. This power can only be used once per rage.",
-    ),
-    SpecialsModel(
-      name: "Night Vision",
-      isSelected: false,
-      levelAcquired: 1,
-      description:
-          "The barbarian's senses grow incredibly sharp while raging and she gains darkvision 60 feet. A barbarian must have low-light vision as a rage power or a racial trait to select this rage power.",
     ),
     SpecialsModel(
       name: "No Escape",

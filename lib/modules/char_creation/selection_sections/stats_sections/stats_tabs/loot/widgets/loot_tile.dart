@@ -9,12 +9,14 @@ class LootTile extends StatelessWidget {
   final dynamic fullPrice;
   final int? qnt;
   final int? price;
+  final bool onCharSheet;
   const LootTile({
     Key? key,
     required this.name,
     required this.fullPrice,
     this.qnt,
     this.price,
+    this.onCharSheet = false,
   }) : super(key: key);
 
   @override
@@ -28,11 +30,13 @@ class LootTile extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(name,
-                  style: AppTextStyle.statsLabel
-                      .copyWith(color: Colors.grey[300])),
+                  style:
+                      AppTextStyle.statsLabel.copyWith(color: Colors.grey[300]),
+                  textScaleFactor: onCharSheet ? 0.9 : 1),
               Text(fullPrice,
-                  style: AppTextStyle.statsLabel
-                      .copyWith(color: Colors.grey[300])),
+                  style:
+                      AppTextStyle.statsLabel.copyWith(color: Colors.grey[300]),
+                  textScaleFactor: onCharSheet ? 0.9 : 1),
             ],
           ),
           const SizedBox(height: 3),
@@ -43,21 +47,27 @@ class LootTile extends StatelessWidget {
                     width: deviceWidth! * 0.16,
                     child: Row(
                       children: [
-                        Text("Qnt:", style: AppTextStyle.traitDescription),
+                        Text("Qnt:",
+                            style: AppTextStyle.traitDescription,
+                            textScaleFactor: onCharSheet ? 0.9 : 1),
                         const SizedBox(width: 4),
                         Text(qnt.toString(),
                             style: AppTextStyle.statsLabel
-                                .copyWith(color: Colors.grey[300])),
+                                .copyWith(color: Colors.grey[300]),
+                            textScaleFactor: onCharSheet ? 0.9 : 1),
                       ],
                     )),
                 SizedBox(
                     child: Row(
                   children: [
-                    Text("Unity price:", style: AppTextStyle.traitDescription),
+                    Text("Unity price:",
+                        style: AppTextStyle.traitDescription,
+                        textScaleFactor: onCharSheet ? 0.9 : 1),
                     const SizedBox(width: 4),
                     Text(formatGoldPiece(price!),
                         style: AppTextStyle.statsLabel
-                            .copyWith(color: Colors.grey[300])),
+                            .copyWith(color: Colors.grey[300]),
+                        textScaleFactor: onCharSheet ? 0.9 : 1),
                   ],
                 )),
               ],

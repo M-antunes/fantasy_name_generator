@@ -15,6 +15,9 @@ class SkillData {
         KeyValueModel(key: "Boots of striding and springing", value: 5),
         KeyValueModel(key: "Ring of jumping", value: 5),
       ],
+      raceBosst: [
+        KeyValueModel(key: "Hafling", value: 2),
+      ],
       skillOfClasses: [
         "Barbarian",
         "Bard",
@@ -33,6 +36,9 @@ class SkillData {
       checkPenalty: 0,
       boostedByItems: [
         KeyValueModel(key: "Miser's mask", value: 5),
+      ],
+      raceBosst: [
+        KeyValueModel(key: "Dwarf", value: 2),
       ],
       skillOfClasses: [
         "Bard",
@@ -55,6 +61,9 @@ class SkillData {
       boostedByItems: [
         KeyValueModel(key: "Bracelet of bargaining", value: 5),
       ],
+      raceBosst: [
+        KeyValueModel(key: "", value: 2),
+      ],
       skillOfClasses: [
         "Bard",
         "Alchemist",
@@ -76,6 +85,9 @@ class SkillData {
         KeyValueModel(key: "Gloves of swimming and climbing", value: 5),
         KeyValueModel(key: "Ring of climbing", value: 5),
       ],
+      raceBosst: [
+        KeyValueModel(key: "Hafling", value: 2),
+      ],
       skillOfClasses: [
         "Barbarian",
         "Bard",
@@ -93,7 +105,9 @@ class SkillData {
       attributeUsed: "intelligence",
       hasPenalty: false,
       checkPenalty: 0,
-      boostedByItems: [],
+      raceBosst: [
+        KeyValueModel(key: "Gnome", value: 2),
+      ],
       skillOfClasses: ["all"],
     ),
     SkillModel(
@@ -105,6 +119,9 @@ class SkillData {
         KeyValueModel(key: "Diplomatist's vest", value: 12),
         KeyValueModel(key: "Judge's wig", value: 4),
         KeyValueModel(key: "Bracelet of bargaining", value: 5),
+      ],
+      raceBosst: [
+        KeyValueModel(key: "", value: 2),
       ],
       skillOfClasses: [
         "Bard",
@@ -122,7 +139,9 @@ class SkillData {
       attributeUsed: "dexterity",
       hasPenalty: true,
       checkPenalty: 0,
-      boostedByItems: [],
+      raceBosst: [
+        KeyValueModel(key: "", value: 2),
+      ],
       skillOfClasses: ["Rogue", "Bandit"],
     ),
     SkillModel(
@@ -130,7 +149,9 @@ class SkillData {
       attributeUsed: "charisma",
       hasPenalty: false,
       checkPenalty: 0,
-      boostedByItems: [],
+      raceBosst: [
+        KeyValueModel(key: "", value: 2),
+      ],
       skillOfClasses: ["Bard", "Rogue"],
     ),
     SkillModel(
@@ -140,6 +161,9 @@ class SkillData {
       checkPenalty: 0,
       boostedByItems: [
         KeyValueModel(key: "Corset of the Vishkanya", value: 5),
+      ],
+      raceBosst: [
+        KeyValueModel(key: "", value: 2),
       ],
       skillOfClasses: ["Bard", "Rogue", "Bandit", "Alchemist", "Monk"],
     ),
@@ -151,6 +175,9 @@ class SkillData {
       boostedByItems: [
         KeyValueModel(key: "Winged boots", value: 4),
         KeyValueModel(key: "Wings of flying", value: 5),
+      ],
+      raceBosst: [
+        KeyValueModel(key: "", value: 2),
       ],
       skillOfClasses: [
         "Druid",
@@ -170,6 +197,9 @@ class SkillData {
         KeyValueModel(key: "Ring of sacred mistletoe", value: 2),
         KeyValueModel(key: "", value: ""),
       ],
+      raceBosst: [
+        KeyValueModel(key: "", value: 2),
+      ],
       skillOfClasses: [
         "Druid",
         "Barbarian",
@@ -187,6 +217,9 @@ class SkillData {
       boostedByItems: [
         KeyValueModel(key: "Healer's gloves", value: 5),
       ],
+      raceBosst: [
+        KeyValueModel(key: "", value: 2),
+      ],
       skillOfClasses: ["Cleric", "Druid", "Paladin"],
     ),
     SkillModel(
@@ -197,6 +230,9 @@ class SkillData {
       boostedByItems: [
         KeyValueModel(key: "Maw of the wyrm", value: 4),
         KeyValueModel(key: "Judge's wig", value: 4),
+      ],
+      raceBosst: [
+        KeyValueModel(key: "Half-orc", value: 2),
       ],
       skillOfClasses: [
         "Barbarian",
@@ -217,7 +253,9 @@ class SkillData {
       attributeUsed: "intelligence",
       hasPenalty: false,
       checkPenalty: 0,
-      boostedByItems: [],
+      raceBosst: [
+        KeyValueModel(key: "", value: 2),
+      ],
       skillOfClasses: ["Cleric", "Sorcerer", "Wizard", "Arcanist", "Alchemist"],
     ),
     SkillModel(
@@ -225,6 +263,9 @@ class SkillData {
       attributeUsed: "intelligence",
       hasPenalty: false,
       checkPenalty: 0,
+      raceBosst: [
+        KeyValueModel(key: "", value: 2),
+      ],
       skillOfClasses: [
         "Bard",
         "Wizard",
@@ -240,6 +281,9 @@ class SkillData {
       attributeUsed: "intelligence",
       hasPenalty: false,
       checkPenalty: 0,
+      raceBosst: [
+        KeyValueModel(key: "", value: 2),
+      ],
       skillOfClasses: [
         "Bard",
         "Warrior",
@@ -255,6 +299,9 @@ class SkillData {
       attributeUsed: "intelligence",
       hasPenalty: false,
       checkPenalty: 0,
+      raceBosst: [
+        KeyValueModel(key: "", value: 2),
+      ],
       boostedByItems: [KeyValueModel(key: "", value: "")],
       skillOfClasses: [
         "Bard",
@@ -274,6 +321,9 @@ class SkillData {
       hasPenalty: false,
       checkPenalty: 0,
       boostedByItems: [KeyValueModel(key: "Scholar's ring", value: 5)],
+      raceBosst: [
+        KeyValueModel(key: "", value: 2),
+      ],
       skillOfClasses: [
         "Bard",
         "Wizard",
@@ -290,6 +340,9 @@ class SkillData {
       attributeUsed: "intelligence",
       hasPenalty: false,
       checkPenalty: 0,
+      raceBosst: [
+        KeyValueModel(key: "", value: 2),
+      ],
       skillOfClasses: [
         "Bard",
         "Wizard",
@@ -305,6 +358,9 @@ class SkillData {
       attributeUsed: "intelligence",
       hasPenalty: false,
       checkPenalty: 0,
+      raceBosst: [
+        KeyValueModel(key: "", value: 2),
+      ],
       boostedByItems: [
         KeyValueModel(key: "Ring of sacred mistletoe", value: 2),
       ],
@@ -327,6 +383,9 @@ class SkillData {
       attributeUsed: "intelligence",
       hasPenalty: false,
       checkPenalty: 0,
+      raceBosst: [
+        KeyValueModel(key: "", value: 2),
+      ],
       skillOfClasses: [
         "Bard",
         "Wizard",
@@ -343,6 +402,9 @@ class SkillData {
       attributeUsed: "intelligence",
       hasPenalty: false,
       checkPenalty: 0,
+      raceBosst: [
+        KeyValueModel(key: "", value: 2),
+      ],
       skillOfClasses: [
         "Bard",
         "Wizard",
@@ -361,6 +423,9 @@ class SkillData {
       attributeUsed: "intelligence",
       hasPenalty: false,
       checkPenalty: 0,
+      raceBosst: [
+        KeyValueModel(key: "", value: 2),
+      ],
       skillOfClasses: [
         "Bard",
         "Wizard",
@@ -382,6 +447,9 @@ class SkillData {
         KeyValueModel(
             key: "Helm of comprehend languages and read magic", value: 5)
       ],
+      raceBosst: [
+        KeyValueModel(key: "", value: 2),
+      ],
       skillOfClasses: [
         "Bard",
         "Wizard",
@@ -401,6 +469,12 @@ class SkillData {
         KeyValueModel(key: "Eyes of the eagle", value: 5),
         KeyValueModel(key: "Lenses of detection", value: 5),
         KeyValueModel(key: "", value: ""),
+      ],
+      raceBosst: [
+        KeyValueModel(key: "Elf", value: 2),
+        KeyValueModel(key: "Gnome", value: 2),
+        KeyValueModel(key: "Hafling", value: 2),
+        KeyValueModel(key: "Half-elf", value: 2),
       ],
       skillOfClasses: [
         "Barbarian",
@@ -422,6 +496,9 @@ class SkillData {
       boostedByItems: [
         KeyValueModel(key: "Bracers of the glib entertainer", value: 5),
       ],
+      raceBosst: [
+        KeyValueModel(key: "", value: 2),
+      ],
       skillOfClasses: ["Bard", "Monk", "Rogue", "Aristocrat", "Noble"],
     ),
     SkillModel(
@@ -429,6 +506,9 @@ class SkillData {
       attributeUsed: "wis",
       hasPenalty: false,
       checkPenalty: 0,
+      raceBosst: [
+        KeyValueModel(key: "", value: 2),
+      ],
       skillOfClasses: ["all"],
     ),
     SkillModel(
@@ -436,6 +516,9 @@ class SkillData {
       attributeUsed: "dexterity",
       hasPenalty: true,
       checkPenalty: 0,
+      raceBosst: [
+        KeyValueModel(key: "", value: 2),
+      ],
       skillOfClasses: [
         "Barbarian",
         "Druid",
@@ -454,6 +537,9 @@ class SkillData {
       checkPenalty: 0,
       boostedByItems: [
         KeyValueModel(key: "Bracelet of bargaining", value: 5),
+      ],
+      raceBosst: [
+        KeyValueModel(key: "", value: 2),
       ],
       skillOfClasses: [
         "Bard",
@@ -474,6 +560,9 @@ class SkillData {
       boostedByItems: [
         KeyValueModel(key: "Gloves of larceny", value: 5),
       ],
+      raceBosst: [
+        KeyValueModel(key: "", value: 2),
+      ],
       skillOfClasses: ["Bard", "Rogue", "Bandit"],
     ),
     SkillModel(
@@ -483,6 +572,9 @@ class SkillData {
       checkPenalty: 0,
       boostedByItems: [
         KeyValueModel(key: "Goggles of elvenkind", value: 5),
+      ],
+      raceBosst: [
+        KeyValueModel(key: "Elf", value: 2),
       ],
       skillOfClasses: [
         "Bard",
@@ -506,6 +598,10 @@ class SkillData {
       boostedByItems: [
         KeyValueModel(key: "Ring of chameleon power", value: 10),
       ],
+      raceBosst: [
+        KeyValueModel(key: "Gnome", value: 4),
+        KeyValueModel(key: "Hafling", value: 4),
+      ],
       skillOfClasses: [
         "Bard",
         "Rogue",
@@ -522,6 +618,9 @@ class SkillData {
       checkPenalty: 0,
       boostedByItems: [
         KeyValueModel(key: "Lenses of detection", value: 5),
+      ],
+      raceBosst: [
+        KeyValueModel(key: "", value: 2),
       ],
       skillOfClasses: [
         "Barbarian",
@@ -543,6 +642,9 @@ class SkillData {
         KeyValueModel(key: "Ring of the sea strider", value: 8),
         KeyValueModel(key: "Gloves of swimming and climbing", value: 5),
       ],
+      raceBosst: [
+        KeyValueModel(key: "", value: 2),
+      ],
       skillOfClasses: [
         "Barbarian",
         "Warrior",
@@ -558,6 +660,9 @@ class SkillData {
       attributeUsed: "charisma",
       hasPenalty: false,
       checkPenalty: 0,
+      raceBosst: [
+        KeyValueModel(key: "", value: 2),
+      ],
       skillOfClasses: ["Bard", "Rogue", "Sorcerer", "Alchemist"],
     ),
   ];

@@ -62,6 +62,7 @@ class SheetInfoMagicEquip extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(4),
                       child: char.charLevel > 8 &&
+                              potion.name == "Aid" &&
                               char.charEquip.potions.first.name == "Aid"
                           ? RichText(
                               text: TextSpan(children: [

@@ -37,7 +37,7 @@ class SkillRowWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             SizedBox(
-              width: deviceWidth! * 0.5,
+              width: deviceWidth! * 0.48,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -96,7 +96,7 @@ class SkillRowWidget extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(width: deviceWidth! * 0.03),
+            SizedBox(width: deviceWidth! * 0.05),
             SizedBox(
               width: deviceWidth! * 0.05,
               child: Center(

@@ -36,8 +36,10 @@ class SheetInfoLoot extends StatelessWidget {
                 itemBuilder: (context, index) {
                   var item = char.loot.items![index];
                   return LootTile(
-                      name: item.name,
-                      fullPrice: formatGoldPiece(item.finalPrice));
+                    name: item.name,
+                    fullPrice: formatGoldPiece(item.finalPrice),
+                    onCharSheet: true,
+                  );
                 }),
             AttributeDivision(defineWidth: deviceWidth! * 075, label: "Jwels"),
             ListView.builder(
@@ -47,10 +49,12 @@ class SheetInfoLoot extends StatelessWidget {
                 itemBuilder: (context, index) {
                   var jwel = char.loot.jwels![index];
                   return LootTile(
-                      name: jwel.name,
-                      fullPrice: formatGoldPiece(jwel.finalPrice),
-                      price: jwel.price,
-                      qnt: jwel.qnt);
+                    name: jwel.name,
+                    fullPrice: formatGoldPiece(jwel.finalPrice),
+                    price: jwel.price,
+                    qnt: jwel.qnt,
+                    onCharSheet: true,
+                  );
                 }),
             AttributeDivision(
               defineWidth: deviceWidth! * 075,
@@ -65,10 +69,12 @@ class SheetInfoLoot extends StatelessWidget {
                 itemBuilder: (context, index) {
                   var potion = char.loot.potions![index];
                   return LootTile(
-                      name: potion.name,
-                      fullPrice: formatGoldPiece(potion.finalPrice),
-                      price: potion.price,
-                      qnt: potion.qnt);
+                    name: potion.name,
+                    fullPrice: formatGoldPiece(potion.finalPrice),
+                    price: potion.price,
+                    qnt: potion.qnt,
+                    onCharSheet: true,
+                  );
                 }),
             AttributeDivision(defineWidth: deviceWidth! * 075, label: "Coin"),
             Padding(

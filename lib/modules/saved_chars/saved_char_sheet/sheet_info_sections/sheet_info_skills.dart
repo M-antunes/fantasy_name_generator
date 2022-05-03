@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../models/char_personal_models/char_model.dart';
 import '../../../../shared/constants/phone_sizes.dart';
+import '../../../../shared/themes/app_colors.dart';
 import '../../../../shared/themes/app_text_styles.dart';
 import '../../../../shared/widgets/app_horizontal_line.dart';
 import '../../../../shared/widgets/expanded_section.dart';
@@ -23,54 +24,57 @@ class SheetInfoSkills extends StatelessWidget {
         children: [
           const LabelForCategoryIcon(label: "Skills"),
           const AppHorizontalLine(),
+          SizedBox(height: deviceHeight! * 0.004),
           Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               SizedBox(
-                width: deviceWidth! * 0.11,
-                child: Text(
-                  "Bonus",
-                  style: AppTextStyle.longDescription.copyWith(fontSize: 11),
+                width: deviceWidth! * 0.44,
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: deviceWidth! * 0.1,
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "Bonus",
+                          style: AppTextStyle.skillClassLabel,
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                    Text(
+                      "Skill name",
+                      style: AppTextStyle.skillClassLabel,
+                    ),
+                  ],
                 ),
               ),
-              SizedBox(
-                  width: deviceWidth! * 0.34,
-                  child: Text(
-                    " Skill name",
-                    style: AppTextStyle.longDescription.copyWith(fontSize: 11),
-                  )),
-              SizedBox(
-                  width: deviceWidth! * 0.11,
-                  child: Center(
-                    child: Text(
-                      "Atrb",
-                      style:
-                          AppTextStyle.longDescription.copyWith(fontSize: 11),
-                    ),
-                  )),
-              SizedBox(
-                  width: deviceWidth! * 0.11,
-                  child: Align(
-                    alignment: Alignment.centerRight,
-                    child: Text(
-                      "Points\nAdded",
-                      style:
-                          AppTextStyle.longDescription.copyWith(fontSize: 11),
-                    ),
-                  )),
-              SizedBox(
-                  width: deviceWidth! * 0.11,
-                  child: Align(
-                    alignment: Alignment.centerRight,
-                    child: Text(
-                      "Armor\nPenalty",
-                      style:
-                          AppTextStyle.longDescription.copyWith(fontSize: 11),
-                    ),
-                  )),
+              Text(
+                "Atrbt",
+                style: AppTextStyle.skillClassLabel,
+                textAlign: TextAlign.center,
+              ),
+              Text(
+                "Points\nAdded",
+                style: AppTextStyle.skillClassLabel,
+                textAlign: TextAlign.center,
+              ),
+              Text(
+                "Boost",
+                style: AppTextStyle.skillClassLabel,
+                textAlign: TextAlign.center,
+              ),
+              Text(
+                "Armor\npenalty",
+                style: AppTextStyle.skillClassLabel,
+                textAlign: TextAlign.center,
+              ),
             ],
           ),
           const AppHorizontalLine(),
+          SizedBox(height: deviceHeight! * 0.004),
           SizedBox(
             height: deviceHeight! * 0.6,
             child: ListView(
@@ -82,65 +86,124 @@ class SheetInfoSkills extends StatelessWidget {
                     itemCount: char.skills.length,
                     itemBuilder: (context, index) {
                       var skill = char.skills[index];
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 1.5),
-                        child: Row(
-                          children: [
-                            SizedBox(
-                              width: deviceWidth! * 0.08,
-                              child: CircleAvatar(
-                                backgroundColor: Colors.grey[900],
-                                radius: 16,
-                                child: Text(
-                                  "${skill.finalValue}",
-                                  style: AppTextStyle.statsLabelBrighter,
-                                  textAlign: TextAlign.center,
+                      return Column(
+                        children: [
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                width: deviceWidth! * 0.43,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    SizedBox(
+                                      width: deviceWidth! * 0.09,
+                                      child: Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: CircleAvatar(
+                                          backgroundColor: Colors.grey[900],
+                                          radius: 16,
+                                          child: Text(
+                                            "${skill.finalValue}",
+                                            style:
+                                                AppTextStyle.statsLabelBrighter,
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 3),
+                                      child: SizedBox(
+                                        child: Align(
+                                          alignment: Alignment.centerLeft,
+                                          child: Text(
+                                            skill.name.contains("Knowledge")
+                                                ? "${skill.name.substring(0, 9)}\n${skill.name.substring(10)}"
+                                                : skill.name,
+                                            style: skill.initialClassSkill
+                                                ? AppTextStyle
+                                                    .subTextWhitePlusSize
+                                                : AppTextStyle
+                                                    .statsLabelBrighter,
+                                            textScaleFactor: (skill.name
+                                                        .contains(
+                                                            "Knowledge") ||
+                                                    skill.name
+                                                        .contains("Sleight") ||
+                                                    skill.name
+                                                        .contains("Device"))
+                                                ? 0.8
+                                                : 0.9,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
-                            ),
-                            const SizedBox(width: 5),
-                            SizedBox(
-                                width: deviceWidth! * 0.35,
-                                child: Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(vertical: 4),
-                                  child: Text(
-                                    skill.name.contains("Knowledge")
-                                        ? "${skill.name.substring(0, 9)}\n${skill.name.substring(10)}"
-                                        : skill.name,
-                                    style: skill.initialClassSkill
-                                        ? AppTextStyle.subTextWhitePlusSize
-                                        : AppTextStyle.statsLabelBrighter,
-                                    textScaleFactor: 0.9,
-                                  ),
-                                )),
-                            SizedBox(
-                                width: deviceWidth! * 0.14,
+                              SizedBox(
+                                width: deviceWidth! * 0.1,
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      skill.attributeUsed.substring(0, 3),
+                                      textScaleFactor: 0.8,
+                                      style: AppTextStyle.statsLabelBrighter,
+                                    ),
+                                    Text(
+                                      "(${skill.atrbValue})",
+                                      textScaleFactor: 0.8,
+                                      style: AppTextStyle.statsLabelBrighter,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(width: deviceWidth! * 0.03),
+                              SizedBox(
+                                width: deviceWidth! * 0.05,
                                 child: Center(
                                   child: Text(
-                                    "${skill.attributeUsed.substring(0, 3)} (${skill.atrbValue})",
+                                    "${skill.pointsAdded}",
+                                    textScaleFactor: 0.8,
                                     style: AppTextStyle.statsLabelBrighter,
-                                    textAlign: TextAlign.center,
                                   ),
-                                )),
-                            SizedBox(
-                                width: deviceWidth! * 0.1,
-                                child: Text(
-                                  "${skill.pointsAdded}",
-                                  style: AppTextStyle.statsLabelBrighter,
-                                  textAlign: TextAlign.center,
-                                )),
-                            SizedBox(
-                                width: deviceWidth! * 0.1,
-                                child: Text(
-                                  skill.checkPenalty > 0
-                                      ? "-${skill.checkPenalty}"
-                                      : "  0",
-                                  style: AppTextStyle.statsLabelBrighter,
-                                  textAlign: TextAlign.center,
-                                )),
-                          ],
-                        ),
+                                ),
+                              ),
+                              SizedBox(width: deviceWidth! * 0.03),
+                              SizedBox(
+                                width: deviceWidth! * 0.04,
+                                child: Center(
+                                  child: Text(
+                                    "${skill.boostValue}",
+                                    style: skill.boostValue > 0
+                                        ? AppTextStyle.statsLabelBrighter
+                                            .copyWith(
+                                                color: AppColors.boostColor)
+                                        : AppTextStyle.statsLabelBrighter,
+                                    textScaleFactor: 0.8,
+                                  ),
+                                ),
+                              ),
+                              SizedBox(width: deviceWidth! * 0.03),
+                              SizedBox(
+                                width: deviceWidth! * 0.04,
+                                child: Center(
+                                  child: Text(
+                                    "${skill.checkPenalty}",
+                                    style: AppTextStyle.statsLabelBrighter,
+                                    textScaleFactor: 0.8,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: deviceHeight! * 0.005),
+                        ],
                       );
                     }),
                 SizedBox(height: deviceHeight! * 0.004),
