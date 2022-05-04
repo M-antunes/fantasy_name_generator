@@ -14,6 +14,8 @@ class SkillData {
         KeyValueModel(key: "Boots of elvenkind", value: 5),
         KeyValueModel(key: "Boots of striding and springing", value: 5),
         KeyValueModel(key: "Ring of jumping", value: 5),
+        KeyValueModel(key: "Claws of the ice bear", value: 2),
+        KeyValueModel(key: "Besmara's bicorne", value: 2),
       ],
       raceBosst: [
         KeyValueModel(key: "Halfling", value: 2),
@@ -36,6 +38,7 @@ class SkillData {
       checkPenalty: 0,
       boostedByItems: [
         KeyValueModel(key: "Miser's mask", value: 5),
+        KeyValueModel(key: "Gloves of the keen evaluator", value: 4),
       ],
       raceBosst: [
         KeyValueModel(key: "Dwarf", value: 2),
@@ -60,6 +63,7 @@ class SkillData {
       checkPenalty: 0,
       boostedByItems: [
         KeyValueModel(key: "Bracelet of bargaining", value: 5),
+        KeyValueModel(key: "Circlet of persuasion", value: 3),
       ],
       raceBosst: [
         KeyValueModel(key: "", value: 2),
@@ -84,6 +88,8 @@ class SkillData {
       boostedByItems: [
         KeyValueModel(key: "Gloves of swimming and climbing", value: 5),
         KeyValueModel(key: "Ring of climbing", value: 5),
+        KeyValueModel(key: "Claws of the ice bear", value: 2),
+        KeyValueModel(key: "Besmara's bicorne", value: 2),
       ],
       raceBosst: [
         KeyValueModel(key: "Halfling", value: 2),
@@ -105,6 +111,10 @@ class SkillData {
       attributeUsed: "intelligence",
       hasPenalty: false,
       checkPenalty: 0,
+      boostedByItems: [
+        KeyValueModel(key: "Engineer's workgloves", value: 2),
+        KeyValueModel(key: "Demonic smith's gloves", value: 4),
+      ],
       raceBosst: [
         KeyValueModel(key: "Gnome", value: 2),
       ],
@@ -119,9 +129,8 @@ class SkillData {
         KeyValueModel(key: "Diplomatist's vest", value: 12),
         KeyValueModel(key: "Judge's wig", value: 4),
         KeyValueModel(key: "Bracelet of bargaining", value: 5),
-      ],
-      raceBosst: [
-        KeyValueModel(key: "", value: 2),
+        KeyValueModel(key: "Living garments", value: 5),
+        KeyValueModel(key: "Circlet of persuasion", value: 3),
       ],
       skillOfClasses: [
         "Bard",
@@ -138,10 +147,11 @@ class SkillData {
       name: "Disable device",
       attributeUsed: "dexterity",
       hasPenalty: true,
-      checkPenalty: 0,
-      raceBosst: [
-        KeyValueModel(key: "", value: 2),
+      boostedByItems: [
+        KeyValueModel(key: "Trapspringer's gloves", value: 5),
+        KeyValueModel(key: "Vest of escape", value: 4),
       ],
+      checkPenalty: 0,
       skillOfClasses: ["Rogue", "Bandit"],
     ),
     SkillModel(
@@ -149,8 +159,8 @@ class SkillData {
       attributeUsed: "charisma",
       hasPenalty: false,
       checkPenalty: 0,
-      raceBosst: [
-        KeyValueModel(key: "", value: 2),
+      boostedByItems: [
+        KeyValueModel(key: "Circlet of persuasion", value: 3),
       ],
       skillOfClasses: ["Bard", "Rogue"],
     ),
@@ -161,9 +171,8 @@ class SkillData {
       checkPenalty: 0,
       boostedByItems: [
         KeyValueModel(key: "Corset of the Vishkanya", value: 5),
-      ],
-      raceBosst: [
-        KeyValueModel(key: "", value: 2),
+        KeyValueModel(key: "Rootsense boots", value: 4),
+        KeyValueModel(key: "Vest of escape", value: 6),
       ],
       skillOfClasses: ["Bard", "Rogue", "Bandit", "Alchemist", "Monk"],
     ),
@@ -175,9 +184,6 @@ class SkillData {
       boostedByItems: [
         KeyValueModel(key: "Winged boots", value: 4),
         KeyValueModel(key: "Wings of flying", value: 5),
-      ],
-      raceBosst: [
-        KeyValueModel(key: "", value: 2),
       ],
       skillOfClasses: [
         "Druid",
@@ -195,10 +201,7 @@ class SkillData {
       checkPenalty: 0,
       boostedByItems: [
         KeyValueModel(key: "Ring of sacred mistletoe", value: 2),
-        KeyValueModel(key: "", value: ""),
-      ],
-      raceBosst: [
-        KeyValueModel(key: "", value: 2),
+        KeyValueModel(key: "Circlet of persuasion", value: 3),
       ],
       skillOfClasses: [
         "Druid",
@@ -217,9 +220,6 @@ class SkillData {
       boostedByItems: [
         KeyValueModel(key: "Healer's gloves", value: 5),
       ],
-      raceBosst: [
-        KeyValueModel(key: "", value: 2),
-      ],
       skillOfClasses: ["Cleric", "Druid", "Paladin"],
     ),
     SkillModel(
@@ -228,6 +228,7 @@ class SkillData {
       hasPenalty: false,
       checkPenalty: 0,
       boostedByItems: [
+        KeyValueModel(key: "Circlet of persuasion", value: 3),
         KeyValueModel(key: "Maw of the wyrm", value: 4),
         KeyValueModel(key: "Judge's wig", value: 4),
       ],
@@ -253,9 +254,6 @@ class SkillData {
       attributeUsed: "intelligence",
       hasPenalty: false,
       checkPenalty: 0,
-      raceBosst: [
-        KeyValueModel(key: "", value: 2),
-      ],
       skillOfClasses: ["Cleric", "Sorcerer", "Wizard", "Arcanist", "Alchemist"],
     ),
     SkillModel(
@@ -263,9 +261,6 @@ class SkillData {
       attributeUsed: "intelligence",
       hasPenalty: false,
       checkPenalty: 0,
-      raceBosst: [
-        KeyValueModel(key: "", value: 2),
-      ],
       skillOfClasses: [
         "Bard",
         "Wizard",
@@ -281,8 +276,8 @@ class SkillData {
       attributeUsed: "intelligence",
       hasPenalty: false,
       checkPenalty: 0,
-      raceBosst: [
-        KeyValueModel(key: "", value: 2),
+      boostedByItems: [
+        KeyValueModel(key: "Engineer's workgloves", value: 5),
       ],
       skillOfClasses: [
         "Bard",
@@ -299,10 +294,6 @@ class SkillData {
       attributeUsed: "intelligence",
       hasPenalty: false,
       checkPenalty: 0,
-      raceBosst: [
-        KeyValueModel(key: "", value: 2),
-      ],
-      boostedByItems: [KeyValueModel(key: "", value: "")],
       skillOfClasses: [
         "Bard",
         "Wizard",
@@ -321,9 +312,6 @@ class SkillData {
       hasPenalty: false,
       checkPenalty: 0,
       boostedByItems: [KeyValueModel(key: "Scholar's ring", value: 5)],
-      raceBosst: [
-        KeyValueModel(key: "", value: 2),
-      ],
       skillOfClasses: [
         "Bard",
         "Wizard",
@@ -340,9 +328,6 @@ class SkillData {
       attributeUsed: "intelligence",
       hasPenalty: false,
       checkPenalty: 0,
-      raceBosst: [
-        KeyValueModel(key: "", value: 2),
-      ],
       skillOfClasses: [
         "Bard",
         "Wizard",
@@ -359,7 +344,8 @@ class SkillData {
       hasPenalty: false,
       checkPenalty: 0,
       raceBosst: [
-        KeyValueModel(key: "", value: 2),
+        KeyValueModel(key: "Elf", value: 2),
+        KeyValueModel(key: "Gnome", value: 2),
       ],
       boostedByItems: [
         KeyValueModel(key: "Ring of sacred mistletoe", value: 2),
@@ -383,9 +369,6 @@ class SkillData {
       attributeUsed: "intelligence",
       hasPenalty: false,
       checkPenalty: 0,
-      raceBosst: [
-        KeyValueModel(key: "", value: 2),
-      ],
       skillOfClasses: [
         "Bard",
         "Wizard",
@@ -402,9 +385,6 @@ class SkillData {
       attributeUsed: "intelligence",
       hasPenalty: false,
       checkPenalty: 0,
-      raceBosst: [
-        KeyValueModel(key: "", value: 2),
-      ],
       skillOfClasses: [
         "Bard",
         "Wizard",
@@ -412,10 +392,6 @@ class SkillData {
         "Sorcerer",
         "Summoner",
         "Cleric",
-        "",
-        "",
-        "",
-        ""
       ],
     ),
     SkillModel(
@@ -423,9 +399,6 @@ class SkillData {
       attributeUsed: "intelligence",
       hasPenalty: false,
       checkPenalty: 0,
-      raceBosst: [
-        KeyValueModel(key: "", value: 2),
-      ],
       skillOfClasses: [
         "Bard",
         "Wizard",
@@ -446,9 +419,6 @@ class SkillData {
       boostedByItems: [
         KeyValueModel(
             key: "Helm of comprehend languages and read magic", value: 5)
-      ],
-      raceBosst: [
-        KeyValueModel(key: "", value: 2),
       ],
       skillOfClasses: [
         "Bard",
@@ -496,9 +466,6 @@ class SkillData {
       boostedByItems: [
         KeyValueModel(key: "Bracers of the glib entertainer", value: 5),
       ],
-      raceBosst: [
-        KeyValueModel(key: "", value: 2),
-      ],
       skillOfClasses: ["Bard", "Monk", "Rogue", "Aristocrat", "Noble"],
     ),
     SkillModel(
@@ -506,9 +473,6 @@ class SkillData {
       attributeUsed: "wis",
       hasPenalty: false,
       checkPenalty: 0,
-      raceBosst: [
-        KeyValueModel(key: "", value: 2),
-      ],
       skillOfClasses: ["all"],
     ),
     SkillModel(
@@ -516,9 +480,6 @@ class SkillData {
       attributeUsed: "dexterity",
       hasPenalty: true,
       checkPenalty: 0,
-      raceBosst: [
-        KeyValueModel(key: "", value: 2),
-      ],
       skillOfClasses: [
         "Barbarian",
         "Druid",
@@ -538,9 +499,6 @@ class SkillData {
       boostedByItems: [
         KeyValueModel(key: "Bracelet of bargaining", value: 5),
       ],
-      raceBosst: [
-        KeyValueModel(key: "", value: 2),
-      ],
       skillOfClasses: [
         "Bard",
         "Cleric",
@@ -559,9 +517,8 @@ class SkillData {
       checkPenalty: 0,
       boostedByItems: [
         KeyValueModel(key: "Gloves of larceny", value: 5),
-      ],
-      raceBosst: [
-        KeyValueModel(key: "", value: 2),
+        KeyValueModel(key: "Coat of pockets", value: 5),
+        KeyValueModel(key: "Masterful gray gloves", value: 10),
       ],
       skillOfClasses: ["Bard", "Rogue", "Bandit"],
     ),
@@ -597,6 +554,7 @@ class SkillData {
       checkPenalty: 0,
       boostedByItems: [
         KeyValueModel(key: "Ring of chameleon power", value: 10),
+        KeyValueModel(key: "Shozoku of the night wind", value: 10),
       ],
       raceBosst: [
         KeyValueModel(key: "Gnome", value: 4),
@@ -618,9 +576,7 @@ class SkillData {
       checkPenalty: 0,
       boostedByItems: [
         KeyValueModel(key: "Lenses of detection", value: 5),
-      ],
-      raceBosst: [
-        KeyValueModel(key: "", value: 2),
+        KeyValueModel(key: "Fervent searcher's gloves", value: 5),
       ],
       skillOfClasses: [
         "Barbarian",
@@ -641,9 +597,7 @@ class SkillData {
         KeyValueModel(key: "Ring of swimming", value: 5),
         KeyValueModel(key: "Ring of the sea strider", value: 8),
         KeyValueModel(key: "Gloves of swimming and climbing", value: 5),
-      ],
-      raceBosst: [
-        KeyValueModel(key: "", value: 2),
+        KeyValueModel(key: "Traveler's wet suit", value: 2),
       ],
       skillOfClasses: [
         "Barbarian",
@@ -660,9 +614,6 @@ class SkillData {
       attributeUsed: "charisma",
       hasPenalty: false,
       checkPenalty: 0,
-      raceBosst: [
-        KeyValueModel(key: "", value: 2),
-      ],
       skillOfClasses: ["Bard", "Rogue", "Sorcerer", "Alchemist"],
     ),
   ];

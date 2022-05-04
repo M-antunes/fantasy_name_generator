@@ -978,6 +978,26 @@ class WonderousItemsData {
     ),
     WonderousItemsModel(
       type: "Feet",
+      name: "Boots of the soft step",
+      availability: 5,
+      exclusiveClasses: [],
+      description:
+          "These bronze-riveted boots have thick leather soles that compress and expand as you walk. This reduces the force of your footfalls, making you more difficult to detect with tremorsense. If you are walking at half speed, a creature with tremorsense can only sense you at half the usual distance. If you walk at one-quarter speed or slower, a creature with tremorsense cannot detect you at all.",
+      bonus: null,
+      price: 1500,
+    ),
+    WonderousItemsModel(
+      type: "Feet",
+      name: "Bondbreaker's boots",
+      availability: 6,
+      exclusiveClasses: [],
+      description:
+          "These leather boots bear a knife motif worked into their durable blue leather. Three times per day, the wearer can speak a command word as a swift action, causing a serrated knife to fly from the boots and instantly slice through any nonmagical bond currently restraining the wearer. The knife conjured from bondbreaker’s boots can cut through brambles, ropes, tanglefoot bags, vines, webs, or any other similar nonmagical item restraining the wearer, but cannot help when the owner is actively restrained by a creature. Bondbreaker’s boots also cannot free the wearer if manacles or chains restrain her.",
+      bonus: null,
+      price: 1600,
+    ),
+    WonderousItemsModel(
+      type: "Feet",
       name: "Daredevil boots",
       availability: 5,
       exclusiveClasses: [],
@@ -993,6 +1013,16 @@ class WonderousItemsData {
       exclusiveClasses: [],
       description:
           "These fine silken slippers allow their wearer to ignore the adverse movement effects of difficult terrain as if subject to the feather step spell, including granting the ability to take 5-foot steps in difficult terrain.",
+      bonus: null,
+      price: 2000,
+    ),
+    WonderousItemsModel(
+      type: "Feet",
+      name: "Fungal slippers",
+      availability: 6,
+      exclusiveClasses: [],
+      description:
+          "As a swift action up to three times per day, the wearer can create fungi in every square through which she walks during her turn. The fungi in these squares count as difficult terrain. After 1 minute, most of the fungi disappear; those that remain provide no impediment.",
       bonus: null,
       price: 2000,
     ),
@@ -1015,6 +1045,26 @@ class WonderousItemsData {
           "These soft boots are partially made out of living leaves and other natural materials. They enable the wearer to move nimbly about in virtually any surroundings, granting a +5 competence bonus on Acrobatics checks.",
       bonus: null,
       price: 2500,
+    ),
+    WonderousItemsModel(
+      type: "Feet",
+      name: "Acrobat slippers",
+      availability: 7,
+      exclusiveClasses: [],
+      description:
+          "These supple gray leather slippers enable the wearer to keep his balance in precarious positions. The wearer retains his Dexterity bonus to AC when climbing, running, or using the Acrobatics skill to move on narrow surfaces or uneven ground without falling. In addition, the wearer gains a +2 competence bonus to CMD against trip maneuvers and on Reflex saves to avoid falling (including falling prone).",
+      bonus: null,
+      price: 3000,
+    ),
+    WonderousItemsModel(
+      type: "Feet",
+      name: "Boots of vaulting",
+      availability: 7,
+      exclusiveClasses: [],
+      description:
+          "The wearer of these suede boots ignores an additional 10 feet of falling distance when she successfully uses Acrobatics to soften a fall. Once per round as a free action, the wearer can use the boots to gain a +10 competence bonus on an Acrobatics check to jump, treating such jump as though she had a running start. The wearer also receives this +10 competence bonus on Acrobatics checks to avoid attacks of opportunity during the jump or to balance after landing. Using the boots in this fashion strains the lower body. If the wearer attempts a second such jump before at least 1 minute has passed, she must succeed at a Fortitude save with a DC equal to the DC of her second jump attempt or injure her legs. This injury reduces her speed by half for 24 hours, or until she is successfully treated with a DC 15 Heal check or at least 1 point of magical healing. The DC of the Fortitude save increases by 5 for each additional jump attempted until at least 1 minute passes between jumps.",
+      bonus: null,
+      price: 1000,
     ),
     WonderousItemsModel(
       type: "Feet",
@@ -1058,13 +1108,33 @@ class WonderousItemsData {
     ),
     WonderousItemsModel(
       type: "Feet",
+      name: "Sandals of the lightest step",
+      availability: 7,
+      exclusiveClasses: [],
+      description:
+          "These soft leather sandals have soles that consist of a layer of purple velvet decorated with intricate gold stitching. When slipped onto the feet, they feel as weightless as air. In any round when the wearer has already moved at least 10 feet along the ground or another surface (not counting travel on a mount), these boots can be activated as a swift action to give the wearer the ability to walk on air (as the air walk spell) until the end of the round. If the wearer hasn’t reached a solid surface by the end of the round, she immediately falls back to the ground, taking any applicable falling damage. These sandals can be used up to 5 times per day, but no more often than once per minute.",
+      bonus: null,
+      price: 5000,
+    ),
+    WonderousItemsModel(
+      type: "Feet",
       name: "Boots of striding and springing",
-      availability: 6,
+      availability: 7,
       exclusiveClasses: [],
       description:
           "These boots increase the wearer's base land speed by 10 feet. In addition to this striding ability (considered an enhancement bonus), these boots allow the wearer to make great leaps. She can jump with a +5 competence bonus on Acrobatics checks.",
       bonus: null,
       price: 5500,
+    ),
+    WonderousItemsModel(
+      type: "Feet",
+      name: "Jungle boots",
+      availability: 7,
+      exclusiveClasses: [],
+      description:
+          "These soft leather boots grant the wearer the ability to move through normal undergrowth without hindrance as if she had the woodland stride ability.",
+      bonus: null,
+      price: 6000,
     ),
     WonderousItemsModel(
       type: "Feet",
@@ -1089,7 +1159,7 @@ class WonderousItemsData {
     WonderousItemsModel(
       type: "Feet",
       name: "Boots of levitation",
-      availability: 6,
+      availability: 8,
       exclusiveClasses: [],
       description:
           "These soft leather boots are incredibly light and comfortable, with thin soles reinforced by strips of tough hide that provide an unexpected amount of support and protection to the foot. On command, these boots allow the wearer to levitate as if she had cast levitate on herself.",
@@ -1099,7 +1169,7 @@ class WonderousItemsData {
     WonderousItemsModel(
       type: "Feet",
       name: "Boots of escape",
-      availability: 7,
+      availability: 6,
       exclusiveClasses: [],
       description:
           "These sturdy leather-soled cloth boots have straps at the ankles and calves to ensure a snug fit. Once per day, when the wearer of the boots is grappled, pinned, or entangled, she may transfer herself to any spot within 30 feet as if using a dimension door spell. A gnome wearing these boots may instead transfer herself up to 400 feet away.",
@@ -1115,6 +1185,16 @@ class WonderousItemsData {
           "The longer the wearer of these boots stays in one place—as long as that place is on solid ground—the harder it is to move her from that place. The wearer gains a cumulative +1 circumstance bonus to her CMD (maximum of +10) for each round she does not move from her space.",
       bonus: null,
       price: 8000,
+    ),
+    WonderousItemsModel(
+      type: "Feet",
+      name: "Rootsense boots",
+      availability: 9,
+      exclusiveClasses: [],
+      description:
+          "Twigs sprout from these tall brown boots. On command, while the wearer is on the ground, ghostly roots grow from the boots’ soles into the ground, granting their wearer tremorsense 30 feet for as long the wearer remains on the ground in the same space. While the roots are active, the boots provide two additional benefits. When the wearer is the target of a bull rush or trip attempt, living roots momentarily sprout from the boots into the earth, granting the wearer a +4 bonus to CMD to resist the attempt. The wearer also benefits from the flexibility of a living willow branch, gaining a +4 circumstance bonus on combat maneuver or Escape Artist checks to escape a grapple or slip bonds.",
+      bonus: null,
+      price: 10000,
     ),
     WonderousItemsModel(
       type: "Feet",
@@ -1134,7 +1214,17 @@ class WonderousItemsData {
       description:
           "These brown leather boots have a reinforced toe of steel with grooves along the soles, crafted to help the wearer pick up vibrations from the surrounding environment. These boots grant the wearer tremorsense 20 feet as long as he is standing on solid ground.",
       bonus: null,
-      price: 1000,
+      price: 10000,
+    ),
+    WonderousItemsModel(
+      type: "Feet",
+      name: "Bogstrider boots",
+      availability: 8,
+      exclusiveClasses: [],
+      description:
+          "These soft leather boots smell strongly of marsh gas, and leave faint wet prints behind even when they’re dry. Despite these aesthetic flaws, bogstrider boots are of great use in areas of swampy terrain. They provide the wearer the ability to move without penalty in squares of shallow or deep bog, and the DCs of Acrobatics checks attempted by the boots’ wearer are unchanged in squares of shallow bog. In addition, three times per day when the wearer takes a charge or withdraw action, she can increase her speed by 60 feet for 1 round.",
+      bonus: null,
+      price: 10000,
     ),
     WonderousItemsModel(
       type: "Feet",
@@ -1348,11 +1438,41 @@ class WonderousItemsData {
     ),
     WonderousItemsModel(
       type: "Hands",
+      name: "Gloves of the keen evaluator",
+      availability: 5,
+      exclusiveClasses: [],
+      description:
+          "While worn, these white latex gloves provide an impressive grip for studying intricate objects. The wearer gains a +4 competence bonus on Appraise checks to determine the value of an item. While involved in negotiations regarding the studied item, the wearer can use the result of her Appraise check as the result of Diplomacy checks to haggle over the price of the item.",
+      bonus: null,
+      price: 1200,
+    ),
+    WonderousItemsModel(
+      type: "Hands",
+      name: "Claws of the ice bear",
+      availability: 5,
+      exclusiveClasses: [],
+      description:
+          "Strapped to the hands, these spiked climbing claws grant a +2 competence bonus on Climb checks and Acrobatics checks made when using both hands to aid in movement, and allow the wearer to ignore the normal penalties on those skills for slippery or icy surfaces. In addition, up to 3 times per day, the wearer can activate the claws as a swift action to gain the benefits of spider climb for 1 round. The wearer cannot hold anything else in her hands while using claws of the ice bear. If used as a weapon, claws of the ice bear function as spiked gauntlets.",
+      bonus: null,
+      price: 1300,
+    ),
+    WonderousItemsModel(
+      type: "Hands",
       name: "Gloves of reconnaissance",
       availability: 5,
       exclusiveClasses: [],
       description:
           "Each of these fingerless worked leather gloves look as though they have seen heavy use, and often bear the stains or scent of grass or wet mud. On command, the wearer can use the gloves to see and hear though solid material no more than 15 feet thick by placing both hands on that material. The gloves can be used for 10 rounds each day. The rounds need not be consecutive.",
+      bonus: null,
+      price: 2000,
+    ),
+    WonderousItemsModel(
+      type: "Hands",
+      name: "Glowing glove",
+      availability: 5,
+      exclusiveClasses: [],
+      description:
+          "The wearer of this slender white leather glove may, as a standard action, press it against any surface or object and cause a luminous handprint to appear. This print glows any color the wearer wishes, sheds light as a candle, and is easily visible from a distance of up to 60 feet. Such handprints last for 1 day before fading away. The glowing handprint matches the wearer’s hand in terms of size, position of fingers, and so on.",
       bonus: null,
       price: 2000,
     ),
@@ -1378,6 +1498,16 @@ class WonderousItemsData {
     ),
     WonderousItemsModel(
       type: "Hands",
+      name: "Engineer's workgloves",
+      availability: 5,
+      exclusiveClasses: [],
+      description:
+          "These durable canvas and leather gloves imbue the wearer with an instinctive knowledge of mechanical devices. The wearer also gains a +5 competence bonus on Craft and Knowledge checks made to repair or understand mechanical devices. Once per day, the wearer may touch a device and instantly analyze it, learning its purpose and general method of operation, as well as diagnosing any acute malfunctions of the device, but not its magical powers or additional non-mechanical effects. For example, she could touch a pressure plate and understand that stepping on it would trigger a wall scythe trap attacking that square and that the trap resets automatically, but not that the trap includes a +1 flaming scythe coated in poison.",
+      bonus: null,
+      price: 3000,
+    ),
+    WonderousItemsModel(
+      type: "Hands",
       name: "Gloves of larceny",
       availability: 5,
       exclusiveClasses: ["Rogue"],
@@ -1385,6 +1515,16 @@ class WonderousItemsData {
           "These supple beige calfskin gloves greatly enhance a thief's talents. The wearer gains a +5 competence bonus on Sleight of Hand checks.",
       bonus: null,
       price: 2500,
+    ),
+    WonderousItemsModel(
+      type: "Hands",
+      name: "Irongrip gauntlets",
+      availability: 7,
+      exclusiveClasses: [],
+      description:
+          "These gloves are made of goatskin reinforced with heavy iron strips. They provide a sure, strengthened grip on large or awkwardly shaped items. When the wearer wields an improvised melee weapon or inappropriately sized weapon, reduce the penalty for doing so by 2 (minimum 0). The gloves don’t change the number of hands required to wield such a weapon.",
+      bonus: null,
+      price: 4000,
     ),
     WonderousItemsModel(
       type: "Hands",
@@ -1408,6 +1548,46 @@ class WonderousItemsData {
     ),
     WonderousItemsModel(
       type: "Hands",
+      name: "Trapspringer's gloves",
+      availability: 5,
+      exclusiveClasses: [],
+      description:
+          "These studded leather gloves look similar to workman’s gloves, though they are reinforced with numerous metal strips that the user can extend or retract as she wills, turning the tip of each finger into a customizable tool useful in examining and disarming traps. While worn, these gloves grant a +5 competence bonus on all Disable Device checks made to disarm traps. In addition, the gloves grant the user a +1 luck bonus on all saving throws made against traps.",
+      bonus: null,
+      price: 4000,
+    ),
+    WonderousItemsModel(
+      type: "Hands",
+      name: "Impact gauntlets",
+      availability: 7,
+      exclusiveClasses: [],
+      description:
+          "These gauntlets are made of worn leather; the palms are smooth, but the wrists and backs of the gauntlets are covered in rough pebbles of various shapes and colors. The wearer can catch Small, Medium, or Large rocks and similar projectiles as if she possessed the rock catching monster ability, as long as she has at least one hand free. A rock caught by the wearer shrinks and is permanently absorbed into the gauntlets. A wearer who also possesses the rock catching ability can catch rocks twice per round instead of once.",
+      bonus: null,
+      price: 4500,
+    ),
+    WonderousItemsModel(
+      type: "Hands",
+      name: "Gauntlets of the deep",
+      availability: 6,
+      exclusiveClasses: ["Ranger"],
+      description:
+          "These gloves are covered in fish scales and always feel cold and wet to the touch. While wearing these gauntlets, after a 24-hour attunement period, the wearer can throw a weapon that deals piercing damage underwater without penalty, using the weapon’s normal range increment. When the wielder attacks a target in water from land, regardless of the weapon the wielder is using, the target doesn’t benefit from cover or total cover for being in water.",
+      bonus: null,
+      price: 5000,
+    ),
+    WonderousItemsModel(
+      type: "Hands",
+      name: "Masterful gray gloves",
+      availability: 6,
+      exclusiveClasses: ["Rogue", "Bandit"],
+      description:
+          "These dark-gray leather gloves are extremely supple and are popular among the worshipers of Norgorber. They grant a +10 bonus on Sleight of Hands checks to take something from a creature unnoticed. Additionally, three times per day, when a creature notices the wearer’s Sleight of Hand check to take something from it, the wearer can cause the object to become invisible as an immediate action, allowing the wearer to disavow the theft.",
+      bonus: null,
+      price: 5400,
+    ),
+    WonderousItemsModel(
+      type: "Hands",
       name: "Gloves of swimming and climbing",
       availability: 8,
       exclusiveClasses: [],
@@ -1418,6 +1598,96 @@ class WonderousItemsData {
     ),
     WonderousItemsModel(
       type: "Hands",
+      name: "Glove of strength-stealing",
+      availability: 7,
+      exclusiveClasses: [],
+      description:
+          "This single, seamless glove of gray calfskin is fitted with silver finger bones, covering the wearer’s hand snugly yet stretching to accommodate movement. Once per day, the wearer of a glove of strength-stealing may spend a free action to activate a chill touch effect, as per the spell. Any Strength damage inflicted by the wearer’s touch for the 6 rounds it remains in effect is added to his Strength score as an enhancement bonus (to a maximum of +6). This bonus fades 1 hour after the glove is activated.",
+      bonus: null,
+      price: 6400,
+    ),
+    WonderousItemsModel(
+      type: "Hands",
+      name: "Quicksilver gloves",
+      availability: 8,
+      exclusiveClasses: [],
+      description:
+          "These tight-fitting gloves have silver tips at the end of each finger. When worn, the silver spreads to cover the gloves so they appear to be covered in liquid metal. As a swift action, the wearer can command the gloves to coat a held weapon with silver. The affected weapon is treated as silver for the purpose of overcoming damage reduction. The effect can be applied only to light or onehanded weapons made primarily of metal. This ability can be used for up to 10 rounds each day, though these rounds need not be consecutive. Once per day, the gloves’ wearer can make an extra attack with a melee weapon as if using a speed weapon. This benefit does not stack with similar effects, such as a haste spell.",
+      bonus: null,
+      price: 7000,
+    ),
+    WonderousItemsModel(
+      type: "Hands",
+      name: "Gloves of marking",
+      availability: 8,
+      exclusiveClasses: [],
+      description:
+          "These ruddy leather gloves enhance the precision of the wearer. When wielding a piercing or slashing weapon and using Weapon Finesse, the wearer can mark a creature when confirming a critical hit instead of dealing additional damage. The mark consists of a simple symbol, such as a single letter. The wielder and her allies gain a +2 morale bonus on attack rolls and melee damage rolls against the marked creature for 1 minute. In addition, the marked creature must succeed at a Will saving throw (DC 10 + one-half the wielder’s level + the wielder’s Dexterity modifier) or be shaken for 1 minute. The bonuses and condition persist even if the damage caused by the mark is healed.",
+      bonus: null,
+      price: 7300,
+    ),
+    WonderousItemsModel(
+      type: "Hands",
+      name: "Magnetist's gloves",
+      availability: 7,
+      exclusiveClasses: [],
+      description:
+          "These thin leather gloves have delicate steel wires running through them. Three times per day as a standard action, the wearer of these gloves may attempt a disarm combat maneuver on a target within 30 feet. The target’s item must be mostly made of metal. If the combat maneuver check is successful, the target is disarmed and the item falls to the ground in the target’s square. For every 5 by which the check exceeds the DC, the item lands 1 square closer to the wearer. If this would place the item in the wearer’s square, the wearer may attempt to catch the item with a DC 10 Dexterity check; otherwise it lands in the wearer’s square. The wearer can only use this ability if she has at least one hand free. If the wearer fails the combat maneuver check, she is not disarmed.",
+      bonus: null,
+      price: 7500,
+    ),
+    WonderousItemsModel(
+      type: "Hands",
+      name: "Fervent searcher's gloves",
+      availability: 8,
+      exclusiveClasses: [],
+      description:
+          "These dark blue, silken gloves are fingerless. Twice per day as a move action, the wearer can touch the ground or any other solid surface and say the command word to visibly reveal all footprints within 20 feet. When the gloves reveal footprints in this way, the wearer gains a +5 bonus on Survival checks to follow those tracks.",
+      bonus: null,
+      price: 7500,
+    ),
+    WonderousItemsModel(
+      type: "Hands",
+      name: "Beast wrestler's gauntlets",
+      availability: 9,
+      exclusiveClasses: [],
+      description:
+          "These gauntlets grant a +1 enhancement bonus on grapple checks. Each pair of gauntlets is created to fight a specific type or subtype of creature from the list of creature types in the bane weapon special ability. While the wearer is grappling a creature of the designated type, the gauntlets’ enhancement bonus increases by 2 and the wearer deals an additional 2d6 points of nonlethal damage when dealing damage as part of a successful grapple check.",
+      bonus: null,
+      price: 7500,
+    ),
+    WonderousItemsModel(
+      type: "Hands",
+      name: "Gloves of elvenkind",
+      availability: 7,
+      exclusiveClasses: ["Wizard", "Arcanist", "Sorcerer", "Summoner"],
+      description:
+          "These plain gray leather gloves grant a +5 competence bonus on Spellcraft checks and concentration checks made to cast a spell defensively. Both gloves must be worn for the magic to be effective.",
+      bonus: null,
+      price: 7500,
+    ),
+    WonderousItemsModel(
+      type: "Hands",
+      name: "Deliquescent gloves",
+      availability: 9,
+      exclusiveClasses: [],
+      description:
+          "These heavy leather gloves ripple and flows at the wearer’s command, reshaping to fit any hand, claw, tentacle, or alien limb. The wearer’s melee touch attacks with that hand deal 1d6 points of acid damage. If the wearer uses that hand to wield a weapon or make an attack with an unarmed strike or natural weapon, that attack gains the corrosive weapon special ability. The wearer’s gloved hand is protected from the acid ability of oozes, allowing him to use that hand to attack oozes with unarmed strikes or natural attacks without risk of harm from contact with the ooze. These unarmed strikes and natural attacks never cause an ooze to split.",
+      bonus: null,
+      price: 8000,
+    ),
+    WonderousItemsModel(
+      type: "Hands",
+      name: "Demonic smith's gloves",
+      availability: 9,
+      exclusiveClasses: [],
+      description:
+          "Used by the drow smiths of house Caldrana, these worked black leather gloves are stitched with red symbols dedicated to Flauros, the demon lord of fire and volcanoes. Whenever the wearer makes a melee touch attack, she deals 1d6 points of fire damage. If the wearer wields a weapon or makes an attack with an unarmed strike, that attack gains the flaming weapon special ability. When demonic smith’s gloves are used during the construction of armor or weapons, they grant their wearer a +4 competence bonus on the relevant Craft checks. If the wearer rolls a natural 1 while benefiting from this bonus, she draws the ire of Flauros, causing the gloves to become nonmagical until the wearer crafts at least five masterwork items and then destroys them in the name of the demon lord.",
+      bonus: null,
+      price: 8000,
+    ),
+    WonderousItemsModel(
+      type: "Hands",
       name: "Gloves of dueling",
       availability: 12,
       exclusiveClasses: [],
@@ -1425,6 +1695,36 @@ class WonderousItemsData {
           "These supple gloves grant the wearer a +4 bonus to her CMD against disarm attacks, attempts to sunder her wielded weapons, and effects that cause her to lose her grip on her weapons (such as grease). The wearer doesn't drop held weapons when panicked or stunned. If the wearer has the weapon training class feature and is using an appropriate weapon, her weapon training bonus increases by +2.",
       bonus: null,
       price: 18000,
+    ),
+    WonderousItemsModel(
+      type: "Hands",
+      name: "Rubble cloves",
+      availability: 9,
+      exclusiveClasses: [],
+      description:
+          "These gloves are made of a fine metal mesh. If a creature wearing rubble gloves touches a 5-foot square of stone or earth floor, rubble roils to the surface, making the square difficult terrain. Using the gloves is a standard action that does not provoke attacks of opportunity. The wearer can use the gloves to create up to 20 squares of difficult terrain per day.",
+      bonus: null,
+      price: 8000,
+    ),
+    WonderousItemsModel(
+      type: "Hands",
+      name: "Gloves of the commanding conjurer",
+      availability: 8,
+      exclusiveClasses: ["Summoner", "Druid"],
+      description:
+          "These gloves grant the wearer greater control over his summoned creatures. As long as he wears the gloves, creatures conjured by the wearer can understand him as if they shared a common language. This communication is not two-way and does not grant the wearer the ability to understand the creature. Three times per day, the wearer can attempt to take control of a summoned creature within 50 feet as if using control summoned creature (Will DC 16).",
+      bonus: null,
+      price: 25000,
+    ),
+    WonderousItemsModel(
+      type: "Hands",
+      name: "Stormcrusher gauntlets",
+      availability: 12,
+      exclusiveClasses: [],
+      description:
+          "These speckled metal gauntlets provide a noticeable prickling sensation when donned. Three times per day when the wearer would take electricity damage, she can attempt a Strength check as an immediate action to catch the electricity and crush it into harmless sparks that deal no damage (DC = 10 + 1 per 10 points of damage).",
+      bonus: null,
+      price: 45000,
     ),
     WonderousItemsModel(
       type: "Hands",
@@ -1468,6 +1768,46 @@ class WonderousItemsData {
     ),
     WonderousItemsModel(
       type: "Body",
+      name: "Traveler's wet suit",
+      availability: 5,
+      exclusiveClasses: [],
+      description:
+          "This wet suit protects against environmental cold damage and hypothermia. Anything stored in its waterproof pockets is kept magically separate from any surrounding water, even if the wearer opens the pocket underwater. Finally, the wearer gains a +2 competence bonus on Swim checks.",
+      bonus: null,
+      price: 2750,
+    ),
+    WonderousItemsModel(
+      type: "Body",
+      name: "Charlatan's cope",
+      availability: 7,
+      exclusiveClasses: [],
+      description:
+          "This plush hooded robe is finely trimmed with gold accents. When the wearer casts a spell, the robe scintillates with color and produces ostentatious magical effects, such as bright lights and loud hums, increasing the DC of Spellcraft checks to identify the spell by 10. In addition, once per day as a move action, the wearer can trigger these effects with a dramatic flourish; each creature within 30 feet that can see the wearer must succeed at a DC 13 Will save or be blinded for 1d4+1 rounds.",
+      bonus: null,
+      price: 4800,
+    ),
+    WonderousItemsModel(
+      type: "Body",
+      name: "Living garments",
+      availability: 7,
+      exclusiveClasses: [],
+      description:
+          "These sheer and silky robes, many of which are made of spider silk, are of the finest quality. On command, a living garment can make a number of subtle adjustments to itself, including coloring, fit, and basic design, accommodating and accentuating whatever mood the wearer wishes to convey. It always remains clean, and automatically repairs damage to itself at a rate of 1 hit point per round (hardness 0, 4 hit points). It also grants the wearer a +5 competence bonus on Diplomacy checks.",
+      bonus: null,
+      price: 5000,
+    ),
+    WonderousItemsModel(
+      type: "Body",
+      name: "Lupine robe",
+      availability: 8,
+      exclusiveClasses: [],
+      description:
+          "The following wondrous item is generally available only to members of the indicated race or ethnicity. This silk robe is covered in exquisitely detailed embroidery depicting foxes frolicking in a pristine meadow. Four times per day, the wearer can add 1d6 to the result of a Dexterity-, Intelligence-, or Charisma-based skill check as a free action.",
+      bonus: null,
+      price: 6800,
+    ),
+    WonderousItemsModel(
+      type: "Body",
       name: "Corset of the Vishkanya",
       availability: 5,
       exclusiveClasses: [],
@@ -1495,6 +1835,36 @@ class WonderousItemsData {
           "This light garment is worn over normal clothing or armor. Most such vestments are white, embroidered with elaborate diety symbol motifs. When this item is worn, the character can use channel positive energy once per day as a level 6 cleric would.",
       bonus: null,
       price: 6700,
+    ),
+    WonderousItemsModel(
+      type: "Body",
+      name: "Hyperboreal robe",
+      availability: 9,
+      exclusiveClasses: [],
+      description:
+          "This beautiful robe is fashioned from fine blue silk embroidered with silver thread, and trimmed with owl feathers and tiny shards of crystal. The robe grants its wearer a +2 resistance bonus on all saving throws. In addition, the flesh of the robe’s wearer becomes searing cold to the touch. Anyone who strikes the wearer with an unarmed strike, a touch attack, or a natural weapon takes 1d6 points of cold damage. The wearer can activate or deactivate this ability as a free action.",
+      bonus: null,
+      price: 7000,
+    ),
+    WonderousItemsModel(
+      type: "Body",
+      name: "Shozoku of the night wind",
+      availability: 9,
+      exclusiveClasses: [],
+      description:
+          "This black bodysuit is of the type typically worn by ninjas and assassins, but it grants its wearer a +2 armor bonus and a +5 competence bonus on Stealth checks. In addition, if the wearer is in illumination of less than normal light, she can use invisibility, as the spell, once per day. If the wearer is a ninja with the vanishing trick ninja trick, then the wearer can use that ability twice per day without the expenditure of any ki points and regardless of the surrounding light level.",
+      bonus: null,
+      price: 12000,
+    ),
+    WonderousItemsModel(
+      type: "Body",
+      name: "Untouchable jacket",
+      availability: 10,
+      exclusiveClasses: [],
+      description:
+          "This black jacket is marked with the insignia of the Blackjackets. Once per day, the wearer can speak a command word to gain spell resistance 20 for 3 rounds. This spell resistance ends if the wearer successfully resists a spell as a result of it failing to penetrate his spell resistance. The first time each day that a spell has no effect on the wearer because of spell resistance or a successful saving throw, the jacket becomes charged with abjuration magic and its insignia glows faintly. The wearer can touch the glowing insignia as a standard action to cast dispel magic from the jacket, expending the charge. The charge fades with no effect if unused for 1 hour.",
+      bonus: null,
+      price: 18000,
     ),
     WonderousItemsModel(
       type: "Body",
@@ -1660,6 +2030,46 @@ class WonderousItemsData {
     ),
     WonderousItemsModel(
       type: "Chest",
+      name: "All tools vest",
+      availability: 5,
+      exclusiveClasses: [],
+      description:
+          "This well-made leather vest bears numerous shiny metal buttons, which stud a number of bulging pockets. Once per day, as a standard action, the wearer can speak the vest’s command word and order it to bring forth all the standard tools required to make checks for any one Craft skill. These tools appear in the countless pockets of the vest or, if too heavy, on the floor, on a nearby shelf, on a workbench, or in a toolbox or cupboard that appears nearby. Once summoned, they remain for 24 hours or until another creature touches them, whichever comes first.",
+      bonus: null,
+      price: 1800,
+    ),
+    WonderousItemsModel(
+      type: "Chest",
+      name: "Coat of pockets",
+      availability: 6,
+      exclusiveClasses: [],
+      description:
+          "This black-and-gray wool coat sports over a dozen pockets on its front alone and even more line the insides. Interdimensional magic causes anything placed in one pocket to immediately appear in another randomly determined pocket. A character wearing this coat gains a +5 circumstance bonus on Sleight of Hand checks to hide a small object on her body. However, if a character wearing a coat of pockets places anything in one of the coat’s pockets, she must spend a standard action to retrieve it (rather than a move action).",
+      bonus: null,
+      price: 2600,
+    ),
+    WonderousItemsModel(
+      type: "Chest",
+      name: "Vest of surgery",
+      availability: 5,
+      exclusiveClasses: [],
+      description:
+          "This emerald vest has four prominent and bulging pockets along its front. The wearer is always treated as if using a healer’s kit when making Heal checks. Once per day, the wearer can make a DC 20 Heal check as if attempting to treat deadly wounds. If the check is successful, it cures 1d4 points of ability damage instead of hit point damage.",
+      bonus: null,
+      price: 3000,
+    ),
+    WonderousItemsModel(
+      type: "Chest",
+      name: "Vest of escape",
+      availability: 7,
+      exclusiveClasses: [],
+      description:
+          "This simple silk vest looks nondescript, but is actually studded with numerous secret pockets sewn into its lining. Hidden inside these are magic lockpicks that provide a +4 competence bonus on Disable Device checks. The vest also grants its wearer a +6 competence bonus on Escape Artist checks.",
+      bonus: null,
+      price: 5200,
+    ),
+    WonderousItemsModel(
+      type: "Chest",
       name: "Shirt of immolation",
       availability: 7,
       exclusiveClasses: [],
@@ -1706,6 +2116,16 @@ class WonderousItemsData {
     ),
     WonderousItemsModel(
       type: "Chest",
+      name: "Shadow jumper's tunic",
+      availability: 9,
+      exclusiveClasses: [],
+      description:
+          "This dark-gray tunic allows a character to make a single jump of up to 40 feet per day, or four jumps of 10 feet each per day. All jumps must begin and end in an area that has at least some dim light. If the wearer has at least 4 levels in the shadowdancer prestige class, the tunic instead adds 40 feet to the total number of feet he can shadow jump in 1 day.",
+      bonus: null,
+      price: 16200,
+    ),
+    WonderousItemsModel(
+      type: "Chest",
       name: "Merciful baldric",
       availability: 10,
       exclusiveClasses: ["Paladin"],
@@ -1737,7 +2157,7 @@ class WonderousItemsData {
     WonderousItemsModel(
       type: "Eyes",
       name: "Deathwatch eyes",
-      availability: 3,
+      availability: 5,
       exclusiveClasses: [],
       description:
           "These blood red crystal lenses fit snugly over the wearer's eyes. The wearer gains the constant effects of the deathwatch spell.",
@@ -1747,7 +2167,7 @@ class WonderousItemsData {
     WonderousItemsModel(
       type: "Eyes",
       name: "Eyes of the eagle",
-      availability: 4,
+      availability: 5,
       exclusiveClasses: [],
       description:
           "These lenses are made of special crystal and fit over the eyes of the wearer. They grant a +5 competence bonus on Perception checks. Both lenses must be worn to gain the benefit. Wearing only one causes a character to become dizzy and stunned for 1 round.",
@@ -1757,7 +2177,7 @@ class WonderousItemsData {
     WonderousItemsModel(
       type: "Eyes",
       name: "Lenses of detection",
-      availability: 4,
+      availability: 5,
       exclusiveClasses: [],
       description:
           "These circular prisms let their wearer detect minute details, gaining a +5 competence bonus on Perception checks. It also aids in tracking, adding a +5 competence bonus on Survival checks when tracking.",
@@ -1852,6 +2272,16 @@ class WonderousItemsData {
     ),
     WonderousItemsModel(
       type: "Eyes",
+      name: "Captain's eye patch",
+      availability: 12,
+      exclusiveClasses: [],
+      description:
+          "This black velvet eye patch is attached to an onyx chain that is worn around the head. The eye patch grants its wearer darkvision with a range of 60 feet. Additionally, as a standard action, the wearer can speak the eye patch’s command word to see through powerful magical darkness, such as an area of deeper darkness, for up to 11 minutes per day. This duration need not be used all at once, but it must be used in 1-minute increments. Ending this effect is a free action.",
+      bonus: null,
+      price: 48000,
+    ),
+    WonderousItemsModel(
+      type: "Eyes",
       name: "Eyes of the dragon",
       availability: 16,
       exclusiveClasses: [],
@@ -1873,7 +2303,7 @@ class WonderousItemsData {
     WonderousItemsModel(
       type: "Head",
       name: "Cap of human guise",
-      availability: 2,
+      availability: 5,
       exclusiveClasses: ["Rogue", "Bard"],
       description:
           "This threadbare hat allows its wearer to alter her appearance at will as with a disguise self spell, except she can only appear as a plainly dressed Small human child, adult halfling, or adult gnome, such as a peasant, blacksmith, or shopkeeper. The wearer can slightly alter the cap's appearance as part of the disguise, but otherwise must match the overall unremarkable look of the illusory form. Though invented and primarily used by Small humanoids, it can be used by any Small or Medium humanoid creature.",
@@ -1883,12 +2313,22 @@ class WonderousItemsData {
     WonderousItemsModel(
       type: "Head",
       name: "Cap of light",
-      availability: 3,
+      availability: 5,
       exclusiveClasses: [],
       description:
           "This small cloth skullcap resembles those some priests wear, but is topped with a small silver statue in the shape of a lit candle. The wearer can command the statue to radiate light (as the spell). The light can also be turned off on command.",
       bonus: null,
       price: 900,
+    ),
+    WonderousItemsModel(
+      type: "Head",
+      name: "Besmara's bicorne",
+      availability: 6,
+      exclusiveClasses: [],
+      description:
+          "This large pirate hat bears a skull-and-crossbones on the front. The wearer gains a +2 competence bonus on Acrobatics and Climb checks. If Besmara is the wearer’s patron, the wearer automatically floats to the surface of any body of water (at a speed of 30 feet) unless she desires otherwise; this does not prevent the wearer from falling safely into water or interacting with water in any other way.",
+      bonus: null,
+      price: 1700,
     ),
     WonderousItemsModel(
       type: "Head",
@@ -1899,6 +2339,26 @@ class WonderousItemsData {
           "This wooden mask depicts the sunken face of a miser with an upturned nose. The mask grants the wearer the scent ability (Bestiary 304), but she can use it only to sense coins and gems. Each type and quality of gem has its own unique aura to the wearer, granting her a +5 competence bonus on Appraise checks made to ascertain the value of gems.",
       bonus: null,
       price: 3000,
+    ),
+    WonderousItemsModel(
+      type: "Head",
+      name: "Mask of conflicting energies",
+      availability: 6,
+      exclusiveClasses: ["Sorcerer", "Wizard", "Arcanist", "Summoner", "Druid"],
+      description:
+          "This mask is white on one side and black on the other, with glittering gem lenses covering the eyes. Up to three times per day, the wearer can change the energy damage of a fire spell she casts to cold, a cold spell to fire, an acid spell to electricity, or an electricity spell to acid. All other effects of the spell are unchanged (for example, an ice storm changed to fire damage still deals bludgeoning damage and bestows a penalty on Perception checks). The mask affects only spells up to 3rd level.",
+      bonus: null,
+      price: 4000,
+    ),
+    WonderousItemsModel(
+      type: "Head",
+      name: "Traveling master's turban",
+      availability: 5,
+      exclusiveClasses: [],
+      description:
+          "This turban consists of 30 feet of cloth held in place by a brooch. The owner can command the turban to tie or untie itself as a move action. When the turban is tied on the wearer’s head, the wearer gains the benefits of endure elements. Once per day when the turban is untied, the owner can use the fabric to cast animate rope.",
+      bonus: null,
+      price: 4000,
     ),
     WonderousItemsModel(
       type: "Head",
@@ -1914,6 +2374,16 @@ class WonderousItemsData {
       ],
       description:
           "This delicately engraved silver headband grants its wearer a +3 competence bonus on Charisma-based checks.",
+      bonus: null,
+      price: 4500,
+    ),
+    WonderousItemsModel(
+      type: "Head",
+      name: "Hat of the seven winds",
+      availability: 1,
+      exclusiveClasses: [],
+      description:
+          "This black tricorne hat is embroidered with the pattern of a ship. The wearer does not take any penalties from rain, takes penalties from high wind speeds as though she were one size category larger than she actually is, and gains a +4 bonus on saving throws against wind effects.",
       bonus: null,
       price: 4500,
     ),
@@ -1946,7 +2416,27 @@ class WonderousItemsData {
     ),
     WonderousItemsModel(
       type: "Head",
-      name: "Medusa mask	10,000",
+      name: "Cyclops helm",
+      availability: 7,
+      exclusiveClasses: [],
+      description:
+          "This helm is made from the husk of a cyclops’s shrunken head, and grants a limited version of that creature’s flash of insight ability. Once per day as an immediate action, instead of rolling her next attack roll, saving throw, skill check, or ability check, the wearer can choose to use 20 as if she had rolled it naturally.",
+      bonus: null,
+      price: 5800,
+    ),
+    WonderousItemsModel(
+      type: "Head",
+      name: "War mask of terror",
+      availability: 1,
+      exclusiveClasses: [],
+      description:
+          "Many of the indigenous tribes add to their fierceness and mystique by wearing wooden masks that bear terrifying visages of demonic spirits. A war mask is considered sacred and personal. Individual masks are often notorious, and many tribesfolk can readily identify masks of other tribes with a DC 15 Knowledge (local) check. A war mask of terror provides its wearer with a +2 competence bonus on Intimidate checks and a +1 deflection bonus to Armor Class. In addition, the wearer may cast scare once per day.",
+      bonus: null,
+      price: 9000,
+    ),
+    WonderousItemsModel(
+      type: "Head",
+      name: "Medusa mask",
       availability: 7,
       exclusiveClasses: [
         "Wizard",
@@ -1967,6 +2457,16 @@ class WonderousItemsData {
       exclusiveClasses: [],
       description:
           "This soft cap helps the wearer free herself from outside influences. When the wearer makes a saving throw against a mind-affecting effect, she can roll twice and take the better roll.",
+      bonus: null,
+      price: 12000,
+    ),
+    WonderousItemsModel(
+      type: "Head",
+      name: "Mask of the rabbit prince",
+      availability: 8,
+      exclusiveClasses: [],
+      description:
+          "This colorful mask evokes the image of the Rabbit Prince from the Harrowed Realm. It covers the top half of the wearer’s face and depicts the countenance of a resolute rabbit complete with large, floppy felt ears. Despite its apparently fragile construction, the mask is as tough as iron (hardness 10). The mask of the rabbit prince imparts reckless bravado, granting the wearer a +2 morale bonus on initiative checks and on saving throws against fear effects. In addition, the wearer always counts as having a running start when attempting Acrobatics checks to jump.",
       bonus: null,
       price: 12000,
     ),
@@ -1994,7 +2494,7 @@ class WonderousItemsData {
       type: "Head",
       name: "Mask of the skull",
       availability: 10,
-      exclusiveClasses: ["Antipaladin"],
+      exclusiveClasses: ["Antipaladin", "Warrior", "Barbarian"],
       description:
           "This fearsome-looking mask of ivory, beaten copper, or pale wood is typically fashioned into the likeness of a human skull with a missing lower jaw, allowing the bottom half of the wearer's face to remain visible when the mask is worn. Once per day, after it has been worn for at least 1 hour, the mask can be loosed to fly from the wearer's face. It travels up to 50 feet away from the wearer and attacks a target assigned to it. The grinning skull mask makes a touch attack against the target based on the wearer's base attack bonus. If the attack succeeds, the target must make a successful DC 20 Fortitude save or take 130 points of damage, as if affected by a finger of death spell. If the target succeeds at its saving throw, it nevertheless takes 3d6+13 points of damage. After attacking (whether successful or not), the mask flies back to its user. The mask has AC 16, 10 hit points, and hardness 6.",
       bonus: null,
@@ -2086,6 +2586,16 @@ class WonderousItemsData {
           "A greater mask of giants has all the powers of a lesser mask of giants, plus it grants additional abilities in giant form. If the form has any of the following abilities, the wearer gains the listed ability: rend (2d6 damage), regeneration 5 (acid or fire), rock catching, rock throwing (range 60 feet, 2d6 damage). If the chosen giant form has immunity or resistance to any energy type, the wearer gains resistance 20 to that energy type when in giant form. If the giant form has vulnerability to an energy type, the wearer gains that vulnerability when in giant form. In giant form, the wearer gains a +6 size bonus to Strength, a –2 penalty to Dexterity, a +4 size bonus to Constitution, and a +4 natural armor bonus.",
       bonus: null,
       price: 90000,
+    ),
+    WonderousItemsModel(
+      type: "Head",
+      name: "Helm of the Serpent King",
+      availability: 12,
+      exclusiveClasses: [],
+      description:
+          "This helm is made of large, alchemically hardened snake scales, and is crafted in the shape of a stylized serpent mouth. Its wearer stares out through the serpent’s eyes, and sees all things cast in a yellow tint. When worn, it grants the following spell-like abilities to the wearer:\n• Hypnotism (3/day)\n• Summon nature’s ally III (constrictor snake only, 3/day)\n• Beast shape III (snake form only, 1/day)\n• Poison (1/day)\nA mythic creature can expend one use of mythic power when using the beast shape III spell-like ability to instead cast it as mythic beast shape III. Alternatively, he can expend two uses of mythic power to instead cast the augmented version of mythic beast shape III.",
+      bonus: null,
+      price: 96000,
     ),
     WonderousItemsModel(
       type: "Wrist",
@@ -2182,6 +2692,26 @@ class WonderousItemsData {
           "This bracelet is adorned with seven coral beads carved in intricate designs. When a critical hit or sneak attack is confirmed on the wearer, as an immediate action before damage is rolled, he can choose to convert the critical hit into a normal hit. Each time the wearer negates a critical hit or sneak attack in this manner, one bead shatters. When all seven are used up, the bracelet itself crumbles into powder.",
       bonus: null,
       price: 15800,
+    ),
+    WonderousItemsModel(
+      type: "Wrist",
+      name: "Bracers of celestial intervention",
+      availability: 9,
+      exclusiveClasses: ["Paladin"],
+      description:
+          "Prayers and engravings of celestial beings cover these golden bracers. A paladin can expend one or more of her uses of smite evil into these bracers as a standard action to call forth agathions, angels, or archons to aid her. This acts as a summon monster spell of a spell level equal to the number of smite evil uses the paladin expends.",
+      bonus: null,
+      price: 16000,
+    ),
+    WonderousItemsModel(
+      type: "Wrist",
+      name: "Bracers of demonic intervention",
+      availability: 9,
+      exclusiveClasses: ["Antipaladin"],
+      description:
+          "Unholy and engravings of demonic beings cover these golden bracers. An antipaladin can expend one or more of her uses of smite good into these bracers as a standard action to call forth demonos to aid her. This acts as a summon monster spell of a spell level equal to the number of smite good uses the antipaladin expends.",
+      bonus: null,
+      price: 16000,
     ),
     WonderousItemsModel(
       type: "Wrist",

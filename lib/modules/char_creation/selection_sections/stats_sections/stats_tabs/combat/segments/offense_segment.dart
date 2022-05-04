@@ -72,6 +72,25 @@ class OffenseSegment extends StatelessWidget {
                 ),
               ],
             ),
+          if (state.char.charClass.name == "Samurai")
+            Column(
+              children: [
+                const SizedBox(height: 3),
+                CombatInfo(
+                  length: deviceWidth! * 0.5,
+                  label: state.traits
+                      .firstWhere(
+                          (element) => element.traiName.contains("Challenge"))
+                      .traiName
+                      .substring(0, 9),
+                  value: state.traits
+                      .firstWhere(
+                          (element) => element.traiName.contains("Challenge"))
+                      .traiName
+                      .substring(10),
+                ),
+              ],
+            ),
           if (state.char.charClass.name == "Paladin" ||
               state.char.charClass.name == "Antipaladin")
             Column(

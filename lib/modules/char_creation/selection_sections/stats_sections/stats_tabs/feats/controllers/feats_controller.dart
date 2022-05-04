@@ -70,6 +70,11 @@ class FeatsController {
         numberOfFeats++;
       }
     }
+    if (className == "Samurai") {
+      for (var i = 6; i < level; i += 6) {
+        numberOfFeats++;
+      }
+    }
     List<TraitModel> filteredFeats = [];
     filteredFeats.insert(0, AllFeatsData().reactionary);
     if (feats.length > numberOfFeats) {

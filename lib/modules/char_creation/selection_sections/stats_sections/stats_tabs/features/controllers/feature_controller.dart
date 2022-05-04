@@ -3,6 +3,7 @@ import 'package:fantasy_name_generator/shared/data/class_data/class_traits_data/
 import 'package:fantasy_name_generator/shared/data/class_data/class_traits_data/physical_classes/monk_traits_data.dart';
 import 'package:fantasy_name_generator/shared/data/class_data/class_traits_data/physical_classes/paladin_traits_data.dart';
 import 'package:fantasy_name_generator/shared/data/class_data/class_traits_data/physical_classes/ranger_traits_data.dart';
+import 'package:fantasy_name_generator/shared/data/class_data/class_traits_data/physical_classes/samurai_traits_data.dart';
 
 import '../../../../../../../models/class_models/specials_model.dart';
 import '../../../../../../../models/class_models/traits_model.dart';
@@ -21,6 +22,7 @@ class FeaturesController {
   var bandit = BanditTraitData();
   var paladin = PaladinTraitsData();
   var antipaladin = AntipaladinTraitData();
+  var samurai = SamuraiTraitsData();
 
   List<TraitModel> gettingClassTraits(
       String className, int level, EquipModel equip) {
@@ -52,6 +54,10 @@ class FeaturesController {
         break;
       case "Rogue":
         traitList = gettingTraits(level, rogue.rogueTraits, equip);
+        traitList.sort((a, b) => a.levelAcquired.compareTo(b.levelAcquired));
+        break;
+      case "Samurai":
+        traitList = gettingTraits(level, samurai.samuraiTraits, equip);
         traitList.sort((a, b) => a.levelAcquired.compareTo(b.levelAcquired));
         break;
       case "Warrior":
@@ -88,7 +94,8 @@ class FeaturesController {
       var newString = '';
       if (i.traiName.contains("Sneak attack")) {
         newString = "${i.traiName} +${valueList[index] + 1}d6";
-      } else if (i.traiName.contains("Smite")) {
+      } else if (i.traiName.contains("Smite") ||
+          i.traiName.contains("Challenge")) {
         newString = "${i.traiName} ${valueList[index] + 1}/day";
       } else if (i.traiName.contains("Favored enemy") ||
           i.traiName.contains("Favored terrain")) {
@@ -146,6 +153,9 @@ class FeaturesController {
         break;
       case "Ranger":
         specials = gettingFavoredEnemiesAndTerrain(level);
+        break;
+      case "Samurai":
+        specials = getSamuraiOrder();
         break;
       default:
     }
@@ -212,5 +222,12 @@ class FeaturesController {
           isSelected: false));
     }
     return specialList;
+  }
+
+  List<SpecialsModel> getSamuraiOrder() {
+    List<SpecialsModel> order = [];
+    var random = generateRandom(samurai.orders.length);
+    order.add(samurai.orders[random]);
+    return order;
   }
 }

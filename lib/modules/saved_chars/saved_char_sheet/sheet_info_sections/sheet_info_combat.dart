@@ -4,10 +4,8 @@ import 'package:fantasy_name_generator/modules/char_creation/selection_sections/
 import '../../../../shared/constants/phone_sizes.dart';
 import '../../../../shared/widgets/expanded_section.dart';
 import '../../../char_creation/selection_sections/stats_sections/stats_tabs/combat/widgets/combat_info.dart';
-import '../../../char_creation/selection_sections/stats_sections/stats_tabs/combat/widgets/defense_equip_tile.dart';
 import '../../../char_creation/selection_sections/stats_sections/stats_tabs/combat/widgets/weapon_tile.dart';
 import '../../../char_creation/selection_sections/stats_sections/widgets/atribute_division.dart';
-import '../../../char_creation/selection_sections/stats_sections/widgets/char_description_text.dart';
 import '../../../char_creation/selection_sections/stats_sections/widgets/gradient_label.dart';
 import 'widgets/label_for_category_icon.dart';
 
@@ -182,6 +180,25 @@ class SheetInfoCombat extends StatelessWidget {
                           .traiName
                           .substring(13),
                       onCharSheet: true,
+                    ),
+                  ],
+                ),
+              if (char.charClass.name == "Samurai")
+                Column(
+                  children: [
+                    const SizedBox(height: 3),
+                    CombatInfo(
+                      length: deviceWidth! * 0.5,
+                      label: char.charClass.traits!
+                          .firstWhere((element) =>
+                              element.traiName.contains("Challenge"))
+                          .traiName
+                          .substring(0, 9),
+                      value: char.charClass.traits!
+                          .firstWhere((element) =>
+                              element.traiName.contains("Challenge"))
+                          .traiName
+                          .substring(10),
                     ),
                   ],
                 ),

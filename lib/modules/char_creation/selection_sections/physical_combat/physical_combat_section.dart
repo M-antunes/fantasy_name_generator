@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import '../../../../shared/constants/phone_sizes.dart';
 import '../../../../shared/themes/app_colors.dart';
 import '../../../../shared/themes/app_text_styles.dart';
-import '../widgets/long_description_widget.dart';
+import '../../../../shared/widgets/long_description_widget.dart';
 
 class CombatEquipSection extends StatelessWidget {
   const CombatEquipSection({Key? key}) : super(key: key);

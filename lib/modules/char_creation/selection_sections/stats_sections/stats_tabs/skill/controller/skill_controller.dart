@@ -25,17 +25,18 @@ class SkillController {
       }
     }
     int skillRankPerLevel = rankLevel + charAtrb.intelligence;
-    skillRankPerLevel += raceName == "Human" ? level : 0;
-    int maxSkills = skillRankPerLevel * level;
+    int maxSkillPoints = skillRankPerLevel * level;
+    maxSkillPoints += raceName == "Human" ? level : 0;
     int pointsToAddInPerception = 0;
-    pointsToAddInPerception =
-        hasPerception ? (maxSkills - maxSkills * 0.95).floor() : level;
-    maxSkills -= pointsToAddInPerception;
+    pointsToAddInPerception = hasPerception
+        ? (maxSkillPoints - maxSkillPoints * 0.95).floor()
+        : level;
+    maxSkillPoints -= pointsToAddInPerception;
     charSkillList
         .firstWhere((element) => element.name == "Perception")
         .pointsAdded += pointsToAddInPerception;
     int unUsedRankPoints = 0;
-    for (var i = 0; i < maxSkills; i++) {
+    for (var i = 0; i < maxSkillPoints; i++) {
       var random = generateRandom(classSkills.length);
       classSkills[random].pointsAdded++;
     }
@@ -60,7 +61,7 @@ class SkillController {
       classSkills = classSkillMaxed + classSkillPossibility;
     }
     for (var j = 0; j < classSkills.length; j++) {
-      classSkills[j].pointsAdded + 3;
+      classSkills[j].finalValue += 3;
     }
     charSkillList.addAll(classSkills);
     charSkillList.sort((a, b) => a.name.compareTo(b.name));

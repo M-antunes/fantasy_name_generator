@@ -532,7 +532,7 @@ class ClassData {
         "Chaotic Neutral",
         "Chaotic Evil"
       ],
-      specialName: "Resolve",
+      specialName: "Order",
       hitDice: 10,
       combatStyle: "Physical",
       mainAtrb: "strength",
