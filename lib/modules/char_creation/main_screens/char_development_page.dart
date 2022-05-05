@@ -52,39 +52,41 @@ class _CharDevelopmentPageState extends State<CharDevelopmentPage>
                 CharSelectionLabel(
                     size: size,
                     label: state.creationStage == 1
-                        ? "Race"
+                        ? "Character uniqueness"
                         : state.creationStage == 2
-                            ? "Gender & Name"
+                            ? "Race"
                             : state.creationStage == 3
-                                ? "${state.newName} ${state.newLastName} - Combat Style"
+                                ? "Gender & Name"
                                 : state.creationStage == 4
-                                    ? "${state.newName} ${state.newLastName} - Class"
+                                    ? "${state.newName} ${state.newLastName} - Combat Style"
                                     : state.creationStage == 5
-                                        ? "${state.newName} ${state.newLastName} - Combat Equip"
+                                        ? "${state.newName} ${state.newLastName} - Class"
                                         : state.creationStage == 6
-                                            ? "${state.newName} ${state.newLastName} - Aligment"
+                                            ? "${state.newName} ${state.newLastName} - Combat Equip"
                                             : state.creationStage == 7
-                                                ? "${state.newName} ${state.newLastName} - Level"
-                                                : "Stats generator"),
+                                                ? "${state.newName} ${state.newLastName} - Aligment"
+                                                : state.creationStage == 8
+                                                    ? "${state.newName} ${state.newLastName} - Level"
+                                                    : "Stats generator"),
                 ProgressionBar(
                   controller: state,
                 ),
-                if (state.creationStage != 8)
+                if (state.creationStage != 9)
                   CharacterInfoBar(
                       race:
-                          state.creationStage > 1 ? state.chosenRace.name : "",
-                      gender:
-                          state.creationStage == 1 || state.creationStage == 2
-                              ? ""
-                              : state.isMale
-                                  ? "Male"
-                                  : "Female",
+                          state.creationStage > 2 ? state.chosenRace.name : "",
+                      gender: state.creationStage < 4
+                          ? ""
+                          : state.isMale
+                              ? "Male"
+                              : "Female",
                       className: state.creationStage > 4
                           ? state.chosenClass.name
                           : ""),
                 SizedBox(height: size.height * 0.01),
-                if (state.creationStage == 1) const RaceSelection(),
-                if (state.creationStage == 2)
+                if (state.creationStage == 1) const Center(),
+                if (state.creationStage == 2) const RaceSelection(),
+                if (state.creationStage == 3)
                   Column(
                     children: [
                       const GenderSelection(),
@@ -101,12 +103,12 @@ class _CharDevelopmentPageState extends State<CharDevelopmentPage>
                       ),
                     ],
                   ),
-                if (state.creationStage == 3) const CombatStyleSection(),
-                if (state.creationStage == 4) const ClassSelection(),
-                if (state.creationStage == 5) const CombatEquipSection(),
-                if (state.creationStage == 6) const AlignmentSelection(),
-                if (state.creationStage == 7) const LevelSelection(),
-                if (state.creationStage == 8) const StatsSection(),
+                if (state.creationStage == 4) const CombatStyleSection(),
+                if (state.creationStage == 5) const ClassSelection(),
+                if (state.creationStage == 6) const CombatEquipSection(),
+                if (state.creationStage == 7) const AlignmentSelection(),
+                if (state.creationStage == 8) const LevelSelection(),
+                if (state.creationStage == 9) const StatsSection(),
               ],
             );
           }),

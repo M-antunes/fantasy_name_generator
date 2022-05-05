@@ -99,24 +99,24 @@ class SkillController {
     }
 
     for (var i = 0; i < charSkillList.length; i++) {
-      int totalBoost = 0;
+      int itemBoost = 0;
+      int raceBoost = 0;
       if (charSkillList[i].boostedByItems.isNotEmpty) {
         for (var j = 0; j < charSkillList[i].boostedByItems.length; j++) {
           if (equip.wonderousItems!.any((element) =>
               element.name == charSkillList[i].boostedByItems[j].key)) {
-            totalBoost =
-                (totalBoost + charSkillList[i].boostedByItems[j].value).toInt();
+            itemBoost = (charSkillList[i].boostedByItems[j].value).toInt();
           }
         }
-        for (var j = 0; j < charSkillList[i].raceBosst.length; j++) {
-          if (raceName == charSkillList[i].raceBosst[j].key) {
-            totalBoost =
-                (totalBoost + charSkillList[i].raceBosst[j].value).toInt();
+        for (var j = 0; j < charSkillList[i].boostRaceList.length; j++) {
+          if (raceName == charSkillList[i].boostRaceList[j].key) {
+            raceBoost = (charSkillList[i].boostRaceList[j].value).toInt();
           }
         }
       }
-      charSkillList[i].boostValue = totalBoost;
-      charSkillList[i].finalValue += totalBoost;
+      charSkillList[i].itemBoostValue = itemBoost;
+      charSkillList[i].raceBoostValue = raceBoost;
+      charSkillList[i].finalValue += itemBoost + raceBoost;
       charSkillList[i] = charSkillList[i].copyWith(skillOfClasses: []);
     }
 

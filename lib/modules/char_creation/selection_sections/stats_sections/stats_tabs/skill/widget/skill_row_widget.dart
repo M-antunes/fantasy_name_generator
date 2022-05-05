@@ -1,5 +1,6 @@
-import 'package:fantasy_name_generator/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
+
+import 'package:fantasy_name_generator/shared/themes/app_colors.dart';
 
 import '../../../../../../../shared/constants/phone_sizes.dart';
 import '../../../../../../../shared/themes/app_text_styles.dart';
@@ -10,8 +11,9 @@ class SkillRowWidget extends StatelessWidget {
   final String skillName;
   final String atrb;
   final String pointAdded;
-  final int boost;
-  final String armorPenalty;
+  final int itemBoost;
+  final int raceBoost;
+  final int armorPenalty;
   final int atrbValue;
 
   bool classSkill;
@@ -22,7 +24,8 @@ class SkillRowWidget extends StatelessWidget {
     required this.skillName,
     required this.atrb,
     required this.pointAdded,
-    required this.boost,
+    required this.itemBoost,
+    required this.raceBoost,
     required this.armorPenalty,
     required this.atrbValue,
     this.classSkill = false,
@@ -106,26 +109,49 @@ class SkillRowWidget extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(width: deviceWidth! * 0.03),
+            SizedBox(width: deviceWidth! * 0.02),
             SizedBox(
-              width: deviceWidth! * 0.07,
+              width: deviceWidth! * 0.1,
               child: Center(
-                child: Text(
-                  "$boost",
-                  style: boost > 0
-                      ? AppTextStyle.statsLabelBrighter
-                          .copyWith(color: AppColors.boostColor)
-                      : AppTextStyle.statsLabelBrighter,
-                ),
+                child: classSkill
+                    ? RichText(
+                        textScaleFactor: itemBoost > 0 ? 0.8 : 0.9,
+                        text: TextSpan(children: [
+                          TextSpan(
+                            text: itemBoost > 0 ? "+$itemBoost" : "",
+                            style: itemBoost > 0
+                                ? AppTextStyle.statsLabelBrighter
+                                    .copyWith(color: AppColors.boostColor)
+                                : AppTextStyle.statsLabelBrighter,
+                          ),
+                          TextSpan(
+                              text: raceBoost > 0 ? "+$raceBoost" : "",
+                              style: AppTextStyle.statsLabelBrighter
+                                  .copyWith(color: AppColors.raceBoostColor)),
+                          TextSpan(
+                              text: "+3",
+                              style: AppTextStyle.statsLabelBrighter
+                                  .copyWith(color: AppColors.primaryGold)),
+                        ]))
+                    : Text(
+                        "$itemBoost",
+                        style: itemBoost > 0
+                            ? AppTextStyle.statsLabelBrighter
+                                .copyWith(color: AppColors.boostColor)
+                            : AppTextStyle.statsLabelBrighter,
+                      ),
               ),
             ),
-            SizedBox(width: deviceWidth! * 0.03),
+            SizedBox(width: deviceWidth! * 0.01),
             SizedBox(
               width: deviceWidth! * 0.07,
               child: Center(
                 child: Text(
-                  armorPenalty,
-                  style: AppTextStyle.statsLabelBrighter,
+                  armorPenalty > 0 ? "-$armorPenalty" : "0",
+                  style: armorPenalty > 0
+                      ? AppTextStyle.statsLabelBrighter
+                          .copyWith(color: AppColors.primary)
+                      : AppTextStyle.statsLabelBrighter,
                 ),
               ),
             ),

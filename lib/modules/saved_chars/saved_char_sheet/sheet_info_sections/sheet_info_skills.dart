@@ -6,6 +6,7 @@ import '../../../../shared/themes/app_colors.dart';
 import '../../../../shared/themes/app_text_styles.dart';
 import '../../../../shared/widgets/app_horizontal_line.dart';
 import '../../../../shared/widgets/expanded_section.dart';
+import '../../../char_creation/selection_sections/stats_sections/stats_tabs/skill/widget/skill_bottom_info.dart';
 import 'widgets/label_for_category_icon.dart';
 
 class SheetInfoSkills extends StatelessWidget {
@@ -174,19 +175,61 @@ class SheetInfoSkills extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              SizedBox(width: deviceWidth! * 0.03),
+                              SizedBox(width: deviceWidth! * 0.02),
                               SizedBox(
-                                width: deviceWidth! * 0.04,
+                                width: deviceWidth! * 0.08,
                                 child: Center(
-                                  child: Text(
-                                    "${skill.boostValue}",
-                                    style: skill.boostValue > 0
-                                        ? AppTextStyle.statsLabelBrighter
-                                            .copyWith(
-                                                color: AppColors.boostColor)
-                                        : AppTextStyle.statsLabelBrighter,
-                                    textScaleFactor: 0.8,
-                                  ),
+                                  child: skill.initialClassSkill
+                                      ? RichText(
+                                          textScaleFactor:
+                                              skill.itemBoostValue > 0
+                                                  ? 0.7
+                                                  : 0.8,
+                                          text: TextSpan(children: [
+                                            TextSpan(
+                                              text: skill.itemBoostValue > 0
+                                                  ? "+${skill.itemBoostValue}"
+                                                  : "",
+                                              style: skill.itemBoostValue > 0
+                                                  ? AppTextStyle
+                                                      .statsLabelBrighter
+                                                      .copyWith(
+                                                          color: AppColors
+                                                              .boostColor)
+                                                  : AppTextStyle
+                                                      .statsLabelBrighter,
+                                            ),
+                                            TextSpan(
+                                              text: skill.raceBoostValue > 0
+                                                  ? "+${skill.raceBoostValue}"
+                                                  : "",
+                                              style: skill.raceBoostValue > 0
+                                                  ? AppTextStyle
+                                                      .statsLabelBrighter
+                                                      .copyWith(
+                                                          color: AppColors
+                                                              .raceBoostColor)
+                                                  : AppTextStyle
+                                                      .statsLabelBrighter,
+                                            ),
+                                            TextSpan(
+                                                text: "+3",
+                                                style: AppTextStyle
+                                                    .statsLabelBrighter
+                                                    .copyWith(
+                                                        color: AppColors
+                                                            .primaryGold)),
+                                          ]))
+                                      : Text(
+                                          "${skill.itemBoostValue}",
+                                          style: skill.itemBoostValue > 0
+                                              ? AppTextStyle.statsLabelBrighter
+                                                  .copyWith(
+                                                      color:
+                                                          AppColors.boostColor)
+                                              : AppTextStyle.statsLabelBrighter,
+                                          textScaleFactor: 0.8,
+                                        ),
                                 ),
                               ),
                               SizedBox(width: deviceWidth! * 0.03),
@@ -209,16 +252,17 @@ class SheetInfoSkills extends StatelessWidget {
                 SizedBox(height: deviceHeight! * 0.004),
                 const AppHorizontalLine(),
                 SizedBox(height: deviceHeight! * 0.002),
-                RichText(
-                    textScaleFactor: 0.9,
-                    text: TextSpan(
-                        style: AppTextStyle.statsLabel
-                            .copyWith(fontStyle: FontStyle.italic),
-                        children: const [
-                          TextSpan(
-                              text:
-                                  "* Bigger font means those are favored class skills and have been granted 3 aditional points from start.")
-                        ])),
+                const SkillBottomInfo(
+                    text: "* Bigger font means those are favored class skills"),
+                const SkillBottomInfo(
+                    coloredIndex: "◘",
+                    color: AppColors.primaryGold,
+                    text: " Represents the favored class boost to skill"),
+                const SkillBottomInfo(
+                    coloredIndex: "◘",
+                    color: AppColors.boostColor,
+                    text: " Represents the item boost to skill"),
+                SizedBox(height: deviceHeight! * 0.004),
                 SizedBox(height: deviceHeight! * 0.004),
               ],
             ),

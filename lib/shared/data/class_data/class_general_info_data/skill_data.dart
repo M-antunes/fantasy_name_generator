@@ -17,7 +17,7 @@ class SkillData {
         KeyValueModel(key: "Claws of the ice bear", value: 2),
         KeyValueModel(key: "Besmara's bicorne", value: 2),
       ],
-      raceBosst: [
+      boostRaceList: [
         KeyValueModel(key: "Halfling", value: 2),
       ],
       skillOfClasses: [
@@ -40,7 +40,7 @@ class SkillData {
         KeyValueModel(key: "Miser's mask", value: 5),
         KeyValueModel(key: "Gloves of the keen evaluator", value: 4),
       ],
-      raceBosst: [
+      boostRaceList: [
         KeyValueModel(key: "Dwarf", value: 2),
       ],
       skillOfClasses: [
@@ -65,7 +65,7 @@ class SkillData {
         KeyValueModel(key: "Bracelet of bargaining", value: 5),
         KeyValueModel(key: "Circlet of persuasion", value: 3),
       ],
-      raceBosst: [
+      boostRaceList: [
         KeyValueModel(key: "", value: 2),
       ],
       skillOfClasses: [
@@ -91,7 +91,7 @@ class SkillData {
         KeyValueModel(key: "Claws of the ice bear", value: 2),
         KeyValueModel(key: "Besmara's bicorne", value: 2),
       ],
-      raceBosst: [
+      boostRaceList: [
         KeyValueModel(key: "Halfling", value: 2),
       ],
       skillOfClasses: [
@@ -115,7 +115,7 @@ class SkillData {
         KeyValueModel(key: "Engineer's workgloves", value: 2),
         KeyValueModel(key: "Demonic smith's gloves", value: 4),
       ],
-      raceBosst: [
+      boostRaceList: [
         KeyValueModel(key: "Gnome", value: 2),
       ],
       skillOfClasses: ["all"],
@@ -232,7 +232,7 @@ class SkillData {
         KeyValueModel(key: "Maw of the wyrm", value: 4),
         KeyValueModel(key: "Judge's wig", value: 4),
       ],
-      raceBosst: [
+      boostRaceList: [
         KeyValueModel(key: "Half-orc", value: 2),
       ],
       skillOfClasses: [
@@ -343,7 +343,7 @@ class SkillData {
       attributeUsed: "intelligence",
       hasPenalty: false,
       checkPenalty: 0,
-      raceBosst: [
+      boostRaceList: [
         KeyValueModel(key: "Elf", value: 2),
         KeyValueModel(key: "Gnome", value: 2),
       ],
@@ -440,7 +440,7 @@ class SkillData {
         KeyValueModel(key: "Lenses of detection", value: 5),
         KeyValueModel(key: "", value: ""),
       ],
-      raceBosst: [
+      boostRaceList: [
         KeyValueModel(key: "Elf", value: 2),
         KeyValueModel(key: "Gnome", value: 2),
         KeyValueModel(key: "Halfling", value: 2),
@@ -530,7 +530,7 @@ class SkillData {
       boostedByItems: [
         KeyValueModel(key: "Goggles of elvenkind", value: 5),
       ],
-      raceBosst: [
+      boostRaceList: [
         KeyValueModel(key: "Elf", value: 2),
       ],
       skillOfClasses: [
@@ -556,7 +556,7 @@ class SkillData {
         KeyValueModel(key: "Ring of chameleon power", value: 10),
         KeyValueModel(key: "Shozoku of the night wind", value: 10),
       ],
-      raceBosst: [
+      boostRaceList: [
         KeyValueModel(key: "Gnome", value: 4),
         KeyValueModel(key: "Halfling", value: 4),
       ],

@@ -12,9 +12,10 @@ class SkillModel {
   int finalValue;
   int pointsAdded;
   int atrbValue;
-  int boostValue;
+  int itemBoostValue;
+  int raceBoostValue;
   List<KeyValueModel> boostedByItems;
-  List<KeyValueModel> raceBosst;
+  List<KeyValueModel> boostRaceList;
   SkillModel({
     this.name = '',
     this.attributeUsed = '',
@@ -25,9 +26,10 @@ class SkillModel {
     this.finalValue = 0,
     this.pointsAdded = 0,
     this.atrbValue = 0,
-    this.boostValue = 0,
+    this.itemBoostValue = 0,
+    this.raceBoostValue = 0,
     this.boostedByItems = const [],
-    this.raceBosst = const [],
+    this.boostRaceList = const [],
   });
 
   SkillModel copyWith({
@@ -40,9 +42,10 @@ class SkillModel {
     int? finalValue,
     int? pointsAdded,
     int? atrbValue,
-    int? boostValue,
+    int? itemBoostValue,
+    int? raceBoostValue,
     List<KeyValueModel>? boostedByItems,
-    List<KeyValueModel>? raceBosst,
+    List<KeyValueModel>? boostRaceList,
   }) {
     return SkillModel(
       name: name ?? this.name,
@@ -54,9 +57,10 @@ class SkillModel {
       finalValue: finalValue ?? this.finalValue,
       pointsAdded: pointsAdded ?? this.pointsAdded,
       atrbValue: atrbValue ?? this.atrbValue,
-      boostValue: boostValue ?? this.boostValue,
+      itemBoostValue: itemBoostValue ?? this.itemBoostValue,
+      raceBoostValue: raceBoostValue ?? this.raceBoostValue,
       boostedByItems: boostedByItems ?? this.boostedByItems,
-      raceBosst: raceBosst ?? this.raceBosst,
+      boostRaceList: boostRaceList ?? this.boostRaceList,
     );
   }
 
@@ -71,9 +75,10 @@ class SkillModel {
       'finalValue': finalValue,
       'pointsAdded': pointsAdded,
       'atrbValue': atrbValue,
-      'boostValue': boostValue,
+      'itemBoostValue': itemBoostValue,
+      'raceBoostValue': raceBoostValue,
       'boostedByItems': boostedByItems.map((x) => x.toMap()).toList(),
-      'raceBosst': raceBosst.map((x) => x.toMap()).toList(),
+      'boostRaceList': boostRaceList.map((x) => x.toMap()).toList(),
     };
   }
 
@@ -88,11 +93,12 @@ class SkillModel {
       finalValue: map['finalValue']?.toInt() ?? 0,
       pointsAdded: map['pointsAdded']?.toInt() ?? 0,
       atrbValue: map['atrbValue']?.toInt() ?? 0,
-      boostValue: map['boostValue']?.toInt() ?? 0,
+      itemBoostValue: map['itemBoostValue']?.toInt() ?? 0,
+      raceBoostValue: map['raceBoostValue']?.toInt() ?? 0,
       boostedByItems: List<KeyValueModel>.from(
           map['boostedByItems']?.map((x) => KeyValueModel.fromMap(x))),
-      raceBosst: List<KeyValueModel>.from(
-          map['raceBosst']?.map((x) => KeyValueModel.fromMap(x))),
+      boostRaceList: List<KeyValueModel>.from(
+          map['boostRaceList']?.map((x) => KeyValueModel.fromMap(x))),
     );
   }
 
@@ -103,7 +109,7 @@ class SkillModel {
 
   @override
   String toString() {
-    return 'SkillModel(name: $name, attributeUsed: $attributeUsed, skillOfClasses: $skillOfClasses, hasPenalty: $hasPenalty, initialClassSkill: $initialClassSkill, checkPenalty: $checkPenalty, finalValue: $finalValue, pointsAdded: $pointsAdded, atrbValue: $atrbValue, boostValue: $boostValue, boostedByItems: $boostedByItems, raceBosst: $raceBosst)';
+    return 'SkillModel(name: $name, attributeUsed: $attributeUsed, skillOfClasses: $skillOfClasses, hasPenalty: $hasPenalty, initialClassSkill: $initialClassSkill, checkPenalty: $checkPenalty, finalValue: $finalValue, pointsAdded: $pointsAdded, atrbValue: $atrbValue, itemBoostValue: $itemBoostValue, raceBoostValue: $raceBoostValue, boostedByItems: $boostedByItems, boostRaceList: $boostRaceList)';
   }
 
   @override
@@ -120,9 +126,10 @@ class SkillModel {
         other.finalValue == finalValue &&
         other.pointsAdded == pointsAdded &&
         other.atrbValue == atrbValue &&
-        other.boostValue == boostValue &&
+        other.itemBoostValue == itemBoostValue &&
+        other.raceBoostValue == raceBoostValue &&
         listEquals(other.boostedByItems, boostedByItems) &&
-        listEquals(other.raceBosst, raceBosst);
+        listEquals(other.boostRaceList, boostRaceList);
   }
 
   @override
@@ -136,8 +143,9 @@ class SkillModel {
         finalValue.hashCode ^
         pointsAdded.hashCode ^
         atrbValue.hashCode ^
-        boostValue.hashCode ^
+        itemBoostValue.hashCode ^
+        raceBoostValue.hashCode ^
         boostedByItems.hashCode ^
-        raceBosst.hashCode;
+        boostRaceList.hashCode;
   }
 }

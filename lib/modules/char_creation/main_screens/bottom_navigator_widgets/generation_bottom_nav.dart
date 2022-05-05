@@ -29,15 +29,13 @@ class GenerationBottomNav extends StatelessWidget {
           children: [
             Consumer<StatsController>(builder: (context, ctrl, child) {
               return AppAnimatedButton(
-                  label: state.creationStage == 8 ? "Reset all" : "Previous",
+                  label: state.creationStage == 9 ? "Reset all" : "Previous",
                   onTap: () {
                     if (state.creationStage == 1) {
                       Navigator.of(context).pop();
-                    } else if (state.creationStage == 8) {
-                      callStartOverConfirmation(
-                          context,
-                          state.cha.charName.fullName,
-                          state.chosenClass.name, () {
+                    } else if (state.creationStage == 9) {
+                      callStartOverConfirmation(context, state.chosenClass.name,
+                          state.cha.charName.fullName, () {
                         state.startCharAllOver();
                         ctrl.resetEquipAndStats();
                         Navigator.pop(context);
@@ -47,11 +45,11 @@ class GenerationBottomNav extends StatelessWidget {
                     }
                   });
             }),
-            if (state.creationStage == 2)
+            if (state.creationStage == 3)
               AppGenerateButton(
                 onGenerate: () => state.newNameGenerator(),
               ),
-            if (state.creationStage == 8)
+            if (state.creationStage == 9)
               Consumer<StatsController>(builder: (context, ctrl, child) {
                 return AppGenerateButton(
                   icon: !ctrl.statsGenerated
@@ -64,11 +62,11 @@ class GenerationBottomNav extends StatelessWidget {
                       : () => ctrl.resetEquipAndStats(),
                 );
               }),
-            if (state.creationStage != 8)
+            if (state.creationStage != 9)
               AppAnimatedButton(
                 onTap: () => buttonFunction(state, context),
               ),
-            if (state.creationStage == 8)
+            if (state.creationStage == 9)
               Consumer<StatsController>(builder: (context, ctrl, child) {
                 var admin = context.read<CharAdminController>();
                 return ctrl.statsGenerated

@@ -1,11 +1,12 @@
-import 'package:fantasy_name_generator/shared/themes/app_text_styles.dart';
-import 'package:fantasy_name_generator/shared/widgets/app_horizontal_line.dart';
+import 'package:fantasy_name_generator/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:fantasy_name_generator/controllers/stats_controller/stats_controller.dart';
 import 'package:fantasy_name_generator/shared/constants/phone_sizes.dart';
+import 'package:fantasy_name_generator/shared/widgets/app_horizontal_line.dart';
 
+import 'widget/skill_bottom_info.dart';
 import 'widget/skill_row_label_widget.dart';
 import 'widget/skill_row_widget.dart';
 
@@ -43,26 +44,29 @@ class SkillStats extends StatelessWidget {
                         atrb: skill.attributeUsed,
                         atrbValue: skill.atrbValue,
                         pointAdded: "${skill.pointsAdded}",
-                        boost: skill.boostValue,
-                        armorPenalty: skill.checkPenalty > 0
-                            ? "-${skill.checkPenalty}"
-                            : "  0",
+                        itemBoost: skill.itemBoostValue,
+                        raceBoost: skill.raceBoostValue,
+                        armorPenalty: skill.checkPenalty,
                         classSkill: skill.initialClassSkill,
                       );
                     }),
                 SizedBox(height: deviceHeight! * 0.004),
                 const AppHorizontalLine(),
                 SizedBox(height: deviceHeight! * 0.002),
-                RichText(
-                    textScaleFactor: 0.9,
-                    text: TextSpan(
-                        style: AppTextStyle.longDescription
-                            .copyWith(fontStyle: FontStyle.italic),
-                        children: const [
-                          TextSpan(
-                              text:
-                                  "* Bigger font means those are favored class skills and have been granted 3 aditional points from start.")
-                        ])),
+                const SkillBottomInfo(
+                    text: "* Bigger font means those are favored class skills"),
+                const SkillBottomInfo(
+                    coloredIndex: "◘",
+                    color: AppColors.primaryGold,
+                    text: " Represents the favored class boost to skill"),
+                const SkillBottomInfo(
+                    coloredIndex: "◘",
+                    color: AppColors.raceBoostColor,
+                    text: " Represents the race boost to skill"),
+                const SkillBottomInfo(
+                    coloredIndex: "◘",
+                    color: AppColors.boostColor,
+                    text: " Represents the item boost to skill"),
                 SizedBox(height: deviceHeight! * 0.004),
               ],
             ),
