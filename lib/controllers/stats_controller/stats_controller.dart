@@ -1,6 +1,7 @@
 import 'package:fantasy_name_generator/modules/char_creation/selection_sections/stats_sections/stats_tabs/features/controllers/feature_controller.dart';
 
 import '../../models/spell_models/spell_model.dart';
+import '../../shared/data/character_personal_data/default_char_model_data.dart';
 import '../../shared/data/class_data/class_traits_data/physical_classes/monk_traits_data.dart';
 import '../stage_controller/imports.dart';
 

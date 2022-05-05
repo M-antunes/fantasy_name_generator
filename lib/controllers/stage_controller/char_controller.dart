@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_function_literals_in_foreach_calls
 
+import '../../shared/data/character_personal_data/default_char_model_data.dart';
 import 'imports.dart';
 
 class CharController extends ChangeNotifier {
@@ -13,6 +14,7 @@ class CharController extends ChangeNotifier {
   late CombatStyleChoiceModel chosenStyle;
   late PhysicalStyleModel physicalStyleChoice;
   late CharModel cha;
+  late bool isMinion;
   var letters = LettersData();
   var listOfRaces = RaceData();
   var listOfClasses = ClassData();
@@ -175,6 +177,10 @@ class CharController extends ChangeNotifier {
     filteredClasses = listOfClasses.allClasses
         .where((element) => element.combatStyle == chosenStyle.name)
         .toList();
+    if (isMinion) {
+      filteredClasses.removeWhere((element) =>
+          element.name == "Paladin" || element.name == "Antipaladin");
+    }
     for (var i in filteredClasses) {
       i.isSelected = false;
     }
@@ -221,6 +227,14 @@ class CharController extends ChangeNotifier {
   }
 
   filterAlignmentsToClass() {
+    if (isMinion) {
+      tempAlignmentForSwitching = AlignmentModel(
+          abreviation: "${isMale ? "His" : "Her"} Master's",
+          name: "",
+          isSelected: false,
+          description: "");
+      return;
+    }
     filteredAlignments.clear();
     filteredAlignments.addAll(listOfAlignments.allAlignments
         .where(
@@ -848,6 +862,7 @@ class CharController extends ChangeNotifier {
           objectPronoun: isMale ? "him" : "her",
           possessiveAdjective: isMale ? "his" : "her",
         ),
+        bossOrMinion: isMinion ? "Minion" : "Boss",
         skills: [],
         alignment: chosenAlignment,
         combatStats: CombatModel(),
@@ -889,6 +904,10 @@ class CharController extends ChangeNotifier {
     } else if (creationStage == 5) {
       filterAlignmentsToClass();
       advanceCreationStage();
+      if (isMinion) {
+        advanceCreationStage();
+        updateChosenAlignment();
+      }
       return null;
     } else if (creationStage == 6) {
       updateChosenAlignment();

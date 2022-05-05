@@ -8,8 +8,8 @@ import 'package:fantasy_name_generator/shared/widgets/call_message_snackbar.dart
 import '../../selection_sections/alignment/alignment_section.dart';
 import '../../selection_sections/class_section/class_section.dart';
 import '../../selection_sections/combat_style_equip/combat_style_section.dart';
-import '../../selection_sections/name_and_gender/gender_section.dart';
 import '../../selection_sections/level/level_section.dart';
+import '../../selection_sections/name_and_gender/gender_section.dart';
 import '../../selection_sections/name_and_gender/name_section.dart';
 import '../../selection_sections/physical_combat/physical_combat_section.dart';
 import '../../selection_sections/race/race_section.dart';
@@ -19,14 +19,18 @@ import '../widgets/char_selection_label.dart';
 import '../widgets/character_info_bar.dart';
 import '../widgets/progression_bar.dart';
 
-class BossDevelopmentPage extends StatefulWidget {
-  const BossDevelopmentPage({Key? key}) : super(key: key);
+class CharDevelopmentPage extends StatefulWidget {
+  final bool isMinion;
+  const CharDevelopmentPage({
+    Key? key,
+    this.isMinion = false,
+  }) : super(key: key);
 
   @override
-  _BossDevelopmentPageState createState() => _BossDevelopmentPageState();
+  _CharDevelopmentPageState createState() => _CharDevelopmentPageState();
 }
 
-class _BossDevelopmentPageState extends State<BossDevelopmentPage>
+class _CharDevelopmentPageState extends State<CharDevelopmentPage>
     with TickerProviderStateMixin {
   late final CharController namesController;
 
@@ -36,7 +40,6 @@ class _BossDevelopmentPageState extends State<BossDevelopmentPage>
     namesController.starttempRace();
     namesController.getInitialCombatStyle();
     namesController.startTempClass();
-    // namesController.startTempAlignment();
     super.initState();
   }
 
@@ -89,6 +92,7 @@ class _BossDevelopmentPageState extends State<BossDevelopmentPage>
                       const GenderSelection(),
                       SizedBox(height: size.height * 0.07),
                       NameSelection(
+                        isMinion: widget.isMinion,
                         onGenerate: () => state.newNameGenerator(),
                         onSelect: state.newName == " - ? - "
                             ? () => callMessageSnackbar(

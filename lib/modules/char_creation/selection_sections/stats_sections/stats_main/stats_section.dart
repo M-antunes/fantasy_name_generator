@@ -46,38 +46,39 @@ class _StatsSectionState extends State<StatsSection>
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 5),
-                      child: Text(
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 3),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
                         state.cha.charName.fullName,
                         style: AppTextStyle.chosenName,
                       ),
-                    ),
-                    RichText(
-                      text: TextSpan(
-                        children: [
-                          state.isEpicLevelSelected
-                              ? TextSpan(
-                                  text: "Epic ", style: AppTextStyle.epicLabel)
-                              : state.isLegendaryLevelSelected
-                                  ? TextSpan(
-                                      text: "Legendary ",
-                                      style: AppTextStyle.epicLabel)
-                                  : TextSpan(
-                                      text: "",
-                                      style: AppTextStyle.legendaryLabel),
-                          TextSpan(
-                              text: "lv: ", style: AppTextStyle.subTextWhite),
-                          TextSpan(
-                              text: state.cha.charLevel.toString(),
-                              style: AppTextStyle.levelDisplayStatsPageText)
-                        ],
-                      ),
-                    )
-                  ],
+                      RichText(
+                        text: TextSpan(
+                          children: [
+                            state.isEpicLevelSelected
+                                ? TextSpan(
+                                    text: "Epic ",
+                                    style: AppTextStyle.epicLabel)
+                                : state.isLegendaryLevelSelected
+                                    ? TextSpan(
+                                        text: "Legendary ",
+                                        style: AppTextStyle.epicLabel)
+                                    : TextSpan(
+                                        text: "",
+                                        style: AppTextStyle.legendaryLabel),
+                            TextSpan(
+                                text: "lv: ", style: AppTextStyle.subTextWhite),
+                            TextSpan(
+                                text: state.cha.charLevel.toString(),
+                                style: AppTextStyle.levelDisplayStatsPageText)
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
                 ),
                 Consumer<StatsController>(builder: (context, ctrl, child) {
                   ctrl.char = state.cha;

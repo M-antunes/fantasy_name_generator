@@ -30,6 +30,7 @@ class DefaultCharModelData {
       personalPronoun: "",
       possessiveAdjective: "",
     ),
+    bossOrMinion: "",
     skills: [],
     feats: [],
     battleStyle: CombatStyleChoiceModel(

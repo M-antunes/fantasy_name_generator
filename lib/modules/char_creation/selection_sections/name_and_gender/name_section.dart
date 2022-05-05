@@ -1,18 +1,20 @@
-import 'package:fantasy_name_generator/shared/constants/phone_sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:fantasy_name_generator/controllers/stage_controller/char_controller.dart';
+import 'package:fantasy_name_generator/shared/constants/phone_sizes.dart';
 import 'package:fantasy_name_generator/shared/themes/app_text_styles.dart';
 import 'package:fantasy_name_generator/shared/widgets/call_message_snackbar.dart';
 
 class NameSelection extends StatelessWidget {
   final VoidCallback onGenerate;
   final VoidCallback onSelect;
+  final bool isMinion;
   const NameSelection({
     Key? key,
     required this.onGenerate,
     required this.onSelect,
+    required this.isMinion,
   }) : super(key: key);
 
   @override
@@ -26,6 +28,7 @@ class NameSelection extends StatelessWidget {
       child: Column(
         children: [
           Consumer<CharController>(builder: (context, state, child) {
+            state.isMinion = isMinion;
             return InkWell(
               borderRadius: BorderRadius.circular(10),
               onDoubleTap: () => state.switchNameAndLastName(),
@@ -52,9 +55,9 @@ class NameSelection extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Text(
-                        state.lastNameShown
-                            ? "${state.newName} ${state.newLastName}"
-                            : state.newName,
+                        isMinion
+                            ? state.newName
+                            : "${state.newName} ${state.newLastName}",
                         style: AppTextStyle.generatedName,
                       ),
                     ),

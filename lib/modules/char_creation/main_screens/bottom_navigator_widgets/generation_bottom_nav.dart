@@ -40,6 +40,9 @@ class GenerationBottomNav extends StatelessWidget {
                         ctrl.resetEquipAndStats();
                         Navigator.pop(context);
                       });
+                    } else if (state.creationStage == 7 && state.isMinion) {
+                      state.retreatCreationStage();
+                      state.retreatCreationStage();
                     } else {
                       state.retreatCreationStage();
                     }

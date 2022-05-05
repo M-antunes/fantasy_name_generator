@@ -9,7 +9,6 @@ export 'package:fantasy_name_generator/shared/data/equip_data/jwels_data.dart';
 export 'package:flutter/cupertino.dart';
 export 'dart:convert';
 
-export 'package:fantasy_name_generator/shared/data/default_char_model_data.dart';
 export 'package:shared_preferences/shared_preferences.dart';
 export '../../modules/char_creation/selection_sections/stats_sections/stats_main/controllers/appearance_controller.dart';
 export '../../modules/char_creation/selection_sections/stats_sections/stats_tabs/combat/controller/defense_controller.dart';

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
 
 import 'package:fantasy_name_generator/controllers/stage_controller/imports.dart';
@@ -20,6 +22,7 @@ class CharModel {
   List<TraitModel> feats;
   List<SkillModel> skills;
   List<LanguageModel> languages;
+  String bossOrMinion;
 
   CharModel({
     required this.charRace,
@@ -39,6 +42,7 @@ class CharModel {
     required this.feats,
     required this.skills,
     required this.languages,
+    required this.bossOrMinion,
   });
 
   CharModel copyWith({
@@ -59,6 +63,7 @@ class CharModel {
     List<TraitModel>? feats,
     List<SkillModel>? skills,
     List<LanguageModel>? languages,
+    String? bossOrMinion,
   }) {
     return CharModel(
       charRace: charRace ?? this.charRace,
@@ -78,6 +83,7 @@ class CharModel {
       feats: feats ?? this.feats,
       skills: skills ?? this.skills,
       languages: languages ?? this.languages,
+      bossOrMinion: bossOrMinion ?? this.bossOrMinion,
     );
   }
 
@@ -100,6 +106,7 @@ class CharModel {
       'feats': feats.map((x) => x.toMap()).toList(),
       'skills': skills.map((x) => x.toMap()).toList(),
       'languages': languages.map((x) => x.toMap()).toList(),
+      'bossOrMinion': bossOrMinion,
     };
   }
 
@@ -125,6 +132,7 @@ class CharModel {
           map['skills']?.map((x) => SkillModel.fromMap(x))),
       languages: List<LanguageModel>.from(
           map['languages']?.map((x) => LanguageModel.fromMap(x))),
+      bossOrMinion: map['bossOrMinion'] ?? '',
     );
   }
 
@@ -135,7 +143,7 @@ class CharModel {
 
   @override
   String toString() {
-    return 'CharModel(charRace: $charRace, charName: $charName, physicalStyle: $physicalStyle, battleStyle: $battleStyle, baseAttributes: $baseAttributes, modAttributes: $modAttributes, charClass: $charClass, alignment: $alignment, hitPoints: $hitPoints, resistances: $resistances, combatStats: $combatStats, charEquip: $charEquip, loot: $loot, charLevel: $charLevel, feats: $feats, skills: $skills, languages: $languages)';
+    return 'CharModel(charRace: $charRace, charName: $charName, physicalStyle: $physicalStyle, battleStyle: $battleStyle, baseAttributes: $baseAttributes, modAttributes: $modAttributes, charClass: $charClass, alignment: $alignment, hitPoints: $hitPoints, resistances: $resistances, combatStats: $combatStats, charEquip: $charEquip, loot: $loot, charLevel: $charLevel, feats: $feats, skills: $skills, languages: $languages, bossOrMinion: $bossOrMinion)';
   }
 
   @override
@@ -159,7 +167,8 @@ class CharModel {
         other.charLevel == charLevel &&
         listEquals(other.feats, feats) &&
         listEquals(other.skills, skills) &&
-        listEquals(other.languages, languages);
+        listEquals(other.languages, languages) &&
+        other.bossOrMinion == bossOrMinion;
   }
 
   @override
@@ -180,6 +189,7 @@ class CharModel {
         charLevel.hashCode ^
         feats.hashCode ^
         skills.hashCode ^
-        languages.hashCode;
+        languages.hashCode ^
+        bossOrMinion.hashCode;
   }
 }

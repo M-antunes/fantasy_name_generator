@@ -1,4 +1,5 @@
 import 'package:animated_button/animated_button.dart';
+import 'package:fantasy_name_generator/modules/char_creation/main_screens/char_development/char_development_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
@@ -40,10 +41,12 @@ class CreateOrCheckSavedPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 MainMenuIcon(
-                    label: "Create\nMinion",
-                    svg: "assets/images/minions.svg",
-                    onPressed: () =>
-                        Navigator.pushNamed(context, AppRoutes.minionSection)),
+                  label: "Create\nMinion",
+                  svg: "assets/images/minions.svg",
+                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+                      builder: ((context) =>
+                          const CharDevelopmentPage(isMinion: true)))),
+                ),
                 MainMenuIcon(
                     label: "Create\nBoss",
                     svg: "assets/images/boss.svg",
