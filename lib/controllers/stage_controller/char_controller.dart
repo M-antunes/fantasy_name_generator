@@ -866,38 +866,35 @@ class CharController extends ChangeNotifier {
 
   String? activateNextButton() {
     if (creationStage == 1) {
-      advanceCreationStage();
-      return null;
-    } else if (creationStage == 2) {
       updateChosenRace();
       advanceCreationStage();
       return null;
-    } else if (creationStage == 3) {
+    } else if (creationStage == 2) {
       if (newName == " - ? - ") {
         return "You must generate a name first";
       } else {
         advanceCreationStage();
         return null;
       }
-    } else if (creationStage == 4) {
+    } else if (creationStage == 3) {
       updateChosenCombatStyle();
       filterClasses();
       advanceCreationStage();
       return null;
-    } else if (creationStage == 5) {
+    } else if (creationStage == 4) {
       updateChosenClass();
       filterPhysicalStyle();
       advanceCreationStage();
       return null;
-    } else if (creationStage == 6) {
+    } else if (creationStage == 5) {
       filterAlignmentsToClass();
       advanceCreationStage();
       return null;
-    } else if (creationStage == 7) {
+    } else if (creationStage == 6) {
       updateChosenAlignment();
       advanceCreationStage();
       return null;
-    } else if (creationStage == 8) {
+    } else if (creationStage == 7) {
       if (levelSelected == -1) {
         return "You need to select a level befor advancing";
       } else {
@@ -907,7 +904,7 @@ class CharController extends ChangeNotifier {
         advanceCreationStage();
       }
       return null;
-    } else if (creationStage == 9) {
+    } else if (creationStage == 8) {
       return null;
     }
     return null;
