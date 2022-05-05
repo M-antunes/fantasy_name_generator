@@ -5,28 +5,28 @@ import 'package:fantasy_name_generator/controllers/stage_controller/char_control
 import 'package:fantasy_name_generator/shared/themes/app_colors.dart';
 import 'package:fantasy_name_generator/shared/widgets/call_message_snackbar.dart';
 
-import '../selection_sections/alignment/alignment_section.dart';
-import '../selection_sections/class_section/class_section.dart';
-import '../selection_sections/combat_style_equip/combat_style_section.dart';
-import '../selection_sections/name_and_gender/gender_section.dart';
-import '../selection_sections/level/level_section.dart';
-import '../selection_sections/name_and_gender/name_section.dart';
-import '../selection_sections/physical_combat/physical_combat_section.dart';
-import '../selection_sections/race/race_section.dart';
-import '../selection_sections/stats_sections/stats_main/stats_section.dart';
-import 'bottom_navigator_widgets/generation_bottom_nav.dart';
-import 'widgets/char_selection_label.dart';
-import 'widgets/character_info_bar.dart';
-import 'widgets/progression_bar.dart';
+import '../../selection_sections/alignment/alignment_section.dart';
+import '../../selection_sections/class_section/class_section.dart';
+import '../../selection_sections/combat_style_equip/combat_style_section.dart';
+import '../../selection_sections/name_and_gender/gender_section.dart';
+import '../../selection_sections/level/level_section.dart';
+import '../../selection_sections/name_and_gender/name_section.dart';
+import '../../selection_sections/physical_combat/physical_combat_section.dart';
+import '../../selection_sections/race/race_section.dart';
+import '../../selection_sections/stats_sections/stats_main/stats_section.dart';
+import '../bottom_navigator_widgets/generation_bottom_nav.dart';
+import '../widgets/char_selection_label.dart';
+import '../widgets/character_info_bar.dart';
+import '../widgets/progression_bar.dart';
 
-class CharDevelopmentPage extends StatefulWidget {
-  const CharDevelopmentPage({Key? key}) : super(key: key);
+class BossDevelopmentPage extends StatefulWidget {
+  const BossDevelopmentPage({Key? key}) : super(key: key);
 
   @override
-  _CharDevelopmentPageState createState() => _CharDevelopmentPageState();
+  _BossDevelopmentPageState createState() => _BossDevelopmentPageState();
 }
 
-class _CharDevelopmentPageState extends State<CharDevelopmentPage>
+class _BossDevelopmentPageState extends State<BossDevelopmentPage>
     with TickerProviderStateMixin {
   late final CharController namesController;
 
