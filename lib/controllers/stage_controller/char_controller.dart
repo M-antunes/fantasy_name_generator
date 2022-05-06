@@ -67,6 +67,13 @@ class CharController extends ChangeNotifier {
     notifyListeners();
   }
 
+  updateLevelSelectedIfBoss() {
+    if (isMinion == false) {
+      levelSelected = levelSelected + 4;
+    }
+    notifyListeners();
+  }
+
   updateLevelSelectedIfEpic() {
     if (isEpicLevelSelected) {
       levelSelected = levelSelected + 20;
@@ -292,12 +299,7 @@ class CharController extends ChangeNotifier {
     String tempLastName =
         lastName[0].toUpperCase() + lastName.substring(1).toLowerCase();
     newName = tempName;
-    newLastName = tempLastName;
-    notifyListeners();
-  }
-
-  displayLastName() {
-    lastNameShown = !lastNameShown;
+    newLastName = isMinion ? "" : tempLastName;
     notifyListeners();
   }
 
@@ -917,6 +919,7 @@ class CharController extends ChangeNotifier {
       if (levelSelected == -1) {
         return "You need to select a level befor advancing";
       } else {
+        updateLevelSelectedIfBoss();
         updateLevelSelectedIfEpic();
         updateLevelSelectedIfLegendary();
         updateCharModel();

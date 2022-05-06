@@ -146,7 +146,7 @@ class SheetInfoSkills extends StatelessWidget {
                                 ),
                               ),
                               SizedBox(
-                                width: deviceWidth! * 0.1,
+                                width: deviceWidth! * 0.105,
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -158,7 +158,8 @@ class SheetInfoSkills extends StatelessWidget {
                                     ),
                                     Text(
                                       "(${skill.atrbValue})",
-                                      textScaleFactor: 0.8,
+                                      textScaleFactor:
+                                          skill.atrbValue > 9 ? 0.7 : 0.8,
                                       style: AppTextStyle.statsLabelBrighter,
                                     ),
                                   ],
@@ -258,6 +259,10 @@ class SheetInfoSkills extends StatelessWidget {
                     coloredIndex: "◘",
                     color: AppColors.primaryGold,
                     text: " Represents the favored class boost to skill"),
+                const SkillBottomInfo(
+                    coloredIndex: "◘",
+                    color: AppColors.raceBoostColor,
+                    text: " Represents the race boost to skill"),
                 const SkillBottomInfo(
                     coloredIndex: "◘",
                     color: AppColors.boostColor,

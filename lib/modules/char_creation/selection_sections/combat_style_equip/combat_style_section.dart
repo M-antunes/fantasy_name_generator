@@ -32,7 +32,7 @@ class CombatStyleSection extends StatelessWidget {
           GridView.builder(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: state.isMinion ? 3 : 4,
-                childAspectRatio: state.isMinion ? 1.8 / 2 : 1.5 / 2,
+                childAspectRatio: state.isMinion ? 1.8 / 2 : 1.3 / 2,
               ),
               itemCount: state.isMinion ? 3 : 4,
               physics: const NeverScrollableScrollPhysics(),

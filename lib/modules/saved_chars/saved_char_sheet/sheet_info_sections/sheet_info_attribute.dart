@@ -23,67 +23,75 @@ class SheetInfoAbilityScore extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const LabelForCategoryIcon(label: "Attributes"),
-          SizedBox(height: deviceHeight! * 0.003),
-          const AttributeDivision(label: "Ability Scores"),
-          Padding(
-            padding: const EdgeInsets.only(left: 8),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+          SizedBox(
+            height: deviceHeight! * 0.65,
+            child: ListView(
+              physics: const BouncingScrollPhysics(),
               children: [
-                AbilityRow(
-                    label: "Strength:",
-                    modValue: char.modAttributes.strength,
-                    value: char.baseAttributes.strength),
-                AbilityRow(
-                    label: "Dexterity:",
-                    modValue: char.modAttributes.dexterity,
-                    value: char.baseAttributes.dexterity),
-                AbilityRow(
-                    label: "Constitution:",
-                    modValue: char.modAttributes.constitution,
-                    value: char.baseAttributes.constitution),
-                AbilityRow(
-                    label: "Intelligence:",
-                    modValue: char.modAttributes.intelligence,
-                    value: char.baseAttributes.intelligence),
-                AbilityRow(
-                    label: "Wisdom:",
-                    modValue: char.modAttributes.wisdom,
-                    value: char.baseAttributes.wisdom),
-                AbilityRow(
-                    label: "Charisma:",
-                    modValue: char.modAttributes.charisma,
-                    value: char.baseAttributes.charisma),
-              ],
-            ),
-          ),
-          AttributeDivision(
-              label: "languages known (${char.languages.length})"),
-          Padding(
-            padding: const EdgeInsets.only(left: 8),
-            child: ListView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: char.languages.length,
-                itemBuilder: (context, index) {
-                  var idiom = char.languages[index];
-                  return Column(
+                SizedBox(height: deviceHeight! * 0.003),
+                const AttributeDivision(label: "Ability Scores"),
+                Padding(
+                  padding: const EdgeInsets.only(left: 8),
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      RichText(
-                          text: TextSpan(
-                        children: [
-                          TextSpan(
-                              text: "${idiom.name} ",
-                              style: AppTextStyle.statsLabelBrighter),
-                          TextSpan(
-                              text: " (Spoken by ${idiom.spokenBy})",
-                              style: AppTextStyle.longDescription)
-                        ],
-                      ))
+                      AbilityRow(
+                          label: "Strength:",
+                          modValue: char.modAttributes.strength,
+                          value: char.baseAttributes.strength),
+                      AbilityRow(
+                          label: "Dexterity:",
+                          modValue: char.modAttributes.dexterity,
+                          value: char.baseAttributes.dexterity),
+                      AbilityRow(
+                          label: "Constitution:",
+                          modValue: char.modAttributes.constitution,
+                          value: char.baseAttributes.constitution),
+                      AbilityRow(
+                          label: "Intelligence:",
+                          modValue: char.modAttributes.intelligence,
+                          value: char.baseAttributes.intelligence),
+                      AbilityRow(
+                          label: "Wisdom:",
+                          modValue: char.modAttributes.wisdom,
+                          value: char.baseAttributes.wisdom),
+                      AbilityRow(
+                          label: "Charisma:",
+                          modValue: char.modAttributes.charisma,
+                          value: char.baseAttributes.charisma),
                     ],
-                  );
-                }),
+                  ),
+                ),
+                AttributeDivision(
+                    label: "languages known (${char.languages.length})"),
+                Padding(
+                  padding: const EdgeInsets.only(left: 8),
+                  child: ListView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: char.languages.length,
+                      itemBuilder: (context, index) {
+                        var idiom = char.languages[index];
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            RichText(
+                                text: TextSpan(
+                              children: [
+                                TextSpan(
+                                    text: "${idiom.name} ",
+                                    style: AppTextStyle.statsLabelBrighter),
+                                TextSpan(
+                                    text: " (Spoken by ${idiom.spokenBy})",
+                                    style: AppTextStyle.longDescription)
+                              ],
+                            ))
+                          ],
+                        );
+                      }),
+                ),
+              ],
+            ),
           ),
         ],
       ),

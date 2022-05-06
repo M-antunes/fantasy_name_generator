@@ -31,7 +31,11 @@ class GeneralMagicalEquipRow extends StatelessWidget {
             child: Row(
               children: [
                 RichText(
-                    textScaleFactor: isCharSheet! ? 0.9 : 0.95,
+                    textScaleFactor: isCharSheet! && !label.contains("Headband")
+                        ? 0.9
+                        : isCharSheet!
+                            ? 0.85
+                            : 0.95,
                     text: TextSpan(children: [
                       TextSpan(
                           text: "$label:  ",

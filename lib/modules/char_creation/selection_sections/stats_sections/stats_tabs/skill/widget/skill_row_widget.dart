@@ -84,7 +84,7 @@ class SkillRowWidget extends StatelessWidget {
               ),
             ),
             SizedBox(
-              width: deviceWidth! * 0.125,
+              width: deviceWidth! * 0.13,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -95,6 +95,7 @@ class SkillRowWidget extends StatelessWidget {
                   Text(
                     "($atrbValue)",
                     style: AppTextStyle.statsLabelBrighter,
+                    textScaleFactor: atrbValue > 9 ? 0.8 : 1,
                   ),
                 ],
               ),

@@ -69,16 +69,18 @@ class LevelSelection extends StatelessWidget {
                           : Colors.grey[400]!,
                       onTap: () => state.switchToEpicLevel(),
                     ),
-                    LevelChoiceCampaignButton(
-                      label: "Legendary",
-                      boxColor: state.isLegendaryLevelSelected
-                          ? AppColors.primary
-                          : Colors.black38,
-                      textColor: state.isLegendaryLevelSelected
-                          ? Colors.white
-                          : Colors.grey[400]!,
-                      onTap: () => state.switchToLegendary(),
-                    ),
+                    state.isMinion == false
+                        ? LevelChoiceCampaignButton(
+                            label: "Legendary",
+                            boxColor: state.isLegendaryLevelSelected
+                                ? AppColors.primary
+                                : Colors.black38,
+                            textColor: state.isLegendaryLevelSelected
+                                ? Colors.white
+                                : Colors.grey[400]!,
+                            onTap: () => state.switchToLegendary(),
+                          )
+                        : const SizedBox(),
                   ],
                 ),
           GridView.builder(
@@ -87,18 +89,23 @@ class LevelSelection extends StatelessWidget {
                 : state.chosenClass.name == "Noble"
                     ? 15
                     : state.chosenClass.name == "Commoner" ||
-                            state.isEpicLevelSelected ||
-                            state.isLegendaryLevelSelected
+                            state.isEpicLevelSelected
                         ? 5
-                        : 20,
+                        : state.isLegendaryLevelSelected
+                            ? 1
+                            : state.isMinion
+                                ? 20
+                                : 16,
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {
               var level = state.isEpicLevelSelected
                   ? index + 21
                   : state.isLegendaryLevelSelected
-                      ? index + 26
-                      : index + 1;
+                      ? 30
+                      : state.isMinion
+                          ? index + 1
+                          : index + 5;
               return Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30),
