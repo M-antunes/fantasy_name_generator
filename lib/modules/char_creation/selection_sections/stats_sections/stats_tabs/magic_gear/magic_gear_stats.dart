@@ -64,23 +64,35 @@ class MagicGearStats extends StatelessWidget {
                         return InkWell(
                           child: Padding(
                             padding: const EdgeInsets.all(4),
-                            child: state.char.charLevel > 8 &&
-                                    potion.name == "Aid" &&
-                                    state.charPotions.first.name == "Aid"
+                            child: index < 3 &&
+                                    state.char.battleStyle.name == "Spellcaster"
                                 ? RichText(
                                     text: TextSpan(children: [
                                     TextSpan(
-                                      text: "Potion of ${potion.name}  ",
-                                      style: AppTextStyle.statsLabelBrighter,
-                                    ),
+                                        text: "Potion of ${potion.name}  ",
+                                        style: AppTextStyle.statsLabelBrighter),
                                     TextSpan(
-                                        text: "used for encounter",
-                                        style: AppTextStyle.penaltyStyleText)
+                                        text: "Used for encounter",
+                                        style: AppTextStyle.penaltyStyleText),
                                   ]))
-                                : Text(
-                                    "Potion of ${potion.name}",
-                                    style: AppTextStyle.statsLabelBrighter,
-                                  ),
+                                : index == 0 &&
+                                        state.char.battleStyle.name !=
+                                            "Spellcaster"
+                                    ? RichText(
+                                        text: TextSpan(children: [
+                                        TextSpan(
+                                            text: "Potion of ${potion.name}  ",
+                                            style: AppTextStyle
+                                                .statsLabelBrighter),
+                                        TextSpan(
+                                            text: "Used for encounter",
+                                            style:
+                                                AppTextStyle.penaltyStyleText),
+                                      ]))
+                                    : Text(
+                                        "Potion of ${potion.name}",
+                                        style: AppTextStyle.statsLabelBrighter,
+                                      ),
                           ),
                           onTap: () => Navigator.of(context).push(
                             MaterialPageRoute(
@@ -116,6 +128,7 @@ class MagicGearStats extends StatelessWidget {
                   ],
                 )
               : const SizedBox(),
+          SizedBox(height: deviceHeight! * 0.03),
         ],
       );
     });

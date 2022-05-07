@@ -14,6 +14,10 @@ class CombatModel {
   String? dualWieldDamage;
   int? combatManeuverBonus;
   int? combatManeuverDefense;
+  String? touchAttack;
+  int? concentration;
+  String? spellRsistance;
+  String? overcomeSpellRsistance;
   CombatModel({
     this.armourClass = 0,
     this.armourTouch = 0,
@@ -28,6 +32,10 @@ class CombatModel {
     this.dualWieldDamage = "0",
     this.combatManeuverBonus = 0,
     this.combatManeuverDefense = 0,
+    this.touchAttack = "0",
+    this.concentration = 0,
+    this.spellRsistance = "0",
+    this.overcomeSpellRsistance = "0",
   });
 
   CombatModel copyWith({
@@ -44,6 +52,10 @@ class CombatModel {
     String? dualWieldDamage,
     int? combatManeuverBonus,
     int? combatManeuverDefense,
+    String? touchAttack,
+    int? concentration,
+    String? spellRsistance,
+    String? overcomeSpellRsistance,
   }) {
     return CombatModel(
       armourClass: armourClass ?? this.armourClass,
@@ -60,6 +72,11 @@ class CombatModel {
       combatManeuverBonus: combatManeuverBonus ?? this.combatManeuverBonus,
       combatManeuverDefense:
           combatManeuverDefense ?? this.combatManeuverDefense,
+      touchAttack: touchAttack ?? this.touchAttack,
+      concentration: concentration ?? this.concentration,
+      spellRsistance: spellRsistance ?? this.spellRsistance,
+      overcomeSpellRsistance:
+          overcomeSpellRsistance ?? this.overcomeSpellRsistance,
     );
   }
 
@@ -78,6 +95,10 @@ class CombatModel {
       'dualWieldDamage': dualWieldDamage,
       'combatManeuverBonus': combatManeuverBonus,
       'combatManeuverDefense': combatManeuverDefense,
+      'touchAttack': touchAttack,
+      'concentration': concentration,
+      'spellRsistance': spellRsistance,
+      'overcomeSpellRsistance': overcomeSpellRsistance,
     };
   }
 
@@ -96,6 +117,10 @@ class CombatModel {
       dualWieldDamage: map['dualWieldDamage'],
       combatManeuverBonus: map['combatManeuverBonus']?.toInt(),
       combatManeuverDefense: map['combatManeuverDefense']?.toInt(),
+      touchAttack: map['touchAttack'],
+      concentration: map['concentration']?.toInt(),
+      spellRsistance: map['spellRsistance'],
+      overcomeSpellRsistance: map['overcomeSpellRsistance'],
     );
   }
 
@@ -106,7 +131,7 @@ class CombatModel {
 
   @override
   String toString() {
-    return 'CombatModel(armourClass: $armourClass, armourTouch: $armourTouch, armourSurprise: $armourSurprise, baseAttackBonus: $baseAttackBonus, initiative: $initiative, meleeAttack: $meleeAttack, rangeAttack: $rangeAttack, meleeDamage: $meleeDamage, rangeDamage: $rangeDamage, dualWieldAttack: $dualWieldAttack, dualWieldDamage: $dualWieldDamage, combatManeuverBonus: $combatManeuverBonus, combatManeuverDefense: $combatManeuverDefense)';
+    return 'CombatModel(armourClass: $armourClass, armourTouch: $armourTouch, armourSurprise: $armourSurprise, baseAttackBonus: $baseAttackBonus, initiative: $initiative, meleeAttack: $meleeAttack, rangeAttack: $rangeAttack, meleeDamage: $meleeDamage, rangeDamage: $rangeDamage, dualWieldAttack: $dualWieldAttack, dualWieldDamage: $dualWieldDamage, combatManeuverBonus: $combatManeuverBonus, combatManeuverDefense: $combatManeuverDefense, touchAttack: $touchAttack, concentration: $concentration, spellRsistance: $spellRsistance, overcomeSpellRsistance: $overcomeSpellRsistance)';
   }
 
   @override
@@ -126,7 +151,11 @@ class CombatModel {
         other.dualWieldAttack == dualWieldAttack &&
         other.dualWieldDamage == dualWieldDamage &&
         other.combatManeuverBonus == combatManeuverBonus &&
-        other.combatManeuverDefense == combatManeuverDefense;
+        other.combatManeuverDefense == combatManeuverDefense &&
+        other.touchAttack == touchAttack &&
+        other.concentration == concentration &&
+        other.spellRsistance == spellRsistance &&
+        other.overcomeSpellRsistance == overcomeSpellRsistance;
   }
 
   @override
@@ -143,6 +172,10 @@ class CombatModel {
         dualWieldAttack.hashCode ^
         dualWieldDamage.hashCode ^
         combatManeuverBonus.hashCode ^
-        combatManeuverDefense.hashCode;
+        combatManeuverDefense.hashCode ^
+        touchAttack.hashCode ^
+        concentration.hashCode ^
+        spellRsistance.hashCode ^
+        overcomeSpellRsistance.hashCode;
   }
 }

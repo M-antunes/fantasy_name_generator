@@ -4,6 +4,7 @@ import 'package:fantasy_name_generator/modules/char_creation/selection_sections/
 import '../../../../shared/constants/phone_sizes.dart';
 import '../../../../shared/widgets/expanded_section.dart';
 import '../../../char_creation/selection_sections/stats_sections/stats_tabs/combat/widgets/combat_info.dart';
+import '../../../char_creation/selection_sections/stats_sections/stats_tabs/combat/widgets/unique_char_info.dart';
 import '../../../char_creation/selection_sections/stats_sections/stats_tabs/combat/widgets/weapon_tile.dart';
 import '../../../char_creation/selection_sections/stats_sections/widgets/atribute_division.dart';
 import '../../../char_creation/selection_sections/stats_sections/widgets/gradient_label.dart';
@@ -99,6 +100,11 @@ class SheetInfoCombat extends StatelessWidget {
                   ),
                 ],
               ),
+              if (char.charClass.name == "Barbarian")
+                UniqueCharInfo(
+                    label: "Damage reduction",
+                    traits: char.charClass.traits!,
+                    stringIndex: 17),
               const SizedBox(height: 3),
               const GradientLabel(label: "Resistances"),
               Row(
@@ -168,65 +174,21 @@ class SheetInfoCombat extends StatelessWidget {
               ),
               if (char.charClass.name == "Rogue" ||
                   char.charClass.name == "Bandit")
-                Column(
-                  children: [
-                    const SizedBox(height: 3),
-                    CombatInfo(
-                      length: deviceWidth! * 0.5,
-                      label: "Sneak attack:",
-                      value: char.charClass.traits!
-                          .firstWhere((element) =>
-                              element.traiName.contains("Sneak attack"))
-                          .traiName
-                          .substring(13),
-                      onCharSheet: true,
-                    ),
-                  ],
-                ),
+                UniqueCharInfo(
+                    traits: char.charClass.traits!,
+                    label: "Sneak attack",
+                    stringIndex: 13),
               if (char.charClass.name == "Samurai")
-                Column(
-                  children: [
-                    const SizedBox(height: 3),
-                    CombatInfo(
-                      length: deviceWidth! * 0.5,
-                      label: char.charClass.traits!
-                          .firstWhere((element) =>
-                              element.traiName.contains("Challenge"))
-                          .traiName
-                          .substring(0, 9),
-                      value: char.charClass.traits!
-                          .firstWhere((element) =>
-                              element.traiName.contains("Challenge"))
-                          .traiName
-                          .substring(10),
-                    ),
-                  ],
-                ),
+                UniqueCharInfo(
+                    traits: char.charClass.traits!,
+                    label: "Challenge",
+                    stringIndex: 10),
               if (char.charClass.name == "Paladin" ||
                   char.charClass.name == "Antipaladin")
-                Column(
-                  children: [
-                    const SizedBox(height: 3),
-                    CombatInfo(
-                      length: deviceWidth! * 0.5,
-                      onCharSheet: true,
-                      label: char.charClass.traits!.isEmpty
-                          ? ''
-                          : char.charClass.traits!
-                              .firstWhere((element) =>
-                                  element.traiName.contains("Smite"))
-                              .traiName
-                              .substring(0, 10),
-                      value: char.charClass.traits!.isEmpty
-                          ? ''
-                          : char.charClass.traits!
-                              .firstWhere((element) =>
-                                  element.traiName.contains("Smite"))
-                              .traiName
-                              .substring(10),
-                    ),
-                  ],
-                ),
+                UniqueCharInfo(
+                    traits: char.charClass.traits!,
+                    label: "Smite",
+                    stringIndex: 10),
               if (char.charClass.name == "Monk")
                 Column(
                   children: [

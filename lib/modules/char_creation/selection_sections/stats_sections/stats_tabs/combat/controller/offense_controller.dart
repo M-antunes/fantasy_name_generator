@@ -396,6 +396,7 @@ class OffenseController {
               (element) => element.name!.contains("Amulet of mighty fists"))
           .bonus!;
     }
+    var touchAttack = bba + getMainAttributForTouchAttack(mainAtrb, atrb);
     var dualWieldAtkNum = meleeAtkNum - 2;
     var dualWieldAtk = '';
     var flurryOfBlows = '';
@@ -441,8 +442,26 @@ class OffenseController {
       dualWieldAtk =
           "+${dualWieldAtkNum} +${dualWieldAtkNum} / +${dualWieldAtkNum - 5} +${dualWieldAtkNum - 5} / +${dualWieldAtkNum - 10} +${dualWieldAtkNum - 10} / +${dualWieldAtkNum - 15}";
     }
-    List<String> attacks = [meleeAtk, rangeAtk, dualWieldAtk, flurryOfBlows];
+    List<String> attacks = [
+      meleeAtk,
+      rangeAtk,
+      dualWieldAtk,
+      flurryOfBlows,
+      "$touchAttack"
+    ];
     return attacks;
+  }
+
+  int getMainAttributForTouchAttack(String mainAtrb, AttributeModel atrb) {
+    var value = 0;
+    if (mainAtrb == "wisdom") {
+      value += atrb.wisdom;
+    } else if (mainAtrb == "intelligence") {
+      value += atrb.intelligence;
+    } else if (mainAtrb == "charisma") {
+      value += atrb.charisma;
+    }
+    return value;
   }
 
   List<int> calculatingPhysicalDamage(
@@ -532,5 +551,14 @@ class OffenseController {
           weapon.mundanePrice + weapon.enchantment![0].enchantPrice + 300;
     }
     return valueLabel;
+  }
+
+  claculatingConcentration(int level, String mainAtrb, AttributeModel atrb,
+      List<TraitModel> charFeats) {
+    int value = level + getMainAttributForTouchAttack(mainAtrb, atrb);
+    if (charFeats.any((element) => element.traiName == "Combat Casting")) {
+      value += 4;
+    }
+    return value;
   }
 }

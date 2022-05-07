@@ -61,23 +61,30 @@ class SheetInfoMagicEquip extends StatelessWidget {
                   return InkWell(
                     child: Padding(
                       padding: const EdgeInsets.all(4),
-                      child: char.charLevel > 8 &&
-                              potion.name == "Aid" &&
-                              char.charEquip.potions.first.name == "Aid"
+                      child: index < 3 && char.battleStyle.name == "Spellcaster"
                           ? RichText(
                               text: TextSpan(children: [
                               TextSpan(
-                                text: "Potion of ${potion.name}  ",
-                                style: AppTextStyle.statsLabelBrighter,
-                              ),
+                                  text: "Potion of ${potion.name}  ",
+                                  style: AppTextStyle.statsLabelBrighter),
                               TextSpan(
-                                  text: "used for encounter",
-                                  style: AppTextStyle.penaltyStyleText)
+                                  text: "Used for encounter",
+                                  style: AppTextStyle.penaltyStyleText),
                             ]))
-                          : Text(
-                              "Potion of ${potion.name}",
-                              style: AppTextStyle.statsLabelBrighter,
-                            ),
+                          : index == 0 && char.battleStyle.name != "Spellcaster"
+                              ? RichText(
+                                  text: TextSpan(children: [
+                                  TextSpan(
+                                      text: "Potion of ${potion.name}  ",
+                                      style: AppTextStyle.statsLabelBrighter),
+                                  TextSpan(
+                                      text: "Used for encounter",
+                                      style: AppTextStyle.penaltyStyleText),
+                                ]))
+                              : Text(
+                                  "Potion of ${potion.name}",
+                                  style: AppTextStyle.statsLabelBrighter,
+                                ),
                     ),
                     onTap: () => Navigator.of(context).push(
                       MaterialPageRoute(

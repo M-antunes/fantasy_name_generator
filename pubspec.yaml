@@ -68,6 +68,7 @@ flutter:
     - assets/images/
     - assets/images/classes/
     - assets/images/weapon_types/
+    - assets/images/magic_schools/
   #   - images/a_dot_ham.jpeg
   fonts:
     - family: Grantmouth

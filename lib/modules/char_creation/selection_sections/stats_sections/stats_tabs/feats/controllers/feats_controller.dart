@@ -8,47 +8,106 @@ class FeatsController {
   var classFeatList = ReariedCombatFeatsData();
   var allFeats = AllFeatsData();
 
-  getFeats(String physicalStyle, int level, String className, String raceName,
-      EquipModel equip, String physical) {
+  getFeats(String physical, int level, String className, String raceName,
+      EquipModel equip, String battleStyle) {
     List<TraitModel> charFeats = [];
-    switch (physicalStyle) {
-      case "Berserker":
-        charFeats = calculateFeats(classFeatList.berserkerFeats,
-            allFeats.combatFeats, level, className, raceName, equip, physical);
-        break;
-      case "Dual-wielder":
-        charFeats = calculateFeats(classFeatList.dualWielderFeat,
-            allFeats.combatFeats, level, className, raceName, equip, physical);
-        break;
-      case "Soldier":
-        charFeats = calculateFeats(classFeatList.soldierFeats,
-            allFeats.combatFeats, level, className, raceName, equip, physical);
-        break;
-      case "Bowman":
-        charFeats = calculateFeats(classFeatList.bowmanFeats,
-            allFeats.combatFeats, level, className, raceName, equip, physical);
-        break;
-      case "Marksman":
-        charFeats = calculateFeats(classFeatList.marksmanFeats,
-            allFeats.combatFeats, level, className, raceName, equip, physical);
-        break;
-      case "Knifeman":
-        charFeats = calculateFeats(classFeatList.knifemanFeats,
-            allFeats.combatFeats, level, className, raceName, equip, physical);
-        break;
-      case "Swordsman":
-        charFeats = calculateFeats(classFeatList.swordsmanFeat,
-            allFeats.combatFeats, level, className, raceName, equip, physical);
-        break;
-      case "Martial":
-        charFeats = calculateFeats(classFeatList.martialFeats,
-            allFeats.combatFeats, level, className, raceName, equip, physical);
-        break;
-      case "Thrower":
-        charFeats = calculateFeats(classFeatList.soldierFeats,
-            allFeats.combatFeats, level, className, raceName, equip, physical);
-        break;
-      default:
+    if (battleStyle == "Spellcaster") {
+      charFeats = calculateFeats(classFeatList.spellCaster,
+          allFeats.combatFeats, level, className, raceName, equip, physical);
+    } else {
+      switch (physical) {
+        case "Berserker":
+          charFeats = calculateFeats(
+              classFeatList.berserkerFeats,
+              allFeats.combatFeats,
+              level,
+              className,
+              raceName,
+              equip,
+              physical);
+          break;
+        case "Dual-wielder":
+          charFeats = calculateFeats(
+              classFeatList.dualWielderFeat,
+              allFeats.combatFeats,
+              level,
+              className,
+              raceName,
+              equip,
+              physical);
+          break;
+        case "Soldier":
+          charFeats = calculateFeats(
+              classFeatList.soldierFeats,
+              allFeats.combatFeats,
+              level,
+              className,
+              raceName,
+              equip,
+              physical);
+          break;
+        case "Bowman":
+          charFeats = calculateFeats(
+              classFeatList.bowmanFeats,
+              allFeats.combatFeats,
+              level,
+              className,
+              raceName,
+              equip,
+              physical);
+          break;
+        case "Marksman":
+          charFeats = calculateFeats(
+              classFeatList.marksmanFeats,
+              allFeats.combatFeats,
+              level,
+              className,
+              raceName,
+              equip,
+              physical);
+          break;
+        case "Knifeman":
+          charFeats = calculateFeats(
+              classFeatList.knifemanFeats,
+              allFeats.combatFeats,
+              level,
+              className,
+              raceName,
+              equip,
+              physical);
+          break;
+        case "Swordsman":
+          charFeats = calculateFeats(
+              classFeatList.swordsmanFeat,
+              allFeats.combatFeats,
+              level,
+              className,
+              raceName,
+              equip,
+              physical);
+          break;
+        case "Martial":
+          charFeats = calculateFeats(
+              classFeatList.martialFeats,
+              allFeats.combatFeats,
+              level,
+              className,
+              raceName,
+              equip,
+              physical);
+          break;
+        case "Thrower":
+          charFeats = calculateFeats(
+              classFeatList.soldierFeats,
+              allFeats.combatFeats,
+              level,
+              className,
+              raceName,
+              equip,
+              physical);
+          break;
+        default:
+      }
     }
     return charFeats;
   }

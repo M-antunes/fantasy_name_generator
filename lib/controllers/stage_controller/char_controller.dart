@@ -1,5 +1,8 @@
 // ignore_for_file: avoid_function_literals_in_foreach_calls
 
+import 'package:fantasy_name_generator/models/spell_models/school_of_magic_model.dart';
+import 'package:fantasy_name_generator/shared/data/spell_data/school_of_magic_data.dart';
+
 import '../../shared/data/character_personal_data/default_char_model_data.dart';
 import 'imports.dart';
 
@@ -12,12 +15,14 @@ class CharController extends ChangeNotifier {
   late AlignmentModel tempAlignmentForSwitching;
   late CombatStyleChoiceModel tempStyleForSwitching;
   late CombatStyleChoiceModel chosenStyle;
+  late SchoolOfMagicModel schoolChoice;
   late PhysicalStyleModel physicalStyleChoice;
   late CharModel cha;
   late bool isMinion;
   var letters = LettersData();
   var listOfRaces = RaceData();
   var listOfClasses = ClassData();
+  var listOfSchoolsOfMagic = SchoolOfMagicData();
   var listOfAlignments = AlignmentData();
   var listOfEquip = EquipData();
   var humanNames = HumanNamesData();
@@ -154,6 +159,15 @@ class CharController extends ChangeNotifier {
     }
     style.isSelected = !style.isSelected;
     tempStyleForSwitching = style;
+    notifyListeners();
+  }
+
+  switchSchool(SchoolOfMagicModel school) {
+    for (var select in listOfSchoolsOfMagic.listOfSchools) {
+      select.isSelected = false;
+    }
+    school.isSelected = !school.isSelected;
+    schoolChoice = school;
     notifyListeners();
   }
 
@@ -900,7 +914,16 @@ class CharController extends ChangeNotifier {
       return null;
     } else if (creationStage == 4) {
       updateChosenClass();
-      filterPhysicalStyle();
+      if (chosenStyle.name == "Spellcaster") {
+        listOfSchoolsOfMagic.listOfSchools
+            .forEach((element) => element.isSelected = false);
+        schoolChoice = listOfSchoolsOfMagic.listOfSchools[0];
+        schoolChoice.isSelected = true;
+        physicalStyleChoice =
+            listOfClasses.physicalStyles[0].copyWith(name: "");
+      } else {
+        filterPhysicalStyle();
+      }
       advanceCreationStage();
       return null;
     } else if (creationStage == 5) {

@@ -1,12 +1,16 @@
-import 'package:fantasy_name_generator/modules/char_creation/selection_sections/stats_sections/widgets/gradient_label.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import 'package:fantasy_name_generator/controllers/stage_controller/imports.dart';
+import 'package:fantasy_name_generator/modules/char_creation/selection_sections/stats_sections/widgets/gradient_label.dart';
+
 import '../../../../../../../controllers/stats_controller/stats_controller.dart';
 import '../../../../../../../shared/constants/phone_sizes.dart';
 import '../../../widgets/atribute_division.dart';
 import '../../../widgets/char_description_text.dart';
 import '../widgets/combat_info.dart';
 import '../widgets/dual_wield_tile.dart';
+import '../widgets/unique_char_info.dart';
 import '../widgets/weapon_tile.dart';
 
 class OffenseSegment extends StatelessWidget {
@@ -54,67 +58,31 @@ class OffenseSegment extends StatelessWidget {
               ),
             ],
           ),
+          if (state.char.battleStyle.name == "Hybrid" ||
+              state.char.battleStyle.name == "Spellcaster")
+            Row(
+              children: [
+                CombatInfo(
+                    length: deviceWidth! * 0.45,
+                    label: "Touch attack",
+                    value: "+${state.char.combatStats.touchAttack!}"),
+                CombatInfo(
+                    length: deviceWidth! * 0.45,
+                    label: "Concentration",
+                    value: "+${state.char.combatStats.concentration!}"),
+              ],
+            ),
           if (state.char.charClass.name == "Rogue" ||
               state.char.charClass.name == "Bandit")
-            Column(
-              children: [
-                const SizedBox(height: 3),
-                CombatInfo(
-                  length: deviceWidth! * 0.5,
-                  label: "Sneak attack:",
-                  value: state.traits.isEmpty
-                      ? ''
-                      : state.traits
-                          .firstWhere((element) =>
-                              element.traiName.contains("Sneak attack"))
-                          .traiName
-                          .substring(13),
-                ),
-              ],
-            ),
+            UniqueCharInfo(
+                traits: state.traits, label: "Sneak attack", stringIndex: 13),
           if (state.char.charClass.name == "Samurai")
-            Column(
-              children: [
-                const SizedBox(height: 3),
-                CombatInfo(
-                  length: deviceWidth! * 0.5,
-                  label: state.traits
-                      .firstWhere(
-                          (element) => element.traiName.contains("Challenge"))
-                      .traiName
-                      .substring(0, 9),
-                  value: state.traits
-                      .firstWhere(
-                          (element) => element.traiName.contains("Challenge"))
-                      .traiName
-                      .substring(10),
-                ),
-              ],
-            ),
+            UniqueCharInfo(
+                traits: state.traits, label: "Challenge", stringIndex: 10),
           if (state.char.charClass.name == "Paladin" ||
               state.char.charClass.name == "Antipaladin")
-            Column(
-              children: [
-                const SizedBox(height: 3),
-                CombatInfo(
-                  length: deviceWidth! * 0.5,
-                  label: state.traits.isEmpty
-                      ? ''
-                      : state.traits
-                          .firstWhere(
-                              (element) => element.traiName.contains("Smite"))
-                          .traiName
-                          .substring(0, 10),
-                  value: state.traits.isEmpty
-                      ? ''
-                      : state.traits
-                          .firstWhere(
-                              (element) => element.traiName.contains("Smite"))
-                          .traiName
-                          .substring(10),
-                ),
-              ],
-            ),
+            UniqueCharInfo(
+                traits: state.traits, label: "Smite", stringIndex: 10),
           if (state.char.charClass.name == "Monk")
             Column(
               children: [

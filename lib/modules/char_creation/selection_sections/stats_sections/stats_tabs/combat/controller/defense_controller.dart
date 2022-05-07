@@ -33,9 +33,12 @@ class DefenseController {
   }
 
   ArmorModel? generateArmor(List<String> fobiddenTypes, String mainAtrb,
-      String className, List<ArmorModel> shieldList) {
+      String className, List<ArmorModel> shieldList, String combatStyle) {
     ArmorModel armor;
     List<ArmorModel> armors;
+    if (combatStyle == "Spellcaster") {
+      return null;
+    }
     if (className == "Monk") {
       return null;
     } else if (className == "Druid") {
@@ -73,10 +76,13 @@ class DefenseController {
     return armor;
   }
 
-  ArmorModel applyMagicToArmorAndShield(
-      int level, List<EnchantModel> list, ArmorModel equip) {
+  ArmorModel? applyMagicToArmorAndShield(int level, List<EnchantModel> list,
+      ArmorModel equip, String combatStyle) {
     if (level < 5) {
       return equip;
+    }
+    if (combatStyle == "Spellcaster") {
+      return null;
     }
     var minAvail = discoverMinAvailability(level);
     var enchantPowerLvs = list
@@ -155,6 +161,7 @@ class DefenseController {
     int wis,
     List<WonderousItemsModel> list,
     List<TraitModel> charFeats,
+    String spellCaster,
   ) {
     int armorDefense = equip.armour != null ? equip.armour!.defenseBonus : 0;
     int shieldDefense = equip.shield != null ? equip.shield!.defenseBonus : 0;
@@ -181,6 +188,14 @@ class DefenseController {
         touch++;
         surprise++;
       }
+    }
+    if (spellCaster == "Spellcaster") {
+      var arcaneArmor = level > 5 ? 4 : 0;
+      var arcaneShield = level > 7 ? 4 : 0;
+      var bracersBoost = findBoostyItem(list, "Bracers of armor");
+      armorAc += arcaneArmor + arcaneShield + bracersBoost;
+      touch += arcaneArmor + arcaneShield;
+      surprise += arcaneArmor + arcaneShield + bracersBoost;
     }
 
     if (charFeats.any((element) => element.traiName == "Dodge")) {

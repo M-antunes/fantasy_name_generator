@@ -124,7 +124,8 @@ class StatsController with ChangeNotifier {
           char.charClass.forbidenArmorType,
           char.charClass.mainAtrb,
           char.charClass.name,
-          _equip.allArmors);
+          _equip.allArmors,
+          char.battleStyle.name);
     }
     getCharPersonalAppearance();
     calculateBaseAttackBonus();
@@ -151,6 +152,7 @@ class StatsController with ChangeNotifier {
     calculatingPhysicalAttackAndDamage();
     calculateClassSkills();
     calculatingLanguages();
+    claculatingConcentration();
     statsGenerated = true;
     notifyListeners();
   }
@@ -181,12 +183,13 @@ class StatsController with ChangeNotifier {
       return;
     }
     char.charEquip.wonderousItems!.addAll(magicGearCtrl.getWonderousItems(
-        char.charLevel,
-        char.charClass.combatStyle,
-        char.charClass.mainAtrb,
-        listOfWonderousItems.allItems,
-        char.charClass.name,
-        char.physicalStyle.name));
+      char.charLevel,
+      char.charClass.combatStyle,
+      char.charClass.mainAtrb,
+      listOfWonderousItems.allItems,
+      char.charClass.name,
+      char.physicalStyle.name,
+    ));
 
     char.charEquip.wonderousItems!.addAll(magicGearCtrl.addIndispensableItem(
         listOfWonderousItems.protRings, char.charLevel));
@@ -203,7 +206,8 @@ class StatsController with ChangeNotifier {
     } else if (char.battleStyle.name == "Spellcaster" ||
         char.battleStyle.name == "Diplomat") {
       List<WonderousItemsModel> posibleAmulets = listOfWonderousItems.allItems
-          .where((element) => element.availability < char.charLevel)
+          .where((element) =>
+              element.availability < char.charLevel && element.type == "Neck")
           .toList();
       char.charEquip.wonderousItems!.addAll(
           magicGearCtrl.addIndispensableItem(posibleAmulets, char.charLevel));
@@ -219,8 +223,8 @@ class StatsController with ChangeNotifier {
   // get Potions
 
   getPotions() {
-    charPotions =
-        magicGearCtrl.generatePotions(char.charLevel, char.physicalStyle.name);
+    charPotions = magicGearCtrl.generatePotions(
+        char.charLevel, char.physicalStyle.name, char.battleStyle.name);
     notifyListeners();
   }
   // ===================================================================================
@@ -282,12 +286,18 @@ class StatsController with ChangeNotifier {
 
   makeArmorOrShieldMagic() {
     char.charEquip.armour = char.charEquip.armour != null
-        ? defenseCtrl.applyMagicToArmorAndShield(char.charLevel,
-            listOfEnchants.magicEnchants, char.charEquip.armour!)
+        ? defenseCtrl.applyMagicToArmorAndShield(
+            char.charLevel,
+            listOfEnchants.magicEnchants,
+            char.charEquip.armour!,
+            char.battleStyle.name)
         : null;
     char.charEquip.shield = char.charEquip.shield != null
-        ? defenseCtrl.applyMagicToArmorAndShield(char.charLevel,
-            listOfEnchants.magicEnchants, char.charEquip.shield!)
+        ? defenseCtrl.applyMagicToArmorAndShield(
+            char.charLevel,
+            listOfEnchants.magicEnchants,
+            char.charEquip.shield!,
+            char.battleStyle.name)
         : null;
     notifyListeners();
   }
@@ -347,12 +357,13 @@ class StatsController with ChangeNotifier {
 
   getFeats() {
     charFeats = featCtrl.getFeats(
-        char.physicalStyle.name,
-        char.charLevel,
-        char.charClass.name,
-        char.charRace.name,
-        char.charEquip,
-        char.physicalStyle.name);
+      char.physicalStyle.name,
+      char.charLevel,
+      char.charClass.name,
+      char.charRace.name,
+      char.charEquip,
+      char.battleStyle.name,
+    );
     notifyListeners();
   }
 
@@ -454,6 +465,7 @@ class StatsController with ChangeNotifier {
       char.modAttributes.wisdom,
       char.charEquip.wonderousItems!,
       charFeats,
+      char.battleStyle.name,
     );
     char.combatStats.armourClass = defenses[0];
     char.combatStats.armourSurprise = defenses[1];
@@ -535,6 +547,7 @@ class StatsController with ChangeNotifier {
     char.combatStats.rangeAttack = attackValues[1];
     char.combatStats.dualWieldAttack =
         char.charClass.name != "Monk" ? attackValues[2] : attackValues[3];
+    char.combatStats.touchAttack = attackValues[4];
 
     String? meleeExtraDamage = char.charEquip.meleeWeapon!.enchantment == null
         ? ""
@@ -566,6 +579,18 @@ class StatsController with ChangeNotifier {
         ? "${char.charEquip.meleeWeapon!.damage!} +${damages[2]} $meleeExtraDamage"
         : "${MonkTraitsData().unarmedAtk.firstWhere((element) => element.key.contains(char.charLevel.toString())).value} + ${char.charEquip.meleeWeapon!.damage!} +${damages[0]} $meleeExtraDamage";
     notifyListeners();
+  }
+
+  claculatingConcentration() {
+    if (char.battleStyle.name == "Spellcaster" ||
+        char.battleStyle.name == "Hybrid") {
+      char.combatStats.concentration = offenseCtrl.claculatingConcentration(
+          char.charLevel,
+          char.charClass.mainAtrb,
+          char.modAttributes,
+          char.charClass.traits!);
+      notifyListeners();
+    }
   }
 
   // =========================================================================================

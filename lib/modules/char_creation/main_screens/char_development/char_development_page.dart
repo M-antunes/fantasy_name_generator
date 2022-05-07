@@ -13,6 +13,7 @@ import '../../selection_sections/name_and_gender/gender_section.dart';
 import '../../selection_sections/name_and_gender/name_section.dart';
 import '../../selection_sections/physical_combat/physical_combat_section.dart';
 import '../../selection_sections/race/race_section.dart';
+import '../../selection_sections/spellcaster_style/spellcaster_style_section.dart';
 import '../../selection_sections/stats_sections/stats_main/stats_section.dart';
 import '../bottom_navigator_widgets/generation_bottom_nav.dart';
 import '../widgets/char_selection_label.dart';
@@ -106,7 +107,12 @@ class _CharDevelopmentPageState extends State<CharDevelopmentPage>
                   ),
                 if (state.creationStage == 3) const CombatStyleSection(),
                 if (state.creationStage == 4) const ClassSelection(),
-                if (state.creationStage == 5) const CombatEquipSection(),
+                if (state.creationStage == 5 &&
+                    state.chosenStyle.name != "Spellcaster")
+                  const CombatEquipSection(),
+                if (state.creationStage == 5 &&
+                    state.chosenStyle.name == "Spellcaster")
+                  const SpellcasterStyleSection(),
                 if (state.creationStage == 6) const AlignmentSelection(),
                 if (state.creationStage == 7) const LevelSelection(),
                 if (state.creationStage == 8) const StatsSection(),

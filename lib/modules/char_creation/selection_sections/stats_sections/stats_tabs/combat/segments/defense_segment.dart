@@ -1,3 +1,4 @@
+import 'package:fantasy_name_generator/modules/char_creation/selection_sections/stats_sections/stats_tabs/combat/widgets/unique_char_info.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -64,6 +65,11 @@ class DefenseSegment extends StatelessWidget {
               ),
             ],
           ),
+          if (state.char.charClass.name == "Barbarian")
+            UniqueCharInfo(
+                label: "Damage reduction",
+                traits: state.traits,
+                stringIndex: 17),
           const SizedBox(height: 3),
           const GradientLabel(label: "Resistances"),
           Row(

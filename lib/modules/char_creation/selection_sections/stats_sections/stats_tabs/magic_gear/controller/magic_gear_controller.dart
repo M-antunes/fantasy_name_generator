@@ -3,6 +3,7 @@ import 'package:fantasy_name_generator/shared/data/spell_data/spell_data.dart';
 import '../../../../../../../models/combat_models/base_atribute_model.dart';
 import '../../../../../../../models/equip_models/magic_equip_models/wonderous_items_model.dart';
 import '../../../../../../../models/spell_models/spell_model.dart';
+import '../../../../../../../shared/data/equip_data/wonderous_items_data.dart';
 import '../../../../../../../shared/utils/utils.dart';
 
 class MagicGearController {
@@ -118,12 +119,13 @@ class MagicGearController {
   }
 
   List<WonderousItemsModel> getWonderousItems(
-      int level,
-      String combatStyle,
-      String mainAtrb,
-      List<WonderousItemsModel> allitems,
-      String className,
-      String physicalStyle) {
+    int level,
+    String combatStyle,
+    String mainAtrb,
+    List<WonderousItemsModel> allitems,
+    String className,
+    String physicalStyle,
+  ) {
     var availableItems = findMagicItem(level, allitems, className);
     var numberOfItems = (level / 5).floor();
     var itemsPerBodyParts = findItemForBodyParts(numberOfItems);
@@ -250,6 +252,17 @@ class MagicGearController {
           (element) => element.name!.contains("Belt of giant strength"));
       charMagicItems.add(allitems.firstWhere((element) =>
           element.name!.contains("Belt of gincredible dexterity")));
+    }
+    if (combatStyle == "Spellcaster") {
+      if (charMagicItems.any((element) => element.type == "Wrist")) {
+        charMagicItems.removeWhere((element) => element.type == "Wrist");
+      }
+      List<WonderousItemsModel> bracers = [];
+      bracers.addAll(WonderousItemsData()
+          .bracersOfArmor
+          .where((element) => element.availability <= level)
+          .toList());
+      charMagicItems.add(bracers.last);
     }
     return charMagicItems;
   }
@@ -507,14 +520,8 @@ class MagicGearController {
     } else if (level > 17 && level < 21) {
       boostBooks.add(findTomeOrManual(mainAtrb, books, level));
       boostBooks.add(findTomeOrManual("constitution", books, level));
-      if ((battleStyle == "Hybrid" || battleStyle == "Spellcaster") &&
-          mainAtrb != "dexterity") {
-        boostBooks.add(findTomeOrManual("dexterity", books, level));
-        tomesAndManuals.add(boostBooks.last);
-      } else {
-        boostBooks.add(findTomeOrManual("wisdom", books, level));
-        tomesAndManuals.addAll(boostBooks);
-      }
+      boostBooks.add(findTomeOrManual("dexterity", books, level));
+      tomesAndManuals.addAll(boostBooks);
     }
     return tomesAndManuals;
   }
@@ -565,7 +572,8 @@ class MagicGearController {
     return attribute;
   }
 
-  List<SpellModel> generatePotions(int level, String style) {
+  List<SpellModel> generatePotions(
+      int level, String style, String spellCaster) {
     if (level < 5) {
       return [];
     }
@@ -613,6 +621,16 @@ class MagicGearController {
           .firstWhere((element) => element.name == "Aid")
           .copyWith(conjurerLevel: (level / 1.2).floor());
       charPotions.insert(0, aidPotion);
+    }
+    if (level > 5 && spellCaster == "Spellcaster") {
+      var mageArmor = allPotions
+          .firstWhere((element) => element.name == "Mage Armor")
+          .copyWith(conjurerLevel: (level / 1.2).floor());
+      charPotions.insert(0, mageArmor);
+      var mageShield = allPotions
+          .firstWhere((element) => element.name == "Shield")
+          .copyWith(conjurerLevel: (level / 1.2).floor());
+      charPotions.insert(0, mageShield);
     }
     return charPotions;
   }
